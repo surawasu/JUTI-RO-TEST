@@ -2,7 +2,7 @@
 
 Updated: 2026-09-02
 Project root: D:\JUTI-HI_Server-Client
-Project state: Phase 0 implementation in progress; backup and Git baseline complete
+Project state: Phase 0 blocked at MariaDB Windows service installation; backup and Git baseline complete
 
 ## 1. Goal
 

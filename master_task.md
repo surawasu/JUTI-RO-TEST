@@ -5,15 +5,15 @@ Workspace: D:\JUTI-HI_Server-Client
 Current milestone: M0 Native Baseline
 Implementation status: Phase 0 — 2/8 tasks complete
 Planning and analysis status: 100%
-Next task: JTW-003 (IN_PROGRESS)
+Next task: JTW-003 (BLOCKED — Administrator access required)
 
 ## Agent roster
 
 | Agent | Role | State | Current task |
 |---|---|---|---|
 | lnwjud | Main Agent / Orchestrator | ACTIVE | Durable goal: juti-webapp-project |
-| JTW1 | Primary implementation worker | IN_PROGRESS | JTW-003 MariaDB compatibility and install review |
-| JTW2 | ChatGPT writing and QA worker | READY | JTW-003 database safety and least-privilege QA |
+| JTW1 | Primary implementation worker | BLOCKED | JTW-003 requires Administrator access for MSI/service |
+| JTW2 | ChatGPT writing and QA worker | DONE | JTW-003 install/security gates and validation checklist completed |
 
 ## Status legend
 
@@ -127,22 +127,36 @@ Evidence:
 
 ### JTW-003 — Install development database
 
-State: IN_PROGRESS
+State: BLOCKED
 Owner: JTW1 (primary), JTW2 (QA)
 Depends on: JTW-001
 
 Tasks:
 
-- [ ] Select MariaDB version after schema compatibility check.
+- [x] Select MariaDB version after schema compatibility check.
 - [ ] Install local service.
 - [ ] Create least-privilege development user and databases.
-- [ ] Keep credentials outside Git.
+- [x] Keep credentials outside Git.
 - [ ] Verify service restart.
 
 Acceptance:
 
 - MariaDB is healthy after restart.
 - Development user can access only required databases.
+
+Evidence:
+
+- Selected MariaDB 11.4.13 LTS x64 after reviewing the MySQL 8.0.30 dump and legacy `tis620`, `utf8mb3`, `latin1`, InnoDB and MyISAM requirements.
+- Installer: `C:\JUTI-HI_Installers\mariadb-11.4.13-winx64.msi`.
+- Official SHA-256 verified: `5AF228931E6E13C599060D9EAF78F71A9FA62879A3D3FA9327CB458B756A6C04`.
+- Authenticode: Valid; signer `MariaDB USA, Inc.`.
+- Preflight: no existing MySQL/MariaDB service and TCP 3306 is free.
+- Random credentials are stored under ACL-restricted `C:\JUTI-HI_Secrets`; no credential was added to Git.
+- Docker fallback was hardened to bind `127.0.0.1` and require `.env` secrets.
+
+Blocker:
+
+- The local runner returned `PERMISSION_DENIED: Administrator access is not available`; MSI installation and Windows service creation cannot continue until an Administrator-capable session is provided.
 
 ### JTW-004 — Import and configure rAthena databases
 
@@ -415,9 +429,9 @@ M5 acceptance:
 ## Active task
 
 Task: JTW-003
-State: IN_PROGRESS
+State: BLOCKED
 Owner: JTW1 (primary), JTW2 (QA)
-Next action: inspect SQL compatibility and Windows package availability, select a supported MariaDB version, then install and verify a local-only development service.
+Next action: resume from an Administrator-capable session; install the verified MariaDB 11.4.13 MSI as local-only service `MariaDB-JUTI-DEV`, then run service, listener, engine, charset, grants and restart checks.
 Prerequisite evidence: JTW-001 backup verified; JTW-002 baseline commit `1c6fe012b32d6771091f8d86c7253bfa72e7b4b0` verified.
-Continuation: hourly lnwjud continuation is enabled until the durable goal is terminal.
-Blocker: none.
+Continuation: paused to prevent repeated privileged install attempts.
+Blocker: Administrator access is unavailable to the local runner.
