@@ -1,0 +1,15 @@
+like_game,134,99,4	script	TCG Shop	840,{
+
+mes	"[TCG Shop]";
+mes "2 TCG = 1 Cash";
+
+
+close2;
+callshop "TCG_EXCHANG",1;
+end;
+
+
+OnInit:
+waitingroom "2 TCG = 1 CASH",0;
+end;
+}

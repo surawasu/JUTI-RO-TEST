@@ -1,0 +1,1177 @@
+-	shop	socketAC	90,2253:100000,5012:100000,2244:100000,5016:100000,2307:200000,2309:200000,2232:200000,2216:200000
+-	shop	socketAB	90,2609:300000,2409:300000,2107:250000,2314:250000,2325:300000,2321:300000,2405:300000,2403:300000,2503:300000,2101:300000,2103:300000,2105:50000,5046:250000
+-	shop	socketAA	90,2287:500000,2425:500000,2230:400000,5114:400000,2109:400000,2330:400000,2341:400000,2316:400000,2335:400000,2411:400000,5092:400000,2505:400000,2228:400000,2337:400000,2299:400000,2507:400000,2251:400000,2246:400000,2605:400000,2264:300000
+-	shop	socketAS	90,2334:1000000,2327:1000000,2111:1000000,2522:1000000,2339:1000000,2256:2000000,2258:2000000,5017:2000000,5019:2000000,2235:2000000,2234:2000000,5053:1000000,2343:1000000,2602:1000000,2601:1000000,2619:1000000,2762011:1000000,2762013:1000000,2762015:1000000,2762017:1000000,2762019:1000000,2762021:1000000
+-	shop	socketWC	90,1554:200000,1553:200000,1556:200000,1555:200000,1460:200000,1950:200000,1901:200000
+-	shop	socketWB	90,1304:200000,1113:200000,1523:200000,1519:300000,1219:300000,1714:300000,1407:200000,1123:300000,1905:300000,1954:300000,1801:300000,1713:300000
+-	shop	socketWA	90,13001:500000,1257:500000,1258:500000,1256:500000,1259:500000,1524:500000,1918:500000,1970:500000,1477:500000,1474:500000,1167:500000,1718:500000,1619:500000,1168:800000,1129:500000,1261:700000,1722:500000,1522:500000,1814:500000,1163:500000
+-	shop	socketWS	90,1468:1000000,1225:1000000,1166:1000000,1224:1000000,1232:1000000,1528:1000000,1169:1000000,1413:1000000,1239:1000000,1230:2000000,1236:1000000,13002:1000000,1135:1000000,1466:1000000,1617:1000000
+
+morocc,119,78,5	script	Socket Enchant#malla	574,{	
+	disable_items;
+	if (checkweight(1201,1) == 0) {
+		mes "[^0000FFSocket Enchant^000000]";
+		mes "^FF0000คุณมีไอเทมมากเกินไป^000000";
+		end;
+	}
+	if (MaxWeight - Weight < 10000) {
+		mes "[^0000FFSocket Enchant^000000]";
+		mes "^FF0000กรุณาตรวจสอบน้ำหนักด้วย^000000";
+		end;
+	}
+
+menu 
+"^FF0000•^000000 เจาะรู Armor",socketA,
+"^FF0000•^000000 เจาะรู Weapon",socketW,
+"^FF0000•^000000 ยกเลิก",ex;
+
+ex:
+end;
+
+// ARMOR
+socketA:
+menu 
+"^FF0000•^000000 Class C",socketAC,
+"^FF0000•^000000 Class B",socketAB,
+"^FF0000•^000000 Class A",socketAA,
+"^FF0000•^000000 Class S",socketAS,
+"^FF0000•^000000 ยกเลิก",ex;
+
+socketAC:
+mes "[^0000FFSocket Enchant^000000]";
+mes "<font size = 20, color = FF0000>ให้ทำการซื้อไอเท็มที่ต้องการเจาะรูและ\nต้องใส่มันไว้ในตัวด้วย</font>";
+close2;
+callshop "socketAC",1;    
+npcshopattach "socketAC";
+end;
+socketAB:
+mes "[^0000FFSocket Enchant^000000]";
+mes "<font size = 20, color = FF0000>ให้ทำการซื้อไอเท็มที่ต้องการเจาะรูและ\nต้องใส่มันไว้ในตัวด้วย</font>";
+close2;
+callshop "socketAB",1;    
+npcshopattach "socketAB";
+end;
+socketAA:
+mes "[^0000FFSocket Enchant^000000]";
+mes "<font size = 20, color = FF0000>ให้ทำการซื้อไอเท็มที่ต้องการเจาะรูและ\nต้องใส่มันไว้ในตัวด้วย</font>";
+close2;
+callshop "socketAA",1;    
+npcshopattach "socketAA";
+end;
+socketAS:
+mes "[^0000FFSocket Enchant^000000]";
+mes "<font size = 20, color = FF0000>ให้ทำการซื้อไอเท็มที่ต้องการเจาะรูและ\nต้องใส่มันไว้ในตัวด้วย</font>";
+close2;
+callshop "socketAS",1;    
+npcshopattach "socketAS";
+end;
+
+// WEAPON
+socketW:
+menu 
+"^FF0000•^000000 Class C",socketWC,
+"^FF0000•^000000 Class B",socketWB,
+"^FF0000•^000000 Class A",socketWA,
+"^FF0000•^000000 Class S",socketWS,
+"^FF0000•^000000 ยกเลิก",ex;
+
+socketWC:
+mes "[^0000FFSocket Enchant^000000]";
+mes "<font size = 20, color = FF0000>ให้ทำการซื้อไอเท็มที่ต้องการเจาะรูและ\nต้องใส่มันไว้ในตัวด้วย</font>";
+close2;
+callshop "socketWC",1;    
+npcshopattach "socketWC";
+end;
+socketWB:
+mes "[^0000FFSocket Enchant^000000]";
+mes "<font size = 20, color = FF0000>ให้ทำการซื้อไอเท็มที่ต้องการเจาะรูและ\nต้องใส่มันไว้ในตัวด้วย</font>";
+close2;
+callshop "socketWB",1;    
+npcshopattach "socketWB";
+end;
+socketWA:
+mes "[^0000FFSocket Enchant^000000]";
+mes "<font size = 20, color = FF0000>ให้ทำการซื้อไอเท็มที่ต้องการเจาะรูและ\nต้องใส่มันไว้ในตัวด้วย</font>";
+close2;
+callshop "socketWA",1;    
+npcshopattach "socketWA";
+end;
+socketWS:
+mes "[^0000FFSocket Enchant^000000]";
+mes "<font size = 20, color = FF0000>ให้ทำการซื้อไอเท็มที่ต้องการเจาะรูและ\nต้องใส่มันไว้ในตัวด้วย</font>";
+close2;
+callshop "socketWS",1;    
+npcshopattach "socketWS";
+end;
+
+OnBuyItem:
+	
+	switch( @bought_nameid ) {
+		// Armor C Class
+		case 2253:	//Sunflower
+			.@EQITYPE = EQI_HEAD_TOP;
+			.@req_id = 999;
+			.@req_amt = 3;
+			.@req_zeny = 100000;
+			.@rate = 25;
+			.@reward = 5351;
+			break;
+		case 5012:	//Ph.D Hat
+			.@EQITYPE = EQI_HEAD_TOP;
+			.@req_id = 999;
+			.@req_amt = 3;
+			.@req_zeny = 100000;
+			.@rate = 25;
+			.@reward = 5347;
+			break;
+		case 2244:	//Big Ribbon
+			.@EQITYPE = EQI_HEAD_TOP;
+			.@req_id = 999;
+			.@req_amt = 5;
+			.@req_zeny = 100000;
+			.@rate = 25;
+			.@reward = 5348;
+			break;
+		case 5016:	//Boys Cap
+			.@EQITYPE = EQI_HEAD_TOP;
+			.@req_id = 999;
+			.@req_amt = 5;
+			.@req_zeny = 100000;
+			.@rate = 25;
+			.@reward = 5349;
+			break;
+		case 2307:	//Mantle
+			.@EQITYPE = EQI_ARMOR;
+			.@req_id = 999;
+			.@req_amt = 3;
+			.@req_zeny = 200000;
+			.@rate = 25;
+			.@reward = 2308;
+			break;
+		case 2309:	//Coat
+			.@EQITYPE = EQI_ARMOR;
+			.@req_id = 999;
+			.@req_amt = 3;
+			.@req_zeny = 200000;
+			.@rate = 25;
+			.@reward = 2310;
+			break;
+		case 2232:	//Coat
+			.@EQITYPE = EQI_HEAD_TOP;
+			.@req_id = 999;
+			.@req_amt = 3;
+			.@req_zeny = 200000;
+			.@rate = 25;
+			.@reward = 2233;
+			break;
+		case 2216:	//Coat
+			.@EQITYPE = EQI_HEAD_TOP;
+			.@req_id = 999;
+			.@req_amt = 3;
+			.@req_zeny = 200000;
+			.@rate = 25;
+			.@reward = 2217;
+			break;
+		// Armor B Class
+		case 2609:	//Skull Ring
+			.@EQITYPE = EQI_ACC_R;
+			.@req_id = 999;
+			.@req_amt = 5;
+			.@req_zeny = 300000;
+			.@rate = 20;
+			.@reward = 2715;
+			break;
+		case 2409:	//High Heels
+			.@EQITYPE = EQI_SHOES;
+			.@req_id = 999;
+			.@req_amt = 5;
+			.@req_zeny = 300000;
+			.@rate = 20;
+			.@reward = 2432;
+			break;
+		case 2107:	//Mirror Shield
+			.@EQITYPE = EQI_HAND_L;
+			.@req_id = 999;
+			.@req_amt = 5;
+			.@req_zeny = 250000;
+			.@rate = 20;
+			.@reward = 2108;
+			break;
+		case 2314:	//Chain Mail
+			.@EQITYPE = EQI_HAND_L;
+			.@req_id = 999;
+			.@req_amt = 5;
+			.@req_zeny = 250000;
+			.@rate = 20;
+			.@reward = 2315;
+			break;
+		case 2325:	//Saint Robe
+			.@EQITYPE = EQI_ARMOR;
+			.@req_id = 999;
+			.@req_amt = 5;
+			.@req_zeny = 300000;
+			.@rate = 20;
+			.@reward = 2326;
+			break;
+		case 2321:	//Silk Robe
+			.@EQITYPE = EQI_ARMOR;
+			.@req_id = 999;
+			.@req_amt = 5;
+			.@req_zeny = 300000;
+			.@rate = 20;
+			.@reward = 2322;
+			break;
+		case 2405:	//Boots
+			.@EQITYPE = EQI_SHOES;
+			.@req_id = 999;
+			.@req_amt = 5;
+			.@req_zeny = 300000;
+			.@rate = 20;
+			.@reward = 2406;
+			break;
+		case 2403:	//Shoes
+			.@EQITYPE = EQI_SHOES;
+			.@req_id = 999;
+			.@req_amt = 5;
+			.@req_zeny = 300000;
+			.@rate = 20;
+			.@reward = 2404;
+			break;
+		case 2503:	//Muffler
+			.@EQITYPE = EQI_GARMENT;
+			.@req_id = 999;
+			.@req_amt = 5;
+			.@req_zeny = 300000;
+			.@rate = 20;
+			.@reward = 2504;
+			break;
+		case 2101:	//Guard
+			.@EQITYPE = EQI_HAND_L;
+			.@req_id = 999;
+			.@req_amt = 5;
+			.@req_zeny = 300000;
+			.@rate = 20;
+			.@reward = 2102;
+			break;
+		case 2103:	//Buckler
+			.@EQITYPE = EQI_HAND_L;
+			.@req_id = 999;
+			.@req_amt = 5;
+			.@req_zeny = 300000;
+			.@rate = 20;
+			.@reward = 2104;
+			break;
+		case 2105:	//Shield
+			.@EQITYPE = EQI_HAND_L;
+			.@req_id = 999;
+			.@req_amt = 5;
+			.@req_zeny = 250000;
+			.@rate = 20;
+			.@reward = 2106;
+			break;
+		case 5046:	//Bongun Hat
+			.@EQITYPE = EQI_HEAD_TOP;
+			.@req_id = 999;
+			.@req_amt = 5;
+			.@req_zeny = 250000;
+			.@rate = 20;
+			.@reward = 5168;
+			break;
+		// Armor A Class
+		case 2287:	//Pirate Bandana
+			.@EQITYPE = EQI_HEAD_TOP;
+			.@req_id = 985;
+			.@req_amt = 1;
+			.@req_zeny = 500000;
+			.@rate = 20;
+			.@reward = 5350;
+			break;
+		case 2425:	//Black Leather Boots
+			.@EQITYPE = EQI_SHOES;
+			.@req_id = 985;
+			.@req_amt = 1;
+			.@req_zeny = 500000;
+			.@rate = 10;
+			.@reward = 2434;
+			break;
+		case 2230:	//Gemmed Sallet
+			.@EQITYPE = EQI_HEAD_TOP;
+			.@req_id = 985;
+			.@req_amt = 1;
+			.@req_zeny = 400000;
+			.@rate = 20;
+			.@reward = 2231;
+			break;
+		case 5114:	//Bucket Hat
+			.@EQITYPE = EQI_HEAD_TOP;
+			.@req_id = 985;
+			.@req_amt = 1;
+			.@req_zeny = 400000;
+			.@rate = 20;
+			.@reward = 5120;
+			break;
+		case 2109:	//Memory Book
+			.@EQITYPE = EQI_HAND_L;
+			.@req_id = 985;
+			.@req_amt = 1;
+			.@req_zeny = 400000;
+			.@rate = 20;
+			.@reward = 2121;
+			break;
+		case 2330:	//Tights
+			.@EQITYPE = EQI_ARMOR;
+			.@req_id = 985;
+			.@req_amt = 1;
+			.@req_zeny = 400000;
+			.@rate = 20;
+			.@reward = 2331;
+			break;
+		case 2341:	//Legion Plate Armor
+			.@EQITYPE = EQI_ARMOR;
+			.@req_id = 985;
+			.@req_amt = 1;
+			.@req_zeny = 400000;
+			.@rate = 20;
+			.@reward = 2342;
+			break;
+		case 2316:	//Full Plate
+			.@EQITYPE = EQI_ARMOR;
+			.@req_id = 985;
+			.@req_amt = 1;
+			.@req_zeny = 400000;
+			.@rate = 20;
+			.@reward = 2317;
+			break;
+		case 2335:	//Thief Clothes
+			.@EQITYPE = EQI_ARMOR;
+			.@req_id = 985;
+			.@req_amt = 1;
+			.@req_zeny = 400000;
+			.@rate = 20;
+			.@reward = 2336;
+			break;
+		case 2411:	//Greaves
+			.@EQITYPE = EQI_SHOES;
+			.@req_id = 985;
+			.@req_amt = 1;
+			.@req_zeny = 400000;
+			.@rate = 20;
+			.@reward = 2412;
+			break;
+		case 5092:	//Coif
+			.@EQITYPE = EQI_HEAD_TOP;
+			.@req_id = 985;
+			.@req_amt = 1;
+			.@req_zeny = 400000;
+			.@rate = 20;
+			.@reward = 2412;
+			break;
+		case 2505:	//Manteau
+			.@EQITYPE = EQI_GARMENT;
+			.@req_id = 985;
+			.@req_amt = 1;
+			.@req_zeny = 400000;
+			.@rate = 20;
+			.@reward = 2506;
+			break;
+		case 2228:	//Helm
+			.@EQITYPE = EQI_HEAD_TOP;
+			.@req_id = 985;
+			.@req_amt = 1;
+			.@req_zeny = 400000;
+			.@rate = 20;
+			.@reward = 2229;
+			break;
+		case 2337:	//Ninja Suit
+			.@EQITYPE = EQI_ARMOR;
+			.@req_id = 985;
+			.@req_amt = 1;
+			.@req_zeny = 400000;
+			.@rate = 20;
+			.@reward = 2359;
+			break;
+		case 2299:	//Orc Helm
+			.@EQITYPE = EQI_HEAD_TOP;
+			.@req_id = 985;
+			.@req_amt = 1;
+			.@req_zeny = 400000;
+			.@rate = 20;
+			.@reward = 5157;
+			break;
+		case 2507:	//Ancient Cape
+			.@EQITYPE = EQI_GARMENT;
+			.@req_id = 985;
+			.@req_amt = 1;
+			.@req_zeny = 400000;
+			.@rate = 20;
+			.@reward = 2525;
+			break;
+		case 2251:	//Monk Hat
+			.@EQITYPE = EQI_HEAD_TOP;
+			.@req_id = 985;
+			.@req_amt = 1;
+			.@req_zeny = 400000;
+			.@rate = 20;
+			.@reward = 5158;
+			break;
+		case 2246:	//Golden Gear
+			.@EQITYPE = EQI_HEAD_TOP;
+			.@req_id = 985;
+			.@req_amt = 1;
+			.@req_zeny = 400000;
+			.@rate = 20;
+			.@reward = 5159;
+			break;
+		case 2605:	//Brooch
+			.@EQITYPE = EQI_ACC_R;
+			.@req_id = 985;
+			.@req_amt = 1;
+			.@req_zeny = 400000;
+			.@rate = 20;
+			.@reward = 2625;
+			break;
+		case 2264:	//Munak Hat
+			.@EQITYPE = EQI_HEAD_TOP;
+			.@req_id = 985;
+			.@req_amt = 1;
+			.@req_zeny = 300000;
+			.@rate = 20;
+			.@reward = 5167;
+			break;
+		// Armor S Class
+		case 2334:	//Mage Coat
+			.@EQITYPE = EQI_ARMOR;
+			.@req_id = 985;
+			.@req_amt = 1;
+			.@req_zeny = 1000000;
+			.@rate = 10;
+			.@reward = 2372;
+			break;
+		case 2327:	//Holy Robe
+			.@EQITYPE = EQI_ARMOR;
+			.@req_id = 985;
+			.@req_amt = 1;
+			.@req_zeny = 1000000;
+			.@rate = 5;
+			.@reward = 2373;
+			break;
+		case 2111:	//Sacred Mission
+			.@EQITYPE = EQI_ARMOR;
+			.@req_id = 985;
+			.@req_amt = 1;
+			.@req_zeny = 1000000;
+			.@rate = 5;
+			.@reward = 2128;
+			break;
+		case 2522:	//Undershirt
+			.@EQITYPE = EQI_GARMENT;
+			.@req_id = 985;
+			.@req_amt = 1;
+			.@req_zeny = 1000000;
+			.@rate = 5;
+			.@reward = 2523;
+			break;
+		case 2339:	//Pantie
+			.@EQITYPE = EQI_ARMOR;
+			.@req_id = 985;
+			.@req_amt = 1;
+			.@req_zeny = 1000000;
+			.@rate = 5;
+			.@reward = 2371;
+			break;
+		case 2256:	//Majestic Goat
+			.@EQITYPE = EQI_HEAD_TOP;
+			.@req_id = 985;
+			.@req_amt = 2;
+			.@req_zeny = 2000000;
+			.@rate = 10;
+			.@reward = 5160;
+			break;
+		case 2258:	//Spiky Band
+			.@EQITYPE = EQI_HEAD_TOP;
+			.@req_id = 985;
+			.@req_amt = 2;
+			.@req_zeny = 2000000;
+			.@rate = 10;
+			.@reward = 5161;
+			break;
+		case 5017:	//Bone Helm
+			.@EQITYPE = EQI_HEAD_TOP;
+			.@req_id = 985;
+			.@req_amt = 2;
+			.@req_zeny = 2000000;
+			.@rate = 10;
+			.@reward = 5162;
+			break;
+		case 5019:	//Corsair
+			.@EQITYPE = EQI_HEAD_TOP;
+			.@req_id = 985;
+			.@req_amt = 2;
+			.@req_zeny = 2000000;
+			.@rate = 10;
+			.@reward = 5163;
+			break;	
+		case 2235:	//Crown
+			.@EQITYPE = EQI_HEAD_TOP;
+			.@req_id = 985;
+			.@req_amt = 2;
+			.@req_zeny = 2000000;
+			.@rate = 10;
+			.@reward = 5165;
+			break;		
+		case 2234:	//Tiara
+			.@EQITYPE = EQI_HEAD_TOP;
+			.@req_id = 985;
+			.@req_amt = 2;
+			.@req_zeny = 2000000;
+			.@rate = 10;
+			.@reward = 5164;
+			break;			
+		case 5053:	//Sphinx Hat
+			.@EQITYPE = EQI_HEAD_TOP;
+			.@req_id = 985;
+			.@req_amt = 2;
+			.@req_zeny = 1000000;
+			.@rate = 10;
+			.@reward = 5166;
+			break;				
+		case 2343:	//Robe of Cast
+			.@EQITYPE = EQI_ARMOR;
+			.@req_id = 985;
+			.@req_amt = 2;
+			.@req_zeny = 1000000;
+			.@rate = 10;
+			.@reward = 2360;
+			break;				
+		case 2602:	//Earring
+			.@EQITYPE = EQI_ARMOR;
+			.@req_id = 985;
+			.@req_amt = 2;
+			.@req_zeny = 1000000;
+			.@rate = 10;
+			.@reward = 2622;
+			break;				
+		case 2601:	//Ring
+			.@EQITYPE = EQI_ACC_R;
+			.@req_id = 985;
+			.@req_amt = 2;
+			.@req_zeny = 1000000;
+			.@rate = 10;
+			.@reward = 2621;
+			break;				
+		case 2619:	//Bow Thimble
+			.@EQITYPE = EQI_ACC_R;
+			.@req_id = 985;
+			.@req_amt = 2;
+			.@req_zeny = 1000000;
+			.@rate = 10;
+			.@reward = 2671;
+			break;	
+		case 2762011:	 //Cash
+		case 2762013:	 //Cash
+		case 2762015:	 //Cash
+		case 2762017:	 //Cash
+		case 2762019:	 //Cash
+		case 2762021:	 //Cash
+			.@EQITYPE = EQI_HEAD_MID;
+			.@req_id = 985;
+			.@req_amt = 10;
+			.@req_id2 = 984;
+			.@req_amt2 = 10;
+			.@req_zeny = 1000000;
+			.@rate = 50;
+			.@reward = @bought_nameid+1;
+			break;
+		// Weapon C Class
+		case 1554:	//Book of Mother Earth
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 1010;
+			.@req_amt = 10;
+			.@req_zeny = 200000;
+			.@rate = 25;
+			.@reward = 1569;
+		break;
+		case 1553:	//Book of Billows
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 1010;
+			.@req_amt = 10;
+			.@req_zeny = 200000;
+			.@rate = 25;
+			.@reward = 1568;
+		break;
+		case 1556:	//Book of Gust of Wind
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 1010;
+			.@req_amt = 10;
+			.@req_zeny = 200000;
+			.@rate = 25;
+			.@reward = 1571;
+		break;
+		case 1555:	//Book of the Blazing Sun
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 1010;
+			.@req_amt = 10;
+			.@req_zeny = 200000;
+			.@rate = 25;
+			.@reward = 1570;
+		break;
+		case 1460:	//Trident
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 1010;
+			.@req_amt = 10;
+			.@req_zeny = 200000;
+			.@rate = 25;
+			.@reward = 1461;
+		break;
+		case 1950:	//Rope
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 1010;
+			.@req_amt = 10;
+			.@req_zeny = 200000;
+			.@rate = 25;
+			.@reward = 1951;
+		break;
+		case 1901:	//Violin
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 1010;
+			.@req_amt = 10;
+			.@req_zeny = 200000;
+			.@rate = 25;
+			.@reward = 1902;
+		break;
+		// Weapon B Class
+		case 1304:	//Orcish Axe
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 984;
+			.@req_amt = 1;
+			.@req_zeny = 200000;
+			.@rate = 25;
+			.@reward = 1309;
+		break;
+		case 1113:	//Scimiter
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 984;
+			.@req_amt = 1;
+			.@req_zeny = 200000;
+			.@rate = 25;
+			.@reward = 1114;
+		break;
+		case 1523:	//Spike
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 984;
+			.@req_amt = 1;
+			.@req_zeny = 200000;
+			.@rate = 20;
+			.@reward = 1523;
+		break;
+		case 1519:	//Chain
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 1010;
+			.@req_amt = 10;
+			.@req_zeny = 300000;
+			.@rate = 20;
+			.@reward = 1520;
+		break;
+		case 1219:	//Gladius
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 984;
+			.@req_amt = 1;
+			.@req_id2 = 999;
+			.@req_amt2 = 5;
+			.@req_zeny = 300000;
+			.@rate = 20;
+			.@reward = 1220;
+		break;
+		case 1714:	//Gakkung Bow
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 984;
+			.@req_amt = 2;
+			.@req_id2 = 999;
+			.@req_amt2 = 5;
+			.@req_zeny = 300000;
+			.@rate = 20;
+			.@reward = 1716;
+		break;
+		case 1407:	//Pike
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 1010;
+			.@req_amt = 10;
+			.@req_id2 = 0;
+			.@req_amt2 = 0;
+			.@req_zeny = 200000;
+			.@rate = 20;
+			.@reward = 1408;
+		break;
+		case 1123:	//Haedonggum
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 984;
+			.@req_amt = 2;
+			.@req_id2 = 999;
+			.@req_amt2 = 5;
+			.@req_zeny = 300000;
+			.@rate = 20;
+			.@reward = 1128;
+		break;
+		case 1905:	//Lute
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 1010;
+			.@req_amt = 10;
+			.@req_id2 = 0;
+			.@req_amt2 = 0;
+			.@req_zeny = 300000;
+			.@rate = 20;
+			.@reward = 1906;
+		break;
+		case 1954:	//Wire
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 1010;
+			.@req_amt = 10;
+			.@req_id2 = 0;
+			.@req_amt2 = 0;
+			.@req_zeny = 300000;
+			.@rate = 20;
+			.@reward = 1955;
+		break;
+		case 1801:	//Waghnakh
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 1010;
+			.@req_amt = 10;
+			.@req_id2 = 0;
+			.@req_amt2 = 0;
+			.@req_zeny = 300000;
+			.@rate = 20;
+			.@reward = 1802;
+		break;
+		case 1713:	//Arbalest Bow
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 984;
+			.@req_amt = 2;
+			.@req_id2 = 999;
+			.@req_amt2 = 5;
+			.@req_zeny = 300000;
+			.@rate = 20;
+			.@reward = 1715;
+		break;
+		// Weapon A Class
+		case 13001:	//Dragon Killer
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 984;
+			.@req_amt = 2;
+			.@req_zeny = 500000;
+			.@rate = 20;
+			.@reward = 13030;
+		break;
+		case 1257:	//Katar of Quaking
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 984;
+			.@req_amt = 2;
+			.@req_zeny = 500000;
+			.@rate = 25;
+			.@reward = 1276;
+		break;
+		case 1258:	//Katar of Raging Blaze
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 984;
+			.@req_amt = 2;
+			.@req_zeny = 500000;
+			.@rate = 25;
+			.@reward = 1277;
+		break;
+		case 1256:	//Katar of Frozen Icicle
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 984;
+			.@req_amt = 2;
+			.@req_zeny = 500000;
+			.@rate = 25;
+			.@reward = 1275;
+		break;
+		case 1259:	//Katar of Piercing Wind
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 984;
+			.@req_amt = 2;
+			.@req_zeny = 500000;
+			.@rate = 25;
+			.@reward = 1278;
+		break;
+		case 1524:	//Golden Mace
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 984;
+			.@req_amt = 2;
+			.@req_zeny = 500000;
+			.@rate = 20;
+			.@reward = 1539;
+		break;
+		case 1918:	//Oriental Lute
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 984;
+			.@req_amt = 2;
+			.@req_zeny = 500000;
+			.@rate = 20;
+			.@reward = 1922;
+		break;
+		case 1970:	//Queen's Whip
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 984;
+			.@req_amt = 2;
+			.@req_zeny = 500000;
+			.@rate = 20;
+			.@reward = 1976;
+		break;
+		case 1477:	//Spectral Spear
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 984;
+			.@req_amt = 2;
+			.@req_zeny = 500000;
+			.@rate = 15;
+			.@reward = 1477;
+		break;
+		case 1474:	//Gae Bolg
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 984;
+			.@req_amt = 2;
+			.@req_zeny = 500000;
+			.@rate = 15;
+			.@reward = 1480;
+		break;
+		case 1167:	//Schweizersabel
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 984;
+			.@req_amt = 2;
+			.@req_zeny = 500000;
+			.@rate = 20;
+			.@reward = 1178;
+		break;
+		case 1718:	//Hunter Bow
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 984;
+			.@req_amt = 2;
+			.@req_id2 = 999;
+			.@req_amt2 = 10;
+			.@req_zeny = 500000;
+			.@rate = 20;
+			.@reward = 1726;
+		break;
+		case 1619:	//Survivor's Rod(INT)
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 984;
+			.@req_amt = 5;
+			.@req_id2 = 999;
+			.@req_amt2 = 10;
+			.@req_zeny = 500000;
+			.@rate = 20;
+			.@reward = 1620;
+		break;
+		case 1168:	//Zweihander
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 984;
+			.@req_amt = 5;
+			.@req_id2 = 999;
+			.@req_amt2 = 10;
+			.@req_zeny = 800000;
+			.@rate = 20;
+			.@reward = 1171;
+		break;
+		case 1129:	//Flamberge
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 984;
+			.@req_amt = 2;
+			.@req_id2 = 999;
+			.@req_amt2 = 10;
+			.@req_zeny = 500000;
+			.@rate = 20;
+			.@reward = 1149;
+		break;
+		case 1261:	//Infiltrator
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 984;
+			.@req_amt = 5;
+			.@req_id2 = 999;
+			.@req_amt2 = 10;
+			.@req_zeny = 700000;
+			.@rate = 20;
+			.@reward = 1266;
+		break;
+		case 1722:	//Ballista
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 984;
+			.@req_amt = 5;
+			.@req_id2 = 999;
+			.@req_amt2 = 10;
+			.@req_zeny = 500000;
+			.@rate = 20;
+			.@reward = 1727;
+		break;
+		case 1522:	//Stunner
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 984;
+			.@req_amt = 2;
+			.@req_id2 = 999;
+			.@req_amt2 = 10;
+			.@req_zeny = 500000;
+			.@rate = 20;
+			.@reward = 1532;
+		break;
+		case 1814:	//Stunner
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 984;
+			.@req_amt = 5;
+			.@req_id2 = 999;
+			.@req_amt2 = 10;
+			.@req_zeny = 500000;
+			.@rate = 20;
+			.@reward = 1816;
+		break;
+		case 1163:	//Claymore
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 984;
+			.@req_amt = 2;
+			.@req_id2 = 999;
+			.@req_amt2 = 10;
+			.@req_zeny = 500000;
+			.@rate = 20;
+			.@reward = 1172;
+		break;
+		// Weapon S Class
+		case 1468:	//Zephyrus
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 984;
+			.@req_amt = 5;
+			.@req_zeny = 1000000;
+			.@rate = 10;
+			.@reward = 1481;
+		break;
+		case 1225:	//Mailbreaker
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 984;
+			.@req_amt = 5;
+			.@req_zeny = 1000000;
+			.@rate = 10;
+			.@reward = 13032;
+		break;
+		case 1166:	//Dragon Slayer
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 984;
+			.@req_amt = 5;
+			.@req_zeny = 1000000;
+			.@rate = 10;
+			.@reward = 1180;
+		break;
+		case 1224:	//Swordbreaker
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 984;
+			.@req_amt = 5;
+			.@req_zeny = 1000000;
+			.@rate = 10;
+			.@reward = 13031;
+		break;
+		case 1232:	//Assasin Dagger
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 984;
+			.@req_amt = 5;
+			.@req_zeny = 1000000;
+			.@rate = 10;
+			.@reward = 13033;
+		break;
+		case 1528:	//Grand Cross
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 984;
+			.@req_amt = 5;
+			.@req_zeny = 1000000;
+			.@rate = 10;
+			.@reward = 1540;
+		break;
+		case 1169:	//Executioner
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 984;
+			.@req_amt = 5;
+			.@req_zeny = 1000000;
+			.@rate = 10;
+			.@reward = 1179;
+		break;
+		case 1413:	//Gungnir
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 984;
+			.@req_amt = 5;
+			.@req_id2 = 999;
+			.@req_amt2 = 10;
+			.@req_zeny = 1000000;
+			.@rate = 10;
+			.@reward = 1418;
+		break;
+		case 1239:	//Poison Knife
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 984;
+			.@req_amt = 5;
+			.@req_id2 = 999;
+			.@req_amt2 = 10;
+			.@req_zeny = 1000000;
+			.@rate = 10;
+			.@reward = 13016;
+		break;
+		case 1230:	//Ice Pick
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 984;
+			.@req_amt = 5;
+			.@req_id2 = 999;
+			.@req_amt2 = 10;
+			.@req_zeny = 2000000;
+			.@rate = 10;
+			.@reward = 13017;
+		break;
+		case 1236:	//Sucsamad
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 984;
+			.@req_amt = 5;
+			.@req_id2 = 999;
+			.@req_amt2 = 10;
+			.@req_zeny = 1000000;
+			.@rate = 10;
+			.@reward = 13018;
+		break;
+		case 13002:	//Ginnungagap
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 984;
+			.@req_amt = 5;
+			.@req_id2 = 999;
+			.@req_amt2 = 10;
+			.@req_zeny = 1000000;
+			.@rate = 10;
+			.@reward = 13019;
+		break;
+		case 1135:	//Cutlas
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 984;
+			.@req_amt = 5;
+			.@req_id2 = 999;
+			.@req_amt2 = 10;
+			.@req_zeny = 1000000;
+			.@rate = 10;
+			.@reward = 13400;
+		break;
+		case 1466:	//Crescent Scythe
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 984;
+			.@req_amt = 5;
+			.@req_id2 = 999;
+			.@req_amt2 = 10;
+			.@req_zeny = 1000000;
+			.@rate = 10;
+			.@reward = 1476;
+		break;
+		case 1617:	//Survivor's Rod(DEX)
+			.@EQITYPE = EQI_HAND_R;
+			.@req_id = 984;
+			.@req_amt = 5;
+			.@req_id2 = 999;
+			.@req_amt2 = 10;
+			.@req_zeny = 1000000;
+			.@rate = 10;
+			.@reward = 1618;
+		break;
+	}
+	setarray .@item,@bought_nameid[0];
+	setarray .@equip_bitmask[0],
+		EQP_ACC_L,				// EQI_ACC_L
+		EQP_ACC_R,				// EQI_ACC_R
+		EQP_SHOES,				// EQI_SHOES
+		EQP_GARMENT,			// EQI_GARMENT
+		EQP_HEAD_LOW,			// EQI_HEAD_LOW
+		EQP_HEAD_MID,			// EQI_HEAD_MID
+		EQP_HEAD_TOP,			// EQI_HEAD_TOP
+		EQP_ARMOR,				// EQI_ARMOR
+		EQP_HAND_L,				// EQI_HAND_L
+		EQP_HAND_R,				// EQI_HAND_R
+		EQP_COSTUME_HEAD_TOP,	// EQI_COSTUME_HEAD_TOP
+		EQP_COSTUME_HEAD_MID,	// EQI_COSTUME_HEAD_MID
+		EQP_COSTUME_HEAD_LOW,	// EQI_COSTUME_HEAD_LOW
+		EQP_COSTUME_GARMENT,	// EQI_COSTUME_GARMENT
+		EQP_AMMO,				// EQI_AMMO
+		EQP_SHADOW_ARMOR,		// EQI_SHADOW_ARMOR
+		EQP_SHADOW_WEAPON,		// EQI_SHADOW_WEAPON
+		EQP_SHADOW_SHIELD,		// EQI_SHADOW_SHIELD
+		EQP_SHADOW_SHOES,		// EQI_SHADOW_SHOES
+		EQP_SHADOW_ACC_R,		// EQI_SHADOW_ACC_R
+		EQP_SHADOW_ACC_L;		// EQI_SHADOW_ACC_L
+
+	getinventorylist;
+	for ( .@i = 0; .@i < @inventorylist_count; ++.@i ) {
+		if (@bought_nameid == @inventorylist_id[.@i] && (@inventorylist_equip[.@i] & .@equip_bitmask[.@EQITYPE]))
+			break;
+	}
+	setarray .@indices[1],.@EQITYPE;
+	.@part = .@indices[1];
+	setarray .@card[0], @inventorylist_card1[.@i], @inventorylist_card2[.@i], @inventorylist_card3[.@i], @inventorylist_card4[.@i];
+	.@refine = @inventorylist_refine[.@i];	
+	setarray .@opt_id[0], @inventorylist_option_id1[.@i], @inventorylist_option_id2[.@i], @inventorylist_option_id3[.@i], @inventorylist_option_id4[.@i], @inventorylist_option_id5[.@i];
+	setarray .@opt_value[0], @inventorylist_option_value1[.@i], @inventorylist_option_value2[.@i], @inventorylist_option_value3[.@i], @inventorylist_option_value4[.@i], @inventorylist_option_value5[.@i];
+	setarray .@opt_param[0], @inventorylist_option_parameter1[.@i], @inventorylist_option_parameter2[.@i], @inventorylist_option_parameter3[.@i], @inventorylist_option_parameter4[.@i], @inventorylist_option_parameter5[.@i];
+
+
+	mes "[^0000FFSocket Enchant^000000]";
+	mes "ในการสร้าง <ITEM>"+getitemname(.@reward)+"<INFO>"+.@reward+"</INFO></ITEM>";
+	mes "ต้องการ :";
+	mes "- <ITEM>"+getitemname(@bought_nameid)+"<INFO>"+@bought_nameid+"</INFO></ITEM> จำนวน 1 ea";
+	mes "- <ITEM>"+getitemname(.@req_id)+"<INFO>"+.@req_id+"</INFO></ITEM> จำนวน "+.@req_amt+" ea";
+	if(.@req_amt2>0){
+	mes "- <ITEM>"+getitemname(.@req_id2)+"<INFO>"+.@req_id2+"</INFO></ITEM> จำนวน "+.@req_amt2+" ea";
+	}else{
+	}
+	mes "Zeny "+callfunc("F_InsertComma",.@req_zeny)+" Zeny";
+	mes "^FF0000โอกาสสำเร็จ "+.@rate+" %.^000000";
+	next;
+	if (select( "เริ่มเลย", "ยังก่อน" ) == 2)
+		end;
+	if(getequipid(.@part) != @bought_nameid) {
+		mes "[^0000FFSocket Enchant^000000]";
+		mes "โปรดตรวจสอบว่าสวมใส่อุปกรณ์.";
+		close;	
+	}	
+	if(.@req_amt2 > 0){
+		if ( (countitem(.@req_id) < .@req_amt) || countitem(.@req_id2) < .@req_amt2 || zeny < .@req_zeny){
+			mes "[^0000FFSocket Enchant^000000]";
+			mes "ในการสร้าง <ITEM>"+getitemname(.@reward)+"<INFO>"+.@reward+"</INFO></ITEM>";
+			mes "ต้องการ :";
+			mes "- <ITEM>"+getitemname(@bought_nameid)+"<INFO>"+@bought_nameid+"</INFO></ITEM> จำนวน 1 ea";
+			mes "- <ITEM>"+getitemname(.@req_id)+"<INFO>"+.@req_id+"</INFO></ITEM> จำนวน "+.@req_amt+" ea";
+			mes "- <ITEM>"+getitemname(.@req_id2)+"<INFO>"+.@req_id2+"</INFO></ITEM> จำนวน "+.@req_amt2+" ea";
+			mes "Zeny "+callfunc("F_InsertComma",.@req_zeny)+" Zeny";
+			end;
+		}
+	}else{
+		if ( (countitem(.@req_id) < .@req_amt) || zeny < .@req_zeny){
+			mes "[^0000FFSocket Enchant^000000]";
+			mes "ในการสร้าง <ITEM>"+getitemname(.@reward)+"<INFO>"+.@reward+"</INFO></ITEM>";
+			mes "ต้องการ :";
+			mes "- <ITEM>"+getitemname(@bought_nameid)+"<INFO>"+@bought_nameid+"</INFO></ITEM> จำนวน 1 ea";
+			mes "- <ITEM>"+getitemname(.@req_id)+"<INFO>"+.@req_id+"</INFO></ITEM> จำนวน "+.@req_amt+" ea";
+			mes "Zeny "+callfunc("F_InsertComma",.@req_zeny)+" Zeny";
+			end;
+		}
+	}
+	delequip .@part;
+	zeny -= .@req_zeny;
+	delitem .@req_id,.@req_amt;
+	if(.@req_amt2>0){
+	delitem .@req_id2,.@req_amt2;
+	}
+	set .rand,rand(1,100);
+	progressbar "000000",3;
+	if(.rand <= .@rate){
+		specialeffect2 EF_LORD;
+		getitem3( .@reward,1,1,.@refine,0,.@card[0],.@card[1],.@card[2],.@card[3], .@opt_id, .@opt_value, .@opt_param );
+		mes "[^0000FFSocket Enchant^000000]";
+		mes "เรียบร้อยโปรดตรวจสอบItem.";
+		close;
+	}else{
+		specialeffect EF_SUI_EXPLOSION;
+		mes "[^0000FFSocket Enchant^000000]";
+		mes "เสียใจด้ายรอบหน้าเอาใหม่";
+		end;
+	}
+
+end;
+OnInit:
+	 .npc$ = "^0000FF "+strnpcinfo(1)+" ^000000";
+	 waitingroom "    ••เจาะรู••",0;
+end;
+}

@@ -1,0 +1,543 @@
+eternal,122,48,4	script	สุ่มออฟชั่นของสวมใส่	795,{
+
+disable_items;
+
+enchantop:
+mes "^FF0000[ สุ่มออฟชั่นของสวมใส่ ]^000000";
+mes "มีค่าบริการ";
+mes ""+callfunc("F_InsertComma",500)+" Cash";
+mes "ต้องการจะออฟชั่นอุปกรณ์ชิ้นใด";
+	
+	setarray .@indices[1], EQI_HEAD_TOP,EQI_HEAD_MID,EQI_HEAD_LOW, EQI_ARMOR, EQI_HAND_R, EQI_GARMENT, EQI_SHOES;
+	for( set .@i,1; .@i <= 7; set .@i,.@i+1 ) {
+		if( getequipisequiped(.@indices[.@i]) )
+			set .@menu$, .@menu$ + F_getpositionname(.@indices[.@i]) + " - [" + getequipname(.@indices[.@i]) + "]";
+		set .@menu$, .@menu$ + ":";
+	}
+	set .@part, .@indices[ select(.@menu$) ];
+	if(!getequipisequiped(.@part)) {
+		mes "^FF0000[ สุ่มออฟชั่นของสวมใส่ ]^000000";
+		mes "ท่านไม่ได้สวมใส่อุปกรณ์";
+		close;
+	}
+		switch(.@part) {
+		case EQI_HEAD_TOP:
+		case EQI_HEAD_MID:
+		case EQI_HEAD_LOW:
+		case EQI_ARMOR:
+		case EQI_HAND_R:
+		case EQI_GARMENT:
+		case EQI_SHOES:
+			goto Menu1;
+			break;
+		}
+		end;
+
+Menu1:	
+clear;
+mes "^FF0000[ สุ่มออฟชั่นของสวมใส่ ]^000000";
+mes "+"+getequiprefinerycnt(.@part)+" <ITEM>"+getitemname(getequipid(.@part))+"<INFO>"+getequipid(.@part)+"</INFO></ITEM>";
+mes "ต้องการจะออฟชั่นอุปกรณ์ชิ้นนี้หรือไม่";
+
+
+menu
+"• ลุยเลย",LYES, 
+"• ยกเลิก",no01; 
+
+
+
+LYES:
+	.@ROA_ID1 = getequiprandomoption(.@part,0,ROA_ID);
+	.@ROA_ID2 = getequiprandomoption(.@part,1,ROA_ID);
+	if(getequiprandomoption(.@part,0,ROA_ID)==3) .@Ops1$ = "STR +";
+	if(getequiprandomoption(.@part,0,ROA_ID)==4) .@Ops1$ = "AGI +";
+	if(getequiprandomoption(.@part,0,ROA_ID)==5) .@Ops1$ = "VIT +";
+	if(getequiprandomoption(.@part,0,ROA_ID)==6) .@Ops1$ = "INT +";
+	if(getequiprandomoption(.@part,0,ROA_ID)==7) .@Ops1$ = "DEX +";
+	if(getequiprandomoption(.@part,0,ROA_ID)==8) .@Ops1$ = "LUK +";
+	if(getequiprandomoption(.@part,0,ROA_ID)==208) .@Ops1$ = "เพิ่มพลังโจมตีกายภาพต่อมนุษย์ +";
+	if(getequiprandomoption(.@part,0,ROA_ID)==210) .@Ops1$ = "เพิ่มพลังโจมตีเวทย์มนต์ต่อมนุษย์ +";
+	if(getequiprandomoption(.@part,1,ROA_ID)==171) .@Ops2$ = "Skill Delay -";
+	if(getequiprandomoption(.@part,1,ROA_ID)==997) .@Ops2$ = "เพิ่มพลังโจมตีกายภาพ +";
+	if(getequiprandomoption(.@part,1,ROA_ID)==998) .@Ops2$ = "เพิ่มพลังโจมตีเวทย์มนต์ +";
+	if(getequiprandomoption(.@part,1,ROA_ID)==206) .@Ops2$ = "ป้องกันผู้เล่น +";
+	if(getequiprandomoption(.@part,1,ROA_ID)==9) .@Ops2$ = "HP +";
+	if(getequiprandomoption(.@part,1,ROA_ID)==996) .@Ops2$ = "เพิ่มความเร็วในการเคลื่อนที่ +";
+	if(getequiprandomoption(.@part,1,ROA_ID)==208) .@Ops2$ = "เพิ่มพลังโจมตีกายภาพต่อมนุษย์ +";
+	if(getequiprandomoption(.@part,1,ROA_ID)==210) .@Ops2$ = "เพิ่มพลังโจมตีเวทย์มนต์ต่อมนุษย์ +";
+	.@ROA_ID1_V = getequiprandomoption(.@part,0,ROA_VALUE); 
+	.@ROA_ID2_V = getequiprandomoption(.@part,1,ROA_VALUE);
+	
+	if (!getequipisequiped(.@part)) {
+		clear;
+		mes "^FF0000[ สุ่มออฟชั่นของสวมใส่ ]^000000";
+		mes "ท่านไม่ได้สวมใส่อุปกรณ์";
+		close;
+	}
+				
+	if (#CASHPOINTS < 500) {
+		clear;
+		mes "^FF0000[ สุ่มออฟชั่นของสวมใส่ ]^000000";
+		mes "มีค่าบริการ";
+		mes ""+callfunc("F_InsertComma",500)+" Cash";
+		close;
+	}
+	if (.@ROA_ID1==0){
+	menu
+	"• ออฟชั่นช่องที่ 1 [ ยังไม่ได้ออฟชั่น ]",ENCHANT1, 
+	"• ยกเลิก",no01; 
+	}
+	if (.@ROA_ID1>0 && .@ROA_ID2==0){
+		if (.@ROA_ID1 == 208 || .@ROA_ID1 == 210){
+			menu	
+			"• ออฟชั่นช่องที่ 1 [ "+.@Ops1$+""+.@ROA_ID1_V+"% ]",ENCHANT1,
+			"• ออฟชั่นช่องที่ 2 [ ยังไม่ได้ออฟชั่น ]",ENCHANT2,  
+			"• ยกเลิก",no01; 
+		}
+		else {
+			menu
+			"• ออฟชั่นช่องที่ 1 [ "+.@Ops1$+""+.@ROA_ID1_V+" ]",ENCHANT1, 
+			"• ออฟชั่นช่องที่ 2 [ ยังไม่ได้ออฟชั่น ]",ENCHANT2,  
+			"• ยกเลิก",no01; 
+		}	
+	}
+	if (.@ROA_ID1>0 && .@ROA_ID2>0){
+		if (.@ROA_ID1 == 208 || .@ROA_ID1 == 210){
+			menu	
+			"• ออฟชั่นช่องที่ 1 [ "+.@Ops1$+""+.@ROA_ID1_V+"% ]",ENCHANT1,
+			"• ออฟชั่นช่องที่ 2 [ "+.@Ops2$+""+.@ROA_ID2_V+"% ]",ENCHANT2, 
+			"• ยกเลิก",no01; 
+		}
+		else {
+			menu	
+			"• ออฟชั่นช่องที่ 1 [ "+.@Ops1$+""+.@ROA_ID1_V+" ]",ENCHANT1, 
+			"• ออฟชั่นช่องที่ 2 [ "+.@Ops2$+""+.@ROA_ID2_V+"% ]",ENCHANT2, 
+			"• ยกเลิก",no01; 
+		}
+	}
+
+ENCHANT1:
+	switch(.@part) {
+		case EQI_HEAD_TOP:
+		case EQI_HEAD_MID:
+				setarray .@RandOpt1_P[0],RDMOPT_VAR_STRAMOUNT,					// STAT 1-20%
+										 RDMOPT_VAR_AGIAMOUNT,					// STAT 1-20%
+										 RDMOPT_VAR_VITAMOUNT,					// STAT 1-20%
+										 RDMOPT_VAR_INTAMOUNT,					// STAT 1-20%
+										 RDMOPT_VAR_DEXAMOUNT,					// STAT 1-20%
+										 RDMOPT_VAR_LUKAMOUNT;					// STAT 1-20%			
+										
+										setarray .@RandOpt1_P_MinV[0],10,10,10,10,10,10;
+										setarray .@RandOpt1_P_MaxV[0],20,20,20,20,20,20;
+										
+										set .@Opt1,rand(getarraysize(.@RandOpt1_P));
+										
+										if(getd(".@RandOpt1_P_MinV["+.@Opt1+"]") != getd(".@RandOpt1_P_MaxV["+.@Opt1+"]"))
+											set .@Opt1_V,rand(getd(".@RandOpt1_P_MinV["+.@Opt1+"]"),getd(".@RandOpt1_P_MaxV["+.@Opt1+"]"));
+										else 
+											set .@Opt1_V,getd(".@RandOpt1_P_MaxV["+.@Opt1+"]");		
+										
+			break;
+		case EQI_HEAD_LOW:
+				setarray .@RandOpt1_P[0],RDMOPT_VAR_STRAMOUNT,					// STAT 1-20%
+										 RDMOPT_VAR_AGIAMOUNT,					// STAT 1-20%
+										 RDMOPT_VAR_VITAMOUNT,					// STAT 1-20%
+										 RDMOPT_VAR_INTAMOUNT,					// STAT 1-20%
+										 RDMOPT_VAR_DEXAMOUNT,					// STAT 1-20%
+										 RDMOPT_VAR_LUKAMOUNT;					// STAT 1-20%			
+										
+										setarray .@RandOpt1_P_MinV[0],10,10,10,10,10,10;
+										setarray .@RandOpt1_P_MaxV[0],20,20,20,20,20,20;
+										
+										set .@Opt1,rand(getarraysize(.@RandOpt1_P));
+										
+										if(getd(".@RandOpt1_P_MinV["+.@Opt1+"]") != getd(".@RandOpt1_P_MaxV["+.@Opt1+"]"))
+											set .@Opt1_V,rand(getd(".@RandOpt1_P_MinV["+.@Opt1+"]"),getd(".@RandOpt1_P_MaxV["+.@Opt1+"]"));
+										else 
+											set .@Opt1_V,getd(".@RandOpt1_P_MaxV["+.@Opt1+"]");				
+			break;
+		case EQI_ARMOR:
+				setarray .@RandOpt1_P[0],RDMOPT_VAR_STRAMOUNT,					// STAT 1-20%
+										 RDMOPT_VAR_AGIAMOUNT,					// STAT 1-20%
+										 RDMOPT_VAR_VITAMOUNT,					// STAT 1-20%
+										 RDMOPT_VAR_INTAMOUNT,					// STAT 1-20%
+										 RDMOPT_VAR_DEXAMOUNT,					// STAT 1-20%
+										 RDMOPT_VAR_LUKAMOUNT;					// STAT 1-20%			
+										
+										setarray .@RandOpt1_P_MinV[0],10,10,10,10,10,10;
+										setarray .@RandOpt1_P_MaxV[0],20,20,20,20,20,20;
+
+										set .@Opt1,rand(getarraysize(.@RandOpt1_P));
+										
+										if(getd(".@RandOpt1_P_MinV["+.@Opt1+"]") != getd(".@RandOpt1_P_MaxV["+.@Opt1+"]"))
+											set .@Opt1_V,rand(getd(".@RandOpt1_P_MinV["+.@Opt1+"]"),getd(".@RandOpt1_P_MaxV["+.@Opt1+"]"));
+										else 
+											set .@Opt1_V,getd(".@RandOpt1_P_MaxV["+.@Opt1+"]");				
+			break;
+		case EQI_HAND_R:
+				setarray .@RandOpt1_P[0],RDMOPT_RACE_DAMAGE_PLAYER_HUMAN,			// Human 1-5%
+										 RDMOPT_RACE_MDAMAGE_PLAYER_HUMAN;			// Human 1-5%		
+										
+										setarray .@RandOpt1_P_MinV[0],1,1;
+										setarray .@RandOpt1_P_MaxV[0],5,5;
+
+										set .@Opt1,rand(getarraysize(.@RandOpt1_P));
+										
+										if(getd(".@RandOpt1_P_MinV["+.@Opt1+"]") != getd(".@RandOpt1_P_MaxV["+.@Opt1+"]"))
+											set .@Opt1_V,rand(getd(".@RandOpt1_P_MinV["+.@Opt1+"]"),getd(".@RandOpt1_P_MaxV["+.@Opt1+"]"));
+										else 
+											set .@Opt1_V,getd(".@RandOpt1_P_MaxV["+.@Opt1+"]");				
+			break;
+		case EQI_GARMENT:
+				setarray .@RandOpt1_P[0],RDMOPT_VAR_STRAMOUNT,					// STAT 1-20%
+										 RDMOPT_VAR_AGIAMOUNT,					// STAT 1-20%
+										 RDMOPT_VAR_VITAMOUNT,					// STAT 1-20%
+										 RDMOPT_VAR_INTAMOUNT,					// STAT 1-20%
+										 RDMOPT_VAR_DEXAMOUNT,					// STAT 1-20%
+										 RDMOPT_VAR_LUKAMOUNT;					// STAT 1-20%			
+										
+										setarray .@RandOpt1_P_MinV[0],10,10,10,10,10,10;
+										setarray .@RandOpt1_P_MaxV[0],20,20,20,20,20,20;
+
+										set .@Opt1,rand(getarraysize(.@RandOpt1_P));
+										
+										if(getd(".@RandOpt1_P_MinV["+.@Opt1+"]") != getd(".@RandOpt1_P_MaxV["+.@Opt1+"]"))
+											set .@Opt1_V,rand(getd(".@RandOpt1_P_MinV["+.@Opt1+"]"),getd(".@RandOpt1_P_MaxV["+.@Opt1+"]"));
+										else 
+											set .@Opt1_V,getd(".@RandOpt1_P_MaxV["+.@Opt1+"]");				
+			break;
+		case EQI_SHOES:
+				setarray .@RandOpt1_P[0],RDMOPT_VAR_STRAMOUNT,					// STAT 1-20%
+										 RDMOPT_VAR_AGIAMOUNT,					// STAT 1-20%
+										 RDMOPT_VAR_VITAMOUNT,					// STAT 1-20%
+										 RDMOPT_VAR_INTAMOUNT,					// STAT 1-20%
+										 RDMOPT_VAR_DEXAMOUNT,					// STAT 1-20%
+										 RDMOPT_VAR_LUKAMOUNT;					// STAT 1-20%			
+										
+										setarray .@RandOpt1_P_MinV[0],10,10,10,10,10,10;
+										setarray .@RandOpt1_P_MaxV[0],20,20,20,20,20,20;
+										
+										set .@Opt1,rand(getarraysize(.@RandOpt1_P));
+										
+										if(getd(".@RandOpt1_P_MinV["+.@Opt1+"]") != getd(".@RandOpt1_P_MaxV["+.@Opt1+"]"))
+											set .@Opt1_V,rand(getd(".@RandOpt1_P_MinV["+.@Opt1+"]"),getd(".@RandOpt1_P_MaxV["+.@Opt1+"]"));
+										else 
+											set .@Opt1_V,getd(".@RandOpt1_P_MaxV["+.@Opt1+"]");				
+			break;
+		end;
+	}
+	set #CASHPOINTS,#CASHPOINTS-500;
+	
+	specialeffect2 83;
+	setrandomoption(.@part,0,getd(".@RandOpt1_P["+.@Opt1+"]"),.@Opt1_V,0);
+	clear;
+	mes "^FF0000[ สุ่มออฟชั่นของสวมใส่ ]^000000";
+	if(getequiprandomoption(.@part,0,ROA_ID)==3) .@Ops1$ = "STR +";
+	if(getequiprandomoption(.@part,0,ROA_ID)==4) .@Ops1$ = "AGI +";
+	if(getequiprandomoption(.@part,0,ROA_ID)==5) .@Ops1$ = "VIT +";
+	if(getequiprandomoption(.@part,0,ROA_ID)==6) .@Ops1$ = "INT +";
+	if(getequiprandomoption(.@part,0,ROA_ID)==7) .@Ops1$ = "DEX +";
+	if(getequiprandomoption(.@part,0,ROA_ID)==8) .@Ops1$ = "LUK +";
+	if(getequiprandomoption(.@part,0,ROA_ID)==208) .@Ops1$ = "เพิ่มพลังโจมตีกายภาพต่อมนุษย์ +";
+	if(getequiprandomoption(.@part,0,ROA_ID)==210) .@Ops1$ = "เพิ่มพลังโจมตีเวทย์มนต์ต่อมนุษย์ +";
+	mes"ออฟชั่นที่ท่าานได้คือ";
+	if (getequiprandomoption(.@part,0,ROA_ID) == 208 || getequiprandomoption(.@part,0,ROA_ID) == 210){
+		mes"[ "+.@Ops1$+""+.@Opt1_V+"% ]";
+	}
+	else {
+		mes"[ "+.@Ops1$+""+.@Opt1_V+" ]";
+	}
+	mes "ต้องการจะออฟชั่นต่อหรือไม่";
+	menu
+	"• ลุยเลย",LYES, 
+	"• ยกเลิก",no01; 
+
+ENCHANT2:
+	switch(.@part) {
+		case EQI_HEAD_TOP:
+		case EQI_HEAD_MID:
+				setarray .@RandOpt2_P[0],RDMOPT_DEC_SPELL_DELAY_TIME;					// Delay 1-10%		
+										
+										setarray .@RandOpt2_P_MinV[0],1;
+										setarray .@RandOpt2_P_MaxV[0],10;
+
+										set .@Opt2,rand(getarraysize(.@RandOpt2_P));
+										
+										if(getd(".@RandOpt2_P_MinV["+.@Opt2+"]") != getd(".@RandOpt2_P_MaxV["+.@Opt2+"]"))
+											set .@Opt2_V,rand(getd(".@RandOpt2_P_MinV["+.@Opt2+"]"),getd(".@RandOpt2_P_MaxV["+.@Opt2+"]"));
+										else 
+											set .@Opt2_V,getd(".@RandOpt2_P_MaxV["+.@Opt2+"]");				
+			break;
+		case EQI_HEAD_LOW:
+				setarray .@RandOpt2_P[0],RDMOPT_CLASS_DAMAGE_ALL_TARGET,			// ATK 1-7%
+										 RDMOPT_CLASS_MDAMAGE_ALL_TARGET;			// MATK 1-7%		
+										
+										setarray .@RandOpt2_P_MinV[0],1,1;
+										setarray .@RandOpt2_P_MaxV[0],7,7;
+
+										set .@Opt2,rand(getarraysize(.@RandOpt2_P));
+										
+										if(getd(".@RandOpt2_P_MinV["+.@Opt2+"]") != getd(".@RandOpt2_P_MaxV["+.@Opt2+"]"))
+											set .@Opt2_V,rand(getd(".@RandOpt2_P_MinV["+.@Opt2+"]"),getd(".@RandOpt2_P_MaxV["+.@Opt2+"]"));
+										else 
+											set .@Opt2_V,getd(".@RandOpt2_P_MaxV["+.@Opt2+"]");				
+			break;
+		case EQI_ARMOR:
+				setarray .@RandOpt2_P[0],RDMOPT_RACE_TOLERACE_PLAYER_HUMAN;		// Human 1-5%	
+										
+										setarray .@RandOpt2_P_MinV[0],1;
+										setarray .@RandOpt2_P_MaxV[0],5;
+
+										set .@Opt2,rand(getarraysize(.@RandOpt2_P));
+										
+										if(getd(".@RandOpt2_P_MinV["+.@Opt2+"]") != getd(".@RandOpt2_P_MaxV["+.@Opt2+"]"))
+											set .@Opt2_V,rand(getd(".@RandOpt2_P_MinV["+.@Opt2+"]"),getd(".@RandOpt2_P_MaxV["+.@Opt2+"]"));
+										else 
+											set .@Opt2_V,getd(".@RandOpt2_P_MaxV["+.@Opt2+"]");				
+			break;
+		case EQI_HAND_R:
+				setarray .@RandOpt2_P[0],RDMOPT_RACE_DAMAGE_PLAYER_HUMAN,		// Human 1-5%	
+										 RDMOPT_RACE_MDAMAGE_PLAYER_HUMAN;		// Human 1-5%	
+										
+										setarray .@RandOpt2_P_MinV[0],1,1;
+										setarray .@RandOpt2_P_MaxV[0],5,5;
+
+										set .@Opt2,rand(getarraysize(.@RandOpt2_P));
+										
+										if(getd(".@RandOpt2_P_MinV["+.@Opt2+"]") != getd(".@RandOpt2_P_MaxV["+.@Opt2+"]"))
+											set .@Opt2_V,rand(getd(".@RandOpt2_P_MinV["+.@Opt2+"]"),getd(".@RandOpt2_P_MaxV["+.@Opt2+"]"));
+										else 
+											set .@Opt2_V,getd(".@RandOpt2_P_MaxV["+.@Opt2+"]");				
+			break;
+		case EQI_GARMENT:
+				setarray .@RandOpt2_P[0],RDMOPT_VAR_MAXHPPERCENT;					// Delay 1-10%		
+										
+										setarray .@RandOpt2_P_MinV[0],1;
+										setarray .@RandOpt2_P_MaxV[0],20;
+										
+										set .@Opt2,rand(getarraysize(.@RandOpt2_P));
+										
+										if(getd(".@RandOpt2_P_MinV["+.@Opt2+"]") != getd(".@RandOpt2_P_MaxV["+.@Opt2+"]"))
+											set .@Opt2_V,rand(getd(".@RandOpt2_P_MinV["+.@Opt2+"]"),getd(".@RandOpt2_P_MaxV["+.@Opt2+"]"));
+										else 
+											set .@Opt2_V,getd(".@RandOpt2_P_MaxV["+.@Opt2+"]");				
+			break;
+		case EQI_SHOES:
+				setarray .@RandOpt2_P[0],RDMOPT_VAR_SPEEDADDRATE;					// Move Speed 1-20%		
+										
+										setarray .@RandOpt2_P_MinV[0],1;
+										setarray .@RandOpt2_P_MaxV[0],20;
+
+										set .@Opt2,rand(getarraysize(.@RandOpt2_P));
+										
+										if(getd(".@RandOpt2_P_MinV["+.@Opt2+"]") != getd(".@RandOpt2_P_MaxV["+.@Opt2+"]"))
+											set .@Opt2_V,rand(getd(".@RandOpt2_P_MinV["+.@Opt2+"]"),getd(".@RandOpt2_P_MaxV["+.@Opt2+"]"));
+										else 
+											set .@Opt2_V,getd(".@RandOpt2_P_MaxV["+.@Opt2+"]");				
+			break;
+		end;
+	}
+		
+	set #CASHPOINTS,#CASHPOINTS-500;
+	
+	specialeffect2 83;
+	setrandomoption(.@part,1,getd(".@RandOpt2_P["+.@Opt2+"]"),.@Opt2_V,0);
+	clear;
+	mes "^FF0000[ สุ่มออฟชั่นของสวมใส่ ]^000000";
+	if(getequiprandomoption(.@part,1,ROA_ID)==171) .@Ops2$ = "Skill Delay -";
+	if(getequiprandomoption(.@part,1,ROA_ID)==997) .@Ops2$ = "เพิ่มพลังโจมตีกายภาพ +";
+	if(getequiprandomoption(.@part,1,ROA_ID)==998) .@Ops2$ = "เพิ่มพลังโจมตีเวทย์มนต์ +";
+	if(getequiprandomoption(.@part,1,ROA_ID)==206) .@Ops2$ = "ป้องกันผู้เล่น +";
+	if(getequiprandomoption(.@part,1,ROA_ID)==9) .@Ops2$ = "HP +";
+	if(getequiprandomoption(.@part,1,ROA_ID)==996) .@Ops2$ = "เพิ่มความเร็วในการเคลื่อนที่ +";
+	if(getequiprandomoption(.@part,1,ROA_ID)==208) .@Ops2$ = "เพิ่มพลังโจมตีกายภาพต่อมนุษย์ +";
+	if(getequiprandomoption(.@part,1,ROA_ID)==210) .@Ops2$ = "เพิ่มพลังโจมตีเวทย์มนต์ต่อมนุษย์ +";
+	mes"ออฟชั่นที่ท่าานได้คือ";
+	mes"[ "+.@Ops2$+""+.@Opt2_V+"% ]";
+	mes "ต้องการจะออฟชั่นต่อหรือไม่";
+	menu
+	"• ลุยเลย",LYES, 
+	"• ยกเลิก",no01; 
+
+	
+no01:
+close;
+
+
+OnInit:
+waitingroom "สุ่มออฟชั่นของสวมใส่",0;
+end;
+}
+
+eternal,126,48,3	script	นักวิจัยแร่	749,{
+
+disable_items;
+
+	menu
+	"• ยัดหินออฟ",MENU1, 
+	"• ถอดหินออฟ",MENU2, 
+	"• ยกเลิก",no01; 
+
+MENU2:
+
+	mes "^FF0000[ ยัดหินคอสตูม ]^000000";
+	mes "มีค่าบริการ";
+	mes ""+callfunc("F_InsertComma",5000)+" Cash";
+	mes "ต้องการจะถอดหินออฟอุปกรณ์ชิ้นใด";
+	
+	setarray .@indices[1], EQI_SHADOW_ARMOR, EQI_SHADOW_WEAPON,EQI_SHADOW_SHIELD, EQI_SHADOW_SHOES, EQI_SHADOW_ACC_R, EQI_SHADOW_ACC_L;
+		for( set .@i,1; .@i <= 6; set .@i,.@i+1 ) {
+			if( getequipisequiped(.@indices[.@i]) )
+				set .@menu$, .@menu$ + F_getpositionname(.@indices[.@i]) + " - [" + getequipname(.@indices[.@i]) + "]";
+			set .@menu$, .@menu$ + ":";
+		}
+	set .@part, .@indices[ select(.@menu$) ];
+	set .@item ,getequipid(.@part);
+	set .@refine ,getequiprefinerycnt(.@part);
+	.@card[0] = getequipcardid(.@part,0);
+	.@card[1] = getequipcardid(.@part,1);
+	.@card[2] = getequipcardid(.@part,2);
+	.@card[3] = getequipcardid(.@part,3);
+	if (#CASHPOINTS < 5000) {
+		clear;
+		mes "^FF0000[ ยัดหินคอสตูม ]^000000";
+		mes "มีค่าบริการ";
+		mes ""+callfunc("F_InsertComma",5000)+" Cash";
+		close;
+	}
+	menu
+	"• ช่องที่ 1 ("+getitemname(.@card[0])+")",card1, 
+	"• ช่องที่ 2 ("+getitemname(.@card[1])+")",card2, 
+	"• ยกเลิก",no01; 
+	
+	
+	card1:	
+	if(.@card[0]<1){
+		mes "ของชิ้นนี้ไม่มีลูกแก้วออฟชั่นโปรดตรวจสอบอีกครั้ง";
+		end;
+	}
+	set #CASHPOINTS,#CASHPOINTS-5000;	
+	delequip .@part;
+	getitem2 .@item,1,1,.@refine,0,0,.@card[1],.@card[2],.@card[3];
+	getitem .@card[0],1;	
+	end;	
+	
+	card2:
+	if(.@card[1]<1){
+		mes "ของชิ้นนี้ไม่มีลูกแก้วออฟชั่นโปรดตรวจสอบอีกครั้ง";
+		end;
+	}
+	set #CASHPOINTS,#CASHPOINTS-5000;	
+	delequip .@part;
+	getitem2 .@item,1,1,.@refine,0,.@card[0],0,.@card[2],.@card[3];
+	getitem .@card[1],1;	
+	end;
+
+
+
+
+MENU1:
+callshop "testopstone",2;
+npcshopattach "testopstone";
+end;
+
+no01:
+end;
+
+
+OnSellItem:
+disable_items;
+	/*
+	if(@sold_quantity[0] >1){
+		mes "[ยัดหินคอสตูม]";
+		mes "กรุณาเลือกแค่ 1 รายการเท่านั้น";
+		end;
+	}
+	*/
+	
+	if(@sold_nameid < 52001 || @sold_nameid > 52202)
+	{
+	mes "^FF0000[ ยัดหินคอสตูม ]^000000";
+	mes "นี่ไม่ใช่หินออฟ โปรดตรวจสอบอีกครั้ง";
+	end;
+	}
+
+
+
+	mes "^FF0000[ ยัดหินคอสตูม ]^000000";
+	mes "ต้องการจะออฟชั่นอุปกรณ์ชิ้นใด";
+	if(@sold_nameid >= 52001 && @sold_nameid <= 52007){
+		setarray .@indices[1], EQI_SHADOW_ARMOR, EQI_SHADOW_SHIELD, EQI_SHADOW_SHOES, EQI_SHADOW_ACC_R, EQI_SHADOW_ACC_L;
+		for( set .@i,1; .@i <= 5; set .@i,.@i+1 ) {
+			if( getequipisequiped(.@indices[.@i]) )
+				set .@menu$, .@menu$ + F_getpositionname(.@indices[.@i]) + " - [" + getequipname(.@indices[.@i]) + "]";
+			set .@menu$, .@menu$ + ":";
+		}
+	} 
+	if(@sold_nameid >= 52021 && @sold_nameid <= 52027){
+		setarray .@indices[1], EQI_SHADOW_ARMOR;
+		for( set .@i,1; .@i <= 1; set .@i,.@i+1 ) {
+			if( getequipisequiped(.@indices[.@i]) )
+				set .@menu$, .@menu$ + F_getpositionname(.@indices[.@i]) + " - [" + getequipname(.@indices[.@i]) + "]";
+			set .@menu$, .@menu$ + ":";
+		}
+	} 
+	if(@sold_nameid >= 52041 && @sold_nameid <= 52047){
+		setarray .@indices[1], EQI_SHADOW_SHOES;
+		for( set .@i,1; .@i <= 1; set .@i,.@i+1 ) {
+			if( getequipisequiped(.@indices[.@i]) )
+				set .@menu$, .@menu$ + F_getpositionname(.@indices[.@i]) + " - [" + getequipname(.@indices[.@i]) + "]";
+			set .@menu$, .@menu$ + ":";
+		}
+	} 
+	if(@sold_nameid >= 52061 && @sold_nameid <= 52067){
+		setarray .@indices[1], EQI_SHADOW_SHIELD;
+		for( set .@i,1; .@i <= 1; set .@i,.@i+1 ) {
+			if( getequipisequiped(.@indices[.@i]) )
+				set .@menu$, .@menu$ + F_getpositionname(.@indices[.@i]) + " - [" + getequipname(.@indices[.@i]) + "]";
+			set .@menu$, .@menu$ + ":";
+		}
+	} 
+	if(@sold_nameid >= 52101 && @sold_nameid <= 52115){
+		setarray .@indices[1], EQI_SHADOW_ACC_R, EQI_SHADOW_ACC_L;
+		for( set .@i,1; .@i <= 2; set .@i,.@i+1 ) {
+			if( getequipisequiped(.@indices[.@i]) )
+				set .@menu$, .@menu$ + F_getpositionname(.@indices[.@i]) + " - [" + getequipname(.@indices[.@i]) + "]";
+			set .@menu$, .@menu$ + ":";
+		}
+	}
+	if(@sold_nameid >= 52201 && @sold_nameid <= 52202){
+		setarray .@indices[1], EQI_SHADOW_WEAPON;
+		for( set .@i,1; .@i <= 1; set .@i,.@i+1 ) {
+			if( getequipisequiped(.@indices[.@i]) )
+				set .@menu$, .@menu$ + F_getpositionname(.@indices[.@i]) + " - [" + getequipname(.@indices[.@i]) + "]";
+			set .@menu$, .@menu$ + ":";
+		}
+	}
+
+	set .@part, .@indices[ select(.@menu$) ];
+	set .@item ,getequipid(.@part);
+	set .@refine ,getequiprefinerycnt(.@part);
+	.@card[0] = getequipcardid(.@part,0);
+	.@card[1] = getequipcardid(.@part,1);
+	.@card[2] = getequipcardid(.@part,2);
+	.@card[3] = getequipcardid(.@part,3);
+	
+	
+	delitem @sold_nameid,1;
+	delequip .@part;
+	if(@sold_nameid >= 52001 && @sold_nameid <= 52007).@card[0] = @sold_nameid;
+	if(@sold_nameid >= 52201 && @sold_nameid <= 52202).@card[0] = @sold_nameid;
+	if(@sold_nameid >= 52021 && @sold_nameid <= 52067).@card[1] = @sold_nameid;
+	if(@sold_nameid >= 52101 && @sold_nameid <= 52115).@card[1] = @sold_nameid;
+	getitem2 .@item,1,1,.@refine,0,.@card[0],.@card[1],.@card[2],.@card[3];
+	
+	end;
+	
+
+OnInit:
+waitingroom " ออฟชาโด้วคอสตูม",0;
+end;
+}
+
+-	shop	testopstone	-1,909:-1

@@ -1,0 +1,14 @@
+morocc,138,51,5	script	teststatus	667,{
+
+menu	"Enable",ac,
+		"Disable",ic;
+		
+ac:
+sc_start SC_ACTIVE_MONSTER_TRANSFORM,-1,-1;
+end;
+
+ic:
+sc_end	SC_ACTIVE_MONSTER_TRANSFORM;
+end;
+
+}

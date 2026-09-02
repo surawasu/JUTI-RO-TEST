@@ -1,0 +1,2533 @@
+-	script	preview_gacha	-1,{ 
+// =============================================================
+function PreviewAddItems;
+// =============================================================
+OnInit:
+	freeloop(1);
+	setarray .Shops$[1],"- ตัวอย่างของรางวัล";
+// =============================================================	
+
+PreviewAddItems(1,3000000,1,0,0);
+PreviewAddItems(1,3000001,1,0,0);
+PreviewAddItems(1,3000002,1,0,0);
+PreviewAddItems(1,3000003,1,0,0);
+PreviewAddItems(1,3000004,1,0,0);
+PreviewAddItems(1,3000005,1,0,0);
+PreviewAddItems(1,3000006,1,0,0);
+PreviewAddItems(1,3000007,1,0,0);
+PreviewAddItems(1,3000008,1,0,0);
+PreviewAddItems(1,3000009,1,0,0);
+PreviewAddItems(1,3000010,1,0,0);
+PreviewAddItems(1,3000011,1,0,0);
+PreviewAddItems(1,3000012,1,0,0);
+PreviewAddItems(1,3000013,1,0,0);
+PreviewAddItems(1,3000014,1,0,0);
+PreviewAddItems(1,3000015,1,0,0);
+PreviewAddItems(1,3000016,1,0,0);
+PreviewAddItems(1,3000017,1,0,0);
+PreviewAddItems(1,3000018,1,0,0);
+PreviewAddItems(1,3000019,1,0,0);
+PreviewAddItems(1,3000020,1,0,0);
+PreviewAddItems(1,3000021,1,0,0);
+PreviewAddItems(1,3000022,1,0,0);
+PreviewAddItems(1,3000023,1,0,0);
+PreviewAddItems(1,3000024,1,0,0);
+PreviewAddItems(1,3000025,1,0,0);
+PreviewAddItems(1,3000026,1,0,0);
+PreviewAddItems(1,3000027,1,0,0);
+PreviewAddItems(1,3000028,1,0,0);
+PreviewAddItems(1,3000029,1,0,0);
+PreviewAddItems(1,3000030,1,0,0);
+PreviewAddItems(1,3000031,1,0,0);
+PreviewAddItems(1,3000032,1,0,0);
+PreviewAddItems(1,3000033,1,0,0);
+PreviewAddItems(1,3000034,1,0,0);
+PreviewAddItems(1,3000035,1,0,0);
+PreviewAddItems(1,3000036,1,0,0);
+PreviewAddItems(1,3000037,1,0,0);
+PreviewAddItems(1,3000038,1,0,0);
+PreviewAddItems(1,3000039,1,0,0);
+PreviewAddItems(1,3000040,1,0,0);
+PreviewAddItems(1,3000041,1,0,0);
+PreviewAddItems(1,3000042,1,0,0);
+PreviewAddItems(1,3000043,1,0,0);
+PreviewAddItems(1,3000044,1,0,0);
+PreviewAddItems(1,3000045,1,0,0);
+PreviewAddItems(1,3000046,1,0,0);
+PreviewAddItems(1,3000047,1,0,0);
+PreviewAddItems(1,3000048,1,0,0);
+PreviewAddItems(1,3000049,1,0,0);
+PreviewAddItems(1,3000050,1,0,0);
+PreviewAddItems(1,3000051,1,0,0);
+PreviewAddItems(1,3000052,1,0,0);
+PreviewAddItems(1,3000053,1,0,0);
+PreviewAddItems(1,3000054,1,0,0);
+PreviewAddItems(1,3000055,1,0,0);
+PreviewAddItems(1,3000056,1,0,0);
+PreviewAddItems(1,3000057,1,0,0);
+PreviewAddItems(1,3000058,1,0,0);
+PreviewAddItems(1,3000059,1,0,0);
+PreviewAddItems(1,3000060,1,0,0);
+PreviewAddItems(1,3000061,1,0,0);
+PreviewAddItems(1,3000062,1,0,0);
+PreviewAddItems(1,3000063,1,0,0);
+PreviewAddItems(1,3000064,1,0,0);
+PreviewAddItems(1,3000065,1,0,0);
+PreviewAddItems(1,3000066,1,0,0);
+PreviewAddItems(1,3000067,1,0,0);
+PreviewAddItems(1,3000068,1,0,0);
+PreviewAddItems(1,3000069,1,0,0);
+PreviewAddItems(1,3000070,1,0,0);
+PreviewAddItems(1,3000071,1,0,0);
+PreviewAddItems(1,3000072,1,0,0);
+PreviewAddItems(1,3000073,1,0,0);
+PreviewAddItems(1,3000074,1,0,0);
+PreviewAddItems(1,3000075,1,0,0);
+PreviewAddItems(1,3000076,1,0,0);
+PreviewAddItems(1,3000077,1,0,0);
+PreviewAddItems(1,3000078,1,0,0);
+PreviewAddItems(1,3000079,1,0,0);
+PreviewAddItems(1,3000080,1,0,0);
+PreviewAddItems(1,3000081,1,0,0);
+PreviewAddItems(1,3000082,1,0,0);
+PreviewAddItems(1,3000083,1,0,0);
+PreviewAddItems(1,3000084,1,0,0);
+PreviewAddItems(1,3000085,1,0,0);
+PreviewAddItems(1,3000086,1,0,0);
+PreviewAddItems(1,3000087,1,0,0);
+PreviewAddItems(1,3000088,1,0,0);
+PreviewAddItems(1,3000089,1,0,0);
+PreviewAddItems(1,3000090,1,0,0);
+PreviewAddItems(1,3000091,1,0,0);
+PreviewAddItems(1,3000092,1,0,0);
+PreviewAddItems(1,3000093,1,0,0);
+PreviewAddItems(1,3000094,1,0,0);
+PreviewAddItems(1,3000095,1,0,0);
+PreviewAddItems(1,3000096,1,0,0);
+PreviewAddItems(1,3000097,1,0,0);
+PreviewAddItems(1,3000098,1,0,0);
+PreviewAddItems(1,3000099,1,0,0);
+PreviewAddItems(1,3000100,1,0,0);
+PreviewAddItems(1,3000101,1,0,0);
+PreviewAddItems(1,3000102,1,0,0);
+PreviewAddItems(1,3000103,1,0,0);
+PreviewAddItems(1,3000104,1,0,0);
+PreviewAddItems(1,3000105,1,0,0);
+PreviewAddItems(1,3000106,1,0,0);
+PreviewAddItems(1,3000107,1,0,0);
+PreviewAddItems(1,3000108,1,0,0);
+PreviewAddItems(1,3000109,1,0,0);
+PreviewAddItems(1,3000110,1,0,0);
+PreviewAddItems(1,3000111,1,0,0);
+PreviewAddItems(1,3000112,1,0,0);
+PreviewAddItems(1,3000113,1,0,0);
+PreviewAddItems(1,3000114,1,0,0);
+PreviewAddItems(1,3000115,1,0,0);
+PreviewAddItems(1,3000116,1,0,0);
+PreviewAddItems(1,3000117,1,0,0);
+PreviewAddItems(1,3000118,1,0,0);
+PreviewAddItems(1,3000119,1,0,0);
+PreviewAddItems(1,3000120,1,0,0);
+PreviewAddItems(1,3000121,1,0,0);
+PreviewAddItems(1,3000122,1,0,0);
+PreviewAddItems(1,3000123,1,0,0);
+PreviewAddItems(1,3000124,1,0,0);
+PreviewAddItems(1,3000125,1,0,0);
+PreviewAddItems(1,3000126,1,0,0);
+PreviewAddItems(1,3000127,1,0,0);
+PreviewAddItems(1,3000128,1,0,0);
+PreviewAddItems(1,3000129,1,0,0);
+PreviewAddItems(1,3000130,1,0,0);
+PreviewAddItems(1,3000131,1,0,0);
+PreviewAddItems(1,3000132,1,0,0);
+PreviewAddItems(1,3000133,1,0,0);
+PreviewAddItems(1,3000134,1,0,0);
+PreviewAddItems(1,3000135,1,0,0);
+PreviewAddItems(1,3000136,1,0,0);
+PreviewAddItems(1,3000137,1,0,0);
+PreviewAddItems(1,3000138,1,0,0);
+PreviewAddItems(1,3000139,1,0,0);
+PreviewAddItems(1,3000140,1,0,0);
+PreviewAddItems(1,3000141,1,0,0);
+PreviewAddItems(1,3000142,1,0,0);
+PreviewAddItems(1,3000143,1,0,0);
+PreviewAddItems(1,3000144,1,0,0);
+PreviewAddItems(1,3000145,1,0,0);
+PreviewAddItems(1,3000147,1,0,0);
+PreviewAddItems(1,3000148,1,0,0);
+PreviewAddItems(1,3000149,1,0,0);
+PreviewAddItems(1,3000150,1,0,0);
+PreviewAddItems(1,3000151,1,0,0);
+PreviewAddItems(1,3000152,1,0,0);
+PreviewAddItems(1,3000153,1,0,0);
+
+
+	
+// =============================================================
+
+	freeloop(0);
+	set .menu$,"";
+	for(set .@i,1; .@i<=getarraysize(.Shops$); set .@i,.@i+1) {
+		set .menu$, .menu$+.Shops$[.@i]+":";
+		npcshopdelitem "preview_gacha_shop"+.@i,909;
+	}
+	end;
+
+OnMainMenu:
+
+	set .@size, getarraysize(@i);
+	if (!.@size) set .@i, select(.menu$);
+	else if (.@size == 1) set .@i, @i[0];
+	else {
+		for(set .@j,0; .@j<.@size; set .@j,.@j+1)
+			set .@menu$, .@menu$+.Shops$[@i[.@j]]+":";
+		set .@i, @i[select(.@menu$)-1];
+	}
+	deletearray @i[0],getarraysize(@i);
+	if (.Shops$[.@i] == "") {
+		message strcharinfo(0),"เกิดข้อผิดพลาด.";
+		end;
+	}
+	callshop "preview_gacha_shop"+.@i,1;
+	npcshopattach "preview_gacha_shop"+.@i;
+	end;
+
+OnBuyItem:
+	end;
+
+function PreviewAddItems {
+	
+	npcshopadditem "preview_gacha_shop"+getarg(0),getarg(1),((.ShowZeny)?getarg(3):0);
+	return;
+}
+
+}
+
+function	script	preview_gacha_shop1	{
+
+	deletearray @i[0],getarraysize(@i);
+	for(set .@i,0; .@i<getargcount(); set .@i,.@i+1)
+		set @i[.@i],getarg(.@i);
+	doevent "preview_gacha::OnMainMenu";
+	end;
+}
+
+-	shop	preview_gacha_shop1	-1,909:-1
+
+
+-	script	preview_gacha1	-1,{ 
+// =============================================================
+function PreviewAddItems;
+// =============================================================
+OnInit:
+	freeloop(1);
+	setarray .Shops$[2],"- ตัวอย่างของรางวัล";
+// =============================================================	
+
+PreviewAddItems(2,3100000,1,0,0);
+PreviewAddItems(2,3100001,1,0,0);
+PreviewAddItems(2,3100002,1,0,0);
+PreviewAddItems(2,3100003,1,0,0);
+PreviewAddItems(2,3100004,1,0,0);
+PreviewAddItems(2,3100005,1,0,0);
+PreviewAddItems(2,3100006,1,0,0);
+PreviewAddItems(2,3100007,1,0,0);
+PreviewAddItems(2,3100008,1,0,0);
+PreviewAddItems(2,3100009,1,0,0);
+PreviewAddItems(2,3100010,1,0,0);
+PreviewAddItems(2,3100011,1,0,0);
+PreviewAddItems(2,3100012,1,0,0);
+PreviewAddItems(2,3100013,1,0,0);
+PreviewAddItems(2,3100014,1,0,0);
+PreviewAddItems(2,3100015,1,0,0);
+PreviewAddItems(2,3100016,1,0,0);
+PreviewAddItems(2,3100017,1,0,0);
+PreviewAddItems(2,3100018,1,0,0);
+PreviewAddItems(2,3100019,1,0,0);
+PreviewAddItems(2,3100020,1,0,0);
+PreviewAddItems(2,3100021,1,0,0);
+PreviewAddItems(2,3100022,1,0,0);
+PreviewAddItems(2,3100023,1,0,0);
+PreviewAddItems(2,3100024,1,0,0);
+PreviewAddItems(2,3100025,1,0,0);
+PreviewAddItems(2,3100026,1,0,0);
+PreviewAddItems(2,3100027,1,0,0);
+PreviewAddItems(2,3100028,1,0,0);
+PreviewAddItems(2,3100029,1,0,0);
+PreviewAddItems(2,3100030,1,0,0);
+PreviewAddItems(2,3100031,1,0,0);
+PreviewAddItems(2,3100032,1,0,0);
+PreviewAddItems(2,3100033,1,0,0);
+PreviewAddItems(2,3100034,1,0,0);
+PreviewAddItems(2,3100035,1,0,0);
+PreviewAddItems(2,3100036,1,0,0);
+PreviewAddItems(2,3100037,1,0,0);
+PreviewAddItems(2,3100038,1,0,0);
+PreviewAddItems(2,3100039,1,0,0);
+PreviewAddItems(2,3100040,1,0,0);
+PreviewAddItems(2,3100041,1,0,0);
+PreviewAddItems(2,3100042,1,0,0);
+PreviewAddItems(2,3100043,1,0,0);
+PreviewAddItems(2,3100044,1,0,0);
+PreviewAddItems(2,3100045,1,0,0);
+PreviewAddItems(2,3100046,1,0,0);
+PreviewAddItems(2,3100047,1,0,0);
+PreviewAddItems(2,3100048,1,0,0);
+PreviewAddItems(2,3100049,1,0,0);
+PreviewAddItems(2,3100050,1,0,0);
+PreviewAddItems(2,3100051,1,0,0);
+PreviewAddItems(2,3100052,1,0,0);
+PreviewAddItems(2,3100053,1,0,0);
+PreviewAddItems(2,3100054,1,0,0);
+PreviewAddItems(2,3100055,1,0,0);
+PreviewAddItems(2,3100056,1,0,0);
+PreviewAddItems(2,3100057,1,0,0);
+PreviewAddItems(2,3100058,1,0,0);
+PreviewAddItems(2,3100059,1,0,0);
+PreviewAddItems(2,3100060,1,0,0);
+PreviewAddItems(2,3100061,1,0,0);
+PreviewAddItems(2,3100062,1,0,0);
+PreviewAddItems(2,3100063,1,0,0);
+PreviewAddItems(2,3100064,1,0,0);
+PreviewAddItems(2,3100065,1,0,0);
+PreviewAddItems(2,3100066,1,0,0);
+PreviewAddItems(2,3100067,1,0,0);
+PreviewAddItems(2,3100068,1,0,0);
+PreviewAddItems(2,3100069,1,0,0);
+PreviewAddItems(2,3100070,1,0,0);
+PreviewAddItems(2,3100071,1,0,0);
+PreviewAddItems(2,3100072,1,0,0);
+PreviewAddItems(2,3100073,1,0,0);
+PreviewAddItems(2,3100074,1,0,0);
+PreviewAddItems(2,3100075,1,0,0);
+PreviewAddItems(2,3100076,1,0,0);
+PreviewAddItems(2,3100077,1,0,0);
+PreviewAddItems(2,3100079,1,0,0);
+
+
+
+	
+// =============================================================
+
+	freeloop(0);
+	set .menu$,"";
+	for(set .@i,1; .@i<=getarraysize(.Shops$); set .@i,.@i+1) {
+		set .menu$, .menu$+.Shops$[.@i]+":";
+		npcshopdelitem "preview_gacha_shop"+.@i,909;
+	}
+	end;
+
+OnMainMenu:
+
+	set .@size, getarraysize(@i);
+	if (!.@size) set .@i, select(.menu$);
+	else if (.@size == 1) set .@i, @i[0];
+	else {
+		for(set .@j,0; .@j<.@size; set .@j,.@j+1)
+			set .@menu$, .@menu$+.Shops$[@i[.@j]]+":";
+		set .@i, @i[select(.@menu$)-1];
+	}
+	deletearray @i[0],getarraysize(@i);
+	if (.Shops$[.@i] == "") {
+		message strcharinfo(0),"เกิดข้อผิดพลาด.";
+		end;
+	}
+	callshop "preview_gacha_shop"+.@i,1;
+	npcshopattach "preview_gacha_shop"+.@i;
+	end;
+
+OnBuyItem:
+	end;
+
+function PreviewAddItems {
+	
+	npcshopadditem "preview_gacha_shop"+getarg(0),getarg(1),((.ShowZeny)?getarg(3):0);
+	return;
+}
+
+}
+
+function	script	preview_gacha_shop2	{
+
+	deletearray @i[0],getarraysize(@i);
+	for(set .@i,0; .@i<getargcount(); set .@i,.@i+1)
+		set @i[.@i],getarg(.@i);
+	doevent "preview_gacha1::OnMainMenu";
+	end;
+}
+
+-	shop	preview_gacha_shop2	-1,909:-1
+
+-	script	preview_gacha2	-1,{ 
+// =============================================================
+function PreviewAddItems;
+// =============================================================
+OnInit:
+	freeloop(1);
+	setarray .Shops$[3],"- ตัวอย่างของรางวัล";
+// =============================================================	
+
+PreviewAddItems(3,3200000,1,0,0);
+PreviewAddItems(3,3200001,1,0,0);
+PreviewAddItems(3,3200002,1,0,0);
+PreviewAddItems(3,3200003,1,0,0);
+PreviewAddItems(3,3200004,1,0,0);
+PreviewAddItems(3,3200005,1,0,0);
+PreviewAddItems(3,3200006,1,0,0);
+PreviewAddItems(3,3200007,1,0,0);
+PreviewAddItems(3,3200008,1,0,0);
+PreviewAddItems(3,3200009,1,0,0);
+PreviewAddItems(3,3200010,1,0,0);
+PreviewAddItems(3,3200011,1,0,0);
+PreviewAddItems(3,3200012,1,0,0);
+PreviewAddItems(3,3200013,1,0,0);
+PreviewAddItems(3,3200014,1,0,0);
+PreviewAddItems(3,3200015,1,0,0);
+PreviewAddItems(3,3200016,1,0,0);
+PreviewAddItems(3,3200017,1,0,0);
+PreviewAddItems(3,3200018,1,0,0);
+PreviewAddItems(3,3200019,1,0,0);
+PreviewAddItems(3,3200020,1,0,0);
+PreviewAddItems(3,3200021,1,0,0);
+PreviewAddItems(3,3200022,1,0,0);
+PreviewAddItems(3,3200024,1,0,0);
+PreviewAddItems(3,3200025,1,0,0);
+PreviewAddItems(3,3200026,1,0,0);
+PreviewAddItems(3,3200027,1,0,0);
+PreviewAddItems(3,3200028,1,0,0);
+PreviewAddItems(3,3200029,1,0,0);
+PreviewAddItems(3,3200030,1,0,0);
+PreviewAddItems(3,3200031,1,0,0);
+PreviewAddItems(3,3200032,1,0,0);
+PreviewAddItems(3,3200033,1,0,0);
+PreviewAddItems(3,3200034,1,0,0);
+PreviewAddItems(3,3200035,1,0,0);
+PreviewAddItems(3,3200036,1,0,0);
+PreviewAddItems(3,3200037,1,0,0);
+PreviewAddItems(3,3200038,1,0,0);
+PreviewAddItems(3,3200039,1,0,0);
+PreviewAddItems(3,3200040,1,0,0);
+PreviewAddItems(3,3200041,1,0,0);
+PreviewAddItems(3,3200042,1,0,0);
+PreviewAddItems(3,3200043,1,0,0);
+PreviewAddItems(3,3200044,1,0,0);
+PreviewAddItems(3,3200045,1,0,0);
+PreviewAddItems(3,3200046,1,0,0);
+PreviewAddItems(3,3200047,1,0,0);
+PreviewAddItems(3,3200048,1,0,0);
+PreviewAddItems(3,3200049,1,0,0);
+PreviewAddItems(3,3200050,1,0,0);
+PreviewAddItems(3,3200051,1,0,0);
+PreviewAddItems(3,3200052,1,0,0);
+PreviewAddItems(3,3200053,1,0,0);
+PreviewAddItems(3,3200054,1,0,0);
+PreviewAddItems(3,3200055,1,0,0);
+PreviewAddItems(3,3200056,1,0,0);
+PreviewAddItems(3,3200057,1,0,0);
+PreviewAddItems(3,3200058,1,0,0);
+PreviewAddItems(3,3200059,1,0,0);
+PreviewAddItems(3,3200060,1,0,0);
+PreviewAddItems(3,3200061,1,0,0);
+PreviewAddItems(3,3200062,1,0,0);
+PreviewAddItems(3,3200063,1,0,0);
+PreviewAddItems(3,3200064,1,0,0);
+PreviewAddItems(3,3200065,1,0,0);
+PreviewAddItems(3,3200066,1,0,0);
+PreviewAddItems(3,3200067,1,0,0);
+PreviewAddItems(3,3200068,1,0,0);
+PreviewAddItems(3,3200069,1,0,0);
+PreviewAddItems(3,3200070,1,0,0);
+PreviewAddItems(3,3200071,1,0,0);
+PreviewAddItems(3,3200072,1,0,0);
+PreviewAddItems(3,3200073,1,0,0);
+PreviewAddItems(3,3200074,1,0,0);
+PreviewAddItems(3,3200075,1,0,0);
+PreviewAddItems(3,3200076,1,0,0);
+PreviewAddItems(3,3200077,1,0,0);
+PreviewAddItems(3,3200078,1,0,0);
+PreviewAddItems(3,3200079,1,0,0);
+PreviewAddItems(3,3200080,1,0,0);
+PreviewAddItems(3,3200081,1,0,0);
+PreviewAddItems(3,3200082,1,0,0);
+PreviewAddItems(3,3200083,1,0,0);
+PreviewAddItems(3,3200084,1,0,0);
+PreviewAddItems(3,3200085,1,0,0);
+PreviewAddItems(3,3200086,1,0,0);
+PreviewAddItems(3,3200087,1,0,0);
+PreviewAddItems(3,3200088,1,0,0);
+PreviewAddItems(3,3200089,1,0,0);
+PreviewAddItems(3,3200090,1,0,0);
+PreviewAddItems(3,3200091,1,0,0);
+PreviewAddItems(3,3200092,1,0,0);
+PreviewAddItems(3,3200093,1,0,0);
+PreviewAddItems(3,3200094,1,0,0);
+PreviewAddItems(3,3200095,1,0,0);
+PreviewAddItems(3,3200096,1,0,0);
+PreviewAddItems(3,3200097,1,0,0);
+PreviewAddItems(3,3200098,1,0,0);
+PreviewAddItems(3,3200099,1,0,0);
+PreviewAddItems(3,3200100,1,0,0);
+PreviewAddItems(3,3200101,1,0,0);
+PreviewAddItems(3,3200102,1,0,0);
+PreviewAddItems(3,3200103,1,0,0);
+PreviewAddItems(3,3200104,1,0,0);
+PreviewAddItems(3,3200105,1,0,0);
+PreviewAddItems(3,3200106,1,0,0);
+PreviewAddItems(3,3200107,1,0,0);
+PreviewAddItems(3,3200108,1,0,0);
+PreviewAddItems(3,3200109,1,0,0);
+PreviewAddItems(3,3200110,1,0,0);
+PreviewAddItems(3,3200111,1,0,0);
+PreviewAddItems(3,3200112,1,0,0);
+PreviewAddItems(3,3200113,1,0,0);
+PreviewAddItems(3,3200114,1,0,0);
+PreviewAddItems(3,3200115,1,0,0);
+PreviewAddItems(3,3200116,1,0,0);
+PreviewAddItems(3,3200117,1,0,0);
+PreviewAddItems(3,3200118,1,0,0);
+PreviewAddItems(3,3200119,1,0,0);
+PreviewAddItems(3,3200120,1,0,0);
+PreviewAddItems(3,3200121,1,0,0);
+PreviewAddItems(3,3200122,1,0,0);
+PreviewAddItems(3,3200123,1,0,0);
+PreviewAddItems(3,3200124,1,0,0);
+PreviewAddItems(3,3200125,1,0,0);
+PreviewAddItems(3,3200126,1,0,0);
+PreviewAddItems(3,3200127,1,0,0);
+PreviewAddItems(3,3200128,1,0,0);
+PreviewAddItems(3,3200129,1,0,0);
+PreviewAddItems(3,3200130,1,0,0);
+PreviewAddItems(3,3200131,1,0,0);
+PreviewAddItems(3,3200132,1,0,0);
+PreviewAddItems(3,3200133,1,0,0);
+PreviewAddItems(3,3200134,1,0,0);
+PreviewAddItems(3,3200135,1,0,0);
+PreviewAddItems(3,3200136,1,0,0);
+PreviewAddItems(3,3200138,1,0,0);
+PreviewAddItems(3,3200139,1,0,0);
+PreviewAddItems(3,3200140,1,0,0);
+PreviewAddItems(3,3200141,1,0,0);
+PreviewAddItems(3,3200142,1,0,0);
+PreviewAddItems(3,3200143,1,0,0);
+PreviewAddItems(3,3200144,1,0,0);
+PreviewAddItems(3,3200145,1,0,0);
+
+
+	
+// =============================================================
+
+	freeloop(0);
+	set .menu$,"";
+	for(set .@i,1; .@i<=getarraysize(.Shops$); set .@i,.@i+1) {
+		set .menu$, .menu$+.Shops$[.@i]+":";
+		npcshopdelitem "preview_gacha_shop"+.@i,909;
+	}
+	end;
+
+OnMainMenu:
+
+	set .@size, getarraysize(@i);
+	if (!.@size) set .@i, select(.menu$);
+	else if (.@size == 1) set .@i, @i[0];
+	else {
+		for(set .@j,0; .@j<.@size; set .@j,.@j+1)
+			set .@menu$, .@menu$+.Shops$[@i[.@j]]+":";
+		set .@i, @i[select(.@menu$)-1];
+	}
+	deletearray @i[0],getarraysize(@i);
+	if (.Shops$[.@i] == "") {
+		message strcharinfo(0),"เกิดข้อผิดพลาด.";
+		end;
+	}
+	callshop "preview_gacha_shop"+.@i,1;
+	npcshopattach "preview_gacha_shop"+.@i;
+	end;
+
+OnBuyItem:
+	end;
+
+function PreviewAddItems {
+	
+	npcshopadditem "preview_gacha_shop"+getarg(0),getarg(1),((.ShowZeny)?getarg(3):0);
+	return;
+}
+
+}
+
+function	script	preview_gacha_shop3	{
+
+	deletearray @i[0],getarraysize(@i);
+	for(set .@i,0; .@i<getargcount(); set .@i,.@i+1)
+		set @i[.@i],getarg(.@i);
+	doevent "preview_gacha2::OnMainMenu";
+	end;
+}
+
+-	shop	preview_gacha_shop3	-1,909:-1
+
+-	script	preview_gacha3	-1,{ 
+// =============================================================
+function PreviewAddItems;
+// =============================================================
+OnInit:
+	freeloop(1);
+	setarray .Shops$[4],"- ตัวอย่างของรางวัล";
+// =============================================================	
+
+PreviewAddItems(4,3300008,1,0,0);
+PreviewAddItems(4,3300009,1,0,0);
+PreviewAddItems(4,3300010,1,0,0);
+PreviewAddItems(4,3300011,1,0,0);
+PreviewAddItems(4,3300012,1,0,0);
+PreviewAddItems(4,3300050,1,0,0);
+PreviewAddItems(4,3300013,1,0,0);
+PreviewAddItems(4,3300014,1,0,0);
+PreviewAddItems(4,3300015,1,0,0);
+PreviewAddItems(4,3300016,1,0,0);
+PreviewAddItems(4,3300017,1,0,0);
+PreviewAddItems(4,3300018,1,0,0);
+PreviewAddItems(4,3300019,1,0,0);
+PreviewAddItems(4,3300020,1,0,0);
+PreviewAddItems(4,3300021,1,0,0);
+PreviewAddItems(4,3300022,1,0,0);
+PreviewAddItems(4,3300023,1,0,0);
+PreviewAddItems(4,3300024,1,0,0);
+PreviewAddItems(4,3300025,1,0,0);
+PreviewAddItems(4,3300026,1,0,0);
+PreviewAddItems(4,3300045,1,0,0);
+PreviewAddItems(4,3300046,1,0,0);
+PreviewAddItems(4,3300047,1,0,0);
+PreviewAddItems(4,3300048,1,0,0);
+PreviewAddItems(4,3300049,1,0,0);
+PreviewAddItems(4,3300051,1,0,0);
+PreviewAddItems(4,3300052,1,0,0);
+PreviewAddItems(4,3300053,1,0,0);
+PreviewAddItems(4,3300054,1,0,0);
+PreviewAddItems(4,3300055,1,0,0);
+PreviewAddItems(4,3300056,1,0,0);
+PreviewAddItems(4,3300057,1,0,0);
+PreviewAddItems(4,3300058,1,0,0);
+PreviewAddItems(4,3300059,1,0,0);
+PreviewAddItems(4,3300060,1,0,0);
+
+	
+// =============================================================
+
+	freeloop(0);
+	set .menu$,"";
+	for(set .@i,1; .@i<=getarraysize(.Shops$); set .@i,.@i+1) {
+		set .menu$, .menu$+.Shops$[.@i]+":";
+		npcshopdelitem "preview_gacha_shop"+.@i,909;
+	}
+	end;
+
+OnMainMenu:
+
+	set .@size, getarraysize(@i);
+	if (!.@size) set .@i, select(.menu$);
+	else if (.@size == 1) set .@i, @i[0];
+	else {
+		for(set .@j,0; .@j<.@size; set .@j,.@j+1)
+			set .@menu$, .@menu$+.Shops$[@i[.@j]]+":";
+		set .@i, @i[select(.@menu$)-1];
+	}
+	deletearray @i[0],getarraysize(@i);
+	if (.Shops$[.@i] == "") {
+		message strcharinfo(0),"เกิดข้อผิดพลาด.";
+		end;
+	}
+	callshop "preview_gacha_shop"+.@i,1;
+	npcshopattach "preview_gacha_shop"+.@i;
+	end;
+
+OnBuyItem:
+	end;
+
+function PreviewAddItems {
+	
+	npcshopadditem "preview_gacha_shop"+getarg(0),getarg(1),((.ShowZeny)?getarg(3):0);
+	return;
+}
+
+}
+
+function	script	preview_gacha_shop4	{
+
+	deletearray @i[0],getarraysize(@i);
+	for(set .@i,0; .@i<getargcount(); set .@i,.@i+1)
+		set @i[.@i],getarg(.@i);
+	doevent "preview_gacha3::OnMainMenu";
+	end;
+}
+
+-	shop	preview_gacha_shop4	-1,909:-1
+
+-	script	preview_gacha4	-1,{ 
+// =============================================================
+function PreviewAddItems;
+// =============================================================
+OnInit:
+	freeloop(1);
+	setarray .Shops$[5],"- ตัวอย่างของรางวัล";
+// =============================================================	
+
+PreviewAddItems(5,3300000,1,0,0);
+PreviewAddItems(5,3300001,1,0,0);
+PreviewAddItems(5,3300002,1,0,0);
+PreviewAddItems(5,3300003,1,0,0);
+PreviewAddItems(5,3300004,1,0,0);
+PreviewAddItems(5,3300005,1,0,0);
+PreviewAddItems(5,3300006,1,0,0);
+PreviewAddItems(5,3300007,1,0,0);
+PreviewAddItems(5,3300040,1,0,0);
+PreviewAddItems(5,3300041,1,0,0);
+PreviewAddItems(5,3300042,1,0,0);
+PreviewAddItems(5,3300043,1,0,0);
+PreviewAddItems(5,3300044,1,0,0);
+PreviewAddItems(5,3300029,1,0,0);
+PreviewAddItems(5,3300030,1,0,0);
+PreviewAddItems(5,3300031,1,0,0);
+PreviewAddItems(5,3300032,1,0,0);
+PreviewAddItems(5,3300033,1,0,0);
+PreviewAddItems(5,3300034,1,0,0);
+PreviewAddItems(5,3300035,1,0,0);
+PreviewAddItems(5,3300036,1,0,0);
+PreviewAddItems(5,3300037,1,0,0);
+PreviewAddItems(5,3300038,1,0,0);
+PreviewAddItems(5,3300039,1,0,0);
+PreviewAddItems(5,3300064,1,0,0);
+PreviewAddItems(5,3300066,1,0,0);
+
+	
+// =============================================================
+
+	freeloop(0);
+	set .menu$,"";
+	for(set .@i,1; .@i<=getarraysize(.Shops$); set .@i,.@i+1) {
+		set .menu$, .menu$+.Shops$[.@i]+":";
+		npcshopdelitem "preview_gacha_shop"+.@i,909;
+	}
+	end;
+
+OnMainMenu:
+
+	set .@size, getarraysize(@i);
+	if (!.@size) set .@i, select(.menu$);
+	else if (.@size == 1) set .@i, @i[0];
+	else {
+		for(set .@j,0; .@j<.@size; set .@j,.@j+1)
+			set .@menu$, .@menu$+.Shops$[@i[.@j]]+":";
+		set .@i, @i[select(.@menu$)-1];
+	}
+	deletearray @i[0],getarraysize(@i);
+	if (.Shops$[.@i] == "") {
+		message strcharinfo(0),"เกิดข้อผิดพลาด.";
+		end;
+	}
+	callshop "preview_gacha_shop"+.@i,1;
+	npcshopattach "preview_gacha_shop"+.@i;
+	end;
+
+OnBuyItem:
+	end;
+
+function PreviewAddItems {
+	
+	npcshopadditem "preview_gacha_shop"+getarg(0),getarg(1),((.ShowZeny)?getarg(3):0);
+	return;
+}
+
+}
+
+function	script	preview_gacha_shop5	{
+
+	deletearray @i[0],getarraysize(@i);
+	for(set .@i,0; .@i<getargcount(); set .@i,.@i+1)
+		set @i[.@i],getarg(.@i);
+	doevent "preview_gacha4::OnMainMenu";
+	end;
+}
+
+-	shop	preview_gacha_shop5	-1,909:-1
+
+-	script	preview_gacha7	-1,{ 
+// =============================================================
+function PreviewAddItems;
+// =============================================================
+OnInit:
+	freeloop(1);
+	setarray .Shops$[8],"- ตัวอย่างของรางวัล";
+// =============================================================	
+
+	PreviewAddItems(8,20514,1,0,0);
+	PreviewAddItems(8,20516,1,0,0);
+	PreviewAddItems(8,20519,1,0,0);
+	PreviewAddItems(8,20526,1,0,0);
+	PreviewAddItems(8,20528,1,0,0);
+	PreviewAddItems(8,20538,1,0,0);
+	PreviewAddItems(8,20541,1,0,0);
+	PreviewAddItems(8,20543,1,0,0);
+	PreviewAddItems(8,20546,1,0,0);
+	PreviewAddItems(8,20570,1,0,0);
+	PreviewAddItems(8,20578,1,0,0);
+	PreviewAddItems(8,20582,1,0,0);
+	PreviewAddItems(8,20588,1,0,0);
+	PreviewAddItems(8,20592,1,0,0);
+	PreviewAddItems(8,20594,1,0,0);
+	PreviewAddItems(8,20597,1,0,0);
+	PreviewAddItems(8,20598,1,0,0);
+	PreviewAddItems(8,20599,1,0,0);
+	PreviewAddItems(8,20602,1,0,0);
+	PreviewAddItems(8,20603,1,0,0);
+	PreviewAddItems(8,20604,1,0,0);
+	PreviewAddItems(8,20605,1,0,0);
+	PreviewAddItems(8,20607,1,0,0);
+	PreviewAddItems(8,20613,1,0,0);
+	PreviewAddItems(8,20727,1,0,0);
+	PreviewAddItems(8,20737,1,0,0);
+	PreviewAddItems(8,20988,1,0,0);
+	PreviewAddItems(8,20990,1,0,0);
+	PreviewAddItems(8,31299,1,0,0);
+	PreviewAddItems(8,31452,1,0,0);
+	PreviewAddItems(8,31614,1,0,0);
+	PreviewAddItems(8,31623,1,0,0);
+	PreviewAddItems(8,19291,1,0,0);
+	PreviewAddItems(8,19834,1,0,0);
+	PreviewAddItems(8,31120,1,0,0);
+	PreviewAddItems(8,31589,1,0,0);
+	PreviewAddItems(8,31432,1,0,0);
+	PreviewAddItems(8,31542,1,0,0);
+	PreviewAddItems(8,31517,1,0,0);
+	PreviewAddItems(8,31719,1,0,0);
+	PreviewAddItems(8,31803,1,0,0);
+	PreviewAddItems(8,20407,1,0,0);
+	PreviewAddItems(8,31178,1,0,0);
+	PreviewAddItems(8,31687,1,0,0);
+	PreviewAddItems(8,31673,1,0,0);
+	PreviewAddItems(8,31715,1,0,0);
+	PreviewAddItems(8,31160,1,0,0);
+	PreviewAddItems(8,31607,1,0,0);
+	PreviewAddItems(8,31943,1,0,0);
+	PreviewAddItems(8,31721,1,0,0);
+	PreviewAddItems(8,31816,1,0,0);
+	PreviewAddItems(8,31885,1,0,0);
+	PreviewAddItems(8,31930,1,0,0);
+	PreviewAddItems(8,19836,1,0,0);
+	PreviewAddItems(8,20325,1,0,0);
+	PreviewAddItems(8,20344,1,0,0);
+	PreviewAddItems(8,20430,1,0,0);
+	PreviewAddItems(8,20448,1,0,0);
+	PreviewAddItems(8,5909,1,0,0);
+	PreviewAddItems(8,5915,1,0,0);
+	PreviewAddItems(8,5977,1,0,0);
+	PreviewAddItems(8,5980,1,0,0);
+	PreviewAddItems(8,15881,1,0,0);
+	PreviewAddItems(8,15882,1,0,0);
+	PreviewAddItems(8,15889,1,0,0);
+	PreviewAddItems(8,18740,1,0,0);
+	PreviewAddItems(8,18741,1,0,0);
+	PreviewAddItems(8,18743,1,0,0);
+	PreviewAddItems(8,19158,1,0,0);
+	PreviewAddItems(8,19289,1,0,0);
+	PreviewAddItems(8,19291,1,0,0);
+	PreviewAddItems(8,19292,1,0,0);
+	PreviewAddItems(8,19424,1,0,0);
+	PreviewAddItems(8,19294,1,0,0);
+	PreviewAddItems(8,19630,1,0,0);
+	PreviewAddItems(8,19642,1,0,0);
+	PreviewAddItems(8,19652,1,0,0);
+	PreviewAddItems(8,19769,1,0,0);
+	PreviewAddItems(8,31492,1,0,0);
+	PreviewAddItems(8,19787,1,0,0);
+	PreviewAddItems(8,19810,1,0,0);
+	PreviewAddItems(8,19672,1,0,0);
+	PreviewAddItems(8,19713,1,0,0);
+	PreviewAddItems(8,19726,1,0,0);
+	PreviewAddItems(8,19814,1,0,0);
+	PreviewAddItems(8,19823,1,0,0);
+	PreviewAddItems(8,19884,1,0,0);
+	PreviewAddItems(8,19934,1,0,0);
+	PreviewAddItems(8,31814,1,0,0);
+	PreviewAddItems(8,19826,1,0,0);
+	PreviewAddItems(8,19877,1,0,0);
+	PreviewAddItems(8,20108,1,0,0);
+	PreviewAddItems(8,19805,1,0,0);
+	PreviewAddItems(8,19817,1,0,0);
+	PreviewAddItems(8,19947,1,0,0);
+	PreviewAddItems(8,31841,1,0,0);
+	PreviewAddItems(8,20489,1,0,0);
+	PreviewAddItems(8,31577,1,0,0);
+	PreviewAddItems(8,31765,1,0,0);
+	PreviewAddItems(8,31663,1,0,0);
+	PreviewAddItems(8,31785,1,0,0);
+	PreviewAddItems(8,20318,1,0,0);
+	PreviewAddItems(8,31463,1,0,0);
+	PreviewAddItems(8,20492,1,0,0);
+	PreviewAddItems(8,31460,1,0,0);
+	PreviewAddItems(8,31667,1,0,0);
+	PreviewAddItems(8,31909,1,0,0);
+	PreviewAddItems(8,20112,1,0,0);
+	PreviewAddItems(8,31843,1,0,0);
+	PreviewAddItems(8,31574,1,0,0);
+	PreviewAddItems(8,31395,1,0,0);
+	PreviewAddItems(8,31490,1,0,0);
+	PreviewAddItems(8,31907,1,0,0);
+	PreviewAddItems(8,20316,1,0,0);
+	PreviewAddItems(8,31624,1,0,0);
+	PreviewAddItems(8,31186,1,0,0);
+	PreviewAddItems(8,20005,1,0,0);
+	PreviewAddItems(8,31831,1,0,0);
+	PreviewAddItems(8,31611,1,0,0);
+	PreviewAddItems(8,20247,1,0,0);
+	PreviewAddItems(8,31709,1,0,0);
+	PreviewAddItems(8,31786,1,0,0);
+	PreviewAddItems(8,31902,1,0,0);
+	PreviewAddItems(8,20345,1,0,0);
+	PreviewAddItems(8,31250,1,0,0);
+	PreviewAddItems(8,20255,1,0,0);
+	PreviewAddItems(8,31590,1,0,0);
+	PreviewAddItems(8,31377,1,0,0);
+	PreviewAddItems(8,31850,1,0,0);
+	PreviewAddItems(8,31565,1,0,0);
+	PreviewAddItems(8,31028,1,0,0);
+	PreviewAddItems(8,31174,1,0,0);
+	PreviewAddItems(8,31851,1,0,0);
+	PreviewAddItems(8,31052,1,0,0);
+	PreviewAddItems(8,31236,1,0,0);
+	PreviewAddItems(8,31936,1,0,0);
+	PreviewAddItems(8,31729,1,0,0);
+	PreviewAddItems(8,20440,1,0,0);
+	PreviewAddItems(8,20315,1,0,0);
+	//PreviewAddItems(8,1943,1,0,0);
+	PreviewAddItems(8,19459,1,0,0);
+	PreviewAddItems(8,19464,1,0,0);
+	PreviewAddItems(8,19472,1,0,0);
+	PreviewAddItems(8,19502,1,0,0);
+	PreviewAddItems(8,19503,1,0,0);
+	PreviewAddItems(8,19504,1,0,0);
+	PreviewAddItems(8,19505,1,0,0);
+	PreviewAddItems(8,19595,1,0,0);
+	PreviewAddItems(8,19596,1,0,0);
+	PreviewAddItems(8,19597,1,0,0);
+	PreviewAddItems(8,19598,1,0,0);
+	PreviewAddItems(8,19600,1,0,0);
+	PreviewAddItems(8,19601,1,0,0);
+	PreviewAddItems(8,19605,1,0,0);
+	PreviewAddItems(8,19606,1,0,0);
+	PreviewAddItems(8,19607,1,0,0);
+	PreviewAddItems(8,19608,1,0,0);
+	PreviewAddItems(8,19609,1,0,0);
+	PreviewAddItems(8,19610,1,0,0);
+	PreviewAddItems(8,19611,1,0,0);
+	PreviewAddItems(8,19612,1,0,0);
+	PreviewAddItems(8,19613,1,0,0);
+	PreviewAddItems(8,19614,1,0,0);
+	PreviewAddItems(8,19615,1,0,0);
+	PreviewAddItems(8,19616,1,0,0);
+	PreviewAddItems(8,19617,1,0,0);
+	PreviewAddItems(8,19618,1,0,0);
+	PreviewAddItems(8,19620,1,0,0);
+	PreviewAddItems(8,19621,1,0,0);
+	PreviewAddItems(8,19622,1,0,0);
+	PreviewAddItems(8,19623,1,0,0);
+	PreviewAddItems(8,19624,1,0,0);
+	PreviewAddItems(8,19629,1,0,0);
+	PreviewAddItems(8,19631,1,0,0);
+	PreviewAddItems(8,19632,1,0,0);
+	PreviewAddItems(8,19633,1,0,0);
+	PreviewAddItems(8,19634,1,0,0);
+	PreviewAddItems(8,19635,1,0,0);
+	PreviewAddItems(8,19636,1,0,0);
+	PreviewAddItems(8,19637,1,0,0);
+	PreviewAddItems(8,19638,1,0,0);
+	PreviewAddItems(8,19639,1,0,0);
+	PreviewAddItems(8,19640,1,0,0);
+	PreviewAddItems(8,19641,1,0,0);
+	PreviewAddItems(8,19643,1,0,0);
+	PreviewAddItems(8,19644,1,0,0);
+	PreviewAddItems(8,19645,1,0,0);
+	PreviewAddItems(8,19646,1,0,0);
+	PreviewAddItems(8,19647,1,0,0);
+	PreviewAddItems(8,19648,1,0,0);
+	PreviewAddItems(8,19649,1,0,0);
+	PreviewAddItems(8,19650,1,0,0);
+	PreviewAddItems(8,19653,1,0,0);
+	PreviewAddItems(8,19654,1,0,0);
+	PreviewAddItems(8,19655,1,0,0);
+	PreviewAddItems(8,19656,1,0,0);
+	PreviewAddItems(8,19657,1,0,0);
+	PreviewAddItems(8,19658,1,0,0);
+	PreviewAddItems(8,19659,1,0,0);
+	PreviewAddItems(8,19660,1,0,0);
+	PreviewAddItems(8,19661,1,0,0);
+	PreviewAddItems(8,19662,1,0,0);
+	PreviewAddItems(8,19663,1,0,0);
+	PreviewAddItems(8,19664,1,0,0);
+	PreviewAddItems(8,19665,1,0,0);
+	PreviewAddItems(8,19666,1,0,0);
+	PreviewAddItems(8,19667,1,0,0);
+	PreviewAddItems(8,19668,1,0,0);
+	PreviewAddItems(8,19670,1,0,0);
+	PreviewAddItems(8,19671,1,0,0);
+	PreviewAddItems(8,19673,1,0,0);
+	PreviewAddItems(8,19676,1,0,0);
+	PreviewAddItems(8,19677,1,0,0);
+	PreviewAddItems(8,19678,1,0,0);
+	PreviewAddItems(8,19682,1,0,0);
+	PreviewAddItems(8,19684,1,0,0);
+	PreviewAddItems(8,19685,1,0,0);
+	PreviewAddItems(8,19687,1,0,0);
+	PreviewAddItems(8,19689,1,0,0);
+	PreviewAddItems(8,19690,1,0,0);
+	PreviewAddItems(8,19694,1,0,0);
+	PreviewAddItems(8,19695,1,0,0);
+	PreviewAddItems(8,19696,1,0,0);
+	PreviewAddItems(8,19697,1,0,0);
+	PreviewAddItems(8,19702,1,0,0);
+	PreviewAddItems(8,19704,1,0,0);
+	PreviewAddItems(8,19705,1,0,0);
+	PreviewAddItems(8,19706,1,0,0);
+	PreviewAddItems(8,19707,1,0,0);
+	PreviewAddItems(8,19708,1,0,0);
+	PreviewAddItems(8,19709,1,0,0);
+	PreviewAddItems(8,19710,1,0,0);
+	PreviewAddItems(8,19712,1,0,0);
+	PreviewAddItems(8,19714,1,0,0);
+	PreviewAddItems(8,19715,1,0,0);
+	PreviewAddItems(8,19716,1,0,0);
+	PreviewAddItems(8,19717,1,0,0);
+	PreviewAddItems(8,19718,1,0,0);
+	PreviewAddItems(8,19719,1,0,0);
+	PreviewAddItems(8,19720,1,0,0);
+	PreviewAddItems(8,19721,1,0,0);
+	PreviewAddItems(8,19722,1,0,0);
+	PreviewAddItems(8,19723,1,0,0);
+	PreviewAddItems(8,19724,1,0,0);
+	PreviewAddItems(8,19725,1,0,0);
+	PreviewAddItems(8,19727,1,0,0);
+	PreviewAddItems(8,19728,1,0,0);
+	PreviewAddItems(8,19729,1,0,0);
+	PreviewAddItems(8,19730,1,0,0);
+	PreviewAddItems(8,19732,1,0,0);
+	PreviewAddItems(8,19735,1,0,0);
+	PreviewAddItems(8,19738,1,0,0);
+	PreviewAddItems(8,19741,1,0,0);
+	PreviewAddItems(8,19743,1,0,0);
+	PreviewAddItems(8,19744,1,0,0);
+	PreviewAddItems(8,19745,1,0,0);
+	PreviewAddItems(8,19746,1,0,0);
+	PreviewAddItems(8,19747,1,0,0);
+	PreviewAddItems(8,19748,1,0,0);
+	PreviewAddItems(8,19749,1,0,0);
+	PreviewAddItems(8,19750,1,0,0);
+	PreviewAddItems(8,19751,1,0,0);
+	PreviewAddItems(8,19753,1,0,0);
+	PreviewAddItems(8,19754,1,0,0);
+	PreviewAddItems(8,19756,1,0,0);
+	PreviewAddItems(8,19757,1,0,0);
+	PreviewAddItems(8,19758,1,0,0);
+	PreviewAddItems(8,19759,1,0,0);
+	PreviewAddItems(8,19760,1,0,0);
+	PreviewAddItems(8,19761,1,0,0);
+	PreviewAddItems(8,19762,1,0,0);
+	PreviewAddItems(8,19763,1,0,0);
+	PreviewAddItems(8,19767,1,0,0);
+	PreviewAddItems(8,19768,1,0,0);
+	PreviewAddItems(8,19770,1,0,0);
+	PreviewAddItems(8,19771,1,0,0);
+	PreviewAddItems(8,19772,1,0,0);
+	PreviewAddItems(8,19773,1,0,0);
+	PreviewAddItems(8,19774,1,0,0);
+	PreviewAddItems(8,19775,1,0,0);
+	PreviewAddItems(8,19776,1,0,0);
+	PreviewAddItems(8,19777,1,0,0);
+	PreviewAddItems(8,19778,1,0,0);
+	PreviewAddItems(8,19781,1,0,0);
+	PreviewAddItems(8,19782,1,0,0);
+	PreviewAddItems(8,19783,1,0,0);
+	PreviewAddItems(8,19784,1,0,0);
+	PreviewAddItems(8,19785,1,0,0);
+	PreviewAddItems(8,19786,1,0,0);
+	PreviewAddItems(8,19788,1,0,0);
+	PreviewAddItems(8,19789,1,0,0);
+	PreviewAddItems(8,19790,1,0,0);
+	PreviewAddItems(8,19791,1,0,0);
+	PreviewAddItems(8,19792,1,0,0);
+	PreviewAddItems(8,19793,1,0,0);
+	PreviewAddItems(8,19794,1,0,0);
+	PreviewAddItems(8,19795,1,0,0);
+	PreviewAddItems(8,19796,1,0,0);
+	PreviewAddItems(8,19797,1,0,0);
+	PreviewAddItems(8,19798,1,0,0);
+	PreviewAddItems(8,19799,1,0,0);
+	PreviewAddItems(8,19800,1,0,0);
+	PreviewAddItems(8,19801,1,0,0);
+	PreviewAddItems(8,19802,1,0,0);
+	PreviewAddItems(8,19803,1,0,0);
+	PreviewAddItems(8,19804,1,0,0);
+	PreviewAddItems(8,19806,1,0,0);
+	PreviewAddItems(8,19807,1,0,0);
+	PreviewAddItems(8,19808,1,0,0);
+	PreviewAddItems(8,19809,1,0,0);
+	PreviewAddItems(8,19811,1,0,0);
+	PreviewAddItems(8,19812,1,0,0);
+	PreviewAddItems(8,19813,1,0,0);
+	PreviewAddItems(8,19815,1,0,0);
+	PreviewAddItems(8,19816,1,0,0);
+	PreviewAddItems(8,19818,1,0,0);
+	PreviewAddItems(8,19819,1,0,0);
+	PreviewAddItems(8,19821,1,0,0);
+	PreviewAddItems(8,19822,1,0,0);
+	PreviewAddItems(8,19824,1,0,0);
+	PreviewAddItems(8,19825,1,0,0);
+	PreviewAddItems(8,19827,1,0,0);
+	PreviewAddItems(8,19828,1,0,0);
+	PreviewAddItems(8,19829,1,0,0);
+	PreviewAddItems(8,19830,1,0,0);
+	PreviewAddItems(8,19831,1,0,0);
+	PreviewAddItems(8,19832,1,0,0);
+	PreviewAddItems(8,19833,1,0,0);
+	PreviewAddItems(8,19834,1,0,0);
+	PreviewAddItems(8,19835,1,0,0);
+	PreviewAddItems(8,19837,1,0,0);
+	PreviewAddItems(8,19839,1,0,0);
+	PreviewAddItems(8,19841,1,0,0);
+	PreviewAddItems(8,19842,1,0,0);
+	PreviewAddItems(8,19843,1,0,0);
+	PreviewAddItems(8,19844,1,0,0);
+	PreviewAddItems(8,19845,1,0,0);
+	PreviewAddItems(8,19846,1,0,0);
+	PreviewAddItems(8,19847,1,0,0);
+	PreviewAddItems(8,19848,1,0,0);
+	PreviewAddItems(8,19849,1,0,0);
+	PreviewAddItems(8,19850,1,0,0);
+	PreviewAddItems(8,19851,1,0,0);
+	PreviewAddItems(8,19852,1,0,0);
+	PreviewAddItems(8,19857,1,0,0);
+	PreviewAddItems(8,19858,1,0,0);
+	PreviewAddItems(8,19859,1,0,0);
+	PreviewAddItems(8,19860,1,0,0);
+	PreviewAddItems(8,19861,1,0,0);
+	PreviewAddItems(8,19862,1,0,0);
+	PreviewAddItems(8,19863,1,0,0);
+	PreviewAddItems(8,19864,1,0,0);
+	PreviewAddItems(8,19865,1,0,0);
+	PreviewAddItems(8,19866,1,0,0);
+	PreviewAddItems(8,19867,1,0,0);
+	PreviewAddItems(8,19874,1,0,0);
+	PreviewAddItems(8,19875,1,0,0);
+	PreviewAddItems(8,19876,1,0,0);
+	PreviewAddItems(8,19878,1,0,0);
+	PreviewAddItems(8,19881,1,0,0);
+	PreviewAddItems(8,19882,1,0,0);
+	PreviewAddItems(8,19883,1,0,0);
+	PreviewAddItems(8,19885,1,0,0);
+	PreviewAddItems(8,19886,1,0,0);
+	PreviewAddItems(8,19887,1,0,0);
+	PreviewAddItems(8,19888,1,0,0);
+	PreviewAddItems(8,19889,1,0,0);
+	PreviewAddItems(8,19901,1,0,0);
+	PreviewAddItems(8,19902,1,0,0);
+	PreviewAddItems(8,19904,1,0,0);
+	PreviewAddItems(8,19905,1,0,0);
+	PreviewAddItems(8,19906,1,0,0);
+	PreviewAddItems(8,19907,1,0,0);
+	PreviewAddItems(8,19908,1,0,0);
+	PreviewAddItems(8,19909,1,0,0);
+	PreviewAddItems(8,19910,1,0,0);
+	PreviewAddItems(8,19911,1,0,0);
+	PreviewAddItems(8,19912,1,0,0);
+	PreviewAddItems(8,19913,1,0,0);
+	PreviewAddItems(8,19914,1,0,0);
+	PreviewAddItems(8,19915,1,0,0);
+	PreviewAddItems(8,19916,1,0,0);
+	PreviewAddItems(8,19919,1,0,0);
+	PreviewAddItems(8,19922,1,0,0);
+	PreviewAddItems(8,19923,1,0,0);
+	PreviewAddItems(8,19924,1,0,0);
+	PreviewAddItems(8,19925,1,0,0);
+	PreviewAddItems(8,19926,1,0,0);
+	PreviewAddItems(8,19927,1,0,0);
+	PreviewAddItems(8,19928,1,0,0);
+	PreviewAddItems(8,19929,1,0,0);
+	PreviewAddItems(8,19930,1,0,0);
+	PreviewAddItems(8,19931,1,0,0);
+	PreviewAddItems(8,19932,1,0,0);
+	PreviewAddItems(8,19935,1,0,0);
+	PreviewAddItems(8,19936,1,0,0);
+	PreviewAddItems(8,19937,1,0,0);
+	PreviewAddItems(8,19938,1,0,0);
+	PreviewAddItems(8,19939,1,0,0);
+	PreviewAddItems(8,19940,1,0,0);
+	PreviewAddItems(8,19941,1,0,0);
+	PreviewAddItems(8,19942,1,0,0);
+	PreviewAddItems(8,19943,1,0,0);
+	PreviewAddItems(8,19944,1,0,0);
+	PreviewAddItems(8,19945,1,0,0);
+	PreviewAddItems(8,19946,1,0,0);
+	PreviewAddItems(8,19948,1,0,0);
+	PreviewAddItems(8,19949,1,0,0);
+	PreviewAddItems(8,19950,1,0,0);
+	PreviewAddItems(8,19951,1,0,0);
+	PreviewAddItems(8,19952,1,0,0);
+	PreviewAddItems(8,19953,1,0,0);
+	PreviewAddItems(8,19954,1,0,0);
+	PreviewAddItems(8,19955,1,0,0);
+	PreviewAddItems(8,19956,1,0,0);
+	PreviewAddItems(8,19957,1,0,0);
+	PreviewAddItems(8,19958,1,0,0);
+	PreviewAddItems(8,19959,1,0,0);
+	PreviewAddItems(8,19960,1,0,0);
+	PreviewAddItems(8,19975,1,0,0);
+	PreviewAddItems(8,19977,1,0,0);
+	PreviewAddItems(8,19978,1,0,0);
+	PreviewAddItems(8,19979,1,0,0);
+	PreviewAddItems(8,19980,1,0,0);
+	PreviewAddItems(8,19981,1,0,0);
+	PreviewAddItems(8,19983,1,0,0);
+	PreviewAddItems(8,19984,1,0,0);
+	PreviewAddItems(8,19985,1,0,0);
+	PreviewAddItems(8,19986,1,0,0);
+	PreviewAddItems(8,19987,1,0,0);
+	PreviewAddItems(8,19988,1,0,0);
+	PreviewAddItems(8,19989,1,0,0);
+	PreviewAddItems(8,19990,1,0,0);
+	PreviewAddItems(8,19991,1,0,0);
+	PreviewAddItems(8,19992,1,0,0);
+	PreviewAddItems(8,19993,1,0,0);
+	PreviewAddItems(8,19994,1,0,0);
+	PreviewAddItems(8,19995,1,0,0);
+	PreviewAddItems(8,19997,1,0,0);
+	PreviewAddItems(8,19998,1,0,0);
+	PreviewAddItems(8,20004,1,0,0);
+	PreviewAddItems(8,20006,1,0,0);
+	PreviewAddItems(8,20007,1,0,0);
+	PreviewAddItems(8,20009,1,0,0);
+	PreviewAddItems(8,20010,1,0,0);
+	PreviewAddItems(8,20011,1,0,0);
+	PreviewAddItems(8,20012,1,0,0);
+	PreviewAddItems(8,20044,1,0,0);
+	PreviewAddItems(8,20045,1,0,0);
+	PreviewAddItems(8,20046,1,0,0);
+	PreviewAddItems(8,20047,1,0,0);
+	PreviewAddItems(8,20048,1,0,0);
+	PreviewAddItems(8,20049,1,0,0);
+	PreviewAddItems(8,20050,1,0,0);
+	PreviewAddItems(8,20054,1,0,0);
+	PreviewAddItems(8,20055,1,0,0);
+	PreviewAddItems(8,20056,1,0,0);
+	PreviewAddItems(8,20057,1,0,0);
+	PreviewAddItems(8,20058,1,0,0);
+	PreviewAddItems(8,20059,1,0,0);
+	PreviewAddItems(8,20060,1,0,0);
+	PreviewAddItems(8,20061,1,0,0);
+	PreviewAddItems(8,20065,1,0,0);
+	PreviewAddItems(8,20100,1,0,0);
+	PreviewAddItems(8,20101,1,0,0);
+	PreviewAddItems(8,20102,1,0,0);
+	PreviewAddItems(8,20103,1,0,0);
+	PreviewAddItems(8,20104,1,0,0);
+	PreviewAddItems(8,20105,1,0,0);
+	PreviewAddItems(8,20106,1,0,0);
+	PreviewAddItems(8,20107,1,0,0);
+	PreviewAddItems(8,20109,1,0,0);
+	PreviewAddItems(8,20113,1,0,0);
+	PreviewAddItems(8,20114,1,0,0);
+	PreviewAddItems(8,20115,1,0,0);
+	PreviewAddItems(8,20116,1,0,0);
+	PreviewAddItems(8,20117,1,0,0);
+	PreviewAddItems(8,20118,1,0,0);
+	PreviewAddItems(8,20119,1,0,0);
+	PreviewAddItems(8,20120,1,0,0);
+	PreviewAddItems(8,20121,1,0,0);
+	PreviewAddItems(8,20122,1,0,0);
+	PreviewAddItems(8,20123,1,0,0);
+	PreviewAddItems(8,20124,1,0,0);
+	PreviewAddItems(8,20125,1,0,0);
+	PreviewAddItems(8,20126,1,0,0);
+	PreviewAddItems(8,20127,1,0,0);
+	PreviewAddItems(8,20128,1,0,0);
+	PreviewAddItems(8,20129,1,0,0);
+	PreviewAddItems(8,20130,1,0,0);
+	PreviewAddItems(8,20131,1,0,0);
+	PreviewAddItems(8,20133,1,0,0);
+	PreviewAddItems(8,20134,1,0,0);
+	PreviewAddItems(8,20137,1,0,0);
+	PreviewAddItems(8,20138,1,0,0);
+	PreviewAddItems(8,20141,1,0,0);
+	PreviewAddItems(8,20142,1,0,0);
+	PreviewAddItems(8,20143,1,0,0);
+	PreviewAddItems(8,20144,1,0,0);
+	PreviewAddItems(8,20145,1,0,0);
+	PreviewAddItems(8,20146,1,0,0);
+	PreviewAddItems(8,20147,1,0,0);
+	PreviewAddItems(8,20148,1,0,0);
+	PreviewAddItems(8,20149,1,0,0);
+	PreviewAddItems(8,20150,1,0,0);
+	PreviewAddItems(8,20225,1,0,0);
+	PreviewAddItems(8,20226,1,0,0);
+	PreviewAddItems(8,20244,1,0,0);
+	PreviewAddItems(8,20245,1,0,0);
+	PreviewAddItems(8,20248,1,0,0);
+	PreviewAddItems(8,20249,1,0,0);
+	PreviewAddItems(8,20250,1,0,0);
+	PreviewAddItems(8,20251,1,0,0);
+	PreviewAddItems(8,20252,1,0,0);
+	PreviewAddItems(8,20253,1,0,0);
+	PreviewAddItems(8,20254,1,0,0);
+	PreviewAddItems(8,20256,1,0,0);
+	PreviewAddItems(8,20257,1,0,0);
+	PreviewAddItems(8,20258,1,0,0);
+	PreviewAddItems(8,20259,1,0,0);
+	PreviewAddItems(8,20302,1,0,0);
+	PreviewAddItems(8,20303,1,0,0);
+	PreviewAddItems(8,20304,1,0,0);
+	PreviewAddItems(8,20305,1,0,0);
+	PreviewAddItems(8,20311,1,0,0);
+	PreviewAddItems(8,20312,1,0,0);
+	PreviewAddItems(8,20313,1,0,0);
+	PreviewAddItems(8,20314,1,0,0);
+	PreviewAddItems(8,20317,1,0,0);
+	PreviewAddItems(8,20319,1,0,0);
+	PreviewAddItems(8,20320,1,0,0);
+	PreviewAddItems(8,20321,1,0,0);
+	PreviewAddItems(8,20322,1,0,0);
+	PreviewAddItems(8,20324,1,0,0);
+	PreviewAddItems(8,20326,1,0,0);
+	PreviewAddItems(8,20328,1,0,0);
+	PreviewAddItems(8,20330,1,0,0);
+	PreviewAddItems(8,20331,1,0,0);
+	PreviewAddItems(8,20332,1,0,0);
+	PreviewAddItems(8,20333,1,0,0);
+	PreviewAddItems(8,20334,1,0,0);
+	PreviewAddItems(8,20335,1,0,0);
+	PreviewAddItems(8,20338,1,0,0);
+	PreviewAddItems(8,20339,1,0,0);
+	PreviewAddItems(8,20340,1,0,0);
+	PreviewAddItems(8,20341,1,0,0);
+	PreviewAddItems(8,20342,1,0,0);
+	PreviewAddItems(8,20346,1,0,0);
+	PreviewAddItems(8,20347,1,0,0);
+	PreviewAddItems(8,20348,1,0,0);
+	PreviewAddItems(8,20349,1,0,0);
+	PreviewAddItems(8,20350,1,0,0);
+	PreviewAddItems(8,20351,1,0,0);
+	PreviewAddItems(8,20352,1,0,0);
+	PreviewAddItems(8,20353,1,0,0);
+	PreviewAddItems(8,20354,1,0,0);
+	PreviewAddItems(8,20355,1,0,0);
+	PreviewAddItems(8,20356,1,0,0);
+	PreviewAddItems(8,20357,1,0,0);
+	PreviewAddItems(8,20358,1,0,0);
+	PreviewAddItems(8,20359,1,0,0);
+	PreviewAddItems(8,20360,1,0,0);
+	PreviewAddItems(8,20361,1,0,0);
+	PreviewAddItems(8,20362,1,0,0);
+	PreviewAddItems(8,20363,1,0,0);
+	PreviewAddItems(8,20364,1,0,0);
+	PreviewAddItems(8,20365,1,0,0);
+	PreviewAddItems(8,20366,1,0,0);
+	PreviewAddItems(8,20367,1,0,0);
+	PreviewAddItems(8,20368,1,0,0);
+	PreviewAddItems(8,20369,1,0,0);
+	PreviewAddItems(8,20370,1,0,0);
+	PreviewAddItems(8,20371,1,0,0);
+	PreviewAddItems(8,20372,1,0,0);
+	PreviewAddItems(8,20373,1,0,0);
+	PreviewAddItems(8,20374,1,0,0);
+	PreviewAddItems(8,20375,1,0,0);
+	PreviewAddItems(8,20376,1,0,0);
+	PreviewAddItems(8,20377,1,0,0);
+	PreviewAddItems(8,20378,1,0,0);
+	PreviewAddItems(8,20379,1,0,0);
+	PreviewAddItems(8,20380,1,0,0);
+	PreviewAddItems(8,20381,1,0,0);
+	PreviewAddItems(8,20382,1,0,0);
+	PreviewAddItems(8,20383,1,0,0);
+	PreviewAddItems(8,20384,1,0,0);
+	PreviewAddItems(8,20386,1,0,0);
+	PreviewAddItems(8,20388,1,0,0);
+	PreviewAddItems(8,20391,1,0,0);
+	PreviewAddItems(8,20394,1,0,0);
+	PreviewAddItems(8,20395,1,0,0);
+	PreviewAddItems(8,20396,1,0,0);
+	PreviewAddItems(8,20397,1,0,0);
+	PreviewAddItems(8,20398,1,0,0);
+	PreviewAddItems(8,20399,1,0,0);
+	PreviewAddItems(8,20400,1,0,0);
+	PreviewAddItems(8,20402,1,0,0);
+	PreviewAddItems(8,20403,1,0,0);
+	PreviewAddItems(8,20409,1,0,0);
+	PreviewAddItems(8,20410,1,0,0);
+	PreviewAddItems(8,20413,1,0,0);
+	PreviewAddItems(8,20414,1,0,0);
+	PreviewAddItems(8,20416,1,0,0);
+	PreviewAddItems(8,20417,1,0,0);
+	PreviewAddItems(8,20418,1,0,0);
+	PreviewAddItems(8,20419,1,0,0);
+	PreviewAddItems(8,20420,1,0,0);
+	PreviewAddItems(8,20421,1,0,0);
+	PreviewAddItems(8,20422,1,0,0);
+	PreviewAddItems(8,20423,1,0,0);
+	PreviewAddItems(8,20424,1,0,0);
+	PreviewAddItems(8,20425,1,0,0);
+	PreviewAddItems(8,20426,1,0,0);
+	PreviewAddItems(8,20427,1,0,0);
+	PreviewAddItems(8,20428,1,0,0);
+	PreviewAddItems(8,20429,1,0,0);
+	PreviewAddItems(8,20431,1,0,0);
+	PreviewAddItems(8,20432,1,0,0);
+	PreviewAddItems(8,20433,1,0,0);
+	PreviewAddItems(8,20434,1,0,0);
+	PreviewAddItems(8,20435,1,0,0);
+	PreviewAddItems(8,20436,1,0,0);
+	PreviewAddItems(8,20437,1,0,0);
+	PreviewAddItems(8,20446,1,0,0);
+	PreviewAddItems(8,20447,1,0,0);
+	PreviewAddItems(8,20450,1,0,0);
+	PreviewAddItems(8,20451,1,0,0);
+	PreviewAddItems(8,20452,1,0,0);
+	PreviewAddItems(8,20455,1,0,0);
+	PreviewAddItems(8,20456,1,0,0);
+	PreviewAddItems(8,20458,1,0,0);
+	PreviewAddItems(8,20460,1,0,0);
+	PreviewAddItems(8,20461,1,0,0);
+	PreviewAddItems(8,20462,1,0,0);
+	PreviewAddItems(8,20464,1,0,0);
+	PreviewAddItems(8,20465,1,0,0);
+	PreviewAddItems(8,20466,1,0,0);
+	PreviewAddItems(8,20467,1,0,0);
+	PreviewAddItems(8,20468,1,0,0);
+	PreviewAddItems(8,20472,1,0,0);
+	PreviewAddItems(8,20481,1,0,0);
+	PreviewAddItems(8,20482,1,0,0);
+	PreviewAddItems(8,20483,1,0,0);
+	PreviewAddItems(8,20486,1,0,0);
+	PreviewAddItems(8,20488,1,0,0);
+	PreviewAddItems(8,20490,1,0,0);
+	PreviewAddItems(8,20491,1,0,0);
+	PreviewAddItems(8,20493,1,0,0);
+	PreviewAddItems(8,20495,1,0,0);
+	PreviewAddItems(8,20496,1,0,0);
+	PreviewAddItems(8,20497,1,0,0);
+	PreviewAddItems(8,20499,1,0,0);
+	PreviewAddItems(8,21202,1,0,0);
+	PreviewAddItems(8,21206,1,0,0);
+	PreviewAddItems(8,21207,1,0,0);
+	PreviewAddItems(8,31029,1,0,0);
+	PreviewAddItems(8,31032,1,0,0);
+	PreviewAddItems(8,31033,1,0,0);
+	PreviewAddItems(8,31035,1,0,0);
+	PreviewAddItems(8,31036,1,0,0);
+	PreviewAddItems(8,31037,1,0,0);
+	PreviewAddItems(8,31038,1,0,0);
+	PreviewAddItems(8,31039,1,0,0);
+	PreviewAddItems(8,31041,1,0,0);
+	PreviewAddItems(8,31042,1,0,0);
+	PreviewAddItems(8,31043,1,0,0);
+	PreviewAddItems(8,31044,1,0,0);
+	PreviewAddItems(8,31045,1,0,0);
+	PreviewAddItems(8,31047,1,0,0);
+	PreviewAddItems(8,31048,1,0,0);
+	PreviewAddItems(8,31049,1,0,0);
+	PreviewAddItems(8,31050,1,0,0);
+	PreviewAddItems(8,31051,1,0,0);
+	PreviewAddItems(8,31054,1,0,0);
+	PreviewAddItems(8,31057,1,0,0);
+	PreviewAddItems(8,31059,1,0,0);
+	PreviewAddItems(8,31060,1,0,0);
+	PreviewAddItems(8,31061,1,0,0);
+	PreviewAddItems(8,31062,1,0,0);
+	PreviewAddItems(8,31063,1,0,0);
+	PreviewAddItems(8,31090,1,0,0);
+	PreviewAddItems(8,31092,1,0,0);
+	PreviewAddItems(8,31093,1,0,0);
+	PreviewAddItems(8,31095,1,0,0);
+	PreviewAddItems(8,31096,1,0,0);
+	PreviewAddItems(8,31097,1,0,0);
+	PreviewAddItems(8,31098,1,0,0);
+	PreviewAddItems(8,31099,1,0,0);
+	PreviewAddItems(8,31100,1,0,0);
+	PreviewAddItems(8,31101,1,0,0);
+	PreviewAddItems(8,31102,1,0,0);
+	PreviewAddItems(8,31103,1,0,0);
+	PreviewAddItems(8,31104,1,0,0);
+	PreviewAddItems(8,31106,1,0,0);
+	PreviewAddItems(8,31113,1,0,0);
+	PreviewAddItems(8,31114,1,0,0);
+	PreviewAddItems(8,31117,1,0,0);
+	PreviewAddItems(8,31121,1,0,0);
+	PreviewAddItems(8,31123,1,0,0);
+	PreviewAddItems(8,31124,1,0,0);
+	PreviewAddItems(8,31125,1,0,0);
+	PreviewAddItems(8,31126,1,0,0);
+	PreviewAddItems(8,31127,1,0,0);
+	PreviewAddItems(8,31128,1,0,0);
+	PreviewAddItems(8,31129,1,0,0);
+	PreviewAddItems(8,31131,1,0,0);
+	PreviewAddItems(8,31132,1,0,0);
+	PreviewAddItems(8,31133,1,0,0);
+	PreviewAddItems(8,31134,1,0,0);
+	PreviewAddItems(8,31136,1,0,0);
+	PreviewAddItems(8,31137,1,0,0);
+	PreviewAddItems(8,31138,1,0,0);
+	PreviewAddItems(8,31139,1,0,0);
+	PreviewAddItems(8,31143,1,0,0);
+	PreviewAddItems(8,31144,1,0,0);
+	PreviewAddItems(8,31145,1,0,0);
+	PreviewAddItems(8,31146,1,0,0);
+	PreviewAddItems(8,31147,1,0,0);
+	PreviewAddItems(8,31148,1,0,0);
+	PreviewAddItems(8,31149,1,0,0);
+	PreviewAddItems(8,31150,1,0,0);
+	PreviewAddItems(8,31151,1,0,0);
+	PreviewAddItems(8,31152,1,0,0);
+	PreviewAddItems(8,31154,1,0,0);
+	PreviewAddItems(8,31155,1,0,0);
+	PreviewAddItems(8,31157,1,0,0);
+	PreviewAddItems(8,31158,1,0,0);
+	PreviewAddItems(8,31161,1,0,0);
+	PreviewAddItems(8,31162,1,0,0);
+	PreviewAddItems(8,31164,1,0,0);
+	PreviewAddItems(8,31166,1,0,0);
+	PreviewAddItems(8,31167,1,0,0);
+	PreviewAddItems(8,31168,1,0,0);
+	PreviewAddItems(8,31169,1,0,0);
+	PreviewAddItems(8,31170,1,0,0);
+	PreviewAddItems(8,31171,1,0,0);
+	PreviewAddItems(8,31175,1,0,0);
+	PreviewAddItems(8,31176,1,0,0);
+	PreviewAddItems(8,31177,1,0,0);
+	PreviewAddItems(8,31180,1,0,0);
+	PreviewAddItems(8,31181,1,0,0);
+	PreviewAddItems(8,31183,1,0,0);
+	PreviewAddItems(8,31184,1,0,0);
+	PreviewAddItems(8,31185,1,0,0);
+	PreviewAddItems(8,31187,1,0,0);
+	PreviewAddItems(8,31188,1,0,0);
+	PreviewAddItems(8,31189,1,0,0);
+	PreviewAddItems(8,31193,1,0,0);
+	PreviewAddItems(8,31194,1,0,0);
+	PreviewAddItems(8,31195,1,0,0);
+	PreviewAddItems(8,31196,1,0,0);
+	PreviewAddItems(8,31197,1,0,0);
+	PreviewAddItems(8,31198,1,0,0);
+	PreviewAddItems(8,31199,1,0,0);
+	PreviewAddItems(8,31201,1,0,0);
+	PreviewAddItems(8,31202,1,0,0);
+	PreviewAddItems(8,31203,1,0,0);
+	PreviewAddItems(8,31204,1,0,0);
+	PreviewAddItems(8,31205,1,0,0);
+	PreviewAddItems(8,31206,1,0,0);
+	PreviewAddItems(8,31207,1,0,0);
+	PreviewAddItems(8,31208,1,0,0);
+	PreviewAddItems(8,31216,1,0,0);
+	PreviewAddItems(8,31217,1,0,0);
+	PreviewAddItems(8,31218,1,0,0);
+	PreviewAddItems(8,31219,1,0,0);
+	PreviewAddItems(8,31220,1,0,0);
+	PreviewAddItems(8,31221,1,0,0);
+	PreviewAddItems(8,31222,1,0,0);
+	PreviewAddItems(8,31223,1,0,0);
+	PreviewAddItems(8,31224,1,0,0);
+	PreviewAddItems(8,31225,1,0,0);
+	PreviewAddItems(8,31226,1,0,0);
+	PreviewAddItems(8,31227,1,0,0);
+	PreviewAddItems(8,31228,1,0,0);
+	PreviewAddItems(8,31229,1,0,0);
+	PreviewAddItems(8,31230,1,0,0);
+	PreviewAddItems(8,31231,1,0,0);
+	PreviewAddItems(8,31232,1,0,0);
+	PreviewAddItems(8,31233,1,0,0);
+	PreviewAddItems(8,31234,1,0,0);
+	PreviewAddItems(8,31235,1,0,0);
+	PreviewAddItems(8,31237,1,0,0);
+	PreviewAddItems(8,31239,1,0,0);
+	PreviewAddItems(8,31240,1,0,0);
+	PreviewAddItems(8,31241,1,0,0);
+	PreviewAddItems(8,31243,1,0,0);
+	PreviewAddItems(8,31244,1,0,0);
+	PreviewAddItems(8,31245,1,0,0);
+	PreviewAddItems(8,31246,1,0,0);
+	PreviewAddItems(8,31247,1,0,0);
+	PreviewAddItems(8,31248,1,0,0);
+	PreviewAddItems(8,31249,1,0,0);
+	PreviewAddItems(8,31251,1,0,0);
+	PreviewAddItems(8,31253,1,0,0);
+	PreviewAddItems(8,31254,1,0,0);
+	PreviewAddItems(8,31256,1,0,0);
+	PreviewAddItems(8,31259,1,0,0);
+	PreviewAddItems(8,31260,1,0,0);
+	PreviewAddItems(8,31264,1,0,0);
+	PreviewAddItems(8,31266,1,0,0);
+	PreviewAddItems(8,31267,1,0,0);
+	PreviewAddItems(8,31268,1,0,0);
+	PreviewAddItems(8,31269,1,0,0);
+	PreviewAddItems(8,31270,1,0,0);
+	PreviewAddItems(8,31271,1,0,0);
+	PreviewAddItems(8,31272,1,0,0);
+	PreviewAddItems(8,31273,1,0,0);
+	PreviewAddItems(8,31274,1,0,0);
+	PreviewAddItems(8,31275,1,0,0);
+	PreviewAddItems(8,31276,1,0,0);
+	PreviewAddItems(8,31277,1,0,0);
+	PreviewAddItems(8,31278,1,0,0);
+	PreviewAddItems(8,31279,1,0,0);
+	PreviewAddItems(8,31280,1,0,0);
+	PreviewAddItems(8,31281,1,0,0);
+	PreviewAddItems(8,31282,1,0,0);
+	PreviewAddItems(8,31283,1,0,0);
+	PreviewAddItems(8,31284,1,0,0);
+	PreviewAddItems(8,31285,1,0,0);
+	PreviewAddItems(8,31286,1,0,0);
+	PreviewAddItems(8,31287,1,0,0);
+	PreviewAddItems(8,31288,1,0,0);
+	PreviewAddItems(8,31289,1,0,0);
+	PreviewAddItems(8,31291,1,0,0);
+	PreviewAddItems(8,31294,1,0,0);
+	PreviewAddItems(8,31295,1,0,0);
+	PreviewAddItems(8,31296,1,0,0);
+	PreviewAddItems(8,31298,1,0,0);
+	PreviewAddItems(8,31299,1,0,0);
+	PreviewAddItems(8,31300,1,0,0);
+	PreviewAddItems(8,31302,1,0,0);
+	PreviewAddItems(8,31303,1,0,0);
+	PreviewAddItems(8,31304,1,0,0);
+	PreviewAddItems(8,31307,1,0,0);
+	PreviewAddItems(8,31308,1,0,0);
+	PreviewAddItems(8,31309,1,0,0);
+	PreviewAddItems(8,31310,1,0,0);
+	PreviewAddItems(8,31311,1,0,0);
+	PreviewAddItems(8,31313,1,0,0);
+	PreviewAddItems(8,31314,1,0,0);
+	PreviewAddItems(8,31317,1,0,0);
+	PreviewAddItems(8,31318,1,0,0);
+	PreviewAddItems(8,31321,1,0,0);
+	PreviewAddItems(8,31322,1,0,0);
+	PreviewAddItems(8,31323,1,0,0);
+	PreviewAddItems(8,31326,1,0,0);
+	PreviewAddItems(8,31327,1,0,0);
+	PreviewAddItems(8,31328,1,0,0);
+	PreviewAddItems(8,31329,1,0,0);
+	PreviewAddItems(8,31330,1,0,0);
+	PreviewAddItems(8,31332,1,0,0);
+	PreviewAddItems(8,31368,1,0,0);
+	PreviewAddItems(8,31369,1,0,0);
+	PreviewAddItems(8,31370,1,0,0);
+	PreviewAddItems(8,31371,1,0,0);
+	PreviewAddItems(8,31372,1,0,0);
+	PreviewAddItems(8,31373,1,0,0);
+	PreviewAddItems(8,31374,1,0,0);
+	PreviewAddItems(8,31376,1,0,0);
+	PreviewAddItems(8,31379,1,0,0);
+	PreviewAddItems(8,31380,1,0,0);
+	PreviewAddItems(8,31381,1,0,0);
+	PreviewAddItems(8,31383,1,0,0);
+	PreviewAddItems(8,31385,1,0,0);
+	PreviewAddItems(8,31388,1,0,0);
+	PreviewAddItems(8,31389,1,0,0);
+	PreviewAddItems(8,31390,1,0,0);
+	PreviewAddItems(8,31391,1,0,0);
+	PreviewAddItems(8,31392,1,0,0);
+	PreviewAddItems(8,31393,1,0,0);
+	PreviewAddItems(8,31397,1,0,0);
+	PreviewAddItems(8,31398,1,0,0);
+	PreviewAddItems(8,31399,1,0,0);
+	PreviewAddItems(8,31400,1,0,0);
+	PreviewAddItems(8,31401,1,0,0);
+	PreviewAddItems(8,31402,1,0,0);
+	PreviewAddItems(8,31403,1,0,0);
+	PreviewAddItems(8,31404,1,0,0);
+	PreviewAddItems(8,31406,1,0,0);
+	PreviewAddItems(8,31407,1,0,0);
+	PreviewAddItems(8,31408,1,0,0);
+	PreviewAddItems(8,31409,1,0,0);
+	PreviewAddItems(8,31411,1,0,0);
+	PreviewAddItems(8,31412,1,0,0);
+	PreviewAddItems(8,31413,1,0,0);
+	PreviewAddItems(8,31414,1,0,0);
+	PreviewAddItems(8,31415,1,0,0);
+	PreviewAddItems(8,31416,1,0,0);
+	PreviewAddItems(8,31418,1,0,0);
+	PreviewAddItems(8,31420,1,0,0);
+	PreviewAddItems(8,31431,1,0,0);
+	PreviewAddItems(8,31434,1,0,0);
+	PreviewAddItems(8,31435,1,0,0);
+	PreviewAddItems(8,31436,1,0,0);
+	PreviewAddItems(8,31437,1,0,0);
+	PreviewAddItems(8,31438,1,0,0);
+	PreviewAddItems(8,31440,1,0,0);
+	PreviewAddItems(8,31441,1,0,0);
+	PreviewAddItems(8,31442,1,0,0);
+	PreviewAddItems(8,31443,1,0,0);
+	PreviewAddItems(8,31444,1,0,0);
+	PreviewAddItems(8,31446,1,0,0);
+	PreviewAddItems(8,31448,1,0,0);
+	PreviewAddItems(8,31449,1,0,0);
+	PreviewAddItems(8,31450,1,0,0);
+	PreviewAddItems(8,31452,1,0,0);
+	PreviewAddItems(8,31453,1,0,0);
+	PreviewAddItems(8,31457,1,0,0);
+	PreviewAddItems(8,31464,1,0,0);
+	PreviewAddItems(8,31465,1,0,0);
+	PreviewAddItems(8,31466,1,0,0);
+	PreviewAddItems(8,31467,1,0,0);
+	PreviewAddItems(8,31468,1,0,0);
+	PreviewAddItems(8,31469,1,0,0);
+	PreviewAddItems(8,31472,1,0,0);
+	PreviewAddItems(8,31473,1,0,0);
+	PreviewAddItems(8,31476,1,0,0);
+	PreviewAddItems(8,31480,1,0,0);
+	PreviewAddItems(8,31484,1,0,0);
+	PreviewAddItems(8,31485,1,0,0);
+	PreviewAddItems(8,31486,1,0,0);
+	PreviewAddItems(8,31487,1,0,0);
+	PreviewAddItems(8,31488,1,0,0);
+	PreviewAddItems(8,31489,1,0,0);
+	PreviewAddItems(8,31495,1,0,0);
+	PreviewAddItems(8,31496,1,0,0);
+	PreviewAddItems(8,31497,1,0,0);
+	PreviewAddItems(8,31505,1,0,0);
+	PreviewAddItems(8,31507,1,0,0);
+	PreviewAddItems(8,31508,1,0,0);
+	PreviewAddItems(8,31509,1,0,0);
+	PreviewAddItems(8,31510,1,0,0);
+	PreviewAddItems(8,31513,1,0,0);
+	PreviewAddItems(8,31516,1,0,0);
+	PreviewAddItems(8,31518,1,0,0);
+	PreviewAddItems(8,31519,1,0,0);
+	PreviewAddItems(8,31520,1,0,0);
+	PreviewAddItems(8,31521,1,0,0);
+	PreviewAddItems(8,31522,1,0,0);
+	PreviewAddItems(8,31523,1,0,0);
+	PreviewAddItems(8,31524,1,0,0);
+	PreviewAddItems(8,31526,1,0,0);
+	PreviewAddItems(8,31527,1,0,0);
+	PreviewAddItems(8,31528,1,0,0);
+	PreviewAddItems(8,31529,1,0,0);
+	PreviewAddItems(8,31530,1,0,0);
+	PreviewAddItems(8,31531,1,0,0);
+	PreviewAddItems(8,31533,1,0,0);
+	PreviewAddItems(8,31540,1,0,0);
+	PreviewAddItems(8,31541,1,0,0);
+	PreviewAddItems(8,31543,1,0,0);
+	PreviewAddItems(8,31544,1,0,0);
+	PreviewAddItems(8,31547,1,0,0);
+	PreviewAddItems(8,31548,1,0,0);
+	PreviewAddItems(8,31551,1,0,0);
+	PreviewAddItems(8,31553,1,0,0);
+	PreviewAddItems(8,31554,1,0,0);
+	PreviewAddItems(8,31555,1,0,0);
+	PreviewAddItems(8,31556,1,0,0);
+	PreviewAddItems(8,31561,1,0,0);
+	PreviewAddItems(8,31562,1,0,0);
+	PreviewAddItems(8,31563,1,0,0);
+	PreviewAddItems(8,31564,1,0,0);
+	PreviewAddItems(8,31569,1,0,0);
+	PreviewAddItems(8,31571,1,0,0);
+	PreviewAddItems(8,31572,1,0,0);
+	PreviewAddItems(8,31575,1,0,0);
+	PreviewAddItems(8,31578,1,0,0);
+	PreviewAddItems(8,31580,1,0,0);
+	PreviewAddItems(8,31581,1,0,0);
+	PreviewAddItems(8,31582,1,0,0);
+	PreviewAddItems(8,31588,1,0,0);
+	PreviewAddItems(8,31598,1,0,0);
+	PreviewAddItems(8,31599,1,0,0);
+	PreviewAddItems(8,31601,1,0,0);
+	PreviewAddItems(8,31606,1,0,0);
+	PreviewAddItems(8,31608,1,0,0);
+	PreviewAddItems(8,31610,1,0,0);
+	PreviewAddItems(8,31614,1,0,0);
+	PreviewAddItems(8,31615,1,0,0);
+	PreviewAddItems(8,31621,1,0,0);
+	PreviewAddItems(8,31622,1,0,0);
+	PreviewAddItems(8,31623,1,0,0);
+	PreviewAddItems(8,31628,1,0,0);
+	PreviewAddItems(8,31630,1,0,0);
+	PreviewAddItems(8,31632,1,0,0);
+	PreviewAddItems(8,31633,1,0,0);
+	PreviewAddItems(8,31634,1,0,0);
+	PreviewAddItems(8,31635,1,0,0);
+	PreviewAddItems(8,31662,1,0,0);
+	PreviewAddItems(8,31664,1,0,0);
+	PreviewAddItems(8,31668,1,0,0);
+	PreviewAddItems(8,31669,1,0,0);
+	PreviewAddItems(8,31670,1,0,0);
+	PreviewAddItems(8,31674,1,0,0);
+	PreviewAddItems(8,31675,1,0,0);
+	PreviewAddItems(8,31676,1,0,0);
+	PreviewAddItems(8,31682,1,0,0);
+	PreviewAddItems(8,31683,1,0,0);
+	PreviewAddItems(8,31684,1,0,0);
+	PreviewAddItems(8,31688,1,0,0);
+	PreviewAddItems(8,31689,1,0,0);
+	PreviewAddItems(8,31691,1,0,0);
+	PreviewAddItems(8,31693,1,0,0);
+	PreviewAddItems(8,31697,1,0,0);
+	PreviewAddItems(8,31700,1,0,0);
+	PreviewAddItems(8,31703,1,0,0);
+	PreviewAddItems(8,31704,1,0,0);
+	PreviewAddItems(8,31705,1,0,0);
+	PreviewAddItems(8,31706,1,0,0);
+	PreviewAddItems(8,31707,1,0,0);
+	PreviewAddItems(8,31708,1,0,0);
+	PreviewAddItems(8,31710,1,0,0);
+	PreviewAddItems(8,31711,1,0,0);
+	PreviewAddItems(8,31712,1,0,0);
+	PreviewAddItems(8,31714,1,0,0);
+	PreviewAddItems(8,31716,1,0,0);
+	PreviewAddItems(8,31717,1,0,0);
+	PreviewAddItems(8,31723,1,0,0);
+	PreviewAddItems(8,31724,1,0,0);
+	PreviewAddItems(8,31725,1,0,0);
+	PreviewAddItems(8,31726,1,0,0);
+	PreviewAddItems(8,31728,1,0,0);
+	PreviewAddItems(8,31734,1,0,0);
+	PreviewAddItems(8,31735,1,0,0);
+	PreviewAddItems(8,31738,1,0,0);
+	PreviewAddItems(8,31739,1,0,0);
+	PreviewAddItems(8,31740,1,0,0);
+	PreviewAddItems(8,31741,1,0,0);
+	PreviewAddItems(8,31742,1,0,0);
+	PreviewAddItems(8,31743,1,0,0);
+	PreviewAddItems(8,31744,1,0,0);
+	PreviewAddItems(8,31745,1,0,0);
+	PreviewAddItems(8,31746,1,0,0);
+	PreviewAddItems(8,31747,1,0,0);
+	PreviewAddItems(8,31748,1,0,0);
+	PreviewAddItems(8,31749,1,0,0);
+	PreviewAddItems(8,31750,1,0,0);
+	PreviewAddItems(8,31751,1,0,0);
+	PreviewAddItems(8,31752,1,0,0);
+	PreviewAddItems(8,31753,1,0,0);
+	PreviewAddItems(8,31754,1,0,0);
+	PreviewAddItems(8,31755,1,0,0);
+	PreviewAddItems(8,31756,1,0,0);
+	PreviewAddItems(8,31757,1,0,0);
+	PreviewAddItems(8,31758,1,0,0);
+	PreviewAddItems(8,31759,1,0,0);
+	PreviewAddItems(8,31760,1,0,0);
+	PreviewAddItems(8,31761,1,0,0);
+	PreviewAddItems(8,31762,1,0,0);
+	PreviewAddItems(8,31764,1,0,0);
+	PreviewAddItems(8,31766,1,0,0);
+	PreviewAddItems(8,31767,1,0,0);
+	PreviewAddItems(8,31768,1,0,0);
+	PreviewAddItems(8,31770,1,0,0);
+	PreviewAddItems(8,31771,1,0,0);
+	PreviewAddItems(8,31772,1,0,0);
+	PreviewAddItems(8,31773,1,0,0);
+	PreviewAddItems(8,31774,1,0,0);
+	PreviewAddItems(8,31775,1,0,0);
+	PreviewAddItems(8,31776,1,0,0);
+	PreviewAddItems(8,31777,1,0,0);
+	PreviewAddItems(8,31778,1,0,0);
+	PreviewAddItems(8,31779,1,0,0);
+	PreviewAddItems(8,31780,1,0,0);
+	PreviewAddItems(8,31781,1,0,0);
+	PreviewAddItems(8,31782,1,0,0);
+	PreviewAddItems(8,31784,1,0,0);
+	PreviewAddItems(8,31787,1,0,0);
+	PreviewAddItems(8,31788,1,0,0);
+	PreviewAddItems(8,31789,1,0,0);
+	PreviewAddItems(8,31790,1,0,0);
+	PreviewAddItems(8,31791,1,0,0);
+	PreviewAddItems(8,31793,1,0,0);
+	PreviewAddItems(8,31795,1,0,0);
+	PreviewAddItems(8,31796,1,0,0);
+	PreviewAddItems(8,31797,1,0,0);
+	PreviewAddItems(8,31799,1,0,0);
+	PreviewAddItems(8,31800,1,0,0);
+	PreviewAddItems(8,31801,1,0,0);
+	PreviewAddItems(8,31802,1,0,0);
+	PreviewAddItems(8,31805,1,0,0);
+	PreviewAddItems(8,31806,1,0,0);
+	PreviewAddItems(8,31807,1,0,0);
+	PreviewAddItems(8,31808,1,0,0);
+	PreviewAddItems(8,31809,1,0,0);
+	PreviewAddItems(8,31810,1,0,0);
+	PreviewAddItems(8,31811,1,0,0);
+	PreviewAddItems(8,31812,1,0,0);
+	PreviewAddItems(8,31813,1,0,0);
+	PreviewAddItems(8,31815,1,0,0);
+	PreviewAddItems(8,31824,1,0,0);
+	PreviewAddItems(8,31825,1,0,0);
+	PreviewAddItems(8,31827,1,0,0);
+	PreviewAddItems(8,31833,1,0,0);
+	PreviewAddItems(8,31837,1,0,0);
+	PreviewAddItems(8,31838,1,0,0);
+	PreviewAddItems(8,31840,1,0,0);
+	PreviewAddItems(8,31842,1,0,0);
+	PreviewAddItems(8,31844,1,0,0);
+	PreviewAddItems(8,31846,1,0,0);
+	PreviewAddItems(8,31867,1,0,0);
+	PreviewAddItems(8,31868,1,0,0);
+	PreviewAddItems(8,31869,1,0,0);
+	PreviewAddItems(8,31870,1,0,0);
+	PreviewAddItems(8,31871,1,0,0);
+	PreviewAddItems(8,31872,1,0,0);
+	PreviewAddItems(8,31873,1,0,0);
+	PreviewAddItems(8,31874,1,0,0);
+	PreviewAddItems(8,31887,1,0,0);
+	PreviewAddItems(8,31889,1,0,0);
+	PreviewAddItems(8,31899,1,0,0);
+	PreviewAddItems(8,31904,1,0,0);
+	PreviewAddItems(8,31905,1,0,0);
+	PreviewAddItems(8,31913,1,0,0);
+	PreviewAddItems(8,31914,1,0,0);
+	PreviewAddItems(8,31915,1,0,0);
+	PreviewAddItems(8,31920,1,0,0);
+	PreviewAddItems(8,31921,1,0,0);
+	PreviewAddItems(8,31929,1,0,0);
+	PreviewAddItems(8,31938,1,0,0);
+	PreviewAddItems(8,31940,1,0,0);
+	PreviewAddItems(8,31944,1,0,0);
+	PreviewAddItems(8,31951,1,0,0);
+	PreviewAddItems(8,31959,1,0,0);
+	PreviewAddItems(8,31976,1,0,0);
+
+	
+// =============================================================
+
+	freeloop(0);
+	set .menu$,"";
+	for(set .@i,1; .@i<=getarraysize(.Shops$); set .@i,.@i+1) {
+		set .menu$, .menu$+.Shops$[.@i]+":";
+		npcshopdelitem "preview_gacha_shop"+.@i,909;
+	}
+	end;
+
+OnMainMenu:
+
+	set .@size, getarraysize(@i);
+	if (!.@size) set .@i, select(.menu$);
+	else if (.@size == 1) set .@i, @i[0];
+	else {
+		for(set .@j,0; .@j<.@size; set .@j,.@j+1)
+			set .@menu$, .@menu$+.Shops$[@i[.@j]]+":";
+		set .@i, @i[select(.@menu$)-1];
+	}
+	deletearray @i[0],getarraysize(@i);
+	if (.Shops$[.@i] == "") {
+		message strcharinfo(0),"เกิดข้อผิดพลาด.";
+		end;
+	}
+	callshop "preview_gacha_shop"+.@i,1;
+	npcshopattach "preview_gacha_shop"+.@i;
+	end;
+
+OnBuyItem:
+	setarray .@q[0],@bought_nameid[0];
+	setarray @qe[1], getiteminfo(.@q[0], ITEMINFO_LOCATIONS), getiteminfo(.@q[0], ITEMINFO_VIEW);
+	if (@qe[2] > 0 && ((@qe[1] & EQP_HEAD_LOW) || (@qe[1] & EQP_HEAD_TOP) || (@qe[1] & EQP_HEAD_MID) || (@qe[1] & EQP_COSTUME_HEAD_TOP) || (@qe[1] & EQP_COSTUME_HEAD_MID) || (@qe[1] & EQP_COSTUME_HEAD_LOW) || (@qe[1] & EQP_GARMENT) || (@qe[1] & EQP_COSTUME_GARMENT)))
+		set .@preview,1;
+	addtimer 5000, strnpcinfo(0)+"::OnEnd";
+	setarray @qe[3], getlook(LOOK_HEAD_BOTTOM), getlook(LOOK_HEAD_TOP), getlook(LOOK_HEAD_MID), getlook(LOOK_ROBE), 1;
+	if ((@qe[1] & 1) || (@qe[1] & 4096)) changelook LOOK_HEAD_BOTTOM, @qe[2];
+	else if ((@qe[1] & 256) || (@qe[1] & 1024)) changelook LOOK_HEAD_TOP, @qe[2];
+	else if ((@qe[1] & 512) || (@qe[1] & 2048)) changelook LOOK_HEAD_MID, @qe[2];
+	else if ((@qe[1] & 4) || (@qe[1] & 8192)) changelook LOOK_ROBE, @qe[2];
+	end;
+
+OnEnd:
+	if (@qe[7]) {
+		changelook LOOK_HEAD_BOTTOM, @qe[3];
+		changelook LOOK_HEAD_TOP, @qe[4];
+		changelook LOOK_HEAD_MID, @qe[5];
+		changelook LOOK_ROBE, @qe[6];
+	}
+	deletearray @qe[0],8;
+	end;
+
+function PreviewAddItems {
+	
+	npcshopadditem "preview_gacha_shop"+getarg(0),getarg(1),((.ShowZeny)?getarg(3):0);
+	return;
+}
+
+}
+
+function	script	preview_gacha_shop8	{
+
+	deletearray @i[0],getarraysize(@i);
+	for(set .@i,0; .@i<getargcount(); set .@i,.@i+1)
+		set @i[.@i],getarg(.@i);
+	doevent "preview_gacha7::OnMainMenu";
+	end;
+}
+
+-	shop	preview_gacha_shop8	-1,909:-1
+
+
+-	script	preview_gacha8	-1,{ 
+// =============================================================
+function PreviewAddItems;
+// =============================================================
+OnInit:
+	freeloop(1);
+	setarray .Shops$[9],"- ตัวอย่างของรางวัล";
+// =============================================================	
+
+	PreviewAddItems(9,3300059,1,0,0);
+	PreviewAddItems(9,3300025,1,0,0);
+	PreviewAddItems(9,3300080,1,0,0);
+	PreviewAddItems(9,3300081,1,0,0);
+	PreviewAddItems(9,3300082,1,0,0);
+	PreviewAddItems(9,3300083,1,0,0);
+	PreviewAddItems(9,3300084,1,0,0);
+	PreviewAddItems(9,3300085,1,0,0);
+	PreviewAddItems(9,3300086,1,0,0);
+	PreviewAddItems(9,3300087,1,0,0);
+	PreviewAddItems(9,3300088,1,0,0);
+	PreviewAddItems(9,3300089,1,0,0);
+	PreviewAddItems(9,3300090,1,0,0);
+	PreviewAddItems(9,3300091,1,0,0);
+	PreviewAddItems(9,3300092,1,0,0);
+	PreviewAddItems(9,3300093,1,0,0);
+	PreviewAddItems(9,3300094,1,0,0);
+	PreviewAddItems(9,3300095,1,0,0);
+	PreviewAddItems(9,3300096,1,0,0);
+	PreviewAddItems(9,3300097,1,0,0);
+	PreviewAddItems(9,3300098,1,0,0);
+	PreviewAddItems(9,3300099,1,0,0);
+	PreviewAddItems(9,3300100,1,0,0);
+	PreviewAddItems(9,3300101,1,0,0);
+	PreviewAddItems(9,3300102,1,0,0);
+	PreviewAddItems(9,3300103,1,0,0);
+	PreviewAddItems(9,3300104,1,0,0);
+	PreviewAddItems(9,3300105,1,0,0);
+	PreviewAddItems(9,3300106,1,0,0);
+	PreviewAddItems(9,3300107,1,0,0);
+	PreviewAddItems(9,3000008,1,0,0);
+	PreviewAddItems(9,3000009,1,0,0);
+	PreviewAddItems(9,3000010,1,0,0);
+	PreviewAddItems(9,3000011,1,0,0);
+	PreviewAddItems(9,3000012,1,0,0);
+	PreviewAddItems(9,3000013,1,0,0);
+	PreviewAddItems(9,3000014,1,0,0);
+	PreviewAddItems(9,3000015,1,0,0);
+	PreviewAddItems(9,3000016,1,0,0);
+	PreviewAddItems(9,3000017,1,0,0);
+	PreviewAddItems(9,3000018,1,0,0);
+	PreviewAddItems(9,3000019,1,0,0);
+	PreviewAddItems(9,3000020,1,0,0);
+	PreviewAddItems(9,3000021,1,0,0);
+	PreviewAddItems(9,3000022,1,0,0);
+	PreviewAddItems(9,3000023,1,0,0);
+	PreviewAddItems(9,3000024,1,0,0);
+	PreviewAddItems(9,3000025,1,0,0);
+	PreviewAddItems(9,3000026,1,0,0);
+	PreviewAddItems(9,3000027,1,0,0);
+	PreviewAddItems(9,3000028,1,0,0);
+	PreviewAddItems(9,3000029,1,0,0);
+	PreviewAddItems(9,3000030,1,0,0);
+	PreviewAddItems(9,3000031,1,0,0);
+	PreviewAddItems(9,3000032,1,0,0);
+	PreviewAddItems(9,3000033,1,0,0);
+	PreviewAddItems(9,3000034,1,0,0);
+	PreviewAddItems(9,3000035,1,0,0);
+	PreviewAddItems(9,3000036,1,0,0);
+	PreviewAddItems(9,3000037,1,0,0);
+	PreviewAddItems(9,3000038,1,0,0);
+	PreviewAddItems(9,3000039,1,0,0);
+	PreviewAddItems(9,3000040,1,0,0);
+	PreviewAddItems(9,3000041,1,0,0);
+	PreviewAddItems(9,3000042,1,0,0);
+	PreviewAddItems(9,3000043,1,0,0);
+	PreviewAddItems(9,3000044,1,0,0);
+	PreviewAddItems(9,3000045,1,0,0);
+	PreviewAddItems(9,3000046,1,0,0);
+	PreviewAddItems(9,3000047,1,0,0);
+	PreviewAddItems(9,3000048,1,0,0);
+	PreviewAddItems(9,3000049,1,0,0);
+	PreviewAddItems(9,3000050,1,0,0);
+	PreviewAddItems(9,3000051,1,0,0);
+	PreviewAddItems(9,3000052,1,0,0);
+	PreviewAddItems(9,3000053,1,0,0);
+	PreviewAddItems(9,3000054,1,0,0);
+	PreviewAddItems(9,3000055,1,0,0);
+	PreviewAddItems(9,3000056,1,0,0);
+	PreviewAddItems(9,3000057,1,0,0);
+	PreviewAddItems(9,3000058,1,0,0);
+	PreviewAddItems(9,3000059,1,0,0);
+	PreviewAddItems(9,3000060,1,0,0);
+	PreviewAddItems(9,3000061,1,0,0);
+	PreviewAddItems(9,3000062,1,0,0);
+	PreviewAddItems(9,3000063,1,0,0);
+	PreviewAddItems(9,3000064,1,0,0);
+	PreviewAddItems(9,3000065,1,0,0);
+	PreviewAddItems(9,3000066,1,0,0);
+	PreviewAddItems(9,3000067,1,0,0);
+	PreviewAddItems(9,3000068,1,0,0);
+	PreviewAddItems(9,3000069,1,0,0);
+	PreviewAddItems(9,3000070,1,0,0);
+	PreviewAddItems(9,3000071,1,0,0);
+	PreviewAddItems(9,3000072,1,0,0);
+	PreviewAddItems(9,3000073,1,0,0);
+	PreviewAddItems(9,3000074,1,0,0);
+	PreviewAddItems(9,3000075,1,0,0);
+	PreviewAddItems(9,3000076,1,0,0);
+	PreviewAddItems(9,3000077,1,0,0);
+	PreviewAddItems(9,3000078,1,0,0);
+	PreviewAddItems(9,3000079,1,0,0);
+	PreviewAddItems(9,3000080,1,0,0);
+	PreviewAddItems(9,3000081,1,0,0);
+	PreviewAddItems(9,3000082,1,0,0);
+	PreviewAddItems(9,3000083,1,0,0);
+	PreviewAddItems(9,3000084,1,0,0);
+	PreviewAddItems(9,3000085,1,0,0);
+	PreviewAddItems(9,3000086,1,0,0);
+	PreviewAddItems(9,3000087,1,0,0);
+	PreviewAddItems(9,3000088,1,0,0);
+	PreviewAddItems(9,3000089,1,0,0);
+	PreviewAddItems(9,3000090,1,0,0);
+	PreviewAddItems(9,3000091,1,0,0);
+	PreviewAddItems(9,3000092,1,0,0);
+	PreviewAddItems(9,3000093,1,0,0);
+	PreviewAddItems(9,3000095,1,0,0);
+	PreviewAddItems(9,3000097,1,0,0);
+	PreviewAddItems(9,3000099,1,0,0);
+	PreviewAddItems(9,3000100,1,0,0);
+	PreviewAddItems(9,3000101,1,0,0);
+	PreviewAddItems(9,3000102,1,0,0);
+	PreviewAddItems(9,3000103,1,0,0);
+	PreviewAddItems(9,3000104,1,0,0);
+	PreviewAddItems(9,3000105,1,0,0);
+	PreviewAddItems(9,3000106,1,0,0);
+	PreviewAddItems(9,3000107,1,0,0);
+	PreviewAddItems(9,3000108,1,0,0);
+	PreviewAddItems(9,3000109,1,0,0);
+	PreviewAddItems(9,3000110,1,0,0);
+	PreviewAddItems(9,3000111,1,0,0);
+	PreviewAddItems(9,3000112,1,0,0);
+	PreviewAddItems(9,3000113,1,0,0);
+	PreviewAddItems(9,3000114,1,0,0);
+	PreviewAddItems(9,3000115,1,0,0);
+	PreviewAddItems(9,3000116,1,0,0);
+	PreviewAddItems(9,3000117,1,0,0);
+	PreviewAddItems(9,3000118,1,0,0);
+	PreviewAddItems(9,3000119,1,0,0);
+	PreviewAddItems(9,3000120,1,0,0);
+	PreviewAddItems(9,3000121,1,0,0);
+	PreviewAddItems(9,3000122,1,0,0);
+	PreviewAddItems(9,3000123,1,0,0);
+	PreviewAddItems(9,3000124,1,0,0);
+	PreviewAddItems(9,3000125,1,0,0);
+	PreviewAddItems(9,3000126,1,0,0);
+	PreviewAddItems(9,3000127,1,0,0);
+	PreviewAddItems(9,3000128,1,0,0);
+	PreviewAddItems(9,3000129,1,0,0);
+	PreviewAddItems(9,3000130,1,0,0);
+	PreviewAddItems(9,3000131,1,0,0);
+	PreviewAddItems(9,3000132,1,0,0);
+	PreviewAddItems(9,3000133,1,0,0);
+	PreviewAddItems(9,3000134,1,0,0);
+	PreviewAddItems(9,3000135,1,0,0);
+	PreviewAddItems(9,3000136,1,0,0);
+	PreviewAddItems(9,3000137,1,0,0);
+	PreviewAddItems(9,3000138,1,0,0);
+	PreviewAddItems(9,3000139,1,0,0);
+	PreviewAddItems(9,3000140,1,0,0);
+	PreviewAddItems(9,3000143,1,0,0);
+	PreviewAddItems(9,3000144,1,0,0);
+	PreviewAddItems(9,3000145,1,0,0);
+	PreviewAddItems(9,3000147,1,0,0);
+	PreviewAddItems(9,3000148,1,0,0);
+	PreviewAddItems(9,3000149,1,0,0);
+	PreviewAddItems(9,3000151,1,0,0);
+	PreviewAddItems(9,3000152,1,0,0);
+	PreviewAddItems(9,3000155,1,0,0);
+	PreviewAddItems(9,3000156,1,0,0);
+	PreviewAddItems(9,3000157,1,0,0);
+	PreviewAddItems(9,3000158,1,0,0);
+	PreviewAddItems(9,3000159,1,0,0);
+	PreviewAddItems(9,3000160,1,0,0);
+	PreviewAddItems(9,3000161,1,0,0);
+	PreviewAddItems(9,3000162,1,0,0);
+	PreviewAddItems(9,3000167,1,0,0);
+	PreviewAddItems(9,3000168,1,0,0);
+	PreviewAddItems(9,3000169,1,0,0);
+	PreviewAddItems(9,3000170,1,0,0);
+	PreviewAddItems(9,3000171,1,0,0);
+	PreviewAddItems(9,3000174,1,0,0);
+	PreviewAddItems(9,3000175,1,0,0);
+	PreviewAddItems(9,3000176,1,0,0);
+	PreviewAddItems(9,3000177,1,0,0);
+	PreviewAddItems(9,3000178,1,0,0);
+	PreviewAddItems(9,3000179,1,0,0);
+	PreviewAddItems(9,3000180,1,0,0);
+	PreviewAddItems(9,3000181,1,0,0);
+	PreviewAddItems(9,3000182,1,0,0);
+	PreviewAddItems(9,3000183,1,0,0);
+	PreviewAddItems(9,3000184,1,0,0);
+	PreviewAddItems(9,3000185,1,0,0);
+	PreviewAddItems(9,3000187,1,0,0);
+	PreviewAddItems(9,3000188,1,0,0);
+	PreviewAddItems(9,3000189,1,0,0);
+	PreviewAddItems(9,3000190,1,0,0);
+	PreviewAddItems(9,3000191,1,0,0);
+	PreviewAddItems(9,3000192,1,0,0);
+	PreviewAddItems(9,3000193,1,0,0);
+	PreviewAddItems(9,3000194,1,0,0);
+	PreviewAddItems(9,3000195,1,0,0);
+	PreviewAddItems(9,3000196,1,0,0);
+	PreviewAddItems(9,3000197,1,0,0);
+	PreviewAddItems(9,3000198,1,0,0);
+	PreviewAddItems(9,3000199,1,0,0);
+	PreviewAddItems(9,3000200,1,0,0);
+	PreviewAddItems(9,3000201,1,0,0);
+	PreviewAddItems(9,3000202,1,0,0);
+	PreviewAddItems(9,3000203,1,0,0);
+	PreviewAddItems(9,3000204,1,0,0);
+	PreviewAddItems(9,3000205,1,0,0);
+	PreviewAddItems(9,3100000,1,0,0);
+	PreviewAddItems(9,3100001,1,0,0);
+	PreviewAddItems(9,3100002,1,0,0);
+	PreviewAddItems(9,3100003,1,0,0);
+	PreviewAddItems(9,3100004,1,0,0);
+	PreviewAddItems(9,3100005,1,0,0);
+	PreviewAddItems(9,3100006,1,0,0);
+	PreviewAddItems(9,3100007,1,0,0);
+	PreviewAddItems(9,3100008,1,0,0);
+	PreviewAddItems(9,3100009,1,0,0);
+	PreviewAddItems(9,3100010,1,0,0);
+	PreviewAddItems(9,3100011,1,0,0);
+	PreviewAddItems(9,3100012,1,0,0);
+	PreviewAddItems(9,3100013,1,0,0);
+	PreviewAddItems(9,3100014,1,0,0);
+	PreviewAddItems(9,3100015,1,0,0);
+	PreviewAddItems(9,3100016,1,0,0);
+	PreviewAddItems(9,3100017,1,0,0);
+	PreviewAddItems(9,3100018,1,0,0);
+	PreviewAddItems(9,3100019,1,0,0);
+	PreviewAddItems(9,3100020,1,0,0);
+	PreviewAddItems(9,3100021,1,0,0);
+	PreviewAddItems(9,3100022,1,0,0);
+	PreviewAddItems(9,3100023,1,0,0);
+	PreviewAddItems(9,3100024,1,0,0);
+	PreviewAddItems(9,3100025,1,0,0);
+	PreviewAddItems(9,3100026,1,0,0);
+	PreviewAddItems(9,3100027,1,0,0);
+	PreviewAddItems(9,3100028,1,0,0);
+	PreviewAddItems(9,3100029,1,0,0);
+	PreviewAddItems(9,3100030,1,0,0);
+	PreviewAddItems(9,3100031,1,0,0);
+	PreviewAddItems(9,3100032,1,0,0);
+	PreviewAddItems(9,3100033,1,0,0);
+	PreviewAddItems(9,3100057,1,0,0);
+	PreviewAddItems(9,3100058,1,0,0);
+	PreviewAddItems(9,3100059,1,0,0);
+	PreviewAddItems(9,3100060,1,0,0);
+	PreviewAddItems(9,3100061,1,0,0);
+	PreviewAddItems(9,3100062,1,0,0);
+	PreviewAddItems(9,3100063,1,0,0);
+	PreviewAddItems(9,3100064,1,0,0);
+	PreviewAddItems(9,3100065,1,0,0);
+	PreviewAddItems(9,3100066,1,0,0);
+	PreviewAddItems(9,3100067,1,0,0);
+	PreviewAddItems(9,3100068,1,0,0);
+	PreviewAddItems(9,3100069,1,0,0);
+	PreviewAddItems(9,3100070,1,0,0);
+	PreviewAddItems(9,3100071,1,0,0);
+	PreviewAddItems(9,3100072,1,0,0);
+	PreviewAddItems(9,3100073,1,0,0);
+	PreviewAddItems(9,3100074,1,0,0);
+	PreviewAddItems(9,3100075,1,0,0);
+	PreviewAddItems(9,3100076,1,0,0);
+	PreviewAddItems(9,3100077,1,0,0);
+	PreviewAddItems(9,3100079,1,0,0);
+	PreviewAddItems(9,3100080,1,0,0);
+	PreviewAddItems(9,3100081,1,0,0);
+	PreviewAddItems(9,3100082,1,0,0);
+	PreviewAddItems(9,3100083,1,0,0);
+	PreviewAddItems(9,3100085,1,0,0);
+	PreviewAddItems(9,3100086,1,0,0);
+	PreviewAddItems(9,3100087,1,0,0);
+	PreviewAddItems(9,3100088,1,0,0);
+	PreviewAddItems(9,3100089,1,0,0);
+	PreviewAddItems(9,3100090,1,0,0);
+	PreviewAddItems(9,3100091,1,0,0);
+	PreviewAddItems(9,3100092,1,0,0);
+	PreviewAddItems(9,3100093,1,0,0);
+	PreviewAddItems(9,3100094,1,0,0);
+	PreviewAddItems(9,3100095,1,0,0);
+	PreviewAddItems(9,3100096,1,0,0);
+	PreviewAddItems(9,3100097,1,0,0);
+	PreviewAddItems(9,3100098,1,0,0);
+	PreviewAddItems(9,3100099,1,0,0);
+	PreviewAddItems(9,3100100,1,0,0);
+	PreviewAddItems(9,3100101,1,0,0);
+	PreviewAddItems(9,3100102,1,0,0);
+	PreviewAddItems(9,3100103,1,0,0);
+	PreviewAddItems(9,3100104,1,0,0);
+	PreviewAddItems(9,3100105,1,0,0);
+	PreviewAddItems(9,3100106,1,0,0);
+	PreviewAddItems(9,3100107,1,0,0);
+	PreviewAddItems(9,3100108,1,0,0);
+	PreviewAddItems(9,3100109,1,0,0);
+	PreviewAddItems(9,3100110,1,0,0);
+	PreviewAddItems(9,3100111,1,0,0);
+	PreviewAddItems(9,3100112,1,0,0);
+	PreviewAddItems(9,3100113,1,0,0);
+	PreviewAddItems(9,3100114,1,0,0);
+	PreviewAddItems(9,3100115,1,0,0);
+	PreviewAddItems(9,3100116,1,0,0);
+	PreviewAddItems(9,3100117,1,0,0);
+	PreviewAddItems(9,3100118,1,0,0);
+	PreviewAddItems(9,3100119,1,0,0);
+	PreviewAddItems(9,3100120,1,0,0);
+	PreviewAddItems(9,3100121,1,0,0);
+	PreviewAddItems(9,3100122,1,0,0);
+	PreviewAddItems(9,3100123,1,0,0);
+	PreviewAddItems(9,3100124,1,0,0);
+	PreviewAddItems(9,3100125,1,0,0);
+	PreviewAddItems(9,3100126,1,0,0);
+	PreviewAddItems(9,3100127,1,0,0);
+	PreviewAddItems(9,3100128,1,0,0);
+	PreviewAddItems(9,3100129,1,0,0);
+	PreviewAddItems(9,3100130,1,0,0);
+	PreviewAddItems(9,3100131,1,0,0);
+	PreviewAddItems(9,3100132,1,0,0);
+	PreviewAddItems(9,3100133,1,0,0);
+	PreviewAddItems(9,3100134,1,0,0);
+	PreviewAddItems(9,3100135,1,0,0);
+	PreviewAddItems(9,3100136,1,0,0);
+	PreviewAddItems(9,3100137,1,0,0);
+	PreviewAddItems(9,3100140,1,0,0);
+	PreviewAddItems(9,3200000,1,0,0);
+	PreviewAddItems(9,3200001,1,0,0);
+	PreviewAddItems(9,3200002,1,0,0);
+	PreviewAddItems(9,3200003,1,0,0);
+	PreviewAddItems(9,3200004,1,0,0);
+	PreviewAddItems(9,3200005,1,0,0);
+	PreviewAddItems(9,3200006,1,0,0);
+	PreviewAddItems(9,3200007,1,0,0);
+	PreviewAddItems(9,3200008,1,0,0);
+	PreviewAddItems(9,3200009,1,0,0);
+	PreviewAddItems(9,3200010,1,0,0);
+	PreviewAddItems(9,3200011,1,0,0);
+	PreviewAddItems(9,3200012,1,0,0);
+	PreviewAddItems(9,3200013,1,0,0);
+	PreviewAddItems(9,3200014,1,0,0);
+	PreviewAddItems(9,3200015,1,0,0);
+	PreviewAddItems(9,3200016,1,0,0);
+	PreviewAddItems(9,3200017,1,0,0);
+	PreviewAddItems(9,3200018,1,0,0);
+	PreviewAddItems(9,3200019,1,0,0);
+	PreviewAddItems(9,3200020,1,0,0);
+	PreviewAddItems(9,3200021,1,0,0);
+	PreviewAddItems(9,3200022,1,0,0);
+	PreviewAddItems(9,3200024,1,0,0);
+	PreviewAddItems(9,3200025,1,0,0);
+	PreviewAddItems(9,3200026,1,0,0);
+	PreviewAddItems(9,3200027,1,0,0);
+	PreviewAddItems(9,3200028,1,0,0);
+	PreviewAddItems(9,3200029,1,0,0);
+	PreviewAddItems(9,3200030,1,0,0);
+	PreviewAddItems(9,3200031,1,0,0);
+	PreviewAddItems(9,3200032,1,0,0);
+	PreviewAddItems(9,3200033,1,0,0);
+	PreviewAddItems(9,3200034,1,0,0);
+	PreviewAddItems(9,3200035,1,0,0);
+	PreviewAddItems(9,3200036,1,0,0);
+	PreviewAddItems(9,3200037,1,0,0);
+	PreviewAddItems(9,3200038,1,0,0);
+	PreviewAddItems(9,3200039,1,0,0);
+	PreviewAddItems(9,3200040,1,0,0);
+	PreviewAddItems(9,3200041,1,0,0);
+	PreviewAddItems(9,3200042,1,0,0);
+	PreviewAddItems(9,3200043,1,0,0);
+	PreviewAddItems(9,3200044,1,0,0);
+	PreviewAddItems(9,3200045,1,0,0);
+	PreviewAddItems(9,3200046,1,0,0);
+	PreviewAddItems(9,3200047,1,0,0);
+	PreviewAddItems(9,3200048,1,0,0);
+	PreviewAddItems(9,3200049,1,0,0);
+	PreviewAddItems(9,3200050,1,0,0);
+	PreviewAddItems(9,3200051,1,0,0);
+	PreviewAddItems(9,3200052,1,0,0);
+	PreviewAddItems(9,3200053,1,0,0);
+	PreviewAddItems(9,3200054,1,0,0);
+	PreviewAddItems(9,3200055,1,0,0);
+	PreviewAddItems(9,3200056,1,0,0);
+	PreviewAddItems(9,3200057,1,0,0);
+	PreviewAddItems(9,3200058,1,0,0);
+	PreviewAddItems(9,3200059,1,0,0);
+	PreviewAddItems(9,3200060,1,0,0);
+	PreviewAddItems(9,3200061,1,0,0);
+	PreviewAddItems(9,3200062,1,0,0);
+	PreviewAddItems(9,3200063,1,0,0);
+	PreviewAddItems(9,3200064,1,0,0);
+	PreviewAddItems(9,3200065,1,0,0);
+	PreviewAddItems(9,3200066,1,0,0);
+	PreviewAddItems(9,3200067,1,0,0);
+	PreviewAddItems(9,3200068,1,0,0);
+	PreviewAddItems(9,3200069,1,0,0);
+	PreviewAddItems(9,3200070,1,0,0);
+	PreviewAddItems(9,3200071,1,0,0);
+	PreviewAddItems(9,3200072,1,0,0);
+	PreviewAddItems(9,3200073,1,0,0);
+	PreviewAddItems(9,3200074,1,0,0);
+	PreviewAddItems(9,3200075,1,0,0);
+	PreviewAddItems(9,3200076,1,0,0);
+	PreviewAddItems(9,3200077,1,0,0);
+	PreviewAddItems(9,3200078,1,0,0);
+	PreviewAddItems(9,3200079,1,0,0);
+	PreviewAddItems(9,3200080,1,0,0);
+	PreviewAddItems(9,3200081,1,0,0);
+	PreviewAddItems(9,3200082,1,0,0);
+	PreviewAddItems(9,3200083,1,0,0);
+	PreviewAddItems(9,3200084,1,0,0);
+	PreviewAddItems(9,3200085,1,0,0);
+	PreviewAddItems(9,3200086,1,0,0);
+	PreviewAddItems(9,3200087,1,0,0);
+	PreviewAddItems(9,3200088,1,0,0);
+	PreviewAddItems(9,3200089,1,0,0);
+	PreviewAddItems(9,3200090,1,0,0);
+	PreviewAddItems(9,3200091,1,0,0);
+	PreviewAddItems(9,3200092,1,0,0);
+	PreviewAddItems(9,3200093,1,0,0);
+	PreviewAddItems(9,3200094,1,0,0);
+	PreviewAddItems(9,3200095,1,0,0);
+	PreviewAddItems(9,3200096,1,0,0);
+	PreviewAddItems(9,3200097,1,0,0);
+	PreviewAddItems(9,3200098,1,0,0);
+	PreviewAddItems(9,3200099,1,0,0);
+	PreviewAddItems(9,3200100,1,0,0);
+	PreviewAddItems(9,3200101,1,0,0);
+	PreviewAddItems(9,3200102,1,0,0);
+	PreviewAddItems(9,3200103,1,0,0);
+	PreviewAddItems(9,3200104,1,0,0);
+	PreviewAddItems(9,3200105,1,0,0);
+	PreviewAddItems(9,3200106,1,0,0);
+	PreviewAddItems(9,3200107,1,0,0);
+	PreviewAddItems(9,3200108,1,0,0);
+	PreviewAddItems(9,3200109,1,0,0);
+	PreviewAddItems(9,3200110,1,0,0);
+	PreviewAddItems(9,3200111,1,0,0);
+	PreviewAddItems(9,3200112,1,0,0);
+	PreviewAddItems(9,3200113,1,0,0);
+	PreviewAddItems(9,3200114,1,0,0);
+	PreviewAddItems(9,3200115,1,0,0);
+	PreviewAddItems(9,3200116,1,0,0);
+	PreviewAddItems(9,3200117,1,0,0);
+	PreviewAddItems(9,3200118,1,0,0);
+	PreviewAddItems(9,3200119,1,0,0);
+	PreviewAddItems(9,3200120,1,0,0);
+	PreviewAddItems(9,3200121,1,0,0);
+	PreviewAddItems(9,3200122,1,0,0);
+	PreviewAddItems(9,3200123,1,0,0);
+	PreviewAddItems(9,3200124,1,0,0);
+	PreviewAddItems(9,3200131,1,0,0);
+	PreviewAddItems(9,3200132,1,0,0);
+	PreviewAddItems(9,3200133,1,0,0);
+	PreviewAddItems(9,3200134,1,0,0);
+	PreviewAddItems(9,3200135,1,0,0);
+	PreviewAddItems(9,3200142,1,0,0);
+	PreviewAddItems(9,3200143,1,0,0);
+	PreviewAddItems(9,3200144,1,0,0);
+	PreviewAddItems(9,3200145,1,0,0);
+	PreviewAddItems(9,3200152,1,0,0);
+	PreviewAddItems(9,3200153,1,0,0);
+	PreviewAddItems(9,3200157,1,0,0);
+	PreviewAddItems(9,3200162,1,0,0);
+	PreviewAddItems(9,3200163,1,0,0);
+	PreviewAddItems(9,3200164,1,0,0);
+	PreviewAddItems(9,3200165,1,0,0);
+	PreviewAddItems(9,3200166,1,0,0);
+	PreviewAddItems(9,3200167,1,0,0);
+	PreviewAddItems(9,3200168,1,0,0);
+	PreviewAddItems(9,3200172,1,0,0);
+	PreviewAddItems(9,3200173,1,0,0);
+	PreviewAddItems(9,3200174,1,0,0);
+	PreviewAddItems(9,3200175,1,0,0);
+	PreviewAddItems(9,3200176,1,0,0);
+	PreviewAddItems(9,3200177,1,0,0);
+	PreviewAddItems(9,3200178,1,0,0);
+	PreviewAddItems(9,3200179,1,0,0);
+	PreviewAddItems(9,3200180,1,0,0);
+	PreviewAddItems(9,3200181,1,0,0);
+	PreviewAddItems(9,3200182,1,0,0);
+	PreviewAddItems(9,3200183,1,0,0);
+	PreviewAddItems(9,3200184,1,0,0);
+	PreviewAddItems(9,3200185,1,0,0);
+	PreviewAddItems(9,3200186,1,0,0);
+	PreviewAddItems(9,3200187,1,0,0);
+	PreviewAddItems(9,3200188,1,0,0);
+	PreviewAddItems(9,3200189,1,0,0);
+	PreviewAddItems(9,3200190,1,0,0);
+	PreviewAddItems(9,3200192,1,0,0);
+
+
+	
+// =============================================================
+
+	freeloop(0);
+	set .menu$,"";
+	for(set .@i,1; .@i<=getarraysize(.Shops$); set .@i,.@i+1) {
+		set .menu$, .menu$+.Shops$[.@i]+":";
+		npcshopdelitem "preview_gacha_shop"+.@i,909;
+	}
+	end;
+
+OnMainMenu:
+
+	set .@size, getarraysize(@i);
+	if (!.@size) set .@i, select(.menu$);
+	else if (.@size == 1) set .@i, @i[0];
+	else {
+		for(set .@j,0; .@j<.@size; set .@j,.@j+1)
+			set .@menu$, .@menu$+.Shops$[@i[.@j]]+":";
+		set .@i, @i[select(.@menu$)-1];
+	}
+	deletearray @i[0],getarraysize(@i);
+	if (.Shops$[.@i] == "") {
+		message strcharinfo(0),"เกิดข้อผิดพลาด.";
+		end;
+	}
+	callshop "preview_gacha_shop"+.@i,1;
+	npcshopattach "preview_gacha_shop"+.@i;
+	end;
+
+OnBuyItem:
+	setarray .@q[0],@bought_nameid[0];
+	setarray @qe[1], getiteminfo(.@q[0], ITEMINFO_LOCATIONS), getiteminfo(.@q[0], ITEMINFO_VIEW);
+	if (@qe[2] > 0 && ((@qe[1] & EQP_HEAD_LOW) || (@qe[1] & EQP_HEAD_TOP) || (@qe[1] & EQP_HEAD_MID) || (@qe[1] & EQP_COSTUME_HEAD_TOP) || (@qe[1] & EQP_COSTUME_HEAD_MID) || (@qe[1] & EQP_COSTUME_HEAD_LOW) || (@qe[1] & EQP_GARMENT) || (@qe[1] & EQP_COSTUME_GARMENT)))
+		set .@preview,1;
+	addtimer 5000, strnpcinfo(0)+"::OnEnd";
+	setarray @qe[3], getlook(LOOK_HEAD_BOTTOM), getlook(LOOK_HEAD_TOP), getlook(LOOK_HEAD_MID), getlook(LOOK_ROBE), 1;
+	if ((@qe[1] & 1) || (@qe[1] & 4096)) changelook LOOK_HEAD_BOTTOM, @qe[2];
+	else if ((@qe[1] & 256) || (@qe[1] & 1024)) changelook LOOK_HEAD_TOP, @qe[2];
+	else if ((@qe[1] & 512) || (@qe[1] & 2048)) changelook LOOK_HEAD_MID, @qe[2];
+	else if ((@qe[1] & 4) || (@qe[1] & 8192)) changelook LOOK_ROBE, @qe[2];
+	end;
+
+OnEnd:
+	if (@qe[7]) {
+		changelook LOOK_HEAD_BOTTOM, @qe[3];
+		changelook LOOK_HEAD_TOP, @qe[4];
+		changelook LOOK_HEAD_MID, @qe[5];
+		changelook LOOK_ROBE, @qe[6];
+	}
+	deletearray @qe[0],8;
+	end;
+
+function PreviewAddItems {
+	
+	npcshopadditem "preview_gacha_shop"+getarg(0),getarg(1),((.ShowZeny)?getarg(3):0);
+	return;
+}
+
+}
+
+function	script	preview_gacha_shop9	{
+
+	deletearray @i[0],getarraysize(@i);
+	for(set .@i,0; .@i<getargcount(); set .@i,.@i+1)
+		set @i[.@i],getarg(.@i);
+	doevent "preview_gacha8::OnMainMenu";
+	end;
+}
+
+-	shop	preview_gacha_shop9	-1,909:-1

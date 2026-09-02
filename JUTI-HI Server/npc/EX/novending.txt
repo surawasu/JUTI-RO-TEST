@@ -1,0 +1,131 @@
+eternal,0,0,4	script	#vendingzone	858,{
+end;
+
+OnInit: 
+setcell	"like_game",0,0,300,300,cell_novending,1; //left
+setcell	"like_game",85,173,99,141,cell_novending,0; //left
+setcell	"like_game",100,173,101,142,cell_novending,0; //left
+setcell	"like_game",102,173,103,145,cell_novending,0; //left
+setcell	"like_game",104,173,105,146,cell_novending,0; //left
+setcell	"like_game",106,173,107,148,cell_novending,0; //left
+setcell	"like_game",108,173,109,150,cell_novending,0; //left
+setcell	"like_game",110,173,111,152,cell_novending,0; //left
+setcell	"like_game",112,173,113,155,cell_novending,0; //left
+setcell	"like_game",114,173,115,156,cell_novending,0; //left
+setcell	"like_game",116,173,119,159,cell_novending,0; //left
+//setcell	"eternal",215,153,244,138,cell_novending,0; //right
+end;
+}
+
+like_game,104,143,4	duplicate(#vendingzone)	เขตตั้งร้าน#TOPL1	858
+like_game,105,144,4	duplicate(#vendingzone)	เขตตั้งร้าน#TOPL2	858
+like_game,106,145,4	duplicate(#vendingzone)	เขตตั้งร้าน#TOPL3	858
+like_game,107,146,4	duplicate(#vendingzone)	เขตตั้งร้าน#TOPL4	858
+like_game,108,147,4	duplicate(#vendingzone)	เขตตั้งร้าน#TOPL5	858
+like_game,109,148,4	duplicate(#vendingzone)	เขตตั้งร้าน#TOPL6	858
+like_game,110,149,4	duplicate(#vendingzone)	เขตตั้งร้าน#TOPL7	858
+like_game,111,150,4	duplicate(#vendingzone)	เขตตั้งร้าน#TOPL8	858
+like_game,112,151,4	duplicate(#vendingzone)	เขตตั้งร้าน#TOPL9	858
+like_game,113,152,4	duplicate(#vendingzone)	เขตตั้งร้าน#TOPL10	858
+like_game,114,153,4	duplicate(#vendingzone)	เขตตั้งร้าน#TOPL11	858
+like_game,115,154,4	duplicate(#vendingzone)	เขตตั้งร้าน#TOPL12	858
+like_game,116,155,4	duplicate(#vendingzone)	เขตตั้งร้าน#TOPL13	858
+like_game,117,156,4	duplicate(#vendingzone)	เขตตั้งร้าน#TOPL14	858
+//like_game,87,37,4	duplicate(#vendingzone)	เขตตั้งร้าน#TOPL15	858
+//like_game,89,37,4	duplicate(#vendingzone)	เขตตั้งร้าน#TOPL16	858
+//like_game,91,37,4	duplicate(#vendingzone)	เขตตั้งร้าน#TOPL17	858
+//like_game,93,37,4	duplicate(#vendingzone)	เขตตั้งร้าน#TOPL18	858
+//like_game,95,37,4	duplicate(#vendingzone)	เขตตั้งร้าน#TOPL19	858
+//like_game,97,37,4	duplicate(#vendingzone)	เขตตั้งร้าน#TOPL20	858
+//like_game,99,37,4	duplicate(#vendingzone)	เขตตั้งร้าน#TOPL21	858
+//like_game,101,37,4	duplicate(#vendingzone)	เขตตั้งร้าน#TOPL22	858
+//like_game,103,37,4	duplicate(#vendingzone)	เขตตั้งร้าน#TOPL23	858
+//like_game,105,37,4	duplicate(#vendingzone)	เขตตั้งร้าน#TOPL24	858
+//like_game,107,37,4	duplicate(#vendingzone)	เขตตั้งร้าน#TOPL25	858
+//like_game,109,37,4	duplicate(#vendingzone)	เขตตั้งร้าน#TOPL26	858
+//like_game,111,37,4	duplicate(#vendingzone)	เขตตั้งร้าน#TOPL27	858
+//like_game,113,37,4	duplicate(#vendingzone)	เขตตั้งร้าน#TOPL28	858
+//like_game,115,37,4	duplicate(#vendingzone)	เขตตั้งร้าน#TOPL29	858
+//like_game,117,37,4	duplicate(#vendingzone)	เขตตั้งร้าน#TOPL30	858
+//like_game,119,37,4	duplicate(#vendingzone)	เขตตั้งร้าน#TOPL31	858
+//like_game,121,37,4	duplicate(#vendingzone)	เขตตั้งร้าน#TOPL32	858
+//like_game,123,37,4	duplicate(#vendingzone)	เขตตั้งร้าน#TOPL33	858
+//like_game,125,37,4	duplicate(#vendingzone)	เขตตั้งร้าน#TOPL34	858
+//like_game,127,37,4	duplicate(#vendingzone)	เขตตั้งร้าน#TOPL35	858
+//like_game,129,37,4	duplicate(#vendingzone)	เขตตั้งร้าน#TOPL36	858
+//like_game,131,37,4	duplicate(#vendingzone)	เขตตั้งร้าน#TOPL37	858
+//like_game,133,37,4	duplicate(#vendingzone)	เขตตั้งร้าน#TOPL38	858
+//like_game,135,37,4	duplicate(#vendingzone)	เขตตั้งร้าน#TOPL39	858
+//like_game,137,37,4	duplicate(#vendingzone)	เขตตั้งร้าน#TOPL40	858
+//like_game,139,37,4	duplicate(#vendingzone)	เขตตั้งร้าน#TOPL41	858
+//like_game,141,37,4	duplicate(#vendingzone)	เขตตั้งร้าน#TOPL42	858
+//
+
+//eternal,143,37,4	duplicate(#vendingzone)	เขตตั้งร้าน#RightL1	858
+//eternal,143,35,4	duplicate(#vendingzone)	เขตตั้งร้าน#RightL2	858
+//eternal,143,33,4	duplicate(#vendingzone)	เขตตั้งร้าน#RightL3	858
+//eternal,143,31,4	duplicate(#vendingzone)	เขตตั้งร้าน#RightL4	858
+//eternal,143,29,4	duplicate(#vendingzone)	เขตตั้งร้าน#RightL5	858
+//eternal,143,27,4	duplicate(#vendingzone)	เขตตั้งร้าน#RightL6	858
+//eternal,143,25,4	duplicate(#vendingzone)	เขตตั้งร้าน#RightL7	858
+////eternal,143,37,4	duplicate(#vendingzone)	เขตตั้งร้าน#RightL8	858
+////eternal,143,37,4	duplicate(#vendingzone)	เขตตั้งร้าน#RightL9	858
+////eternal,143,37,4	duplicate(#vendingzone)	เขตตั้งร้าน#RightL10	858
+////eternal,143,37,4	duplicate(#vendingzone)	เขตตั้งร้าน#RightL11	858
+////eternal,143,37,4	duplicate(#vendingzone)	เขตตั้งร้าน#RightL12	858
+////eternal,143,37,4	duplicate(#vendingzone)	เขตตั้งร้าน#RightL13	858
+////eternal,143,37,4	duplicate(#vendingzone)	เขตตั้งร้าน#RightL14	858
+////eternal,143,37,4	duplicate(#vendingzone)	เขตตั้งร้าน#RightL15	858
+////eternal,143,37,4	duplicate(#vendingzone)	เขตตั้งร้าน#RightL16	858
+//
+////
+//eternal,59,25,4	duplicate(#vendingzone)	เขตตั้งร้าน#BOT1	858
+//eternal,61,25,4	duplicate(#vendingzone)	เขตตั้งร้าน#BOT2	858
+//eternal,63,25,4	duplicate(#vendingzone)	เขตตั้งร้าน#BOT3	858
+//eternal,65,25,4	duplicate(#vendingzone)	เขตตั้งร้าน#BOT4	858
+//eternal,67,25,4	duplicate(#vendingzone)	เขตตั้งร้าน#BOT5	858
+//eternal,69,25,4	duplicate(#vendingzone)	เขตตั้งร้าน#BOT6	858
+//eternal,71,25,4	duplicate(#vendingzone)	เขตตั้งร้าน#BOT7	858
+//eternal,73,25,4	duplicate(#vendingzone)	เขตตั้งร้าน#BOT8	858
+//eternal,75,25,4	duplicate(#vendingzone)	เขตตั้งร้าน#BOT9	858
+//eternal,77,25,4	duplicate(#vendingzone)	เขตตั้งร้าน#BOT10	858
+//eternal,79,25,4	duplicate(#vendingzone)	เขตตั้งร้าน#BOT11	858
+//eternal,81,25,4	duplicate(#vendingzone)	เขตตั้งร้าน#BOT12	858
+//eternal,83,25,4	duplicate(#vendingzone)	เขตตั้งร้าน#BOT13	858
+//eternal,85,25,4	duplicate(#vendingzone)	เขตตั้งร้าน#BOT14	858
+//eternal,87,25,4	duplicate(#vendingzone)	เขตตั้งร้าน#BOT15	858
+//eternal,89,25,4	duplicate(#vendingzone)	เขตตั้งร้าน#BOT16	858
+//eternal,91,25,4	duplicate(#vendingzone)	เขตตั้งร้าน#BOT17	858
+//eternal,93,25,4	duplicate(#vendingzone)	เขตตั้งร้าน#BOT18	858
+//eternal,95,25,4	duplicate(#vendingzone)	เขตตั้งร้าน#BOT19	858
+//eternal,97,25,4	duplicate(#vendingzone)	เขตตั้งร้าน#BOT20	858
+//eternal,99,25,4	duplicate(#vendingzone)	เขตตั้งร้าน#BOT21	858
+//eternal,101,25,4	duplicate(#vendingzone)	เขตตั้งร้าน#BOTL22	858
+//eternal,103,25,4	duplicate(#vendingzone)	เขตตั้งร้าน#BOTL23	858
+//eternal,105,25,4	duplicate(#vendingzone)	เขตตั้งร้าน#BOTL24	858
+//eternal,107,25,4	duplicate(#vendingzone)	เขตตั้งร้าน#BOTL25	858
+//eternal,109,25,4	duplicate(#vendingzone)	เขตตั้งร้าน#BOTL26	858
+//eternal,111,25,4	duplicate(#vendingzone)	เขตตั้งร้าน#BOTL27	858
+//eternal,113,25,4	duplicate(#vendingzone)	เขตตั้งร้าน#BOTL28	858
+//eternal,115,25,4	duplicate(#vendingzone)	เขตตั้งร้าน#BOTL29	858
+//eternal,117,25,4	duplicate(#vendingzone)	เขตตั้งร้าน#BOTL30	858
+//eternal,119,25,4	duplicate(#vendingzone)	เขตตั้งร้าน#BOTL31	858
+//eternal,121,25,4	duplicate(#vendingzone)	เขตตั้งร้าน#BOTL32	858
+//eternal,123,25,4	duplicate(#vendingzone)	เขตตั้งร้าน#BOTL33	858
+//eternal,125,25,4	duplicate(#vendingzone)	เขตตั้งร้าน#BOTL34	858
+//eternal,127,25,4	duplicate(#vendingzone)	เขตตั้งร้าน#BOTL35	858
+//eternal,129,25,4	duplicate(#vendingzone)	เขตตั้งร้าน#BOTL36	858
+//eternal,131,25,4	duplicate(#vendingzone)	เขตตั้งร้าน#BOTL37	858
+//eternal,133,25,4	duplicate(#vendingzone)	เขตตั้งร้าน#BOTL38	858
+//eternal,135,25,4	duplicate(#vendingzone)	เขตตั้งร้าน#BOTL39	858
+//eternal,137,25,4	duplicate(#vendingzone)	เขตตั้งร้าน#BOTL40	858
+//eternal,139,25,4	duplicate(#vendingzone)	เขตตั้งร้าน#BOTL41	858
+//eternal,141,25,4	duplicate(#vendingzone)	เขตตั้งร้าน#BOTL42	858
+////
+//eternal,57,37,4	duplicate(#vendingzone)	เขตตั้งร้าน#LEFTL1	858
+//eternal,57,35,4	duplicate(#vendingzone)	เขตตั้งร้าน#LEFTL2	858
+//eternal,57,33,4	duplicate(#vendingzone)	เขตตั้งร้าน#LEFTL3	858
+//eternal,57,31,4	duplicate(#vendingzone)	เขตตั้งร้าน#LEFTL4	858
+//eternal,57,29,4	duplicate(#vendingzone)	เขตตั้งร้าน#LEFTL5	858
+//eternal,57,27,4	duplicate(#vendingzone)	เขตตั้งร้าน#LEFTL6	858
+//eternal,57,25,4	duplicate(#vendingzone)	เขตตั้งร้าน#LEFTL7	858

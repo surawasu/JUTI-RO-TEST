@@ -1,0 +1,9 @@
+/*
+// Right
+prt_evt_in,21,45,0	warp	prt_evt_in#1	1,1,mooc,172,98
+mooc,172,102,0	warp	prt_evt_in#2	1,1,prt_evt_in,24,46
+*/
+// Left
+mooc,144,100,0	warp	nakhyang#1	1,1,nakhyang,32,15
+nakhyang,33,11,0	warp	nakhyang#2	1,1,mooc,144,97
+mooc,172,102,0	warp	prt_evt_in#2	1,1,nakhyang,32,15

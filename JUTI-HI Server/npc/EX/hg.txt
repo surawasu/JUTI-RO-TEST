@@ -1,0 +1,28 @@
+//Simple HG Hiding by crazyarashi
+
+-	script	Invisible	-1,{
+OnAtCommand:
+	.@npc$ = "["+ strnpcinfo(1) +"]";
+	mes .@npc$;
+	mes "Hello, "+strcharinfo(0);
+	mes "Which headgear do you want to hide?";	
+	next;
+	setarray .@hgmenu$, "Top Headgear", "Middle Headgear", "Lower Headgear";
+	.@menu$ = implode(.@hgmenu$, ":");
+		.@i = select( .@menu$ ) - 1;
+				.@equip = getequipid(.location$[.@i]);
+				if( .@equip != getequipid(.location$[.@i])) {
+				mes .@npc$;
+				mes "You're not wearing any headgear";
+				close;
+		} else {
+				atcommand "@"+ .looks$[.@i];
+				dispbottom .@hgmenu$[.@i] +" is now hidden";
+				end;
+				}
+OnInit:
+	setarray .location$, "EQI_HEAD_TOP", "EQI_HEAD_MID", "EQI_HEAD_LOW";
+	setarray .looks$, "changelook 1 0", "changelook 2 0", "changelook 3 0";
+	bindatcmd "hidehg",strnpcinfo(0)+"::OnAtCommand";
+
+}

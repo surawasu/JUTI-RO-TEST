@@ -1,0 +1,175 @@
+//===== rAthena Script =======================================
+//= Exchange Item NPC dealer
+//===== By: ==================================================
+//= DurexzOfficial
+//===== Current Version: =====================================
+//= 1.0 เพิ่มร้านรับซื้อไอเทม
+//= 1.1 เพิ่มร้านแลกแต้ม
+//= 1.2 แก้บัคเมื่อขายไอเทมมากกว่า 6ชิ้นขึ้นไปแล้วค้าง
+//===== Compatible With: =====================================
+//= rAthena Project
+//===== Description: =========================================
+//= ให้ผู้เล่นเอาไอเทมตามกำหนดที่ไม่ได้ใช้งานมาแลกเป็น OCP Point
+//============================================================
+
+morocc,131,59,4	script	ย่อยจิ๊กซอว์	4_M_KID2,{
+
+	disable_items;
+	if (checkweight(1201,1) == 0) {
+		mes .NPCname$;
+		mes "^FF0000คุณมีไอเทมมากเกินไป^000000";
+		end;
+	}
+	if (MaxWeight - Weight < 10000) {
+		mes .NPCname$;
+		mes "^FF0000กรุณาตรวจสอบน้ำหนักด้วย^000000";
+		end;
+	}
+
+
+
+
+	mes .NPCname$;
+	mes "หวัดดี, "+strcharinfo(0)+"!";
+	mes "มีอะไรให้ข้ารับใช้ไหม ?";
+	next;
+	switch(select("> รับซื้อไอเท็ม:> แลกไอเท็ม (^0055FF"+callfunc("F_InsertComma",#JigsawPoint)+" แต้ม^000000):> ยกเลิก")){
+		case 1:
+				mes .NPCname$;
+				mes "กรุณาเลือกไอเทมที่ตรงตามรายการ";
+				mes "ที่ต้องการจะขาย";
+				/*
+				for ( .@j = 0; .@j < getarraysize(.list_item); .@j = .@j + 1 ) {
+					mes .@j+1+". <ITEM>"+getitemname(.list_item[.@j])+"<INFO>"+.list_item[.@j] +"</INFO></ITEM> [ID: "+.list_item[.@j]+"] ^FF0000["+.list_amount[.@j]+"] แต้ม";
+				}
+				*/
+				callshop "Shop_Jigsaw",2;
+				npcshopattach "Shop_Jigsaw";
+				end;
+		case 2:
+				mes .NPCname$;
+				mes "เจ้ามี ^0055FF"+callfunc("F_InsertComma",#JigsawPoint)+"^000000 แต้ม";
+				callshop "Shop_Jigsaw",1;
+				npcshopattach "Shop_Jigsaw";
+				end;
+		case 3:
+				mes .NPCname$;
+				mes "โอกาสหน้าเชิญใหม่ค่ะ.";
+				end;
+	}
+	
+OnSellItem:
+	mes "ไอเทมที่จะแลก:";
+	mes "-----------------------------------";
+	freeloop(1);
+	for ( .@i = 0; .@i < getarraysize(@sold_nameid); .@i = .@i + 1 ) {
+	
+		for ( .@j = 0; .@j < getarraysize(.list_item); .@j = .@j + 1 ) {
+		
+			if( @sold_nameid[.@i] == .list_item[.@j] ){
+				set .@item_id[getarraysize(.@item_id)], @sold_nameid[.@i];
+				set .@item_amt[getarraysize(.@item_amt)], @sold_quantity[.@i];
+				set .@item_total, .@item_total+(@sold_quantity[.@i]*.list_amount[.@j]);
+				mes "^777777"+@sold_quantity[.@i]+"x "+getitemname(@sold_nameid[.@i])+"^000000 ^FF0000["+.list_amount[.@j]+"]^000000 แต้ม";
+			} // end if
+			
+		} // end for j
+		
+	} // end for i
+	freeloop(0);
+	deletearray @sold_nameid[0], getarraysize(@sold_nameid);
+	deletearray @sold_quantity[0], getarraysize(@sold_quantity);
+
+	if (!.@item_id) {
+		mes "  ^777777 (ไม่ใช่ไอเทมที่สามารถขายได้) ^000000";
+		close;
+	}
+	
+	mes "---------- รวมทั้งหมด: ^0055FF"+.@item_total+" แต้ม.^000000 -------";
+	next;
+	
+	if(select(" > ^0055FFแลกเปลี่ยน...^000000: > ^777777ยกเลิก^000000") == 2) {
+		mes .NPCname$;
+		mes "ไว้พบกันใหม่ โอกาสหน้า";
+		close;
+	}
+	
+	for(.@i = 0; .@i < getarraysize(.@item_id); .@i = .@i + 1){
+		delitem .@item_id[.@i],.@item_amt[.@i];
+	}
+	set #JigsawPoint, #JigsawPoint + .@item_total;
+	dispbottom .NPCname$ + " : ท่านได้รับ Malangdo Point " + callfunc("F_InsertComma",.@item_total) + " รวมตอนนี้ " + callfunc("F_InsertComma",#JigsawPoint);
+	mes .NPCname$;
+	mes "ขอบคุณที่ท่านไว้ใจ!";
+	mes "และนำไอเท็มมาขายกับร้านของเรา!";
+	mes "หวังว่าครั้งหน้าท่านจะนำมาขายเราอีก";
+	close;
+	
+OnBuyItem:
+	for(set .@i,0; .@i<getarraysize(@bought_nameid); set .@i,.@i+1)
+		for(set .@j,0; .@j<getarraysize(.Shop); set .@j,.@j+2)
+			if (@bought_nameid[.@i] == .Shop[.@j]) {
+				set .@cost, .@cost+(.Shop[.@j+1]*@bought_quantity[.@i]);
+				break;
+			}
+	if (.@cost > #JigsawPoint) {
+		mes .NPCname$;
+		mes "เจ้ามีแต้มไม่เพยงพอ.";
+		end;
+	}
+	else {
+		mes "รายการสินค้า:";
+		mes "-----------------------------------";
+		for(set .@i,0; .@i<getarraysize(@bought_nameid); set .@i,.@i+1) {
+			mes "  ^777777"+@bought_quantity[.@i]+"x "+getitemname(@bought_nameid[.@i])+"^000000";
+		}
+		mes "---------- รวมทั้งหมด: ^0055FF"+.@cost+" แต้ม.^000000 -------";
+		set #JigsawPoint, #JigsawPoint - .@cost;
+		next;
+	}
+	if(select(" > ^0055FFแลกซื้อ...^000000: > ^777777ยกเลิก^000000") == 2) {
+		mes .NPCname$;
+		mes "ไว้พบกันใหม่ โอกาสหน้า";
+		close;
+	}
+	for(set .@i,0; .@i<getarraysize(@bought_nameid); set .@i,.@i+1) {
+		getitem @bought_nameid[.@i], @bought_quantity[.@i];
+		dispbottom .NPCname$ + " : ถูกหัก Jigsaw Point " + callfunc("F_InsertComma",.@cost) + " คงเหลือตอนนี้ " + callfunc("F_InsertComma",#JigsawPoint);
+	}
+	deletearray @bought_nameid[0], getarraysize(@bought_nameid);
+	deletearray @bought_quantity[0], getarraysize(@bought_quantity);
+	mes .NPCname$;
+	mes "ขอบคุณที่ท่านไว้ใจ!";
+	mes "นำแต้มมาแลกกับไอเท็มร้านของเรา!";
+	mes "หวังว่าครั้งหน้าท่านจะมาใช้บริการเราอีก";
+	close;
+	
+OnInit:
+	.NPCname$ = "[ Shop Exchange ]";
+	setarray .list_item,2984001,2984002,2984003,2984004,2984005,2984006,2984007,2984008,2984009,2984010,2984011,2984012,2984013,2984014,2833100,2833101,2833102,2833103,2833104,2833105,2833106,2833107,2833108,2833109,2833110,2833111,2833112,2833113,2833114,2833115,2981002,2981003,2981004,2981005,2981006,2981007,2981008,2981010,2981011,2981012,2981013,2981014,2981015,2981016,2981017,2981019,2981020,2981021,2981022,2981023,2981024,2981025,2981027,2981028,2981029,2981030,2981031,2981032,2981033,2981034;	// <รหัสไอเท็ม> ,<รหัสไอเท็ม> ,<รหัสไอเท็ม> ,<รหัสไอเท็ม> เช่น 1201
+	setarray .list_amount,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1;	// <ราคาขาย>,<ราคาขาย>,<ราคาขาย>,<ราคาขาย> เช่น 1201 ได้แต้ม 5
+	setarray .Shop[0], // <รหัสไอเท็ม>,<ราคาซื้อ>
+	
+	2981026,20,
+	2984000,20,
+	2832101,20,
+	2832100,10,
+	2981001,10,
+	2981009,10,
+//	0000000,10,
+//	0000000,10,
+	2981018,10;
+
+
+
+	 
+
+	npcshopdelitem "Shop_Jigsaw",909;
+	for(set .@i,0; .@i<getarraysize(.Shop); set .@i,.@i+2)
+		npcshopadditem "Shop_Jigsaw",.Shop[.@i],.Shop[.@i+1];
+		
+	waitingroom "   ย่อยจิ๊กซอว์ ",0; 
+	end;
+}
+
+-	shop	Shop_Jigsaw	-1,909:-1

@@ -1,0 +1,281 @@
+morocc,47,76,5	script	สุ่มออฟคอสตูมผ้าคลุม#02	604,{
+setarray .all_stone[0],4816,4817,4818,4836,4700,4701,4710,4711,4720,4721,4730,4731,4740,4741,4750,4751,4786,4787,4788,4795,4796,4800,4801,4833,4834,4760,4761,4791,4861,4862,4832,4842;
+setarray .all_stone2[0],4816,4817,4818,4836,4700,4701,4710,4711,4720,4721,4730,4731,4740,4741,4750,4751,4786,4787,4788,4795,4796,4800,4801,4833,4834,4760,4761,4791,4861,4862,4832,4842;
+			
+disable_items;
+if (checkweight(1201,1) == 0) {
+		mes "[.@npc_name$]";
+		mes "คุณมีไอเทมมากเกินไป เอาไปเก็บก่อน!";
+		close;
+	}
+	if (MaxWeight - Weight < 10000) {
+		mes "[.@npc_name$]";
+		mes "คุณมีน้ำหนักมากเกินไป!";
+		close;
+	}
+
+	.@npc_name$ = "ออฟชั่น Cos.Garment";
+	.@cash_price = 20;
+
+	mes "เลือกอุปกรณ์ Costume ที่ต้องการสุ่มฝังพลังได้เลย";
+	mes "ใช้ ^ff3333[ Bonus Coin ]^000000 ในการออฟ ";
+	next;
+	mes "มีรายละเอียดออฟชั่นดังนี้";
+	mes "STR 1 ถึง 2";
+	mes "AGI 1 ถึง 2";
+	mes "VIT 1 ถึง 2";
+	mes "INT 1 ถึง 2";
+	mes "DEX 1 ถึง 2";
+	mes "LUK 1 ถึง 2";
+	mes "MDEF 2 ถึง 4";
+	mes "ATK 1% ถึง 2%";
+	mes "MATK 1% ถึง 2%";
+	mes "HP 100 กับ 200";
+	mes "SP 50 กับ 100";
+	mes "MaxHP 1% กับ 2%";
+	mes "โจมตีระยะไกล 2%";
+	mes "ป้องกันระยะไกล 2%";
+	mes "DEF 1";
+	mes "ASPD 1";
+	mes "โจมตีบอสแรงขึ้น 3 ถึง 5%";
+	next;
+
+
+
+	switch( select( "ออฟปีกปกติ (ใช้ 20 Bonus Coin)", "ออฟปีกเช่า (ใช้ 20 Bonus Coin)", "ยกเลิก" ) ) {
+
+	case 1:
+	
+	if (countitem(38007) >= 20) goto bc1;
+		mes "["+ .@npc_name$ +"]";
+		mes "ท่านมี Bonus Coin ไม่เพียงพอ";
+		mes "...";
+		close;
+		
+	case 2:
+	
+	if (countitem(38007) >= 20) goto bc2;
+		mes "["+ .@npc_name$ +"]";
+		mes "ท่านมี Bonus Coin ไม่เพียงพอ";
+		mes "...";
+		close;
+
+	bc1:
+	setarray .@indices[1],EQI_COSTUME_GARMENT;
+	for(.@i = 1; .@i<getarraysize(.@indices); ++.@i) {
+		if(getequipisequiped(.@indices[.@i])) {
+			.@menu$ = .@menu$ + F_getpositionname(.@indices[.@i]) + "-[" + getequipname(.@indices[.@i]) + "]";
+			.@equipped = 1;
+		}
+		.@menu$ = .@menu$ + ":";
+	}	
+
+	if (.@equipped == 0) {
+		mes "["+ .@npc_name$ +"]";
+		mes "เกิดข้อผิดพลาด #1";
+		close;
+	}
+
+	.@part = .@indices[select(.@menu$)];
+
+	if(!getequipisequiped(.@part)) {
+		mes "["+ .@npc_name$ +"]";
+		mes "เกิดข้อผิดพลาด #2";
+		close;
+	}
+	.@slot = rand(1,2);
+	.@item = getequipid(.@part);
+	.@rand_stone = .all_stone[rand(0,getarraysize(.all_stone)-1)];
+	.@rand_stone2 = .all_stone2[rand(0,getarraysize(.all_stone2)-1)];
+	.@rand_refine_count = getequiprefinerycnt(.@part);
+	.@card0 = getequipcardid(.@part,0);
+	.@card1 = getequipcardid(.@part,1);
+	.@card2 = getequipcardid(.@part,2);
+	.@card3 = getequipcardid(.@part,3);
+	
+	if (rentalcountitem(.@item)>0){
+		mes "เกิดข้อผิดพลาด";
+		mes "มี " + getitemname(.@item) + " แบบเช่าอยู่ในตัวโปรดนำไปเก็บก่อน";
+		close;
+	}
+	
+	if(.@slot == 1){
+		.@card0 = .@rand_stone;
+		.@card1 = 0;
+		mes "["+ .@npc_name$ +"]";
+		mes "^FF0000 slot 1 ^000000 ^FF0000=^000000 ^0000CD " + getitemname(.@rand_stone) + " ^000000 !!";
+	}
+	if(.@slot == 2){
+		.@card0 = .@rand_stone;
+		.@card1 = .@rand_stone2;
+		mes "["+ .@npc_name$ +"]";
+		mes "^FF0000 slot 1^000000 ^FF0000=^000000 ^3366FF " + getitemname(.@rand_stone) + " ^000000 !!";
+		mes "^FF0000 slot 2^000000 ^FF0000=^000000 ^0000CD " + getitemname(.@rand_stone2) + " ^000000 !!";
+	}
+	.@save_ro_id_slot1 = 0;
+	.@save_ro_id_slot2 = 0;
+	.@save_ro_id_slot3 = 0;
+	.@save_ro_id_slot4 = 0;
+	.@save_ro_id_slot5 = 0;
+	.@save_ro_val_slot1 = 0;
+	.@save_ro_val_slot2 = 0;
+	.@save_ro_val_slot3 = 0;
+	.@save_ro_val_slot4 = 0;
+	.@save_ro_val_slot5 = 0;
+	if(getequiprandomoption(.@part,4,ROA_ID) > 0){
+		.@save_ro_id_slot5 = getequiprandomoption(.@part,4,ROA_ID);
+		.@save_ro_val_slot5 = getequiprandomoption(.@part,4,ROA_VALUE);
+	}
+	if(getequiprandomoption(.@part,3,ROA_ID) > 0){
+		.@save_ro_id_slot4 = getequiprandomoption(.@part,3,ROA_ID);
+		.@save_ro_val_slot4 = getequiprandomoption(.@part,3,ROA_VALUE);
+	}
+	if(getequiprandomoption(.@part,2,ROA_ID) > 0){
+		.@save_ro_id_slot3 = getequiprandomoption(.@part,2,ROA_ID);
+		.@save_ro_val_slot3 = getequiprandomoption(.@part,2,ROA_VALUE);
+	}
+	if(getequiprandomoption(.@part,1,ROA_ID) > 0){
+		.@save_ro_id_slot2 = getequiprandomoption(.@part,1,ROA_ID);
+		.@save_ro_val_slot2 = getequiprandomoption(.@part,1,ROA_VALUE);
+	}
+	if(getequiprandomoption(.@part,0,ROA_ID) > 0){
+		.@save_ro_id_slot1 = getequiprandomoption(.@part,0,ROA_ID);
+		.@save_ro_val_slot1 = getequiprandomoption(.@part,0,ROA_VALUE);
+	}
+	delitem 38007,20;
+	delequip .@part;
+
+	setarray .@optID[0],.@save_ro_id_slot1,.@save_ro_id_slot2,.@save_ro_id_slot3,.@save_ro_id_slot4,.@save_ro_id_slot5;
+	setarray .@optVal[0],.@save_ro_val_slot1,.@save_ro_val_slot2,.@save_ro_val_slot3,.@save_ro_val_slot4,.@save_ro_val_slot5;
+	setarray .@optParam[0],0,0,0,0,0;
+
+	if(!.@save_ro_id_slot1 && !.@save_ro_id_slot2 && !.@save_ro_id_slot3 && !.@save_ro_id_slot4 && !.@save_ro_id_slot5)
+
+	getitem3 .@item,1,1,.@rand_refine_count,0,.@card0,.@card1,.@card2,.@card3,.@optID,.@optVal,.@optParam;
+
+	equip .@item;
+	specialeffect2 70;
+	close;
+
+	bc2:
+	setarray .@indices[1],EQI_COSTUME_GARMENT;
+	for(.@i = 1; .@i<getarraysize(.@indices); ++.@i) {
+		if(getequipisequiped(.@indices[.@i])) {
+			.@menu$ = .@menu$ + F_getpositionname(.@indices[.@i]) + "-[" + getequipname(.@indices[.@i]) + "]";
+			.@equipped = 1;
+		}
+		.@menu$ = .@menu$ + ":";
+	}
+
+	if (.@equipped == 0) {
+		mes "["+ .@npc_name$ +"]";
+		mes "เกิดข้อผิดพลาด #1";
+		close;
+	}
+
+	.@part = .@indices[select(.@menu$)];
+
+	if(!getequipisequiped(.@part)) {
+		mes "["+ .@npc_name$ +"]";
+		mes "เกิดข้อผิดพลาด #2";
+		close;
+	}
+	.@slot = rand(1,2);
+	.@item = getequipid(.@part);
+	.@rand_stone = .all_stone[rand(0,getarraysize(.all_stone)-1)];
+	.@rand_stone2 = .all_stone2[rand(0,getarraysize(.all_stone2)-1)];
+	.@rand_refine_count = getequiprefinerycnt(.@part);
+	.@card0 = getequipcardid(.@part,0);
+	.@card1 = getequipcardid(.@part,1);
+	.@card2 = getequipcardid(.@part,2);
+	.@card3 = getequipcardid(.@part,3);
+	
+	if (countitem(.@item) > 0 && rentalcountitem(.@item) > 0 || rentalcountitem(.@item) > 1 ){
+		mes "เกิดข้อผิดพลาด";
+		mes "มี " + getitemname(.@item) + " มากกว่า 1 ชิ้นโปรดนำไปเก็บก่อน";
+		close;
+	}
+	if (rentalcountitem(.@item) < 1 ){
+		mes "เกิดข้อผิดพลาด";
+		mes "ไม่มี " + getitemname(.@item) + " แบบเช่าอยู่ในตัว";
+		close;
+	}	
+	
+	if(.@slot == 1){
+		.@card0 = .@rand_stone;
+		.@card1 = 0;
+		mes "["+ .@npc_name$ +"]";
+		mes "^FF0000 slot 1 ^000000 ^FF0000=^000000 ^0000CD " + getitemname(.@rand_stone) + " ^000000 !!";
+	}
+	if(.@slot == 2){
+		.@card0 = .@rand_stone;
+		.@card1 = .@rand_stone2;
+		mes "["+ .@npc_name$ +"]";
+		mes "^FF0000 slot 1^000000 ^FF0000=^000000 ^3366FF " + getitemname(.@rand_stone) + " ^000000 !!";
+		mes "^FF0000 slot 2^000000 ^FF0000=^000000 ^0000CD " + getitemname(.@rand_stone2) + " ^000000 !!";
+	}
+	.@save_ro_id_slot1 = 0;
+	.@save_ro_id_slot2 = 0;
+	.@save_ro_id_slot3 = 0;
+	.@save_ro_id_slot4 = 0;
+	.@save_ro_id_slot5 = 0;
+	.@save_ro_val_slot1 = 0;
+	.@save_ro_val_slot2 = 0;
+	.@save_ro_val_slot3 = 0;
+	.@save_ro_val_slot4 = 0;
+	.@save_ro_val_slot5 = 0;
+	if(getequiprandomoption(.@part,4,ROA_ID) > 0){
+		.@save_ro_id_slot5 = getequiprandomoption(.@part,4,ROA_ID);
+		.@save_ro_val_slot5 = getequiprandomoption(.@part,4,ROA_VALUE);
+	}
+	if(getequiprandomoption(.@part,3,ROA_ID) > 0){
+		.@save_ro_id_slot4 = getequiprandomoption(.@part,3,ROA_ID);
+		.@save_ro_val_slot4 = getequiprandomoption(.@part,3,ROA_VALUE);
+	}
+	if(getequiprandomoption(.@part,2,ROA_ID) > 0){
+		.@save_ro_id_slot3 = getequiprandomoption(.@part,2,ROA_ID);
+		.@save_ro_val_slot3 = getequiprandomoption(.@part,2,ROA_VALUE);
+	}
+	if(getequiprandomoption(.@part,1,ROA_ID) > 0){
+		.@save_ro_id_slot2 = getequiprandomoption(.@part,1,ROA_ID);
+		.@save_ro_val_slot2 = getequiprandomoption(.@part,1,ROA_VALUE);
+	}
+	if(getequiprandomoption(.@part,0,ROA_ID) > 0){
+		.@save_ro_id_slot1 = getequiprandomoption(.@part,0,ROA_ID);
+		.@save_ro_val_slot1 = getequiprandomoption(.@part,0,ROA_VALUE);
+	}
+	delitem 38007,20;
+	delequip .@part;
+
+	setarray .@optID[0],.@save_ro_id_slot1,.@save_ro_id_slot2,.@save_ro_id_slot3,.@save_ro_id_slot4,.@save_ro_id_slot5;
+	setarray .@optVal[0],.@save_ro_val_slot1,.@save_ro_val_slot2,.@save_ro_val_slot3,.@save_ro_val_slot4,.@save_ro_val_slot5;
+	setarray .@optParam[0],0,0,0,0,0;
+
+	if(!.@save_ro_id_slot1 && !.@save_ro_id_slot2 && !.@save_ro_id_slot3 && !.@save_ro_id_slot4 && !.@save_ro_id_slot5)
+	
+	if(.@item == 8142 || .@item == 8800 || .@item == 8801 || .@item == 8803 || .@item == 8804 || .@item == 8805 || .@item == 8806 || .@item == 8807 || .@item == 8808 || .@item == 8809 || .@item == 8811 || .@item == 8812 || .@item == 8813 || .@item == 8814 || .@item == 8816 || .@item == 8817 || .@item == 8818 || .@item == 8819 || .@item == 8820 || .@item == 8821 || .@item == 8822 || .@item == 50011 || .@item == 20506 || .@item == 50019 || .@item == 50020 || .@item == 47063 || .@item == 47065 || .@item == 50023 || .@item == 50024 || .@item == 50027 || .@item == 50028 || .@item == 50030 || .@item == 50033 || .@item == 50034 || .@item == 50035 || .@item == 55001 || .@item == 55002 || .@item == 55003 || .@item == 55004 || .@item == 55005 || .@item == 55006 || .@item == 55007 || .@item == 55008 || .@item == 55009 || .@item == 55010 || .@item == 55011 || .@item == 55012 || .@item == 31700 || .@item == 31701 || .@item == 31702 || .@item == 31703 ){
+		query_sql("SELECT UNIX_TIMESTAMP(expire),expire FROM `buffet_time` WHERE account_id = " + getcharid(3) + " AND type = 4 LIMIT 1", .@expire, .@exp$);
+		.@diff = .@expire - gettimetick(2);
+	}
+	rentitem3 .@item,.@diff,1,.@rand_refine_count,0,.@card0,.@card1,.@card2,.@card3,.@optID,.@optVal,.@optParam;
+
+	equip .@item;
+	specialeffect2 70;
+	close;
+
+	case 3:
+	mes "["+ .@npc_name$ +"]";
+	mes "บาย";
+	mes "...";
+	close;
+
+
+
+
+
+OnInit:
+		waitingroom "Option คอสผ้าคลุม",0;
+	end;
+}
+}
+

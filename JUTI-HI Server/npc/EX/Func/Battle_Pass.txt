@@ -1,0 +1,613 @@
+//==========================================================|
+//	 _    _                     _     _                     |
+//	| |  | |                   | |   (_)                    |
+//	| |__| |_   _ _ __ ___  ___| |__  _ _ __ ___   __ _     |
+//	|  __  | | | | '__/ _ \/ __| '_ \| | '_ ` _ \ / _` |    |
+//	| |  | | |_| | | | (_) \__ \ | | | | | | | | | (_| |    |
+//	|_|  |_|\__, |_|  \___/|___/_| |_|_|_| |_| |_|\__,_|    |
+// 	        __/ |Scripter                                   |
+// 	       |___/										    |
+//==========================================================|
+/* ------------------ SCRIPT INFO -------------------------	=
+Name: Battle Pass 			   								=
+Ver : 1.0				 					   				=
+Para: rA			 					   					=
+---------------------------------------------------------- */
+//==========================================================|
+sec_pri,19,31,6	script	Battle Pass	4_M_KHKYEL,{
+
+	mes "[Battle Pass]";
+
+	if(getgroupid() >= 99 && select("Menu Player:Menu GM")==2)
+	{
+		switch(select("สร้างรายการ:Activate รายการประจำเดือน:ดูรายการประจำเดือนที่มีทั้งหมด:สร้างรายการของรางวัล:ดูรายการของรางวัล:ยกเลิก"))
+		{
+			case 1:
+				next;
+				mes "[Battle Pass]";
+				mes "เลือกปี:";
+				set .@ano,select(""+gettime(DT_YEAR)+":"+(gettime(DT_YEAR)+1)+"");
+				
+				next;
+				mes "[Battle Pass]";
+				mes "เลือกเดือน:";
+				setarray .@mes$[0],"January","February","March","April","May","June","July","August","September","October","November","December";
+				set .@mes,select(implode(.@mes$,":"));
+				
+				next;
+				mes "[Battle Pass]";
+				set .@chave_tmp$,(.@ano<2?gettime(DT_YEAR):gettime(DT_YEAR)+1)+""+(.@mes<10?"0"+.@mes:.@mes);
+				
+				query_sql "SELECT `id`,`chave` FROM `battle_pass_config` WHERE `chave`='"+.@chave_tmp$+"'",.@id,.@chave$;
+
+				if(.@id){ mes "มีการลงทะเบียนในปีและเดือนนี้แล้ว!"; close; }
+				
+				mes "Year: "+(.@ano<2?gettime(DT_YEAR):gettime(DT_YEAR)+1)+"";
+				mes "Month: "+.@mes$[(.@mes-1)]+"";
+				mes "Key: "+.@chave_tmp$+"";
+				if(select("ยกเลิก:สร้างรายการ")==1) close;
+				
+				next;
+				mes "[Battle Pass]";
+				query_sql "INSERT INTO `battle_pass_config` VALUES (NULL,'"+.@chave_tmp$+"',CURRENT_TIMESTAMP,'"+strcharinfo(0)+"')";
+				mes "สร้างรายการสำเร็จ!";
+				close;
+		
+			case 2:
+				next;
+				mes "[Battle Pass]";
+				
+				query_sql "SELECT `id`,`chave` FROM `battle_pass_config` ORDER BY `chave` ASC",.@id,.@chave$;
+				if(!getarraysize(.@id)){ mes "คุณต้องสร้างรายการประจำเดือน!"; close; }
+				
+				mes "Choose the key you want to activate.";
+				set .@chave_actv,select(implode(.@chave$,":"))-1;
+				
+				//Check Key x Reward
+				//==
+				query_sql "SELECT `chave` FROM `battle_pass_reward` WHERE `chave`='"+.@chave$[.@chave_actv]+"'",.@rst$;
+				if(.@rst$ == ""){ mes "^FF0000ก่อนจะ Activate รายการ, คุณต้องสร้างlistรางวัล!^000000"; close; }
+				
+				next;
+				mes "[Battle Pass]";
+				
+				if($BP_CHAVE >= 1) mes "รายการที่เลือกปัญจุบัน: "+$BP_CHAVE+"";
+				mes "Chave: "+.@chave$[.@chave_actv]+"";
+				if(select("Cancel:Activate รายการ")==1) close;
+				
+				if($BP_CHAVE >= 1)
+				{
+					next;
+					mes "[Battle Pass]";
+					mes "คุณแน่ใจต้องว่าต้องการเปลี่ยน "+$BP_CHAVE+" โดยรายการ "+.@chave$[.@chave_actv]+"?";
+					if(select("Cancel:Confirm")==1) close;
+				}
+				
+				set $BP_CHAVE,atoi(.@chave$[.@chave_actv]);
+				
+				//Load/Set the Bonus Item
+				query_sql "SELECT `bitem`,`bqtd` FROM `battle_pass_reward` WHERE `chave`='"+$BP_CHAVE+"'",.@bItem,.@bQtd;
+				set getvariableofnpc(.bItem,"Battle_Pass_CTRL"),.@bItem;
+				set getvariableofnpc(.bQtd,"Battle_Pass_CTRL"),.@bQtd;
+				
+				mes "รายการ "+$BP_CHAVE+" Activated.";
+				close;
+
+			case 3:
+				next;
+				query_sql "SELECT `id`,`chave`,`logdate`,`char_name` FROM `battle_pass_config` ORDER BY `chave` DESC",.@id,.@chave$,.@date$,.@nick$;
+				if(!getarraysize(.@id)){ mes "[Battle Pass]"; mes "คุณต้องสร้างรายการประจำเดือน!"; close; }
+				
+				for(set .@i,0; .@i<getarraysize(.@id); set .@i,.@i+1)
+				{
+					mes "[Battle Pass]";
+					mes "";
+					mes "ID OR: "+.@id[.@i]+"";
+					mes "รายการ: "+.@chave$[.@i]+"";
+					mes "สร้าง: "+.@date$[.@i]+"";
+					mes "โดย: "+.@nick$[.@i]+"";
+					if((.@i+1) < getarraysize(.@id)) next;				
+				}
+				close;
+
+			case 4:
+				next;
+				mes "[Battle Pass]";
+				
+				query_sql "SELECT `id`,`chave` FROM `battle_pass_config` ORDER BY `chave` ASC",.@id,.@chave$;				
+				if(!getarraysize(.@id)){ mes "คุณต้องสร้างรายการประจำเดือน!"; close; }
+				
+				mes "เลือกรายการเพื่อสร้างรายการของรางวัล.";
+				set .@chave_actv,select(implode(.@chave$,":"))-1;
+				
+				query_sql "SELECT `chave` FROM `battle_pass_reward` WHERE `chave`='"+.@chave$[.@chave_actv]+"'",.@opt$;
+				
+				if(.@opt$ != "")
+				{
+					next;
+					mes "[Battle Pass]";
+					mes "^FF0000มีการกำหนดค่าสำหรับรายการนี้แล้ว หากคุณต้องการเปลี่ยนแรง โปรดแก้ไขรายการรางวัลด้วย!^000000";
+				}
+				
+				next;
+				mes "[Battle Pass]";
+				mes "";
+				mes "ตัวอย่างตามนี้: item,จำนวน,item,จำนวน...";
+				mes "";
+				mes "^0080ff607,5^000000,^4c79ff608,9^000000,^ff8000609,1^000000,^d9006c610,4^000000,^d93600611,1^000000";
+				mes "";
+				mes "(โดยต้องต้องใส่ 5 รายการ items สำหรับ1ครั้ง!)";
+				next;
+				
+				while(.@list <6)
+				{
+					mes "[Battle Pass]";
+					mes "1: "+(.@list<1?"?":"OK")+"";
+					mes "2: "+(.@list<2?"?":"OK")+"";
+					mes "3: "+(.@list<3?"?":"OK")+"";
+					mes "4: "+(.@list<4?"?":"OK")+"";
+					mes "5: "+(.@list<5?"?":"OK")+"";
+										
+					if(.@list < 5)
+					{
+						input .@str$;
+						explode(.@str_r$,.@str$,",");
+						if(getarraysize(.@str_r$) > 10){ mes "^FF0000* เกินกำหนดที่ตั้งไว้ไม่เกิน5รายการ(000000"; deletearray .@str_r$[0],getarraysize(.@str_r$); }
+						else
+						{
+							dispbottom "===========["+(.@list+1)+"]:===========";
+							callfunc("F_Battle_Passe",2,.@str$);
+							copyarray .@itemlist$[getarraysize(.@itemlist$)],.@str_r$[0],getarraysize(.@str_r$);
+							set .@list,.@list+1;
+							deletearray .@str_r$[0],getarraysize(.@str_r$);
+						}
+					}
+					else if(select("Confirmar:Refazer")==2){ set .@list,0; deletearray .@itemlist$[0],getarraysize(.@itemlist$); } else set .@list,.@list+1;
+					next;					
+				}
+				
+				mes "[Battle Pass]";
+				mes "กำหนดโบนัสที่จะได้จากรายการรางวัล.";
+				input .@ibonus;
+				mes "กำหนดจำนวนที่จะได้รับของโบนัส.";
+				input .@qbonus;
+				
+				next;
+				mes "[Battle Pass]";
+				mes "โปรดตรวจสอบรายการของเพื่อยืนยันในช่องแชทด้านล่าง, หากคุณต้องการเปลี่ยนโปรดสามารถตั้งค่าทับได้เลย.";
+				
+				for(set .@i,0; .@i<getarraysize(.@itemlist$); set .@i,.@i+2)
+				{
+					set .@ord,.@ord+1;
+					dispbottom "["+.@ord+"]: "+.@itemlist$[.@i+1]+"x "+getitemname(atoi(.@itemlist$[.@i]))+" ("+.@itemlist$[.@i]+")";
+					set .@sqlITM$,.@sqlITM$+"'"+.@itemlist$[.@i]+"'"+((.@i+2)==getarraysize(.@itemlist$)?"":",")+"";
+					set .@sqlQTD$,.@sqlQTD$+"'"+.@itemlist$[.@i+1]+"'"+((.@i+2)==getarraysize(.@itemlist$)?"":",")+"";
+				}
+				
+				dispbottom "==== Bonus Item: ====";
+				dispbottom ""+.@qbonus+"x "+getitemname(.@ibonus)+" ("+.@ibonus+")";
+				
+				if(select("Cancel:Confirm")==1) close;
+								
+				query_sql ""+(.@opt$ != ""?"REPLACE":"INSERT")+" INTO `battle_pass_reward` VALUES ('"+.@chave$[.@chave_actv]+"',"+.@sqlITM$+","+.@sqlQTD$+","+.@ibonus+",'"+.@qbonus+"',CURRENT_TIMESTAMP,'"+strcharinfo(0)+"')";
+				mes "Done!";
+				close;
+			
+			case 5:					
+				next;
+				mes "[Battle Pass]";
+				
+				query_sql "SELECT `id`,`chave` FROM `battle_pass_config` ORDER BY `chave` ASC",.@id,.@chave$;				
+				if(!getarraysize(.@id)){ mes "คุณต้องสร้างรายการประจำเดือน!"; close; }
+				
+				mes "เลือกรายการเพื่อกำหนดรายการรางวัล!";
+				set .@chave_actv,select(implode(.@chave$,":"))-1;
+				
+				query_sql "SELECT `chave` FROM `battle_pass_reward` WHERE `chave`='"+.@chave$[.@chave_actv]+"'",.@opt$;
+				
+				if(.@opt$ == "")
+				{ mes "^FF0000ไม่มีรายการของรางวัลเพื่อที่จะใช้ในรายการ!^000000"; close; }
+				
+				next;
+				mes "[Battle Pass]";
+				mes "ตรวจสอบรายการของรางวัลในช่องแชท!";
+				close2;
+								
+				for(set .@i,1; .@i<26; set .@i,.@i+1)
+				{ set .@sqlITM$,.@sqlITM$+"`item"+.@i+"`"+((.@i+1)>25?"":",")+""; set .@sqlQTD$,.@sqlQTD$+"`qtd"+.@i+"`"+((.@i+1)>25?"":",")+""; }
+				
+				query_sql "SELECT "+.@sqlITM$+","+.@sqlQTD$+",`bitem`,`bqtd`,`logdate`,`char_name` FROM `battle_pass_reward` WHERE `chave`='"+.@chave$[.@chave_actv]+"'",
+				.@it1,.@it2,.@it3,.@it4,.@it5,.@it6,.@it7,.@it8,.@it9,.@it10,.@it11,.@it12,.@it13,.@it14,.@it15,.@it16,.@it17,.@it18,.@it19,.@it20,.@it21,.@it22,.@it23,.@it24,.@it25,
+				.@qt1,.@qt2,.@qt3,.@qt4,.@qt5,.@qt6,.@qt7,.@qt8,.@qt9,.@qt10,.@qt11,.@qt12,.@qt13,.@qt14,.@qt15,.@qt16,.@qt17,.@qt18,.@qt19,.@qt20,.@qt21,.@qt22,.@qt23,.@qt24,.@qt25,
+				.@bit,.@qit,.@logdate$,.@name$;
+
+				dispbottom "==== รายการประจำเดือน["+.@chave$[.@chave_actv]+"] ====";
+				
+				for(set .@i,1; .@i<26; set .@i,.@i+1)
+					dispbottom "["+.@i+"]: "+getd(".@qt"+.@i+"")+"x "+getitemname(getd(".@it"+.@i+""))+" ("+getd(".@it"+.@i+"")+")";
+					
+				dispbottom "==== Bonus Item: ====";
+				dispbottom ""+.@qit+"x "+getitemname(.@bit)+" ("+.@bit+")";
+				dispbottom "==== Other Data: ====";
+				dispbottom "สร้าง/แก้ไข: "+.@logdate$+"";
+				dispbottom "โดย: "+.@name$+"";
+				dispbottom "======================";
+				end;
+				
+			case 6: close;
+		}
+	}
+
+	mes "มีอะไรให้ข้าช่วยไหมท่านนักผจญภัย?";
+	next;
+	switch(select("Battle Pass คืออะไร ?:สามารถหา Battle Pass ได้จากไหน"))
+	{
+		case 1:
+			next;
+			mes "[Battle Pass]";
+			mes "เป็นระบบที่มี 25 ระดับที่จะปลดล็อค โดยแต่ละระดับที่ปล่อยออกมา คุณจะได้รับรางวัลและหน้าต่างจะปรากฏขึ้น.";
+			
+			next;
+			mes "[Battle Pass]";
+			mes "เพื่อปลดล็อกระดับ คุณจะต้องกำจัด Monster ทำ Daily Quest และใช้ Battle Vigor ที่จะให้ Exp Battle Pass แก่คุณ.";
+			
+			next;
+			mes "[Battle Pass]";
+			mes "ในการเลื่อนระดับ คุณจะต้องได้รับ Exp Battle Pass 25,000 Exp Battle Pass, คุณสามารถเลื่อนระดับได้ 2 ระดับต่อวันเท่านั้น และเวลา 00:00 น. (เที่ยงคืน) ขีดจำกัดจะถูกรีเซ็ต.";
+			
+			next;
+			mes "[Battle Pass]";
+			mes "Battle Vigor สามารถใช้ได้ไม่จำกัด.";
+			
+			next;
+			mes "[Battle Pass]";
+			mes "มอนสเตอร์ที่มีเลเวลสูงกว่าจะทำให้คุณได้รับประสบการณ์มากขึ้น หากคุณมีParty คะแนนจะถูกหารด้วยจำนวนผู้เล่น แต่คุณจะได้คะแนนเพิ่มขึ้น 2 คะแนนต่อคนใน Party แต่จะได้ก็ต่อเมื่ออยู่ในแผนที่เดียวกัน!";
+			
+			next;
+			mes "[Battle Pass]";
+			mes "Battle Pass จะคงอยู่จนถึงสิ้นเดือน (จะมีเวลาหมดอายุ) หลังจากเปิดใช้งาน!";
+			close;			
+			
+		case 2:
+			next;
+			mes "[Battle Pass]";
+			mes "สามารถซื้อทั้ง Battle Pass และ Battle Vigor ได้จากร้านค้า Bonus";
+			close;
+	}
+}
+
+//Main Func Battle_Pass
+//==
+function	script	F_Battle_Passe	{
+
+	if(!getargcount()) return;
+	set .@opt,getarg(0);
+	
+	switch(.@opt)
+	{
+		case 1:
+			if(#BP_CHAVE == $BP_CHAVE && $BP_CHAVE >= 1){ cutin "pass_HI_"+#BP_LEVEL+"",4; end; }
+			
+			mes "[Battle Pass]";
+			
+			if($BP_CHAVE < 1){ mes "ระบบยังไม่เปิดใช้งาน!"; close; }
+			
+			mes "คุณกำลังจะเปิดใช้งาน Battle Pass คุณจะไม่สามารถย้อนกลับหรือขอเงินคืนได้!";
+			if(select("Cancel:ยินยันการใช้ Battle Pass")==1) close;
+			if(countitem(875) || rentalcountitem(875)) delitem 875,1;
+			
+			set .@d,($BP_MES[gettime(DT_MONTH)]-gettime(DT_DAYOFMONTH))*86400;
+			set .@h,(23-gettime(DT_HOUR))*3600;
+			set .@m,(59-gettime(DT_MINUTE))*60;
+			set .@s,(59-gettime(DT_SECOND));
+			set .@tExpire,(.@d+.@h+.@m+.@s);
+			rentitem 875,.@tExpire;
+			
+			mes "^4ca6ff* Battle Pass actived!^000000";
+			set #BP_LEVEL,0;
+			set #BP_EXP,0;
+			set #BP_EXP_LIMIT,0;
+			set #BP_TIME,0;
+			set #BP_msgSHOW,0;
+			set #BP_EXPIRE,gettimetick(2)+.@tExpire;
+			set #BP_CHAVE,$BP_CHAVE;
+			close;
+			
+		case 2:
+				explode(.@str$,getarg(1),",");
+				for(set .@i,0; .@i<getarraysize(.@str$); set .@i,.@i+2)
+					dispbottom ""+.@str$[(.@i+1)]+"x "+getitemname(atoi(.@str$[.@i]))+" ("+.@str$[.@i]+")";					
+				dispbottom "======================";
+				return;
+				
+		case 3:
+				//Champion Mob identifier
+				setarray .@idnames$[0],"Swift","Solid","Ringleader","Furious","Elusive";			//1
+				//setarray .@idnames$[0],"Precioso","Batedor","Ringleader","Furioso","Experiente";	//2
+				setarray .@BP_poit$[0],    250,    250,           0,      500,     5000;
+				for(set .@i,0; .@i<getarraysize(.@idnames$); set .@i,.@i+1)
+					if(compare(getarg(1),.@idnames$[.@i]))
+						set .@int,.@BP_poit$[.@i];
+				return .@int;
+				
+		case 4:
+				//OBS: To add points to a group of players use this way: callfunc("F_Battle_Passe",4,getcharid(1),value_in_points,extra_points_per_player)
+				//==
+				// (change the value_in_points by the amount of points to be added).
+				// (change the extra_points_per_player by the amount of points that will be multiplied by the number of players in the group (on the same map as who is interacting) that will be added to the total points.
+				
+				if($BP_CHAVE < 1){ dispbottom "[BATTLE PASS]: ระบบยังไม่เปิดใช้งาน!",0x4ca6ff; end; }
+				if(!getarg(1)){ dispbottom "[BATTLE PASS]: Unspecified group!"; return; }
+				if(!getarg(2)){ dispbottom "[BATTLE PASS]: Null or negative points!"; return; }
+				getpartymember getarg(1),1,.@cid;
+				getpartymember getarg(1),2,.@accid;
+				set .@players,getarraysize(.@accid);
+				set .@map$,strcharinfo(3);								
+				set .@points,getarg(2)/.@players;
+				
+				for(set .@i,0; .@i<.@players; set .@i,.@i+1)
+					if(isloggedin(.@accid[.@i],.@cid[.@i]))
+					{
+						attachrid(.@accid[.@i]);
+						if(strcharinfo(3) == .@map$ && #BP_CHAVE == $BP_CHAVE) callfunc("F_Battle_Passe",5,(.@players>1?.@points+getarg(3):.@points));
+						detachrid;
+					}
+				
+				return;
+				
+		case 5:
+				//OBS: To add points for a player use like this:  callfunc("F_Battle_Passe",5,value_in_points) (change the value_in_points by the amount of points to be added).
+				//==
+				if($BP_CHAVE < 1){ dispbottom "[BATTLE PASS]: ระบบยังไม่เปิดใช้งาน!",0x4ca6ff; end; }				
+				if(gettimetick(2) > #BP_EXPIRE || #BP_CHAVE != $BP_CHAVE) return;
+				
+				if(gettimetick(2)>#BP_TIME)
+				{
+					set .@h,(23-gettime(DT_HOUR))*3600;
+					set .@m,(59-gettime(DT_MINUTE))*60;
+					set .@s,(59-gettime(DT_SECOND));
+					set #BP_TIME,gettimetick(2)+(.@d+.@h+.@m+.@s);
+					set #BP_EXP_LIMIT,0;
+				}
+				
+				if(#BP_EXP_LIMIT >= 50000 && getargcount() < 3)
+				{
+					if(!#BP_msgSHOW) dispbottom "[BATTLE PASS]: คุณถึงขีดจำกัดรายวันแล้ว!";
+					return;
+				}
+				else if(#BP_LEVEL >= 25)
+				{
+					if(!#BP_msgSHOW) dispbottom "[BATTLE PASS]: คุณทำ Battle Pass สำเร็จทั้งหมดแล้ว!";
+					return;
+				}
+				
+				if((#BP_EXP_LIMIT+getarg(1)) > 50000 && getargcount() < 3) set .@redun,(50000-#BP_EXP_LIMIT);
+				
+				set #BP_EXP,#BP_EXP+(.@redun?.@redun:getarg(1));
+				if(getargcount() < 3) set #BP_EXP_LIMIT,#BP_EXP_LIMIT+(.@redun?.@redun:getarg(1));				
+				
+				if(!#BP_msgSHOW)
+				{
+					dispbottom "[BATTLE PASS]: คุณได้รับ Exp Battle Pass ("+callfunc("F_InsertComma",getarg(1))+") <Exp สำหรับเลื่อนระดับ: "+callfunc("F_InsertComma",#BP_EXP)+" / "+callfunc("F_InsertComma",(((#BP_LEVEL+1)*25000)))+">",0xff73ff;
+					
+					//if(getargcount() < 3) dispbottom " [>] จำกัดรายวัน(ไม่รวม Battle Vigor): "+callfunc("F_InsertComma",#BP_EXP_LIMIT)+" / 50,000",0xff73ff;
+				}
+				
+				if(getargcount() >= 3) delitem getarg(2),1;
+				
+				if(#BP_LEVEL < (#BP_EXP/25000))
+				{
+					specialeffect2 244;
+					specialeffect2 338;
+					soundeffect "complete.wav",0;
+					sleep2 2000;
+					set #BP_LEVEL,#BP_LEVEL+1;
+					cutin "pass_HI_"+#BP_LEVEL+"",4;
+					
+					query_sql "SELECT `item"+#BP_LEVEL+"`,`qtd"+#BP_LEVEL+"` FROM `battle_pass_reward` WHERE `chave`='"+#BP_CHAVE+"'",.@item,.@qtd;
+					
+					set .@sender$,"BATTLE PASS Reward";
+					set .@title$,"Reward Lv."+#BP_LEVEL+"";
+					set .@body$,"คุณได้รับรางวัลสำหรับ Battle Pass Level   "+#BP_LEVEL+", ขอให้มีความสุขกับของรางวัล! ";
+					set .@zeny,0;
+					setarray .@mailitem[0],.@item;
+					setarray .@mailamount[0],.@qtd;
+					setarray .@mailrefine[0],0;
+					setarray .@mailbound[0],Bound_Account;
+					setarray .@mailcard0[0],0;
+					setarray .@mailcard1[0],0;
+					setarray .@mailcard2[0],0;
+					mail getcharid(0),.@sender$,.@title$,.@body$,.@zeny,.@mailitem,.@mailamount,.@mailrefine,.@mailbound,.@mailcard0,.@mailcard1,.@mailcard2;					
+					
+					if(rand(1,10000) <= 50)
+					{
+						set .@sender$,"BATTLE PASS Reward";
+						set .@title$,"Bonus Reward";
+						set .@body$,"คุณคือผู้โชคดีได้รับ "+getvariableofnpc(.bQtd,"Battle_Pass_CTRL")+"x "+getitemname(getvariableofnpc(.bItem,"Battle_Pass_CTRL"))+"! (โอกาส 0,5%), ขอให้มีความสุขกับของรางวัล! :)";
+						set .@zeny,0;
+						setarray .@mitem[0],getvariableofnpc(.bItem,"Battle_Pass_CTRL");
+						setarray .@mamount[0],getvariableofnpc(.bQtd,"Battle_Pass_CTRL");
+						setarray .@mrefine[0],0;
+						setarray .@mbound[0],Bound_Account;
+						setarray .@mcard0[0],0;
+						setarray .@mcard1[0],0;
+						setarray .@mcard2[0],0;
+						mail getcharid(0),.@sender$,.@title$,.@body$,.@zeny,.@mitem,.@mamount,.@mrefine,.@mbound,.@mcard0,.@mcard1,.@mcard2;
+					}
+				}
+				
+				return;
+	}
+}
+
+
+//Main Core Script
+//==
+-	script	Battle_Pass_CTRL	FAKE_NPC,{
+OnInit:
+
+	//========= Configura็๕es =========\\
+	//==							 ==\\
+	
+	//Number of days of each month of the year (keep up to date!)
+	//== (January, February...)
+	setarray $BP_MES[1],31,28,31,30,31,30,30,31,30,31,30,31;
+	
+	//Create player/gm access command: @bp
+	//==
+	bindatcmd "bp",strnpcinfo(3)+"::OnBP_CMD";
+	
+	//Create sql table 1
+	//==
+	query_sql "CREATE TABLE IF NOT EXISTS `battle_pass_config` (`id` int(11) NOT NULL AUTO_INCREMENT,`chave` varchar(10) NOT NULL,`logdate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,`char_name` varchar(30) NOT NULL,PRIMARY KEY (`id`))";
+	
+	//Create sql table 2
+	//==
+	setarray .@tableschm$[0],
+		  "CREATE TABLE IF NOT EXISTS `battle_pass_reward` (",
+		  "`chave` varchar(10) NOT NULL,",
+		  "`item1` mediumint(9) DEFAULT NULL,",
+		  "`item2` mediumint(9) DEFAULT NULL,",
+		  "`item3` mediumint(9) DEFAULT NULL,",
+		  "`item4` mediumint(9) DEFAULT NULL,",
+		  "`item5` mediumint(9) DEFAULT NULL,",
+		  "`item6` mediumint(9) DEFAULT NULL,",
+		  "`item7` mediumint(9) DEFAULT NULL,",
+		  "`item8` mediumint(9) DEFAULT NULL,",
+		  "`item9` mediumint(9) DEFAULT NULL,",
+		  "`item10` mediumint(9) DEFAULT NULL,",
+		  "`item11` mediumint(9) DEFAULT NULL,",
+		  "`item12` mediumint(9) DEFAULT NULL,",
+		  "`item13` mediumint(9) DEFAULT NULL,",
+		  "`item14` mediumint(9) DEFAULT NULL,",
+		  "`item15` mediumint(9) DEFAULT NULL,",
+		  "`item16` mediumint(9) DEFAULT NULL,",
+		  "`item17` mediumint(9) DEFAULT NULL,",
+		  "`item18` mediumint(9) DEFAULT NULL,",
+		  "`item19` mediumint(9) DEFAULT NULL,",
+		  "`item20` mediumint(9) DEFAULT NULL,",
+		  "`item21` mediumint(9) DEFAULT NULL,",
+		  "`item22` mediumint(9) DEFAULT NULL,",
+		  "`item23` mediumint(9) DEFAULT NULL,",
+		  "`item24` mediumint(9) DEFAULT NULL,",
+		  "`item25` mediumint(9) DEFAULT NULL,",
+		  "`qtd1` smallint(6) DEFAULT NULL,",
+		  "`qtd2` smallint(6) DEFAULT NULL,",
+		  "`qtd3` smallint(6) DEFAULT NULL,",
+		  "`qtd4` smallint(6) DEFAULT NULL,",
+		  "`qtd5` smallint(6) DEFAULT NULL,",
+		  "`qtd6` smallint(6) DEFAULT NULL,",
+		  "`qtd7` smallint(6) DEFAULT NULL,",
+		  "`qtd8` smallint(6) DEFAULT NULL,",
+		  "`qtd9` smallint(6) DEFAULT NULL,",
+		  "`qtd10` smallint(6) DEFAULT NULL,",
+		  "`qtd11` smallint(6) DEFAULT NULL,",
+		  "`qtd12` smallint(6) DEFAULT NULL,",
+		  "`qtd13` smallint(6) DEFAULT NULL,",
+		  "`qtd14` smallint(6) DEFAULT NULL,",
+		  "`qtd15` smallint(6) DEFAULT NULL,",
+		  "`qtd16` smallint(6) DEFAULT NULL,",
+		  "`qtd17` smallint(6) DEFAULT NULL,",
+		  "`qtd18` smallint(6) DEFAULT NULL,",
+		  "`qtd19` smallint(6) DEFAULT NULL,",
+		  "`qtd20` smallint(6) DEFAULT NULL,",
+		  "`qtd21` smallint(6) DEFAULT NULL,",
+		  "`qtd22` smallint(6) DEFAULT NULL,",
+		  "`qtd23` smallint(6) DEFAULT NULL,",
+		  "`qtd24` smallint(6) DEFAULT NULL,",
+		  "`qtd25` smallint(6) DEFAULT NULL,",
+		  "`bitem` mediumint(9) DEFAULT NULL,",
+		  "`bqtd` smallint(6) DEFAULT NULL,",
+		  "`logdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,",
+		  "`char_name` varchar(30) NOT NULL,",
+		  "UNIQUE(`chave`))";
+		  query_sql implode(.@tableschm$,"");
+		  
+	//Load the Bonus Item
+	if($BP_CHAVE >= 1)
+		query_sql "SELECT `bitem`,`bqtd` FROM `battle_pass_reward` WHERE `chave`='"+$BP_CHAVE+"'",.bItem,.bQtd;
+	
+	//Check Key x Reward
+	//==
+	if($BP_CHAVE >= 1)
+	{
+		query_sql "SELECT `chave` FROM `battle_pass_reward` WHERE `chave`='"+$BP_CHAVE+"'",.@rst$;
+		if(.@rst$ == "") set $BP_CHAVE,-1;
+	}
+	else set $BP_CHAVE,-1;
+	
+	end;
+
+
+OnBP_CMD:
+
+	if(getgroupid() >= 99 && strtolower(.@atcmd_parameters$[0]) != "")
+	{
+		if(strtolower(.@atcmd_parameters$[0]) == strtolower("att")){ set $BP_CHAVE_TMP,$BP_CHAVE; set $BP_CHAVE,-1; dispbottom "[BATTLE PASS]: ระบบยังไม่เปิดใช้งาน!",0x4ca6ff; }
+		if(strtolower(.@atcmd_parameters$[0]) == strtolower("up")){ set $BP_CHAVE,$BP_CHAVE_TMP; dispbottom "[BATTLE PASS]: The system is working!"; }		
+		end;		
+	}
+	
+	if(#BP_CHAVE != $BP_CHAVE || $BP_CHAVE < 1) end;
+
+	mes "[Battle Pass]";
+	mes "มีอะไรให้ข้าช่วยไหมท่าน"+strcharinfo(0)+"?";
+	if(select(""+(#BP_msgSHOW?"^00FF00เปิดการแสดง^000000":"^FF0000ปิดการแสดง^000000")+" รายการแจ้งตืนในช่องแชท:เปิดหน้าต่าง Battle Pass")==2){ close2; cutin "pass_HI_"+#BP_LEVEL+"",4; end; }
+	else set #BP_msgSHOW,(#BP_msgSHOW?0:1);	
+	mes "เรียบร้อย!";
+	close;
+
+//Check / reset limit
+//==
+OnPCLoginEvent:
+
+	if(gettimetick(2)>#BP_TIME && #BP_EXP_LIMIT)
+	{
+		set .@h,(23-gettime(DT_HOUR))*3600;
+		set .@m,(59-gettime(DT_MINUTE))*60;
+		set .@s,(59-gettime(DT_SECOND));
+		set #BP_TIME,gettimetick(2)+(.@d+.@h+.@m+.@s);
+		set #BP_EXP_LIMIT,0;
+	}
+	end;
+	
+//Set maintenance mode 1st of the month
+//==
+OnHour00:
+	if(gettime(DT_DAYOFMONTH) == 1) set $BP_CHAVE,-1;
+	end;
+/*
+OnNPCKillEvent:
+	
+	//if($BP_CHAVE < 1){ dispbottom "[BATTLE PASS]: ระบบยังไม่เปิดใช้งาน!"; end; }
+	if(gettimetick(2) > #BP_EXPIRE || #BP_CHAVE != $BP_CHAVE) end;
+
+	//Champion Mob
+	set .@mnm$,getmonsterinfo(killedrid,MOB_NAME);
+	if(.@cMob=callfunc("F_Battle_Passe",3,.@mnm$))
+	{
+		set .@BP_EXP,.@cMob;		
+		if(getcharid(1)) callfunc("F_Battle_Passe",4,getcharid(1),.@BP_EXP,2);
+		else callfunc("F_Battle_Passe",5,.@BP_EXP);
+		end;
+	}
+	
+	//Mvp e normal mob
+	set .@mlv,getmonsterinfo(killedrid,MOB_LV);
+	if(getmonsterinfo(killedrid, MOB_MVPEXP))
+	{
+		set .@BP_EXP,5000;
+		if(getcharid(1)) callfunc("F_Battle_Passe",4,getcharid(1),.@BP_EXP,2);
+		else callfunc("F_Battle_Passe",5,.@BP_EXP);
+		end;
+	}
+	else
+	{
+		set .@BP_EXP,(.@mlv<21?6:.@mlv<41?12:.@mlv<61?18:.@mlv<81?24:30);		
+		if(getcharid(1)) callfunc("F_Battle_Passe",4,getcharid(1),.@BP_EXP,2);
+		else callfunc("F_Battle_Passe",5,.@BP_EXP);
+		end;
+	}
+	end;
+*/
+}

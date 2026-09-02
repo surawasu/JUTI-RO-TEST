@@ -1,0 +1,11 @@
+moc_fild132	mapflag	PVP
+moc_fild134	mapflag	PVP
+moc_fild136	mapflag	PVP
+
+
+moc_fild131,0,0	monster	Poring	31147,75
+moc_fild132,0,0	monster	Poring	31147,150
+moc_fild133,0,0	monster	Poring	31148,75
+moc_fild134,0,0	monster	Poring	31148,150
+moc_fild135,0,0	monster	Poring	31149,75
+moc_fild136,0,0	monster	Poring	31149,150

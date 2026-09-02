@@ -1,0 +1,8 @@
+Header:
+  Type: VIP_BONUS_DB
+  Version: 1
+
+Body:
+  - Id: 1
+    Script: |
+      bonus2 bDropAddRace,RC_ALL,30;

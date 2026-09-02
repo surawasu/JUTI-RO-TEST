@@ -1,0 +1,78 @@
+//===== rAthena Script =======================================
+//= Reset NPC
+//===== Description: =========================================
+//= Resets skills, stats, or both.
+//===== Additional Comments: =================================
+//= 1.0 First Version
+//= 1.1 Optimized for the greater good. [Kisuka]
+//= 1.2 Cleaning [Euphy]
+//= 1.3 All statuses removed upon skill reset. [Euphy]
+//= 1.4 Compressed Script, Added limit use option [Stolao]
+//=	Changed set -> setarray, Improved text with F_InsertPlural
+//= 1.5 Added sc_end_class to reset related status changes [sader1992]
+//============================================================
+
+like_game,98,123,4	script	รีสเตตัส & รีสกิล	721,{
+
+	mes "[ รีสเตตัส & รีสกิล ]";
+	mes "Reset Stats : ^FF3355ฟรี !!^000000";
+	mes "Reset Skills : ^FF3355ฟรี !!^000000";
+
+	menu
+	" - ^FF3355Reset Skills^000000",reset1,
+	" - ^FF3355Reset Stats^000000",reset2,
+	//" - ^FF3355Reset ทั้งคู่^000000",reset3,
+	" - ^FF3355ลด Vit^000000",reset4,
+	//" - ^FF3355รับ All Status (เฉพาะ CBT)^000000",allstats,
+	" - ออก",EX;
+	
+reset1:	
+sc_end_class;
+ResetSkill;
+clear;
+mes "[ รีสเตตัส & รีสกิล ]";
+mes "เรียบร้อย!";
+end;
+
+reset2:
+ResetStatus;
+StatusPoint += 1273*(jutilv);
+clear;
+mes "[ รีสเตตัส & รีสกิล ]";
+mes "เรียบร้อย!";
+end;
+
+reset3:
+sc_end_class;
+ResetSkill;
+ResetStatus;
+StatusPoint += 1273*(jutilv);
+clear;
+mes "[ รีสเตตัส & รีสกิล ]";
+mes "เรียบร้อย!";
+end;
+
+reset4:
+next;
+mes "[ รีสเตตัส & รีสกิล ]";
+mes "กรอกจำนวนที่ต้องการลด";
+input .@amount;
+if (.@amount<1).@amount=0;
+statusup2 bVit,-.@amount;
+clear;
+mes "[ รีสเตตัส & รีสกิล ]";
+mes "เรียบร้อย!";
+end;
+
+allstats:
+atcommand "@allskill";
+atcommand "@allstats";
+end;
+
+Ex:
+end;
+
+OnInit:
+waitingroom " รีสเตตัส & รีสกิล",0;
+end;	
+}

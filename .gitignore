@@ -1,0 +1,93 @@
+# Original native client assets are preserved outside source control.
+/JUTI-HI Client/
+
+# Compiled binaries and debugger output.
+*.exe
+*.dll
+*.pdb
+*.ilk
+*.iobj
+*.ipdb
+*.obj
+*.o
+*.a
+*.lib
+!/JUTI-HI Server/3rdparty/mysql/lib/**/*.lib
+!/JUTI-HI Server/3rdparty/pcre/lib/**/*.lib
+!/JUTI-HI Server/3rdparty/zlib/lib/**/*.lib
+*.exp
+*.dmp
+
+# Build, IDE, cache, log, and generated output.
+**/.vs/
+**/.idea/
+**/.vscode/
+**/.bash_history
+**/.zsh_history
+**/ConsoleHost_history.txt
+**/.npmrc
+**/.pypirc
+*.swp
+*.swo
+*~
+*.suo
+*.user
+*.stackdump
+core
+core.*
+*.gcda
+*.gcno
+*.profraw
+*.profdata
+**/TestResults/
+*.trx
+**/*.dir/
+*.recipe
+*.FileListAbsolute.txt
+**/build/
+**/cbuild/
+**/CMakeFiles/
+**/obj/
+**/generated/
+**/map_cache.dat
+**/dist/
+**/coverage/
+**/node_modules/
+**/logs/
+**/log/
+**/save/
+*.log
+*.pid
+*.tmp
+*.cache
+
+# Runtime databases, backups, and dumps. SQL schemas/migrations remain trackable.
+**/mysql-data/
+**/mariadb-data/
+**/db-data/
+**/backups/
+*.bak
+*.dump
+*.sql.gz
+
+# Local secrets and machine-specific configuration.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.pfx
+*.p12
+secrets/
+**/secrets/
+**/conf/import/char_conf.txt
+**/conf/import/inter_conf.txt
+**/conf/import/inter_server.yml
+**/conf/import/login_conf.txt
+**/conf/import/map_conf.txt
+**/conf/import/web_conf.txt
+
+# Original and generated game asset containers.
+*.grf
+*.rgz
+*.thor

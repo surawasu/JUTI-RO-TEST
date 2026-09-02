@@ -1,0 +1,4 @@
+function	script	randcolor	{
+set_color_nick(rand(1,300));
+end;
+}

@@ -1,0 +1,1084 @@
+sec_pri,19,37,3	script	เสริมแกร่งอุปกรณ์	958,{
+disable_items;
+
+
+mes "[เสริมแกร่งอุปกรณ์]";
+mes "โปรดเลือกหัวข้าที่ต้องการ";
+menu	"เสริมแกร่งอุปกรณ์",ENCHANT,
+		"ถอดหินเสริมแกร่ง",UNENCHANT;
+
+UNENCHANT:
+callfunc	"UNSOCKETCOS";
+
+ENCHANT:
+menu	"ออฟหิน TOP",EN_T,
+		"ออฟหิน Middle",EN_M,
+		"ออฟหิน Lower",EN_L,
+		"ออฟหิน Garment",EN_G;
+		//"ออฟหิน Shadow Armor",EN_SA,
+		//"ออฟหิน Shadow Pandent",EN_SL,
+		//"ออฟหิน Shadow Earring",EN_SR;
+
+EN_T:
+	mes "[เสริมแกร่งอุปกรณ์]";
+	mes "ยินดีต้อนรับเข้าสู่บริการ";
+	mes "เสริมพลังให้กับอุปกรณ์ของท่าน~";
+	next;
+	if (select( "เริ่มกระบวนการ.", "จบการสนทนา" ) == 2) {
+		mes "[เสริมแกร่งอุปกรณ์]";
+		mes "ไว้เจอกันใหม่~";
+		close;
+	}
+	if (checkweight(1119,3) == 0) {
+		mes "[เสริมแกร่งอุปกรณ์]";
+		mes "ดูเหมือนเจ้าจะมีช่องว่างไม่เพียงพอ.";
+		close;
+	}
+	.@eq_top = getequipid(EQI_COSTUME_HEAD_TOP);
+	.@eq_mid = getequipid(EQI_COSTUME_HEAD_MID);
+	.@eq_low = getequipid(EQI_COSTUME_HEAD_LOW);
+
+	if (.@eq_top == -1) {
+		mes "[เสริมแกร่งอุปกรณ์]";
+		mes "ดูเหมือนท่านจะไม่ได้สวมใส่อุปกรณ์ส่วนที่ต้องการเสริมแกร่ง.";
+		close;
+	}
+	if (.@eq_top > -1) {
+		.@part = EQI_COSTUME_HEAD_TOP;
+		.@equip_id = .@eq_top;
+	}
+	else if (.@eq_mid > -1) {
+		.@part = EQI_COSTUME_HEAD_MID;
+		.@equip_id = .@eq_mid;
+	}
+	else if (.@eq_low > -1) {
+		.@part = EQI_COSTUME_HEAD_LOW;
+		.@equip_id = .@eq_low;
+	}
+
+	.@location = getiteminfo(.@equip_id, 5);
+	.@equip_refine = getequiprefinerycnt(.@part);
+	setarray .@card[0], getequipcardid(.@part, 0), getequipcardid(.@part, 1), getequipcardid(.@part, 2), getequipcardid(.@part, 3);
+	setarray .@equip_bitmask[0],
+		EQP_ACC_L,				// EQI_ACC_L
+		EQP_ACC_R,				// EQI_ACC_R
+		EQP_SHOES,				// EQI_SHOES
+		EQP_GARMENT,			// EQI_GARMENT
+		EQP_HEAD_LOW,			// EQI_HEAD_LOW
+		EQP_HEAD_MID,			// EQI_HEAD_MID
+		EQP_HEAD_TOP,			// EQI_HEAD_TOP
+		EQP_ARMOR,				// EQI_ARMOR
+		EQP_HAND_L,				// EQI_HAND_L
+		EQP_HAND_R,				// EQI_HAND_R
+		EQP_COSTUME_HEAD_TOP,	// EQI_COSTUME_HEAD_TOP
+		EQP_COSTUME_HEAD_MID,	// EQI_COSTUME_HEAD_MID
+		EQP_COSTUME_HEAD_LOW,	// EQI_COSTUME_HEAD_LOW
+		EQP_COSTUME_GARMENT,	// EQI_COSTUME_GARMENT
+		EQP_AMMO,				// EQI_AMMO
+		EQP_SHADOW_ARMOR,		// EQI_SHADOW_ARMOR
+		EQP_SHADOW_WEAPON,		// EQI_SHADOW_WEAPON
+		EQP_SHADOW_SHIELD,		// EQI_SHADOW_SHIELD
+		EQP_SHADOW_SHOES,		// EQI_SHADOW_SHOES
+		EQP_SHADOW_ACC_R,		// EQI_SHADOW_ACC_R
+		EQP_SHADOW_ACC_L;		// EQI_SHADOW_ACC_L
+	
+	getinventorylist;	// required for now for getitembound4 to keep the enchant grade
+	for ( .@i = 0; .@i < @inventorylist_count; ++.@i ) {
+		if ((@inventorylist_equip[.@i] & .@equip_bitmask[.@part]))
+			break;
+	}
+	setarray .@opt_id[0], @inventorylist_option_id1[.@i], @inventorylist_option_id2[.@i], @inventorylist_option_id3[.@i], @inventorylist_option_id4[.@i], @inventorylist_option_id5[.@i];
+	setarray .@opt_value[0], @inventorylist_option_value1[.@i], @inventorylist_option_value2[.@i], @inventorylist_option_value3[.@i], @inventorylist_option_value4[.@i], @inventorylist_option_value5[.@i];
+	setarray .@opt_param[0], @inventorylist_option_parameter1[.@i], @inventorylist_option_parameter2[.@i], @inventorylist_option_parameter3[.@i], @inventorylist_option_parameter4[.@i], @inventorylist_option_parameter5[.@i];
+	.@geadeen = getenchantgrade(.@part);
+	mes "[เสริมแกร่งอุปกรณ์]";
+	mes "ว๊าววว~ นี่คือ ^0000FF" + getitemname(.@equip_id) + "^000000!!! ดูดีนี่!!";
+	mes "ท่านต้องการเสริมแกร่งส่วนใดโปรดเลือกด้านล่าง?";
+	next;
+	
+	switch(select("ออฟหิน TOP ช่อง1","ออฟหิน TOP ช่อง2","ออฟหิน TOP ช่อง3")){
+	case 1:
+	.@locacte = 2;
+	.@slot = 0;
+	break;
+	case 2:
+	.@locacte = 2;
+	.@slot = 1;
+	break;
+	case 3:
+	.@locacte = 2;
+	.@slot = 2;
+	break;
+	}
+	
+if(.@locacte == 2){
+	switch(.@slot) {
+	case 0:
+		if (!(.@location & 1024)) {
+			mes "[เสริมแกร่งอุปกรณ์]";
+			mes "อุปกรณ์ส่วนนี้ไม่สามารถเสริมแกร่งได้.";	// custom
+			close;
+		}
+		setarray .@stone_id[0],
+			161090,	161090,	// Rebellion
+			161092,	161092,	// Star Emperor
+			161095,	161095;	// Rebellion
+		break;
+	case 1:
+		if (!(.@location & 1024)) {
+			mes "[เสริมแกร่งอุปกรณ์]";
+			mes "อุปกรณ์ส่วนนี้ไม่สามารถเสริมแกร่งได้.";	// custom
+			close;
+		}
+		setarray .@stone_id[0],
+			161094,	161094;
+		break;
+	case 2:
+		if (!(.@location & 1024)) {
+			mes "[เสริมแกร่งอุปกรณ์]";
+			mes "อุปกรณ์ส่วนนี้ไม่สามารถเสริมแกร่งได้.";	// custom
+			close;
+		}
+		setarray .@stone_id[0],
+			161096,	161096;
+		break;
+	default:
+		mes "[เสริมแกร่งอุปกรณ์]";
+		mes "โปรดตรวจสอบดูอีกครั้ง~";
+		close;
+	}
+	.@size = getarraysize(.@stone_id);
+	for ( .@i = 0; .@i < .@size; .@i += 2 )
+		.@menu$ += sprintf( "%d. %s [%d] left:", (.@i/2)+1, getitemname(.@stone_id[.@i]), countitem(.@stone_id[.@i]) );
+	.@s = (select(.@menu$) - 1) * 2;
+	.@stone = .@stone_id[.@s];
+	.@enchant = .@stone_id[.@s+1];
+
+	if (getequipid(.@part) < 0 || countitem(.@stone) < 1) {
+		mes "[เสริมแกร่งอุปกรณ์]";
+		mes "ดูเหมือนท่านจะไม่ได้ใส่อุปกรณ์.";
+		mes "หรือไม่มีหินเสริมแกร่งอยู่โปรดตรวจสอบ.";
+		close;
+	}
+	mes "^FF0000   !!! คำเตือน !!!^000000";
+	mes "^FF0000ท่านต้องการเสริมแกร่งอุปกรณ์\n^0000FF" + getitemname(.@equip_id) + "^000000!!!";
+	mes "^FF0000ด้วยหิน^000000";
+	mes "^FF0000^0000FF" + getitemname(.@enchant) + "^000000!!!^000000";
+	mes "^FF0000หากอุปกรณ์มีการเสริมแกร่งอยู่แล้ว.^000000";
+	mes "^FF0000จะเป็นการหินเสริมแกร่งเดิมจะหายไป,^000000";
+	mes "^FF0000โปรดยืนยันการตัดสินใจ?^000000";
+	next;
+	if (select( "ยืนยันการดำเนินการ.", "เอาไว้ก่อน." ) == 2) {
+		mes "[เสริมแกร่งอุปกรณ์]";
+		mes "โปรดตรวจสอบดูอีกครั้ง~";
+		close;
+	}
+	delitem .@stone, 1;
+
+	// anti-hack
+	if (callfunc("F_IsEquipIDHack", .@part, .@equip_id) || callfunc("F_IsEquipCardHack", .@part, .@card[0], .@card[1], .@card[2], .@card[3]) || callfunc("F_IsEquipRefineHack", .@part, .@equip_refine))
+		close;
+
+	delequip .@part;
+  	if (rand(1,100) < 101) {
+  		mes "[เสริมแกร่งอุปกรณ์]";
+  		mes "ว๊าวววว... เยี่ยมมาก!!";
+  		mes "มันสมบูรณ์แบบ... ว๊าวววว!";
+  		.@card[.@slot] = .@enchant;
+  	}
+  	else {
+  		mes "[เสริมแกร่งอุปกรณ์]";
+  		mes "History is known for its failure...";
+  		mes "History of Fashion also is...";
+  		mes "Sorry...to disappoint you..~ LoL.";
+  		.@card[.@slot] = .@card[.@slot];
+  	}
+	getitem4( .@equip_id,1,1,.@equip_refine,0,.@card[0],.@card[1],.@card[2],.@card[3],.@geadeen, .@opt_id, .@opt_value, .@opt_param);
+	close;
+}
+end;
+
+
+
+EN_M:
+	mes "[เสริมแกร่งอุปกรณ์]";
+	mes "ยินดีต้อนรับเข้าสู่บริการ";
+	mes "เสริมพลังให้กับอุปกรณ์ของท่าน~";
+	next;
+	if (select( "เริ่มกระบวนการ.", "จบการสนทนา" ) == 2) {
+		mes "[เสริมแกร่งอุปกรณ์]";
+		mes "ไว้เจอกันใหม่~";
+		close;
+	}
+	if (checkweight(1119,3) == 0) {
+		mes "[เสริมแกร่งอุปกรณ์]";
+		mes "ดูเหมือนเจ้าจะมีช่องว่างไม่เพียงพอ.";
+		close;
+	}
+	.@eq_top = getequipid(EQI_COSTUME_HEAD_TOP);
+	.@eq_mid = getequipid(EQI_COSTUME_HEAD_MID);
+	.@eq_low = getequipid(EQI_COSTUME_HEAD_LOW);
+
+	if (.@eq_mid == -1) {
+		mes "[เสริมแกร่งอุปกรณ์]";
+		mes "ดูเหมือนท่านจะไม่ได้สวมใส่อุปกรณ์ส่วนที่ต้องการเสริมแกร่ง.";
+		close;
+	}
+	if (.@eq_top > -1) {
+		.@part = EQI_COSTUME_HEAD_TOP;
+		.@equip_id = .@eq_top;
+	}
+	else if (.@eq_mid > -1) {
+		.@part = EQI_COSTUME_HEAD_MID;
+		.@equip_id = .@eq_mid;
+	}
+	else if (.@eq_low > -1) {
+		.@part = EQI_COSTUME_HEAD_LOW;
+		.@equip_id = .@eq_low;
+	}
+
+	.@location = getiteminfo(.@equip_id, 5);
+	.@equip_refine = getequiprefinerycnt(.@part);
+	setarray .@card[0], getequipcardid(.@part, 0), getequipcardid(.@part, 1), getequipcardid(.@part, 2), getequipcardid(.@part, 3);
+	setarray .@equip_bitmask[0],
+		EQP_ACC_L,				// EQI_ACC_L
+		EQP_ACC_R,				// EQI_ACC_R
+		EQP_SHOES,				// EQI_SHOES
+		EQP_GARMENT,			// EQI_GARMENT
+		EQP_HEAD_LOW,			// EQI_HEAD_LOW
+		EQP_HEAD_MID,			// EQI_HEAD_MID
+		EQP_HEAD_TOP,			// EQI_HEAD_TOP
+		EQP_ARMOR,				// EQI_ARMOR
+		EQP_HAND_L,				// EQI_HAND_L
+		EQP_HAND_R,				// EQI_HAND_R
+		EQP_COSTUME_HEAD_TOP,	// EQI_COSTUME_HEAD_TOP
+		EQP_COSTUME_HEAD_MID,	// EQI_COSTUME_HEAD_MID
+		EQP_COSTUME_HEAD_LOW,	// EQI_COSTUME_HEAD_LOW
+		EQP_COSTUME_GARMENT,	// EQI_COSTUME_GARMENT
+		EQP_AMMO,				// EQI_AMMO
+		EQP_SHADOW_ARMOR,		// EQI_SHADOW_ARMOR
+		EQP_SHADOW_WEAPON,		// EQI_SHADOW_WEAPON
+		EQP_SHADOW_SHIELD,		// EQI_SHADOW_SHIELD
+		EQP_SHADOW_SHOES,		// EQI_SHADOW_SHOES
+		EQP_SHADOW_ACC_R,		// EQI_SHADOW_ACC_R
+		EQP_SHADOW_ACC_L;		// EQI_SHADOW_ACC_L
+	
+	getinventorylist;	// required for now for getitembound4 to keep the enchant grade
+	for ( .@i = 0; .@i < @inventorylist_count; ++.@i ) {
+		if ((@inventorylist_equip[.@i] & .@equip_bitmask[.@part]))
+			break;
+	}
+	setarray .@opt_id[0], @inventorylist_option_id1[.@i], @inventorylist_option_id2[.@i], @inventorylist_option_id3[.@i], @inventorylist_option_id4[.@i], @inventorylist_option_id5[.@i];
+	setarray .@opt_value[0], @inventorylist_option_value1[.@i], @inventorylist_option_value2[.@i], @inventorylist_option_value3[.@i], @inventorylist_option_value4[.@i], @inventorylist_option_value5[.@i];
+	setarray .@opt_param[0], @inventorylist_option_parameter1[.@i], @inventorylist_option_parameter2[.@i], @inventorylist_option_parameter3[.@i], @inventorylist_option_parameter4[.@i], @inventorylist_option_parameter5[.@i];
+	.@geadeen = getenchantgrade(.@part);
+	mes "[เสริมแกร่งอุปกรณ์]";
+	mes "ว๊าววว~ นี่คือ ^0000FF" + getitemname(.@equip_id) + "^000000!!! ดูดีนี่!!";
+	mes "ท่านต้องการเสริมแกร่งส่วนใดโปรดเลือกด้านล่าง?";
+	next;
+	
+	switch(select("ออฟหิน Middle ช่อง1","ออฟหิน Middle ช่อง2","ออฟหิน Middle ช่อง3")){
+	case 1:
+	.@locacte = 2;
+	.@slot = 0;
+	break;
+	case 2:
+	.@locacte = 2;
+	.@slot = 1;
+	break;
+	case 3:
+	.@locacte = 2;
+	.@slot = 2;
+	break;
+	}
+	
+if(.@locacte == 2){
+	switch(.@slot) {
+	case 0:
+		if (!(.@location & 2048)) {
+			mes "[เสริมแกร่งอุปกรณ์]";
+			mes "อุปกรณ์ส่วนนี้ไม่สามารถเสริมแกร่งได้.";	// custom
+			close;
+		}
+		setarray .@stone_id[0],
+			161091,	161091;
+		break;
+	case 1:
+		if (!(.@location & 2048)) {
+			mes "[เสริมแกร่งอุปกรณ์]";
+			mes "อุปกรณ์ส่วนนี้ไม่สามารถเสริมแกร่งได้.";	// custom
+			close;
+		}
+		setarray .@stone_id[0],
+			161097,	161097;
+		break;
+	case 2:
+		if (!(.@location & 2048)) {
+			mes "[เสริมแกร่งอุปกรณ์]";
+			mes "อุปกรณ์ส่วนนี้ไม่สามารถเสริมแกร่งได้.";	// custom
+			close;
+		}
+		setarray .@stone_id[0],
+			161098,	161098;
+		break;
+	default:
+		mes "[เสริมแกร่งอุปกรณ์]";
+		mes "โปรดตรวจสอบดูอีกครั้ง~";
+		close;
+	}
+	.@size = getarraysize(.@stone_id);
+	for ( .@i = 0; .@i < .@size; .@i += 2 )
+		.@menu$ += sprintf( "%d. %s [%d] left:", (.@i/2)+1, getitemname(.@stone_id[.@i]), countitem(.@stone_id[.@i]) );
+	.@s = (select(.@menu$) - 1) * 2;
+	.@stone = .@stone_id[.@s];
+	.@enchant = .@stone_id[.@s+1];
+
+	if (getequipid(.@part) < 0 || countitem(.@stone) < 1) {
+		mes "[เสริมแกร่งอุปกรณ์]";
+		mes "ดูเหมือนท่านจะไม่ได้ใส่อุปกรณ์.";
+		mes "หรือไม่มีหินเสริมแกร่งอยู่โปรดตรวจสอบ.";
+		close;
+	}
+	mes "^FF0000   !!! คำเตือน !!!^000000";
+	mes "^FF0000ท่านต้องการเสริมแกร่งอุปกรณ์\n^0000FF" + getitemname(.@equip_id) + "^000000!!!";
+	mes "^FF0000ด้วยหิน^000000";
+	mes "^FF0000^0000FF" + getitemname(.@enchant) + "^000000!!!^000000";
+	mes "^FF0000หากอุปกรณ์มีการเสริมแกร่งอยู่แล้ว.^000000";
+	mes "^FF0000จะเป็นการหินเสริมแกร่งเดิมจะหายไป,^000000";
+	mes "^FF0000โปรดยืนยันการตัดสินใจ?^000000";
+	next;
+	if (select( "ยืนยันการดำเนินการ.", "เอาไว้ก่อน." ) == 2) {
+		mes "[เสริมแกร่งอุปกรณ์]";
+		mes "โปรดตรวจสอบดูอีกครั้ง~";
+		close;
+	}
+	delitem .@stone, 1;
+
+	// anti-hack
+	if (callfunc("F_IsEquipIDHack", .@part, .@equip_id) || callfunc("F_IsEquipCardHack", .@part, .@card[0], .@card[1], .@card[2], .@card[3]) || callfunc("F_IsEquipRefineHack", .@part, .@equip_refine))
+		close;
+
+	delequip .@part;
+  	if (rand(1,100) < 101) {
+  		mes "[เสริมแกร่งอุปกรณ์]";
+  		mes "ว๊าวววว... เยี่ยมมาก!!";
+  		mes "มันสมบูรณ์แบบ... ว๊าวววว!";
+  		.@card[.@slot] = .@enchant;
+  	}
+  	else {
+  		mes "[เสริมแกร่งอุปกรณ์]";
+  		mes "History is known for its failure...";
+  		mes "History of Fashion also is...";
+  		mes "Sorry...to disappoint you..~ LoL.";
+  		.@card[.@slot] = .@card[.@slot];
+  	}
+	getitem4( .@equip_id,1,1,.@equip_refine,0,.@card[0],.@card[1],.@card[2],.@card[3],.@geadeen, .@opt_id, .@opt_value, .@opt_param);
+	close;
+}
+end;
+
+EN_L:
+	mes "[เสริมแกร่งอุปกรณ์]";
+	mes "ยินดีต้อนรับเข้าสู่บริการ";
+	mes "เสริมพลังให้กับอุปกรณ์ของท่าน~";
+	next;
+	if (select( "เริ่มกระบวนการ.", "จบการสนทนา" ) == 2) {
+		mes "[เสริมแกร่งอุปกรณ์]";
+		mes "ไว้เจอกันใหม่~";
+		close;
+	}
+	if (checkweight(1119,3) == 0) {
+		mes "[เสริมแกร่งอุปกรณ์]";
+		mes "ดูเหมือนเจ้าจะมีช่องว่างไม่เพียงพอ.";
+		close;
+	}
+	.@eq_top = getequipid(EQI_COSTUME_HEAD_TOP);
+	.@eq_mid = getequipid(EQI_COSTUME_HEAD_MID);
+	.@eq_low = getequipid(EQI_COSTUME_HEAD_LOW);
+
+	if (.@eq_low == -1) {
+		mes "[เสริมแกร่งอุปกรณ์]";
+		mes "ดูเหมือนท่านจะไม่ได้สวมใส่อุปกรณ์ส่วนที่ต้องการเสริมแกร่ง.";
+		close;
+	}
+	if (.@eq_top > -1) {
+		.@part = EQI_COSTUME_HEAD_TOP;
+		.@equip_id = .@eq_top;
+	}
+	else if (.@eq_mid > -1) {
+		.@part = EQI_COSTUME_HEAD_MID;
+		.@equip_id = .@eq_mid;
+	}
+	else if (.@eq_low > -1) {
+		.@part = EQI_COSTUME_HEAD_LOW;
+		.@equip_id = .@eq_low;
+	}
+
+	.@location = getiteminfo(.@equip_id, 5);
+	.@equip_refine = getequiprefinerycnt(.@part);
+	setarray .@card[0], getequipcardid(.@part, 0), getequipcardid(.@part, 1), getequipcardid(.@part, 2), getequipcardid(.@part, 3);
+	setarray .@equip_bitmask[0],
+		EQP_ACC_L,				// EQI_ACC_L
+		EQP_ACC_R,				// EQI_ACC_R
+		EQP_SHOES,				// EQI_SHOES
+		EQP_GARMENT,			// EQI_GARMENT
+		EQP_HEAD_LOW,			// EQI_HEAD_LOW
+		EQP_HEAD_MID,			// EQI_HEAD_MID
+		EQP_HEAD_TOP,			// EQI_HEAD_TOP
+		EQP_ARMOR,				// EQI_ARMOR
+		EQP_HAND_L,				// EQI_HAND_L
+		EQP_HAND_R,				// EQI_HAND_R
+		EQP_COSTUME_HEAD_TOP,	// EQI_COSTUME_HEAD_TOP
+		EQP_COSTUME_HEAD_MID,	// EQI_COSTUME_HEAD_MID
+		EQP_COSTUME_HEAD_LOW,	// EQI_COSTUME_HEAD_LOW
+		EQP_COSTUME_GARMENT,	// EQI_COSTUME_GARMENT
+		EQP_AMMO,				// EQI_AMMO
+		EQP_SHADOW_ARMOR,		// EQI_SHADOW_ARMOR
+		EQP_SHADOW_WEAPON,		// EQI_SHADOW_WEAPON
+		EQP_SHADOW_SHIELD,		// EQI_SHADOW_SHIELD
+		EQP_SHADOW_SHOES,		// EQI_SHADOW_SHOES
+		EQP_SHADOW_ACC_R,		// EQI_SHADOW_ACC_R
+		EQP_SHADOW_ACC_L;		// EQI_SHADOW_ACC_L
+	
+	getinventorylist;	// required for now for getitembound4 to keep the enchant grade
+	for ( .@i = 0; .@i < @inventorylist_count; ++.@i ) {
+		if ((@inventorylist_equip[.@i] & .@equip_bitmask[.@part]))
+			break;
+	}
+	setarray .@opt_id[0], @inventorylist_option_id1[.@i], @inventorylist_option_id2[.@i], @inventorylist_option_id3[.@i], @inventorylist_option_id4[.@i], @inventorylist_option_id5[.@i];
+	setarray .@opt_value[0], @inventorylist_option_value1[.@i], @inventorylist_option_value2[.@i], @inventorylist_option_value3[.@i], @inventorylist_option_value4[.@i], @inventorylist_option_value5[.@i];
+	setarray .@opt_param[0], @inventorylist_option_parameter1[.@i], @inventorylist_option_parameter2[.@i], @inventorylist_option_parameter3[.@i], @inventorylist_option_parameter4[.@i], @inventorylist_option_parameter5[.@i];
+	.@geadeen = getenchantgrade(.@part);
+	mes "[เสริมแกร่งอุปกรณ์]";
+	mes "ว๊าววว~ นี่คือ ^0000FF" + getitemname(.@equip_id) + "^000000!!! ดูดีนี่!!";
+	mes "ท่านต้องการเสริมแกร่งส่วนใดโปรดเลือกด้านล่าง?";
+	next;
+	
+	switch(select("ออฟหิน Lower ช่อง1")){
+	case 1:
+	.@locacte = 2;
+	.@slot = 0;
+	break;
+	}
+	
+if(.@locacte == 2){
+	switch(.@slot) {
+	case 0:
+		if (!(.@location & 4096)) {
+			mes "[เสริมแกร่งอุปกรณ์]";
+			mes "อุปกรณ์ส่วนนี้ไม่สามารถเสริมแกร่งได้.";	// custom
+			close;
+		}
+		setarray .@stone_id[0],
+			161093,	161093;
+		break;
+	default:
+		mes "[เสริมแกร่งอุปกรณ์]";
+		mes "โปรดตรวจสอบดูอีกครั้ง~";
+		close;
+	}
+	.@size = getarraysize(.@stone_id);
+	for ( .@i = 0; .@i < .@size; .@i += 2 )
+		.@menu$ += sprintf( "%d. %s [%d] left:", (.@i/2)+1, getitemname(.@stone_id[.@i]), countitem(.@stone_id[.@i]) );
+	.@s = (select(.@menu$) - 1) * 2;
+	.@stone = .@stone_id[.@s];
+	.@enchant = .@stone_id[.@s+1];
+
+	if (getequipid(.@part) < 0 || countitem(.@stone) < 1) {
+		mes "[เสริมแกร่งอุปกรณ์]";
+		mes "ดูเหมือนท่านจะไม่ได้ใส่อุปกรณ์.";
+		mes "หรือไม่มีหินเสริมแกร่งอยู่โปรดตรวจสอบ.";
+		close;
+	}
+	mes "^FF0000   !!! คำเตือน !!!^000000";
+	mes "^FF0000ท่านต้องการเสริมแกร่งอุปกรณ์\n^0000FF" + getitemname(.@equip_id) + "^000000!!!";
+	mes "^FF0000ด้วยหิน^000000";
+	mes "^FF0000^0000FF" + getitemname(.@enchant) + "^000000!!!^000000";
+	mes "^FF0000หากอุปกรณ์มีการเสริมแกร่งอยู่แล้ว.^000000";
+	mes "^FF0000จะเป็นการหินเสริมแกร่งเดิมจะหายไป,^000000";
+	mes "^FF0000โปรดยืนยันการตัดสินใจ?^000000";
+	next;
+	if (select( "ยืนยันการดำเนินการ.", "เอาไว้ก่อน." ) == 2) {
+		mes "[เสริมแกร่งอุปกรณ์]";
+		mes "โปรดตรวจสอบดูอีกครั้ง~";
+		close;
+	}
+	delitem .@stone, 1;
+
+	// anti-hack
+	if (callfunc("F_IsEquipIDHack", .@part, .@equip_id) || callfunc("F_IsEquipCardHack", .@part, .@card[0], .@card[1], .@card[2], .@card[3]) || callfunc("F_IsEquipRefineHack", .@part, .@equip_refine))
+		close;
+
+	delequip .@part;
+  	if (rand(1,100) < 101) {
+  		mes "[เสริมแกร่งอุปกรณ์]";
+  		mes "ว๊าวววว... เยี่ยมมาก!!";
+  		mes "มันสมบูรณ์แบบ... ว๊าวววว!";
+  		.@card[.@slot] = .@enchant;
+  	}
+  	else {
+  		mes "[เสริมแกร่งอุปกรณ์]";
+  		mes "History is known for its failure...";
+  		mes "History of Fashion also is...";
+  		mes "Sorry...to disappoint you..~ LoL.";
+  		.@card[.@slot] = .@card[.@slot];
+  	}
+	getitem4( .@equip_id,1,1,.@equip_refine,0,.@card[0],.@card[1],.@card[2],.@card[3],.@geadeen, .@opt_id, .@opt_value, .@opt_param);
+	close;
+}
+end;
+
+EN_G:
+	mes "[เสริมแกร่งอุปกรณ์]";
+	mes "ยินดีต้อนรับเข้าสู่บริการ";
+	mes "เสริมพลังให้กับอุปกรณ์ของท่าน~";
+	next;
+	if (select( "เริ่มกระบวนการ.", "จบการสนทนา" ) == 2) {
+		mes "[เสริมแกร่งอุปกรณ์]";
+		mes "ไว้เจอกันใหม่~";
+		close;
+	}
+	if (checkweight(1119,3) == 0) {
+		mes "[เสริมแกร่งอุปกรณ์]";
+		mes "ดูเหมือนเจ้าจะมีช่องว่างไม่เพียงพอ.";
+		close;
+	}
+	.@eq_garment = getequipid(EQI_COSTUME_GARMENT);
+
+	if (.@eq_garment == -1) {
+		mes "[เสริมแกร่งอุปกรณ์]";
+		mes "ดูเหมือนท่านจะไม่ได้สวมใส่อุปกรณ์ส่วนที่ต้องการเสริมแกร่ง.";
+		close;
+	}
+	if (.@eq_garment > -1) {
+		.@part = EQI_COSTUME_GARMENT;
+		.@equip_id = .@eq_garment;
+	}
+
+
+	.@location = getiteminfo(.@equip_id, 5);
+	.@equip_refine = getequiprefinerycnt(.@part);
+	setarray .@card[0], getequipcardid(.@part, 0), getequipcardid(.@part, 1), getequipcardid(.@part, 2), getequipcardid(.@part, 3);
+	setarray .@equip_bitmask[0],
+		EQP_ACC_L,				// EQI_ACC_L
+		EQP_ACC_R,				// EQI_ACC_R
+		EQP_SHOES,				// EQI_SHOES
+		EQP_GARMENT,			// EQI_GARMENT
+		EQP_HEAD_LOW,			// EQI_HEAD_LOW
+		EQP_HEAD_MID,			// EQI_HEAD_MID
+		EQP_HEAD_TOP,			// EQI_HEAD_TOP
+		EQP_ARMOR,				// EQI_ARMOR
+		EQP_HAND_L,				// EQI_HAND_L
+		EQP_HAND_R,				// EQI_HAND_R
+		EQP_COSTUME_HEAD_TOP,	// EQI_COSTUME_HEAD_TOP
+		EQP_COSTUME_HEAD_MID,	// EQI_COSTUME_HEAD_MID
+		EQP_COSTUME_HEAD_LOW,	// EQI_COSTUME_HEAD_LOW
+		EQP_COSTUME_GARMENT,	// EQI_COSTUME_GARMENT
+		EQP_AMMO,				// EQI_AMMO
+		EQP_SHADOW_ARMOR,		// EQI_SHADOW_ARMOR
+		EQP_SHADOW_WEAPON,		// EQI_SHADOW_WEAPON
+		EQP_SHADOW_SHIELD,		// EQI_SHADOW_SHIELD
+		EQP_SHADOW_SHOES,		// EQI_SHADOW_SHOES
+		EQP_SHADOW_ACC_R,		// EQI_SHADOW_ACC_R
+		EQP_SHADOW_ACC_L;		// EQI_SHADOW_ACC_L
+	
+	getinventorylist;	// required for now for getitembound4 to keep the enchant grade
+	for ( .@i = 0; .@i < @inventorylist_count; ++.@i ) {
+		if ((@inventorylist_equip[.@i] & .@equip_bitmask[.@part]))
+			break;
+	}
+	setarray .@opt_id[0], @inventorylist_option_id1[.@i], @inventorylist_option_id2[.@i], @inventorylist_option_id3[.@i], @inventorylist_option_id4[.@i], @inventorylist_option_id5[.@i];
+	setarray .@opt_value[0], @inventorylist_option_value1[.@i], @inventorylist_option_value2[.@i], @inventorylist_option_value3[.@i], @inventorylist_option_value4[.@i], @inventorylist_option_value5[.@i];
+	setarray .@opt_param[0], @inventorylist_option_parameter1[.@i], @inventorylist_option_parameter2[.@i], @inventorylist_option_parameter3[.@i], @inventorylist_option_parameter4[.@i], @inventorylist_option_parameter5[.@i];
+	.@geadeen = getenchantgrade(.@part);
+	mes "[เสริมแกร่งอุปกรณ์]";
+	mes "ว๊าววว~ นี่คือ ^0000FF" + getitemname(.@equip_id) + "^000000!!! ดูดีนี่!!";
+	mes "ท่านต้องการเสริมแกร่งส่วนใดโปรดเลือกด้านล่าง?";
+	next;
+	
+	switch(select("ออฟหิน Garment ช่อง1")){
+	case 1:
+	.@locacte = 2;
+	.@slot = 0;
+	break;
+	}
+	
+if(.@locacte == 2){
+	switch(.@slot) {
+	case 0:
+		if (!(.@location & 8192)) {
+			mes "[เสริมแกร่งอุปกรณ์]";
+			mes "อุปกรณ์ส่วนนี้ไม่สามารถเสริมแกร่งได้.";	// custom
+			close;
+		}
+		setarray .@stone_id[0],
+			161112,	161112,
+			161113,	161113,
+			161114,	161114;
+		break;
+	default:
+		mes "[เสริมแกร่งอุปกรณ์]";
+		mes "โปรดตรวจสอบดูอีกครั้ง~";
+		close;
+	}
+	.@size = getarraysize(.@stone_id);
+	for ( .@i = 0; .@i < .@size; .@i += 2 )
+		.@menu$ += sprintf( "%d. %s [%d] left:", (.@i/2)+1, getitemname(.@stone_id[.@i]), countitem(.@stone_id[.@i]) );
+	.@s = (select(.@menu$) - 1) * 2;
+	.@stone = .@stone_id[.@s];
+	.@enchant = .@stone_id[.@s+1];
+
+	if (getequipid(.@part) < 0 || countitem(.@stone) < 1) {
+		mes "[เสริมแกร่งอุปกรณ์]";
+		mes "ดูเหมือนท่านจะไม่ได้ใส่อุปกรณ์.";
+		mes "หรือไม่มีหินเสริมแกร่งอยู่โปรดตรวจสอบ.";
+		close;
+	}
+	mes "^FF0000   !!! คำเตือน !!!^000000";
+	mes "^FF0000ท่านต้องการเสริมแกร่งอุปกรณ์\n^0000FF" + getitemname(.@equip_id) + "^000000!!!";
+	mes "^FF0000ด้วยหิน^000000";
+	mes "^FF0000^0000FF" + getitemname(.@enchant) + "^000000!!!^000000";
+	mes "^FF0000หากอุปกรณ์มีการเสริมแกร่งอยู่แล้ว.^000000";
+	mes "^FF0000จะเป็นการหินเสริมแกร่งเดิมจะหายไป,^000000";
+	mes "^FF0000โปรดยืนยันการตัดสินใจ?^000000";
+	next;
+	if (select( "ยืนยันการดำเนินการ.", "เอาไว้ก่อน." ) == 2) {
+		mes "[เสริมแกร่งอุปกรณ์]";
+		mes "โปรดตรวจสอบดูอีกครั้ง~";
+		close;
+	}
+	delitem .@stone, 1;
+
+	// anti-hack
+	if (callfunc("F_IsEquipIDHack", .@part, .@equip_id) || callfunc("F_IsEquipCardHack", .@part, .@card[0], .@card[1], .@card[2], .@card[3]) || callfunc("F_IsEquipRefineHack", .@part, .@equip_refine))
+		close;
+
+	delequip .@part;
+  	if (rand(1,100) < 101) {
+  		mes "[เสริมแกร่งอุปกรณ์]";
+  		mes "ว๊าวววว... เยี่ยมมาก!!";
+  		mes "มันสมบูรณ์แบบ... ว๊าวววว!";
+  		.@card[.@slot] = .@enchant;
+  	}
+  	else {
+  		mes "[เสริมแกร่งอุปกรณ์]";
+  		mes "History is known for its failure...";
+  		mes "History of Fashion also is...";
+  		mes "Sorry...to disappoint you..~ LoL.";
+  		.@card[.@slot] = .@card[.@slot];
+  	}
+	getitem4( .@equip_id,1,1,.@equip_refine,0,.@card[0],.@card[1],.@card[2],.@card[3],.@geadeen, .@opt_id, .@opt_value, .@opt_param);
+	close;
+}
+end;
+
+
+EN_SA:
+	disable_items;
+	mes "[Lace La Zard]";
+	mes "นี่คือบริการ ออฟหิน ^ff0000Shadow Armor^000000 ของ ^ff0000Hotweek V.3^000000!";
+	mes "มาเริ่มกันเลยไหม!";
+	next;
+	if (select( "Apply ability.", "End Conversation." ) == 2) {
+		mes "[Lace La Zard]";
+		mes "Yes? Your want to look more?";
+		close;
+	}
+	if (checkweight(1119,3) == 0) {
+		mes "[Lace La Zard]";
+		mes "Well... Your shoulder doesn't look possilbe for any more upgrade...!";
+		mes "Don't be cruel to your shoulder!";
+		next;
+		mes "It seems you have too many items on you.";
+		mes "Come back after clearing some inventory spaces.";
+		close;
+	}
+	
+	.@part = EQI_SHADOW_ARMOR;
+	.@equip_id = getequipid(.@part);
+	setarray .@equip_bitmask[0],
+		EQP_ACC_L,				// EQI_ACC_L
+		EQP_ACC_R,				// EQI_ACC_R
+		EQP_SHOES,				// EQI_SHOES
+		EQP_GARMENT,			// EQI_GARMENT
+		EQP_HEAD_LOW,			// EQI_HEAD_LOW
+		EQP_HEAD_MID,			// EQI_HEAD_MID
+		EQP_HEAD_TOP,			// EQI_HEAD_TOP
+		EQP_ARMOR,				// EQI_ARMOR
+		EQP_HAND_L,				// EQI_HAND_L
+		EQP_HAND_R,				// EQI_HAND_R
+		EQP_COSTUME_HEAD_TOP,	// EQI_COSTUME_HEAD_TOP
+		EQP_COSTUME_HEAD_MID,	// EQI_COSTUME_HEAD_MID
+		EQP_COSTUME_HEAD_LOW,	// EQI_COSTUME_HEAD_LOW
+		EQP_COSTUME_GARMENT,	// EQI_COSTUME_GARMENT
+		EQP_AMMO,				// EQI_AMMO
+		EQP_SHADOW_ARMOR,		// EQI_SHADOW_ARMOR
+		EQP_SHADOW_WEAPON,		// EQI_SHADOW_WEAPON
+		EQP_SHADOW_SHIELD,		// EQI_SHADOW_SHIELD
+		EQP_SHADOW_SHOES,		// EQI_SHADOW_SHOES
+		EQP_SHADOW_ACC_R,		// EQI_SHADOW_ACC_R
+		EQP_SHADOW_ACC_L;		// EQI_SHADOW_ACC_L
+	
+	getinventorylist;	// required for now for getitembound4 to keep the enchant grade
+	for ( .@i = 0; .@i < @inventorylist_count; ++.@i ) {
+		if ((@inventorylist_equip[.@i] & .@equip_bitmask[.@part]))
+			break;
+	}
+	setarray .@opt_id[0], @inventorylist_option_id1[.@i], @inventorylist_option_id2[.@i], @inventorylist_option_id3[.@i], @inventorylist_option_id4[.@i], @inventorylist_option_id5[.@i];
+	setarray .@opt_value[0], @inventorylist_option_value1[.@i], @inventorylist_option_value2[.@i], @inventorylist_option_value3[.@i], @inventorylist_option_value4[.@i], @inventorylist_option_value5[.@i];
+	setarray .@opt_param[0], @inventorylist_option_parameter1[.@i], @inventorylist_option_parameter2[.@i], @inventorylist_option_parameter3[.@i], @inventorylist_option_parameter4[.@i], @inventorylist_option_parameter5[.@i];
+	.@geadeen = getenchantgrade(.@part);
+
+	if (.@equip_id == -1) {
+		mes "[Lace La Zard]";
+		mes "ดูเหมือนท่านจะไม่ได้ใส่อุปกรณ์สำหรับออฟหิน.";
+		close;
+	}
+	.@equip_refine = getequiprefinerycnt(.@part);
+	setarray .@card[0], getequipcardid(.@part, 0), getequipcardid(.@part, 1), getequipcardid(.@part, 2), getequipcardid(.@part, 3);
+
+	mes "[Lace La Zard]";
+	mes "Wow ^0000FF" + getitemname(.@equip_id) + "^000000!!! You got some sense there, aren't you?";
+	mes "Great!! I'm fully ready for this upgrade!!";
+	next;
+	setarray .@data$[0],
+		7600000, 7600000, "SwordMan Shadow Soul",
+		7600001, 7600001, "Merchant Shadow Soul",
+		7600002, 7600002, "Thief Shadow Soul",	
+		7600003, 7600003, "Archer Shadow Soul",	
+		7600004, 7600004, "Acolyte Shadow Soul",
+		7600005, 7600005, "Magician Shadow Soul",
+		7600006, 7600006, "Extended Shadow Soul",
+		
+		7600059, 7600059, "SwordMan Shadow Soul V.2",
+		7600060, 7600060, "Merchant Shadow Soul V.2",
+		7600061, 7600061, "Thief Shadow Soul V.2",	
+		7600062, 7600062, "Archer Shadow Soul V.2",	
+		7600063, 7600063, "Acolyte Shadow Soul V.2",
+		7600064, 7600064, "Magician Shadow Soul V.2",
+		7600065, 7600065, "Extended Shadow Soul V.2";
+
+	.@size = getarraysize(.@data$);
+	for ( .@i = 0; .@i < .@size; .@i += 3 ) {
+		.@id = atoi(.@data$[.@i]);
+		.@menu$ += sprintf( "%d. %s (%d) left:", (.@j+1), getitemname(.@id), countitem(.@id) );
+		.@j++;
+	}
+	.@menu$ += "End Conversation.";
+	.@s = (select(.@menu$) - 1) * 3;
+	if (.@s == .@size) {
+		mes "[Lace La Zard]";
+		mes "Yes? Your want to look more?";
+		close;
+	}
+	.@id = atoi(.@data$[.@s]);
+	.@enchant = atoi(.@data$[.@s+1]);
+	.@enchant2 = atoi(.@data$[.@s+1]);
+	if (getequipid(.@part) < 0 || countitem(.@id) < 1) {
+		mes "[Lace La Zard]";
+		mes "You must have both costume item and ability stone for this upgrading work.";
+		close;
+	}
+	mes "^FF0000   !!! Caution !!!^000000";
+	mes "^ff0000This upgrade can be failed.^000000";
+	mes "^ff0000If the item already has extra ability, we will reset item's ability and give " + .@data$[.@s+2] + ".^000000";
+	mes "^ff0000Are you sure about upgrading this item?^000000";
+	next;
+	if (select( "Yes.", "No." ) == 2) {
+		mes "[Lace La Zard]";
+		mes "Yes? Your want to look more?";
+		close;
+	}
+
+	// anti-hack
+	if (callfunc("F_IsEquipIDHack", .@part, .@equip_id) || callfunc("F_IsEquipCardHack", .@part, .@card[0], .@card[1], .@card[2], .@card[3]) || callfunc("F_IsEquipRefineHack", .@part, .@equip_refine))
+		close;
+
+	delitem .@id, 1;
+	delequip .@part;
+
+	mes "[Lace La Zard]";
+	mes "Beautiful!!";
+	mes "Did I really made this myself!!!!";
+	.@card[0] = .@enchant;
+	getitem4( .@equip_id,1,1,.@equip_refine,0,.@card[0],.@card[1],.@card[2],.@card[3],.@geadeen, .@opt_id, .@opt_value, .@opt_param);
+	close;
+end;
+EN_SL:
+	disable_items;
+	mes "[Lace La Zard]";
+	mes "นี่คือบริการ ออฟหิน ^ff0000Shadow Pandent^000000 ของ ^ff0000Hotweek V.3^000000!";
+	mes "มาเริ่มกันเลยไหม!";
+	next;
+	if (select( "Apply ability.", "End Conversation." ) == 2) {
+		mes "[Lace La Zard]";
+		mes "Yes? Your want to look more?";
+		close;
+	}
+	if (checkweight(1119,3) == 0) {
+		mes "[Lace La Zard]";
+		mes "Well... Your shoulder doesn't look possilbe for any more upgrade...!";
+		mes "Don't be cruel to your shoulder!";
+		next;
+		mes "It seems you have too many items on you.";
+		mes "Come back after clearing some inventory spaces.";
+		close;
+	}
+	
+	.@part = EQI_SHADOW_ACC_L;
+	.@equip_id = getequipid(.@part);
+	setarray .@equip_bitmask[0],
+		EQP_ACC_L,				// EQI_ACC_L
+		EQP_ACC_R,				// EQI_ACC_R
+		EQP_SHOES,				// EQI_SHOES
+		EQP_GARMENT,			// EQI_GARMENT
+		EQP_HEAD_LOW,			// EQI_HEAD_LOW
+		EQP_HEAD_MID,			// EQI_HEAD_MID
+		EQP_HEAD_TOP,			// EQI_HEAD_TOP
+		EQP_ARMOR,				// EQI_ARMOR
+		EQP_HAND_L,				// EQI_HAND_L
+		EQP_HAND_R,				// EQI_HAND_R
+		EQP_COSTUME_HEAD_TOP,	// EQI_COSTUME_HEAD_TOP
+		EQP_COSTUME_HEAD_MID,	// EQI_COSTUME_HEAD_MID
+		EQP_COSTUME_HEAD_LOW,	// EQI_COSTUME_HEAD_LOW
+		EQP_COSTUME_GARMENT,	// EQI_COSTUME_GARMENT
+		EQP_AMMO,				// EQI_AMMO
+		EQP_SHADOW_ARMOR,		// EQI_SHADOW_ARMOR
+		EQP_SHADOW_WEAPON,		// EQI_SHADOW_WEAPON
+		EQP_SHADOW_SHIELD,		// EQI_SHADOW_SHIELD
+		EQP_SHADOW_SHOES,		// EQI_SHADOW_SHOES
+		EQP_SHADOW_ACC_R,		// EQI_SHADOW_ACC_R
+		EQP_SHADOW_ACC_L;		// EQI_SHADOW_ACC_L
+	
+	getinventorylist;	// required for now for getitembound4 to keep the enchant grade
+	for ( .@i = 0; .@i < @inventorylist_count; ++.@i ) {
+		if ((@inventorylist_equip[.@i] & .@equip_bitmask[.@part]))
+			break;
+	}
+	setarray .@opt_id[0], @inventorylist_option_id1[.@i], @inventorylist_option_id2[.@i], @inventorylist_option_id3[.@i], @inventorylist_option_id4[.@i], @inventorylist_option_id5[.@i];
+	setarray .@opt_value[0], @inventorylist_option_value1[.@i], @inventorylist_option_value2[.@i], @inventorylist_option_value3[.@i], @inventorylist_option_value4[.@i], @inventorylist_option_value5[.@i];
+	setarray .@opt_param[0], @inventorylist_option_parameter1[.@i], @inventorylist_option_parameter2[.@i], @inventorylist_option_parameter3[.@i], @inventorylist_option_parameter4[.@i], @inventorylist_option_parameter5[.@i];
+	.@geadeen = getenchantgrade(.@part);
+
+	if (.@equip_id == -1) {
+		mes "[Lace La Zard]";
+		mes "Put the garment on your shoulder.";
+		mes "I need to have a look at it to check for upgrading posibility..";
+		close;
+	}
+	.@equip_refine = getequiprefinerycnt(.@part);
+	setarray .@card[0], getequipcardid(.@part, 0), getequipcardid(.@part, 1), getequipcardid(.@part, 2), getequipcardid(.@part, 3);
+
+	mes "[Lace La Zard]";
+	mes "Wow ^0000FF" + getitemname(.@equip_id) + "^000000!!! You got some sense there, aren't you?";
+	mes "Great!! I'm fully ready for this upgrade!!";
+	next;
+	setarray .@data$[0],
+		7600013, 7600013, "Accessories Shadow Soul NO.1(P)",
+		7600015, 7600015, "Accessories Shadow Soul NO.2(P)",
+		7600017, 7600017, "Accessories Shadow Soul NO.3(P)",	
+		7600019, 7600019, "Accessories Shadow Soul NO.4(P)",	
+		7600021, 7600021, "Accessories Shadow Soul NO.5(P)",
+		7600023, 7600023, "Accessories Shadow Soul NO.6(P)",
+		
+		7600026, 7600026, "Accessories Shadow Soul-V.2 NO.1(P)",
+		7600028, 7600028, "Accessories Shadow Soul-V.2 NO.2(P)",
+		7600030, 7600030, "Accessories Shadow Soul-V.2 NO.3(P)",	
+		7600032, 7600032, "Accessories Shadow Soul-V.2 NO.4(P)",	
+		7600034, 7600034, "Accessories Shadow Soul-V.2 NO.5(P)",
+		7600036, 7600036, "Accessories Shadow Soul-V.2 NO.6(P)";
+		
+		/* V3
+		7600043, 7600043, "Accessories Shadow Soul-V.3 NO.1(P)",
+		7600045, 7600045, "Accessories Shadow Soul-V.3 NO.2(P)",
+		7600047, 7600047, "Accessories Shadow Soul-V.3 NO.3(P)",	
+		7600049, 7600049, "Accessories Shadow Soul-V.3 NO.4(P)",	
+		7600051, 7600051, "Accessories Shadow Soul-V.3 NO.5(P)",
+		7600053, 7600053, "Accessories Shadow Soul-V.3 NO.6(P)";
+		*/
+	.@size = getarraysize(.@data$);
+	for ( .@i = 0; .@i < .@size; .@i += 3 ) {
+		.@id = atoi(.@data$[.@i]);
+		.@menu$ += sprintf( "%d. %s (%d) left:", (.@j+1), getitemname(.@id), countitem(.@id) );
+		.@j++;
+	}
+	.@menu$ += "End Conversation.";
+	.@s = (select(.@menu$) - 1) * 3;
+	if (.@s == .@size) {
+		mes "[Lace La Zard]";
+		mes "Yes? Your want to look more?";
+		close;
+	}
+	.@id = atoi(.@data$[.@s]);
+	.@enchant = atoi(.@data$[.@s+1]);
+	.@enchant2 = atoi(.@data$[.@s+1]);
+	if (getequipid(.@part) < 0 || countitem(.@id) < 1) {
+		mes "[Lace La Zard]";
+		mes "You must have both costume item and ability stone for this upgrading work.";
+		close;
+	}
+	mes "^FF0000   !!! Caution !!!^000000";
+	mes "^ff0000This upgrade can be failed.^000000";
+	mes "^ff0000If the item already has extra ability, we will reset item's ability and give " + .@data$[.@s+2] + ".^000000";
+	mes "^ff0000Are you sure about upgrading this item?^000000";
+	next;
+	if (select( "Yes.", "No." ) == 2) {
+		mes "[Lace La Zard]";
+		mes "Yes? Your want to look more?";
+		close;
+	}
+
+	// anti-hack
+	if (callfunc("F_IsEquipIDHack", .@part, .@equip_id) || callfunc("F_IsEquipCardHack", .@part, .@card[0], .@card[1], .@card[2], .@card[3]) || callfunc("F_IsEquipRefineHack", .@part, .@equip_refine))
+		close;
+
+	delitem .@id, 1;
+	delequip .@part;
+
+	mes "[Lace La Zard]";
+	mes "Beautiful!!";
+	mes "Did I really made this myself!!!!";
+	.@card[0] = .@enchant;
+	getitem4( .@equip_id,1,1,.@equip_refine,0,.@card[0],.@card[1],.@card[2],.@card[3],.@geadeen, .@opt_id, .@opt_value, .@opt_param);
+	close;
+end;
+EN_SR:
+	disable_items;
+	mes "[Lace La Zard]";
+	mes "นี่คือบริการ ออฟหิน ^ff0000Shadow Earring^000000 ของ ^ff0000Hotweek V.3^000000!";
+	mes "มาเริ่มกันเลยไหม!";
+	next;
+	if (select( "Apply ability.", "End Conversation." ) == 2) {
+		mes "[Lace La Zard]";
+		mes "Yes? Your want to look more?";
+		close;
+	}
+	if (checkweight(1119,3) == 0) {
+		mes "[Lace La Zard]";
+		mes "Well... Your shoulder doesn't look possilbe for any more upgrade...!";
+		mes "Don't be cruel to your shoulder!";
+		next;
+		mes "It seems you have too many items on you.";
+		mes "Come back after clearing some inventory spaces.";
+		close;
+	}
+	
+	.@part = EQI_SHADOW_ACC_R;
+	.@equip_id = getequipid(.@part);
+	setarray .@equip_bitmask[0],
+		EQP_ACC_L,				// EQI_ACC_L
+		EQP_ACC_R,				// EQI_ACC_R
+		EQP_SHOES,				// EQI_SHOES
+		EQP_GARMENT,			// EQI_GARMENT
+		EQP_HEAD_LOW,			// EQI_HEAD_LOW
+		EQP_HEAD_MID,			// EQI_HEAD_MID
+		EQP_HEAD_TOP,			// EQI_HEAD_TOP
+		EQP_ARMOR,				// EQI_ARMOR
+		EQP_HAND_L,				// EQI_HAND_L
+		EQP_HAND_R,				// EQI_HAND_R
+		EQP_COSTUME_HEAD_TOP,	// EQI_COSTUME_HEAD_TOP
+		EQP_COSTUME_HEAD_MID,	// EQI_COSTUME_HEAD_MID
+		EQP_COSTUME_HEAD_LOW,	// EQI_COSTUME_HEAD_LOW
+		EQP_COSTUME_GARMENT,	// EQI_COSTUME_GARMENT
+		EQP_AMMO,				// EQI_AMMO
+		EQP_SHADOW_ARMOR,		// EQI_SHADOW_ARMOR
+		EQP_SHADOW_WEAPON,		// EQI_SHADOW_WEAPON
+		EQP_SHADOW_SHIELD,		// EQI_SHADOW_SHIELD
+		EQP_SHADOW_SHOES,		// EQI_SHADOW_SHOES
+		EQP_SHADOW_ACC_R,		// EQI_SHADOW_ACC_R
+		EQP_SHADOW_ACC_L;		// EQI_SHADOW_ACC_L
+	
+	getinventorylist;	// required for now for getitembound4 to keep the enchant grade
+	for ( .@i = 0; .@i < @inventorylist_count; ++.@i ) {
+		if ((@inventorylist_equip[.@i] & .@equip_bitmask[.@part]))
+			break;
+	}
+	setarray .@opt_id[0], @inventorylist_option_id1[.@i], @inventorylist_option_id2[.@i], @inventorylist_option_id3[.@i], @inventorylist_option_id4[.@i], @inventorylist_option_id5[.@i];
+	setarray .@opt_value[0], @inventorylist_option_value1[.@i], @inventorylist_option_value2[.@i], @inventorylist_option_value3[.@i], @inventorylist_option_value4[.@i], @inventorylist_option_value5[.@i];
+	setarray .@opt_param[0], @inventorylist_option_parameter1[.@i], @inventorylist_option_parameter2[.@i], @inventorylist_option_parameter3[.@i], @inventorylist_option_parameter4[.@i], @inventorylist_option_parameter5[.@i];
+	.@geadeen = getenchantgrade(.@part);
+
+	if (.@equip_id == -1) {
+		mes "[Lace La Zard]";
+		mes "Put the garment on your shoulder.";
+		mes "I need to have a look at it to check for upgrading posibility..";
+		close;
+	}
+	.@equip_refine = getequiprefinerycnt(.@part);
+	setarray .@card[0], getequipcardid(.@part, 0), getequipcardid(.@part, 1), getequipcardid(.@part, 2), getequipcardid(.@part, 3);
+
+	mes "[Lace La Zard]";
+	mes "Wow ^0000FF" + getitemname(.@equip_id) + "^000000!!! You got some sense there, aren't you?";
+	mes "Great!! I'm fully ready for this upgrade!!";
+	next;
+	setarray .@data$[0],
+		7600014, 7600014, "Accessories Shadow Soul NO.1(E)",
+		7600016, 7600016, "Accessories Shadow Soul NO.2(E)",
+		7600018, 7600018, "Accessories Shadow Soul NO.3(E)",	
+		7600020, 7600020, "Accessories Shadow Soul NO.4(E)",	
+		7600022, 7600022, "Accessories Shadow Soul NO.5(E)",
+		7600024, 7600024, "Accessories Shadow Soul NO.6(E)",
+		
+		7600027, 7600027, "Accessories Shadow Soul-V.2 NO.1(E)",
+		7600029, 7600029, "Accessories Shadow Soul-V.2 NO.2(E)",
+		7600031, 7600031, "Accessories Shadow Soul-V.2 NO.3(E)",	
+		7600033, 7600033, "Accessories Shadow Soul-V.2 NO.4(E)",	
+		7600035, 7600035, "Accessories Shadow Soul-V.2 NO.5(E)",
+		7600037, 7600037, "Accessories Shadow Soul-V.2 NO.6(E)";
+
+		/* V3
+		7600044, 7600044, "Accessories Shadow Soul-V.3 NO.1(E)",
+		7600046, 7600046, "Accessories Shadow Soul-V.3 NO.2(E)",
+		7600048, 7600048, "Accessories Shadow Soul-V.3 NO.3(E)",	
+		7600050, 7600050, "Accessories Shadow Soul-V.3 NO.4(E)",	
+		7600052, 7600052, "Accessories Shadow Soul-V.3 NO.5(E)",
+		7600054, 7600054, "Accessories Shadow Soul-V.3 NO.6(E)";
+		*/
+		
+	.@size = getarraysize(.@data$);
+	for ( .@i = 0; .@i < .@size; .@i += 3 ) {
+		.@id = atoi(.@data$[.@i]);
+		.@menu$ += sprintf( "%d. %s (%d) left:", (.@j+1), getitemname(.@id), countitem(.@id) );
+		.@j++;
+	}
+	.@menu$ += "End Conversation.";
+	.@s = (select(.@menu$) - 1) * 3;
+	if (.@s == .@size) {
+		mes "[Lace La Zard]";
+		mes "Yes? Your want to look more?";
+		close;
+	}
+	.@id = atoi(.@data$[.@s]);
+	.@enchant = atoi(.@data$[.@s+1]);
+	.@enchant2 = atoi(.@data$[.@s+1]);
+	if (getequipid(.@part) < 0 || countitem(.@id) < 1) {
+		mes "[Lace La Zard]";
+		mes "You must have both costume item and ability stone for this upgrading work.";
+		close;
+	}
+	mes "^FF0000   !!! Caution !!!^000000";
+	mes "^ff0000This upgrade can be failed.^000000";
+	mes "^ff0000If the item already has extra ability, we will reset item's ability and give " + .@data$[.@s+2] + ".^000000";
+	mes "^ff0000Are you sure about upgrading this item?^000000";
+	next;
+	if (select( "Yes.", "No." ) == 2) {
+		mes "[Lace La Zard]";
+		mes "Yes? Your want to look more?";
+		close;
+	}
+
+	// anti-hack
+	if (callfunc("F_IsEquipIDHack", .@part, .@equip_id) || callfunc("F_IsEquipCardHack", .@part, .@card[0], .@card[1], .@card[2], .@card[3]) || callfunc("F_IsEquipRefineHack", .@part, .@equip_refine))
+		close;
+
+	delitem .@id, 1;
+	delequip .@part;
+
+	mes "[Lace La Zard]";
+	mes "Beautiful!!";
+	mes "Did I really made this myself!!!!";
+	.@card[0] = .@enchant;
+	getitem4( .@equip_id,1,1,.@equip_refine,0,.@card[0],.@card[1],.@card[2],.@card[3],.@geadeen, .@opt_id, .@opt_value, .@opt_param);
+	close;
+end;
+}

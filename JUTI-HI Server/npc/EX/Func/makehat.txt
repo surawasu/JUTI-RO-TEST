@@ -1,0 +1,524 @@
+-	shop	make_hat_hi	90,3300089:500000,3300094:500000,3300097:500000,3300084:500000,3300090:500000,3300091:500000,3000123:500000,3000151:500000,3000201:500000,3000203:500000,3000145:500000,3000144:500000,3100033:500000,3100044:500000,3100070:500000,3100077:500000,3100082:500000,3100034:500000,3200104:500000,3200120:500000,3200145:500000,3200115:500000,3200159:500000,3200087:500000
+
+morocc,154,74,6	script	Costume Maker	4_F_JP_CHROME,{
+disable_items;
+mes "[Costume Maker]";
+mes "โปรดเลือกบริการที่ท่านต้องการใช้";
+menu	"ทำหมวก Costume",make_hat_hi,
+		"เผลอกดเฉยๆหนะ",Exit;
+		
+		
+make_hat_hi:
+next;
+mes "[^0000FFCostume Maker^000000]";
+mes "<font size = 20, color = FF0000>ให้ทำการซื้อไอเท็มที่ต้องการสร้าง</font>";
+close2;
+callshop "make_hat_hi",1;    
+npcshopattach "make_hat_hi";
+end;
+
+
+Exit:
+end;
+
+OnBuyItem:
+	switch( @bought_nameid ) {
+// Wing
+		case 3300089:
+			.@item1 = 2221;
+			.@item2 = 2253;
+			.@item3 = 1059;
+			.@item4 = 984;
+			.@item5 = 985;
+			.@amt1 = 1;
+			.@amt2 = 1;
+			.@amt3 = 300;
+			.@amt4 = 20;
+			.@amt5 = 20;
+			.@req_zeny = 500000;
+			break;
+		case 3300094:
+			.@item1 = 1022;
+			.@item2 = 969;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@item5 = 0;
+			.@amt1 = 300;
+			.@amt2 = 3;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@amt5 = 1;
+			.@req_zeny = 500000;
+			break;
+		case 3300097:
+			.@item1 = 5035;
+			.@item2 = 7299;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@item5 = 0;
+			.@amt1 = 1;
+			.@amt2 = 300;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@amt5 = 1;
+			.@req_zeny = 500000;
+			break;
+		case 3300084:
+			.@item1 = 2207;
+			.@item2 = 712;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@item5 = 0;
+			.@amt1 = 1;
+			.@amt2 = 100;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@amt5 = 1;
+			.@req_zeny = 500000;
+			break;
+		case 3300090:
+			.@item1 = 7150;
+			.@item2 = 7111;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@item5 = 0;
+			.@amt1 = 250;
+			.@amt2 = 250;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@amt5 = 1;
+			.@req_zeny = 500000;
+			break;
+		case 3300091:
+			.@item1 = 949;
+			.@item2 = 5083;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@item5 = 0;
+			.@amt1 = 250;
+			.@amt2 = 1;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@amt5 = 1;
+			.@req_zeny = 500000;
+			break;
+		// Top
+		case 3000123:
+			.@item1 = 5378;
+			.@item2 = 994;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@item5 = 0;
+			.@amt1 = 1;
+			.@amt2 = 50;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@amt5 = 1;
+			.@req_zeny = 500000;
+			break;
+		case 3000151:
+			.@item1 = 5083;
+			.@item2 = 1048;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@item5 = 0;
+			.@amt1 = 1;
+			.@amt2 = 250;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@amt5 = 1;
+			.@req_zeny = 500000;
+			break;
+		case 3000201:
+			.@item1 = 2254;
+			.@item2 = 1048;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@item5 = 0;
+			.@amt1 = 1;
+			.@amt2 = 10;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@amt5 = 1;
+			.@req_zeny = 500000;
+			break;
+		case 3000203:
+			.@item1 = 2286;
+			.@item2 = 5002;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@item5 = 0;
+			.@amt1 = 1;
+			.@amt2 = 1;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@amt5 = 1;
+			.@req_zeny = 500000;
+			break;
+		case 3000145:
+			.@item1 = 5283;
+			.@item2 = 5040;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@item5 = 0;
+			.@amt1 = 1;
+			.@amt2 = 1;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@amt5 = 1;
+			.@req_zeny = 500000;
+			break;
+		case 3000144:
+			.@item1 = 2226;
+			.@item2 = 5074;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@item5 = 0;
+			.@amt1 = 1;
+			.@amt2 = 1;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@amt5 = 1;
+			.@req_zeny = 500000;
+			break;
+		//Mid
+		case 3100033:
+			.@item1 = 5102;
+			.@item2 = 7752;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@item5 = 0;
+			.@amt1 = 1;
+			.@amt2 = 250;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@amt5 = 1;
+			.@req_zeny = 500000;
+			break;
+		case 3100044:
+			.@item1 = 2286;
+			.@item2 = 5083;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@item5 = 0;
+			.@amt1 = 1;
+			.@amt2 = 1;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@amt5 = 1;
+			.@req_zeny = 500000;
+			break;
+		case 3100070:
+			.@item1 = 2276;
+			.@item2 = 620;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@item5 = 0;
+			.@amt1 = 1;
+			.@amt2 = 150;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@amt5 = 1;
+			.@req_zeny = 500000;
+			break;
+		case 3100077:
+			.@item1 = 547;
+			.@item2 = 1029;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@item5 = 0;
+			.@amt1 = 30;
+			.@amt2 = 20;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@amt5 = 1;
+			.@req_zeny = 500000;
+			break;
+		case 3100082:
+			.@item1 = 5141;
+			.@item2 = 994;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@item5 = 0;
+			.@amt1 = 1;
+			.@amt2 = 50;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@amt5 = 1;
+			.@req_zeny = 500000;
+			break;
+		case 3100034:
+			.@item1 = 5283;
+			.@item2 = 5035;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@item5 = 0;
+			.@amt1 = 1;
+			.@amt2 = 1;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@amt5 = 1;
+			.@req_zeny = 500000;
+			break;
+		//Low
+		case 3200104:
+			.@item1 = 1558;
+			.@item2 = 642;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@item5 = 0;
+			.@amt1 = 1;
+			.@amt2 = 10;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@amt5 = 1;
+			.@req_zeny = 500000;
+			break;
+		case 3200120:
+			.@item1 = 2268;
+			.@item2 = 1048;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@item5 = 0;
+			.@amt1 = 1;
+			.@amt2 = 10;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@amt5 = 1;
+			.@req_zeny = 500000;
+			break;
+		case 3200145:
+			.@item1 = 530;
+			.@item2 = 538;
+			.@item3 = 539;
+			.@item4 = 984;
+			.@item5 = 985;
+			.@amt1 = 20;
+			.@amt2 = 150;
+			.@amt3 = 150;
+			.@amt4 = 20;
+			.@amt5 = 20;
+			.@req_zeny = 500000;
+			break;
+		case 3200115:
+			.@item1 = 2255;
+			.@item2 = 983;
+			.@item3 = 916;
+			.@item4 = 984;
+			.@item5 = 985;
+			.@amt1 = 1;
+			.@amt2 = 3;
+			.@amt3 = 300;
+			.@amt4 = 20;
+			.@amt5 = 20;
+			.@req_zeny = 500000;
+			break;
+		case 3200159:
+			.@item1 = 7023;
+			.@item2 = 2255;
+			.@item3 = 7315;
+			.@item4 = 7799;
+			.@item5 = 984;
+			.@item6 = 985;
+			.@amt1 = 3;
+			.@amt2 = 150;
+			.@amt3 = 150;
+			.@amt4 = 300;
+			.@amt5 = 20;
+			.@amt6 = 20;
+			.@req_zeny = 500000;
+			break;
+		case 3200087:
+			.@item1 = 7066;
+			.@item2 = 7561;
+			.@item3 = 749;
+			.@item4 = 984;
+			.@item5 = 985;
+			.@amt1 = 150;
+			.@amt2 = 150;
+			.@amt3 = 5;
+			.@amt4 = 20;
+			.@amt5 = 20;
+			.@req_zeny = 500000;
+			break;
+		//Test
+		case 19797:
+			.@item1 = 2285;
+			.@item2 = 2221;
+			.@item3 = 2220;
+			.@item4 = 512;
+			.@item5 = 985;
+			.@item6 = 984;
+			.@amt1 = 1;
+			.@amt2 = 1;
+			.@amt3 = 1;
+			.@amt4 = 300;
+			.@amt5 = 20;
+			.@amt6 = 20;
+			.@req_zeny = 500000;
+			break;
+	}
+	mes "[^0000FFCostume Maker^000000]";
+	mes "ท่านต้องการสร้าง";
+	mes "<ITEM>"+getitemname(@bought_nameid)+"<INFO>"+@bought_nameid+"</INFO></ITEM>";
+	mes "ต้องใช้ไอเท็มดังต่อไปนี้";
+	mes "1.<ITEM>"+getitemname(.@item1)+"<INFO>"+.@item1+"</INFO></ITEM> จำนวน "+.@amt1+" ea";
+	mes "2.<ITEM>"+getitemname(.@item2)+"<INFO>"+.@item2+"</INFO></ITEM> จำนวน "+.@amt2+" ea";
+	mes "3.<ITEM>"+getitemname(.@item3)+"<INFO>"+.@item3+"</INFO></ITEM> จำนวน "+.@amt3+" ea";
+	mes "4.<ITEM>"+getitemname(.@item4)+"<INFO>"+.@item4+"</INFO></ITEM> จำนวน "+.@amt4+" ea";
+	if(.@item5 > 0)
+		mes "5.<ITEM>"+getitemname(.@item5)+"<INFO>"+.@item5+"</INFO></ITEM> จำนวน "+.@amt5+" ea";
+	if(.@item6 > 0)
+		mes "6.<ITEM>"+getitemname(.@item6)+"<INFO>"+.@item6+"</INFO></ITEM> จำนวน "+.@amt6+" ea";
+	if(.@item7 > 0)
+		mes "7.<ITEM>"+getitemname(.@item7)+"<INFO>"+.@item7+"</INFO></ITEM> จำนวน "+.@amt7+" ea";
+	if(.@item8 > 0)
+		mes "8.<ITEM>"+getitemname(.@item8)+"<INFO>"+.@item8+"</INFO></ITEM> จำนวน "+.@amt8+" ea";
+	if(.@item9 > 0)
+		mes "9.<ITEM>"+getitemname(.@item9)+"<INFO>"+.@item9+"</INFO></ITEM> จำนวน "+.@amt9+" ea";
+	if(.@item10 > 0)
+		mes "10.<ITEM>"+getitemname(.@item10)+"<INFO>"+.@item10+"</INFO></ITEM> จำนวน "+.@amt10+" ea";
+	mes "และ "+callfunc("F_InsertComma",.@req_zeny)+" Zeny";
+	mes "อัตตราความสำเร็จขึ้นอยู่กับ BluePrint ที่ท่านเลือก";
+	switch(select("^00FF00Normal Blueprint Costume^000000 1 ea โอการสำเร็จ 20%:^FF0000Epic Blueprint Costume^000000 1 ea โอการสำเร็จ 30%:^0000FFLegend Blueprint Costume^000000 1 ea โอการสำเร็จ 40%")){
+		case 1:
+			.@blueprint = 2984717;
+			.@rate	= 20;
+			.@bp = 1;
+			break;
+		case 2:
+			.@blueprint = 2984718;
+			.@rate	= 30;
+			.@bp = 1;
+			break;
+		case 3:
+			.@blueprint = 2984719;
+			.@rate	= 40;
+			.@bp = 1;
+			break;
+	}
+	next;
+	mes "[^0000FFCostume Maker^000000]";
+	mes "ท่าได้เลือกสร้าง";
+	mes "<ITEM>"+getitemname(@bought_nameid)+"<INFO>"+@bought_nameid+"</INFO></ITEM>";
+	mes "โดยใช้ <ITEM>"+getitemname(.@blueprint)+"<INFO>"+.@blueprint+"</INFO></ITEM> "+.@bp+" ea";
+	mes "โอกาสสำเร็จ "+.@rate+" %";
+	mes "ต้องใช้ไอเท็มดังต่อไปนี้";
+	mes "1.<ITEM>"+getitemname(.@item1)+"<INFO>"+.@item1+"</INFO></ITEM> จำนวน "+.@amt1+" ea";
+	mes "2.<ITEM>"+getitemname(.@item2)+"<INFO>"+.@item2+"</INFO></ITEM> จำนวน "+.@amt2+" ea";
+	mes "3.<ITEM>"+getitemname(.@item3)+"<INFO>"+.@item3+"</INFO></ITEM> จำนวน "+.@amt3+" ea";
+	mes "4.<ITEM>"+getitemname(.@item4)+"<INFO>"+.@item4+"</INFO></ITEM> จำนวน "+.@amt4+" ea";
+	if(.@item5 > 0)
+		mes "5.<ITEM>"+getitemname(.@item5)+"<INFO>"+.@item5+"</INFO></ITEM> จำนวน "+.@amt5+" ea";
+	if(.@item6 > 0)
+		mes "6.<ITEM>"+getitemname(.@item6)+"<INFO>"+.@item6+"</INFO></ITEM> จำนวน "+.@amt6+" ea";
+	if(.@item7 > 0)
+		mes "7.<ITEM>"+getitemname(.@item7)+"<INFO>"+.@item7+"</INFO></ITEM> จำนวน "+.@amt7+" ea";
+	if(.@item8 > 0)
+		mes "8.<ITEM>"+getitemname(.@item8)+"<INFO>"+.@item8+"</INFO></ITEM> จำนวน "+.@amt8+" ea";
+	if(.@item9 > 0)
+		mes "9.<ITEM>"+getitemname(.@item9)+"<INFO>"+.@item9+"</INFO></ITEM> จำนวน "+.@amt9+" ea";
+	if(.@item10 > 0)
+		mes "10.<ITEM>"+getitemname(.@item10)+"<INFO>"+.@item10+"</INFO></ITEM> จำนวน "+.@amt10+" ea";
+	mes "และ "+callfunc("F_InsertComma",.@req_zeny)+" Zeny";
+	menu	"เริ่มเลย",L_OK,
+			"ยังก่อน",Exit;
+			
+L_OK:
+if( countitem(.@item1)< .@amt1 || countitem(.@item2)< .@amt2 || countitem(.@item3)< .@amt3 || countitem(.@item4)< .@amt4 || countitem(.@blueprint)< .@bp || zeny < .@req_zeny){
+	mes "[^0000FFCostume Maker^000000]";
+	mes "โปรดตรวจเช็คของให้ครบถ้วน";
+	end;
+}
+if(.@item5 > 0){
+	if(countitem(.@item5)<.@amt5){
+		mes "[^0000FFCostume Maker^000000]";
+		mes "โปรดตรวจเช็คของให้ครบถ้วน";
+		end;
+	}
+}
+if(.@item6 > 0){
+	if(countitem(.@item6)<.@amt6){
+		mes "[^0000FFCostume Maker^000000]";
+		mes "โปรดตรวจเช็คของให้ครบถ้วน";
+		end;
+	}
+}
+if(.@item7 > 0){
+	if(countitem(.@item7)<.@amt7){
+		mes "[^0000FFCostume Maker^000000]";
+		mes "โปรดตรวจเช็คของให้ครบถ้วน";
+		end;
+	}
+}
+if(.@item8 > 0){
+	if(countitem(.@item8)<.@amt8){
+		mes "[^0000FFCostume Maker^000000]";
+		mes "โปรดตรวจเช็คของให้ครบถ้วน";
+		end;
+	}
+}
+if(.@item9 > 0){
+	if(countitem(.@item9)<.@amt9){
+		mes "[^0000FFCostume Maker^000000]";
+		mes "โปรดตรวจเช็คของให้ครบถ้วน";
+		end;
+	}
+}
+if(.@item10 > 0){
+	if(countitem(.@item10)<.@amt10){
+		mes "[^0000FFCostume Maker^000000]";
+		mes "โปรดตรวจเช็คของให้ครบถ้วน";
+		end;
+	}
+}
+delitem	.@blueprint,.@bp;
+delitem	.@item1,.@amt1;
+delitem	.@item2,.@amt2;
+delitem	.@item3,.@amt3;
+delitem	.@item4,.@amt4;
+if(.@item5 > 0)
+	delitem .@item5,.@amt5;
+if(.@item6 > 0)
+	delitem .@item6,.@amt6;
+if(.@item7 > 0)
+	delitem .@item7,.@amt7;
+if(.@item8 > 0)
+	delitem .@item8,.@amt8;
+if(.@item9 > 0)
+	delitem .@item9,.@amt9;
+if(.@item10 > 0)
+	delitem .@item10,.@amt10;
+zeny -= .@req_zeny;
+set .rand,rand(1,100);
+progressbar "000000",3;
+	if(.rand <= .@rate){
+		specialeffect2 EF_LORD;
+		getitem @bought_nameid,1;
+		mes "[^0000FFCostume Maker^000000]";
+		mes "เรียบร้อยโปรดตรวจสอบItem.";
+		close;
+	}else{
+		specialeffect EF_SUI_EXPLOSION;
+		mes "[^0000FFCostume Maker^000000]";
+		mes "เสียใจด้ายรอบหน้าเอาใหม่";
+		end;
+	}
+end;
+
+OnInit:
+	setarray .messages$,""," ส ","ร้ ","า ","ง ","ค ","อ ","ส ","ตู ","ม";
+	while(1)
+	{
+		set .Display$,"";
+		for( set .i,0; .i < getarraysize( .messages$ ); set .i,.i + 1 )
+		{
+			set .Display$,.Display$ + .messages$[.i];
+			delwaitingroom;
+			waitingroom .Display$,0;
+			sleep 100;
+		}
+	sleep 1000;
+	}
+end;
+}

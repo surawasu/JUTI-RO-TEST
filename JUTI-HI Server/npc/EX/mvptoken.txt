@@ -1,0 +1,181 @@
+like_game,87,93,6	script	MVP TOKEN#CARDRECYCLE	10504,{
+
+	if (checkweight(1301,1) == 0) {
+		mes "[MVP TOKEN]";
+		mes "มีไอเทมมากเกินไป..";
+		close;
+	}
+	disable_items;
+	
+mes	"[MVP TOKEN]";
+mes "เลือกรายการด้านล่าง";
+
+menu	"• เปิดร้านค้า",SHOP,
+		"• ย่อยการ์ดบอส",RECYCLE,
+		"• ยกเลิก",ex;	
+	
+SHOP:
+close2;
+callshop "MVPTOKENSHOP",1;
+end;
+
+
+ex:
+end;
+	
+RECYCLE:	
+	mes "[ย่อยการ์ดบอส]";
+	mes "สามารถนำการ์ดบอสที่ไม่ใช้งานมาแลกเป็น <ITEM>Mvp Token<INFO>"+60005+"</INFO></ITEM>ได้";
+	mes "เจ้าต้องการเริ่มเลยไหม?";
+	next;
+	if (select( "เริ่มเลย", "ยกเลิก" ) == 2) {
+		mes "[ย่อยการ์ดบอส]";
+		mes "กลับมาหาข้าได้เสมอ !";
+		close;
+	}
+	mes "[ย่อยการ์ดบอส]";
+	mes "สามารถนำการ์ดบอสที่ไม่ใช้งานมาแลกเป็น <ITEM>Mvp Token<INFO>"+60005+"</INFO></ITEM>ได้";
+	next;
+	mes "[ย่อยการ์ดบอส]";
+	mes "- กำลังค้นหา...... -";
+	next;
+	// ====================================================================
+	// =================== Pokemon Egg Exchange To Bsb ===================
+	// ====================================================================
+	.@box_list[17] = 60005;		// Normal Pokemon
+	setarray .@item_list_17[0],
+			4330,
+			4365,
+			4403,
+			4357,
+			4132,
+			4143,
+			4148,
+			4372,
+			4374,
+			4047,
+			4054,
+			4363,
+			4386,
+			4324,
+			4408,
+			4135,
+			4342,
+			4302,
+			4419,
+			4174,
+			4359,
+			4456,
+			4407,
+			4134,
+			4263,
+			4425,
+			4147,
+			4142,
+			4137,
+			4276,
+			4121,
+			4367,
+			4399,
+			4305,
+			4361,
+			4318,
+			4145,
+			4430,
+			4144,
+			4168,
+			4123,
+			4441,
+			4376,
+			4131,
+			4236,
+			4352,
+			4128,
+			4146,		
+			27126,		
+			27162,		
+			9999;		
+			
+
+	.@box_list[18] = 60005;		// Boss Pokemon
+	setarray .@item_list_18[0],
+		9229;
+
+	while(1) {
+		for ( .@i = 0; .@i < 19; ++.@i ) {
+			if (getiteminfo(.@box_list[.@i], ITEMINFO_TYPE) == -1)	// temporary check
+				continue;
+			.@size = getarraysize( getd(".@item_list_" + .@i) );
+			for ( .@h = 0; .@h < .@size; ++.@h ) {
+				.@id = getd( ".@item_list_" + .@i + "[" + .@h + "]" );
+				if (getiteminfo(.@id, ITEMINFO_TYPE) == -1)	// temporary check
+					continue;
+				if (countitem(.@id) < 1)
+					continue;	
+				mes "[ย่อยการ์ดบอส]";
+				if(.@id==.@item_list_18){				
+				mes "เจอแล้ว.. นี่มัน <ITEM>"+getitemname(.@id)+"<INFO>"+.@id+"</INFO></ITEM> เจ้าต้องการย่อยเป็น <ITEM>Mvp Token<INFO>"+60005+"</INFO></ITEM> 100 ea. เลยหรือไม่?";
+				}else{
+				mes "เจอแล้ว.. นี่มัน <ITEM>"+getitemname(.@id)+"<INFO>"+.@id+"</INFO></ITEM> เจ้าต้องการย่อยเป็น <ITEM>Mvp Token<INFO>"+60005+"</INFO></ITEM> 1 ea. เลยหรือไม่?";
+				}
+				next;
+				switch( select( "ย่อย 1 ครั้ง","ย่อยทั้งหมด ("+(countitem(.@id))+" ครั้ง)", "ลองดูของชิ้นอื่นก่อน", "หยุดก่อนแล้วกัน" ) ) {
+				case 1:
+					mes "[ย่อยการ์ดบอส]";
+					if (countitem(.@id) < 1)
+						mes "อืมมม ดูเหมือนว่าไม่มีอของที่แลกเปลี่ยนได้แล้ว...";
+					else {			
+						if(.@id==.@item_list_18){
+						mes "การแลกเปลี่ยนเสร็จสิ้น.";
+						delitem .@id, 1;
+						getitem .@box_list[.@i], 100;
+						}else{
+						mes "การแลกเปลี่ยนเสร็จสิ้น.";
+						delitem .@id, 1;
+						getitem .@box_list[.@i], 1;
+						}
+					}
+					mes "โปรดเช็คดูอีกที...";
+					next;
+					break;
+				case 2:
+					mes "[ย่อยการ์ดบอส]";
+					if (countitem(.@id) < 1)
+						mes "อืมมม ดูเหมือนว่าไม่มีอของที่แลกเปลี่ยนได้แล้ว...";
+					else {	
+						.@amount = countitem(.@id);
+						if(.@id==.@item_list_18){
+						mes "การแลกเปลี่ยนเสร็จสิ้น.";
+						delitem .@id, .@amount;
+						getitem .@box_list[.@i], 100*.@amount;
+						}else{
+						mes "การแลกเปลี่ยนเสร็จสิ้น.";
+						delitem .@id,.@amount;
+						getitem .@box_list[.@i],.@amount;
+						}
+					}
+					mes "โปรดเช็คดูอีกที...";
+					next;
+					break;
+				case 3:
+					break;
+				case 4:
+					mes "[ย่อยการ์ดบอส]";
+					mes "อืมมมมไว้เจอกันใหม่.";
+					close;
+				}
+			}
+		}
+		mes "[ย่อยการ์ดบอส]";
+		mes "เดาไว้ว่านั้นคือทั้งหมดที่มีแล้ว.";
+		next;
+		if (select( "ดูรายละเอียดเพิ่มเติม", "ออกก่อน" ) == 2) {
+			mes "[ย่อยการ์ดบอส]";
+			mes "ลาก่อน~";
+			close;
+		}
+	}
+OnInit:
+	waitingroom "  ย่อยการ์ดบอส",0;
+end;
+}

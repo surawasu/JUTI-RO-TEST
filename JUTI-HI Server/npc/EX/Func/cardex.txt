@@ -1,0 +1,200 @@
+morocc,148,84,6	script	รับซื้อการ์ด	1_M_SIGN1,{
+//if(getgmlevel() == 99) goto L_GMSS;
+L_MAIN:
+	mes "[แลกเปลี่ยน การ์ด]";
+	mes "สวัสดี, "+strcharinfo(0)+"!";
+	mes "มีอะไรให้ฉันช่วยคุณได้บ้าง ?";
+//	mes "รอบนี้ ข้ารับซื้ออีก ^0000FF["+$buy_card_day+"] ^000000ใบ";
+	next;
+	switch(select("~ รายละเอียดข้อมูล:~ ขายการ์ด :~ แลกเปลี่ยน Card Point:~ ไม่มีอะไร")) {
+	case 1:
+		mes "[รายละเอียดข้อมูล]";
+		mes "ถ้าหากคุณมีไอเท็มประเภทการ์ด";
+		mes "ที่ไม่ได้ใช้ หรือ ไม่มีค่าสำหรับคุณ?";
+		mes "คุณสามารถที่จะขายให้ฉันได้";
+		mes "และ ฉันก๊จะมีสิ่งของตอบแทน";
+		mes "สำหรับสิ่งของเหล่านั้น!";
+		next;
+		mes "[Card Trader]";
+		mes "ฉันจะให้ ^0055FF"+.Points[0]+" Point"+((.Points[0] == 1)?"":"")+"^000000";
+		mes "ต่อ Card 1 ใบ";
+		mes "^0055FF"+.Points[1]+" Points^000000 สำหรับการ์ดบอส.";
+//		mes "โดยข้า จะรับซื้อแค่ ";
+//		mes "^FF0000รอบละ 300 ใบ เท่านั้น ^000000";
+		mes "คุณต้องการที่จะใช้บริการฉันเลยใหม ?";
+		emotion ET_MONEY;
+		close;
+	case 2:
+//		if ($buy_card_day < 1) { mes "วันนี้ข้าหมดเงินแล้วล่ะ ไว้มาใหม่พรุ่งนี้ล่ะ"; close;}
+		
+		mes "[รับซื้อการ์ด]";
+//		mes "วันนี้ ข้ารับซื้ออีก ^0000FF["+$buy_card_day+"] ^000000ใบ";
+		mes "กรุณาเลือการ์ดของคุณ";
+		mes "ที่จะต้องการแลกเปลี่ยน.";
+		close2;
+		deletearray @sold_nameid[0],getarraysize(@sold_nameid);
+		callshop "Point_ShopsC",2;
+		npcshopattach "Point_ShopsC";
+		end;
+	case 3:
+		close2;
+		callshop "card_point",1;
+		end;
+	
+	case 4:
+		mes "[แลกเปลี่ยนการ์ด]";
+		mes "ไว้พบกันใหม่!";
+		emotion ET_SLEEPY;
+		close;		
+	}
+
+L_GMSS:
+	mes "[แลกเปลี่ยน การ์ด]";
+	mes "สวัสดี, "+strcharinfo(0)+"!";
+	mes "มีอะไรให้ฉันช่วยคุณได้บ้าง ?";
+//	mes "วันนี้ ข้ารับซื้ออีก ^0000FF["+$buy_card_day+"] ^000000ใบ";
+	menu "เมนูผู้เล่น",L_MAIN,"Reset รอบ",-;
+		announce "[พ่อค้าเร่ร่อน] เร่เข้ามา ใครมาการ์ดมาขาย เร่เข้ามา ข้ารับซื้อ Card จำนวนจำกัดจ้า",0;
+//	set $buy_card_day, 0;
+	close;
+
+
+
+OnSellItem:
+	
+	if ( getiteminfo(@sold_nameid[.@i],2 ) != 6)
+	{
+		mes "[รับซื้อการ์ด]";
+		mes "รายการไอเท็มที่แลกเปลี่ยนมันไม่ใช่การ์ด";
+		mes "กรุณาทำรายการใหม่อีกครั้ง";
+		emotion ET_SWEAT;
+		close;
+	}
+	if (@sold_nameid[.@i] < 4001 || @sold_nameid[.@i] > 4700 && @sold_nameid[.@i] < 27011 || @sold_nameid[.@i] > 27397 && @sold_nameid[.@i] < 300000 || @sold_nameid[.@i] > 300022 && @sold_nameid[.@i] < 300075 || @sold_nameid[.@i] > 300450 )
+	{
+		mes "[รับซื้อการ์ด]";
+		mes "รายการไอเท็มที่แลกเปลี่ยนมันไม่ใช่การ์ด";
+		mes "กรุณาทำรายการใหม่อีกครั้ง";
+		emotion ET_SWEAT;
+		close;
+	}
+
+	while(.@i<getarraysize(@sold_nameid)) {
+		//if (@sold_nameid[.@i] > 4000 && @sold_nameid[.@i] < 300282)	 set .@i,.@i+1
+		if( getiteminfo(@sold_nameid[.@i],2 ) == 6 )
+		{
+			set .@card_id[getarraysize(.@card_id)], @sold_nameid[.@i];
+			set .@card_amt[getarraysize(.@card_amt)], @sold_quantity[.@i];
+			set .@mvp, compare(.MvPCards$,""+@sold_nameid[.@i]);
+			mes ((.@mvp)?"  ^FF0000":"  ^777777")+getitemname(@sold_nameid[.@i])+" จำนวน "+@sold_quantity[.@i]+" ใบ^000000";
+			set .@card_total, .@card_total+(@sold_quantity[.@i]*((.@mvp)?.Points[1]:.Points[0]));
+			set .@setsell, .@card_total / 2;
+		}
+			.@i++;
+		}
+	mes " ";
+	mes "ราคาทั้งหมด คือ : ^0055FF"+.@card_total+" Point.^000000";
+	mes "คุณแน่ใจที่จะต้องการขาย ?";
+	next;
+	if(select("~ ^0055FFใช่ ข้าต้องการขายทันที^000000:~ ^777777ข้าขอ... คิดใหม่อีกครั้งดีกว่า^000000") == 2)
+	{
+		mes "[รับซื้อการ์ด]";
+		mes "อื้มมม, โอเค ไว้ต้องการเมื่อไรค่อยกลับมาอีกครั้ง...";
+		emotion ET_SCRATCH;
+		close;
+	}
+	for(set .@i,0; .@i<getarraysize(.@card_id); set .@i,.@i+1)
+	delitem .@card_id[.@i],.@card_amt[.@i];
+	setd .Points$, getd(.Points$)+.@card_total;
+//	set $buy_card_day, $buy_card_day - .@setsell;
+//	if ($buy_card_day < 0) { set $buy_card_day, 0; }
+	mes "[รับซื้อการ์ด]";
+	mes "แลกเปลี่ยนสำเร็จ !";
+	mes "ขอบคุณสำหรับการซื้อขาย แลกเปลี่ยน";
+	emotion ET_DELIGHT;
+	close;
+
+OnBuyItem:
+	for(set .@i,0; .@i<getarraysize(@bought_nameid); set .@i,.@i+1)
+		for(set .@j,0; .@j<getarraysize(.Shop); set .@j,.@j+2)
+			if (@bought_nameid[.@i] == .Shop[.@j])
+			{
+				set .@cost, .@cost+(.Shop[.@j+1]*@bought_quantity[.@i]);
+				break;
+			}
+	if (.@cost > getd(.Points$))
+	{
+		mes "[แลกเปลี่ยนสินค้า]";
+		mes "คุณมีจำนวน Points ไม่เพียงพอต่อการแลกเปลี่ยน.";
+		emotion ET_HUK;
+	}
+	else {
+		mes "[แลกเปลี่ยนสินค้า]";
+		mes "	";
+		for(set .@i,0; .@i<getarraysize(@bought_nameid); set .@i,.@i+1)
+		{
+			getitem @bought_nameid[.@i], @bought_quantity[.@i];
+			mes "  ^777777"+getitemname(@bought_nameid[.@i])+" จำนวน "+@bought_quantity[.@i]+" อัน^000000";
+		}
+		mes " ";
+		mes "ราคาทั้งหมด คือ : ^0055FF"+.@cost+" pt.^000000";
+		setd .Points$, getd(.Points$)-.@cost;
+		emotion ET_MONEY;
+	}
+	deletearray @bought_nameid[0], getarraysize(@bought_nameid);
+	deletearray @bought_quantity[0], getarraysize(@bought_quantity);
+	close;
+
+OnInit:
+
+	set .Points$,"#CARDTRADE";	// ค่าตัวแปร เก็บคะแนนพอยท์ (ห้ามแก้ใขมีผลต่อ Base ที่เก็บค่าบน SQL)
+	setarray .Shop[0],12796,10,		// ตั้งค่า เพิ่ม / ลบ / แก้ใข รายการไอเท็มที่ใช้การซื้อขาย : <รหัสไอเท็ม>,<จำนวนราคา>
+					  14766,10,
+					  12412,150,
+					  6635,100;
+//					  12103,150;
+//					  12412,500,
+//					  7227,200,
+//					  7539,40;
+					  
+	setarray .Points[0],1,1000;		// ตั้งค่า ราคาการขายการ์ดให้กับ Npc <การ์ดปกติ>,<การ์ด บอส>
+	set .MvPCards$,					// ตั้งค่า รหัสไอเท็ม การ์ด สำหรับการ์ดบอส. (ราคาปัจจุบันสำหรับการ์ดบอส ต่อ 1 ใบ คือ 300 ที่จะได้รับเมื่อขาย)
+	  "4121,4123,4128,4131,4132,4134,4135,4137,4143,4144,4145,4146,4147,4148,4168,4236,"+
+	  "4241,4263,4276,4302,4305,4318,4324,4330,4342,4357,4359,4361,4363,4365,4399,4403,4407,4142"+
+	  "4372,4352,4374,4376,4386,4408,4419,4425,4430,4441,4145,27162,4457,4451,4462,4463,4456,27126"+
+	  "4507,4520,4509,4526,4527,4528,4529,4534,4525,4565,4563,4561,4562,4564,4560,4566,4578,4579"+
+	  "4576,4577,4574,4575,4580,4581,4590,4592,4591,4652,4605,4606,4603,4601,27164,27262,27263,4556"+
+	  "27265,31023,27326,27327,27106,4625,27324,27325,4559,27322,27323,27109,4697,4602,27182,4610,4674,4675"+
+	  "4676,4677,4678,4679,4680,4681,4671,4672,4673,27020,4682,4683,4636,31026,27104,27081,27113,27119"+
+	  "27127,27287,27294,27298,27305,27318,27329,27346,27362,27363,27334,27339,27381,27383,27382,300007,300013,300014"+
+	  "300021,300080,300078,300107,300099,300100,300280,300151,300145,300262,300248,300239";
+//4684,4685,4686,4687,4688,4689"+
+//	  "4690,4691,4692,4693,4694,4695,4695";
+
+	npcshopdelitem "Point_ShopsC",909;
+	for(set .@i,0; .@i<getarraysize(.Shop); set .@i,.@i+2)
+		npcshopadditem "Point_ShopsC",.Shop[.@i],.Shop[.@i+1];
+
+waitingroom "  ย่อยการ์ดขยะ",0;
+/*
+	setarray .messages$," ","แ","ล","ก","เ","ป","ลี่","ย","น","C","A","R","D"," "," ";
+	while(1)
+	{
+		set .Display$,"";
+		for( set .i,0; .i < getarraysize( .messages$ ); set .i,.i + 1 )
+		{
+			set .Display$,.Display$ + .messages$[.i];
+			delwaitingroom;
+			waitingroom .Display$,0;
+			sleep 100;
+		}
+	sleep 1000;
+	}
+*/	
+	
+	end;
+}
+
+-	shop	Point_ShopsC	-1,909:-1
+-	pointshop	card_point	-1,#CARDTRADE,2943000:20,2944000:10,2984717:10,616:150
+

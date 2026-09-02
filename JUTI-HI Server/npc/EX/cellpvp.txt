@@ -1,0 +1,5 @@
+-	script	PvP#main	-1,{
+OnInit:
+	setcell "eternal", 85, 104, 114, 75, cell_pvp, 0;
+	end;
+}

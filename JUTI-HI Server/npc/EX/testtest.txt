@@ -1,0 +1,39 @@
+izlude,1,1,4	script	เก็บเกี่ยวทรัพยากร#1	4_STAR_BOX_POW1,{
+	
+	
+	progressbar "000000",5;
+	if($TREASUREBOX1 == 0){	
+		setnpcdisplay strnpcinfo(0),4_TREASURE_BOX;
+		specialeffect 10;		
+		//progressbar "000000",5;
+		set $TREASUREBOX1, 1;
+		getitem 607,5;
+		if(rand(1,10) == 9){ getitem 501,3; }
+		if(rand(1,10) == 8){ getitem 501,5; }
+		if(rand(1,10) == 6){ getitem 501,7; }
+		if(rand(1,10) == 5){ getitem 501,10; }
+		//specialeffect2 10;
+		disablenpc strnpcinfo(0); 
+		donpcevent strnpcinfo(0)+"::OnSpawn";
+	}
+	if($TREASUREBOX1 == 1){			
+		dispbottom "กล่องสมบัติได้ถูกเปิดไปแเล้ว";
+	}
+
+	end;
+	
+	
+OnSpawn:	
+	sleep rand(7000,10000);	
+	set $TREASUREBOX1, 0;
+    getfreecell("izlude",.@x,.@y,126,109,5,5);
+	movenpc strnpcinfo(0),.@x,.@y;
+	enablenpc strnpcinfo(0);
+	setnpcdisplay strnpcinfo(0),4_STAR_BOX_POW1,0,0;
+	end;
+    
+oninit:        //test
+    donpcevent strnpcinfo(0)+"::OnSpawn";
+    end;
+        
+}

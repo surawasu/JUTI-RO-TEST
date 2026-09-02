@@ -1,0 +1,126 @@
+hell_abyss,98,105,6	script	Hell Boss#Abyss	10081,{
+end;
+
+
+ex:
+end;
+
+
+OnInit:
+do {
+delwaitingroom;
+if ($hell_abyss_boss_spawn > 0){
+waitingroom "บอสกำลังปรากฏตัว",0;
+sleep 1000;
+}
+if ($hell_abyss_delay < 1 && $hell_abyss_boss_spawn == 0){
+waitingroom "ฆ่าอีก ["+$hell_abyss+"/1000]",0;
+sleep 200;
+}
+if ($hell_abyss_delay >0){ 
+set .@dun1_h,($hell_abyss_delay / 3600); 
+set .@dun1_m,($hell_abyss_delay - (.@dun1_h * 3600)) / 60;
+set .@dun1_s,$hell_abyss_delay - ((.@dun1_h * 3600) + (.@dun1_m * 60));
+set $hell_abyss_delay,$hell_abyss_delay-1;
+if(.@dun1_s> 59){
+	if(.@dun1_m> 59){
+	waitingroom "จะเกิดใน["+(.@dun1_h<10?"0" + .@dun1_h + "":" + .@dun1_h + ")+":00:00]",0;
+	}
+	if(.@dun1_m> 9 && .@dun1_s < 60){
+	waitingroom "จะเกิดใน["+(.@dun1_h<10?"0" + .@dun1_h + "":" + .@dun1_h + ")+":" +.@dun1_m + ":00]",0;
+	}
+	if(.@dun1_m< 10){
+	waitingroom "จะเกิดใน["+(.@dun1_h<10?"0" + .@dun1_h + "":" + .@dun1_h + ")+":0" +.@dun1_m + ":00]",0;
+	}
+}
+if(.@dun1_s> 9 && .@dun1_s < 60){
+	if(.@dun1_m> 59){
+	waitingroom "จะเกิดใน["+(.@dun1_h<10?"0" + .@dun1_h + "":" + .@dun1_h + ")+":00:" +.@dun1_s + "]",0;
+	}
+	if(.@dun1_m> 9 && .@dun1_s < 60){
+	waitingroom "จะเกิดใน["+(.@dun1_h<10?"0" + .@dun1_h + "":" + .@dun1_h + ")+":" +.@dun1_m + ":" +.@dun1_s + "]",0;
+	}
+	if(.@dun1_m< 10){
+	waitingroom "จะเกิดใน["+(.@dun1_h<10?"0" + .@dun1_h + "":" + .@dun1_h + ")+":0" +.@dun1_m + ":" +.@dun1_s + "]",0;
+	}
+}
+if(.@dun1_s< 10){
+	if(.@dun1_m> 59){
+	waitingroom "จะเกิดใน["+(.@dun1_h<10?"0" + .@dun1_h + "":" + .@dun1_h + ")+":00:0" +.@dun1_s + "]",0;
+	}
+	if(.@dun1_m> 9 && .@dun1_s < 60){
+	waitingroom "จะเกิดใน["+(.@dun1_h<10?"0" + .@dun1_h + "":" + .@dun1_h + ")+":" +.@dun1_m + ":0" +.@dun1_s + "]",0;
+	}
+	if(.@dun1_m< 10){
+	waitingroom "จะเกิดใน["+(.@dun1_h<10?"0" + .@dun1_h + "":" + .@dun1_h + ")+":0" +.@dun1_m + ":0" +.@dun1_s + "]",0;
+	}
+}
+}
+sleep 1000;
+} while(1); // End Loop
+end;
+}
+
+hell_abyss,0,0	monster	--en--	2363,12,1000,1000,"#hell_abyss::OnHellMobDead"
+hell_abyss,0,0	monster	--en--	2364,12,1000,1000,"#hell_abyss::OnHellMobDead"
+hell_abyss,0,0	monster	--en--	2365,12,1000,1000,"#hell_abyss::OnHellMobDead"
+hell_abyss,0,0	monster	--en--	2366,12,1000,1000,"#hell_abyss::OnHellMobDead"
+hell_abyss,0,0	monster	--en--	2315,12,1000,1000,"#hell_abyss::OnHellMobDead"
+hell_abyss,0,0	monster	--en--	2316,12,1000,1000,"#hell_abyss::OnHellMobDead"
+
+
+hell_abyss,0,0,0	script	#hell_abyss	-1,{
+
+OnInit:
+$hell_abyss = 0;
+$hell_abyss_delay = 0;
+$hell_abyss_boss_spawn = 0;
+end;
+
+OnHellMobDead: 
+if($hell_abyss_delay == 0 && $hell_abyss_boss_spawn != 1){ 
+$hell_abyss += 1;
+if($hell_abyss == 1){
+	mapannounce "hell_abyss","[ Hell Abyss ] : ต้องสังหารมอนเตอร์ในแผนที่นี้อีก "+callfunc("F_InsertComma",(1000-($hell_abyss)))+" ตัว บอสจึงจะปรากฏตัว !!",bc_map,0xFFFF00,FW_NORMAL,16;
+}
+if($hell_abyss == 500){
+	mapannounce "hell_abyss","[ Hell Abyss ] : ต้องสังหารมอนเตอร์ในแผนที่นี้อีก "+callfunc("F_InsertComma",(1000-($hell_abyss)))+" ตัว บอสจึงจะปรากฏตัว !!",bc_map,0xFFFF00,FW_NORMAL,16;
+}
+if($hell_abyss == 900){
+	mapannounce "hell_abyss","[ Hell Abyss ] : ต้องสังหารมอนเตอร์ในแผนที่นี้อีก "+callfunc("F_InsertComma",(1000-($hell_abyss)))+" ตัว บอสจึงจะปรากฏตัว !!",bc_map,0xFFFF00,FW_NORMAL,16;
+}
+if($hell_abyss >= 1000){
+	$hell_abyss_boss_spawn += 1;
+	sleep 1000;
+	monster "hell_abyss",0,0,"Hell Boss",30086,1,strnpcinfo(0)+"::OnEnd";
+	announce "[ Hell Abyss ] : บอสได้ปรากฏตัวขึ้นแล้ว ณ  Hell Abyss",bc_all,0xFFFF00;
+	end;
+}
+}
+end;
+
+
+
+OnEnd:
+$hell_abyss_delay = 7200;
+$hell_abyss = 0;
+$hell_abyss_boss_spawn = 0;
+announce "[ Hell Abyss ] : เหลือเวลาอีก "+ ($hell_abyss_delay/60) +" นาที บอสจะฟื้นคืนชีพอีกครั้ง !!",bc_all,0xFFFF00;
+end;
+
+
+OnTimer60000:
+	$hell_abyss_delay -= 60;
+
+	if ($hell_abyss_delay > 0) { 
+		initnpctimer;
+	}
+	else {
+		stopnpctimer;		
+		//$hell_abyss_delay = 0;
+		mapannounce "hell_abyss","[ Hell Abyss ] : Hell Boss พร้อมแล้ว",bc_map,0xFFFF00,FW_NORMAL,16;
+	}
+	end;
+
+}
+

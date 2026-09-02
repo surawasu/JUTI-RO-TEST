@@ -1,0 +1,604 @@
+//===== eAthena Script ======================================= 
+//= Armor Enchanter
+//===== By: ================================================== 
+//= L0ne_W0lf
+//===== Current Version: ===================================== 
+//= 1.1
+//===== Compatible With: ===================================== 
+//= eAhena SVN
+//===== Description: ========================================= 
+//= [Aegis Conversion]
+//= Add a +1, 2, or 3, of a random stat to specified armor.
+//===== Additional Comments: ================================= 
+//= 1.0 First version.
+//= 1.1 Corrected typo (Sit -> Suit) (bugreport:4586)
+//============================================================ 
+
+-	script	ApprenticeCraftsman1	-1,{
+OnNormalEnchant:
+	disable_items;
+	if (countitem(35000) >= 5) {
+		mes "[Apprentice Craftsman]";
+		mes "สวัสดียินดีต้อนรับสู่ระบบ Orb";
+		mes "ค่าบริการ "+ getitemname(35000) +" จำนวน 5 ea. ";
+		mes "^FF000 ออฟแตกของหาย ^000000";
+				mes "สามารถใช้ <ITEM>^0055FF"+getitemname(7146)+"^000000<INFO>7146</INFO></ITEM> ป้องกันไอเท็มสูญหายได้";
+		mes "^FF000 ชุดเกาะนั้นๆต้องมีเพียงชิ้นเดียวในตัวละครและห้ามตีบวกหรือใส่การ์ด ^000000";
+
+		next;
+		switch(select("เกาะไม่มี Slot.:เกาะมี Slot.:เกาะระดับสูง.:ไม่เอาละ.")) {
+		case 1:
+			switch(select("Mantle:Coat:Chain Mail:Full Plate:Silk Robe:Saint's Robe:Holy Robe:Wooden Mail:Tights:Silver Robe:Mage Coat:Thief Clothes:Legion Plate Armor:Lucius's Fierce Armor of Volcano:Saphien's Armor of Ocean:Aebeccee's Raging Typhoon Armor:Claytos Cracking Earth Armor:Ninja Suit:Chameleon Armor:Glorious Suit:Glorious Popularized Suit:Glorious Mass-Production Suit")) {
+			case 1:
+				callsub S_EnchantArmor,2307,50;
+			case 2:
+				callsub S_EnchantArmor,2309,50;
+			case 3:
+				callsub S_EnchantArmor,2314,50;
+			case 4:
+				callsub S_EnchantArmor,2316,50;
+			case 5:
+				callsub S_EnchantArmor,2321,50;
+			case 6:
+				callsub S_EnchantArmor,2325,50;
+			case 7:
+				callsub S_EnchantArmor,2327,50;
+			case 8:
+				callsub S_EnchantArmor,2328,50;
+			case 9:
+				callsub S_EnchantArmor,2330,50;
+			case 10:
+				callsub S_EnchantArmor,2332,50;
+			case 11:
+				callsub S_EnchantArmor,2334,50;
+			case 12:
+				callsub S_EnchantArmor,2335,50;
+			case 13:
+				callsub S_EnchantArmor,2341,50;
+			case 14:
+				callsub S_EnchantArmor,2344,50;
+			case 15:
+				callsub S_EnchantArmor,2346,50;
+			case 16:
+				callsub S_EnchantArmor,2348,50;
+			case 17:
+				callsub S_EnchantArmor,2350,50;
+			case 18:
+				callsub S_EnchantArmor,2337,50;
+			case 19:
+				callsub S_EnchantArmor,2386,50;
+			case 20:
+				callsub S_EnchantArmor,2394,50;
+			case 21:
+				callsub S_EnchantArmor,2395,50;
+			case 22:
+				callsub S_EnchantArmor,2396,50;
+
+			}
+		case 2:
+			switch(select("Sniping Suit:Bone Plate:Valkyrie Armor:Mink Coat:Lord's Clothes:Glittering Jacket:Formal Suit:Mantle(1):Coat(1):Chain Mail(1):Full Plate(1):Silk Robe(1):Scapulare(1):Saint's Robe(1):Tights(1):Silver Robe(1):Thief Clothes(1):Legion Plate Armor(1):Lucius's Fierce Armor of Volcano(1):Saphien's Armor of Ocean(1):Aebeccee's Raging Typhoon Armor(1):Claytos Cracking Earth Armor(1):Advanced Valkyrie Armor:Advanced Diabolus Robe:Advanced Diabolus Armor:Advanced Tidung:Advanced Bone Plate:Advanced Brynhild")) {
+			case 1:
+				callsub S_EnchantArmor,2367,55;
+			case 2:
+				callsub S_EnchantArmor,15000,55;
+			case 3:
+				callsub S_EnchantArmor,2357,55;
+			case 4:
+				callsub S_EnchantArmor,2311,55;
+			case 5:
+				callsub S_EnchantArmor,2318,55;
+			case 6:
+				callsub S_EnchantArmor,2319,55;
+			case 7:
+				callsub S_EnchantArmor,2320,55;
+			case 8:
+				callsub S_EnchantArmor,2308,55;
+			case 9:
+				callsub S_EnchantArmor,2310,55;
+			case 10:
+				callsub S_EnchantArmor,2315,55;
+			case 11:
+				callsub S_EnchantArmor,2317,55;
+			case 12:
+				callsub S_EnchantArmor,2322,55;
+			case 13:
+				callsub S_EnchantArmor,2324,55;
+			case 14:
+				callsub S_EnchantArmor,2326,55;
+			case 15:
+				callsub S_EnchantArmor,2331,55;
+			case 16:
+				callsub S_EnchantArmor,2333,55;
+			case 17:
+				callsub S_EnchantArmor,2336,55;
+			case 18:
+				callsub S_EnchantArmor,2342,55;
+			case 19:
+				callsub S_EnchantArmor,2345,55;
+			case 20:
+				callsub S_EnchantArmor,2347,55;
+			case 21:
+				callsub S_EnchantArmor,2349,55;
+			case 22:
+				callsub S_EnchantArmor,2351,55;
+			case 23:
+				callsub S_EnchantArmor,54001,55;
+			case 24:
+				callsub S_EnchantArmor,54002,55;
+			case 25:
+				callsub S_EnchantArmor,54003,55;
+			case 26:
+				callsub S_EnchantArmor,54004,55;
+			case 27:
+				callsub S_EnchantArmor,54005,55;
+			case 28:
+				callsub S_EnchantArmor,54000,55;
+			}
+		case 3:
+			switch(select("Meteo Plate Armor:Orlean's Gown:Life Link:Diablos Robe:Diablos Armor:Assaulter Plate:Elite Engineer Armor:Assassin Robe:Warlock's Battle Robe:Medic's Robe:Elite Archer Suit:Elite Shooter Suit:Sprint Mail:Kandura:Armor of Naga:Improved Tights:Tidung")) {
+			case 1:
+				callsub S_EnchantArmor,2364,60;
+			case 2:
+				callsub S_EnchantArmor,2365,60;
+			case 3:
+				callsub S_EnchantArmor,2391,60;
+			case 4:
+				callsub S_EnchantArmor,2374,60;
+			case 5:
+				callsub S_EnchantArmor,2375,60;
+			case 6:
+				callsub S_EnchantArmor,2376,60;
+			case 7:
+				callsub S_EnchantArmor,2377,60;
+			case 8:
+				callsub S_EnchantArmor,2378,60;
+			case 9:
+				callsub S_EnchantArmor,2379,60;
+			case 10:
+				callsub S_EnchantArmor,2380,60;
+			case 11:
+				callsub S_EnchantArmor,2381,60;
+			case 12:
+				callsub S_EnchantArmor,2382,60;
+			case 13:
+				callsub S_EnchantArmor,2387,60;
+			case 14:
+				callsub S_EnchantArmor,2388,60;
+			case 15:
+				callsub S_EnchantArmor,2389,60;
+			case 16:
+				callsub S_EnchantArmor,2390,60;
+			case 17:
+				callsub S_EnchantArmor,15032,60;
+			}
+		case 4:
+			mes "[Apprentice Craftsman]";
+			mes "บ๊ายบาย, แล้วกลับมาใหม่ภายหลังได้นะ.";
+			close;
+		}
+	}
+	else {
+		mes "[Apprentice Craftsman]";
+		mes "ข้าคือผู้ให้พลังแก่ขุดเกาะ.";
+		next;
+		mes "[Apprentice Craftsman]";
+		mes "ท่านมี " +getitemname(35000)+ " ไม่ถึง 5 ea. แล้วกลับมาใหม่นะ";
+		close;
+	}
+
+S_EnchantArmor:
+	set .@itemid,getarg(0);
+	set .@failrate,getarg(1);	
+	set .@part, EQI_ARMOR;
+	set .@ref, getequiprefinerycnt(.@part);
+	if (!getequipisequiped(.@part)) {
+		mes .Name$;
+		mes " ";
+		mes "^FF0000ท่านไม่ได้ใส่เสื้อมาเลย^000000";
+		emotion ET_FRET;
+		close;
+	}
+	setarray .@equip_bitmask[0],
+	EQP_ACC_L,				// EQI_ACC_L
+	EQP_ACC_R,				// EQI_ACC_R
+	EQP_SHOES,				// EQI_SHOES
+	EQP_GARMENT,			// EQI_GARMENT
+	EQP_HEAD_LOW,			// EQI_HEAD_LOW
+	EQP_HEAD_MID,			// EQI_HEAD_MID
+	EQP_HEAD_TOP,			// EQI_HEAD_TOP
+	EQP_ARMOR,				// EQI_ARMOR
+	EQP_HAND_L,				// EQI_HAND_L
+	EQP_HAND_R,				// EQI_HAND_R
+	EQP_COSTUME_HEAD_TOP,	// EQI_COSTUME_HEAD_TOP
+	EQP_COSTUME_HEAD_MID,	// EQI_COSTUME_HEAD_MID
+	EQP_COSTUME_HEAD_LOW,	// EQI_COSTUME_HEAD_LOW
+	EQP_COSTUME_GARMENT,	// EQI_COSTUME_GARMENT
+	EQP_AMMO,				// EQI_AMMO
+	EQP_SHADOW_ARMOR,		// EQI_SHADOW_ARMOR
+	EQP_SHADOW_WEAPON,		// EQI_SHADOW_WEAPON
+	EQP_SHADOW_SHIELD,		// EQI_SHADOW_SHIELD
+	EQP_SHADOW_SHOES,		// EQI_SHADOW_SHOES
+	EQP_SHADOW_ACC_R,		// EQI_SHADOW_ACC_R
+	EQP_SHADOW_ACC_L;		// EQI_SHADOW_ACC_L
+	
+	getinventorylist;	// required for now for getitembound4 to keep the enchant grade
+	for ( .@i = 0; .@i < @inventorylist_count; ++.@i ) {
+		if ((@inventorylist_equip[.@i] & .@equip_bitmask[.@part]))
+			break;
+	}
+	
+	.@card0 = getequipcardid(.@part,0);
+	.@card1 = getequipcardid(.@part,1);
+	.@card2 = getequipcardid(.@part,2);
+	.@card3 = getequipcardid(.@part,3);
+	
+	setarray .@opt_id[0], @inventorylist_option_id1[.@i], @inventorylist_option_id2[.@i], @inventorylist_option_id3[.@i], @inventorylist_option_id4[.@i], @inventorylist_option_id5[.@i];
+	setarray .@opt_value[0], @inventorylist_option_value1[.@i], @inventorylist_option_value2[.@i], @inventorylist_option_value3[.@i], @inventorylist_option_value4[.@i], @inventorylist_option_value5[.@i];
+	setarray .@opt_param[0], @inventorylist_option_parameter1[.@i], @inventorylist_option_parameter2[.@i], @inventorylist_option_parameter3[.@i], @inventorylist_option_parameter4[.@i], @inventorylist_option_parameter5[.@i];
+
+	if (countitem(7146)>0){
+		mes "สามารถใช้ <ITEM>^0055FF"+getitemname(7146)+"^000000<INFO>"+7146+"</INFO></ITEM> ป้องกันไอเท็มสูญหายได้";
+		next;
+		menu 
+		"^FF0000ใช้งาน^000000 ",safe,
+		"^FF0000ไม่ต้องการ^000000 ",nonsafe;
+	
+		safe:
+		set .@safe,1;
+		goto nonsafe;
+	}
+	nonsafe:
+	if ((countitem(.@itemid) > 0) && (countitem(.@itemid) < 2)) {
+		mes "[Apprentice Craftsman]";
+		mes "Socket enchant ท่านต้องจ่าย " +getitemname(35000)+ " 5 ea. และมีโอกาศเสียหายได้นะ.";
+		mes "ท่านต้องการดำเนินการ Enchant ต่อหรือไม่ ??";
+
+
+	
+		next;
+		switch(select("หืม... ไว้คิดก่อน.:ดำเนินการต่อ, เริ่มกันเลย.")) {
+		case 1:
+			mes "[Apprentice Craftsman]";
+			mes "บ๊ายบาย?";
+			mes "แล้วเจอกันใหม่วันหลังนะ.";
+			close;
+		case 2:
+			mes "[Apprentice Craftsman]";
+			mes "หลังจากปิดหน้าต่างนี้ ห้ามเดินเป็นอันขาด ... เพราะจะทำการ Enchant";
+			close2;
+			specialeffect2 EF_MAPPILLAR;
+			if (countitem(35000) < 5) {
+				mes "[Apprentice Craftsman]";
+				mes "ขอโทษทีท่านมี  " +getitemname(35000)+ " ไม่เพียงพอ.";
+				close;
+			}
+			set .@enc_ran,rand(1,100);
+			delitem 35000,5;
+			delequip .@part;
+	if(.@safe) {goto sussed;}
+	if (.@enc_ran < .@failrate){
+		goto sussed;
+		}else {
+				specialeffect2 EF_PHARMACY_FAIL;
+				mes "[Apprentice Craftsman]";
+				mes "ว๊า Enchant ผิดพลาด.";
+				mes "ไอเทมหาย!!.";
+				close;
+			}
+			
+			sussed:
+			
+			setarray .@level[0],4700,4710,4720,4730,4740,4750,4701,4711,4721,4731,4741,4751,4702,4712,4722,4732,4742,4752;
+			if (.@safe) {delitem 7146,1;}
+			set .@addpart, .@level[rand(getarraysize(.@level))];
+			getitem3 .@itemid,1,1,.@ref,0,.@card0,.@card1,.@card2,.@addpart,.@opt_id,.@opt_value,.@opt_param;
+			end;
+		}
+	}
+	else {
+		mes "[Apprentice Craftsman]";
+		mes "ท่านมีชุดเกาะนี้ในตัวละครมากกว่า 1 ชิ้น หรือ ท่านไม่มีเลย!";
+		mes "ถ้าท่านมี 1 ชิ้นแล้วกลับมาหาข้าได้นะ.";
+		close;
+	}
+	end;
+}
+
+-	script	RentalArmorEnchant	-1,{
+	
+OnRentalEnchant:
+	if (countitem(.Fee_Item_Id) >= .Fee_Item_Amt) {
+		mes .Name$;
+		mes "สวัสดียินดีต้อนรับสู่ระบบ Orb";
+		mes "ค่าบริการ "+getitemname(.Fee_Item_Id)+" จำนวน "+.Fee_Item_Amt+" ea.";
+		mes "^FF000 ออฟแตกของหาย ^000000";
+		mes "สามารถใช้ <ITEM>^0055FF"+getitemname(.Protect_Item_Id)+"^000000<INFO>"+.Fee_Item_Id+"</INFO></ITEM> ป้องกันไอเท็มสูญหายได้";
+		mes "^FF000 ชุดเกาะนั้นๆ ต้องมีเพียงชิ้นเดียวในตัวละครและห้ามตีบวกหรือใส่การ์ด ^000000";
+		next;
+		disable_items;		
+		set .@part, EQI_ARMOR;
+		if (!getequipisequiped(.@part)) {
+			mes .Name$;
+			mes " ";
+			mes "^FF0000ท่านไม่ได้ใส่เสื้อมาเลย^000000";
+			emotion ET_FRET;
+			close;
+		}
+		set .@enchantid, getequipid(.@part);
+		set .@ref, getequiprefinerycnt(.@part);
+		setarray .@equip_bitmask[0],
+		EQP_ACC_L,				// EQI_ACC_L
+		EQP_ACC_R,				// EQI_ACC_R
+		EQP_SHOES,				// EQI_SHOES
+		EQP_GARMENT,			// EQI_GARMENT
+		EQP_HEAD_LOW,			// EQI_HEAD_LOW
+		EQP_HEAD_MID,			// EQI_HEAD_MID
+		EQP_HEAD_TOP,			// EQI_HEAD_TOP
+		EQP_ARMOR,				// EQI_ARMOR
+		EQP_HAND_L,				// EQI_HAND_L
+		EQP_HAND_R,				// EQI_HAND_R
+		EQP_COSTUME_HEAD_TOP,	// EQI_COSTUME_HEAD_TOP
+		EQP_COSTUME_HEAD_MID,	// EQI_COSTUME_HEAD_MID
+		EQP_COSTUME_HEAD_LOW,	// EQI_COSTUME_HEAD_LOW
+		EQP_COSTUME_GARMENT,	// EQI_COSTUME_GARMENT
+		EQP_AMMO,				// EQI_AMMO
+		EQP_SHADOW_ARMOR,		// EQI_SHADOW_ARMOR
+		EQP_SHADOW_WEAPON,		// EQI_SHADOW_WEAPON
+		EQP_SHADOW_SHIELD,		// EQI_SHADOW_SHIELD
+		EQP_SHADOW_SHOES,		// EQI_SHADOW_SHOES
+		EQP_SHADOW_ACC_R,		// EQI_SHADOW_ACC_R
+		EQP_SHADOW_ACC_L;		// EQI_SHADOW_ACC_L
+		
+		getinventorylist;	// required for now for getitembound4 to keep the enchant grade
+		for ( .@i = 0; .@i < @inventorylist_count; ++.@i ) {
+			if ((@inventorylist_equip[.@i] & .@equip_bitmask[.@part]))
+				break;
+		}
+		
+		.@card0 = getequipcardid(.@part,0);
+		.@card1 = getequipcardid(.@part,1);
+		.@card2 = getequipcardid(.@part,2);
+		.@card3 = getequipcardid(.@part,3);
+		
+		setarray .@opt_id[0], @inventorylist_option_id1[.@i], @inventorylist_option_id2[.@i], @inventorylist_option_id3[.@i], @inventorylist_option_id4[.@i], @inventorylist_option_id5[.@i];
+		setarray .@opt_value[0], @inventorylist_option_value1[.@i], @inventorylist_option_value2[.@i], @inventorylist_option_value3[.@i], @inventorylist_option_value4[.@i], @inventorylist_option_value5[.@i];
+		setarray .@opt_param[0], @inventorylist_option_parameter1[.@i], @inventorylist_option_parameter2[.@i], @inventorylist_option_parameter3[.@i], @inventorylist_option_parameter4[.@i], @inventorylist_option_parameter5[.@i];
+	
+		if (countitem(.@enchantid)) {
+			mes .Name$;
+			mes " ";
+			mes "^FF0000ตรวจพบไอเทมถาวรที่มีรหัสเดียวกับของเช่าในตัว กรุณานำไปเก็บไว้ในคลังก่อน^000000";
+			close;
+		}
+		switch(.@enchantid) {
+			// เกาะไม่มี Slot
+			case 2307:
+			case 2309:
+			case 2314:
+			case 2316:
+			case 2321:
+			case 2325:
+			case 2327:
+			case 2328:
+			case 2330:
+			case 2332:
+			case 2334:
+			case 2335:
+			case 2341:
+			case 2344:
+			case 2346:
+			case 2348:
+			case 2350:
+			case 2337:
+			case 2386:
+			case 2394:
+			case 2395:
+			case 2396:
+				set .@Fail_Rate, 100;
+				break;
+			
+			// เกาะมี Slot
+			case 2367:
+			case 15000:
+			case 2357:
+			case 2311:
+			case 2318:
+			case 2319:
+			case 2320:
+			case 2308:
+			case 2310:
+			case 2315:
+			case 2317:
+			case 2322:
+			case 2324:
+			case 2326:
+			case 2331:
+			case 2333:
+			case 2336:
+			case 2342:
+			case 2345:
+			case 2347:
+			case 2349:
+			case 2351:
+			case 54001:
+			case 54002:
+			case 54003:
+			case 54004:
+			case 54005:
+			case 54000:
+				set .@Fail_Rate, 100;
+				break;
+				
+			// เกาะระดับสูง
+			case 2364:
+			case 2365:
+			case 2391:
+			case 2374:
+			case 2375:
+			case 2376:
+			case 2377:
+			case 2378:
+			case 2379:
+			case 2380:
+			case 2381:
+			case 2382:
+			case 2387:
+			case 2388:
+			case 2389:
+			case 2390:
+			case 15032:
+				set .@Fail_Rate, 100;
+				break;
+				
+			default:
+				mes .Name$;
+				mes " ";
+				mes "^FF0000ชุดเกราะที่ท่านใส่ ไม่สามารถออฟชั่นได้^000000";
+				close;
+		}
+	}
+	else {
+		mes .Name$;
+		mes " ";
+		mes "ข้าคือผู้ให้พลังแก่ขุดเกาะ.";
+		next;
+		mes .Name$;
+		mes " ";
+		mes "^FF0000ท่านมี "+getitemname(.Fee_Item_Id)+" ไม่ถึง "+.Fee_Item_Amt+" ea. แล้วกลับมาใหม่นะ^000000";
+		close;
+	}
+	
+	set .@itemid, .@enchantid;
+	set .@failrate, 100;	
+	if (countitem(.Protect_Item_Id)){
+		mes .Name$;
+		mes " ";
+		mes "สามารถใช้ <ITEM>^0055FF"+getitemname(.Protect_Item_Id)+"^000000<INFO>"+.Protect_Item_Id+"</INFO></ITEM> ป้องกันไอเท็มสูญหายได้";
+		next;
+		if (select("- ^FF0000ใช้งาน^000000:- ^FF0000ไม่ต้องการ^000000") == 1) {
+			set .@safe,1;
+		}
+	}
+		mes .Name$;
+		mes "Socket enchant ท่านต้องจ่าย " +getitemname(.Fee_Item_Id)+ " "+.Fee_Item_Amt+" ea. และมีโอกาศเสียหายได้นะ.";
+		mes "ท่านต้องการดำเนินการ Enchant ต่อหรือไม่ ??";
+		next;
+		if (select("หืม... ไว้คิดก่อน.:ดำเนินการต่อ, เริ่มกันเลย.") == 1) {
+			mes .Name$;
+			mes " ";
+			mes "บ๊ายบาย?";
+			mes "แล้วเจอกันใหม่วันหลังนะ.";
+			close;
+		}
+		mes .Name$;
+		mes " ";
+		mes "หลังจากปิดหน้าต่างนี้ ห้ามเดินเป็นอันขาด ... เพราะจะทำการ Enchant";
+		close2;
+		specialeffect2 EF_MAPPILLAR;
+		if (countitem(.Fee_Item_Id) < .Fee_Item_Amt) {
+			mes .Name$;
+			mes " ";
+			mes "ขอโทษทีท่านมี  "+getitemname(.Fee_Item_Id)+" ไม่เพียงพอ.";
+			close;
+		}
+		set .@enc_ran,rand(1,100);
+		if (.@safe) { delitem .Protect_Item_Id, .Protect_Item_Amt; }
+		delitem .Fee_Item_Id,.Fee_Item_Amt;
+		delequip .@part;
+		if (.@enc_ran > .@failrate){
+			specialeffect2 EF_PHARMACY_FAIL;
+			mes .Name$;
+			mes " ";
+			mes "ว๊า Enchant ผิดพลาด.";
+			mes "ไอเทมหาย!!.";
+			close;
+		}
+		else {			
+			for (.@i = 0: .@i < getarraysize(.Item_Id_Buffet_2); ++.@i) {
+				if (.@enchantid == .Item_Id_Buffet_2[.@i]) {
+					if (.@ref == 8) {
+						set .@Type, 2;
+					}
+					else {
+						set .@Type, 3;
+					}
+					set .@Match, 1;
+					break;
+				}
+			}
+			if (!.@Match) {
+				for (.@i = 0: .@i < getarraysize(.Item_Id_Buffet_3); ++.@i) {
+					if (.@enchantid == .Item_Id_Buffet_3[.@i]) {
+						set .@Type, 3;
+						break;
+					}
+				}
+			}
+			query_sql("SELECT UNIX_TIMESTAMP(expire),expire FROM `buffet_time` WHERE account_id = " + getcharid(3) + " AND type = "+.@Type+" LIMIT 1", .@expire, .@exp$);
+			.@diff = .@expire - gettimetick(2);
+			if(.@diff <= 0) {
+				mes .Name$;
+				mes " ";
+				mes "^FF0000เวลา Buffet No."+.@Type+" ของท่านหมดแล้ว^000000";
+				mes "(วันหมดอายุ " + .@exp$ + ")";
+				close;
+			}
+			setarray .@level[0],4700,4710,4720,4730,4740,4750,4701,4711,4721,4731,4741,4751,4702,4712,4722,4732,4742,4752;
+			set .@addpart, .@level[rand(getarraysize(.@level))];
+			rentitem3 .@enchantid,.@diff,1,.@ref,0,.@card0,.@card1,.@card2,.@addpart,.@opt_id,.@opt_value,.@opt_param;
+
+			end;
+		}
+	
+OnInit:
+	// ตั้งค่าชื่อ NPC
+	set .Name$, "[Apprentice Craftsman]";
+	// ตั้งค่ารหัสไอเทมค่าบริการ
+	set .Fee_Item_Id, 35000;
+	// ตั้งค่าจำนวนไอเทมค่าบริการที่ต้องเสียต่อรอบ
+	set .Fee_Item_Amt, 5;
+	// ตั้งค่ารหัสไอเทมป้องกันของเสียหาย
+	set .Protect_Item_Id, 7146;
+	// ตั้งค่าจำนวนไอเทมป้องกันของเสียหายที่ใช้ต่อรอบ
+	set .Protect_Item_Amt, 1;
+	// ตั้งร่ารหัสไอเทมเสื้อในตู้ Buffet 2
+	setarray .Item_Id_Buffet_2,
+		2357,2374,2375,2367;
+	// ตั้งค่ารหัสไอเทมเสื้อในตู้ Buffet 3
+	setarray .Item_Id_Buffet_3,
+		2357,2374,2375,2367,2376,
+		2377,2379,2380,2381,2382,15000,15032;
+	end;
+}
+
+-	script	EnchantArmorMain	-1,{
+	
+	mes "[Apprentice Craftsman]";
+	mes " ";
+	mes "ท่านต้องการออฟชั่นเสื้อแบบไหนละ?";
+	next;
+	if (select("- ออฟชั่นเสื้อธรรมดา:- ออฟชั่นเสื้อเช่า") == 1) {
+		deletearray @inventorylist_id[0], getarraysize(@inventorylist_id);
+		getinventorylist;
+		for (.@i = 0; .@i < getarraysize(@inventorylist_id); ++.@i) {
+			if (@inventorylist_expire[.@i] > 0) {
+				mes "[Apprentice Craftsman]";
+				mes " ";
+				mes "^FF0000ตรวจพบไอเทมเช่าในตัว กรุณานำไปเก็บในคลังก่อน^000000";
+				close;
+			}
+		}
+		doevent "ApprenticeCraftsman1::OnNormalEnchant";
+	}
+	else {
+		doevent "RentalArmorEnchant::OnRentalEnchant";
+	}
+	end;
+OnInit:
+	waitingroom " ๐ ออฟชุดเกราะ ๐ ",0;
+	end;
+}
+
+//new_1-1,53,111,5	duplicate(ApprenticeCraftsman)	ออฟชุดเกราะ#1	73
+like_game,136,168,4	duplicate(EnchantArmorMain)	ออฟชุดเกราะ#1	73
+//izlude,112,103,4	duplicate(EnchantArmorMain)	ออฟชุดเกราะ#1	734

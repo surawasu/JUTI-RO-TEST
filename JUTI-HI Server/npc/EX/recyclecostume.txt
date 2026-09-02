@@ -1,0 +1,264 @@
+like_game,87,96,6	script	ย่อยคอสตูม#CARDRECYCLE	640,{
+
+	if (checkweight(1301,1) == 0) {
+		mes "[ย่อยคอสตูม]";
+		mes "มีไอเทมมากเกินไป..";
+		close;
+	}
+	disable_items;
+	
+mes	"[ย่อยคอสตูม]";
+mes "เลือกรายการด้านล่าง";
+
+menu	"• เปิดร้านค้า",SHOP,
+		"• ย่อยคอสตูมกิจกรรม",RECYCLE,
+		"• ยกเลิก",ex;	
+	
+SHOP:
+close2;
+callshop "EVENTCOINSHOP",1;
+end;
+
+
+ex:
+end;
+	
+RECYCLE:	
+	mes "[ย่อยคอสตูม]";
+	mes "สามารถนำการ์ดบอสที่ไม่ใช้งานมาแลกเป็น <ITEM>Event Coin<INFO>"+60042+"</INFO></ITEM>ได้";
+	mes "เจ้าต้องการเริ่มเลยไหม?";
+	next;
+	if (select( "เริ่มเลย", "ยกเลิก" ) == 2) {
+		mes "[ย่อยคอสตูม]";
+		mes "กลับมาหาข้าได้เสมอ !";
+		close;
+	}
+	mes "[ย่อยคอสตูม]";
+	mes "สามารถนำการ์ดบอสที่ไม่ใช้งานมาแลกเป็น <ITEM>Event Coin<INFO>"+60042+"</INFO></ITEM>ได้";
+	next;
+	mes "[ย่อยคอสตูม]";
+	mes "- กำลังค้นหา...... -";
+	next;
+	// ====================================================================
+	// =================== Pokemon Egg Exchange To Bsb ===================
+	// ====================================================================
+	.@box_list[17] = 60042;		// Normal Pokemon
+	setarray .@item_list_17[0],
+	
+			59000,
+			59001,
+			59002,
+			59003,
+			59004,
+			59005,
+			59006,
+			59007,
+			59008,
+			59009,
+			59010,
+			59011,
+			59012,
+			59013,
+			59014,
+			59015,
+			59016,
+			59017,
+			59018,
+			59019,
+			59100,
+			59101,
+			59102,
+			59103,
+			59104,
+			59105,
+			59106,
+			59107,
+			59108,
+			59109,
+			59110,
+			59111,
+			59112,
+			59113,
+			59114,
+			59115,
+			59116,
+			59117,
+			59118,
+			59119,
+			59200,
+			59201,
+			59202,
+			59203,
+			59204,
+			59205,
+			59206,
+			59207,
+			59208,
+			59209,
+			59210,
+			59211,
+			59212,
+			59213,
+			59214,
+			59215,
+			59216,
+			59217,
+			59218,
+			59219;		
+			
+
+	.@box_list[18] = 60042;		// Boss Pokemon
+	setarray .@item_list_18[0],
+		59300,
+		59301,
+		59302,
+		59303,
+		59304,
+		59305,
+		59306,
+		59307,
+		59308,
+		59309,
+		59310,
+		59311,
+		59312,
+		59313,
+		59314,
+		59315,
+		59316,
+		59317,
+		59318,
+		59319,
+		59400,
+		59401,
+		59402,
+		59403,
+		59404,
+		59405,
+		59406,
+		59407,
+		59408,
+		59409,
+		59410,
+		59411,
+		59412,
+		59413,
+		59414,
+		59415,
+		59500,
+		59501,
+		59502,
+		59503,
+		59504,
+		59505,
+		59506,
+		59507,
+		59508,
+		59509,
+		59510,
+		59600,
+		59601,
+		59602,
+		59603,
+		59604,
+		59605,
+		59606,
+		59607,
+		59608,
+		59609,
+		59610,
+		59611,
+		59612;
+
+	while(1) {
+		for ( .@i = 0; .@i < 19; ++.@i ) {
+			if (getiteminfo(.@box_list[.@i], ITEMINFO_TYPE) == -1)	// temporary check
+				continue;
+			.@size = getarraysize( getd(".@item_list_" + .@i) );
+			for ( .@h = 0; .@h < .@size; ++.@h ) {
+				.@id = getd( ".@item_list_" + .@i + "[" + .@h + "]" );
+				if (getiteminfo(.@id, ITEMINFO_TYPE) == -1)	// temporary check
+					continue;
+				if (countitem(.@id) < 1)
+					continue;	
+				mes "[ย่อยคอสตูม]";
+				if(.@id==.@item_list_18){				
+				mes "เจอแล้ว.. นี่มัน <ITEM>"+getitemname(.@id)+"<INFO>"+.@id+"</INFO></ITEM> เจ้าต้องการย่อยเป็น <ITEM>Event Coin<INFO>"+60042+"</INFO></ITEM> 100 ea. เลยหรือไม่?";
+				}else{
+				mes "เจอแล้ว.. นี่มัน <ITEM>"+getitemname(.@id)+"<INFO>"+.@id+"</INFO></ITEM> เจ้าต้องการย่อยเป็น <ITEM>Event Coin<INFO>"+60042+"</INFO></ITEM> 1 ea. เลยหรือไม่?";
+				}
+				next;
+				switch( select( "ย่อย 1 ครั้ง","ย่อยทั้งหมด ("+(countitem(.@id))+" ครั้ง)", "ลองดูของชิ้นอื่นก่อน", "หยุดก่อนแล้วกัน" ) ) {
+				case 1:
+					mes "[ย่อยคอสตูม]";
+					if (countitem(.@id) < 1)
+						mes "อืมมม ดูเหมือนว่าไม่มีอของที่แลกเปลี่ยนได้แล้ว...";
+					else {
+						if(.@id == getequipid(EQI_COSTUME_HEAD_TOP)
+						||.@id == getequipid(EQI_COSTUME_HEAD_MID)
+						||.@id == getequipid(EQI_COSTUME_HEAD_LOW)
+						||.@id == getequipid(EQI_COSTUME_GARMENT)){
+						mes "ไอเท็มชิ้นนี้ <ITEM>"+getitemname(.@id)+"<INFO>"+.@id+"</INFO></ITEM> ตรงกับของที่ท่านสวมใส่อยู่โปรดตรวจสอบความถูกต้องอีกครั้ง";	
+						end;				
+						}		
+						if(.@id==.@item_list_18){
+						mes "การแลกเปลี่ยนเสร็จสิ้น.";
+						delitem .@id, 1;
+						getitem .@box_list[.@i], 5;
+						}else{
+						mes "การแลกเปลี่ยนเสร็จสิ้น.";
+						delitem .@id, 1;
+						getitem .@box_list[.@i], 1;
+						}
+					}
+					mes "โปรดเช็คดูอีกที...";
+					next;
+					break;
+				case 2:
+					mes "[ย่อยคอสตูม]";
+					if (countitem(.@id) < 1)
+						mes "อืมมม ดูเหมือนว่าไม่มีอของที่แลกเปลี่ยนได้แล้ว...";
+					else {
+						if(.@id == getequipid(EQI_COSTUME_HEAD_TOP)
+						||.@id == getequipid(EQI_COSTUME_HEAD_MID)
+						||.@id == getequipid(EQI_COSTUME_HEAD_LOW)
+						||.@id == getequipid(EQI_COSTUME_GARMENT)){
+						mes "ไอเท็มชิ้นนี้ <ITEM>"+getitemname(.@id)+"<INFO>"+.@id+"</INFO></ITEM> ตรงกับของที่ท่านสวมใส่อยู่โปรดตรวจสอบความถูกต้องอีกครั้ง";	
+						end;				
+						}
+						.@amount = countitem(.@id);
+						if(.@id==.@item_list_18){
+						mes "การแลกเปลี่ยนเสร็จสิ้น.";
+						delitem .@id, .@amount;
+						getitem .@box_list[.@i], 5*.@amount;
+						}else{
+						mes "การแลกเปลี่ยนเสร็จสิ้น.";
+						delitem .@id,.@amount;
+						getitem .@box_list[.@i],.@amount;
+						}
+					}
+					mes "โปรดเช็คดูอีกที...";
+					next;
+					break;
+				case 3:
+					break;
+				case 4:
+					mes "[ย่อยคอสตูม]";
+					mes "อืมมมมไว้เจอกันใหม่.";
+					close;
+				}
+			}
+		}
+		mes "[ย่อยคอสตูม]";
+		mes "เดาไว้ว่านั้นคือทั้งหมดที่มีแล้ว.";
+		next;
+		if (select( "ดูรายละเอียดเพิ่มเติม", "ออกก่อน" ) == 2) {
+			mes "[ย่อยคอสตูม]";
+			mes "ลาก่อน~";
+			close;
+		}
+	}
+OnInit:
+	waitingroom "  ย่อยคอสตูม",0;
+end;
+}

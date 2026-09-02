@@ -1,0 +1,77 @@
+izlude,1,1,4	script	ทดสอบกล่องสมบัติ#1	4_TREASURE_BOX,{
+
+		progressbar "000000",5;
+		if($TREASUREBOX[1] < 1){
+			getitem 501,1;
+			$TREASUREBOX[1] = 1;
+			specialeffect2 10;
+			movenpc strnpcinfo(0),1,1;
+			disablenpc strnpcinfo(0);
+		}
+		end;
+		
+oninit:		//test
+$TREASUREBOX[1] = 0;
+end;
+		
+}
+
+izlude,1,1,4	script	ทดสอบกล่องสมบัติ#2	4_TREASURE_BOX,{
+
+		progressbar "000000",5;
+		if($TREASUREBOX[2] < 1){
+			getitem 501,1;
+			$TREASUREBOX[2] = 1;
+			specialeffect2 10;
+			movenpc strnpcinfo(0),1,1;
+			disablenpc strnpcinfo(0);
+		}
+
+		end;
+		
+		
+		
+oninit:		//test
+$TREASUREBOX[2] = 0;
+end;
+		
+}
+
+izlude,1,1,4	script	testboss#1	4_TREASURE_BOX,{
+
+end;
+
+
+OnSummon:
+monster "izlude",101,131,"Poring",1002,1,"testboss#1::OnFieldBossDead";
+//.@gid = $@mobid[0];
+end;
+
+
+
+OnFieldBossDead:
+	if(playerattached()){
+		.@gid = killedgid;
+		getunitdata .@gid,.@data;
+		.@xdead = .@data[UMOB_X];
+		.@ydead = .@data[UMOB_Y];
+		for (set .@i, 1; .@i <= 2; set .@i, .@i + 1){
+			getfreecell("izlude",.@x,.@y,.@xdead,.@ydead,5,5);			
+			movenpc "ทดสอบกล่องสมบัติ#"+.@i,.@x,.@y;
+			enablenpc "ทดสอบกล่องสมบัติ#"+.@i;
+			set $TREASUREBOX[.@i], 0;
+		}
+
+	}
+
+
+
+end;
+		
+OnInit:
+	bindatcmd "teststart",strnpcinfo(3) + "::OnSummon";
+	end;
+
+end;
+		
+}

@@ -1,0 +1,433 @@
+evt_catcher	mapflag	nobranch
+evt_catcher	mapflag	noicewall
+evt_catcher	mapflag	noreturn
+evt_catcher	mapflag	nomemo
+evt_catcher	mapflag	nosave	SavePoint
+evt_catcher	mapflag	noteleport
+evt_catcher	mapflag	nodrop
+evt_catcher	mapflag	nowarp
+evt_catcher	mapflag	nowarpto
+evt_catcher	mapflag	noskill
+evt_catcher	mapflag	nomobloot
+
+-	script	poring_end	-1,{
+OnClock0030:
+OnClock0230:
+OnClock0430:
+OnClock0630:
+OnClock0830:
+OnClock1030:
+OnClock1230:
+OnClock1430:
+OnClock1630:
+OnClock1830:
+OnClock2030:
+OnClock2230:
+stopnpctimer;
+set $pstart,0;
+killmonster "evt_catcher","All";
+if($win >= 10)end;
+announce "กิจกรรมตามหา Poring : กิจกรรมได้จบลงแล้ว !!!",0,0xFFC0CB;
+sleep 1000;
+areawarp "evt_catcher",0,999,999,0,"like_game",127,108;
+end;
+}
+
+-	script	poring_event	-1,{
+OnClock0020:
+OnClock0220:
+OnClock0420:
+OnClock0620:
+OnClock0820:
+OnClock1020:
+OnClock1220:
+OnClock1420:
+OnClock1620:
+OnClock1820:
+OnClock2020:
+OnClock2220:
+killmonster "evt_catcher","All";
+announce "กิจกรรมตามหา Poring : กิจกรรมจะเริ่มในอีก 1 นาที กรุณาเตรียมพร้อม !",0,0xFFC0CB;
+set $pstart,1;
+$win = 0;
+initnpctimer;
+end;
+
+OnTimer50000:
+killmonster "evt_catcher","All";
+announce "กิจกรรมตามหา Poring : กิจกรรมจะเริ่มในอีก 10 วินาที กรุณาเตรียมพร้อม !",0,0xFFC0CB;
+end;
+
+OnTimer55000:
+killmonster "evt_catcher","All";
+announce "กิจกรรมตามหา Poring : กิจกรรมจะเริ่มในอีก 5 วินาที กรุณาเตรียมพร้อม !",0,0xFFC0CB;
+end;
+
+OnTimer60000:
+killmonster "evt_catcher","All";
+announce "กิจกรรมตามหา Poring : กิจกรรมได้เริ่มต้นขึ้นแล้ว คุณมีเวลา 10 นาทีในการเล่นกิจกรรม",0,0xFFC0CB;
+stopnpctimer;
+setnpctimer 0;
+sleep 1000;
+callfunc "OnEventPoringCatcher";
+sleep 200;
+stopnpctimer;
+setnpctimer 0;
+end;
+}
+
+function	script	OnEventPoringCatcher	{
+OnEventPorC:
+//initnpctimer;
+//set $pstart,1;
+callfunc "Poringsummoner";
+end;
+
+}
+
+like_game,140,99,43,4	script	PoringCatcher::PorC	909,{
+
+OnTouch:
+if (!$pstart)
+{
+mes "^FF0000[ ตารางเวลากิจกรรม ]^000000";
+mes "00.20 น."; 
+mes "02.20 น."; 
+mes "04.20 น."; 
+mes "06.20 น."; 
+mes "08.20 น."; 
+mes "10.20 น."; 
+mes "12.20 น."; 
+mes "14.20 น."; 
+mes "16.20 น."; 
+mes "18.20 น."; 
+mes "20.20 น."; 
+mes "22.20 น."; 
+close;
+}
+
+//if ($@ActiveSv == 0) end;
+mes "[ กิจกรรมตามหา Poring ]";
+mes "สวัสดี [^FF0000 "+strcharinfo(0)+" ^000000] คุณต้องการอะไร ?";
+next;
+switch(select("- เข้าร่วมกิจกรรม [ "+getmapusers("evt_catcher")+" ]","- คำแนะนำ","- ไม่มีอะไร"))
+{
+case 1:
+mes "[ กิจกรรมตามหา Poring ]";
+mes "ไปกันเลย   !";
+announce "กิจกรรมตามหา Poring : [ "+strcharinfo(0)+" ] ได้เข้าไปยัง กิจกรรมตามหา Poring แล้วครับ",0,0xFFC0CB;
+sc_end SC_DANCING_KNIFE;
+sc_end SC_ABYSS_DAGGER;
+sc_end SC_A_MACHINE;
+sc_end SC_SERVANTWEAPON;
+warp "evt_catcher",101,94;
+break;
+
+case 2:
+mes "[ กิจกรรมตามหา Poring ]";
+mes "นี่คือ กิจกรรมตามหา Poring";
+mes "เมื่อคุณพบ Poring จะได้รับรางวัล";
+//mes "<ITEM>"+getitemname(41003)+"<INFO>"+41003+"</INFO></ITEM>";
+//mes "<ITEM>"+getitemname(6241)+"<INFO>"+6241+"</INFO></ITEM>";
+//mes "<ITEM>"+getitemname(6240)+"<INFO>"+6240+"</INFO></ITEM>";
+mes "ถ้าคุณทำพลาด คุณจะออกจากการแข่งขันทันที";
+mes "มีเวลาในการตามหาทั้งหมด 10 นาที";
+next;
+mes "^FF0000[ ตารางเวลากิจกรรม ]^000000";
+mes "00.20 น."; 
+mes "02.20 น."; 
+mes "04.20 น."; 
+mes "06.20 น."; 
+mes "08.20 น."; 
+mes "10.20 น."; 
+mes "12.20 น."; 
+mes "14.20 น."; 
+mes "16.20 น."; 
+mes "18.20 น."; 
+mes "20.20 น."; 
+mes "22.20 น."; 
+break;
+
+case 3:
+mes "[ กิจกรรมตามหา Poring ]";
+mes "โชคดี สำลีแปะหัว ฮ่าๆ";
+break;
+}
+close;
+
+OnInit:
+set $pstart,0;
+$win = 0;
+//setcell	"evt_catcher",0,999,999,0,cell_walkable,1;
+//setcell	"evt_catcher",92,73,111,64,cell_walkable,0;
+//setcell	"evt_catcher",91,76,91,76,cell_walkable,0;
+//monster "evt_catcher",0,0,"Pouring",1002,15,"poringlose::OnMobKilled1";
+//monster "evt_catcher",0,0,"Proing",1002,12,"poringlose::OnMobKilled2";
+//monster "evt_catcher",0,0,"Poirng",1002,15,"poringlose::OnMobKilled3";
+//monster "evt_catcher",0,0,"Poing",1002,15,"poringlose::OnMobKilled4";
+//monster "evt_catcher",0,0,"I'm not a Poring",1002,8,"poringlose::OnMobKilled5";
+//monster "evt_catcher",0,0,"Poring",1113,5,"poringlose::OnMobKilled6";
+//monster "evt_catcher",0,0,"Poring",1062,5,"poringlose::OnMobKilled7";
+//monster "evt_catcher",0,0,"Poring",1002,10,"poringwin::OnMobKilled";
+//monster "evt_catcher",0,0,"Gnirop",1002,4,"poringlose::OnMobKilled8";
+//monster "evt_catcher",0,0,"Por|ng",1002,12,"poringlose::OnMobKilled9";
+//monster "evt_catcher",0,0,"Por1ng",1002,15,"poringlose::OnMobKilled10";
+//monster "evt_catcher",0,0,"Porong",1002,11,"poringlose::OnMobKilled11";
+//monster "evt_catcher",0,0,"P0ring",1002,12,"poringlose::OnMobKilled12";
+//monster "evt_catcher",0,0,"P@ring",1002,12,"poringlose::OnMobKilled13";
+//monster "evt_catcher",0,0,"Poring",1031,15,"poringlose::OnMobKilled14";
+//monster "evt_catcher",0,0,"Poring",1242,10,"poringlose::OnMobKilled15";
+waitingroom " ตามหา Poring !!",0;
+end;
+}
+
+function	script	Poringsummoner	{
+OnSummonPoringCatcher:
+monster "evt_catcher",0,0,"Pouring",1002,15,"poringlose::OnMobKilled1";
+monster "evt_catcher",0,0,"Proing",1002,12,"poringlose::OnMobKilled2";
+monster "evt_catcher",0,0,"Poirng",1002,15,"poringlose::OnMobKilled3";
+monster "evt_catcher",0,0,"Poing",1002,15,"poringlose::OnMobKilled4";
+monster "evt_catcher",0,0,"I'm not a Poring",1002,8,"poringlose::OnMobKilled5";
+monster "evt_catcher",0,0,"Poring",1113,5,"poringlose::OnMobKilled6";
+monster "evt_catcher",0,0,"Poring",1062,5,"poringlose::OnMobKilled7";
+monster "evt_catcher",0,0,"Poring",1002,10,"poringwin::OnMobKilled";
+monster "evt_catcher",0,0,"Gnirop",1002,4,"poringlose::OnMobKilled8";
+monster "evt_catcher",0,0,"Por|ng",1002,12,"poringlose::OnMobKilled9";
+monster "evt_catcher",0,0,"Por1ng",1002,15,"poringlose::OnMobKilled10";
+monster "evt_catcher",0,0,"Porong",1002,11,"poringlose::OnMobKilled11";
+monster "evt_catcher",0,0,"P0ring",1002,12,"poringlose::OnMobKilled12";
+monster "evt_catcher",0,0,"P@ring",1002,12,"poringlose::OnMobKilled13";
+monster "evt_catcher",0,0,"Poring",1031,15,"poringlose::OnMobKilled14";
+monster "evt_catcher",0,0,"Poring",1242,10,"poringlose::OnMobKilled15";
+end;
+}
+
+-	script	poringwin	-1,{
+OnMobKilled:
+if(getcharid(0)==0)end;
+$win += 1;
+if($win >= 10){
+set $pstart,0;
+dispbottom "Event : ขอแสดงความดีใจด้วย";
+getitem callfunc("F_Rand",60019,60021,51001),1;
+//getitem 501,1;
+//.chance = rand(0,19);
+//if(.chance == 0){
+//getitem 4999999,1;
+//}
+killmonster "evt_catcher","All";
+announce "กิจกรรมตามหา Poring : รอบที่ "+($win)+" [ "+strcharinfo(0)+" ] พบ Poring กิจกรรมได้จบลงแล้ว ทุกคนจะถูกส่งกลับจุดเซฟ  ...",0,0xFFC0CB;
+sleep2 1000;
+areawarp "evt_catcher",0,999,999,0,"like_game",107,128;
+end;
+}
+dispbottom "Event : ขอแสดงความดีใจด้วย";
+getitem callfunc("F_Rand",60019,60021,51001),1;
+//.chance = rand(0,19);
+//if(.chance == 0){
+//getitem 4999999,1;
+//}
+killmonster "evt_catcher","All";
+announce "กิจกรรมตามหา Poring : รอบที่ "+($win)+" [ "+strcharinfo(0)+" ] พบ Poring เหลืออีก "+(10-$win)+" รอบ กำลังจะเริ่มรอบต่อไป ...",0,0xFFC0CB;
+sleep2 1000;
+callfunc "Poringsummoner";
+end;
+}
+
+-	script	poringlose	-1,{
+OnMobKilled1:
+if(getcharid(0)==0)end;if($win >= 10)end;
+dispbottom "Event : ว้า... !!!, คุณแพ้แล้ว ";
+percentheal -100,-100;
+//killmonster "evt_catcher","All";
+//announce "[ "+strcharinfo(0)+" ] : สายตาไม่ค่อยดี ตี Poring ผิดตัว กำลังเริ่มรอบต่อไป ...",0,0xFFC0CB;
+sleep2 800;
+monster "evt_catcher",0,0,"Pouring",1002,1,"poringlose::OnMobKilled1";
+sleep2 500;
+atcommand "@alive";
+warp "SavePoint",0,0;
+end;
+
+OnMobKilled2:
+if(getcharid(0)==0)end;if($win >= 10)end;
+dispbottom "Event : ว้า... !!!, คุณแพ้แล้ว ";
+percentheal -100,-100;
+//killmonster "evt_catcher","All";
+//announce "[ "+strcharinfo(0)+" ] : สายตาไม่ค่อยดี ตี Poring ผิดตัว กำลังเริ่มรอบต่อไป ...",0,0xFFC0CB;
+sleep2 800;
+monster "evt_catcher",0,0,"Proing",1002,1,"poringlose::OnMobKilled2";
+sleep2 500;
+atcommand "@alive";
+warp "SavePoint",0,0;
+end;
+
+OnMobKilled3:
+if(getcharid(0)==0)end;if($win >= 10)end;
+dispbottom "Event : ว้า... !!!, คุณแพ้แล้ว ";
+percentheal -100,-100;
+//killmonster "evt_catcher","All";
+//announce "[ "+strcharinfo(0)+" ] : สายตาไม่ค่อยดี ตี Poring ผิดตัว กำลังเริ่มรอบต่อไป ...",0,0xFFC0CB;
+sleep2 800;
+monster "evt_catcher",0,0,"Poirng",1002,1,"poringlose::OnMobKilled3";
+sleep2 500;
+atcommand "@alive";
+warp "SavePoint",0,0;
+end;
+
+OnMobKilled4:
+if(getcharid(0)==0)end;if($win >= 10)end;
+dispbottom "Event : ว้า... !!!, คุณแพ้แล้ว ";
+percentheal -100,-100;
+//killmonster "evt_catcher","All";
+//announce "[ "+strcharinfo(0)+" ] : สายตาไม่ค่อยดี ตี Poring ผิดตัว กำลังเริ่มรอบต่อไป ...",0,0xFFC0CB;
+sleep2 800;
+monster "evt_catcher",0,0,"Poing",1002,1,"poringlose::OnMobKilled4";
+sleep2 500;
+atcommand "@alive";
+warp "SavePoint",0,0;
+end;
+
+OnMobKilled5:
+if(getcharid(0)==0)end;if($win >= 10)end;
+dispbottom "Event : ว้า... !!!, คุณแพ้แล้ว ";
+percentheal -100,-100;
+//killmonster "evt_catcher","All";
+//announce "[ "+strcharinfo(0)+" ] : สายตาไม่ค่อยดี ตี Poring ผิดตัว กำลังเริ่มรอบต่อไป ...",0,0xFFC0CB;
+sleep2 800;
+monster "evt_catcher",0,0,"I'm not a Poring",1002,1,"poringlose::OnMobKilled5";
+sleep2 500;
+atcommand "@alive";
+warp "SavePoint",0,0;
+end;
+
+OnMobKilled6:
+if(getcharid(0)==0)end;if($win >= 10)end;
+dispbottom "Event : ว้า... !!!, คุณแพ้แล้ว ";
+percentheal -100,-100;
+//killmonster "evt_catcher","All";
+//announce "[ "+strcharinfo(0)+" ] : สายตาไม่ค่อยดี ตี Poring ผิดตัว กำลังเริ่มรอบต่อไป ...",0,0xFFC0CB;
+sleep2 800;
+monster "evt_catcher",0,0,"Poring",1113,1,"poringlose::OnMobKilled6";
+sleep2 500;
+atcommand "@alive";
+warp "SavePoint",0,0;
+end;
+
+OnMobKilled7:
+if(getcharid(0)==0)end;if($win >= 10)end;
+dispbottom "Event : ว้า... !!!, คุณแพ้แล้ว ";
+percentheal -100,-100;
+//killmonster "evt_catcher","All";
+//announce "[ "+strcharinfo(0)+" ] : สายตาไม่ค่อยดี ตี Poring ผิดตัว กำลังเริ่มรอบต่อไป ...",0,0xFFC0CB;
+sleep2 800;
+monster "evt_catcher",0,0,"Poring",1062,1,"poringlose::OnMobKilled7";
+sleep2 500;
+atcommand "@alive";
+warp "SavePoint",0,0;
+end;
+
+OnMobKilled8:
+if(getcharid(0)==0)end;if($win >= 10)end;
+dispbottom "Event : ว้า... !!!, คุณแพ้แล้ว ";
+percentheal -100,-100;
+//killmonster "evt_catcher","All";
+//announce "[ "+strcharinfo(0)+" ] : สายตาไม่ค่อยดี ตี Poring ผิดตัว กำลังเริ่มรอบต่อไป ...",0,0xFFC0CB;
+sleep2 800;
+monster "evt_catcher",0,0,"Gnirop",1002,1,"poringlose::OnMobKilled8";
+sleep2 500;
+atcommand "@alive";
+warp "SavePoint",0,0;
+end;
+
+OnMobKilled9:
+if(getcharid(0)==0)end;if($win >= 10)end;
+dispbottom "Event : ว้า... !!!, คุณแพ้แล้ว ";
+percentheal -100,-100;
+//killmonster "evt_catcher","All";
+//announce "[ "+strcharinfo(0)+" ] : สายตาไม่ค่อยดี ตี Poring ผิดตัว กำลังเริ่มรอบต่อไป ...",0,0xFFC0CB;
+sleep2 800;
+monster "evt_catcher",0,0,"Por|ng",1002,1,"poringlose::OnMobKilled9";
+sleep2 500;
+atcommand "@alive";
+warp "SavePoint",0,0;
+end;
+
+OnMobKilled10:
+if(getcharid(0)==0)end;if($win >= 10)end;
+dispbottom "Event : ว้า... !!!, คุณแพ้แล้ว ";
+percentheal -100,-100;
+//killmonster "evt_catcher","All";
+//announce "[ "+strcharinfo(0)+" ] : สายตาไม่ค่อยดี ตี Poring ผิดตัว กำลังเริ่มรอบต่อไป ...",0,0xFFC0CB;
+sleep2 800;
+monster "evt_catcher",0,0,"Por1ng",1002,1,"poringlose::OnMobKilled10";
+sleep2 500;
+atcommand "@alive";
+warp "SavePoint",0,0;
+end;
+
+OnMobKilled11:
+if(getcharid(0)==0)end;if($win >= 10)end;
+dispbottom "Event : ว้า... !!!, คุณแพ้แล้ว ";
+percentheal -100,-100;
+//killmonster "evt_catcher","All";
+//announce "[ "+strcharinfo(0)+" ] : สายตาไม่ค่อยดี ตี Poring ผิดตัว กำลังเริ่มรอบต่อไป ...",0,0xFFC0CB;
+sleep2 800;
+monster "evt_catcher",0,0,"Porong",1002,1,"poringlose::OnMobKilled11";
+sleep2 500;
+atcommand "@alive";
+warp "SavePoint",0,0;
+end;
+
+OnMobKilled12:
+if(getcharid(0)==0)end;if($win >= 10)end;
+dispbottom "Event : ว้า... !!!, คุณแพ้แล้ว ";
+percentheal -100,-100;
+//killmonster "evt_catcher","All";
+//announce "[ "+strcharinfo(0)+" ] : สายตาไม่ค่อยดี ตี Poring ผิดตัว กำลังเริ่มรอบต่อไป ...",0,0xFFC0CB;
+sleep2 800;
+monster "evt_catcher",0,0,"P0ring",1002,1,"poringlose::OnMobKilled12";
+sleep2 500;
+atcommand "@alive";
+warp "SavePoint",0,0;
+end;
+
+OnMobKilled13:
+if(getcharid(0)==0)end;if($win >= 10)end;
+dispbottom "Event : ว้า... !!!, คุณแพ้แล้ว ";
+percentheal -100,-100;
+//killmonster "evt_catcher","All";
+//announce "[ "+strcharinfo(0)+" ] : สายตาไม่ค่อยดี ตี Poring ผิดตัว กำลังเริ่มรอบต่อไป ...",0,0xFFC0CB;
+sleep2 800;
+monster "evt_catcher",0,0,"P@ring",1002,1,"poringlose::OnMobKilled13";
+sleep2 500;
+atcommand "@alive";
+warp "SavePoint",0,0;
+end;
+
+OnMobKilled14:
+if(getcharid(0)==0)end;if($win >= 10)end;
+dispbottom "Event : ว้า... !!!, คุณแพ้แล้ว ";
+percentheal -100,-100;
+//killmonster "evt_catcher","All";
+//announce "[ "+strcharinfo(0)+" ] : สายตาไม่ค่อยดี ตี Poring ผิดตัว กำลังเริ่มรอบต่อไป ...",0,0xFFC0CB;
+sleep2 800;
+monster "evt_catcher",0,0,"Poring",1031,1,"poringlose::OnMobKilled14";
+sleep2 500;
+atcommand "@alive";
+warp "SavePoint",0,0;
+end;
+
+OnMobKilled15:
+if(getcharid(0)==0)end;if($win >= 10)end;
+dispbottom "Event : ว้า... !!!, คุณแพ้แล้ว ";
+percentheal -100,-100;
+//killmonster "evt_catcher","All";
+//announce "[ "+strcharinfo(0)+" ] : สายตาไม่ค่อยดี ตี Poring ผิดตัว กำลังเริ่มรอบต่อไป ...",0,0xFFC0CB;
+sleep2 800;
+monster "evt_catcher",0,0,"Poring",1242,1,"poringlose::OnMobKilled15";
+sleep2 500;
+atcommand "@alive";
+warp "SavePoint",0,0;
+end;
+
+}

@@ -1,0 +1,159 @@
+sec_pri,19,43,3	script	สุ่มออฟชั่นโล่	700,{
+disable_items;
+//item ใช้ออฟ
+.item = 161145;
+// จำนวนที่ใช้ออฟ
+.itemamt = 1;
+//zeny ที่ใช้ออฟ
+.zeny = 5000;
+disable_items;
+mes "^FF0000[ สุ่มออฟชั่นโล่ ]^000000";
+mes "มีค่าบริการ";
+mes "<ITEM>"+getitemname(.item)+"<INFO>"+.item+"</INFO></ITEM> จำนวน "+.itemamt+" ea";
+mes "และ "+callfunc("F_InsertComma",.zeny)+" Cash";
+mes "ต้องการจะออฟชั่นอุปกรณ์ชิ้นใด";
+	
+	setarray .@indices[1], EQI_HAND_L;
+	for( set .@i,1; .@i <= 1; set .@i,.@i+1 ) {
+		if( getequipisequiped(.@indices[.@i]) )
+			set .@menu$, .@menu$ + F_getpositionname(.@indices[.@i]) + "-[" + getequipname(.@indices[.@i]) + "]";
+		set .@menu$, .@menu$ + ":";
+	}
+	set .@part, .@indices[ select(.@menu$) ];
+	if(!getequipisequiped(.@part)) {
+		mes "^FF0000[ สุ่มออฟชั่นโล่ ]^000000";
+		mes "ท่านไม่ได้สวมใส่อุปกรณ์";
+		close;
+	}
+		switch(.@part) {
+		case EQI_HAND_L:
+			next;
+			setarray .@equip_bitmask[0],
+				EQP_ACC_L,				// EQI_ACC_L
+				EQP_ACC_R,				// EQI_ACC_R
+				EQP_SHOES,				// EQI_SHOES
+				EQP_GARMENT,			// EQI_GARMENT
+				EQP_HEAD_LOW,			// EQI_HEAD_LOW
+				EQP_HEAD_MID,			// EQI_HEAD_MID
+				EQP_HEAD_TOP,			// EQI_HEAD_TOP
+				EQP_ARMOR,				// EQI_ARMOR
+				EQP_HAND_L,				// EQI_HAND_L
+				EQP_HAND_R,				// EQI_HAND_R
+				EQP_COSTUME_HEAD_TOP,	// EQI_COSTUME_HEAD_TOP
+				EQP_COSTUME_HEAD_MID,	// EQI_COSTUME_HEAD_MID
+				EQP_COSTUME_HEAD_LOW,	// EQI_COSTUME_HEAD_LOW
+				EQP_COSTUME_GARMENT,	// EQI_COSTUME_GARMENT
+				EQP_AMMO,				// EQI_AMMO
+				EQP_SHADOW_ARMOR,		// EQI_SHADOW_ARMOR
+				EQP_SHADOW_WEAPON,		// EQI_SHADOW_WEAPON
+				EQP_SHADOW_SHIELD,		// EQI_SHADOW_SHIELD
+				EQP_SHADOW_SHOES,		// EQI_SHADOW_SHOES
+				EQP_SHADOW_ACC_R,		// EQI_SHADOW_ACC_R
+				EQP_SHADOW_ACC_L;		// EQI_SHADOW_ACC_L
+	
+				getinventorylist;	// required for now for getitembound4 to keep the enchant grade
+				for ( .@i = 0; .@i < @inventorylist_count; ++.@i ) {
+					if ((@inventorylist_equip[.@i] & .@equip_bitmask[EQP_HAND_L]))
+						break;
+				}
+				.@equip_id = getequipid(EQI_HAND_L);
+				
+				.@part = EQI_HAND_L;
+				.@item = getequipid(.@part);
+				.@refine = getequiprefinerycnt(.@part);
+				.@card0 = getequipcardid(.@part,0);
+				.@card1 = getequipcardid(.@part,1);
+				.@card2 = getequipcardid(.@part,2);
+				.@card3 = getequipcardid(.@part,3);
+				.@geadeen = getenchantgrade(.@part);
+				setarray .@opt_id[0], @inventorylist_option_id1[.@i], @inventorylist_option_id2[.@i], @inventorylist_option_id3[.@i], @inventorylist_option_id4[.@i], @inventorylist_option_id5[.@i];
+				setarray .@opt_value[0], @inventorylist_option_value1[.@i], @inventorylist_option_value2[.@i], @inventorylist_option_value3[.@i], @inventorylist_option_value4[.@i], @inventorylist_option_value5[.@i];
+				setarray .@opt_param[0], @inventorylist_option_parameter1[.@i], @inventorylist_option_parameter2[.@i], @inventorylist_option_parameter3[.@i], @inventorylist_option_parameter4[.@i], @inventorylist_option_parameter5[.@i];
+
+			goto PREENCHANT;
+			break;
+		default:
+		next;
+		mes "^FF0000[ สุ่มออฟชั่นโล่ ]^000000";
+		mes "อุปกรณ์นี้ไม่สามารถออฟชั่นได้อีก";
+		end;
+		}
+		end;
+
+PREENCHANT:	
+.@grade = getenchantgrade(.@part);
+set .@gradelv$,(.@grade==1?"D":.@grade==2?"C":.@grade==3?"B":.@grade==4?"A":"None");
+		switch(.@part) {
+			case EQI_HAND_L:
+				switch(getequipid(.@part)) {
+							case 2115:
+							case 50701:
+							case 50702:
+							case 50703:
+							case 50704:
+							case 50705:
+							case 50706:
+							case 50711:
+							case 50712:
+							case 50713:
+							case 50714:
+							case 50715:
+							case 50716:
+							case 50717:
+						break;
+						default:
+						next;
+						mes "^FF0000[ สุ่มออฟชั่นโล่ ]^000000";
+						mes "อุปกรณ์นี้ไม่สามารถออฟชั่นได้";
+						end;
+				}
+
+		}
+
+mes "ต้องสุ่มออฟชั่นใช่หรือไม่";
+
+menu
+"- ยกเลิก",no01, 
+"- ลุยเลย",LYES; 
+
+
+
+
+LYES:
+	
+	if (!getequipisequiped(.@part)) {
+		next;
+		mes "^FF0000[ สุ่มออฟชั่นโล่ ]^000000";
+		mes "ท่านไม่ได้สวมใส่อุปกรณ์";
+		close;
+	}
+	if (countitem(.item) < .itemamt || #CASHPOINTS < .zeny ) {
+		next;
+		mes "^FF0000[ สุ่มออฟชั่นโล่ ]^000000";
+		mes "โปรดตรวจสอบไอเท็มให้เรียบร้อย";
+		mes "<ITEM>"+getitemname(.item)+"<INFO>"+.item+"</INFO></ITEM> จำนวน "+.itemamt+" ea";
+		mes "และ "+callfunc("F_InsertComma",.zeny)+" Cash";
+		close;
+	}
+	
+
+
+	delitem .item,.itemamt;
+	set #CASHPOINTS,#CASHPOINTS-.zeny;
+	
+	specialeffect2 83;
+	randomoptgroup(555);
+	delequip .@part;
+	getitem4( .@equip_id,1,1,.@refine,0,.@card0,.@card1,.@card2,.@card3,.@geadeen, .@opt_id, .@opt_value, .@opt_param);
+
+end;
+
+
+	
+no01:
+close;
+
+OnInit:
+waitingroom "สุ่มออฟชั่นโล่",0;
+end;
+}

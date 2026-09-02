@@ -1,0 +1,149 @@
+-	shop	shadowar_ex	-1,50001:1000,50002:1000,50003:1000,50004:1000,50005:1000,50006:1000,50007:1000,50008:1000,50009:1000,50010:1000,50011:1000,50012:1000,50013:1000,50014:1000,50015:1000
+-	shop	shadowsh_ex	-1,50021:1000,50022:1000,50023:1000,50024:1000,50025:1000,50026:1000,50027:1000,50028:1000,50029:1000,50030:1000,50031:1000,50032:1000,50033:1000,50034:1000,50035:1000
+
+like_game,90,90,6	script	แลก Shadow XG	700,{
+disable_items;
+mes "^FF0000[ แลก Shadow XG ]^000000";
+mes "^FF0000นี่คือระบบแลก Shadow XG +20";
+mes "^FF0000ที่ไม่ได้ใช้งานเป็น Shadow XG ชิ้นอื่น";
+mes "^FF0000โดยเมื่ือแลกเปลี่ยนแล้วจะเหลือ +0";
+next;
+mes "^FF0000[ แลก Shadow XG ]^000000";
+mes "โปรดเลือกชิ้นที่ต้องการแลก";
+
+	setarray .@indices[1], EQI_SHADOW_ARMOR, EQI_SHADOW_SHOES;
+	for( set .@i,1; .@i <= 2; set .@i,.@i+1 ) {
+		if( getequipisequiped(.@indices[.@i]) )
+			set .@menu$, .@menu$ + F_getpositionname(.@indices[.@i]) + "-[" + getequipname(.@indices[.@i]) + "]";
+		set .@menu$, .@menu$ + ":";
+	}
+
+	set .@part, .@indices[ select(.@menu$) ];
+	if(!getequipisequiped(.@part)) {
+		mes "^FF0000[ แลก Shadow XG ]^000000";
+		mes "ท่านไม่ได้สวมใส่อุปกรณ์";
+		close;
+	}
+		switch(.@part) {
+		case EQI_SHADOW_ARMOR:
+			.@EQI_PART = EQI_SHADOW_ARMOR;
+			.@EQP_PART = EQP_SHADOW_ARMOR;
+			.@choose = 1;
+			break;
+		case EQI_SHADOW_SHOES:
+			.@EQI_PART = EQI_SHADOW_SHOES;
+			.@EQP_PART = EQP_SHADOW_SHOES;
+			.@choose = 2;
+			break;
+		default:
+		next;
+		mes "^FF0000[ แลก Shadow XG ]^000000";
+		mes "อุปกรณ์นี้ไม่สามารถแลกเปลี่ยนได้";
+		end;
+		}
+next;
+
+			setarray .@equip_bitmask[0],
+				EQP_ACC_L,				// EQI_ACC_L
+				EQP_ACC_R,				// EQI_ACC_R
+				EQP_SHOES,				// EQI_SHOES
+				EQP_GARMENT,			// EQI_GARMENT
+				EQP_HEAD_LOW,			// EQI_HEAD_LOW
+				EQP_HEAD_MID,			// EQI_HEAD_MID
+				EQP_HEAD_TOP,			// EQI_HEAD_TOP
+				EQP_ARMOR,				// EQI_ARMOR
+				EQP_HAND_L,				// EQI_HAND_L
+				EQP_HAND_R,				// EQI_HAND_R
+				EQP_COSTUME_HEAD_TOP,	// EQI_COSTUME_HEAD_TOP
+				EQP_COSTUME_HEAD_MID,	// EQI_COSTUME_HEAD_MID
+				EQP_COSTUME_HEAD_LOW,	// EQI_COSTUME_HEAD_LOW
+				EQP_COSTUME_GARMENT,	// EQI_COSTUME_GARMENT
+				EQP_AMMO,				// EQI_AMMO
+				EQP_SHADOW_ARMOR,		// EQI_SHADOW_ARMOR
+				EQP_SHADOW_WEAPON,		// EQI_SHADOW_WEAPON
+				EQP_SHADOW_SHIELD,		// EQI_SHADOW_SHIELD
+				EQP_SHADOW_SHOES,		// EQI_SHADOW_SHOES
+				EQP_SHADOW_ACC_R,		// EQI_SHADOW_ACC_R
+				EQP_SHADOW_ACC_L;		// EQI_SHADOW_ACC_L
+	
+				getinventorylist;	// required for now for getitembound4 to keep the enchant grade
+				for ( .@i = 0; .@i < @inventorylist_count; ++.@i ) {
+					if ((@inventorylist_equip[.@i] & .@equip_bitmask[.@EQP_PART]))
+						break;
+				}
+				.@equip_id = getequipid(.@EQI_PART);
+				
+				.@part = .@EQI_PART;
+				.@item = getequipid(.@part);
+				.@refine = getequiprefinerycnt(.@part);
+				.@card0 = getequipcardid(.@part,0);
+				.@card1 = getequipcardid(.@part,1);
+				.@card2 = getequipcardid(.@part,2);
+				.@card3 = getequipcardid(.@part,3);
+				.@geadeen = getenchantgrade(.@part);
+				setarray .@opt_id[0], @inventorylist_option_id1[.@i], @inventorylist_option_id2[.@i], @inventorylist_option_id3[.@i], @inventorylist_option_id4[.@i], @inventorylist_option_id5[.@i];
+				setarray .@opt_value[0], @inventorylist_option_value1[.@i], @inventorylist_option_value2[.@i], @inventorylist_option_value3[.@i], @inventorylist_option_value4[.@i], @inventorylist_option_value5[.@i];
+				setarray .@opt_param[0], @inventorylist_option_parameter1[.@i], @inventorylist_option_parameter2[.@i], @inventorylist_option_parameter3[.@i], @inventorylist_option_parameter4[.@i], @inventorylist_option_parameter5[.@i];
+				
+				setarray .@itemcanex[0],"50001","50002","50003","50004","50005","50006","50007","50008","50009","50010","50011","50012","50013","50014","50015","50021","50022","50023","50024","50025","50026","50027","50028","50029","50030","50031","50032","50033","50034","50035";
+				
+				partchoose = .@EQI_PART;
+				itemidchoose = getequipid(.@EQI_PART);
+				
+		switch(.@part) {
+			case EQI_SHADOW_ARMOR:
+			case EQI_SHADOW_SHOES:
+				for( .@i = 0; .@i < getarraysize(.@itemcanex); .@i++ ){
+					if( .@item == .@itemcanex[.@i]){
+						if(.@refine < 20){
+						mes "^FF0000[ แลก Shadow XG ]^000000";
+						mes "ต้อง +20 เท่านั้นถึงจะแลกเปลี่ยนได้";
+						end;
+						}
+					goto step2;	
+					}
+				}			
+				mes "^FF0000[ แลก Shadow XG ]^000000";
+				mes "ต้องเป็น Shadow XG เท่านั้นถึงจะแลกเปลี่ยนได้";
+				end;
+			break;
+			default:
+			next;
+			mes "^FF0000[ แลก Shadow XG ]^000000";
+			mes "อุปกรณ์นี้ไม่สามารถแลกเปลี่ยนได้";
+		}
+		
+end;
+
+step2:
+mes "^FF0000[ แลก Shadow XG ]^000000";
+mes "โปรดเลือกชิ้นที่ต้องการแลก";
+switch(.@choose){
+	case 1:
+	callshop	"shadowar_ex",1;
+	npcshopattach "shadowar_ex";
+	end;
+	case 2:
+	callshop	"shadowsh_ex",1;
+	npcshopattach "shadowsh_ex";
+	end;
+
+}
+	
+OnBuyItem:
+mes "^FF0000[ แลก Shadow XG ]^000000";
+mes "ท่านได้เลือก + 20 <ITEM>"+getitemname(itemidchoose)+"<INFO>"+itemidchoose+"</INFO></ITEM> ";
+mes "เป็น";
+mes "ท่านได้เลือก + 0 <ITEM>"+getitemname(@bought_nameid)+"<INFO>"+@bought_nameid+"</INFO></ITEM> ";
+mes "ใช่หรือไม่?";
+if(select("ใช่แลกเลย","ยังไม่แลก")==2){
+end;
+}
+delequip partchoose;
+getitem @bought_nameid,1;
+end;
+
+OnInit:
+waitingroom "แลกเปลี่ยน Shadow XG",0;
+end;
+}

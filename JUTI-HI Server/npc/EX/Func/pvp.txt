@@ -1,0 +1,205 @@
+-	script	atkmatkban	-1,{
+
+
+OnPcDieEvent:
+if(strcharinfo(3) != "guild_vs3")
+end;
+sleep2 1500;
+atcommand "@alive";
+atcommand "@repairall";
+warp "guild_vs3",0,0;
+specialeffect2 EF_INCAGILITY;
+specialeffect2 EF_BLESSING;
+sc_start SC_INCREASEAGI,900000,5;
+sc_start SC_BLESSING,900000,5;
+end;
+
+
+end;
+}
+
+
+
+-	script	PVPROOM	-1,{
+
+menu	
+//" ~ PVP Izlude ["+getmapusers("pvp_y_8-2")+"] คน",PVP1,
+" ~ PVP Deathmatch ["+getmapusers("guild_vs3")+"] คน",PVP2,
+" ~ ทดสอบดาเมจ GVG ["+getmapusers("guild_vs2-1")+"] คน",PVP3,
+" ~ ออก",EX;
+//" ~ ^0000FFแลกเปลี่ยนยา PVP/GVG^000000",L_SHOP;
+
+PVP1:
+menu	"^ff0000•^006611 ^000000[^ff0000 PvP Room ^000000] ^006611Online^000080 "+getmapusers ("pvp_y_8-2")+"^000080 คน",Lgo1;
+
+PVP2:
+menu	"^ff0000•^006611 ^000000[^ff0000 PvP Room ^000000] ^006611Online^000080 "+getmapusers ("guild_vs3")+"^000080 คน",Lgo2;
+
+PVP3:
+menu	"^ff0000•^006611 ^000000[^ff0000 PvP Room ^000000] ^006611Online^000080 "+getmapusers ("guild_vs2-1")+"^000080 คน",Lgo3;
+
+		
+L_SHOP:
+//callshop "potion_war",1;
+mes "[แลกเปลี่ยนยา PVP/GVG]";
+mes "อัตราแลกเปลี่ยน";
+mes "^FF0000Item ปกติ 1 ea แลกเป็น Item(PVP/GVG)ได้ 5ea^000000";
+mes "^FF0000โดยน้ำหนักของ Item(PVP/GVG) คือ 0.1^000000";
+mes "^FF0000และไม่สามารถใช้ในแผนที่ทั่วไปได้^000000";
+mes "เลือกรายการด้านล่าง";
+switch(select("Light White Potion","Light Blue Potion","Mastela Fruit","Authoritative Badge","Aloevera","Panacea","Green Potion")){
+	case 1:
+	.@itemreq = 11501;
+	.@itemreward = 11503;
+	break;
+	case 2:
+	.@itemreq = 11502;
+	.@itemreward = 11504;
+	break;
+	case 3:
+	.@itemreq = 522;
+	.@itemreward = 80522;
+	break;
+	case 4:
+	.@itemreq = 662;
+	.@itemreward = 80622;
+	break;
+	case 5:
+	.@itemreq = 606;
+	.@itemreward = 80606;
+	break;
+	case 6:
+	.@itemreq = 525;
+	.@itemreward = 80525;
+	break;
+	case 7:
+	.@itemreq = 506;
+	.@itemreward = 80506;
+	break;
+}
+next;
+mes "[แลกเปลี่ยนยา PVP/GVG]";
+mes "โปรดเลือกจำนวนที่ต้องการแลก";
+switch(select("1 ea","10 ea","100 ea")){
+	case 1:
+	.@itemamount = 1;
+	break;
+	case 2:
+	.@itemamount = 10;
+	break;
+	case 3:
+	.@itemamount = 100;
+}
+next;
+mes "[แลกเปลี่ยนยา PVP/GVG]";
+mes "ท่านต้องการแลก";
+mes "<ITEM>"+getitemname(.@itemreq)+"<INFO>"+.@itemreq+"</INFO></ITEM> จำนวน "+.@itemamount+" ea";
+mes "เป็น";
+mes "<ITEM>"+getitemname(.@itemreward)+"<INFO>"+.@itemreward+"</INFO></ITEM> จำนวน "+.@itemamount*5+" ea";
+mes "ทำการแลกเปลี่ยนเลยหรือไม่?";
+switch(select("แลกเปลี่ยนเลย","ยังก่อน")){
+case 1:
+next;
+if(countitem(.@itemreq) < .@itemamount){
+mes "[แลกเปลี่ยนยา PVP/GVG]";
+mes "ท่านมี <ITEM>"+getitemname(.@itemreq)+"<INFO>"+.@itemreq+"</INFO></ITEM> ไม่พอสำหรับการแลกเปลี่ยน";
+end;
+}
+delitem .@itemreq,.@itemamount;
+getitem .@itemreward,(.@itemamount*5);
+end;
+case 2:
+end;
+}
+end;
+
+
+Lgo1: 
+sc_end SC_POEMBRAGI;
+sc_end SC_SERVICE4U;
+warp "pvp_y_8-2", 0, 0; 
+announce ""+strcharinfo(0)+" ได้เข้าสู่ PVP Izlude แล้ว",bc_all,"0x00FFFF";
+end;
+
+Lgo2: 
+sc_end SC_POEMBRAGI;
+sc_end SC_SERVICE4U;
+warp "guild_vs3", 0, 0; 
+announce ""+strcharinfo(0)+" ได้เข้าสู่ PVP Deathmatch แล้ว",bc_all,"0x00FFFF";
+end;
+
+Lgo3: 
+sc_end SC_POEMBRAGI;
+sc_end SC_SERVICE4U;
+warp "guild_vs2-1", 0, 0; 
+announce ""+strcharinfo(0)+" ได้เข้าสู่ GVG Damage แล้ว",bc_all,"0x00FFFF";
+end;
+ 
+testdmg:
+warp "izlude",55,99;
+end;
+
+ex:
+end;
+
+
+OnInit:
+do {
+delwaitingroom;
+.@count1 = getmapusers("pvp_y_8-2");
+.@count2 = getmapusers("pvp_n_8-1");
+.@count3 = getmapusers("pvp_n_8-2");
+.@count4 = getmapusers("guild_vs2-1");
+.@count5 = getmapusers("guild_vs3");
+.@count = .@count1+.@count2+.@count3+.@count4+.@count5;
+waitingroom "  PVP  [ "+.@count+" ] คน",0;
+sleep 80; // Evites super infinity loop
+} while(1); // End Loop
+end;
+}
+
+// --------------------------------------------------
+//	Duplicates:
+// --------------------------------------------------
+like_game,134,118,4	duplicate(PVPROOM)	PVP#funtown5	105
+eternal,148,91,4	duplicate(PVPROOM)	PVP#funtown6	105
+like_game,101,138,4	duplicate(PVPROOM)	PVP#funtown4	105
+like_game,134,158,4	duplicate(PVPROOM)	PVP#funtown7	105
+funtown,256,245,4	duplicate(PVPROOM)	PVP#funtown9	105
+eternal,91,154,4	duplicate(PVPROOM)	PVP#funtown8	105
+like_game,154,138,4	duplicate(PVPROOM)	PVP#funtown63	105
+
+
+-	script	GOMAINTOWN	-1,{
+
+mes "[ผู้เฝ้าประตู]";
+menu	
+" • กลับเมือง",gomain,
+" • ยกเลิก",ex;
+
+gomain:
+		close2;
+		progressbar "000000",3;
+warp "like_game",127,106;
+end;
+
+ex:
+end;
+
+
+OnInit:
+waitingroom "    กลับเมือง",0;
+end;
+}
+
+
+pvp_y_8-2,128,223,4	duplicate(GOMAINTOWN)	กลับเมือง#PVP1	105
+
+guild_vs2-1,50,93,4	duplicate(GOMAINTOWN)	กลับเมือง#PVP3	105
+
+guild_vs3,50,89,4	duplicate(GOMAINTOWN)	กลับเมือง#PVP2	105
+guild_vs3,11,50,4	duplicate(GOMAINTOWN)	กลับเมือง#PVP4	105
+guild_vs3,50,10,4	duplicate(GOMAINTOWN)	กลับเมือง#PVP5	105
+guild_vs3,89,50,4	duplicate(GOMAINTOWN)	กลับเมือง#PVP6	105
+
+guild_vs3	mapflag	nocommand

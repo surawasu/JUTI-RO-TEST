@@ -1,0 +1,88 @@
+morocc,183,97,3	script	Event26VS26 Control	733,{
+if(getgmlevel() < 99) end;
+	switch(select("ลงทะเบียนผู้เล่น:เริ่มเกม 1VS1:^FF0000ล้างระบบทั้งหมด^000000")){
+	
+		case 1:
+		if ($GIDGUILD1>0 && $GIDGUILD2>0) {
+		mes "ลงทะเบียนผู้เล่นแล้วหากต้องการ";
+		mes "เปลี่ยนชื่อให้ล้างระบบก่อน";
+		}else{
+		message strcharinfo(0),"ใสเลขกิลทีม 1.";
+		//input .@name$; 
+		input $@name; 
+		query_sql("SELECT `name` from `guild` WHERE `guild_id` = "+$@name+"",.@name$);
+		
+		message strcharinfo(0),"ใสเลขกิลทีม 2.";
+		//input .@name2$; 
+		input $@name2; 
+		query_sql("SELECT `name` from `guild` WHERE `guild_id` = "+$@name2+"",.@name2$);
+		//$GIDGUILD1 = getcharid(2,.@name$);
+		//$GIDGUILD2 = getcharid(2,.@name2$);
+		//warp "izlude",142,133,$@name;	
+		//warp "izlude",122,134,$@name2;
+		
+		mes "กิลทีม1 คือ ^FF0000"+.@name$+"^000000 ";
+		mes "กิลทีม2 คือ ^0000FF"+.@name2$+"^000000 ";
+		switch(select("ถูกต้อง: ไม่ถูก")){
+			case 1:
+				//query_sql("SELECT `name` from `char` WHERE `char_id` = "+$@name+"",.@name$);
+				$GIDGUILD1 = $@name;
+				//$GIDGUILD1 = getcharid(2,.@name$);
+				//query_sql("SELECT `name` from `char` WHERE `char_id` = "+$@name2+"",.@name2$);
+				//$GIDGUILD2 = getcharid(2,.@name2$);
+				$GIDGUILD2 = $@name2;
+				mes "ลงเบียนเรียบร้อย";
+				end;
+			case 2:
+			end;
+		}
+		}
+		end;
+		case 2:
+		if ($GIDGUILD1>0 && $GIDGUILD2>0) {
+		donpcevent "1VS1#1VS1::OnStart";
+		warp "2012rwc_04",129,86,4548;
+		}else{
+		mes "ยังไม่ได้ลงทะเบียนผู้เล่น";
+		}
+		end;
+		
+		case 3:
+		//donpcevent "1VS1#1VS1::OnEnd";
+		stopnpctimer "1VS1#1VS1";
+		$1VS1Start = 0;
+		$GIDGUILD1 = 0;
+		$GIDGUILD2 = 0;
+		$party_id1 = 0;
+		$party_id2 = 0;
+		$team1 = 0;
+		$team2 = 0;
+		$team1win = 0;
+		$team2win = 0;
+		areawarp "2012rwc_04",0,999,999,0,"morocc",160,45;
+		setcell "2012rwc_04",72,95,72,88,cell_walkable,0;	//Left
+		setcell "2012rwc_04",168,95,168,88,cell_walkable,0;	//Right
+		enablenpc ("#BARRICADE1VS1L1");
+		enablenpc ("#BARRICADE1VS1L2");
+		enablenpc ("#BARRICADE1VS1L3");
+		enablenpc ("#BARRICADE1VS1L4");
+		enablenpc ("#BARRICADE1VS1L5");
+		enablenpc ("#BARRICADE1VS1L6");
+		enablenpc ("#BARRICADE1VS1L7");
+		enablenpc ("#BARRICADE1VS1L8");
+		enablenpc ("#BARRICADE1VS1R1");
+		enablenpc ("#BARRICADE1VS1R2");
+		enablenpc ("#BARRICADE1VS1R3");
+		enablenpc ("#BARRICADE1VS1R4");
+		enablenpc ("#BARRICADE1VS1R5");
+		enablenpc ("#BARRICADE1VS1R6");
+		enablenpc ("#BARRICADE1VS1R7");
+		enablenpc ("#BARRICADE1VS1R8");
+		message strcharinfo(0),"ล้างระบบแล้วทั้งหมดแล้ว.";
+		end;
+		
+	
+	}
+
+
+}

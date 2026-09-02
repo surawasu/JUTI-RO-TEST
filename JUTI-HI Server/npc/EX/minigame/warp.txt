@@ -1,0 +1,51 @@
+
+
+morocc,140,85,5	script	ทางเข้าโลกมืด	1_SHADOW_NPC,{
+disable_items;
+mes "[ทางเข้าโลกมืด]";
+mes "เจ้าต้องการไปโซนใด";
+menu	"ไปโซน Baccarat",bac,
+		"ไปโซน ชนไก่",chick,
+		"ไปโซน มวยจีน",boxing,
+		"อะไรนะโลกมืดหรอข้าไม่เอาหรอก",Exit;
+		
+Exit:
+end;
+
+bac:
+warp "florian",147,158;
+end;
+
+chick:
+warp "florian",165,112;
+end;
+
+boxing:
+warp "florian",200,141;
+end;
+
+OnInit:
+waitingroom	" •ทางเข้าโลกมืด•",0;
+setmapflag "florian",mf_nightenabled;
+end;
+}
+morocc,81,89,0	duplicate(ทางเข้าโลกมืด)	ทางเข้าโลกมืด#1	1_SHADOW_NPC
+morocc,193,100,0	duplicate(ทางเข้าโลกมืด)	ทางเข้าโลกมืด#2	1_SHADOW_NPC
+
+florian,165,149,3	script	กลับโลกเบื้องหน้า	4_F_SON,{
+disable_items;
+mes "[กลับโลกเบื้องหน้า]";
+mes "เจ้าต้องการกลับไปยังโลกเบื้องหน้ารึยัง";
+menu	"ไปเลยข้าหมดตูดแล้ว",go,
+		"ยังก่อนข้าขอถอนทุนก่อน",Exit;
+		
+Exit:
+end;
+
+go:
+warp "morocc",159,43;
+end;
+OnInit:
+waitingroom	" •กลับโลกเบื้องหน้า•",0;
+end;
+}

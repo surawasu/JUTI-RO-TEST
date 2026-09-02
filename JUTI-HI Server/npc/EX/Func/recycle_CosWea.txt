@@ -1,0 +1,155 @@
+
+like_game,140,96,6	script	ย่อยคอสอาวุธ	932,{
+
+	disable_items;
+	if (checkweight(1201,1) == 0) {
+		mes .NPCname$;
+		mes "^FF0000คุณมีไอเทมมากเกินไป^000000";
+		end;
+	}
+	if (MaxWeight - Weight < 10000) {
+		mes .NPCname$;
+		mes "^FF0000กรุณาตรวจสอบน้ำหนักด้วย^000000";
+		end;
+	}
+
+
+
+
+	mes .NPCname$;
+	mes "หวัดดี, "+strcharinfo(0)+"!";
+	mes "มีอะไรให้ข้ารับใช้ไหม ?";
+	next;
+	switch(select("> รับซื้อไอเท็ม:> แลกแต้ม:> ยกเลิก")){
+		case 1:
+				mes .NPCname$;
+				mes "กรุณาเลือกไอเทมที่ตรงตามรายการ";
+				mes "ที่ต้องการจะแลกเป็นพ้อย";
+				mes "^FF0000หากแลกแล้วได้แต้มไม่ครบ^000000";
+				mes "^FF0000ทางเราจะไม่รับผิดชอบ^000000";
+
+				callshop "Shop_ExchangeEgg1999",2;
+				npcshopattach "Shop_ExchangeEgg1999";
+				end;
+		case 2:
+				mes .NPCname$;
+				mes "กรุณาเลือกไอเทมที่ตรงตามรายการ";
+				mes "ที่ต้องการจะแลกเป็นพ้อย";
+				mes "^FF0000หากแลกแล้วได้แต้มไม่ครบ^000000";
+				mes "^FF0000ทางเราจะไม่รับผิดชอบ^000000";
+
+				callshop "Shop_ExchangeEgg1999",1;
+				npcshopattach "Shop_ExchangeEgg1999";
+				end;
+		case 3:
+				mes .NPCname$;
+				mes "โอกาสหน้าเชิญใหม่ค่ะ.";
+				end;
+	}
+	
+OnSellItem:
+	mes "ไอเทมที่จะแลก:";
+	mes "-----------------------------------";
+	freeloop(1);
+	for ( .@i = 0; .@i < getarraysize(@sold_nameid); .@i = .@i + 1 ) {
+	
+		for ( .@j = 0; .@j < getarraysize(.list_item); .@j = .@j + 1 ) {
+		
+			if( @sold_nameid[.@i] == .list_item[.@j] ){
+				set .@item_id[getarraysize(.@item_id)], @sold_nameid[.@i];
+				set .@item_amt[getarraysize(.@item_amt)], @sold_quantity[.@i];
+				set .@item_total, .@item_total+(@sold_quantity[.@i]*.list_amount[.@j]);
+				mes "^777777"+@sold_quantity[.@i]+"x "+getitemname(@sold_nameid[.@i])+"^000000 ^FF0000["+.list_amount[.@j]+"]^000000 แต้ม";
+			} // end if
+			
+		} // end for j
+		
+	} // end for i
+	freeloop(0);
+	deletearray @sold_nameid[0], getarraysize(@sold_nameid);
+	deletearray @sold_quantity[0], getarraysize(@sold_quantity);
+
+	if (!.@item_id) {
+		mes "  ^777777 (ไม่ใช่ไอเทมที่สามารถขายได้) ^000000";
+		close;
+	}
+	
+	mes "---------- รวมทั้งหมด: ^0055FF"+.@item_total+" แต้ม.^000000 -------";
+	next;
+	
+	if(select(" > ^0055FFแลกเปลี่ยน...^000000: > ^777777ยกเลิก^000000") == 2) {
+		mes .NPCname$;
+		mes "ไว้พบกันใหม่ โอกาสหน้า";
+		close;
+	}
+	
+	for(.@i = 0; .@i < getarraysize(.@item_id); .@i = .@i + 1){
+		delitem .@item_id[.@i],.@item_amt[.@i];
+	}
+	set #COSWEA_POINT, #COSWEA_POINT + .@item_total;
+	dispbottom .NPCname$ + " : ท่านได้รับ Cos Weapon Point " + callfunc("F_InsertComma",.@item_total) + " รวมตอนนี้ " + callfunc("F_InsertComma",#COSWEA_POINT);
+	mes .NPCname$;
+	mes "ขอบคุณที่ท่านไว้ใจ!";
+	mes "และนำไอเท็มมาขายกับร้านของเรา!";
+	mes "หวังว่าครั้งหน้าท่านจะนำมาขายเราอีก";
+	close;
+	
+OnBuyItem:
+	for(set .@i,0; .@i<getarraysize(@bought_nameid); set .@i,.@i+1)
+		for(set .@j,0; .@j<getarraysize(.Shop); set .@j,.@j+2)
+			if (@bought_nameid[.@i] == .Shop[.@j]) {
+				set .@cost, .@cost+(.Shop[.@j+1]*@bought_quantity[.@i]);
+				break;
+			}
+	if (.@cost > #COSWEA_POINT) {
+		mes .NPCname$;
+		mes "เจ้ามีแต้มไม่เพยงพอ.";
+		end;
+	}
+	else {
+		mes "รายการสินค้า:";
+		mes "-----------------------------------";
+		for(set .@i,0; .@i<getarraysize(@bought_nameid); set .@i,.@i+1) {
+			mes "  ^777777"+@bought_quantity[.@i]+"x "+getitemname(@bought_nameid[.@i])+"^000000";
+		}
+		mes "---------- รวมทั้งหมด: ^0055FF"+.@cost+" แต้ม.^000000 -------";
+		//set #COSWEA_POINT, #COSWEA_POINT - .@cost;
+		next;
+	}
+	if(select(" > ^0055FFแลกซื้อ...^000000: > ^777777ยกเลิก^000000") == 2) {
+		mes .NPCname$;
+		mes "ไว้พบกันใหม่ โอกาสหน้า";
+		close;
+	}
+	for(set .@i,0; .@i<getarraysize(@bought_nameid); set .@i,.@i+1) {
+		set #COSWEA_POINT, #COSWEA_POINT - .@cost;
+		getitem @bought_nameid[.@i], @bought_quantity[.@i];
+		dispbottom .NPCname$ + " : ถูกหัก Cos Weapon Point " + callfunc("F_InsertComma",.@cost) + " คงเหลือตอนนี้ " + callfunc("F_InsertComma",#COSWEA_POINT);
+	}
+	deletearray @bought_nameid[0], getarraysize(@bought_nameid);
+	deletearray @bought_quantity[0], getarraysize(@bought_quantity);
+	mes .NPCname$;
+	mes "ขอบคุณที่ท่านไว้ใจ!";
+	mes "นำแต้มมาแลกกับไอเท็มร้านของเรา!";
+	mes "หวังว่าครั้งหน้าท่านจะมาใช้บริการเราอีก";
+	close;
+	
+OnInit:
+	.NPCname$ = "[ ย่อยคอสอาวุธ ]";
+	setarray .list_item,61000,61001,61002,61003,61004,61005,61006,61007,61008,61009,61010,61011,61060,61060,61061,61068,61069,61076,61012,61013,61014,61015,61016,61017,61018,61019,61020,61021,61022,61023,61024,61025,61026,61027,61028,61029,61030,61031,61032,61033;	// <รหัสไอเท็ม> ,<รหัสไอเท็ม> ,<รหัสไอเท็ม> ,<รหัสไอเท็ม> เช่น 1201
+	setarray .list_amount,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10;	// <ราคาขาย>,<ราคาขาย>,<ราคาขาย>,<ราคาขาย> เช่น 1201 ได้แต้ม 5
+	setarray .Shop[0], // <รหัสไอเท็ม>,<ราคาซื้อ>
+
+	//101416,5,
+	161080,1,
+	161081,30,
+	161082,30;
+
+	npcshopdelitem "Shop_ExchangeEgg1999",909;
+	for(set .@i,0; .@i<getarraysize(.Shop); set .@i,.@i+2)
+		npcshopadditem "Shop_ExchangeEgg1999",.Shop[.@i],.Shop[.@i+1];
+		
+	end;
+}
+
+-	shop	Shop_ExchangeEgg1999	-1,909:-1

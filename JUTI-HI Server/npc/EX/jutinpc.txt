@@ -1,0 +1,66 @@
+like_game,134,96,6	script	จุติออโต้	10081,{
+
+    mes "[จุติออโต้]";
+    mes "เลือกบริการจากด้านล่างได้เลย";
+    switch(select("- จุติ Level:- เปิด ระบบจุติออโต้ ["+(jutiauto<1?"ปิด":"^FF0000เปิดอยู่^000000")+"]::- Exit")){
+    case 1:
+		if(BaseLevel < 99){
+			next;
+			mes "[จุติออโต้]";
+			mes "ต้องมี BaseLevel 99";
+			end;
+		}
+		next;
+		BaseLevel = 1;
+		jutilv += 1;
+		end;
+    case 2:
+		if(jutiauto !=0 ){
+			jutiauto = 0;
+			end;
+		}
+		if(jutiauto == 0){
+			next;
+			if(BaseLevel == 99){
+			BaseLevel = 1;
+			jutilv += 1;
+			}	
+			jutiauto = 1;
+			mes "[จุติออโต้]";
+			mes "เปิดระบบจุติออโต้แล้ว";
+			end;
+		}
+        end;
+    case 3:
+		next;
+		callfunc "F_GetPlatinumSkills";
+        atcommand "@allskill";
+        atcommand "@allstats";
+		mes "[จุติออโต้]";
+		mes "ท่านรับสกิลทั้งหมดเรียบร้อย";
+        end;
+    case 4:
+        end;
+    }
+   end;
+   
+OnInit:
+waitingroom "    จุติออโต้",0;
+end;   
+   
+}
+
+-	script	jutiauto	-1,{
+
+OnPCBaseLvUpEvent:
+if(jutiauto == 1) {
+	
+	if (BaseLevel == 99){
+		BaseLevel = 1;
+		jutilv += 1;
+		dispbottom "[ ระบบจุติออโต้] : ท่านได้จุติรอบที่ "+jutilv+" สำเร็จแล้ว ";
+	}
+
+}
+end;
+}

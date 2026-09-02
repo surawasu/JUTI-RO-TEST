@@ -1,0 +1,5 @@
+sec_pri,31,33,6	script	CT Reset NPC#1	562,{
+atcommand "@reloadnpc npc/4cram/function/instance/Constellation_Tower/instance.txt"
+disablenpc (strnpcinfo(0));
+end;
+}

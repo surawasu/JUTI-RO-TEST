@@ -1,0 +1,207 @@
+
+//===== rAthena Script =======================================
+//= Euphy's Quest Shop
+//===== By: ==================================================
+//= Euphy
+//===== Update Hat Maker By: ==================================================
+//= Boy
+//===== Current Version: =====================================
+//= 1.4a
+//===== Compatible With: =====================================
+//= rAthena SVN r15340+
+//===== Description: =========================================
+//= A dynamic quest shop based on Lunar's, with easier config.
+//= Includes support for multiple shops & cashpoints.
+//= Item Preview script by ToastOfDoom.
+//============================================================
+//= Edit by : Pcmedias
+//============================================================
+-	shop	u_hat	90,2989007:3000000,2989008:3000000
+
+morocc,144,71,3	script	Hats Quest	10184,{
+disable_items;
+mes "[Hats Quest]";
+mes "โปรดเลือกบริการที่ท่านต้องการใช้";
+menu	"ทำหมวกทั่วไป",n_hat,
+		//"ทำหมวก Upgrade",u_hat,
+		//"ทำหมวก High-End",h_hat,
+		"เผลอกดเฉยๆหนะ",Exit;
+		
+		
+u_hat:
+next;
+mes "[^0000FFHats Quest^000000]";
+mes "<font size = 20, color = FF0000>ให้ทำการซื้อไอเท็มที่ต้องการ Upgrade \nและต้องใส่มันไว้ในตัวด้วย</font>";
+close2;
+callshop "u_hat",1;    
+npcshopattach "u_hat";
+end;
+
+
+n_hat:
+close2;
+callshop "Crafting_Hat_Hi",1;
+end;
+
+h_hat:
+close2;
+callshop "Crafting_Hat_Hi_End",1;
+end;
+
+Exit:
+end;
+
+OnBuyItem:
+	switch( @bought_nameid ) {
+		// Armor C Class
+		case 2989007:	//Sunflower
+			.@EQITYPE = EQI_HEAD_TOP;
+			.@baseitem = 5374;
+			.@req_zeny = 3000000;
+			.@rate = 30;
+			.@reward = 2989007;
+			break;
+		case 2989008:	//Ph.D Hat
+			.@EQITYPE = EQI_HEAD_TOP;
+			.@baseitem = 5374;
+			.@req_zeny = 3000000;
+			.@rate = 30;
+			.@reward = 2989008;
+			break;
+	}
+	setarray .@item,@bought_nameid[0];
+	setarray .@equip_bitmask[0],
+		EQP_ACC_L,				// EQI_ACC_L
+		EQP_ACC_R,				// EQI_ACC_R
+		EQP_SHOES,				// EQI_SHOES
+		EQP_GARMENT,			// EQI_GARMENT
+		EQP_HEAD_LOW,			// EQI_HEAD_LOW
+		EQP_HEAD_MID,			// EQI_HEAD_MID
+		EQP_HEAD_TOP,			// EQI_HEAD_TOP
+		EQP_ARMOR,				// EQI_ARMOR
+		EQP_HAND_L,				// EQI_HAND_L
+		EQP_HAND_R,				// EQI_HAND_R
+		EQP_COSTUME_HEAD_TOP,	// EQI_COSTUME_HEAD_TOP
+		EQP_COSTUME_HEAD_MID,	// EQI_COSTUME_HEAD_MID
+		EQP_COSTUME_HEAD_LOW,	// EQI_COSTUME_HEAD_LOW
+		EQP_COSTUME_GARMENT,	// EQI_COSTUME_GARMENT
+		EQP_AMMO,				// EQI_AMMO
+		EQP_SHADOW_ARMOR,		// EQI_SHADOW_ARMOR
+		EQP_SHADOW_WEAPON,		// EQI_SHADOW_WEAPON
+		EQP_SHADOW_SHIELD,		// EQI_SHADOW_SHIELD
+		EQP_SHADOW_SHOES,		// EQI_SHADOW_SHOES
+		EQP_SHADOW_ACC_R,		// EQI_SHADOW_ACC_R
+		EQP_SHADOW_ACC_L;		// EQI_SHADOW_ACC_L
+
+	getinventorylist;
+	for ( .@i = 0; .@i < @inventorylist_count; ++.@i ) {
+		if (@bought_nameid == @inventorylist_id[.@i] && (@inventorylist_equip[.@i] & .@equip_bitmask[.@EQITYPE]))
+			break;
+	}
+	setarray .@indices[1],.@EQITYPE;
+	.@part = .@indices[1];
+	setarray .@card[0], @inventorylist_card1[.@i], @inventorylist_card2[.@i], @inventorylist_card3[.@i], @inventorylist_card4[.@i];
+	.@refine = @inventorylist_refine[.@i];	
+	setarray .@opt_id[0], @inventorylist_option_id1[.@i], @inventorylist_option_id2[.@i], @inventorylist_option_id3[.@i], @inventorylist_option_id4[.@i], @inventorylist_option_id5[.@i];
+	setarray .@opt_value[0], @inventorylist_option_value1[.@i], @inventorylist_option_value2[.@i], @inventorylist_option_value3[.@i], @inventorylist_option_value4[.@i], @inventorylist_option_value5[.@i];
+	setarray .@opt_param[0], @inventorylist_option_parameter1[.@i], @inventorylist_option_parameter2[.@i], @inventorylist_option_parameter3[.@i], @inventorylist_option_parameter4[.@i], @inventorylist_option_parameter5[.@i];
+
+menu	"อัพเกรดแบบปกติ",normal,
+		"อัพเกรดแบบใช้ใบรับประกัน",sefety;
+
+normal:
+	mes "[Hats Quest]";
+	mes "<ITEM>"+getitemname(.@reward)+"<INFO>"+.@reward+"</INFO></ITEM>";
+	mes "ต้องการ :";
+	mes "- <ITEM>"+getitemname(.@baseitem)+"<INFO>"+.@baseitem+"</INFO></ITEM> จำนวน 1 ea";
+	mes "Zeny "+callfunc("F_InsertComma",.@req_zeny)+" Zeny";
+	mes "^FF0000โอกาสสำเร็จ "+.@rate+" %.^000000";
+	next;
+	if (select( "เริ่มเลย", "ยังก่อน" ) == 2)
+		end;
+	if(getequipid(.@part) != .@baseitem) {
+		mes "[Hats Quest]";
+		mes "โปรดตรวจสอบว่าสวมใส่อุปกรณ์.";
+		close;	
+	}	
+	if (zeny < .@req_zeny){
+			mes "[Hats Quest]";
+			mes "^FF0000โปรดตรวจสอบ^000000";
+			mes "<ITEM>"+getitemname(.@reward)+"<INFO>"+.@reward+"</INFO></ITEM>";
+			mes "ต้องการ :";
+			mes "- <ITEM>"+getitemname(.@baseitem)+"<INFO>"+.@baseitem+"</INFO></ITEM> จำนวน 1 ea";
+			mes "Zeny "+callfunc("F_InsertComma",.@req_zeny)+" Zeny";
+			end;
+	}
+
+	delequip .@part;
+	zeny -= .@req_zeny;
+	set .rand,rand(1,100);
+	//progressbar "000000",3;
+	if(.rand <= .@rate){
+		specialeffect2 EF_LORD;
+		getitem3( .@reward,1,1,.@refine,0,.@card[0],.@card[1],.@card[2],.@card[3], .@opt_id, .@opt_value, .@opt_param );
+		mes "[Hats Quest]";
+		mes "เรียบร้อยโปรดตรวจสอบItem.";
+		close;
+	}else{
+		specialeffect EF_SUI_EXPLOSION;
+		mes "[Hats Quest]";
+		mes "เสียใจด้ายรอบหน้าเอาใหม่";
+		end;
+	}
+end;
+
+sefety:
+	mes "[Hats Quest]";
+	mes "<ITEM>"+getitemname(.@reward)+"<INFO>"+.@reward+"</INFO></ITEM>";
+	mes "ต้องการ :";
+	mes "- <ITEM>"+getitemname(.@baseitem)+"<INFO>"+.@baseitem+"</INFO></ITEM> จำนวน 1 ea";
+	mes "- <ITEM>"+getitemname(2989000)+"<INFO>2989000</INFO></ITEM> จำนวน 1 ea";
+	mes "Zeny "+callfunc("F_InsertComma",.@req_zeny)+" Zeny";
+	mes "^FF0000โอกาสสำเร็จ "+.@rate+" %. เมื่อล้มเหลวอุปกรณ์จะไม่หาย^000000";
+	next;
+	if (select( "เริ่มเลย", "ยังก่อน" ) == 2)
+		end;
+	if(getequipid(.@part) != .@baseitem) {
+		mes "[Hats Quest]";
+		mes "โปรดตรวจสอบว่าสวมใส่อุปกรณ์.";
+		close;	
+	}	
+	if (zeny < .@req_zeny || countitem(2989000) < 1){
+			next;
+			mes "[Hats Quest]";
+			mes "^FF0000โปรดตรวจสอบ^000000";
+			mes "<ITEM>"+getitemname(.@reward)+"<INFO>"+.@reward+"</INFO></ITEM>";
+			mes "ต้องการ :";
+			mes "- <ITEM>"+getitemname(.@baseitem)+"<INFO>"+.@baseitem+"</INFO></ITEM> จำนวน 1 ea";
+			mes "- <ITEM>"+getitemname(2989000)+"<INFO>2989000</INFO></ITEM> จำนวน 1 ea";
+			mes "Zeny "+callfunc("F_InsertComma",.@req_zeny)+" Zeny";
+			end;
+	}
+
+
+	zeny -= .@req_zeny;
+	delitem 2989000,1;
+	set .rand,rand(1,100);
+	//progressbar "000000",3;
+	if(.rand <= .@rate){
+		specialeffect2 EF_LORD;
+		delequip .@part;
+		getitem3( .@reward,1,1,.@refine,0,.@card[0],.@card[1],.@card[2],.@card[3], .@opt_id, .@opt_value, .@opt_param );
+		mes "[Hats Quest]";
+		mes "เรียบร้อยโปรดตรวจสอบItem.";
+		close;
+	}else{
+		specialeffect EF_SUI_EXPLOSION;
+		mes "[Hats Quest]";
+		mes "เสียใจด้ายรอบหน้าเอาใหม่";
+		end;
+	}
+end;
+
+OnInit:
+waitingroom "  เควสทำหมวก",0;
+end;
+}
+

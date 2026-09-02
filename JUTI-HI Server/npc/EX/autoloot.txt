@@ -1,0 +1,20 @@
+-	script	autolootcommnad	-1,{
+end;
+OnStart:
+if(countrentitem($autolootitem)>0){
+mes "[Autoloot System]";
+mes "โปรดระบุ % ที่ต้องการให้ Autoloot";
+input .@autoloot;
+atcommand "@autoloot "+.@autoloot+"";
+end;
+}else{
+mes "[Autoloot System]";
+mes "^FF0000ท่านไม่สามารถใช่งาน Autoloot ได้^000000";
+mes "^FF0000โปรดซื้อ  <ITEM>"+getitemname($autolootitem)+"<INFO>$autolootitem</INFO></ITEM> ก่อน ^000000";
+end;
+}
+OnInit:
+$autolootitem = 23165;
+bindatcmd "autoloot",strnpcinfo(3)+"::OnStart",0,0;
+end;
+}

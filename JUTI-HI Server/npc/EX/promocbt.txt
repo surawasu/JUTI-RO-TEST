@@ -1,0 +1,40 @@
+-	script	promocbt	-1,{
+
+OnPCLoginEvent:
+if(getcharid(3) == 2000472 && #cbtpromo < 1){
+setarray .@mailitem[0],2944008;	//เลขไอเท็มที่จะเป็นโบนัส
+setarray .@mailamount[0],3;				//จำนวนที่จะให้
+set .@sender$,"ระบบเติมเงิน";
+set .@title$,"ของรางวัลโปรโมชั่นเติมเงิน CBT " + callfunc("F_InsertComma",1000) + " บาท";
+set .@body$,"ของรางวัลโปรโมชั่นเติมเงิน CBT " + callfunc("F_InsertComma",1000) + " บาท  \nขอให้มีความสุขกับของรางวัล! ";
+set .@zeny,0;
+setarray .@mailrefine[0],0;
+setarray .@mailbound[0],0;
+setarray .@mailcard0[0],0;
+setarray .@mailcard1[0],0;
+setarray .@mailcard2[0],0;
+mail getcharid(0),.@sender$,.@title$,.@body$,.@zeny,.@mailitem,.@mailamount,.@mailrefine,.@mailbound,.@mailcard0,.@mailcard1,.@mailcard2;	
+dispbottom "[ Donate System ] : คุณได้รับของรางวัลโปรโมชั่นเติมเงินโปรดเช็คทาง จดหมาย [RODex] ",0xFFFFFF;
+#cbtpromo = 1;
+end;
+}
+
+if(getcharid(3) == 2000397 && #cbtpromo < 1){
+setarray .@mailitem[0],2944008,2833117,2995099;	//เลขไอเท็มที่จะเป็นโบนัส
+setarray .@mailamount[0],3,1,1;				//จำนวนที่จะให้
+set .@sender$,"ระบบเติมเงิน";
+set .@title$,"ของรางวัลโปรโมชั่นเติมเงิน CBT " + callfunc("F_InsertComma",3000) + " บาท";
+set .@body$,"ของรางวัลโปรโมชั่นเติมเงิน CBT " + callfunc("F_InsertComma",3000) + " บาท  \nขอให้มีความสุขกับของรางวัล! ";
+set .@zeny,0;
+setarray .@mailrefine[0],0;
+setarray .@mailbound[0],0;
+setarray .@mailcard0[0],0;
+setarray .@mailcard1[0],0;
+setarray .@mailcard2[0],0;
+mail getcharid(0),.@sender$,.@title$,.@body$,.@zeny,.@mailitem,.@mailamount,.@mailrefine,.@mailbound,.@mailcard0,.@mailcard1,.@mailcard2;	
+dispbottom "[ Donate System ] : คุณได้รับของรางวัลโปรโมชั่นเติมเงินโปรดเช็คทาง จดหมาย [RODex] ",0xFFFFFF;
+#cbtpromo = 1;
+end;
+}
+end;
+}

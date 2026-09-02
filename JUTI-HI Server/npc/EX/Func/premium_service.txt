@@ -1,0 +1,383 @@
+-	script	APACHE_CHK_PREMIUM	-1,{
+OnPCLoginEvent:
+.percentexp = 50;
+.percentdrop = 50;
+.percentexp2 = 50;
+.percentdrop2 = 30;
+	if(#APACHE_PREMIUM_TIME > gettimetick(2)){
+		sc_end SC_APACHE_EXPBOOST_A;
+		sc_end SC_APACHE_ITEMBOOST_A;
+		sc_end SC_APACHE_STORAGE;
+		sc_end SC_APACHE_JEXPBOOST_A;
+		sc_start SC_APACHE_STORAGE,((#APACHE_PREMIUM_TIME-gettimetick(2))*1000),300;
+		sc_start SC_APACHE_EXPBOOST_A,((#APACHE_PREMIUM_TIME-gettimetick(2))*1000),.percentexp;
+		sc_start SC_APACHE_JEXPBOOST_A,((#APACHE_PREMIUM_TIME-gettimetick(2))*1000),.percentexp;
+		sc_start SC_APACHE_ITEMBOOST_A,((#APACHE_PREMIUM_TIME-gettimetick(2))*1000),.percentdrop;
+	}
+	if(#APACHE_PREMIUM_TIME <= gettimetick(2)){
+		sc_end SC_APACHE_EXPBOOST_A;
+		sc_end SC_APACHE_ITEMBOOST_A;
+		sc_end SC_APACHE_STORAGE;
+		sc_end SC_APACHE_JEXPBOOST_A;
+	}
+	if(#APACHE_EXP_S > gettimetick(2)){
+		sc_end SC_APACHE_EXPBOOST_S;
+		sc_start SC_APACHE_EXPBOOST_S,((#APACHE_EXP_S-gettimetick(2))*1000),.percentexp2;
+	}
+	if(#APACHE_EXP_S <= gettimetick(2)){ sc_end SC_APACHE_EXPBOOST_S; }
+
+	if(#APACHE_ITEM_S > gettimetick(2)){
+		sc_end SC_APACHE_ITEMBOOST_S;
+		sc_start SC_APACHE_ITEMBOOST_S,((#APACHE_ITEM_S-gettimetick(2))*1000),.percentdrop2;
+	}
+	if(#APACHE_ITEM_S <= gettimetick(2)){ sc_end SC_APACHE_ITEMBOOST_S; }
+
+	if(#APACHE_LIFE_S > gettimetick(2)){
+		sc_end SC_APACHE_LIFEINSURANCE;
+		sc_start SC_APACHE_LIFEINSURANCE,((#APACHE_LIFE_S-gettimetick(2))*1000),50;
+	}
+	if(#APACHE_LIFE_S <= gettimetick(2)){ sc_end SC_APACHE_LIFEINSURANCE; }
+	end;
+}
+
+
+prontera,0,0,4	script	Premi#ps1	4_F_PREMI,{
+disable_items;
+.percentexp2 = 50;
+.percentdrop2 = 30;
+
+	cutin "prm_3",2;
+	mes "[Premi]";
+	mes "สวัสดี เมี้ยว~";
+	mes "ข้าคือ ^00CC00Premi^000000เอง!";
+	mes "ยินดีที่ได้รู้จักนะ~";
+	next;
+	cutin "prm_2",2;
+	mes "[Premi]";
+	mes "วันนี้ให้ Premi ช่วยบริการอะไรดีเจ้าคะ?";
+	next;
+	.@itemreq	= 6417;
+	setarray .@items[0],6,8,4,15,0,0,0;
+	setarray .@names$[0],
+		"เพิ่มค่าประสบการณ์ "+.percentexp2+"%","เพิ่มอัตราการดรอป "+.percentdrop2+"%",
+		"ลดบทลงโทษตอนตาย 100%","รับบริการทั้งหมดครั้งเดียว",
+		"บริการ Buff Service","บริการ Buff AllStatus +7",
+		"ไม่ทำสิ่งใด";
+	setarray .@names2$[0],
+		"เพิ่มค่าประสบการณ์ "+.percentexp2+"%","เพิ่มอัตราการดรอป "+.percentdrop2+"%",
+		"ลดบทลงโทษตอนตาย 100%","ทั้งหมด";
+	for(.@i=0; .@i<7; .@i++) {
+		if (countitem(.@itemreq) < .@items[.@i]) {
+			.@status[.@i] = 2;
+			.@menu$ = .@menu$+.@names$[.@i]+"^aaaaaa (วัตถุดิบไม่พอ)^000000:";
+		} else if (.@i == 6) {
+			.@menu$ = .@menu$+.@names$[.@i]+":";
+		} else if (.@i == 4) {
+			.@menu$ = .@menu$+.@names$[.@i]+" (1,500 Zeny):";
+		} else if (.@i == 5) {
+			.@menu$ = .@menu$+.@names$[.@i]+" (5,000 Zeny):";
+		} else {
+			.@status[.@i] = 1;
+			.@menu$ = .@menu$+.@names$[.@i]+" (1วัน):";
+		}
+	}
+	.@i = select(.@menu$)-1;
+	if (.@i == 4) {
+		cutin "prm_3",2;
+		mes "[Premi]";
+		mes "อ่าา!";
+		mes "ท่านต้องการใช้บริการ Buff Service";
+		mes "ใช่หรือไม่?";
+		next;
+			switch(select("ใช่: ยังก่อน")){
+			case 1:
+				cutin "prm_2",2;
+				if(zeny < 1500){
+					mes "[Premi]";
+					mes "ดูเหมือนว่าท่านจะมีเงินไม่พอนะ";
+					close2;
+					cutin "",255;
+					end;
+				}
+				mes "[Premi]";
+				mes "ยินดีให้บริการ";
+				mes "แล้วพบกันใหม่อีกครั้ง~~~~~~";
+				specialeffect2 EF_HEAL2;
+				specialeffect2 EF_INCAGILITY;
+				sc_start SC_INCREASEAGI,600000,10;
+				specialeffect2 EF_BLESSING;
+				sc_start SC_BLESSING,600000,10;
+				skilleffect 75,0; sc_start SC_GLORIA,600000,5;
+				skilleffect 74,0; sc_start SC_MAGNIFICAT,600000,5;
+				skilleffect 33,0; sc_start SC_ANGELUS,600000,10;
+				sc_start SC_POEMBRAGI,60000,10;
+				sc_start SC_SERVICE4U,60000,10;
+				atcommand "@repairall";
+				//percentheal 100,100;
+				close2;
+				cutin "",255;
+				end;
+			case 2:
+				cutin "prm_2",2;
+				mes "[Premi]";
+				mes "ไว้เจอกันใหม่นะ เหมี้ยยวว~~~~~~~";
+				close2;
+				cutin "",255;
+				end;
+		}
+	}
+	if (.@i == 5) {
+		cutin "prm_3",2;
+		mes "[Premi]";
+		mes "อ่าา!";
+		mes "ท่านต้องการใช้บริการ Buff AllStatus +7";
+		mes "ใช่หรือไม่?";
+		next;
+			switch(select("ใช่: ยังก่อน")){
+			case 1:
+				cutin "prm_2",2;
+				if(zeny < 5000){
+					mes "[Premi]";
+					mes "ดูเหมือนว่าท่านจะมีเงินไม่พอนะ";
+					close2;
+					cutin "",255;
+					end;
+				}
+				mes "[Premi]";
+				mes "ยินดีให้บริการ";
+				mes "แล้วพบกันใหม่อีกครั้ง~~~~~~";
+				sc_start SC_STRFood,1800000,7;
+				sc_start SC_AGIFood,1800000,7;
+				sc_start SC_VITFood,1800000,7;
+				sc_start SC_INTFood,1800000,7;
+				sc_start SC_DEXFood,1800000,7;
+				sc_start SC_LUKFood,1800000,7;
+				close2;
+				cutin "",255;
+				end;
+			case 2:
+				cutin "prm_2",2;
+				mes "[Premi]";
+				mes "ไว้เจอกันใหม่นะ เหมี้ยยวว~~~~~~~";
+				close2;
+				cutin "",255;
+				end;
+		}
+	}
+	if (.@i == 6) {
+		cutin "prm_3",2;
+		mes "[Premi]";
+		mes "อ่าา!";
+		mes "วันนี้ช่างอากาศดี ไม่ต้องทำอะไร!";
+		next;
+		cutin "prm_2",2;
+		mes "[Premi]";
+		mes "สำหรับ Premi, วันแบบนี้ถ้าได้กิน";
+		mes getitemname(.@itemreq)+" คงจะดีที่สุดเลย!";
+		close2;
+		cutin "",255;
+		end;
+	}
+	switch(.@status[.@i]) {
+	case 0:
+	case 1:
+		break;
+	case 2:
+		cutin "prm_4",2;
+		mes "[Premi]";
+		mes "สำหรับ "+.@names$[.@i]+" (1วัน)";
+		mes "ต้องใช้ <ITEM>"+getitemname(.@itemreq)+"<INFO>"+.@itemreq+"</INFO></ITEM> "+.@items[.@i]+" ชิ้น";
+		close2;
+		cutin "",255;
+		end;
+	}
+	cutin "prm_1",2;
+	mes "^00CC00[Premi]";
+	mes "^00CC00หากต้องการใช้เวทมนต์";
+	if(.@i==3){
+		mes "^00CC00หากต้องการใช้เวทมนต์";
+		mes "^00CC00เพิ่มค่าประสบการณ์";
+		mes "^00CC00เพิ่มอัตราการดรอป";
+		mes "^00CC00ลดบทลงโทษตอนตาย";
+		mes "^00CC00พร้อมกัน ต้องให้";
+	} else {
+		mes "^00CC00"+.@names2$[.@i];
+	}
+	mes "^00CC00"+getitemname(.@itemreq)+" "+.@items[.@i]+" ชิ้น";
+	mes "^00CC00ในการเสกนะเจ้าคะ^000000";
+	next;
+	mes "^CC0000? คำเตือน ?";
+	mes "^CC0000ให้ "+getitemname(.@itemreq)+" "+.@items[.@i]+" ชิ้น จะได้รับ Buff";
+	if(.@i==3){
+		mes "^CC0000เพิ่มค่าประสบการณ์ (1วัน)";
+		mes "^CC0000เพิ่มอัตราการดรอป (1วัน)";
+		mes "^CC0000ลดบทลงโทษตอนตาย (1วัน)";
+	} else {
+		mes "^CC0000"+.@names2$[.@i]+" (1วัน)";
+	}
+	mes "^CC0000Buff ที่ได้รับ";
+	mes "^CC0000ไม่สามารถถอดสิทธิ์ออกจากตัวได้^000000";
+	next;
+	if(select("รับ Buff:ยกเลิก") == 2) {
+		cutin "prm_3",2;
+		mes "[Premi]";
+		mes "อ่าา!";
+		mes "วันนี้ช่างอากาศดี ไม่ต้องทำอะไร!";
+		next;
+		cutin "prm_2",2;
+		mes "[Premi]";
+		mes "สำหรับ Premi, วันแบบนี้ถ้าได้กิน";
+		mes ""+getitemname(.@itemreq)+" คงจะดีที่สุดเลย!";
+		close2;
+		cutin "",255;
+		end;
+	}
+	delitem .@itemreq,.@items[.@i];
+	cutin "prm_1",2;
+	mes "[Premi]";
+	mes "อาฮ่า!";
+	mes "เรามาลองดูความสามารถกันหน่อยไหม!!!";
+	next;
+	switch(.@i) {
+		case 0:
+			sc_start SC_APACHE_EXPBOOST_S,86400000,.percentexp2;
+			#APACHE_EXP_S = gettimetick(2)+86400;
+			break;
+		case 1:
+			sc_start SC_APACHE_ITEMBOOST_S,86400000,.percentdrop2;
+			#APACHE_ITEM_S = gettimetick(2)+86400;
+			break;
+		case 2:
+			sc_start SC_APACHE_LIFEINSURANCE,86400000,50;
+			#APACHE_LIFE_S = gettimetick(2)+86400;
+			break;
+		case 3:
+			sc_start SC_APACHE_EXPBOOST_S,86400000,.percentexp2;
+			sc_start SC_APACHE_ITEMBOOST_S,86400000,.percentdrop2;
+			sc_start SC_APACHE_LIFEINSURANCE,86400000,50;
+			#APACHE_EXP_S = gettimetick(2)+86400;
+			#APACHE_ITEM_S = gettimetick(2)+86400;
+			#APACHE_LIFE_S = gettimetick(2)+86400;
+			break;
+	}
+	mes "[Premi]";
+	mes "เป็นอย่างไรบ้างคะ คุณ "+strcharinfo(0)+"!";
+	mes "ยังไม่รู้สึกถึงเวทมนต์ "+.@name$+" หรือเจ้าคะ?";
+	mes "จะมาเป็นแบบนี้ไม่ได้นะ!";
+	mes "รีบออกไปลองต่อสู้ดูค่ะ!";
+	close2;
+	cutin "",255;
+	end;
+
+}
+
+
+prontera,0,0,4	script	Wanderer Merchant#pre	4_M_HUMERCHANT,{
+	mes "[Wanderer Merchant]";
+	mes "ยินดีต้อนรับ!";
+	mes "ต้องการขายของที่มีอยู่หรอกรึ?";
+	mes "หรือว่าต้องการจะซื้อไอเท็ม?";
+	switch(select("ซื้อไอเท็มใช้แล้วหมดไป:ขายของ:ไม่มีอะไร")){
+		case 1:
+			close2;
+			callshop "PotionS",1;
+			end;
+		case 2:
+			close2;
+			callshop "PotionS",2;
+			end;
+		case 3:
+			end;
+	}
+	close;
+	end;
+}
+
+prontera,0,0,4	script	Kafra#premium	4_F_KAFRA5,{
+	cutin "kafra_05",2;
+	mes "[Kafra Employee]";
+	mes "สวัสดีค่ะ บริการเรียกใช้งาน Kafra ค่ะ";
+	mes "ท่านต้องการใช้บริการใด";
+	switch(select("Kafra Storage:Kafra VIP Storage")){
+	case 1:
+		mes "จะทำการเปิดคลังให้ตามที่ขอนะคะ";
+		close2;
+		openstorage;
+		cutin "", 255;
+		end;
+	case 2:
+		mes "[Kafra VIP]";
+		mes "เปิดคลังเก็บของให้กับ";
+		mes "Premium Service เท่านั้น !!";
+		next;
+		if(#APACHE_PREMIUM_TIME){
+			if(#APACHE_PREMIUM_TIME <= gettimetick(2)){
+				mes "[Kafra VIP]";
+				mes "^CC0000ขณะนี้บริการ Sremium Service หมดแล้ว";
+				mes "^CC0000สามารถเปิดคลังเพื่อหยิบออกเท่านั้น !!^000000";
+			}
+			mes "[Kafra VIP]";
+			mes "คุณ ^0000FF"+strcharinfo(0)+"^000000 ต้องการเปิดคลังไหม ?";
+			next;
+			if(select("เปิดคลังเก็บของ:ยกเลิก") == 1) {
+				if(#APACHE_PREMIUM_TIME <= gettimetick(2)){
+					openstorage2 2,STOR_MODE_GET;
+				}
+				if(#APACHE_PREMIUM_TIME > gettimetick(2)){
+					openstorage2 2,STOR_MODE_GET|STOR_MODE_PUT;
+				}
+				
+			}
+			mes "[Kafra VIP]";
+			mes "ขอบคุณที่ใช้บริการ";
+			cutin "",255;
+			close;
+			end;
+		}
+		mes "[Kafra VIP]";
+		mes "คุณยังไม่ได้สมัคร";
+		mes "Premium Service ดังนั้นยังไม่สามารถใช้งานส่วนนี้ได้ !!";
+		cutin "",255;
+		close;
+		end;
+	}
+	end;
+}
+
+function	script	Storage_VIP	{
+	cutin "kafra_05",2;
+		mes "[Kafra VIP]";
+		mes "เปิดคลังเก็บของให้กับ";
+		mes "Premium Service เท่านั้น !!";
+		next;
+		if(#APACHE_PREMIUM_TIME){
+			if(#APACHE_PREMIUM_TIME <= gettimetick(2)){
+				mes "[Kafra VIP]";
+				mes "^CC0000ขณะนี้บริการ Sremium Service หมดแล้ว";
+				mes "^CC0000สามารถเปิดคลังเพื่อหยิบออกเท่านั้น !!^000000";
+			}
+			mes "[Kafra VIP]";
+			mes "คุณ ^0000FF"+strcharinfo(0)+"^000000 ต้องการเปิดคลังไหม ?";
+			next;
+			if(select("เปิดคลังเก็บของ:ยกเลิก") == 1) {
+				if(#APACHE_PREMIUM_TIME <= gettimetick(2)){
+					openstorage2 1,STOR_MODE_GET;
+				}
+				if(#APACHE_PREMIUM_TIME > gettimetick(2)){
+					openstorage2 1,STOR_MODE_GET|STOR_MODE_PUT;
+				}
+				
+			}
+			mes "[Kafra VIP]";
+			mes "ขอบคุณที่ใช้บริการ";
+			cutin "",255;
+			close;
+			end;
+		}
+		mes "[Kafra VIP]";
+		mes "คุณยังไม่ได้สมัคร";
+		mes "Premium Service ดังนั้นยังไม่สามารถใช้งานส่วนนี้ได้ !!";
+		cutin "",255;
+		close;
+		end;
+}

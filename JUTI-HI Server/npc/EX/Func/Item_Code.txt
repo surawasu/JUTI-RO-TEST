@@ -1,0 +1,364 @@
+//==================================================
+// Build date: 03/26/2022 - 05:29 PM
+// Author: Jhondominic
+// Website: https://jhondominic.com
+// Contact: https://web.facebook.com/1ST.Dominic
+// Script name: Item Code
+// Script Version: v1.0
+// Base on: rAthena
+// Sell at: 04/08/2023 - 00:00 AM
+// Customer: C3-PROJECT#2062 - Discord
+//==================================================
+
+-	script	ITEMCODE_DB	-1,{
+OnInit:
+	query_sql (
+		"CREATE TABLE IF NOT EXISTS `item_code_data` ("+
+		"`id` int(7) NOT NULL AUTO_INCREMENT,"+
+		"`item_code` varchar(255) NOT NULL,"+
+		"`reward_id1` int(8) NOT NULL,"+
+		"`reward_amt1` int(8) NOT NULL,"+
+		"`reward_id2` int(8) NOT NULL,"+
+		"`reward_amt2` int(8) NOT NULL,"+
+		"`reward_id3` int(8) NOT NULL,"+
+		"`reward_amt3` int(8) NOT NULL,"+
+		"`reward_id4` int(8) NOT NULL,"+
+		"`reward_amt4` int(8) NOT NULL,"+
+		"`reward_id5` int(8) NOT NULL,"+
+		"`reward_amt5` int(8) NOT NULL,"+
+		"`redeem_limit` int(7) NOT NULL,"+
+		"`expire` TIMESTAMP NULL DEFAULT NULL," +
+		"PRIMARY KEY (`id`)"+
+		") ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;"
+	);
+	query_sql (
+		"CREATE TABLE IF NOT EXISTS `item_code_logs` ("+
+		"`id` int(7) NOT NULL AUTO_INCREMENT,"+
+		"`account_id` int(12) NOT NULL,"+
+		"`char_id` int(12) NOT NULL,"+
+		"`last_ip` varchar(100) NOT NULL,"+
+		"`last_unique_id` int(100) NOT NULL,"+
+		"`item_code` varchar(255) NOT NULL,"+
+		"`redeem_time` datetime NULL DEFAULT NULL," +
+		"PRIMARY KEY (`id`)"+
+		") ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;"
+	);
+end;
+}
+
+morocc,175,88,3	script	Item Code	4_M_SIT_NOVICE,{
+	
+MainMenu:
+	if (getgmlevel()) {
+		if (select("- เมนูแอดมิน:- เมนูผู้เล่น") == 1) {
+			mes .NPCName$;
+			mes "สวัสดีท่านแอดมิน "+strcharinfo(0)+"";
+			mes "ข้าคือพนักงานจัดการ Item Code";
+			mes "ท่านต้องการทำสิ่งใดละ?";
+			next;
+			switch(select("- เพิ่ม Item Code:- ลบ Item Code:- ดู Item Code ทั้งหมด")) {
+				case 1:
+					mes .NPCName$;
+					mes " ";
+					mes "กรุณาพิมพ์ Item Code ที่ต้องการเพิ่ม";
+					mes "^FF0000ใส่ 0 กลับเมนูหลัก^000000";
+					next;
+					input .@itemcode$;
+					if (.@itemcode$ == "0") { goto MainMenu; }
+					query_sql("SELECT COUNT(item_code) FROM `item_code_data` WHERE `item_code` = '"+.@itemcode$+"'",.@cic);
+					if (.@cic) {
+						mes .NPCName$;
+						mes " ";
+						mes "^FF0000Item Code ที่ท่านแอดมินเพิ่มซ้ำกับโค้ดที่มีอยู่แล้ว^000000";
+						close;
+					}
+					mes .NPCName$;
+					mes " ";
+					mes "กรุณาพิมพ์ Item ID ของรางวัลชนิดที่ 1";
+					mes "^FF0000ใส่ 0 กลับเมนูหลัก^000000";
+					next;
+					input .@rwid1;
+					if (.@rwid1 == 0) { goto MainMenu; }
+					mes .NPCName$;
+					mes " ";
+					mes "กรุณาพิมพ์ จำนวน ของรางวัลชนิดที่ 1";
+					mes "^FF0000ใส่ 0 กลับเมนูหลัก^000000";
+					next;
+					input .@rwamt1;
+					if (.@rwamt1 == 0) { goto MainMenu; }
+					
+					mes .NPCName$;
+					mes " ";
+					mes "กรุณาพิมพ์ Item ID ของรางวัลชนิดที่ 2";
+					mes "^FF0000ใส่ 0 ไม่แจก^000000";
+					mes "^FF0000ใส่ 99 กลับเมนูหลัก^000000";
+					next;
+					input .@rwid2;
+					if (.@rwid2 == 99) { goto MainMenu; }
+					if (.@rwid2) {
+						mes .NPCName$;
+						mes " ";
+						mes "กรุณาพิมพ์ จำนวน ของรางวัลชนิดที่ 2";
+						mes "^FF0000ใส่ 0 กลับเมนูหลัก^000000";
+						next;
+						input .@rwamt2;
+						if (.@rwamt2 == 0) { goto MainMenu; }
+					}
+					else {
+						set .@rwamt2, 0;
+					}
+					
+					mes .NPCName$;
+					mes " ";
+					mes "กรุณาพิมพ์ Item ID ของรางวัลชนิดที่ 3";
+					mes "^FF0000ใส่ 0 ไม่แจก^000000";
+					mes "^FF0000ใส่ 99 กลับเมนูหลัก^000000";
+					next;
+					input .@rwid3;
+					if (.@rwid3 == 99) { goto MainMenu; }
+					if (.@rwid3) {
+						mes .NPCName$;
+						mes " ";
+						mes "กรุณาพิมพ์ จำนวน ของรางวัลชนิดที่ 3";
+						mes "^FF0000ใส่ 0 กลับเมนูหลัก^000000";
+						next;
+						input .@rwamt3;
+						if (.@rwamt3 == 0) { goto MainMenu; }
+					}
+					else {
+						set .@rwamt3, 0;
+					}
+					
+					mes .NPCName$;
+					mes " ";
+					mes "กรุณาพิมพ์ Item ID ของรางวัลชนิดที่ 4";
+					mes "^FF0000ใส่ 0 ไม่แจก^000000";
+					mes "^FF0000ใส่ 99 กลับเมนูหลัก^000000";
+					next;
+					input .@rwid4;
+					if (.@rwid4 == 99) { goto MainMenu; }
+					if (.@rwid4) {
+						mes .NPCName$;
+						mes " ";
+						mes "กรุณาพิมพ์ จำนวน ของรางวัลชนิดที่ 4";
+						mes "^FF0000ใส่ 0 กลับเมนูหลัก^000000";
+						next;
+						input .@rwamt4;
+						if (.@rwamt4 == 0) { goto MainMenu; }
+					}
+					else {
+						set .@rwamt4, 0;
+					}
+					
+					mes .NPCName$;
+					mes " ";
+					mes "กรุณาพิมพ์ Item ID ของรางวัลชนิดที่ 5";
+					mes "^FF0000ใส่ 0 ไม่แจก^000000";
+					mes "^FF0000ใส่ 99 กลับเมนูหลัก^000000";
+					next;
+					input .@rwid5;
+					if (.@rwid5 == 99) { goto MainMenu; }
+					if (.@rwid5) {
+						mes .NPCName$;
+						mes " ";
+						mes "กรุณาพิมพ์ จำนวน ของรางวัลชนิดที่ 5";
+						mes "^FF0000ใส่ 0 กลับเมนูหลัก^000000";
+						next;
+						input .@rwamt5;
+						if (.@rwamt5 == 0) { goto MainMenu; }
+					}
+					else {
+						set .@rwamt5, 0;
+					}
+					
+					mes .NPCName$;
+					mes " ";
+					mes "กรุณาพิมพ์ จำนวนการรอบการรับไอเทมได้ ของ Item Code";
+					mes "^FF0000ใส่ 0 ไม่จำกัด^000000";
+					mes "^FF0000ใส่ 99 กลับเมนูหลัก^000000";
+					next;
+					input .@rlimit;
+					if (.@rlimit == 99) { goto MainMenu; }
+					
+					mes .NPCName$;
+					mes " ";
+					mes "กรุณาพิมพ์ วันหมดอายุ ของ Item Code";
+					mes "^0000FFใส่เป็นวินาที";
+					mes "1 ชม. = 3,600";
+					mes "1 วัน = 86,400^000000";
+					mes "^FF0000ใส่ 0 กลับเมนูหลัก^000000";
+					next;
+					input .@exp;
+					if (.@exp == 0) { goto MainMenu; }
+					
+					set .@expire, .@exp+gettimetick(2);
+					if (.@exp >= 86400) { set .@day, .@exp/86400; set .@exp, .@exp-(.@day*86400); }
+					if (.@exp >= 3600) { set .@hour, .@exp/3600; set .@exp, .@exp-(.@hour*3600); }
+					if (.@exp >= 60) { set .@min, .@exp/60; set .@exp, .@exp-(.@min*60); }
+					
+					mes .NPCName$;
+					mes "รายละเอียด Item Code";
+					mes "Item Code: ^0000FF"+.@itemcode$+"^000000";
+					mes "ของรางวัล 1: ^0000FF"+getitemname(.@rwid1)+" x"+callfunc("F_InsertComma",.@rwamt1)+"^000000";
+					if (.@rwid2) { mes "ของรางวัล 2: ^0000FF"+getitemname(.@rwid2)+" x"+callfunc("F_InsertComma",.@rwamt2)+"^000000"; }
+					if (.@rwid3) { mes "ของรางวัล 3: ^0000FF"+getitemname(.@rwid3)+" x"+callfunc("F_InsertComma",.@rwamt3)+"^000000"; }
+					if (.@rwid4) { mes "ของรางวัล 4: ^0000FF"+getitemname(.@rwid4)+" x"+callfunc("F_InsertComma",.@rwamt4)+"^000000"; }
+					if (.@rwid5) { mes "ของรางวัล 5: ^0000FF"+getitemname(.@rwid5)+" x"+callfunc("F_InsertComma",.@rwamt5)+"^000000"; }
+					if (!.@rlimit) { mes "จำกัดเติม: ^0000FFไม่จำกัด^000000"; } else { mes "จำกัดเติม: ^0000FF"+.@rlimit+" ครั้ง^000000"; }
+					mes "เวลาหมดอายุ: ^0000FF"+.@day+" วัน "+.@hour+" ชั่วโมง "+.@min+" นาที "+.@exp+" วินาที^000000";
+					mes "^FF0000ยืนยันการเพิ่ม Item Code หรือไม่?^000000";
+					next;
+					if (select("- ยกเลิก:- ยืนยัน") == 1) {
+						mes .NPCName$;
+						mes " ";
+						mes "^FF0000ไว้ท่านต้องการเพิ่ม Item Code กลับมาหาข้าได้เลยนะ^000000";
+						close;
+					}
+					query_sql("INSERT INTO `item_code_data` (item_code,reward_id1,reward_amt1,reward_id2,reward_amt2,reward_id3,reward_amt3,reward_id4,reward_amt4,reward_id5,reward_amt5,redeem_limit,expire) VALUES ('"+.@itemcode$+"',"+.@rwid1+","+.@rwamt1+","+.@rwid2+","+.@rwamt2+","+.@rwid3+","+.@rwamt3+","+.@rwid4+","+.@rwamt4+","+.@rwid5+","+.@rwamt5+","+.@rlimit+",FROM_UNIXTIME("+.@expire+"))");
+					mes .NPCName$;
+					mes " ";
+					mes "^0000FFทำการเพิ่ม Item Code:";
+					mes ""+.@itemcode$+"";
+					mes "เรียบร้อยแล้ว^000000";
+					close;
+					
+				case 2:
+					mes .NPCName$;
+					mes " ";
+					mes "กรุณาพิมพ์ Item Code ที่ต้องการลบ";
+					mes "^FF0000ใส่ 0 กลับเมนูหลัก^000000";
+					next;
+					input .@itemcode$;
+					if (.@itemcode$ == "0") { goto MainMenu; }
+					query_sql("SELECT COUNT(item_code) FROM `item_code_data` WHERE `item_code` = '"+.@itemcode$+"'",.@cic);
+					if (!.@cic) {
+						mes .NPCName$;
+						mes " ";
+						mes "^FF0000ไม่พบ Item Code ที่ท่านแอดมินกรอก^000000";
+						next;
+						goto MainMenu;
+					}
+					query_sql("SELECT item_code,reward_id1,reward_amt1,reward_id2,reward_amt2,reward_id3,reward_amt3,reward_id4,reward_amt4,reward_id5,reward_amt5,redeem_limit,expire FROM `item_code_data` WHERE `item_code` = '"+.@itemcode$+"'",.@ic$,.@rwid1,.@rwamt1,.@rwid2,.@rwamt2,.@rwid3,.@rwamt3,.@rwid4,.@rwamt4,.@rwid5,.@rwamt5,.@rlimit,.@exp$);
+					mes .NPCName$;
+					mes "รายละเอียด Item Code";
+					mes "Item Code: ^0000FF"+.@ic$+"^000000";
+					mes "ของรางวัล 1: ^0000FF"+getitemname(.@rwid1)+" x"+callfunc("F_InsertComma",.@rwamt1)+"^000000";
+					if (.@rwid2) { mes "ของรางวัล 2: ^0000FF"+getitemname(.@rwid2)+" x"+callfunc("F_InsertComma",.@rwamt2)+"^000000"; }
+					if (.@rwid3) { mes "ของรางวัล 3: ^0000FF"+getitemname(.@rwid3)+" x"+callfunc("F_InsertComma",.@rwamt3)+"^000000"; }
+					if (.@rwid4) { mes "ของรางวัล 4: ^0000FF"+getitemname(.@rwid4)+" x"+callfunc("F_InsertComma",.@rwamt4)+"^000000"; }
+					if (.@rwid5) { mes "ของรางวัล 5: ^0000FF"+getitemname(.@rwid5)+" x"+callfunc("F_InsertComma",.@rwamt5)+"^000000"; }
+					if (!.@rlimit) { mes "จำกัดเติม: ^0000FFไม่จำกัด^000000"; } else { mes "จำกัดเติม: ^0000FF"+.@rlimit+" ครั้ง^000000"; }
+					mes "เวลาหมดอายุ: ^0000FF"+.@exp$+"^000000";
+					mes "^FF0000ยืนยันการลบ Item Code หรือไม่?^000000";
+					next;
+					if (select("- ยกเลิก:- ยืนยัน") == 1) {
+						mes .NPCName$;
+						mes " ";
+						mes "^FF0000ไว้ท่านต้องการลบ Item Code กลับมาหาข้าได้เลยนะ^000000";
+						close;
+					}
+					query_sql("DELETE FROM `item_code_data` WHERE `item_code` = '"+.@itemcode$+"'");
+					mes .NPCName$;
+					mes " ";
+					mes "^0000FFทำการลบ Item Code: "+.@itemcode$+" เรียบร้อยแล้ว^000000";
+					close;
+				case 3:
+					query_sql("SELECT * FROM `item_code_data`",.@id,.@ic$,.@rwid1,.@rwamt1,.@rwid2,.@rwamt2,.@rwid3,.@rwamt3,.@rwid4,.@rwamt4,.@rwid5,.@rwamt5,.@rlimit,.@exp$);
+					for (set .@i,0; .@i < getarraysize(.@id); set .@i,.@i+1) {
+						mes "===== "+.@ic$[.@i]+" =====";
+						mes "ของรางวัล 1: ^0000FF"+getitemname(.@rwid1[.@i])+" x"+callfunc("F_InsertComma",.@rwamt1[.@i])+"^000000";
+						if (.@rwid2[.@i]) { mes "ของรางวัล 2: ^0000FF"+getitemname(.@rwid2[.@i])+" x"+callfunc("F_InsertComma",.@rwamt2[.@i])+"^000000"; }
+						if (.@rwid3[.@i]) { mes "ของรางวัล 3: ^0000FF"+getitemname(.@rwid3[.@i])+" x"+callfunc("F_InsertComma",.@rwamt3[.@i])+"^000000"; }
+						if (.@rwid4[.@i]) { mes "ของรางวัล 4: ^0000FF"+getitemname(.@rwid4[.@i])+" x"+callfunc("F_InsertComma",.@rwamt4[.@i])+"^000000"; }
+						if (.@rwid5[.@i]) { mes "ของรางวัล 5: ^0000FF"+getitemname(.@rwid5[.@i])+" x"+callfunc("F_InsertComma",.@rwamt5[.@i])+"^000000"; }
+						if (!.@rlimit[.@i]) { mes "จำกัดเติม: ^0000FFไม่จำกัด^000000"; } else { mes "จำกัดเติม: ^0000FF"+.@rlimit[.@i]+" ครั้ง^000000"; }
+						mes "เวลาหมดอายุ: ^0000FF"+.@exp$[.@i]+"^000000";
+						mes "======================";
+					}
+					close;
+			}
+		}
+	}
+	
+	mes .NPCName$;
+	mes "กรุณากรอก Item Code";
+	mes "^FF0000ใส่ 0 เพื่อยกเลิก^000000";
+	next;
+	input .@itemcode$;
+	if (.@itemcode$ == "0") { close; }
+	query_sql("SELECT COUNT(item_code) FROM `item_code_data` WHERE `item_code` = '"+.@itemcode$+"'",.@cic);
+	if (!.@cic) {
+		mes .NPCName$;
+		mes " ";
+		mes "^FF0000ไม่พบ Item Code ที่ท่านกรอก^000000";
+		close;
+	}
+	switch(.CheckMode) {
+		case 0:
+			set .@ModeShow$, "^FF0000ตัวละคร^000000";
+			query_sql("SELECT COUNT(char_id) FROM `item_code_logs` WHERE char_id = "+getcharid(0)+" AND `item_code` = '"+.@itemcode$+"'",.@check);
+			break;
+		case 1:
+			set .@ModeShow$, "^FF0000ไอดี^000000";
+			query_sql("SELECT COUNT(account_id) FROM `item_code_logs` WHERE account_id = "+getcharid(3)+" AND `item_code` = '"+.@itemcode$+"'",.@check);
+			break;
+		case 2:
+			set .@ModeShow$, "^FF0000ไอพี^000000";
+			query_sql("SELECT last_ip FROM `login` WHERE account_id = "+getcharid(3)+"",.@lip$);
+			query_sql("SELECT COUNT(last_ip) FROM `item_code_logs` WHERE `last_ip` = '"+.@lip$+"' AND `item_code` = '"+.@itemcode$+"'",.@check);
+			break;
+		case 3:
+			set .@ModeShow$, "^FF0000เครื่อง^000000";
+			query_sql("SELECT last_unique_id FROM `login` WHERE account_id = "+getcharid(3)+"",.@luid);
+			query_sql("SELECT COUNT(last_unique_id) FROM `item_code_logs` WHERE `last_unique_id` = "+.@luid+" AND `item_code` = '"+.@itemcode$+"'",.@check);
+			break;
+			
+	}
+	if (.@check) {
+		mes .NPCName$;
+		mes " ";
+		mes .@ModeShow$+" นี้เคยเติม Item Code ไปแล้ว";
+		close;
+	}
+	query_sql("SELECT item_code,reward_id1,reward_amt1,reward_id2,reward_amt2,reward_id3,reward_amt3,reward_id4,reward_amt4,reward_id5,reward_amt5,redeem_limit,expire,UNIX_TIMESTAMP(expire) FROM `item_code_data` WHERE `item_code` = '"+.@itemcode$+"'",.@ic$,.@rwid1,.@rwamt1,.@rwid2,.@rwamt2,.@rwid3,.@rwamt3,.@rwid4,.@rwamt4,.@rwid5,.@rwamt5,.@rlimit,.@exp$,.@expire);
+	if ((.@expire-gettimetick(2)) <= 0) {
+		mes .NPCName$;
+		mes " ";
+		mes "^FF0000Item Code: "+.@itemcode$+" หมดอายุแล้ว";
+		mes "วันหมดอายุ: "+.@exp$+"^000000";
+		close;
+	}
+	query_sql("SELECT COUNT(item_code) FROM `item_code_logs` WHERE `item_code` = '"+.@itemcode$+"'",.@cic);
+	if (.@cic >= .@rlimit) {
+		mes .NPCName$;
+		mes " ";
+		mes "^FF0000Item Code นี้มีผู้เล่นเติมไปหมดแล้ว^000000";
+		close;
+	}
+	if (.CheckMode != 3) {
+		query_sql("SELECT last_ip FROM `login` WHERE account_id = "+getcharid(3)+"",.@lip$);
+		query_sql("INSERT INTO `item_code_logs` (account_id,char_id,last_ip,last_unique_id,item_code,redeem_time) VALUES ("+getcharid(3)+","+getcharid(0)+",'"+.@lip$+"',0,'"+.@itemcode$+"',NOW())");
+	}
+	else {
+		query_sql("SELECT last_ip,last_unique_id FROM `login` WHERE account_id = "+getcharid(3)+"",.@lip$,.@luid);
+		query_sql("INSERT INTO `item_code_logs` (account_id,char_id,last_ip,last_unique_id,item_code,redeem_time) VALUES ("+getcharid(3)+","+getcharid(0)+",'"+.@lip$+"',"+.@luid+",'"+.@itemcode$+"',NOW())");
+	}
+	getitem .@rwid1,.@rwamt1;
+	if (.@rwid2) { getitem .@rwid2,.@rwamt2; }
+	if (.@rwid3) { getitem .@rwid3,.@rwamt3; }
+	if (.@rwid4) { getitem .@rwid4,.@rwamt4; }
+	if (.@rwid5) { getitem .@rwid5,.@rwamt5; }
+	mes .NPCName$;
+	mes " ";
+	mes "^0000FFรับไอเทมของท่านได้เล๊ย^000000";
+	close;
+	
+OnInit:
+	// ตั้งค่าชื่อ NPC
+	set .NPCName$, "[ Item Code] ";
+	// ตั้งค่าข้อความป้ายบนหัว NPC
+	waitingroom "••••Item Code••••",0;
+	// ตั้งค่าตรวจสอบการเติม Item Code 0 = ต่อตัวละคร || 1 = ต่อไอดี || 2 = ต่อไอพี || 3 = MAC IP (ผู้ใช้ Gepard เท่านั้น)
+	set .CheckMode, 1;
+	end;
+}

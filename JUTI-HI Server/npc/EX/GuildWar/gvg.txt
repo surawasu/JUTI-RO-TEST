@@ -1,0 +1,48 @@
+-	script	GVGROOM	-1,{
+	mes "[ ทหาร ]";
+	mes "ท่านมีอะไรให้ข้าช่วยหรอ ?";
+	next;
+	if (select("- ส่งข้าไปรวมวาปกิลด์วอ:- ยกเลิก") == 1)
+		warp "guild_vs2", 50,48;
+	close;
+
+
+
+OnInit:
+do {
+delwaitingroom;
+.@countprt1 = getmapusers("prtg_cas01");
+.@countprt2 = getmapusers("prtg_cas02");
+.@countprt3 = getmapusers("prtg_cas03");
+.@countprt4 = getmapusers("prtg_cas04");
+.@countprt5 = getmapusers("prtg_cas05");
+.@countgef1 = getmapusers("gefg_cas01");
+.@countgef2 = getmapusers("gefg_cas02");
+.@countgef3 = getmapusers("gefg_cas03");
+.@countgef4 = getmapusers("gefg_cas04");
+.@countgef5 = getmapusers("gefg_cas05");
+.@countalde1 = getmapusers("aldeg_cas01");
+.@countalde2 = getmapusers("aldeg_cas02");
+.@countalde3 = getmapusers("aldeg_cas03");
+.@countalde4 = getmapusers("aldeg_cas04");
+.@countalde5 = getmapusers("aldeg_cas05");
+.@countpay1 = getmapusers("payg_cas01");
+.@countpay2 = getmapusers("payg_cas02");
+.@countpay3 = getmapusers("payg_cas03");
+.@countpay4 = getmapusers("payg_cas04");
+.@countpay5 = getmapusers("payg_cas05");
+.@countm1 = getmapusers("arug_cas03");
+.@count = .@countm1+.@countprt1+.@countprt2+.@countprt3+.@countprt4+.@countprt5+.@countpay1+.@countpay2+.@countpay3+.@countpay4+.@countpay5+.@countalde1+.@countalde2+.@countalde3+.@countalde4+.@countalde5+.@countgef1+.@countgef2+.@countgef3+.@countgef4+.@countgef5;
+waitingroom "  GVG  [ "+.@count+" ] คน",0;
+sleep 80; // Evites super infinity loop
+} while(1); // End Loop
+end;
+}
+
+like_game,121,118,5	duplicate(GVGROOM)	GVG#funtown5	105
+eternal,163,94,4	duplicate(GVGROOM)	GVG#funtown6	105
+like_game,87,136,4	duplicate(GVGROOM)	GVG#funtown4	105
+like_game,119,157,4	duplicate(GVGROOM)	GVG#funtown7	105
+funtown,241,245,4	duplicate(GVGROOM)	GVG#funtown9	105
+eternal,106,156,4	duplicate(GVGROOM)	GVG#funtown8	105
+like_game,168,136,4	duplicate(GVGROOM)	GVG#funtown63	105

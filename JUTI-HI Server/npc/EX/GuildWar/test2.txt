@@ -1,0 +1,86 @@
+//============================================================
+// WoE:FE Castles
+//============================================================
+aldeg_cas01	mapflag	loadevent
+aldeg_cas02	mapflag	loadevent
+aldeg_cas03	mapflag	loadevent
+aldeg_cas04	mapflag	loadevent
+aldeg_cas05	mapflag	loadevent
+gefg_cas01	mapflag	loadevent
+gefg_cas02	mapflag	loadevent
+gefg_cas03	mapflag	loadevent	
+gefg_cas04	mapflag	loadevent
+gefg_cas05	mapflag	loadevent
+payg_cas01	mapflag	loadevent
+payg_cas02	mapflag	loadevent
+payg_cas03	mapflag	loadevent
+payg_cas04	mapflag	loadevent
+payg_cas05	mapflag	loadevent
+prtg_cas01	mapflag	loadevent
+prtg_cas02	mapflag	loadevent
+prtg_cas03	mapflag	loadevent
+prtg_cas04	mapflag	loadevent
+prtg_cas05	mapflag	loadevent
+
+//============================================================
+// WoE:SE Castles
+//============================================================
+schg_cas01	mapflag	loadevent
+schg_cas02	mapflag	loadevent
+schg_cas03	mapflag	loadevent
+schg_cas04	mapflag	loadevent
+schg_cas05	mapflag	loadevent
+arug_cas01	mapflag	loadevent
+arug_cas02	mapflag	loadevent
+arug_cas03	mapflag	loadevent
+arug_cas04	mapflag	loadevent
+arug_cas05	mapflag	loadevent
+
+
+-	script	::WoEGuildCheck	-1,{
+
+OnPCLoadMapEvent:
+if (strcharinfo(3) == "prtg_cas01" || strcharinfo(3) == "prtg_cas02" || strcharinfo(3) == "prtg_cas03" || strcharinfo(3) == "prtg_cas04" || strcharinfo(3) == "prtg_cas05"
+	|| strcharinfo(3) == "gefg_cas01" || strcharinfo(3) == "gefg_cas02" || strcharinfo(3) == "gefg_cas03" || strcharinfo(3) == "gefg_cas04" || strcharinfo(3) == "gefg_cas05"
+	|| strcharinfo(3) == "payg_cas01" || strcharinfo(3) == "payg_cas02" || strcharinfo(3) == "payg_cas03" || strcharinfo(3) == "payg_cas04" || strcharinfo(3) == "payg_cas05"
+	|| strcharinfo(3) == "aldeg_cas01" || strcharinfo(3) == "aldeg_cas02" || strcharinfo(3) == "aldeg_cas03" || strcharinfo(3) == "aldeg_cas04" || strcharinfo(3) == "aldeg_cas05"
+	|| strcharinfo(3) == "arug_cas03") {
+	if (getcharid(2) == 0){
+		warp "SavePoint",0,0;	
+		sleep2 1000;
+		message strcharinfo(0),"ไม่ได้เข้าร่วมกิลด์ ท่านจึงถูกส่งกลับจุดเซฟ..";
+		end;
+	}
+	end;
+}
+/*
+if (strcharinfo(3) == "payg_cas03"){
+	if (getgmlevel() > 0 || getcharid(2) == 60 || getcharid(2) == 65 || getcharid(2) == 44 || getcharid(2) == 61 || getcharid(2) == 93 || getcharid(2) == 143){
+		if(getMapGuildUsers("payg_cas03",getcharid(2))>16){
+			warp "SavePoint",0,0;	
+			sleep2 1000;
+			message strcharinfo(0),"มีจำนวนผู้เล่นในกิลเกินกว่ากำหนด (16 คน)";
+			end;
+		}
+	end;
+	}	
+
+	warp "SavePoint",0,0;	
+	sleep2 1000;
+	message strcharinfo(0),"กิลด์ไม่ได้ลงทะเบียน ท่านจึงถูกส่งกลับจุดเซฟ..";
+	end;
+}
+
+if (strcharinfo(3) == "payg_cas03"){
+	if (getgmlevel() > 0 || getcharid(2) == 60 || getcharid(2) == 65){
+	end;
+	}	
+	warp "SavePoint",0,0;	
+	sleep2 1000;
+	message strcharinfo(0),"กิลด์ไม่ได้ลงทะเบียน ท่านจึงถูกส่งกลับจุดเซฟ..";
+	end;
+}
+*/
+
+end;
+}

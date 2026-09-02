@@ -1,0 +1,1699 @@
+//izlude,168,123,3	script	ถอดหินออฟคอสตูม	496,{
+function	script	UNSOCKETCOS	{
+disable_items;
+next;
+if (checkweight(1201,1) == 0) {
+		mes "[ถอดหินออฟคอสตูม]";
+		mes "คุณมีไอเทมมากเกินไป เอาไปเก็บก่อน!";
+		close;
+	}
+if (MaxWeight - Weight < 10000) {
+		mes "[ถอดหินออฟคอสตูม]";
+		mes "คุณมีน้ำหนักมากเกินไป!";
+		close;
+	}
+	mes "[ถอดหินออฟคอสตูม]";
+	mes "ให้สวมใส่คอสที่ต้องการถอดหิน";
+	mes "^FF0000ค่าบริการถอดหินจำนวน 1,000,000 zeny^000000";
+	menu
+	"^FF0000->^000000 ถอดหินออฟ(TOP)",HEADTOP,
+	"^FF0000->^000000 ถอดหินออฟ(MID)",HEADMID,
+	"^FF0000->^000000 ถอดหินออฟ(LOW)",HEADLOW,
+	"^FF0000->^000000 ถอดหินออฟ(GARMENT)",GARMENT,
+//	"^FF0000->^000000 ถอดหินออฟ(Shadow Armor)",SHADOW_A,
+//	"^FF0000->^000000 ถอดหินออฟ(Shadow Pandent)",OP_S_L,
+//	"^FF0000->^000000 ถอดหินออฟ(Shadow Earring)",OP_S_R,
+	"^FF0000->^000000 ยกเลิก",ex;
+
+HEADTOP:
+if(zeny<1000000){
+next;
+mes "[ถอดหินออฟคอสตูม]";
+mes "ท่านมีค่าบริการไม่เพียงพอ";
+end;
+}
+	.@geadeen = getenchantgrade(.@part);
+		setarray .@equip_bitmask[0],
+		EQP_ACC_L,				// EQI_ACC_L
+		EQP_ACC_R,				// EQI_ACC_R
+		EQP_SHOES,				// EQI_SHOES
+		EQP_GARMENT,			// EQI_GARMENT
+		EQP_HEAD_LOW,			// EQI_HEAD_LOW
+		EQP_HEAD_MID,			// EQI_HEAD_MID
+		EQP_HEAD_TOP,			// EQI_HEAD_TOP
+		EQP_ARMOR,				// EQI_ARMOR
+		EQP_HAND_L,				// EQI_HAND_L
+		EQP_HAND_R,				// EQI_HAND_R
+		EQP_COSTUME_HEAD_TOP,	// EQI_COSTUME_HEAD_TOP
+		EQP_COSTUME_HEAD_MID,	// EQI_COSTUME_HEAD_MID
+		EQP_COSTUME_HEAD_LOW,	// EQI_COSTUME_HEAD_LOW
+		EQP_COSTUME_GARMENT,	// EQI_COSTUME_GARMENT
+		EQP_AMMO,				// EQI_AMMO
+		EQP_SHADOW_ARMOR,		// EQI_SHADOW_ARMOR
+		EQP_SHADOW_WEAPON,		// EQI_SHADOW_WEAPON
+		EQP_SHADOW_SHIELD,		// EQI_SHADOW_SHIELD
+		EQP_SHADOW_SHOES,		// EQI_SHADOW_SHOES
+		EQP_SHADOW_ACC_R,		// EQI_SHADOW_ACC_R
+		EQP_SHADOW_ACC_L;		// EQI_SHADOW_ACC_L
+	
+	getinventorylist;	// required for now for getitembound4 to keep the enchant grade
+	for ( .@i = 0; .@i < @inventorylist_count; ++.@i ) {
+		if ((@inventorylist_equip[.@i] & .@equip_bitmask[EQI_COSTUME_HEAD_TOP]))
+			break;
+	}
+	
+	setarray .@part,EQI_COSTUME_HEAD_TOP;
+	.@item = getequipid(.@part);
+	.@card0 = getequipcardid(.@part,0);
+	.@card1 = getequipcardid(.@part,1);
+	.@card2 = getequipcardid(.@part,2);
+	.@card3 = getequipcardid(.@part,3);
+	.@geadeen = getenchantgrade(.@part);
+	
+	setarray .@opt_id[0], @inventorylist_option_id1[.@i], @inventorylist_option_id2[.@i], @inventorylist_option_id3[.@i], @inventorylist_option_id4[.@i], @inventorylist_option_id5[.@i];
+	setarray .@opt_value[0], @inventorylist_option_value1[.@i], @inventorylist_option_value2[.@i], @inventorylist_option_value3[.@i], @inventorylist_option_value4[.@i], @inventorylist_option_value5[.@i];
+	setarray .@opt_param[0], @inventorylist_option_parameter1[.@i], @inventorylist_option_parameter2[.@i], @inventorylist_option_parameter3[.@i], @inventorylist_option_parameter4[.@i], @inventorylist_option_parameter5[.@i];
+
+	next;
+	mes "[ถอดหินออฟคอสตูม]";
+	mes "ให้สวมใส่คอสที่ต้องการถอดหิน";
+	menu
+	"^FF0000->^000000 Stone Slot 1 ",topcard0,
+	"^FF0000->^000000 Stone Slot 2 ",topcard1,
+	"^FF0000->^000000 Stone Slot 3",topcard2,
+	"^FF0000->^000000 ยกเลิก",ex;
+	
+
+topcard0:
+	next;
+	if(!getequipisequiped(.@part)) {
+		mes "[ถอดหินออฟคอสตูม]";
+		mes "ท่านไม่ได้สวมใส่อุปกรณ์";
+		close;	
+	}
+	
+	if(.@card0 < 1) {
+		mes "[ถอดหินออฟคอสตูม]";
+		mes "อุปกรณ์ของท่านไม่มีหินเอฟเฟค";
+		close;	
+	}
+	
+	switch( .@card0 ) {
+		case 161090:
+				.@reward = 161090;
+		break;
+		case 161092:
+				.@reward = 161092;
+		break;
+		case 161095:
+				.@reward = 161095;
+		break;
+	
+	}
+
+	mes "[ถอดหินออฟคอสตูม]";
+	mes "ท่านต้องการถอดหินออฟคอสตูมจาก";
+	mes "<ITEM>"+getitemname(.@item)+"<INFO>"+.@item+"</INFO></ITEM>";
+	mes "หินที่ถอดคือ";
+	mes "<ITEM>"+getitemname(.@card0)+"<INFO>"+.@card0+"</INFO></ITEM>";
+	mes "ใช่หรือไม";
+	menu 
+	
+	"^FF0000->^000000 ตกลง",topcard0yes,
+	"^FF0000->^000000 ยกเลิก",ex;
+	
+topcard0yes:
+	delequip .@part;
+	getitem4( .@item,1,1,.@equip_refine,0,0,.@card1,.@card2,.@card3,.@geadeen, .@opt_id, .@opt_value, .@opt_param);
+	zeny -= 1000000;
+	getitem .@reward,1;
+	end;
+
+topcard1:
+	next;
+	if(!getequipisequiped(.@part)) {
+		mes "[ถอดหินออฟคอสตูม]";
+		mes "ท่านไม่ได้สวมใส่อุปกรณ์";
+		close;	
+	}
+	
+	if(.@card1 < 1) {
+		mes "[ถอดหินออฟคอสตูม]";
+		mes "อุปกรณ์ของท่านไม่มีหินเอฟเฟค";
+		close;	
+	}
+	
+	switch( .@card1 ) {
+		case 161094:
+				.@reward = 161094;
+		break;
+
+	}
+
+	mes "[ถอดหินออฟคอสตูม]";
+	mes "ท่านต้องการถอดหินออฟคอสตูมจาก";
+	mes "<ITEM>"+getitemname(.@item)+"<INFO>"+.@item+"</INFO></ITEM>";
+	mes "หินที่ถอดคือ";
+	mes "<ITEM>"+getitemname(.@card1)+"<INFO>"+.@card1+"</INFO></ITEM>";
+	mes "ใช่หรือไม";
+	menu 
+	
+	"^FF0000->^000000 ตกลง",topcard1yes,
+	"^FF0000->^000000 ยกเลิก",ex;
+	
+topcard1yes:
+	delequip .@part;
+	getitem4( .@item,1,1,.@equip_refine,0,.@card0,0,.@card2,.@card3,.@geadeen, .@opt_id, .@opt_value, .@opt_param);
+	zeny -= 1000000;
+	getitem .@reward,1;
+	end;
+
+topcard2:
+	next;	
+	if(!getequipisequiped(.@part)) {
+		mes "[ถอดหินออฟคอสตูม]";
+		mes "ท่านไม่ได้สวมใส่อุปกรณ์";
+		close;	
+	}
+	
+	if(.@card2 < 1) {
+		mes "[ถอดหินออฟคอสตูม]";
+		mes "อุปกรณ์ของท่านไม่มีหินเอฟเฟค";
+		close;	
+	}
+	
+	switch( .@card2 ) {
+		case 161096:
+				.@reward = 161096;
+		break;
+
+	}
+
+	mes "[ถอดหินออฟคอสตูม]";
+	mes "ท่านต้องการถอดหินออฟคอสตูมจาก";
+	mes "<ITEM>"+getitemname(.@item)+"<INFO>"+.@item+"</INFO></ITEM>";
+	mes "หินที่ถอดคือ";
+	mes "<ITEM>"+getitemname(.@card2)+"<INFO>"+.@card2+"</INFO></ITEM>";
+	mes "ใช่หรือไม";
+	menu 
+	
+	"^FF0000->^000000 ตกลง",topcard2yes,
+	"^FF0000->^000000 ยกเลิก",ex;
+	
+topcard2yes:
+	next;
+	delequip .@part;
+	getitem4( .@item,1,1,.@equip_refine,0,.@card0,.@card1,0,.@card3,.@geadeen, .@opt_id, .@opt_value, .@opt_param);
+	zeny -= 1000000;
+	getitem .@reward,1;
+	end;
+
+HEADMID:
+if(zeny<1000000){
+next;
+mes "[ถอดหินออฟคอสตูม]";
+mes "ท่านมีค่าบริการไม่เพียงพอ";
+end;
+}
+	.@geadeen = getenchantgrade(.@part);
+		setarray .@equip_bitmask[0],
+		EQP_ACC_L,				// EQI_ACC_L
+		EQP_ACC_R,				// EQI_ACC_R
+		EQP_SHOES,				// EQI_SHOES
+		EQP_GARMENT,			// EQI_GARMENT
+		EQP_HEAD_LOW,			// EQI_HEAD_LOW
+		EQP_HEAD_MID,			// EQI_HEAD_MID
+		EQP_HEAD_TOP,			// EQI_HEAD_TOP
+		EQP_ARMOR,				// EQI_ARMOR
+		EQP_HAND_L,				// EQI_HAND_L
+		EQP_HAND_R,				// EQI_HAND_R
+		EQP_COSTUME_HEAD_TOP,	// EQI_COSTUME_HEAD_TOP
+		EQP_COSTUME_HEAD_MID,	// EQI_COSTUME_HEAD_MID
+		EQP_COSTUME_HEAD_LOW,	// EQI_COSTUME_HEAD_LOW
+		EQP_COSTUME_GARMENT,	// EQI_COSTUME_GARMENT
+		EQP_AMMO,				// EQI_AMMO
+		EQP_SHADOW_ARMOR,		// EQI_SHADOW_ARMOR
+		EQP_SHADOW_WEAPON,		// EQI_SHADOW_WEAPON
+		EQP_SHADOW_SHIELD,		// EQI_SHADOW_SHIELD
+		EQP_SHADOW_SHOES,		// EQI_SHADOW_SHOES
+		EQP_SHADOW_ACC_R,		// EQI_SHADOW_ACC_R
+		EQP_SHADOW_ACC_L;		// EQI_SHADOW_ACC_L
+	
+	getinventorylist;	// required for now for getitembound4 to keep the enchant grade
+	for ( .@i = 0; .@i < @inventorylist_count; ++.@i ) {
+		if ((@inventorylist_equip[.@i] & .@equip_bitmask[EQI_COSTUME_HEAD_MID]))
+			break;
+	}
+	
+	setarray .@part,EQI_COSTUME_HEAD_MID;
+	.@item = getequipid(.@part);
+	.@card0 = getequipcardid(.@part,0);
+	.@card1 = getequipcardid(.@part,1);
+	.@card2 = getequipcardid(.@part,2);
+	.@card3 = getequipcardid(.@part,3);
+	.@geadeen = getenchantgrade(.@part);
+	
+	setarray .@opt_id[0], @inventorylist_option_id1[.@i], @inventorylist_option_id2[.@i], @inventorylist_option_id3[.@i], @inventorylist_option_id4[.@i], @inventorylist_option_id5[.@i];
+	setarray .@opt_value[0], @inventorylist_option_value1[.@i], @inventorylist_option_value2[.@i], @inventorylist_option_value3[.@i], @inventorylist_option_value4[.@i], @inventorylist_option_value5[.@i];
+	setarray .@opt_param[0], @inventorylist_option_parameter1[.@i], @inventorylist_option_parameter2[.@i], @inventorylist_option_parameter3[.@i], @inventorylist_option_parameter4[.@i], @inventorylist_option_parameter5[.@i];
+	
+	next;
+	mes "[ถอดหินออฟคอสตูม]";
+	mes "ให้สวมใส่คอสที่ต้องการถอดหิน";
+	menu
+	"^FF0000->^000000 Stone Slot 1 ",midcard0,
+	"^FF0000->^000000 Stone Slot 2 ",midcard1,
+	"^FF0000->^000000 Stone Slot 3 ",midcard2,
+//	"^FF0000->^000000 Effect Stone",midcard3,
+	"^FF0000->^000000 ยกเลิก",ex;
+
+midcard0:
+	next;
+	if(!getequipisequiped(.@part)) {
+		mes "[ถอดหินออฟคอสตูม]";
+		mes "ท่านไม่ได้สวมใส่อุปกรณ์";
+		close;	
+	}
+	
+	if(.@card0 < 1) {
+		mes "[ถอดหินออฟคอสตูม]";
+		mes "อุปกรณ์ของท่านไม่มีหินเอฟเฟค";
+		close;	
+	}
+	
+	switch( .@card0 ) {
+		case 161091:
+				.@reward = 161091;
+		break;
+	}
+
+	mes "[ถอดหินออฟคอสตูม]";
+	mes "ท่านต้องการถอดหินออฟคอสตูมจาก";
+	mes "<ITEM>"+getitemname(.@item)+"<INFO>"+.@item+"</INFO></ITEM>";
+	mes "หินที่ถอดคือ";
+	mes "<ITEM>"+getitemname(.@card0)+"<INFO>"+.@card0+"</INFO></ITEM>";
+	mes "ใช่หรือไม";
+	menu 
+	
+	"^FF0000->^000000 ตกลง",midcard0yes,
+	"^FF0000->^000000 ยกเลิก",ex;
+	
+midcard0yes:
+	delequip .@part;
+	//getitem3 .@item,1,1,0,0,.@card0,0,.@card2,.@card3,.@opt_id,.@opt_value,.@opt_param;
+	getitem4( .@item,1,1,.@equip_refine,0,0,.@card1,.@card2,.@card3,.@geadeen, .@opt_id, .@opt_value, .@opt_param);
+	zeny -= 1000000;
+	getitem .@reward,1;
+	end;
+
+
+midcard1:
+	next;
+	if(!getequipisequiped(.@part)) {
+		mes "[ถอดหินออฟคอสตูม]";
+		mes "ท่านไม่ได้สวมใส่อุปกรณ์";
+		close;	
+	}
+	
+	if(.@card1 < 1) {
+		mes "[ถอดหินออฟคอสตูม]";
+		mes "อุปกรณ์ของท่านไม่มีหินเอฟเฟค";
+		close;	
+	}
+	
+	switch( .@card1 ) {
+		case 161097:
+				.@reward = 161097;
+		break;
+	}
+
+	mes "[ถอดหินออฟคอสตูม]";
+	mes "ท่านต้องการถอดหินออฟคอสตูมจาก";
+	mes "<ITEM>"+getitemname(.@item)+"<INFO>"+.@item+"</INFO></ITEM>";
+	mes "หินที่ถอดคือ";
+	mes "<ITEM>"+getitemname(.@card1)+"<INFO>"+.@card1+"</INFO></ITEM>";
+	mes "ใช่หรือไม";
+	menu 
+	
+	"^FF0000->^000000 ตกลง",midcard1yes,
+	"^FF0000->^000000 ยกเลิก",ex;
+	
+midcard1yes:
+	delequip .@part;
+	getitem4( .@item,1,1,.@equip_refine,0,.@card0,0,.@card2,.@card3,.@geadeen, .@opt_id, .@opt_value, .@opt_param);
+	zeny -= 1000000;
+	getitem .@reward,1;
+	end;
+
+
+midcard2:
+	next;
+	if(!getequipisequiped(.@part)) {
+		mes "[ถอดหินออฟคอสตูม]";
+		mes "ท่านไม่ได้สวมใส่อุปกรณ์";
+		close;	
+	}
+	
+	if(.@card2 < 1) {
+		mes "[ถอดหินออฟคอสตูม]";
+		mes "อุปกรณ์ของท่านไม่มีหินเอฟเฟค";
+		close;	
+	}
+	
+	switch( .@card2 ) {
+		case 161098:
+				.@reward = 161098;
+		break;
+	}
+
+	mes "[ถอดหินออฟคอสตูม]";
+	mes "ท่านต้องการถอดหินออฟคอสตูมจาก";
+	mes "<ITEM>"+getitemname(.@item)+"<INFO>"+.@item+"</INFO></ITEM>";
+	mes "หินที่ถอดคือ";
+	mes "<ITEM>"+getitemname(.@card2)+"<INFO>"+.@card2+"</INFO></ITEM>";
+	mes "ใช่หรือไม";
+	menu 
+	
+	"^FF0000->^000000 ตกลง",midcard2yes,
+	"^FF0000->^000000 ยกเลิก",ex;
+	
+midcard2yes:
+	delequip .@part;
+	//getitem3 .@item,1,1,0,0,.@card0,0,.@card2,.@card3,.@opt_id,.@opt_value,.@opt_param;
+	getitem4( .@item,1,1,.@equip_refine,0,.@card0,.@card1,0,.@card3,.@geadeen, .@opt_id, .@opt_value, .@opt_param);
+	zeny -= 1000000;
+	getitem .@reward,1;
+	end;
+
+	
+midcard3:
+	next;	
+	if(!getequipisequiped(.@part)) {
+		mes "[ถอดหินออฟคอสตูม]";
+		mes "ท่านไม่ได้สวมใส่อุปกรณ์";
+		close;	
+	}
+	
+	if(.@card3 < 1) {
+		mes "[ถอดหินออฟคอสตูม]";
+		mes "อุปกรณ์ของท่านไม่มีหินเอฟเฟค";
+		close;	
+	}
+	
+	switch( .@card3 ) {
+		//case 3500001:
+		//		.@reward = 3510001;
+		//break;
+		//case 3500002:
+		//		.@reward = 3510002;
+		//break;		
+		//case 3500003:
+		//		.@reward = 3510003;
+		//break;		
+		//case 3500004:
+		//		.@reward = 3510004;
+		//break;		
+		//case 3500005:
+		//		.@reward = 3510005;
+		//break;		
+		//case 3500006:
+		//		.@reward = 3510006;
+		//break;		
+		case 29040:
+				.@reward = 25059;
+		break;		
+		case 29142:
+				.@reward = 25136;
+		break;		
+		case 29041:
+				.@reward = 25138;
+		break;		
+		case 29160:
+				.@reward = 25176;
+		break;		
+		case 29162:
+				.@reward = 25177;
+		break;		
+		case 29161:
+				.@reward = 25178;
+		break;		
+		case 29224:
+				.@reward = 25224;
+		break;		
+		case 29226:
+				.@reward = 25225;
+		break;
+	}
+
+	mes "[ถอดหินออฟคอสตูม]";
+	mes "ท่านต้องการถอดหินออฟคอสตูมจาก";
+	mes "<ITEM>"+getitemname(.@item)+"<INFO>"+.@item+"</INFO></ITEM>";
+	mes "หินที่ถอดคือ";
+	mes "<ITEM>"+getitemname(.@card3)+"<INFO>"+.@card3+"</INFO></ITEM>";
+	mes "ใช่หรือไม";
+	menu 
+	
+	"^FF0000->^000000 ตกลง",midcard3yes,
+	"^FF0000->^000000 ยกเลิก",ex;
+	
+midcard3yes:
+	next;
+	delequip .@part;
+	getitem4( .@item,1,1,.@equip_refine,0,.@card0,.@card1,.@card2,0,.@geadeen, .@opt_id, .@opt_value, .@opt_param);
+	zeny -= 1000000;
+	getitem .@reward,1;
+	end;
+	
+HEADLOW:
+if(zeny<1000000){
+next;
+mes "[ถอดหินออฟคอสตูม]";
+mes "ท่านมีค่าบริการไม่เพียงพอ";
+end;
+}
+	.@geadeen = getenchantgrade(.@part);
+		setarray .@equip_bitmask[0],
+		EQP_ACC_L,				// EQI_ACC_L
+		EQP_ACC_R,				// EQI_ACC_R
+		EQP_SHOES,				// EQI_SHOES
+		EQP_GARMENT,			// EQI_GARMENT
+		EQP_HEAD_LOW,			// EQI_HEAD_LOW
+		EQP_HEAD_MID,			// EQI_HEAD_MID
+		EQP_HEAD_TOP,			// EQI_HEAD_TOP
+		EQP_ARMOR,				// EQI_ARMOR
+		EQP_HAND_L,				// EQI_HAND_L
+		EQP_HAND_R,				// EQI_HAND_R
+		EQP_COSTUME_HEAD_TOP,	// EQI_COSTUME_HEAD_TOP
+		EQP_COSTUME_HEAD_MID,	// EQI_COSTUME_HEAD_MID
+		EQP_COSTUME_HEAD_LOW,	// EQI_COSTUME_HEAD_LOW
+		EQP_COSTUME_GARMENT,	// EQI_COSTUME_GARMENT
+		EQP_AMMO,				// EQI_AMMO
+		EQP_SHADOW_ARMOR,		// EQI_SHADOW_ARMOR
+		EQP_SHADOW_WEAPON,		// EQI_SHADOW_WEAPON
+		EQP_SHADOW_SHIELD,		// EQI_SHADOW_SHIELD
+		EQP_SHADOW_SHOES,		// EQI_SHADOW_SHOES
+		EQP_SHADOW_ACC_R,		// EQI_SHADOW_ACC_R
+		EQP_SHADOW_ACC_L;		// EQI_SHADOW_ACC_L
+	
+	getinventorylist;	// required for now for getitembound4 to keep the enchant grade
+	for ( .@i = 0; .@i < @inventorylist_count; ++.@i ) {
+		if ((@inventorylist_equip[.@i] & .@equip_bitmask[EQI_COSTUME_HEAD_LOW]))
+			break;
+	}
+	
+	setarray .@part,EQI_COSTUME_HEAD_LOW;
+	.@item = getequipid(.@part);
+	.@card0 = getequipcardid(.@part,0);
+	.@card1 = getequipcardid(.@part,1);
+	.@card2 = getequipcardid(.@part,2);
+	.@card3 = getequipcardid(.@part,3);
+	.@geadeen = getenchantgrade(.@part);
+	
+	setarray .@opt_id[0], @inventorylist_option_id1[.@i], @inventorylist_option_id2[.@i], @inventorylist_option_id3[.@i], @inventorylist_option_id4[.@i], @inventorylist_option_id5[.@i];
+	setarray .@opt_value[0], @inventorylist_option_value1[.@i], @inventorylist_option_value2[.@i], @inventorylist_option_value3[.@i], @inventorylist_option_value4[.@i], @inventorylist_option_value5[.@i];
+	setarray .@opt_param[0], @inventorylist_option_parameter1[.@i], @inventorylist_option_parameter2[.@i], @inventorylist_option_parameter3[.@i], @inventorylist_option_parameter4[.@i], @inventorylist_option_parameter5[.@i];
+
+	next;
+	mes "[ถอดหินออฟคอสตูม]";
+	mes "ให้สวมใส่คอสที่ต้องการถอดหิน";
+	menu
+	"^FF0000->^000000 Stone Slot 1 ",lowcard0,
+//	"^FF0000->^000000 Stone Slot 2 ",lowcard1,
+//	"^FF0000->^000000 Stone Slot 3 ",lowcard2,
+//	"^FF0000->^000000 Effect Stone",lowcard3,
+	"^FF0000->^000000 ยกเลิก",ex;
+
+lowcard0:
+	next;
+	if(!getequipisequiped(.@part)) {
+		mes "[ถอดหินออฟคอสตูม]";
+		mes "ท่านไม่ได้สวมใส่อุปกรณ์";
+		close;	
+	}
+	
+	if(.@card0 < 1) {
+		mes "[ถอดหินออฟคอสตูม]";
+		mes "อุปกรณ์ของท่านไม่มีหินเอฟเฟค";
+		close;	
+	}
+	
+	switch( .@card0 ) {
+		case 161093:
+				.@reward = 161093;
+		break;
+	}
+
+	mes "[ถอดหินออฟคอสตูม]";
+	mes "ท่านต้องการถอดหินออฟคอสตูมจาก";
+	mes "<ITEM>"+getitemname(.@item)+"<INFO>"+.@item+"</INFO></ITEM>";
+	mes "หินที่ถอดคือ";
+	mes "<ITEM>"+getitemname(.@card0)+"<INFO>"+.@card0+"</INFO></ITEM>";
+	mes "ใช่หรือไม";
+	menu 
+	
+	"^FF0000->^000000 ตกลง",lowcard0yes,
+	"^FF0000->^000000 ยกเลิก",ex;
+	
+lowcard0yes:
+	delequip .@part;
+	getitem4( .@item,1,1,.@equip_refine,0,0,.@card1,.@card2,.@card3,.@geadeen, .@opt_id, .@opt_value, .@opt_param);
+	zeny -= 1000000;
+	getitem .@reward,1;
+	end;
+	
+lowcard1:
+	next;
+	if(!getequipisequiped(.@part)) {
+		mes "[ถอดหินออฟคอสตูม]";
+		mes "ท่านไม่ได้สวมใส่อุปกรณ์";
+		close;	
+	}
+	
+	if(.@card1 < 1) {
+		mes "[ถอดหินออฟคอสตูม]";
+		mes "อุปกรณ์ของท่านไม่มีหินเอฟเฟค";
+		close;	
+	}
+	
+	switch( .@card1 ) {
+		case 8000040:
+				.@reward = 8000040;
+		break;
+	}
+
+	mes "[ถอดหินออฟคอสตูม]";
+	mes "ท่านต้องการถอดหินออฟคอสตูมจาก";
+	mes "<ITEM>"+getitemname(.@item)+"<INFO>"+.@item+"</INFO></ITEM>";
+	mes "หินที่ถอดคือ";
+	mes "<ITEM>"+getitemname(.@card1)+"<INFO>"+.@card1+"</INFO></ITEM>";
+	mes "ใช่หรือไม";
+	menu 
+	
+	"^FF0000->^000000 ตกลง",lowcard1yes,
+	"^FF0000->^000000 ยกเลิก",ex;
+	
+lowcard1yes:
+	delequip .@part;
+	getitem4( .@item,1,1,.@equip_refine,0,.@card0,0,.@card2,.@card3,.@geadeen, .@opt_id, .@opt_value, .@opt_param);
+	zeny -= 1000000;
+	getitem .@reward,1;
+	end;
+
+lowcard2:
+	next;
+	if(!getequipisequiped(.@part)) {
+		mes "[ถอดหินออฟคอสตูม]";
+		mes "ท่านไม่ได้สวมใส่อุปกรณ์";
+		close;	
+	}
+	
+	if(.@card2 < 1) {
+		mes "[ถอดหินออฟคอสตูม]";
+		mes "อุปกรณ์ของท่านไม่มีหินเอฟเฟค";
+		close;	
+	}
+	
+	switch( .@card2 ) {
+		case 29666:
+				.@reward = 25857;
+		break;
+		case 29661:
+				.@reward = 25852;
+		break;
+		case 29657:
+				.@reward = 25848;
+		break;
+		case 29653:
+				.@reward = 25845;
+		break;
+		case 29670:
+				.@reward = 25861;
+		break;
+		case 311462:
+				.@reward = 1001046;
+		break;
+		case 311465:
+				.@reward = 1001049;
+		break;
+		case 311468:
+				.@reward = 1001052;
+		break;
+		case 29462:
+				.@reward = 25447;
+		break;
+		case 310260:
+				.@reward = 1000299;
+		break;
+		case 310883:
+				.@reward = 1000612;
+		break;
+		case 29519:
+				.@reward = 25712;
+		break;
+		case 310185:
+				.@reward = 1000220;
+		break;
+		case 310889:
+				.@reward = 1000618;
+		break;
+		case 29430:
+				.@reward = 25415;
+		break;
+		case 310002:
+				.@reward = 1000010;
+		break;
+		case 311361:
+				.@reward = 1000862;
+		break;
+		case 29487:
+				.@reward = 25500;
+		break;
+		case 310268:
+				.@reward = 1000307;
+		break;
+		case 311007:
+				.@reward = 1000668;
+		break;
+		case 29523:
+				.@reward = 25716;
+		break;
+		case 310189:
+				.@reward = 1000224;
+		break;
+		case 311435:
+				.@reward = 1000976;
+		break;
+		case 29479:
+				.@reward = 25492;
+		break;
+		case 29619:
+				.@reward = 25806;
+		break;
+		case 311364:
+				.@reward = 1000865;
+		break;
+		case 29470:
+				.@reward = 25455;
+		break;
+		case 310183:
+				.@reward = 1000216;
+		break;
+		case 310886:
+				.@reward = 1000615;
+		break;
+		case 29434:
+				.@reward = 25419;
+		break;
+		case 29615:
+				.@reward = 25802;
+		break;
+		case 311013:
+				.@reward = 1000674;
+		break;
+		case 29483:
+				.@reward = 25496;
+		break;
+		case 310006:
+				.@reward = 1000014;
+		break;
+		case 311432:
+				.@reward = 1000973;
+		break;
+		case 29466:
+				.@reward = 25452;
+		break;
+		case 310264:
+				.@reward = 1000303;
+		break;
+		case 311010:
+				.@reward = 1000671;
+		break;
+		case 29515:
+				.@reward = 25708;
+		break;
+		case 310010:
+				.@reward = 1000018;
+		break;
+		case 311358:
+				.@reward = 1000859;
+		break;
+		case 29425:
+				.@reward = 25411;
+		break;
+		case 29611:
+				.@reward = 25798;
+		break;
+		case 311429:
+				.@reward = 1000970;
+		break;
+		case 4884:
+				.@reward = 6644;
+		break;
+		case 4859:
+				.@reward = 6645;
+		break;
+		case 4928:
+				.@reward = 6718;
+		break;
+		case 4932:
+				.@reward = 6745;
+		break;
+		case 4861:
+				.@reward = 6951;
+		break;
+		case 29021:
+				.@reward = 25008;
+		break;
+		case 29023:
+				.@reward = 25009;
+		break;
+		case 29019:
+				.@reward = 25010;
+		break;
+		case 29025:
+				.@reward = 25011;
+		break;
+		case 29015:
+				.@reward = 25012;
+		break;
+		case 29017:
+				.@reward = 25013;
+		break;
+		case 29033:
+				.@reward = 25014;
+		break;
+		case 29027:
+				.@reward = 25015;
+		break;
+		case 29029:
+				.@reward = 25016;
+		break;
+		case 29031:
+				.@reward = 25017;
+		break;
+		case 29046:
+				.@reward = 25062;
+		break;
+		case 29049:
+				.@reward = 25063;
+		break;
+		case 29050:
+				.@reward = 25064;
+		break;
+		case 29051:
+				.@reward = 25065;
+		break;
+		case 29052:
+				.@reward = 25066;
+		break;
+		case 29055:
+				.@reward = 25071;
+		break;
+		case 29057:
+				.@reward = 25072;
+		break;
+		case 29146:
+				.@reward = 25139;
+		break;
+		case 29158:
+				.@reward = 25174;
+		break;
+		case 29227:
+				.@reward = 25227;
+		break;
+		case 29229:
+				.@reward = 25228;
+		break;
+		case 29228:
+				.@reward = 25229;
+		break;
+		case 29360:
+				.@reward = 25305;
+		break;
+		case 310326:
+				.@reward = 1000376;
+		break;
+		case 310329:
+				.@reward = 1000379;
+		break;
+		case 310666:
+				.@reward = 1000530;
+		break;
+	}
+
+	mes "[ถอดหินออฟคอสตูม]";
+	mes "ท่านต้องการถอดหินออฟคอสตูมจาก";
+	mes "<ITEM>"+getitemname(.@item)+"<INFO>"+.@item+"</INFO></ITEM>";
+	mes "หินที่ถอดคือ";
+	mes "<ITEM>"+getitemname(.@card2)+"<INFO>"+.@card2+"</INFO></ITEM>";
+	mes "ใช่หรือไม";
+	menu 
+	
+	"^FF0000->^000000 ตกลง",lowcard2yes,
+	"^FF0000->^000000 ยกเลิก",ex;
+	
+lowcard2yes:
+	delequip .@part;
+	//getitem3 .@item,1,1,0,0,.@card0,.@card1,0,.@card3,.@opt_id,.@opt_value,.@opt_param;
+	getitem4( .@item,1,1,.@equip_refine,0,.@card0,.@card1,0,.@card3,.@geadeen, .@opt_id, .@opt_value, .@opt_param);
+	zeny -= 1000000;
+	getitem .@reward,1;
+	end;
+	
+lowcard3:
+	next;	
+	if(!getequipisequiped(.@part)) {
+		mes "[ถอดหินออฟคอสตูม]";
+		mes "ท่านไม่ได้สวมใส่อุปกรณ์";
+		close;	
+	}
+	
+	if(.@card3 < 1) {
+		mes "[ถอดหินออฟคอสตูม]";
+		mes "อุปกรณ์ของท่านไม่มีหินเอฟเฟค";
+		close;	
+	}
+	
+	switch( .@card3 ) {
+		case 29144:
+				.@reward = 25205;
+		break;
+		case 29143:
+				.@reward = 25137;
+		break;
+		case 29225:
+				.@reward = 25226;
+		break;
+	}	
+
+	mes "[ถอดหินออฟคอสตูม]";
+	mes "ท่านต้องการถอดหินออฟคอสตูมจาก";
+	mes "<ITEM>"+getitemname(.@item)+"<INFO>"+.@item+"</INFO></ITEM>";
+	mes "หินที่ถอดคือ";
+	mes "<ITEM>"+getitemname(.@card3)+"<INFO>"+.@card3+"</INFO></ITEM>";
+	mes "ใช่หรือไม";
+	menu 
+	
+	"^FF0000->^000000 ตกลง",lowcard3yes,
+	"^FF0000->^000000 ยกเลิก",ex;
+	
+lowcard3yes:
+	next;
+	//mes "[ถอดหินออฟคอสตูม]";
+	//if(#CASHPOINTS < 1000) {
+	//mes "มีค่าบริการ 1,000 Cash";
+	//close;
+	//}
+	//#CASHPOINTS -= 1000;
+	delequip .@part;
+	//getitem3 .@item,1,1,0,0,.@card0,.@card1,.@card2,0,.@opt_id,.@opt_value,.@opt_param;
+	getitem4( .@item,1,1,.@equip_refine,0,.@card0,.@card1,.@card2,0,.@geadeen, .@opt_id, .@opt_value, .@opt_param);
+	zeny -= 1000000;
+	getitem .@reward,1;
+	end;
+	
+GARMENT:
+if(zeny<1000000){
+next;
+mes "[ถอดหินออฟคอสตูม]";
+mes "ท่านมีค่าบริการไม่เพียงพอ";
+end;
+}
+	.@geadeen = getenchantgrade(.@part);
+		setarray .@equip_bitmask[0],
+		EQP_ACC_L,				// EQI_ACC_L
+		EQP_ACC_R,				// EQI_ACC_R
+		EQP_SHOES,				// EQI_SHOES
+		EQP_GARMENT,			// EQI_GARMENT
+		EQP_HEAD_LOW,			// EQI_HEAD_LOW
+		EQP_HEAD_MID,			// EQI_HEAD_MID
+		EQP_HEAD_TOP,			// EQI_HEAD_TOP
+		EQP_ARMOR,				// EQI_ARMOR
+		EQP_HAND_L,				// EQI_HAND_L
+		EQP_HAND_R,				// EQI_HAND_R
+		EQP_COSTUME_HEAD_TOP,	// EQI_COSTUME_HEAD_TOP
+		EQP_COSTUME_HEAD_MID,	// EQI_COSTUME_HEAD_MID
+		EQP_COSTUME_HEAD_LOW,	// EQI_COSTUME_HEAD_LOW
+		EQP_COSTUME_GARMENT,	// EQI_COSTUME_GARMENT
+		EQP_AMMO,				// EQI_AMMO
+		EQP_SHADOW_ARMOR,		// EQI_SHADOW_ARMOR
+		EQP_SHADOW_WEAPON,		// EQI_SHADOW_WEAPON
+		EQP_SHADOW_SHIELD,		// EQI_SHADOW_SHIELD
+		EQP_SHADOW_SHOES,		// EQI_SHADOW_SHOES
+		EQP_SHADOW_ACC_R,		// EQI_SHADOW_ACC_R
+		EQP_SHADOW_ACC_L;		// EQI_SHADOW_ACC_L
+	
+	getinventorylist;	// required for now for getitembound4 to keep the enchant grade
+	for ( .@i = 0; .@i < @inventorylist_count; ++.@i ) {
+		if ((@inventorylist_equip[.@i] & .@equip_bitmask[EQI_COSTUME_GARMENT]))
+			break;
+	}
+	
+	setarray .@part,EQI_COSTUME_GARMENT;
+	.@item = getequipid(.@part);
+	.@card0 = getequipcardid(.@part,0);
+	.@card1 = getequipcardid(.@part,1);
+	.@card2 = getequipcardid(.@part,2);
+	.@card3 = getequipcardid(.@part,3);
+	.@geadeen = getenchantgrade(.@part);
+	
+	setarray .@opt_id[0], @inventorylist_option_id1[.@i], @inventorylist_option_id2[.@i], @inventorylist_option_id3[.@i], @inventorylist_option_id4[.@i], @inventorylist_option_id5[.@i];
+	setarray .@opt_value[0], @inventorylist_option_value1[.@i], @inventorylist_option_value2[.@i], @inventorylist_option_value3[.@i], @inventorylist_option_value4[.@i], @inventorylist_option_value5[.@i];
+	setarray .@opt_param[0], @inventorylist_option_parameter1[.@i], @inventorylist_option_parameter2[.@i], @inventorylist_option_parameter3[.@i], @inventorylist_option_parameter4[.@i], @inventorylist_option_parameter5[.@i];
+
+	next;
+	mes "[ถอดหินออฟคอสตูม]";
+	mes "ให้สวมใส่คอสที่ต้องการถอดหิน";
+	menu
+	"^FF0000->^000000 Stone Slot 1 ",garmentcard0,
+//	"^FF0000->^000000 Stone Slot 2 ",garmentcard1,
+//	"^FF0000->^000000 Stone Slot 3 ",garmentcard2,
+//	"^FF0000->^000000 Effect Stone",garmentcard3,
+	"^FF0000->^000000 ยกเลิก",ex;
+	
+
+garmentcard0:
+	next;
+	if(!getequipisequiped(.@part)) {
+		mes "[ถอดหินออฟคอสตูม]";
+		mes "ท่านไม่ได้สวมใส่อุปกรณ์";
+		close;	
+	}
+	
+	if(.@card0 < 1) {
+		mes "[ถอดหินออฟคอสตูม]";
+		mes "อุปกรณ์ของท่านไม่มีหินเอฟเฟค";
+		close;	
+	}
+	
+	switch( .@card0 ) {
+		case 161112:
+				.@reward = 161112;
+		break;
+		case 161113:
+				.@reward = 161113;
+		break;
+		case 161114:
+				.@reward = 161114;
+		break;
+	}
+
+	mes "[ถอดหินออฟคอสตูม]";
+	mes "ท่านต้องการถอดหินออฟคอสตูมจาก";
+	mes "<ITEM>"+getitemname(.@item)+"<INFO>"+.@item+"</INFO></ITEM>";
+	mes "หินที่ถอดคือ";
+	mes "<ITEM>"+getitemname(.@card0)+"<INFO>"+.@card0+"</INFO></ITEM>";
+	mes "ใช่หรือไม";
+	menu 
+	
+	"^FF0000->^000000 ตกลง",garmentcard0yes,
+	"^FF0000->^000000 ยกเลิก",ex;
+	
+garmentcard0yes:
+	delequip .@part;
+	//getitem3 .@item,1,1,0,0,0,.@card1,.@card2,.@card3,.@opt_id,.@opt_value,.@opt_param;
+	getitem4( .@item,1,1,.@equip_refine,0,0,.@card1,.@card2,.@card3,.@geadeen, .@opt_id, .@opt_value, .@opt_param);
+	zeny -= 1000000;
+	getitem .@reward,1;
+	end;
+
+garmentcard1:
+	next;
+	if(!getequipisequiped(.@part)) {
+		mes "[ถอดหินออฟคอสตูม]";
+		mes "ท่านไม่ได้สวมใส่อุปกรณ์";
+		close;	
+	}
+	
+	if(.@card1 < 1) {
+		mes "[ถอดหินออฟคอสตูม]";
+		mes "อุปกรณ์ของท่านไม่มีหินเอฟเฟค";
+		close;	
+	}
+	
+	switch( .@card1 ) {
+		case 8000005:
+				.@reward = 8000005;
+		break;
+		case 8000006:
+				.@reward = 8000006;
+		break;
+		case 8000007:
+				.@reward = 8000007;
+		break;
+		case 8000008:
+				.@reward = 8000008;
+		break;
+		case 8000009:
+				.@reward = 8000009;
+		break;
+		case 8000010:
+				.@reward = 8000010;
+		break;
+		case 8000013:
+				.@reward = 8000013;
+		break;
+		case 8000014:
+				.@reward = 8000014;
+		break;
+		case 8000015:
+				.@reward = 8000015;
+		break;
+		case 8000016:
+				.@reward = 8000016;
+		break;
+		case 8000017:
+				.@reward = 8000017;
+		break;	
+		case 8000018:
+				.@reward = 8000018;
+		break;	
+		
+		case 8000041:
+				.@reward = 8000041;
+		break;		
+		case 8000042:
+				.@reward = 8000042;
+		break;		
+		case 8000043:
+				.@reward = 8000043;
+		break;		
+		case 8000044:
+				.@reward = 8000044;
+		break;		
+		case 8000045:
+				.@reward = 8000045;
+		break;		
+		case 8000046:
+				.@reward = 8000046;
+		break;
+	}
+
+	mes "[ถอดหินออฟคอสตูม]";
+	mes "ท่านต้องการถอดหินออฟคอสตูมจาก";
+	mes "<ITEM>"+getitemname(.@item)+"<INFO>"+.@item+"</INFO></ITEM>";
+	mes "หินที่ถอดคือ";
+	mes "<ITEM>"+getitemname(.@card1)+"<INFO>"+.@card1+"</INFO></ITEM>";
+	mes "ใช่หรือไม";
+	menu 
+	
+	"^FF0000->^000000 ตกลง",garmentcard1yes,
+	"^FF0000->^000000 ยกเลิก",ex;
+	
+garmentcard1yes:
+	delequip .@part;
+	//getitem3 .@item,1,1,0,0,.@card0,.@card1,0,.@card3,.@opt_id,.@opt_value,.@opt_param;
+	getitem4( .@item,1,1,.@equip_refine,0,.@card0,0,.@card2,.@card3,.@geadeen, .@opt_id, .@opt_value, .@opt_param);
+	zeny -= 1000000;
+	getitem .@reward,1;
+	end;
+
+
+garmentcard2:
+	next;
+	if(!getequipisequiped(.@part)) {
+		mes "[ถอดหินออฟคอสตูม]";
+		mes "ท่านไม่ได้สวมใส่อุปกรณ์";
+		close;	
+	}
+	
+	if(.@card2 < 1) {
+		mes "[ถอดหินออฟคอสตูม]";
+		mes "อุปกรณ์ของท่านไม่มีหินเอฟเฟค";
+		close;	
+	}
+	
+	switch( .@card2 ) {
+		case 310654:
+				.@reward = 1000520;
+		break;
+		case 310659:
+				.@reward = 1000522;
+		break;
+		case 310661:
+				.@reward = 1000524;
+		break;
+		case 310662:
+				.@reward = 1000526;
+		break;
+		case 310667:
+				.@reward = 1000527;
+		break;
+		case 310658:
+				.@reward = 1000521;
+		break;
+		case 310660:
+				.@reward = 1000523;
+		break;
+		case 310663:
+				.@reward = 1000525;
+		break;
+		case 311014:
+				.@reward = 1000675;
+		break;
+		case 311015:
+				.@reward = 1000676;
+		break;
+		case 311354:
+				.@reward = 1000855;
+		break;
+		case 311355:
+				.@reward = 1000856;
+		break;
+		case 311425:
+				.@reward = 1000921;
+		break;
+		case 311471:
+				.@reward = 1001055:
+		break;
+	}
+
+	mes "[ถอดหินออฟคอสตูม]";
+	mes "ท่านต้องการถอดหินออฟคอสตูมจาก";
+	mes "<ITEM>"+getitemname(.@item)+"<INFO>"+.@item+"</INFO></ITEM>";
+	mes "หินที่ถอดคือ";
+	mes "<ITEM>"+getitemname(.@card2)+"<INFO>"+.@card2+"</INFO></ITEM>";
+	mes "ใช่หรือไม";
+	menu 
+	
+	"^FF0000->^000000 ตกลง",garmentcard2yes,
+	"^FF0000->^000000 ยกเลิก",ex;
+	
+garmentcard2yes:
+	delequip .@part;
+	//getitem3 .@item,1,1,0,0,.@card0,.@card1,0,.@card3,.@opt_id,.@opt_value,.@opt_param;
+	getitem4( .@item,1,1,.@equip_refine,0,.@card0,.@card1,0,.@card3,.@geadeen, .@opt_id, .@opt_value, .@opt_param);
+	zeny -= 1000000;
+	getitem .@reward,1;
+	end;
+	
+garmentcard3:
+	next;	
+	if(!getequipisequiped(.@part)) {
+		mes "[ถอดหินออฟคอสตูม]";
+		mes "ท่านไม่ได้สวมใส่อุปกรณ์";
+		close;	
+	}
+	
+	if(.@card3 < 1) {
+		mes "[ถอดหินออฟคอสตูม]";
+		mes "อุปกรณ์ของท่านไม่มีหินเอฟเฟค";
+		close;	
+	}
+	
+	switch( .@card3 ) {
+		case 2800025:
+				.@reward = 2800025;
+		break;
+		case 2800035:
+				.@reward = 2800035;
+		break;
+	}
+
+	mes "[ถอดหินออฟคอสตูม]";
+	mes "ท่านต้องการถอดหินออฟคอสตูมจาก";
+	mes "<ITEM>"+getitemname(.@item)+"<INFO>"+.@item+"</INFO></ITEM>";
+	mes "หินที่ถอดคือ";
+	mes "<ITEM>"+getitemname(.@card3)+"<INFO>"+.@card3+"</INFO></ITEM>";
+	mes "ใช่หรือไม";
+	menu 
+	
+	"^FF0000->^000000 ตกลง",garmentcard3yes,
+	"^FF0000->^000000 ยกเลิก",ex;
+	
+garmentcard3yes:
+	next;
+	//mes "[ถอดหินออฟคอสตูม]";
+	//if(#CASHPOINTS < 2000) {
+	//mes "มีค่าบริการ 2,000 Cash";
+	//close;
+	//}
+	//#CASHPOINTS -= 2000;
+	delequip .@part;
+	//getitem3 .@item,1,1,0,0,.@card0,.@card1,.@card2,0,.@opt_id,.@opt_value,.@opt_param;
+	getitem4( .@item,1,1,.@equip_refine,0,.@card0,.@card1,.@card2,0,.@geadeen, .@opt_id, .@opt_value, .@opt_param);
+	zeny -= 1000000;
+	getitem .@reward,1;
+	end;
+
+
+
+//////// SHADOW /////////////
+SHADOW_A:
+if(zeny<1000000){
+next;
+mes "[ถอดหินออฟคอสตูม]";
+mes "ท่านมีค่าบริการไม่เพียงพอ";
+end;
+}
+	
+		setarray .@equip_bitmask[0],
+		EQP_ACC_L,				// EQI_ACC_L
+		EQP_ACC_R,				// EQI_ACC_R
+		EQP_SHOES,				// EQI_SHOES
+		EQP_GARMENT,			// EQI_GARMENT
+		EQP_HEAD_LOW,			// EQI_HEAD_LOW
+		EQP_HEAD_MID,			// EQI_HEAD_MID
+		EQP_HEAD_TOP,			// EQI_HEAD_TOP
+		EQP_ARMOR,				// EQI_ARMOR
+		EQP_HAND_L,				// EQI_HAND_L
+		EQP_HAND_R,				// EQI_HAND_R
+		EQP_COSTUME_HEAD_TOP,	// EQI_COSTUME_HEAD_TOP
+		EQP_COSTUME_HEAD_MID,	// EQI_COSTUME_HEAD_MID
+		EQP_COSTUME_HEAD_LOW,	// EQI_COSTUME_HEAD_LOW
+		EQP_COSTUME_GARMENT,	// EQI_COSTUME_GARMENT
+		EQP_AMMO,				// EQI_AMMO
+		EQP_SHADOW_ARMOR,		// EQI_SHADOW_ARMOR
+		EQP_SHADOW_WEAPON,		// EQI_SHADOW_WEAPON
+		EQP_SHADOW_SHIELD,		// EQI_SHADOW_SHIELD
+		EQP_SHADOW_SHOES,		// EQI_SHADOW_SHOES
+		EQP_SHADOW_ACC_R,		// EQI_SHADOW_ACC_R
+		EQP_SHADOW_ACC_L;		// EQI_SHADOW_ACC_L
+	
+	getinventorylist;	// required for now for getitembound4 to keep the enchant grade
+	for ( .@i = 0; .@i < @inventorylist_count; ++.@i ) {
+		if ((@inventorylist_equip[.@i] & .@equip_bitmask[EQI_SHADOW_ARMOR]))
+			break;
+	}
+	
+	setarray .@part,EQI_SHADOW_ARMOR;
+	.@item = getequipid(.@part);
+	.@card0 = getequipcardid(.@part,0);
+	.@card1 = getequipcardid(.@part,1);
+	.@card2 = getequipcardid(.@part,2);
+	.@card3 = getequipcardid(.@part,3);
+	.@geadeen = getenchantgrade(.@part);
+	.@equip_refine = getequiprefinerycnt(.@part);
+	setarray .@opt_id[0], @inventorylist_option_id1[.@i], @inventorylist_option_id2[.@i], @inventorylist_option_id3[.@i], @inventorylist_option_id4[.@i], @inventorylist_option_id5[.@i];
+	setarray .@opt_value[0], @inventorylist_option_value1[.@i], @inventorylist_option_value2[.@i], @inventorylist_option_value3[.@i], @inventorylist_option_value4[.@i], @inventorylist_option_value5[.@i];
+	setarray .@opt_param[0], @inventorylist_option_parameter1[.@i], @inventorylist_option_parameter2[.@i], @inventorylist_option_parameter3[.@i], @inventorylist_option_parameter4[.@i], @inventorylist_option_parameter5[.@i];
+
+	next;
+	mes "[ถอดหินออฟคอสตูม]";
+	mes "ให้สวมใส่คอสที่ต้องการถอดหิน";
+	menu
+	"^FF0000->^000000 Hotweek Soul Slot 1 ",SHADOW_Acard0,
+//	"^FF0000->^000000 Stone Slot 2 ",garmentcard1,
+//	"^FF0000->^000000 Stone Slot 3 ",garmentcard2,
+//	"^FF0000->^000000 Effect Stone",garmentcard3,
+	"^FF0000->^000000 ยกเลิก",ex;
+	
+
+SHADOW_Acard0:
+	next;
+	if(!getequipisequiped(.@part)) {
+		mes "[ถอดหินออฟคอสตูม]";
+		mes "ท่านไม่ได้สวมใส่อุปกรณ์";
+		close;	
+	}
+	
+	if(.@card0 < 1) {
+		mes "[ถอดหินออฟคอสตูม]";
+		mes "อุปกรณ์ของท่านไม่มีหินเอฟเฟค";
+		close;	
+	}
+	
+	switch( .@card0 ) {
+		case 7600000:
+				.@reward = 7600000;
+		break;
+		case 7600001:
+				.@reward = 7600001;
+		break;
+		case 7600002:
+				.@reward = 7600002;
+		break;
+		case 7600003:
+				.@reward = 7600003;
+		break;
+		case 7600004:
+				.@reward = 7600004;
+		break;
+		case 7600005:
+				.@reward = 7600005;
+		break;
+		case 7600006:
+				.@reward = 7600006;
+		break;
+		//V2
+		case 7600059:
+				.@reward = 7600059;
+		break;
+		case 7600060:
+				.@reward = 7600060;
+		break;
+		case 7600061:
+				.@reward = 7600061;
+		break;
+		case 7600062:
+				.@reward = 7600062;
+		break;
+		case 7600063:
+				.@reward = 7600063;
+		break;
+		case 7600064:
+				.@reward = 7600064;
+		break;
+		case 7600065:
+				.@reward = 7600065;
+		break;
+	}
+
+	mes "[ถอดหินออฟคอสตูม]";
+	mes "ท่านต้องการถอดหินออฟคอสตูมจาก";
+	mes "<ITEM>"+getitemname(.@item)+"<INFO>"+.@item+"</INFO></ITEM>";
+	mes "หินที่ถอดคือ";
+	mes "<ITEM>"+getitemname(.@card0)+"<INFO>"+.@card0+"</INFO></ITEM>";
+	mes "ใช่หรือไม";
+	menu 
+	
+	"^FF0000->^000000 ตกลง",SHADOW_Acard0yes,
+	"^FF0000->^000000 ยกเลิก",ex;
+	
+SHADOW_Acard0yes:
+	delequip .@part;
+	//getitem3 .@item,1,1,0,0,0,.@card1,.@card2,.@card3,.@opt_id,.@opt_value,.@opt_param;
+	getitem4( .@item,1,1,.@equip_refine,0,0,.@card1,.@card2,.@card3,.@geadeen, .@opt_id, .@opt_value, .@opt_param);
+	zeny -= 1000000;
+	getitem .@reward,1;
+	end;
+
+
+OP_S_L:
+if(zeny<1000000){
+next;
+mes "[ถอดหินออฟคอสตูม]";
+mes "ท่านมีค่าบริการไม่เพียงพอ";
+end;
+}
+	
+		setarray .@equip_bitmask[0],
+		EQP_ACC_L,				// EQI_ACC_L
+		EQP_ACC_R,				// EQI_ACC_R
+		EQP_SHOES,				// EQI_SHOES
+		EQP_GARMENT,			// EQI_GARMENT
+		EQP_HEAD_LOW,			// EQI_HEAD_LOW
+		EQP_HEAD_MID,			// EQI_HEAD_MID
+		EQP_HEAD_TOP,			// EQI_HEAD_TOP
+		EQP_ARMOR,				// EQI_ARMOR
+		EQP_HAND_L,				// EQI_HAND_L
+		EQP_HAND_R,				// EQI_HAND_R
+		EQP_COSTUME_HEAD_TOP,	// EQI_COSTUME_HEAD_TOP
+		EQP_COSTUME_HEAD_MID,	// EQI_COSTUME_HEAD_MID
+		EQP_COSTUME_HEAD_LOW,	// EQI_COSTUME_HEAD_LOW
+		EQP_COSTUME_GARMENT,	// EQI_COSTUME_GARMENT
+		EQP_AMMO,				// EQI_AMMO
+		EQP_SHADOW_ARMOR,		// EQI_SHADOW_ARMOR
+		EQP_SHADOW_WEAPON,		// EQI_SHADOW_WEAPON
+		EQP_SHADOW_SHIELD,		// EQI_SHADOW_SHIELD
+		EQP_SHADOW_SHOES,		// EQI_SHADOW_SHOES
+		EQP_SHADOW_ACC_R,		// EQI_SHADOW_ACC_R
+		EQP_SHADOW_ACC_L;		// EQI_SHADOW_ACC_L
+	
+	getinventorylist;	// required for now for getitembound4 to keep the enchant grade
+	for ( .@i = 0; .@i < @inventorylist_count; ++.@i ) {
+		if ((@inventorylist_equip[.@i] & .@equip_bitmask[EQI_SHADOW_ACC_L]))
+			break;
+	}
+	
+	setarray .@part,EQI_SHADOW_ACC_L;
+	.@item = getequipid(.@part);
+	.@card0 = getequipcardid(.@part,0);
+	.@card1 = getequipcardid(.@part,1);
+	.@card2 = getequipcardid(.@part,2);
+	.@card3 = getequipcardid(.@part,3);
+	.@geadeen = getenchantgrade(.@part);
+	.@equip_refine = getequiprefinerycnt(.@part);
+	setarray .@opt_id[0], @inventorylist_option_id1[.@i], @inventorylist_option_id2[.@i], @inventorylist_option_id3[.@i], @inventorylist_option_id4[.@i], @inventorylist_option_id5[.@i];
+	setarray .@opt_value[0], @inventorylist_option_value1[.@i], @inventorylist_option_value2[.@i], @inventorylist_option_value3[.@i], @inventorylist_option_value4[.@i], @inventorylist_option_value5[.@i];
+	setarray .@opt_param[0], @inventorylist_option_parameter1[.@i], @inventorylist_option_parameter2[.@i], @inventorylist_option_parameter3[.@i], @inventorylist_option_parameter4[.@i], @inventorylist_option_parameter5[.@i];
+
+	next;
+	mes "[ถอดหินออฟคอสตูม]";
+	mes "ให้สวมใส่คอสที่ต้องการถอดหิน";
+	menu
+	"^FF0000->^000000 Hotweek Soul Slot 1 ",OP_S_Lcard0,
+//	"^FF0000->^000000 Stone Slot 2 ",garmentcard1,
+//	"^FF0000->^000000 Stone Slot 3 ",garmentcard2,
+//	"^FF0000->^000000 Effect Stone",garmentcard3,
+	"^FF0000->^000000 ยกเลิก",ex;
+	
+
+OP_S_Lcard0:
+	next;
+	if(!getequipisequiped(.@part)) {
+		mes "[ถอดหินออฟคอสตูม]";
+		mes "ท่านไม่ได้สวมใส่อุปกรณ์";
+		close;	
+	}
+	
+	if(.@card0 < 1) {
+		mes "[ถอดหินออฟคอสตูม]";
+		mes "อุปกรณ์ของท่านไม่มีหินเอฟเฟค";
+		close;	
+	}
+	
+	switch( .@card0 ) {
+		case 7600013:
+				.@reward = 7600013;
+		break;
+		case 7600015:
+				.@reward = 7600015;
+		break;
+		case 7600017:
+				.@reward = 7600017;
+		break;
+		case 7600019:
+				.@reward = 7600019;
+		break;
+		case 7600021:
+				.@reward = 7600021;
+		break;
+		case 7600023:
+				.@reward = 7600023;
+		break;
+		// V2
+		case 7600026:
+				.@reward = 7600026;
+		break;
+		case 7600028:
+				.@reward = 7600028;
+		break;
+		case 7600030:
+				.@reward = 7600030;
+		break;
+		case 7600032:
+				.@reward = 7600032;
+		break;
+		case 7600034:
+				.@reward = 7600034;
+		break;
+		case 7600036:
+				.@reward = 7600036;
+		break;;
+		// V3
+		case 7600043:
+				.@reward = 7600043;
+		break;
+		case 7600045:
+				.@reward = 7600045;
+		break;
+		case 7600047:
+				.@reward = 7600047;
+		break;
+		case 7600049:
+				.@reward = 7600049;
+		break;
+		case 7600051:
+				.@reward = 7600051;
+		break;
+		case 7600053:
+				.@reward = 7600053;
+		break;
+	}
+
+	mes "[ถอดหินออฟคอสตูม]";
+	mes "ท่านต้องการถอดหินออฟคอสตูมจาก";
+	mes "<ITEM>"+getitemname(.@item)+"<INFO>"+.@item+"</INFO></ITEM>";
+	mes "หินที่ถอดคือ";
+	mes "<ITEM>"+getitemname(.@card0)+"<INFO>"+.@card0+"</INFO></ITEM>";
+	mes "ใช่หรือไม";
+	menu 
+	
+	"^FF0000->^000000 ตกลง",OP_S_Lcard0yes,
+	"^FF0000->^000000 ยกเลิก",ex;
+	
+OP_S_Lcard0yes:
+	delequip .@part;
+	//getitem3 .@item,1,1,0,0,0,.@card1,.@card2,.@card3,.@opt_id,.@opt_value,.@opt_param;
+	getitem4( .@item,1,1,.@equip_refine,0,0,.@card1,.@card2,.@card3,.@geadeen, .@opt_id, .@opt_value, .@opt_param);
+	zeny -= 1000000;
+	getitem .@reward,1;
+	end;
+
+
+OP_S_R:
+if(zeny<1000000){
+next;
+mes "[ถอดหินออฟคอสตูม]";
+mes "ท่านมีค่าบริการไม่เพียงพอ";
+end;
+}
+	
+		setarray .@equip_bitmask[0],
+		EQP_ACC_L,				// EQI_ACC_L
+		EQP_ACC_R,				// EQI_ACC_R
+		EQP_SHOES,				// EQI_SHOES
+		EQP_GARMENT,			// EQI_GARMENT
+		EQP_HEAD_LOW,			// EQI_HEAD_LOW
+		EQP_HEAD_MID,			// EQI_HEAD_MID
+		EQP_HEAD_TOP,			// EQI_HEAD_TOP
+		EQP_ARMOR,				// EQI_ARMOR
+		EQP_HAND_L,				// EQI_HAND_L
+		EQP_HAND_R,				// EQI_HAND_R
+		EQP_COSTUME_HEAD_TOP,	// EQI_COSTUME_HEAD_TOP
+		EQP_COSTUME_HEAD_MID,	// EQI_COSTUME_HEAD_MID
+		EQP_COSTUME_HEAD_LOW,	// EQI_COSTUME_HEAD_LOW
+		EQP_COSTUME_GARMENT,	// EQI_COSTUME_GARMENT
+		EQP_AMMO,				// EQI_AMMO
+		EQP_SHADOW_ARMOR,		// EQI_SHADOW_ARMOR
+		EQP_SHADOW_WEAPON,		// EQI_SHADOW_WEAPON
+		EQP_SHADOW_SHIELD,		// EQI_SHADOW_SHIELD
+		EQP_SHADOW_SHOES,		// EQI_SHADOW_SHOES
+		EQP_SHADOW_ACC_R,		// EQI_SHADOW_ACC_R
+		EQP_SHADOW_ACC_L;		// EQI_SHADOW_ACC_L
+	
+	getinventorylist;	// required for now for getitembound4 to keep the enchant grade
+	for ( .@i = 0; .@i < @inventorylist_count; ++.@i ) {
+		if ((@inventorylist_equip[.@i] & .@equip_bitmask[EQI_SHADOW_ACC_R]))
+			break;
+	}
+	
+	setarray .@part,EQI_SHADOW_ACC_R;
+	.@item = getequipid(.@part);
+	.@card0 = getequipcardid(.@part,0);
+	.@card1 = getequipcardid(.@part,1);
+	.@card2 = getequipcardid(.@part,2);
+	.@card3 = getequipcardid(.@part,3);
+	.@geadeen = getenchantgrade(.@part);
+	.@equip_refine = getequiprefinerycnt(.@part);
+	setarray .@opt_id[0], @inventorylist_option_id1[.@i], @inventorylist_option_id2[.@i], @inventorylist_option_id3[.@i], @inventorylist_option_id4[.@i], @inventorylist_option_id5[.@i];
+	setarray .@opt_value[0], @inventorylist_option_value1[.@i], @inventorylist_option_value2[.@i], @inventorylist_option_value3[.@i], @inventorylist_option_value4[.@i], @inventorylist_option_value5[.@i];
+	setarray .@opt_param[0], @inventorylist_option_parameter1[.@i], @inventorylist_option_parameter2[.@i], @inventorylist_option_parameter3[.@i], @inventorylist_option_parameter4[.@i], @inventorylist_option_parameter5[.@i];
+
+	next;
+	mes "[ถอดหินออฟคอสตูม]";
+	mes "ให้สวมใส่คอสที่ต้องการถอดหิน";
+	menu
+	"^FF0000->^000000 Hotweek Soul Slot 1 ",OP_S_Rcard0,
+//	"^FF0000->^000000 Stone Slot 2 ",garmentcard1,
+//	"^FF0000->^000000 Stone Slot 3 ",garmentcard2,
+//	"^FF0000->^000000 Effect Stone",garmentcard3,
+	"^FF0000->^000000 ยกเลิก",ex;
+	
+
+OP_S_Rcard0:
+	next;
+	if(!getequipisequiped(.@part)) {
+		mes "[ถอดหินออฟคอสตูม]";
+		mes "ท่านไม่ได้สวมใส่อุปกรณ์";
+		close;	
+	}
+	
+	if(.@card0 < 1) {
+		mes "[ถอดหินออฟคอสตูม]";
+		mes "อุปกรณ์ของท่านไม่มีหินเอฟเฟค";
+		close;	
+	}
+	
+	switch( .@card0 ) {
+		case 7600014:
+				.@reward = 7600014;
+		break;
+		case 7600016:
+				.@reward = 7600016;
+		break;
+		case 7600018:
+				.@reward = 7600018;
+		break;
+		case 7600020:
+				.@reward = 7600020;
+		break;
+		case 7600022:
+				.@reward = 7600022;
+		break;
+		case 7600024:
+				.@reward = 7600024;
+		break;
+		// V2
+		case 7600027:
+				.@reward = 7600027;
+		break;
+		case 7600029:
+				.@reward = 7600029;
+		break;
+		case 7600031:
+				.@reward = 7600031;
+		break;
+		case 7600033:
+				.@reward = 7600033;
+		break;
+		case 7600035:
+				.@reward = 7600035;
+		break;
+		case 7600037:
+				.@reward = 7600037;
+		break;
+		// V3
+		case 7600044:
+				.@reward = 7600044;
+		break;
+		case 7600046:
+				.@reward = 7600046;
+		break;
+		case 7600048:
+				.@reward = 7600048;
+		break;
+		case 7600050:
+				.@reward = 7600050;
+		break;
+		case 7600052:
+				.@reward = 7600052;
+		break;
+		case 7600054:
+				.@reward = 7600054;
+		break;
+	}
+
+	mes "[ถอดหินออฟคอสตูม]";
+	mes "ท่านต้องการถอดหินออฟคอสตูมจาก";
+	mes "<ITEM>"+getitemname(.@item)+"<INFO>"+.@item+"</INFO></ITEM>";
+	mes "หินที่ถอดคือ";
+	mes "<ITEM>"+getitemname(.@card0)+"<INFO>"+.@card0+"</INFO></ITEM>";
+	mes "ใช่หรือไม";
+	menu 
+	
+	"^FF0000->^000000 ตกลง",OP_S_Rcard0yes,
+	"^FF0000->^000000 ยกเลิก",ex;
+	
+OP_S_Rcard0yes:
+	delequip .@part;
+	//getitem3 .@item,1,1,0,0,0,.@card1,.@card2,.@card3,.@opt_id,.@opt_value,.@opt_param;
+	getitem4( .@item,1,1,.@equip_refine,0,0,.@card1,.@card2,.@card3,.@geadeen, .@opt_id, .@opt_value, .@opt_param);
+	zeny -= 1000000;
+	getitem .@reward,1;
+	end;
+
+
+ex:
+end;
+
+
+
+
+Oninit:
+waitingroom "•ถอดหินออฟคอสตูม•",0;
+end;
+
+
+}

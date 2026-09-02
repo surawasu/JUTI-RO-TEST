@@ -1,0 +1,954 @@
+morocc,180,75,6	script	Adventurer Guild Leader#eom_gate	4_M_SURA,{
+disable_items;
+
+.@npc$ = "[ ^0000FFAdventurer Guild Leader^000000 ]";
+
+mes .@npc$;
+mes "ยินดีตอนรับเข้าสู่กิลนักผญจภัย";
+mes "เจ้าต้องการรับหรือส่งภารกิจ?";
+menu	"- ข้าต้องการรับภารกิจ",recive,
+		"- ข้าต้องการรส่งภารกิจ",send,
+		"- แลกของเควส",q_ex,
+//		"- แลก Shadow Costume",s_ex,
+		"แค่ผ่านมาคุยด้วยเฉยๆ",exit;
+
+
+q_ex:
+close2;
+callshop "q_boss",0;
+end;
+
+s_ex:
+close2;
+callshop "s_boss",0;
+end;
+exit:
+end;
+// รับเควส
+recive:
+next;
+mes .@npc$;
+mes "โปรดเลือกเควสที่เจ้าต้องการรับ";
+menu	"กำจัดเศษเสี้ยงแห่ง Ancient Dragon",r_dragon,
+		"กำจัดเศษเสี้ยงแห่ง Ancient Golem",r_Golem,
+		"กำจัดเศษเสี้ยงแห่ง Fire Golem",r_Fire,
+		"กำจัดเศษเสี้ยงแห่ง Phoenix",r_phoenix,
+		"กำจัดเศษเสี้ยงแห่ง Ancient Wooden Golem",r_wooden,
+		"กำจัดเศษเสี้ยงแห่ง Iron Punch",r_Iron,
+		"กำจัดเศษเสี้ยงแห่ง Chronos",r_chronos,
+		
+		"สังหาร Ancient Dragon^FF0000(Boss)^000000",br_dragon,
+		"สังหาร Ancient Golem^FF0000(Boss)^000000",br_Golem,
+		"สังหาร Fire Golem^FF0000(Boss)^000000",br_Fire,
+		"สังหาร Phoenix^FF0000(Boss)^000000",br_phoenix,
+		"สังหาร Ancient Wooden Golem^FF0000(Boss)^000000",br_wooden,
+		"สังหาร Iron Punch^FF0000(Boss)^000000",br_Iron,
+		"สังหาร Chronos^FF0000(Boss)^000000",br_chronos;
+		
+end;
+
+// ส่งเควส
+send:
+next;
+mes .@npc$;
+mes "โปรดเลือกเควสที่เจ้าต้องการส่ง";
+menu	"กำจัดเศษเสี้ยงแห่ง Ancient Dragon",s_dragon,
+		"กำจัดเศษเสี้ยงแห่ง Ancient Golem",s_Golem,
+		"กำจัดเศษเสี้ยงแห่ง Fire Golem",s_Fire,
+		"กำจัดเศษเสี้ยงแห่ง Phoenix",s_phoenix,
+		"กำจัดเศษเสี้ยงแห่ง Ancient Wooden Golem",s_wooden,
+		"กำจัดเศษเสี้ยงแห่ง Iron Punch",s_Iron,
+		"กำจัดเศษเสี้ยงแห่ง Chronos",s_chronos,
+		
+		"สังหาร Ancient Dragon^FF0000(Boss)^000000",bs_dragon,
+		"สังหาร Ancient Golem^FF0000(Boss)^000000",bs_Golem,
+		"สังหาร Fire Golem^FF0000(Boss)^000000",bs_Fire,
+		"สังหาร Phoenix^FF0000(Boss)^000000",bs_phoenix,
+		"สังหาร Ancient Wooden Golem^FF0000(Boss)^000000",bs_wooden,
+		"สังหาร Iron Punch^FF0000(Boss)^000000",bs_Iron,
+		"สังหาร Chronos^FF0000(Boss)^000000",bs_chronos;
+end;
+
+////////////////////////////////////////
+/// รับเควส slave
+////////////////////////////////////////
+r_dragon:
+next;
+			mes .@npc$;
+if(checkquest(99021,PLAYTIME) == 2){
+			erasequest 99021;
+			}
+if((checkquest(99021,PLAYTIME) > -1) && (checkquest(99021,PLAYTIME) != 2)){
+			mes "ดูเหมือนว่าต้องรออีกสักพัก";
+			mes "เจ้าถึงจะรับเควสได้อีกครับ";
+			end;
+}
+switch(checkquest(99001,HUNTING)){
+	case -1:
+		setquest 99001;
+		end;
+	case 0:
+		next;
+		mes .@npc$;
+		mes "ดูเหมือนว่าได้ทำการรับเควสไปแล้วนะ";
+	end;
+	case 1:
+		next;
+		mes .@npc$;
+		mes "ดูเหมือนว่าได้ทำการรับเควสไปแล้วนะ";
+	end;
+	case 2:
+		next;
+		mes .@npc$;
+		mes "เควสของเจ้าเสร็จแล้วไปส่งได้เลย";
+	end;
+}
+end;
+
+r_Golem:
+next;
+			mes .@npc$;
+if(checkquest(99022,PLAYTIME) == 2){
+			erasequest 99022;
+			}
+if((checkquest(99022,PLAYTIME) > -1) && (checkquest(99022,PLAYTIME) != 2)){
+			mes "ดูเหมือนว่าต้องรออีกสักพัก";
+			mes "เจ้าถึงจะรับเควสได้อีกครับ";
+			end;
+}
+switch(checkquest(99002,HUNTING)){
+	case -1:
+		setquest 99002;
+		end;
+	case 0:
+		next;
+		mes .@npc$;
+		mes "ดูเหมือนว่าได้ทำการรับเควสไปแล้วนะ";
+	end;
+	case 1:
+		next;
+		mes .@npc$;
+		mes "ดูเหมือนว่าได้ทำการรับเควสไปแล้วนะ";
+	end;
+	case 2:
+		next;
+		mes .@npc$;
+		mes "เควสของเจ้าเสร็จแล้วไปส่งได้เลย";
+	end;
+}
+end;
+
+r_Fire:
+next;
+			mes .@npc$;
+if(checkquest(99023,PLAYTIME) == 2){
+			erasequest 99023;
+			}
+if((checkquest(99023,PLAYTIME) > -1) && (checkquest(99023,PLAYTIME) != 2)){
+			mes "ดูเหมือนว่าต้องรออีกสักพัก";
+			mes "เจ้าถึงจะรับเควสได้อีกครับ";
+			end;
+}
+switch(checkquest(99003,HUNTING)){
+	case -1:
+		setquest 99003;
+		end;
+	case 0:
+		next;
+		mes .@npc$;
+		mes "ดูเหมือนว่าได้ทำการรับเควสไปแล้วนะ";
+	end;
+	case 1:
+		next;
+		mes .@npc$;
+		mes "ดูเหมือนว่าได้ทำการรับเควสไปแล้วนะ";
+	end;
+	case 2:
+		next;
+		mes .@npc$;
+		mes "เควสของเจ้าเสร็จแล้วไปส่งได้เลย";
+	end;
+}
+end;
+
+r_phoenix:
+next;
+			mes .@npc$;
+if(checkquest(99024,PLAYTIME) == 2){
+			erasequest 99024;
+			}
+if((checkquest(99024,PLAYTIME) > -1) && (checkquest(99024,PLAYTIME) != 2)){
+			mes "ดูเหมือนว่าต้องรออีกสักพัก";
+			mes "เจ้าถึงจะรับเควสได้อีกครับ";
+			end;
+}
+switch(checkquest(99004,HUNTING)){
+	case -1:
+		setquest 99004;
+		end;
+	case 0:
+		next;
+		mes .@npc$;
+		mes "ดูเหมือนว่าได้ทำการรับเควสไปแล้วนะ";
+	end;
+	case 1:
+		next;
+		mes .@npc$;
+		mes "ดูเหมือนว่าได้ทำการรับเควสไปแล้วนะ";
+	end;
+	case 2:
+		next;
+		mes .@npc$;
+		mes "เควสของเจ้าเสร็จแล้วไปส่งได้เลย";
+	end;
+}
+end;
+
+r_wooden:
+next;
+			mes .@npc$;
+if(checkquest(99025,PLAYTIME) == 2){
+			erasequest 99025;
+			}
+if((checkquest(99025,PLAYTIME) > -1) && (checkquest(99025,PLAYTIME) != 2)){
+			mes "ดูเหมือนว่าต้องรออีกสักพัก";
+			mes "เจ้าถึงจะรับเควสได้อีกครับ";
+			end;
+}
+switch(checkquest(99005,HUNTING)){
+	case -1:
+		setquest 99005;
+		end;
+	case 0:
+		next;
+		mes .@npc$;
+		mes "ดูเหมือนว่าได้ทำการรับเควสไปแล้วนะ";
+	end;
+	case 1:
+		next;
+		mes .@npc$;
+		mes "ดูเหมือนว่าได้ทำการรับเควสไปแล้วนะ";
+	end;
+	case 2:
+		next;
+		mes .@npc$;
+		mes "เควสของเจ้าเสร็จแล้วไปส่งได้เลย";
+	end;
+}
+end;
+
+r_Iron:
+next;
+			mes .@npc$;
+if(checkquest(99026,PLAYTIME) == 2){
+			erasequest 99026;
+			}
+if((checkquest(99026,PLAYTIME) > -1) && (checkquest(99026,PLAYTIME) != 2)){
+			mes "ดูเหมือนว่าต้องรออีกสักพัก";
+			mes "เจ้าถึงจะรับเควสได้อีกครับ";
+			end;
+}
+switch(checkquest(99006,HUNTING)){
+	case -1:
+		setquest 99006;
+		end;
+	case 0:
+		next;
+		mes .@npc$;
+		mes "ดูเหมือนว่าได้ทำการรับเควสไปแล้วนะ";
+	end;
+	case 1:
+		next;
+		mes .@npc$;
+		mes "ดูเหมือนว่าได้ทำการรับเควสไปแล้วนะ";
+	end;
+	case 2:
+		next;
+		mes .@npc$;
+		mes "เควสของเจ้าเสร็จแล้วไปส่งได้เลย";
+	end;
+}
+end;
+
+r_chronos:
+next;
+			mes .@npc$;
+if(checkquest(99027,PLAYTIME) == 2){
+			erasequest 99027;
+			}
+if((checkquest(99027,PLAYTIME) > -1) && (checkquest(99027,PLAYTIME) != 2)){
+			mes "ดูเหมือนว่าต้องรออีกสักพัก";
+			mes "เจ้าถึงจะรับเควสได้อีกครับ";
+			end;
+}
+switch(checkquest(99007,HUNTING)){
+	case -1:
+		setquest 99007;
+		end;
+	case 0:
+		next;
+		mes .@npc$;
+		mes "ดูเหมือนว่าได้ทำการรับเควสไปแล้วนะ";
+	end;
+	case 1:
+		next;
+		mes .@npc$;
+		mes "ดูเหมือนว่าได้ทำการรับเควสไปแล้วนะ";
+	end;
+	case 2:
+		next;
+		mes .@npc$;
+		mes "เควสของเจ้าเสร็จแล้วไปส่งได้เลย";
+	end;
+}
+end;
+
+////////////////////////////////////////
+/// ส่งเควส slave
+////////////////////////////////////////
+s_dragon:
+switch(checkquest(99001,HUNTING)){
+	case -1:
+		next;
+		mes .@npc$;
+		mes "เจ้ายังไม่ได้รับภารกิจนี่";
+	end;
+	case 0:
+		next;
+		mes .@npc$;
+		mes "เจ้ายังทำภารกิจไม่สำเร็จ";
+	end;
+	case 1:
+		next;
+		mes .@npc$;
+		mes "เจ้ายังทำภารกิจไม่สำเร็จ";
+	end;
+	case 2:
+		next;
+		mes .@npc$;
+		mes "รับของรางวัลไปได้เลย";
+		erasequest 99001;
+		setquest 99021;
+		getitembound 2984518,1,Bound_Account;
+	end;
+}
+end;
+s_Golem:
+switch(checkquest(99002,HUNTING)){
+	case -1:
+		next;
+		mes .@npc$;
+		mes "เจ้ายังไม่ได้รับภารกิจนี่";
+	end;
+	case 0:
+		next;
+		mes .@npc$;
+		mes "เจ้ายังทำภารกิจไม่สำเร็จ";
+	end;
+	case 1:
+		next;
+		mes .@npc$;
+		mes "เจ้ายังทำภารกิจไม่สำเร็จ";
+	end;
+	case 2:
+		next;
+		mes .@npc$;
+		mes "รับของรางวัลไปได้เลย";
+		erasequest 99002;
+		setquest 99022;
+		getitembound 2984518,1,Bound_Account;
+	end;
+}
+end;
+s_Fire:
+switch(checkquest(99003,HUNTING)){
+	case -1:
+		next;
+		mes .@npc$;
+		mes "เจ้ายังไม่ได้รับภารกิจนี่";
+	end;
+	case 0:
+		next;
+		mes .@npc$;
+		mes "เจ้ายังทำภารกิจไม่สำเร็จ";
+	end;
+	case 1:
+		next;
+		mes .@npc$;
+		mes "เจ้ายังทำภารกิจไม่สำเร็จ";
+	end;
+	case 2:
+		next;
+		mes .@npc$;
+		mes "รับของรางวัลไปได้เลย";
+		erasequest 99003;
+		setquest 99023;
+		getitembound 2984518,1,Bound_Account;
+	end;
+}
+end;
+s_phoenix:
+switch(checkquest(99004,HUNTING)){
+	case -1:
+		next;
+		mes .@npc$;
+		mes "เจ้ายังไม่ได้รับภารกิจนี่";
+	end;
+	case 0:
+		next;
+		mes .@npc$;
+		mes "เจ้ายังทำภารกิจไม่สำเร็จ";
+	end;
+	case 1:
+		next;
+		mes .@npc$;
+		mes "เจ้ายังทำภารกิจไม่สำเร็จ";
+	end;
+	case 2:
+		next;
+		mes .@npc$;
+		mes "รับของรางวัลไปได้เลย";
+		erasequest 99004;
+		setquest 99024;
+		getitembound 2984518,1,Bound_Account;
+	end;
+}
+end;
+s_wooden:
+switch(checkquest(99005,HUNTING)){
+	case -1:
+		next;
+		mes .@npc$;
+		mes "เจ้ายังไม่ได้รับภารกิจนี่";
+	end;
+	case 0:
+		next;
+		mes .@npc$;
+		mes "เจ้ายังทำภารกิจไม่สำเร็จ";
+	end;
+	case 1:
+		next;
+		mes .@npc$;
+		mes "เจ้ายังทำภารกิจไม่สำเร็จ";
+	end;
+	case 2:
+		next;
+		mes .@npc$;
+		mes "รับของรางวัลไปได้เลย";
+		erasequest 99005;
+		setquest 99025;
+		getitembound 2984518,1,Bound_Account;
+	end;
+}
+end;
+s_Iron:
+switch(checkquest(99006,HUNTING)){
+	case -1:
+		next;
+		mes .@npc$;
+		mes "เจ้ายังไม่ได้รับภารกิจนี่";
+	end;
+	case 0:
+		next;
+		mes .@npc$;
+		mes "เจ้ายังทำภารกิจไม่สำเร็จ";
+	end;
+	case 1:
+		next;
+		mes .@npc$;
+		mes "เจ้ายังทำภารกิจไม่สำเร็จ";
+	end;
+	case 2:
+		next;
+		mes .@npc$;
+		mes "รับของรางวัลไปได้เลย";
+		erasequest 99006;
+		setquest 99026;
+		getitembound 2984518,1,Bound_Account;
+	end;
+}
+end;
+s_chronos:
+switch(checkquest(99007,HUNTING)){
+	case -1:
+		next;
+		mes .@npc$;
+		mes "เจ้ายังไม่ได้รับภารกิจนี่";
+	end;
+	case 0:
+		next;
+		mes .@npc$;
+		mes "เจ้ายังทำภารกิจไม่สำเร็จ";
+	end;
+	case 1:
+		next;
+		mes .@npc$;
+		mes "เจ้ายังทำภารกิจไม่สำเร็จ";
+	end;
+	case 2:
+		next;
+		mes .@npc$;
+		mes "รับของรางวัลไปได้เลย";
+		erasequest 99007;
+		setquest 99027;
+		getitembound 2984518,1,Bound_Account;
+	end;
+}
+end;
+
+////////////////////////////////////////
+/// รับเควส Boss
+////////////////////////////////////////
+br_dragon:
+next;
+			mes .@npc$;
+if(checkquest(99028,PLAYTIME) == 2){
+			erasequest 99028;
+			}
+if((checkquest(99028,PLAYTIME) > -1) && (checkquest(99028,PLAYTIME) != 2)){
+			mes "ดูเหมือนว่าต้องรออีกสักพัก";
+			mes "เจ้าถึงจะรับเควสได้อีกครับ";
+			end;
+}
+switch(checkquest(99008,HUNTING)){
+	case -1:
+		setquest 99008;
+		end;
+	case 0:
+		next;
+		mes .@npc$;
+		mes "ดูเหมือนว่าได้ทำการรับเควสไปแล้วนะ";
+	end;
+	case 1:
+		next;
+		mes .@npc$;
+		mes "ดูเหมือนว่าได้ทำการรับเควสไปแล้วนะ";
+	end;
+	case 2:
+		next;
+		mes .@npc$;
+		mes "เควสของเจ้าเสร็จแล้วไปส่งได้เลย";
+	end;
+}
+end;
+
+br_Golem:
+next;
+			mes .@npc$;
+if(checkquest(99029,PLAYTIME) == 2){
+			erasequest 99029;
+			}
+if((checkquest(99029,PLAYTIME) > -1) && (checkquest(99029,PLAYTIME) != 2)){
+			mes "ดูเหมือนว่าต้องรออีกสักพัก";
+			mes "เจ้าถึงจะรับเควสได้อีกครับ";
+			end;
+}
+switch(checkquest(99009,HUNTING)){
+	case -1:
+		setquest 99009;
+		end;
+	case 0:
+		next;
+		mes .@npc$;
+		mes "ดูเหมือนว่าได้ทำการรับเควสไปแล้วนะ";
+	end;
+	case 1:
+		next;
+		mes .@npc$;
+		mes "ดูเหมือนว่าได้ทำการรับเควสไปแล้วนะ";
+	end;
+	case 2:
+		next;
+		mes .@npc$;
+		mes "เควสของเจ้าเสร็จแล้วไปส่งได้เลย";
+	end;
+}
+end;
+
+br_Fire:
+next;
+			mes .@npc$;
+if(checkquest(99030,PLAYTIME) == 2){
+			erasequest 99030;
+			}
+if((checkquest(99030,PLAYTIME) > -1) && (checkquest(99030,PLAYTIME) != 2)){
+			mes "ดูเหมือนว่าต้องรออีกสักพัก";
+			mes "เจ้าถึงจะรับเควสได้อีกครับ";
+			end;
+}
+switch(checkquest(99010,HUNTING)){
+	case -1:
+		setquest 99010;
+		end;
+	case 0:
+		next;
+		mes .@npc$;
+		mes "ดูเหมือนว่าได้ทำการรับเควสไปแล้วนะ";
+	end;
+	case 1:
+		next;
+		mes .@npc$;
+		mes "ดูเหมือนว่าได้ทำการรับเควสไปแล้วนะ";
+	end;
+	case 2:
+		next;
+		mes .@npc$;
+		mes "เควสของเจ้าเสร็จแล้วไปส่งได้เลย";
+	end;
+}
+end;
+
+br_phoenix:
+next;
+			mes .@npc$;
+if(checkquest(99031,PLAYTIME) == 2){
+			erasequest 99031;
+			}
+if((checkquest(99031,PLAYTIME) > -1) && (checkquest(99031,PLAYTIME) != 2)){
+			mes "ดูเหมือนว่าต้องรออีกสักพัก";
+			mes "เจ้าถึงจะรับเควสได้อีกครับ";
+			end;
+}
+switch(checkquest(99011,HUNTING)){
+	case -1:
+		setquest 99011;
+		end;
+	case 0:
+		next;
+		mes .@npc$;
+		mes "ดูเหมือนว่าได้ทำการรับเควสไปแล้วนะ";
+	end;
+	case 1:
+		next;
+		mes .@npc$;
+		mes "ดูเหมือนว่าได้ทำการรับเควสไปแล้วนะ";
+	end;
+	case 2:
+		next;
+		mes .@npc$;
+		mes "เควสของเจ้าเสร็จแล้วไปส่งได้เลย";
+	end;
+}
+end;
+
+br_wooden:
+next;
+			mes .@npc$;
+if(checkquest(99032,PLAYTIME) == 2){
+			erasequest 99032;
+			}
+if((checkquest(99032,PLAYTIME) > -1) && (checkquest(99032,PLAYTIME) != 2)){
+			mes "ดูเหมือนว่าต้องรออีกสักพัก";
+			mes "เจ้าถึงจะรับเควสได้อีกครับ";
+			end;
+}
+switch(checkquest(99012,HUNTING)){
+	case -1:
+		setquest 99012;
+		end;
+	case 0:
+		next;
+		mes .@npc$;
+		mes "ดูเหมือนว่าได้ทำการรับเควสไปแล้วนะ";
+	end;
+	case 1:
+		next;
+		mes .@npc$;
+		mes "ดูเหมือนว่าได้ทำการรับเควสไปแล้วนะ";
+	end;
+	case 2:
+		next;
+		mes .@npc$;
+		mes "เควสของเจ้าเสร็จแล้วไปส่งได้เลย";
+	end;
+}
+end;
+
+br_Iron:
+next;
+			mes .@npc$;
+if(checkquest(99033,PLAYTIME) == 2){
+			erasequest 99033;
+			}
+if((checkquest(99033,PLAYTIME) > -1) && (checkquest(99033,PLAYTIME) != 2)){
+			mes "ดูเหมือนว่าต้องรออีกสักพัก";
+			mes "เจ้าถึงจะรับเควสได้อีกครับ";
+			end;
+}
+switch(checkquest(99013,HUNTING)){
+	case -1:
+		setquest 99013;
+		end;
+	case 0:
+		next;
+		mes .@npc$;
+		mes "ดูเหมือนว่าได้ทำการรับเควสไปแล้วนะ";
+	end;
+	case 1:
+		next;
+		mes .@npc$;
+		mes "ดูเหมือนว่าได้ทำการรับเควสไปแล้วนะ";
+	end;
+	case 2:
+		next;
+		mes .@npc$;
+		mes "เควสของเจ้าเสร็จแล้วไปส่งได้เลย";
+	end;
+}
+end;
+
+br_chronos:
+next;
+			mes .@npc$;
+if(checkquest(99034,PLAYTIME) == 2){
+			erasequest 99034;
+			}
+if((checkquest(99034,PLAYTIME) > -1) && (checkquest(99034,PLAYTIME) != 2)){
+			mes "ดูเหมือนว่าต้องรออีกสักพัก";
+			mes "เจ้าถึงจะรับเควสได้อีกครับ";
+			end;
+}
+switch(checkquest(99014,HUNTING)){
+	case -1:
+		setquest 99014;
+		end;
+	case 0:
+		next;
+		mes .@npc$;
+		mes "ดูเหมือนว่าได้ทำการรับเควสไปแล้วนะ";
+	end;
+	case 1:
+		next;
+		mes .@npc$;
+		mes "ดูเหมือนว่าได้ทำการรับเควสไปแล้วนะ";
+	end;
+	case 2:
+		next;
+		mes .@npc$;
+		mes "เควสของเจ้าเสร็จแล้วไปส่งได้เลย";
+	end;
+}
+end;
+
+////////////////////////////////////////
+/// ส่งเควส Boss
+////////////////////////////////////////
+bs_dragon:
+switch(checkquest(99008,HUNTING)){
+	case -1:
+		next;
+		mes .@npc$;
+		mes "เจ้ายังไม่ได้รับภารกิจนี่";
+	end;
+	case 0:
+		next;
+		mes .@npc$;
+		mes "เจ้ายังทำภารกิจไม่สำเร็จ";
+	end;
+	case 1:
+		next;
+		mes .@npc$;
+		mes "เจ้ายังทำภารกิจไม่สำเร็จ";
+	end;
+	case 2:
+		next;
+		mes .@npc$;
+		mes "รับของรางวัลไปได้เลย";
+		erasequest 99008;
+		setquest 99028;
+		getitembound 2984518,2,Bound_Account;
+		getitembound 2984519,1,Bound_Account;
+	end;
+}
+end;
+bs_Golem:
+switch(checkquest(99009,HUNTING)){
+	case -1:
+		next;
+		mes .@npc$;
+		mes "เจ้ายังไม่ได้รับภารกิจนี่";
+	end;
+	case 0:
+		next;
+		mes .@npc$;
+		mes "เจ้ายังทำภารกิจไม่สำเร็จ";
+	end;
+	case 1:
+		next;
+		mes .@npc$;
+		mes "เจ้ายังทำภารกิจไม่สำเร็จ";
+	end;
+	case 2:
+		next;
+		mes .@npc$;
+		mes "รับของรางวัลไปได้เลย";
+		erasequest 99009;
+		setquest 99029;
+		getitembound 2984518,2,Bound_Account;
+		getitembound 2984519,1,Bound_Account;
+	end;
+}
+end;
+bs_Fire:
+switch(checkquest(99010,HUNTING)){
+	case -1:
+		next;
+		mes .@npc$;
+		mes "เจ้ายังไม่ได้รับภารกิจนี่";
+	end;
+	case 0:
+		next;
+		mes .@npc$;
+		mes "เจ้ายังทำภารกิจไม่สำเร็จ";
+	end;
+	case 1:
+		next;
+		mes .@npc$;
+		mes "เจ้ายังทำภารกิจไม่สำเร็จ";
+	end;
+	case 2:
+		next;
+		mes .@npc$;
+		mes "รับของรางวัลไปได้เลย";
+		erasequest 99010;
+		setquest 99030;
+		getitembound 2984518,2,Bound_Account;
+		getitembound 2984519,1,Bound_Account;
+	end;
+}
+end;
+bs_phoenix:
+switch(checkquest(99011,HUNTING)){
+	case -1:
+		next;
+		mes .@npc$;
+		mes "เจ้ายังไม่ได้รับภารกิจนี่";
+	end;
+	case 0:
+		next;
+		mes .@npc$;
+		mes "เจ้ายังทำภารกิจไม่สำเร็จ";
+	end;
+	case 1:
+		next;
+		mes .@npc$;
+		mes "เจ้ายังทำภารกิจไม่สำเร็จ";
+	end;
+	case 2:
+		next;
+		mes .@npc$;
+		mes "รับของรางวัลไปได้เลย";
+		erasequest 99011;
+		setquest 99031;
+		getitembound 2984518,2,Bound_Account;
+		getitembound 2984519,1,Bound_Account;
+	end;
+}
+end;
+bs_wooden:
+switch(checkquest(99012,HUNTING)){
+	case -1:
+		next;
+		mes .@npc$;
+		mes "เจ้ายังไม่ได้รับภารกิจนี่";
+	end;
+	case 0:
+		next;
+		mes .@npc$;
+		mes "เจ้ายังทำภารกิจไม่สำเร็จ";
+	end;
+	case 1:
+		next;
+		mes .@npc$;
+		mes "เจ้ายังทำภารกิจไม่สำเร็จ";
+	end;
+	case 2:
+		next;
+		mes .@npc$;
+		mes "รับของรางวัลไปได้เลย";
+		erasequest 99012;
+		setquest 99032;
+		getitembound 2984518,2,Bound_Account;
+		getitembound 2984519,1,Bound_Account;
+	end;
+}
+end;
+bs_Iron:
+switch(checkquest(99013,HUNTING)){
+	case -1:
+		next;
+		mes .@npc$;
+		mes "เจ้ายังไม่ได้รับภารกิจนี่";
+	end;
+	case 0:
+		next;
+		mes .@npc$;
+		mes "เจ้ายังทำภารกิจไม่สำเร็จ";
+	end;
+	case 1:
+		next;
+		mes .@npc$;
+		mes "เจ้ายังทำภารกิจไม่สำเร็จ";
+	end;
+	case 2:
+		next;
+		mes .@npc$;
+		mes "รับของรางวัลไปได้เลย";
+		erasequest 99013;
+		setquest 99033;
+		getitembound 2984518,2,Bound_Account;
+		getitembound 2984519,1,Bound_Account;
+	end;
+}
+end;
+bs_chronos:
+switch(checkquest(99014,HUNTING)){
+	case -1:
+		next;
+		mes .@npc$;
+		mes "เจ้ายังไม่ได้รับภารกิจนี่";
+	end;
+	case 0:
+		next;
+		mes .@npc$;
+		mes "เจ้ายังทำภารกิจไม่สำเร็จ";
+	end;
+	case 1:
+		next;
+		mes .@npc$;
+		mes "เจ้ายังทำภารกิจไม่สำเร็จ";
+	end;
+	case 2:
+		next;
+		mes .@npc$;
+		mes "รับของรางวัลไปได้เลย";
+		erasequest 99014;
+		setquest 99034;
+		getitembound 2984518,2,Bound_Account;
+		getitembound 2984519,1,Bound_Account;
+	end;
+}
+end;
+
+OnInit:
+
+end;
+}
+
+function	script	Mimibossbox	{
+.@rand = rand(1,100);
+	if(.@rand == 65){
+	getitem 2984522,1;
+	}else{
+	getitem 2984521,rand(1,5);
+	}
+}
+
+function	script	C_Shadow_BoxHi	{
+.@rand = rand(1,100);
+	if(.@rand == 66){
+	getitem rand(2984524,2984526),1;
+	}else{
+	getitem rand(2984701,2984715),1;
+	}
+}

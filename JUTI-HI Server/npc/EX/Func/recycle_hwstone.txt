@@ -1,0 +1,161 @@
+
+eternal,134,45,6	script	ย่อยหิน HW	932,{
+
+	disable_items;
+	if (checkweight(1201,1) == 0) {
+		mes .NPCname$;
+		mes "^FF0000คุณมีไอเทมมากเกินไป^000000";
+		end;
+	}
+	if (MaxWeight - Weight < 10000) {
+		mes .NPCname$;
+		mes "^FF0000กรุณาตรวจสอบน้ำหนักด้วย^000000";
+		end;
+	}
+
+
+
+
+	mes .NPCname$;
+	mes "หวัดดี, "+strcharinfo(0)+"!";
+	mes "มีอะไรให้ข้ารับใช้ไหม ?";
+	next;
+	switch(select("> รับซื้อไอเท็ม:> สุ่มหินใหม่อีกครั้งใช้ ^FF00003^000000 แต้ม  ^0000FF("+callfunc("F_InsertComma",#recycle_Stone)+")^000000:> ยกเลิก")){
+		case 1:
+				mes .NPCname$;
+				mes "กรุณาเลือกไอเทมที่ตรงตามรายการ";
+				mes "ที่ต้องการจะแลกเป็นพ้อย";
+				mes "^FF0000หากแลกแล้วได้แต้มไม่ครบ^000000";
+				mes "^FF0000ทางเราจะไม่รับผิดชอบ^000000";
+
+				callshop "Shop_ExchangeEgg199904",2;
+				npcshopattach "Shop_ExchangeEgg199904";
+				end;
+		case 2:
+				if(#recycle_Stone < 3 ){
+				mes .NPCname$;
+				mes "ท่านมีแต้มไม่เพียงพอ";
+				end;
+				}
+
+				mes .NPCname$;
+				mes "ท่านต้องการใช้แต้มสุ่มใหม่ใช่หรือไม่?";
+				if(select("ใช่สุ่มเลย","ยังก่อน")==2){
+				end;
+				}
+				getitem rand(161115,161121),1;
+				set #recycle_Stone,#recycle_Stone-3;
+				end;
+		case 3:
+				mes .NPCname$;
+				mes "โอกาสหน้าเชิญใหม่ค่ะ.";
+				end;
+	}
+	
+OnSellItem:
+	mes "ไอเทมที่จะแลก:";
+	mes "-----------------------------------";
+	freeloop(1);
+	for ( .@i = 0; .@i < getarraysize(@sold_nameid); .@i = .@i + 1 ) {
+	
+		for ( .@j = 0; .@j < getarraysize(.list_item); .@j = .@j + 1 ) {
+		
+			if( @sold_nameid[.@i] == .list_item[.@j] ){
+				set .@item_id[getarraysize(.@item_id)], @sold_nameid[.@i];
+				set .@item_amt[getarraysize(.@item_amt)], @sold_quantity[.@i];
+				set .@item_total, .@item_total+(@sold_quantity[.@i]*.list_amount[.@j]);
+				mes "^777777"+@sold_quantity[.@i]+"x "+getitemname(@sold_nameid[.@i])+"^000000 ^FF0000["+.list_amount[.@j]+"]^000000 แต้ม";
+			} // end if
+			
+		} // end for j
+		
+	} // end for i
+	freeloop(0);
+	deletearray @sold_nameid[0], getarraysize(@sold_nameid);
+	deletearray @sold_quantity[0], getarraysize(@sold_quantity);
+
+	if (!.@item_id) {
+		mes "  ^777777 (ไม่ใช่ไอเทมที่สามารถขายได้) ^000000";
+		close;
+	}
+	
+	mes "---------- รวมทั้งหมด: ^0055FF"+.@item_total+" แต้ม.^000000 -------";
+	next;
+	
+	if(select(" > ^0055FFแลกเปลี่ยน...^000000: > ^777777ยกเลิก^000000") == 2) {
+		mes .NPCname$;
+		mes "ไว้พบกันใหม่ โอกาสหน้า";
+		close;
+	}
+	
+	for(.@i = 0; .@i < getarraysize(.@item_id); .@i = .@i + 1){
+		delitem .@item_id[.@i],.@item_amt[.@i];
+	}
+	set #recycle_Stone, #recycle_Stone + .@item_total;
+	dispbottom .NPCname$ + " : ท่านได้รับ Recycle Stone Point " + callfunc("F_InsertComma",.@item_total) + " รวมตอนนี้ " + callfunc("F_InsertComma",#recycle_Stone);
+	mes .NPCname$;
+	mes "ขอบคุณที่ท่านไว้ใจ!";
+	mes "และนำไอเท็มมาขายกับร้านของเรา!";
+	mes "หวังว่าครั้งหน้าท่านจะนำมาขายเราอีก";
+	close;
+	
+OnBuyItem:
+	for(set .@i,0; .@i<getarraysize(@bought_nameid); set .@i,.@i+1)
+		for(set .@j,0; .@j<getarraysize(.Shop); set .@j,.@j+2)
+			if (@bought_nameid[.@i] == .Shop[.@j]) {
+				set .@cost, .@cost+(.Shop[.@j+1]*@bought_quantity[.@i]);
+				break;
+			}
+	if (.@cost > #recycle_Stone) {
+		mes .NPCname$;
+		mes "เจ้ามีแต้มไม่เพยงพอ.";
+		end;
+	}
+	else {
+		mes "รายการสินค้า:";
+		mes "-----------------------------------";
+		for(set .@i,0; .@i<getarraysize(@bought_nameid); set .@i,.@i+1) {
+			mes "  ^777777"+@bought_quantity[.@i]+"x "+getitemname(@bought_nameid[.@i])+"^000000";
+		}
+		mes "---------- รวมทั้งหมด: ^0055FF"+.@cost+" แต้ม.^000000 -------";
+		//set #recycle_Stone, #recycle_Stone - .@cost;
+		next;
+	}
+	if(select(" > ^0055FFแลกซื้อ...^000000: > ^777777ยกเลิก^000000") == 2) {
+		mes .NPCname$;
+		mes "ไว้พบกันใหม่ โอกาสหน้า";
+		close;
+	}
+	for(set .@i,0; .@i<getarraysize(@bought_nameid); set .@i,.@i+1) {
+		set #recycle_Stone, #recycle_Stone - .@cost;
+		getitem @bought_nameid[.@i], @bought_quantity[.@i];
+		dispbottom .NPCname$ + " : ถูกหัก Recycle Stone Point " + callfunc("F_InsertComma",.@cost) + " คงเหลือตอนนี้ " + callfunc("F_InsertComma",#recycle_Stone);
+	}
+	deletearray @bought_nameid[0], getarraysize(@bought_nameid);
+	deletearray @bought_quantity[0], getarraysize(@bought_quantity);
+	mes .NPCname$;
+	mes "ขอบคุณที่ท่านไว้ใจ!";
+	mes "นำแต้มมาแลกกับไอเท็มร้านของเรา!";
+	mes "หวังว่าครั้งหน้าท่านจะมาใช้บริการเราอีก";
+	close;
+	
+OnInit:
+	waitingroom "[ ย่อยหิน HW ]",0;
+	.NPCname$ = "[ ย่อยหิน HW ]";
+	setarray .list_item,161115,161116,161117,161118,161119,161120,161121;	// <รหัสไอเท็ม> ,<รหัสไอเท็ม> ,<รหัสไอเท็ม> ,<รหัสไอเท็ม> เช่น 1201
+	setarray .list_amount,1,1,1,1,1,1,1;	// <ราคาขาย>,<ราคาขาย>,<ราคาขาย>,<ราคาขาย> เช่น 1201 ได้แต้ม 5
+	setarray .Shop[0], // <รหัสไอเท็ม>,<ราคาซื้อ>
+
+	//101416,5,
+	161080,1,
+	161081,30,
+	161082,30;
+
+	npcshopdelitem "Shop_ExchangeEgg199904",909;
+	for(set .@i,0; .@i<getarraysize(.Shop); set .@i,.@i+2)
+		npcshopadditem "Shop_ExchangeEgg199904",.Shop[.@i],.Shop[.@i+1];
+		
+	end;
+}
+
+-	shop	Shop_ExchangeEgg199904	-1,909:-1

@@ -1,0 +1,159 @@
+morocc,160,93,5	script	Poem Of Bragi	4_M_RAGI,3,3,{
+	end;
+	
+OnTouch:
+	if( .sbragi < gettimetick(2) ){			// triggered within area 7x7, start bragi if not on delay
+		unitskilluseid getnpcid(0),321,10;	// bragi(321) level 10
+		set .sbragi,gettimetick(2) + 180;	// delay 3 minute for npc to cast song
+	}
+	end;
+	
+OnInit:
+	setunitdata getnpcid(0),UNPC_INT,120;	// set npc INT 150
+	setunitdata getnpcid(0),UNPC_DEX,120;	// set NPC DEX 150
+	end;
+}
+
+morocc,171,46,5	script	Poem Of Bragi#1	4_M_RAGI,3,3,{
+	end;
+	
+OnTouch:
+	if( .sbragi < gettimetick(2) ){			// triggered within area 7x7, start bragi if not on delay
+		unitskilluseid getnpcid(0),321,10;	// bragi(321) level 10
+		set .sbragi,gettimetick(2) + 180;	// delay 3 minute for npc to cast song
+	}
+	end;
+	
+OnInit:
+	setunitdata getnpcid(0),UNPC_INT,120;	// set npc INT 150
+	setunitdata getnpcid(0),UNPC_DEX,120;	// set NPC DEX 150
+	end;
+}
+
+morocc,89,96,5	script	Poem Of Bragi#2	4_M_RAGI,3,3,{
+	end;
+	
+OnTouch:
+	if( .sbragi < gettimetick(2) ){			// triggered within area 7x7, start bragi if not on delay
+		unitskilluseid getnpcid(0),321,10;	// bragi(321) level 10
+		set .sbragi,gettimetick(2) + 180;	// delay 3 minute for npc to cast song
+	}
+	end;
+	
+OnInit:
+	setunitdata getnpcid(0),UNPC_INT,120;	// set npc INT 150
+	setunitdata getnpcid(0),UNPC_DEX,120;	// set NPC DEX 150
+	end;
+}
+
+morocc,210,104,5	script	Poem Of Bragi#3	4_M_RAGI,3,3,{
+	end;
+	
+OnTouch:
+	if( .sbragi < gettimetick(2) ){			// triggered within area 7x7, start bragi if not on delay
+		unitskilluseid getnpcid(0),321,10;	// bragi(321) level 10
+		set .sbragi,gettimetick(2) + 180;	// delay 3 minute for npc to cast song
+	}
+	end;
+	
+OnInit:
+	setunitdata getnpcid(0),UNPC_INT,120;	// set npc INT 150
+	setunitdata getnpcid(0),UNPC_DEX,120;	// set NPC DEX 150
+	end;
+}
+
+morocc,159,254,5	script	Poem Of Bragi#4	4_M_RAGI,3,3,{
+	end;
+	
+OnTouch:
+	if( .sbragi < gettimetick(2) ){			// triggered within area 7x7, start bragi if not on delay
+		unitskilluseid getnpcid(0),321,10;	// bragi(321) level 10
+		set .sbragi,gettimetick(2) + 180;	// delay 3 minute for npc to cast song
+	}
+	end;
+	
+OnInit:
+	setunitdata getnpcid(0),UNPC_INT,120;	// set npc INT 150
+	setunitdata getnpcid(0),UNPC_DEX,120;	// set NPC DEX 150
+	end;
+}
+
+morocc,159,93,5	script	Service For You	4_F_WANDERER,3,3,{
+	end;
+	
+OnTouch:
+	if( .sservice < gettimetick(2) ){			// triggered within area 7x7, start bragi if not on delay
+		unitskilluseid getnpcid(0),330,10;	// bragi(330) level 10
+		set .sservice,gettimetick(2) + 180;	// delay 3 minute for npc to cast song
+	}
+	end;
+	
+OnInit:
+	setunitdata getnpcid(0),UNPC_INT,99;	// set npc INT 150
+	setunitdata getnpcid(0),UNPC_DEX,120;	// set NPC DEX 150
+	end;
+}
+
+morocc,170,46,5	script	Service For You#1	4_F_WANDERER,3,3,{
+	end;
+	
+OnTouch:
+	if( .sservice < gettimetick(2) ){			// triggered within area 7x7, start bragi if not on delay
+		unitskilluseid getnpcid(0),330,10;	// bragi(330) level 10
+		set .sservice,gettimetick(2) + 180;	// delay 3 minute for npc to cast song
+	}
+	end;
+	
+OnInit:
+	setunitdata getnpcid(0),UNPC_INT,99;	// set npc INT 99
+	setunitdata getnpcid(0),UNPC_DEX,120;	// set NPC DEX 150
+	end;
+}
+
+morocc,88,96,5	script	Service For You#2	4_F_WANDERER,3,3,{
+	end;
+	
+OnTouch:
+	if( .sservice < gettimetick(2) ){			// triggered within area 7x7, start bragi if not on delay
+		unitskilluseid getnpcid(0),330,10;	// bragi(330) level 10
+		set .sservice,gettimetick(2) + 180;	// delay 3 minute for npc to cast song
+	}
+	end;
+	
+OnInit:
+	setunitdata getnpcid(0),UNPC_INT,99;	// set npc INT 99
+	setunitdata getnpcid(0),UNPC_DEX,120;	// set NPC DEX 150
+	end;
+}
+
+morocc,209,104,5	script	Service For You#3	4_F_WANDERER,3,3,{
+	end;
+	
+OnTouch:
+	if( .sservice < gettimetick(2) ){			// triggered within area 7x7, start bragi if not on delay
+		unitskilluseid getnpcid(0),330,10;	// bragi(330) level 10
+		set .sservice,gettimetick(2) + 180;	// delay 3 minute for npc to cast song
+	}
+	end;
+	
+OnInit:
+	setunitdata getnpcid(0),UNPC_INT,99;	// set npc INT 99
+	setunitdata getnpcid(0),UNPC_DEX,120;	// set NPC DEX 150
+	end;
+}
+
+morocc,159,254,5	script	Service For You#4	4_F_WANDERER,3,3,{
+	end;
+	
+OnTouch:
+	if( .sservice < gettimetick(2) ){			// triggered within area 7x7, start bragi if not on delay
+		unitskilluseid getnpcid(0),330,10;	// bragi(330) level 10
+		set .sservice,gettimetick(2) + 180;	// delay 3 minute for npc to cast song
+	}
+	end;
+	
+OnInit:
+	setunitdata getnpcid(0),UNPC_INT,99;	// set npc INT 99
+	setunitdata getnpcid(0),UNPC_DEX,120;	// set NPC DEX 150
+	end;
+}

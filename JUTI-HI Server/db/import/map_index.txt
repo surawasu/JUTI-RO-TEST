@@ -1,0 +1,54 @@
+//======================================================================================
+// Map Index
+//======================================================================================
+//Contains the list of maps with their respective IDs for inter-server use.
+//IDs must never change, therefore any new maps need to be added at the end,
+//and old ones must not be removed, but may be replaced.
+//Format:
+//mapname<tab>index <- specifies index for this map
+//mapname <- map will use index of previous map +1
+//Note that map index 0 is special and reserved for "error" status. 
+
+//======================================================================================
+//Place your custom maps with a starting ID here.
+//======================================================================================
+//Example:
+//
+//mymap	1250
+//mymap-2
+
+desert
+fishingboat
+garden
+ghosthunter
+storehouse
+casinotown
+ilyo_kwan
+florian
+bossnia_01
+bossnia_02
+bossnia_03
+bossnia_04
+bossnia_m01
+bossnia_m02
+bossnia_m03
+bossnia_m04
+bossnia_m05
+bossnia_m06
+bossnia_m07
+bossnia_m08
+bossnia_m09
+bossnia_m10
+funtown
+evt_catcher
+evt_dice
+koe_morroc
+koe_royal
+eternal
+moc_fild13_
+moc_fild131
+moc_fild132
+moc_fild133
+moc_fild134
+moc_fild135
+moc_fild136

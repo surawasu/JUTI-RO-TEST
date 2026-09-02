@@ -1,0 +1,4 @@
+morocc,177,73,6	script	Professor#Hi	4_M_LGTGRAND,{
+callshop "Class_Scroll_Hi",1;
+end;
+}

@@ -1,0 +1,306 @@
+like_game,93,90,4	script	ย้ายออฟชั่นตีบวก	755,{
+
+disable_items;
+
+if (checkweight(1201,1) == 0) {
+		mes "[ ย้ายออฟชั่นตีบวก ]";
+		mes "คุณมีไอเทมมากเกินไป เอาไปเก็บก่อน!";
+		close;
+	}
+if (MaxWeight - Weight < 5000) {
+		mes "[ ย้ายออฟชั่นตีบวก ]";
+		mes "คุณมีน้ำหนักมากเกินไป!";
+		close;
+	}
+
+
+mes "[ ย้ายออฟชั่นตีบวก ]";
+mes "มีค่าบริการ";
+mes ""+callfunc("F_InsertComma",5000)+" Cash";
+mes "ต้องการจะย้ายออฟชั่นอุปกรณ์ชิ้นใด";
+	
+	setarray .@indices[1], EQI_HEAD_TOP,EQI_HEAD_MID,EQI_HEAD_LOW, EQI_ARMOR, EQI_HAND_R, EQI_HAND_L, EQI_GARMENT, EQI_SHOES;
+	for( set .@i,1; .@i <= 8; set .@i,.@i+1 ) {
+		if( getequipisequiped(.@indices[.@i]) )
+			set .@menu$, .@menu$ + F_getpositionname(.@indices[.@i]) + " - [" + getequipname(.@indices[.@i]) + "]";
+		set .@menu$, .@menu$ + ":";
+	}
+	set .@part, .@indices[ select(.@menu$) ];
+	if(!getequipisequiped(.@part)) {
+		mes "^FF0000[ ย้ายออฟชั่นตีบวก ]^000000";
+		mes "ท่านไม่ได้สวมใส่อุปกรณ์";
+		close;
+	}
+		switch(.@part) {
+		case EQI_HEAD_TOP:
+		case EQI_HEAD_MID:
+		case EQI_HEAD_LOW:
+		case EQI_ARMOR:
+		case EQI_HAND_R:
+		case EQI_HAND_L:
+		case EQI_GARMENT:
+		case EQI_SHOES:
+			goto Change;
+			break;
+		}
+		end;
+
+
+Change:
+next;
+
+	setarray .@equip_bitmask[0],
+	EQP_ACC_L,				// EQI_ACC_L
+	EQP_ACC_R,				// EQI_ACC_R
+	EQP_SHOES,				// EQI_SHOES
+	EQP_GARMENT,			// EQI_GARMENT
+	EQP_HEAD_LOW,			// EQI_HEAD_LOW
+	EQP_HEAD_MID,			// EQI_HEAD_MID
+	EQP_HEAD_TOP,			// EQI_HEAD_TOP
+	EQP_ARMOR,				// EQI_ARMOR
+	EQP_HAND_L,				// EQI_HAND_L
+	EQP_HAND_R,				// EQI_HAND_R
+	EQP_COSTUME_HEAD_TOP,	// EQI_COSTUME_HEAD_TOP
+	EQP_COSTUME_HEAD_MID,	// EQI_COSTUME_HEAD_MID
+	EQP_COSTUME_HEAD_LOW,	// EQI_COSTUME_HEAD_LOW
+	EQP_COSTUME_GARMENT,	// EQI_COSTUME_GARMENT
+	EQP_AMMO,				// EQI_AMMO
+	EQP_SHADOW_ARMOR,		// EQI_SHADOW_ARMOR
+	EQP_SHADOW_WEAPON,		// EQI_SHADOW_WEAPON
+	EQP_SHADOW_SHIELD,		// EQI_SHADOW_SHIELD
+	EQP_SHADOW_SHOES,		// EQI_SHADOW_SHOES
+	EQP_SHADOW_ACC_R,		// EQI_SHADOW_ACC_R
+	EQP_SHADOW_ACC_L;		// EQI_SHADOW_ACC_L
+	
+	getinventorylist;	// required for now for getitembound4 to keep the enchant grade
+	for ( .@i = 0; .@i < @inventorylist_count; ++.@i ) {
+		if ((@inventorylist_equip[.@i] & .@equip_bitmask[.@part]))
+			break;
+	}
+	
+	.@item = getequipid(.@part);
+	.@refine = getequiprefinerycnt(.@part);
+	.@card0 = getequipcardid(.@part,0);
+	.@card1 = getequipcardid(.@part,1);
+	.@card2 = getequipcardid(.@part,2);
+	.@card3 = getequipcardid(.@part,3);
+	
+	setarray .@opt_id[0], @inventorylist_option_id1[.@i], @inventorylist_option_id2[.@i], @inventorylist_option_id3[.@i], @inventorylist_option_id4[.@i], @inventorylist_option_id5[.@i];
+	setarray .@opt_value[0], @inventorylist_option_value1[.@i], @inventorylist_option_value2[.@i], @inventorylist_option_value3[.@i], @inventorylist_option_value4[.@i], @inventorylist_option_value5[.@i];
+	setarray .@opt_param[0], @inventorylist_option_parameter1[.@i], @inventorylist_option_parameter2[.@i], @inventorylist_option_parameter3[.@i], @inventorylist_option_parameter4[.@i], @inventorylist_option_parameter5[.@i];
+
+			mes "^FF0000[ ย้ายออฟชั่นตีบวก ]^000000";
+			mes "+"+getequiprefinerycnt(.@part)+" <ITEM>"+getitemname(getequipid(.@part))+"<INFO>"+getequipid(.@part)+"</INFO></ITEM>";
+			mes "เลือกไอเท็มที่ต้องการ";
+		
+			switch(.@part) {
+			case EQI_HEAD_TOP:
+				setarray .@id[1], 50101, 50102, 50103, 50104, 50105, 50106, 50107, 50108, 50109, 50110, 50111, 50112;
+				for( set .@i,1; .@i <= 12; set .@i,.@i+1 ) {
+					set .@menut$, .@menut$ + " • [ " + getitemname(.@id[.@i]) + " ]";
+					set .@menut$, .@menut$ + ":";
+				}
+				set .@itemid, .@id[ select(.@menut$) ];
+				if(!getequipisequiped(.@part)) {
+					next;
+					mes "^FF0000[ ย้ายออฟชั่นตีบวก ]^000000";
+					mes "ท่านไม่ได้สวมใส่อุปกรณ์";
+					close;
+				}
+				if( getequipid(.@part) == 50101 || getequipid(.@part) == 50102 || getequipid(.@part) == 50103 || getequipid(.@part) == 50104 || getequipid(.@part) == 50105 || getequipid(.@part) == 50106 || getequipid(.@part) == 50107 || getequipid(.@part) == 50108 || getequipid(.@part) == 50109 || getequipid(.@part) == 50110 || getequipid(.@part) == 50111 || getequipid(.@part) == 50112) {
+					goto A1;
+				} 
+				next;
+				mes "^FF0000[ ย้ายออฟชั่นตีบวก ]^000000";
+				mes "ของนี้ไม่สามารถย้ายออฟชั่นตีบวกได้";
+				break;
+			case EQI_HEAD_MID:
+				setarray .@id[1], 50201, 50202, 50203, 50204, 50205, 50206, 50207;
+				for( set .@i,1; .@i <= 7; set .@i,.@i+1 ) {
+					set .@menum$, .@menum$ + " • [ " + getitemname(.@id[.@i]) + " ]";
+					set .@menum$, .@menum$ + ":";
+				}
+				set .@itemid, .@id[ select(.@menum$) ];
+				if(!getequipisequiped(.@part)) {
+					mes "^FF0000[ ย้ายออฟชั่นตีบวก ]^000000";
+					mes "ท่านไม่ได้สวมใส่อุปกรณ์";
+					close;
+				} 
+				if( getequipid(.@part) == 50201 || getequipid(.@part) == 50202 || getequipid(.@part) == 50203 || getequipid(.@part) == 50204 || getequipid(.@part) == 50205 || getequipid(.@part) == 50206 || getequipid(.@part) == 50207 ) {
+					goto A1;
+				} 
+				next;
+				mes "^FF0000[ ย้ายออฟชั่นตีบวก ]^000000";
+				mes "ของนี้ไม่สามารถย้ายออฟชั่นตีบวกได้";
+				break;
+			case EQI_HEAD_LOW:
+				setarray .@id[1], 50301, 50302, 50303, 50304, 50305, 50306, 50307, 50308;
+				for( set .@i,1; .@i <= 8; set .@i,.@i+1 ) {
+					set .@menul$, .@menul$ + " • [ " + getitemname(.@id[.@i]) + " ]";
+					set .@menul$, .@menul$ + ":";
+				}
+				set .@itemid, .@id[ select(.@menul$) ];
+				if(!getequipisequiped(.@part)) {
+					mes "^FF0000[ ย้ายออฟชั่นตีบวก ]^000000";
+					mes "ท่านไม่ได้สวมใส่อุปกรณ์";
+					close;
+				} 
+				if( getequipid(.@part) == 50301 || getequipid(.@part) == 50302 || getequipid(.@part) == 50303 || getequipid(.@part) == 50304 || getequipid(.@part) == 50305 || getequipid(.@part) == 50306 || getequipid(.@part) == 50307 || getequipid(.@part) == 50308 ) {
+					goto A1;
+				} 
+				next;
+				mes "^FF0000[ ย้ายออฟชั่นตีบวก ]^000000";
+				mes "ของนี้ไม่สามารถย้ายออฟชั่นตีบวกได้";
+				break;
+			case EQI_ARMOR:
+				setarray .@id[1], 50401, 50411, 50421, 50431, 50441, 50451;
+				for( set .@i,1; .@i <= 6; set .@i,.@i+1 ) {
+					set .@menua$, .@menua$ + " • [ " + getitemname(.@id[.@i]) + " ]";
+					set .@menua$, .@menua$ + ":";
+				}
+				set .@itemid, .@id[ select(.@menua$) ];
+				if(!getequipisequiped(.@part)) {
+					mes "^FF0000[ ย้ายออฟชั่นตีบวก ]^000000";
+					mes "ท่านไม่ได้สวมใส่อุปกรณ์";
+					close;
+				} 
+				if( getequipid(.@part) == 50401 || getequipid(.@part) == 50411 || getequipid(.@part) == 50421 || getequipid(.@part) == 50431 || getequipid(.@part) == 50441 || getequipid(.@part) == 50451 ) {
+					goto A1;
+				} 
+				next;
+				mes "^FF0000[ ย้ายออฟชั่นตีบวก ]^000000";
+				mes "ของนี้ไม่สามารถย้ายออฟชั่นตีบวกได้";
+				break;
+			case EQI_HAND_R:
+				
+				menu	
+				" • อาวุธตีคน",HANDR1,
+				" • อาวุธตีบอส",HANDR2,
+				" • ออก",EX;
+				
+				HANDR1:
+				setarray .@id[1], 50901, 50902, 50903, 50904, 50905, 50906, 50907, 50908, 50909, 50910, 50911, 50912, 50913, 50914, 50915, 50916;
+				for( set .@i,1; .@i <= 16; set .@i,.@i+1 ) {
+					set .@menuhr$, .@menuhr$ + " • [ " + getitemname(.@id[.@i]) + " ]";
+					set .@menuhr$, .@menuhr$ + ":";
+				}
+				set .@itemid, .@id[ select(.@menuhr$) ];
+				if(!getequipisequiped(.@part)) {
+					mes "^FF0000[ ย้ายออฟชั่นตีบวก ]^000000";
+					mes "ท่านไม่ได้สวมใส่อุปกรณ์";
+					close;
+				} 
+				if( getequipid(.@part) == 50901 || getequipid(.@part) == 50902 || getequipid(.@part) == 50903 || getequipid(.@part) == 50904 || getequipid(.@part) == 50905 || getequipid(.@part) == 50906 || getequipid(.@part) == 50907 || getequipid(.@part) == 50908 || getequipid(.@part) == 50909 || getequipid(.@part) == 50910 || getequipid(.@part) == 50911 || getequipid(.@part) == 50912 || getequipid(.@part) == 50913 || getequipid(.@part) == 50914 || getequipid(.@part) == 50915 || getequipid(.@part) == 50916 ||
+					getequipid(.@part) == 50951 || getequipid(.@part) == 50952 || getequipid(.@part) == 50953 || getequipid(.@part) == 50954 || getequipid(.@part) == 50955 || getequipid(.@part) == 50956 || getequipid(.@part) == 50957 || getequipid(.@part) == 50958 || getequipid(.@part) == 50959 || getequipid(.@part) == 50960 || getequipid(.@part) == 50961 || getequipid(.@part) == 50962 || getequipid(.@part) == 50963 || getequipid(.@part) == 50964 || getequipid(.@part) == 50965 || getequipid(.@part) == 50966 ) {
+					goto A1;
+				} 
+				next;
+				mes "^FF0000[ ย้ายออฟชั่นตีบวก ]^000000";
+				mes "ของนี้ไม่สามารถย้ายออฟชั่นตีบวกได้";
+				break;
+				
+				HANDR2:
+				setarray .@id[1], 50951, 50952, 50953, 50954, 50955, 50956, 50957, 50958, 50959, 50960, 50961, 50962, 50963, 50964, 50965, 50966;
+				for( set .@i,1; .@i <= 16; set .@i,.@i+1 ) {
+					set .@menuhr$, .@menuhr$ + " • [ " + getitemname(.@id[.@i]) + " ]";
+					set .@menuhr$, .@menuhr$ + ":";
+				}
+				set .@itemid, .@id[ select(.@menuhr$) ];
+				if(!getequipisequiped(.@part)) {
+					mes "^FF0000[ ย้ายออฟชั่นตีบวก ]^000000";
+					mes "ท่านไม่ได้สวมใส่อุปกรณ์";
+					close;
+				} 
+				if( getequipid(.@part) == 50901 || getequipid(.@part) == 50902 || getequipid(.@part) == 50903 || getequipid(.@part) == 50904 || getequipid(.@part) == 50905 || getequipid(.@part) == 50906 || getequipid(.@part) == 50907 || getequipid(.@part) == 50908 || getequipid(.@part) == 50909 || getequipid(.@part) == 50910 || getequipid(.@part) == 50911 || getequipid(.@part) == 50912 || getequipid(.@part) == 50913 || getequipid(.@part) == 50914 || getequipid(.@part) == 50915 || getequipid(.@part) == 50916 ||
+					getequipid(.@part) == 50951 || getequipid(.@part) == 50952 || getequipid(.@part) == 50953 || getequipid(.@part) == 50954 || getequipid(.@part) == 50955 || getequipid(.@part) == 50956 || getequipid(.@part) == 50957 || getequipid(.@part) == 50958 || getequipid(.@part) == 50959 || getequipid(.@part) == 50960 || getequipid(.@part) == 50961 || getequipid(.@part) == 50962 || getequipid(.@part) == 50963 || getequipid(.@part) == 50964 || getequipid(.@part) == 50965 || getequipid(.@part) == 50966 ) {
+					goto A1;
+				} 
+				next;
+				mes "^FF0000[ ย้ายออฟชั่นตีบวก ]^000000";
+				mes "ของนี้ไม่สามารถย้ายออฟชั่นตีบวกได้";
+				break;
+				
+			case EQI_GARMENT:
+				setarray .@id[1], 50402, 50412, 50422, 50432, 50442, 50452;
+				for( set .@i,1; .@i <= 6; set .@i,.@i+1 ) {
+					set .@menug$, .@menug$ + " • [ " + getitemname(.@id[.@i]) + " ]";
+					set .@menug$, .@menug$ + ":";
+				}
+				set .@itemid, .@id[ select(.@menug$) ];
+				if(!getequipisequiped(.@part)) {
+					mes "^FF0000[ ย้ายออฟชั่นตีบวก ]^000000";
+					mes "ท่านไม่ได้สวมใส่อุปกรณ์";
+					close;
+				} 
+				if( getequipid(.@part) == 50402 || getequipid(.@part) == 50412 || getequipid(.@part) == 50422 || getequipid(.@part) == 50432 || getequipid(.@part) == 50442 || getequipid(.@part) == 50452 ) {
+					goto A1;
+				} 
+				next;
+				mes "^FF0000[ ย้ายออฟชั่นตีบวก ]^000000";
+				mes "ของนี้ไม่สามารถย้ายออฟชั่นตีบวกได้";
+				break;
+			case EQI_SHOES:
+				setarray .@id[1], 50403, 50413, 50423, 50433, 50443, 50453;
+				for( set .@i,1; .@i <= 6; set .@i,.@i+1 ) {
+					set .@menus$, .@menus$ + " • [ " + getitemname(.@id[.@i]) + " ]";
+					set .@menus$, .@menus$ + ":";
+				}
+				set .@itemid, .@id[ select(.@menus$) ];
+				if(!getequipisequiped(.@part)) {
+					mes "^FF0000[ ย้ายออฟชั่นตีบวก ]^000000";
+					mes "ท่านไม่ได้สวมใส่อุปกรณ์";
+					close;
+				} 
+				if( getequipid(.@part) == 50403 || getequipid(.@part) == 50413 || getequipid(.@part) == 50423 || getequipid(.@part) == 50433 || getequipid(.@part) == 50443 || getequipid(.@part) == 50453 ) {
+					goto A1;
+				} 
+				next;
+				mes "^FF0000[ ย้ายออฟชั่นตีบวก ]^000000";
+				mes "ของนี้ไม่สามารถย้ายออฟชั่นตีบวกได้";
+				break;
+			case EQI_HAND_L:
+				setarray .@id[1], 50701, 50702, 50703, 50704, 50705, 50706;
+				for( set .@i,1; .@i <= 6; set .@i,.@i+1 ) {
+					set .@menuhl$, .@menuhl$ + " • [ " + getitemname(.@id[.@i]) + " ]";
+					set .@menuhl$, .@menuhl$ + ":";
+				}
+				set .@itemid, .@id[ select(.@menuhl$) ];
+				if(!getequipisequiped(.@part)) {
+					mes "^FF0000[ ย้ายออฟชั่นตีบวก ]^000000";
+					mes "ท่านไม่ได้สวมใส่อุปกรณ์";
+					close;
+				} 
+				if( getequipid(.@part) == 50701 || getequipid(.@part) == 50702 || getequipid(.@part) == 50703 || getequipid(.@part) == 50704 || getequipid(.@part) == 50705 || getequipid(.@part) == 50706 || getequipid(.@part) == 50707 || getequipid(.@part) == 50708 ) {
+					goto A1;
+				} 
+				next;
+				mes "^FF0000[ ย้ายออฟชั่นตีบวก ]^000000";
+				mes "ของนี้ไม่สามารถย้ายออฟชั่นตีบวกได้";
+				break;
+			}
+			end;
+	
+			
+A1:
+	if (#CASHPOINTS < 5000) {
+		clear;
+		mes "^FF0000[ ย้ายออฟชั่นตีบวก ]^000000";
+		mes "มีค่าบริการ";
+		mes ""+callfunc("F_InsertComma",5000)+" Cash";
+		close;
+	}
+
+delequip .@part;
+getitem3 .@itemid,1,1,.@refine,0,.@card0,.@card1,.@card2,.@card3,.@opt_id,.@opt_value,.@opt_param;
+set #CASHPOINTS,#CASHPOINTS-5000;
+end;
+
+ex:
+end;
+
+OnInit:
+waitingroom " ย้ายออฟชั่นตีบวก",0;
+end;
+
+
+}

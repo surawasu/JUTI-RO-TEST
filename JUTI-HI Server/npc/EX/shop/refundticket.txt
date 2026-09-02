@@ -1,0 +1,12 @@
+izlude,139,115,4	script	TCG Shop	564,{
+
+
+close2;
+callshop "TCG_EXCHANG",1;
+end;
+
+
+OnInit:
+waitingroom "3 TCG = 1 CASH",0;
+end;
+}

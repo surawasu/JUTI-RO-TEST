@@ -1,0 +1,271 @@
+morocc,116,75,6	script	 Himmelmez's#malla	4_F_HIMEL,{	
+	disable_items;
+	if (checkweight(1201,1) == 0) {
+		mes "[^0000FFSocket Enchant^000000]";
+		mes "^FF0000คุณมีไอเทมมากเกินไป^000000";
+		end;
+	}
+	if (MaxWeight - Weight < 10000) {
+		mes "[^0000FFSocket Enchant^000000]";
+		mes "^FF0000กรุณาตรวจสอบน้ำหนักด้วย^000000";
+		end;
+	}
+
+menu 
+//"^FF0000•^000000 แลก Temporal Boots",shoptem,
+"^FF0000•^000000 เจาะรู Temporal Boots",sockettem,
+"^FF0000•^000000 Enchant Temporal Boots",enchanttem,
+"^FF0000•^000000 ยกเลิก",ex;
+
+ex:
+end;
+
+shoptem:
+callshop "Temporal_Boots_Hi",1;
+end;
+
+sockettem:
+	mes "ใช้ ^0000FFTemporal Crystals 5 ชิ้น^000000";
+	mes "โอกาสสำเร็จ 20%";
+	next;
+	if (select( "Cancel", "จัดไปเจาะให้ข้าที" ) == 1) {
+		mes "กลับมาได้ทุกเมื่อที่คุณต้องการ.";
+		close;
+	}
+	if (!getequipisequiped(EQI_SHOES)) {
+		mes "ใส่รองเท้าที่ต้องการเจาะด้วย";
+		close;
+	}
+	.@equip_id = getequipid(EQI_SHOES);
+	switch(.@equip_id) {
+	case 22000:	callsub( S_Slot,22006 );	// Temporal_STR_Boots
+	case 22001:	callsub( S_Slot,22009 );	// Temporal_INT_Boots
+	case 22002:	callsub( S_Slot,22010 );	// Temporal_AGI_Boots
+	case 22003:	callsub( S_Slot,22007 );	// Temporal_VIT_Boots
+	case 22004:	callsub( S_Slot,22008 );	// Temporal_DEX_Boots
+	case 22005:	callsub( S_Slot,22011 );	// Temporal_LUK_Boots
+	default:
+		mes "นี่ไม่ใช่! ข้าต้องการ ^0000FFTemporal Boots^000000";
+		close;
+	}
+
+S_Slot:
+	.@equip_id = getequipid(EQI_SHOES);
+	mes "^FF0000ถ้าเจาะไม่สำเร็จรองเท้าจะหายไป.^000000";
+	mes "พร้อมเจาะแล้วใช่ไหม";
+	next;
+	if (select( "Cancel", "สาธุ สาธุ สาธุ จงเจาะติด!" ) == 1) {
+		mes "กลับมาได้ทุกเมื่อที่คุณต้องการ.";
+		close;
+	}
+	if (countitem(6607) < 5) {
+		mes "เจ้าต้องเตรียม ^0000FFTemporal Crystal 5 ชิ้น^000000.";
+		close;
+	}
+	delitem 6607,5;// Temporal_Crystal
+	if (getequipid(EQI_SHOES) == .@equip_id) {
+		delequip EQI_SHOES;
+		if (rand(1,100) < 80) {
+			mes "ข้าเจาะไม่สำเร็จ แต้มบุญเจ้าน้อยไป.";
+			specialeffect2 EF_PHARMACY_FAIL;
+			close;
+		}
+		mes "ฮ่า ฮ่า ฮ่า ข้าเจาะให้เจ้าสำเร็จแล้ว.";
+		specialeffect2 EF_MAXPOWER;
+		getitem getarg(0),1;
+	}
+	close;
+
+
+
+enchanttem:
+	mes "^FF0000*หากเจ้านำ <ITEM>"+getitemname(6608)+"<INFO>6608</INFO></ITEM> มาให้ข้า \nข้าสามารถปลุกพลังพิเศษ\nให้แก่รองเท้าของเจ้าได้*^000000";
+	next;
+	.@equip_id = getequipid(EQI_SHOES);
+	switch(.@equip_id) {
+		case 22000:// Temporal STR Boots
+		case 22001:// Temporal INT Boots
+		case 22002:// Temporal AGI Boots
+		case 22003:// Temporal VIT Boots
+		case 22004:// Temporal DEX Boots
+		case 22005:// Temporal LUK Boots
+		case 22006:// Temporal STR Boots_
+		case 22007:// Temporal INT Boots_
+		case 22008:// Temporal AGI Boots_
+		case 22009:// Temporal VIT Boots_
+		case 22010:// Temporal DEX Boots_
+		case 22011:// Temporal LUK Boots_
+			break;
+		default:
+			mes "^FF0000*อุปกรณ์ที่เจ้าใส่อยู่ไม่สามารถปลุกพลังพิเศษได้*^000000";
+			close;
+	}
+	mes "[Himel]";
+	
+	.@requirement = 50;	// 10 <ITEM>"+getitemname(6608)+"<INFO>6608</INFO></ITEM>s by default
+	setarray .@card[0], getequipcardid(EQI_SHOES,0), getequipcardid(EQI_SHOES,1), getequipcardid(EQI_SHOES,2), getequipcardid(EQI_SHOES,3);
+	.@refine = getequiprefinerycnt(EQI_SHOES);
+	
+	if (.@card[3] == 0) {
+		.@slot = 3;
+		mes "เอาหละ...เริ่ม...เบาๆก่อน?...ทดสอบ...ดวง...คริ..ฮิฮิ...";
+		mes "^FF0000*การปลุกพลังขึ้นที่ 1.*^000000";
+	}
+	else {
+		// enchant leveling
+		switch( .@card[3] ) {
+		case 2632101:	//HiBoss_Hunter_Lv1
+			mes "^FF0000*การปลุกพลังขึ้นที่ 2.*^000000";
+			.@requirement = 100;
+			.@enchant_level = 1;
+			.@enchant_rate = 90;
+			break;
+		case 2632102:	//HiBoss_Hunter_Lv2
+			mes "^FF0000*การปลุกพลังขึ้นที่ 3.*^000000";
+			.@requirement = 150;
+			.@enchant_level = 2;
+			.@enchant_rate = 80;
+			break;
+		case 2632103:	//HiBoss_Hunter_Lv3
+			mes "^FF0000*การปลุกพลังขึ้นที่ 4.*^000000";
+			.@requirement = 200;
+			.@enchant_level = 3;
+			.@enchant_rate = 70;
+			break;
+		case 2632104:	//HiBoss_Hunter_Lv4
+			mes "^FF0000*การปลุกพลังขึ้นที่ 5.*^000000";
+			.@requirement = 250;
+			.@enchant_level = 4;
+			.@enchant_rate = 60;
+			break;
+		case 2632105:	//HiBoss_Hunter_Lv5
+			mes "^FF0000*การปลุกพลังขึ้นที่ 6.*^000000";
+			.@requirement = 300;
+			.@enchant_level = 5;
+			.@enchant_rate = 50;	// unknown rates
+			break;
+		case 2632106:	//HiBoss_Hunter_Lv6
+			// custom text
+			mes "^FF0000*การปลุกพลังขึ้นที่ 7.*^000000";
+			.@requirement = 350;
+			.@enchant_level = 6;
+			.@enchant_rate = 40;	// unknown rates
+			break;
+		case 2632107:	//HiBoss_Hunter_Lv7
+			// custom text
+			mes "^FF0000*การปลุกพลังขึ้นที่ 8.*^000000";
+			.@requirement = 400;
+			.@enchant_level = 7;
+			.@enchant_rate = 30;	// unknown rates
+			break;
+		case 2632108:	//HiBoss_Hunter_Lv8
+			// custom text
+			mes "^FF0000*การปลุกพลังขึ้นที่ 9.*^000000";
+			.@requirement = 450;
+			.@enchant_level = 8;
+			.@enchant_rate = 20;	// unknown rates
+			break;
+		case 2632109:	//HiBoss_Hunter_Lv9
+			// custom text
+			mes "^FF0000*การปลุกพลังขึ้นที่ 10.*^000000";
+			.@requirement = 500;
+			.@enchant_level = 9;
+			.@enchant_rate = 20;	// unknown rates
+			break;
+		case 2632110:	//HiBoss_Hunter_Lv10
+			// custom text
+		default:
+			mes "Krr hehe... It's impossible... to reinforce... this power... The only way left is... to reset...";
+			mes "^FF0000*Mettle, Magic Spirit, Vigor, Bull's Eye, Adamantine, Benevolence";
+			mes "You can reinforce the enchantment level only when the equipment is enchanted.*^000000";
+			close;
+		}
+		.@slot = 999;
+	}
+	next;
+	mes "[Himel]";
+	mes "อย่างไรก็ตาม...ก่อนที่จะเกิดขึ้น... ข้าต้องตรวจสอบ... ว่าเจ้ามี... <ITEM>"+getitemname(6608)+"<INFO>6608</INFO></ITEM> เพียงพอหรือไม่... ";
+	next;
+	mes "[Himel]";
+	mes "^FF0000*ในการ Enchant ครั้งนี้, ต้องการ  \n<ITEM>"+getitemname(6608)+"<INFO>6608</INFO></ITEM> จำนวน  " + .@requirement + " ea.*^000000";
+	next;
+	if (select( "เอาหละเริ่มเลย.", "ยังก่อน." ) == 2) {
+		mes "[Himel]";
+		mes "หึหึหึ หากเจ้า พร้อมค่อยกลับมา...";
+		close;
+	}
+	if (countitem(6608) < .@requirement) {// <ITEM>"+getitemname(6608)+"<INFO>6608</INFO></ITEM>
+		mes "[Himel]";
+		mes "^FF0000*ในการ Enchant ครั้งนี้, ต้องการ  \n<ITEM>"+getitemname(6608)+"<INFO>6608</INFO></ITEM> จำนวน  " + .@requirement + " ea.*^000000";
+		mes "กลับไปเช็ค <ITEM>"+getitemname(6608)+"<INFO>6608</INFO></ITEM> ของเจ้าดูก่อนว่ามีตามที่ต้องการไหม.*^000000";
+		close;
+	}
+	mes "[Himel]";
+	mes "กร๊าก..อิอิ...มันคือ...พลังแห่งความแค้น...ข้าว่า...พลังนี้...ยิ่งใหญ่...พอที่จะ...";
+	mes "^FF0000*หากผิดพลาด ระดับการปลุกพลังจะลดลง*^000000";
+	next;
+	if (select( "เริ่มกระบวนการ.", "ฟังดูเสี่ยงยังก่อนดีกว่า." ) == 2) {
+		mes "[Himel]";
+		mes "........";
+		close;
+	}
+	progressbar "000000",1;
+	delitem 6608, .@requirement;// <ITEM>"+getitemname(6608)+"<INFO>6608</INFO></ITEM>
+
+	// anti-hack
+	if (callfunc("F_IsEquipIDHack", EQI_SHOES, .@equip_id) || callfunc("F_IsEquipCardHack", EQI_SHOES, .@card[0], .@card[1], .@card[2], .@card[3]) || callfunc("F_IsEquipRefineHack", EQI_SHOES, .@refine))
+		close;
+
+	switch(.@slot) {
+	case 3:
+		setarray .@enchant[0],
+			2632101;	// HiBoss_Hunter_Lv1
+		.@card[3] = .@enchant[ rand( getarraysize(.@enchant) ) ];	// unknown rates
+		break;
+	case 2:
+	case 1:
+	case 999:
+		// enchant leveling
+		if (.@enchant_rate > rand(100))
+			.@level_dt = 1;
+		else
+			.@level_dt = -1;
+		.@enchant_level += .@level_dt;
+		.@card[3] += .@level_dt;
+		if (.@card[3] < 2632101 || .@card[3] > 2632110) {
+			mes "[Himel]";
+			mes "ดูเหมือนการปลุกพลังจะสูงสุดแล้วนะตอนนี้.";
+			close;
+		}
+		if (.@enchant_level < 1 || .@enchant_level > 10) {
+			// item not deleted
+			specialeffect2 EF_SUI_EXPLOSION;
+			mes "[Himel]";
+			mes "ค..อ๊าก...!! พลังแห่งความเคียดแค้น...\nถูกขับเคลื่อน...ให้บ้าคลั่ง...อย่างไรก็ตาม...โชคดีที่มันไม่ระเบิดเพราะพลัง...กำลัง....อ่อนแอ.";
+			close;
+		}
+		break;
+	default:
+		mes "[Himel]";
+		mes "ดูเหมือนมีบางอย่างผิดพลาด.";
+		close;
+	}
+	delequip EQI_SHOES;
+	getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],.@card[2],.@card[3];
+	if (.@level_dt == -1) {// can only happens during enchant leveling
+		specialeffect2 EF_SUI_EXPLOSION;
+		mes "[Himel]";
+		mes "ค..อ๊าก...!! พลังความเคียดแค้น...\nถูกขับเคลื่อน...ให้บ้าคลั่ง...พลัง...ที่เคย...มั่นคง...ก็ลดลง...\nลดลงหนึ่งระดับ...";
+		mes "^FF0000*เนื่องจากความล้มเหลวในการปลุกพลัง ระดับการปลุกพลังจึงถูกลดลงหนึ่งระดับ*^000000";
+		close;
+	}
+	specialeffect2 EF_FIREHIT;
+	mes "[Himel]";
+	mes "มัน...คือความสำเร็จ ฉันรู้สึกได้ว่า\nพลังของความแค้นนั้นแข็งแกร่งขึ้น";
+	mes "^FF0000*ยินดีด้วย เจ้าประสบความสำเร็จในปลุกพลัง*^000000";
+	close;
+OnInit:
+waitingroom "เจาะรู/ออฟ รองเท้า Temp",0;
+end;
+}
+

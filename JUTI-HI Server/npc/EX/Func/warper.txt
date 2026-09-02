@@ -1,0 +1,1341 @@
+morocc.gat,159,97,3	script	Warp Express::Warper	677,{
+	.@num = rand(0,99);
+	mes "[ ระบบตรวจบอท ]";
+	mes "กรอกเลขต่อไปนี้ ["+.@num+"]";
+	input .@check;
+	if(.@check != .@num){
+	mes "กรุณากรอกรหัสให้ถูกต้อง";
+	end;
+	}
+	clear;
+	mes "[ พนักงานวาป ]";
+	mes "^f7f7f7______^000000กรุณาเลือกเมนูที่คุณต้องการ";
+	mes "^f7f7f7______^000000ท่านสามารถใช้คำสั่ง ^FF0000@load^000000";
+	mes "^f7f7f7______^000000เพื่อกลับไปยังจุดเซฟได้";
+	next;
+	menu "-> ^6666FFวาปไปยังจุดบันทึกล่าสุด^000000(^FF0000"+youlastwarp$+"^000000)",last,
+	//" ^FF0000•^000000 ^0000FFแมพฟาร์ม ของพิเศษ^000000",ITEM,
+	//" ^FF0000•^000000 ^0000FFแมพฟาร์ม Zeny^000000",PKMAP,
+	" ^FF0000•^000000 ^0000FFเมืองหลวง^000000",town,
+	" ^FF0000•^000000 ^0000FFฟิล์ด^000000",field,
+	" ^FF0000•^000000 ^0000FFดันเจี้ยน^000000",dungeon,
+	//" ^FF0000•^000000 ^0000FFInstance Dungeon^000000",Instancedungeon,
+	" ^FF0000•^000000 ^0000FFกิลด์ดันเจี้ยน^000000",guilddungeon;
+last:
+	if (youlastwarp$ == "") { dispbottom "คุณยังไม่มีการจดจำวาร์ปล่าสุด"; end; }
+	if (youlastwarp$ == "moc_fild131") { warp ""+youlastwarp$+"",0,0;end; }
+	if (youlastwarp$ == "moc_fild132") { warp ""+youlastwarp$+"",0,0;end; }
+	if (youlastwarp$ == "moc_fild133") { warp ""+youlastwarp$+"",0,0;end; }
+	if (youlastwarp$ == "moc_fild134") { warp ""+youlastwarp$+"",0,0;end; }
+	if (youlastwarp$ == "moc_fild135") { warp ""+youlastwarp$+"",0,0;end; }
+	if (youlastwarp$ == "moc_fild136") { warp ""+youlastwarp$+"",0,0;end; }
+	warp ""+youlastwarp$+"",youlastwarp_x,youlastwarp_y;
+	end;
+
+ITEM:
+warp "moc_fild13_",00,00;
+goto W_save;	end;
+end;
+
+PKMAP:
+	menu 
+	" • (^FF0000NON PVP^000000) ฟาร์มเงิน 1 ["+getmapusers("moc_fild131")+"] คน",PK1,
+	" • (^FF0000PVP MAP^000000) ฟาร์มเงิน 2 ["+getmapusers("moc_fild132")+"] คน",PK2,
+	" • (^FF0000NON PVP^000000) ฟาร์มเงิน 3 ["+getmapusers("moc_fild133")+"] คน",PK3,
+	" • (^FF0000PVP MAP^000000) ฟาร์มเงิน 4 ["+getmapusers("moc_fild134")+"] คน",PK4,
+	" • (^FF0000NON PVP^000000) ฟาร์มเงิน 5 ["+getmapusers("moc_fild135")+"] คน",PK5,
+	" • (^FF0000PVP MAP^000000) ฟาร์มเงิน 6 ["+getmapusers("moc_fild136")+"] คน",PK6,
+	" • ยกเลิก",CC;
+
+PK1:
+warp "moc_fild131",00,00;
+goto W_save;	end;
+end;
+PK2:
+warp "moc_fild132",00,00;
+goto W_save;	end;
+end;
+PK3:
+warp "moc_fild133",00,00;
+goto W_save;	end;
+end;
+PK4:
+warp "moc_fild134",00,00;
+goto W_save;	end;
+end;
+PK5:
+warp "moc_fild135",00,00;
+goto W_save;	end;
+end;
+PK6:
+warp "moc_fild136",00,00;
+goto W_save;	end;
+end;
+
+
+CC:
+end;
+
+zeny1:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปหาเงินไหม จงรีบไปซะ";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu	"-> ข้าต้องการไปหาเงิน",wpay_fild04;
+
+boss1:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไป Boss ห้องไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu	"- Boss Easy",wbos1,
+        "- Boss Normal",wbos2,
+	"- Boss Hard",boss2,
+	"- Boss Cupong มหาโหด",boss3;
+
+
+boss2:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไป Boss ห้องไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu	"- Boss Hard ห้อง1",wbos3,
+	"- Boss Hard ห้อง2",wbos4;
+
+boss3:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไป Boss ห้องไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu	"- Boss มหาโหด ห้อง1",wbos5,
+	"- Boss มหาโหด ห้อง2",wbos6;
+
+
+town:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปเมืองไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu	"เมืองหลวง",wmain,
+//	"Dicastes",wdicastes01,
+//	"Brasilis",wbrasilis,
+//	"Malangdo",wmalangdo,
+//	"Mora",wmora,
+//	"Dewata",wdewata,
+	"Alberta",walberta,
+	"Aldebaran",waldebaran,
+	"Amatsu",wamatsu,
+	"Ayothaya",wayot,
+//	"Capitolina Abbey",capitolina,
+	"Comodo",wcomodo,
+	"Einbech",weinbech,
+	"Einbroch",weinbroch,
+	"Geffen",wgeffen,
+	"Gonryun",wgonryun,
+	"Hugel",whugel,
+	"Izlude",wizlude,
+	"Jawaii Island",wjawaii,
+	"Lighthalzen",wlighthalzen,
+	"Louyang",wlouyang,
+	"Lutie",wxmas,
+	"Mid Camp",wmidcamp,
+	"Moscovia",wmoscovia,
+	"Nameless Island",wnameless,
+	"Niflheim",wniflheim,
+	"Payon",wpayon,
+	"Prontera",wprontera,
+	"Rachel",wafeltz,
+//	"Thor Camp",wthorcamp,
+	"Umbala",wumbala,
+	"Veins",wveins,
+	"Yuno",wyuno;
+
+field:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปDungeon สุดโหดไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	
+	
+	"Amatsu Fields",wamafild,
+	"Ayothaya Fields",wayofild,
+	"Comodo Fields",wcmdfild,
+	"El Dicastes Fields",Dicafild,
+	"Einbroch Fields",weinfild,
+	"Geffen Fields",wgeffild,
+	"Gonryun Fields",wgonfild,
+	"Hugel Fields",whufild,
+	"Lighthalzen Fields",wlhzfild,
+	"Louyang Field",wloufild,
+	"Lutie Field",wxmasfild,
+	"Manuk Fields",wman,
+	"Mjolnir Fields",wmjolnir,
+	"Morocc Fields",wmocfild,
+	"Niflheim Fields",wniffild,
+	"Odin Temple",wodint,
+	"Payon Forests",wpayfor,
+	"Prontera Fields",wprtfild,
+	"Rachel Fields",warunfild,
+	"Splendide Fields",wsplen,
+	"Umbala Fields",wumfild,
+	"Veins Fields",wveinsfild,
+	"Yuno Fields",wyunofild;
+
+dungeon:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปDungeonไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	
+	"Abbey Dungeon",wabbey,
+	"Abyss Lakes",wabyss,
+	"Amatsu Dungeon",ama,
+	"Anthell",ant,
+	"Ayothaya Dungeons",wayodun,
+	"Beach Dungeon",beach,
+	"Byalan Dungeon",byalan,
+	"Bio Laboratory",wlhzdun,
+	"Clock Tower",clock,
+	"Coal Mines",coal,
+	"Culverts",culvert,
+	"Einbroch Dungeons",weindun,
+	"Gefenia",gefenia,
+	"Geffen Dungeon",geffen,
+	"Glast Heim",glast,
+	"Gonryun Dungeon",gon,
+	"Hidden Dungeon",hidden,
+	"Ice Dungeon",iced,
+	"Juperos Dungeons",wjuper,
+	"Kiel Dungeons",wkieldun,
+	"Louyang Dungeons",wloudun,
+	"Magma Dungeon",magma,
+	"Moscovia Dungeon",moscovia,
+	"Nydhogg's Dungeon",dnyd,
+	"Orc Dungeon",orc,
+	"Payon Dungeon",payon,
+	"Pyramids",pyramids,
+	"Rachel Sanctuary",rachels,
+	"Sphinx",sphinx,
+	"Sunken Ship",sunken,
+	"Thanatos Tower",wthat,
+	"Thor Volcano",wthor,
+	"Toy Factory",toy,
+	"Turtle Dungeon",turtle,
+	"Umbala Dungeons",wumdun;
+
+
+guilddungeon:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปGuild Dungeonไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu	"Prontera GuildDungeon",guildp1,
+	"Payon GuildDungeon",guildp2,
+	"Geffen GuildDungeon",guildp3,
+	"Aldebaran GuildDungeon",guildp4,
+	"Schg GuildDungeon",guildp5,
+	"Arug GuildDungeon",guildp6;
+
+///warpguilddungeon
+guildp1:	warp "gld_dun03.gat",00,00;	goto W_save;	end;
+guildp2:	warp "gld_dun01.gat",00,00;	goto W_save;	end;
+guildp3:	warp "gld_dun04.gat",00,00;	goto W_save;	end;
+guildp4:	warp "gld_dun02.gat",00,00;	goto W_save;	end;
+guildp5:	warp "schg_dun01.gat",00,00;	goto W_save;	end;
+guildp6:	warp "arug_dun01.gat",00,00;	goto W_save;	end;
+
+
+
+
+//-------------------------------
+//          Fields
+//-------------------------------
+wsplen:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Splendide Field 1",dsplenfild1,
+	"Splendide Field 2",dsplenfild2,
+	"Splendide Field 3",dsplenfild3;
+
+wman:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Manuk Field 1",dmanfild1,
+	"Manuk Field 2",dmanfild2,
+	"Manuk Field 3",dmanfild3;
+
+warunfild:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Rachel Field 1",drunfild1,
+	"Rachel Field 2",drunfild2,
+	"Rachel Field 3",drunfild3,
+	"Rachel Field 4",drunfild4,
+	"Rachel Field 5",drunfild5,
+	"Rachel Field 6",drunfild6,
+	"Rachel Field 7",drunfild7,
+	"Rachel Field 8",drunfild8,
+	"Rachel Field 9",drunfild9,
+	"Rachel Field 10",drunfild10,
+	"Rachel Field 11",drunfild11,
+	"Rachel Field 12",drunfild12,
+	"Rachel Field 13",drunfild13;
+
+wgeffild:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Geffen Field 0",dgeffild00,
+	"Geffen Field 1",dgeffild01,
+	"Geffen Field 2",dgeffild02,
+	"Geffen Field 3",dgeffild03,
+	"Geffen Field 4",dgeffild04,
+	"Geffen Field 5",dgeffild05,
+	"Geffen Field 6",dgeffild06,
+	"Geffen Field 7",dgeffild07,
+	"Geffen Field 8",dgeffild08,
+	"Geffen Field 9",dgeffild09,
+	"Geffen Field 10",dgeffild10,
+	"Geffen Field 11",dgeffild11,
+	"Geffen Field 12",dgeffild12,
+	"Geffen Field 13",dgeffild13,
+	"Geffen Field 14",dgeffild14;
+
+wmjolnir:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Mjolnir Field 1",dmjolnir1,
+	"Mjolnir Field 2",dmjolnir2,
+	"Mjolnir Field 3",dmjolnir3,
+	"Mjolnir Field 4",dmjolnir4,
+	"Mjolnir Field 5",dmjolnir5,
+	"Mjolnir Field 6",dmjolnir6,
+	"Mjolnir Field 7",dmjolnir7,
+	"Mjolnir Field 8",dmjolnir8,
+	"Mjolnir Field 9",dmjolnir9,
+	"Mjolnir Field 10",dmjolnir10,
+	"Mjolnir Field 11",dmjolnir11,
+	"Mjolnir Field 12",dmjolnir12;
+
+wmocfild:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Morocc Field 1",dmocfild1,
+	"Morocc Field 2",dmocfild2,
+	"Morocc Field 3",dmocfild3,
+        "Morocc Field 4",dmocfild4,
+        "Morocc Field 5",dmocfild5,
+        "Morocc Field 6",dmocfild6,
+	"Morocc Field 7",dmocfild7,
+        "Morocc Field 8",dmocfild8,
+        "Morocc Field 9",dmocfild9,
+        "Morocc Field 10",dmocfild10,
+	"Morocc Field 11",dmocfild11,
+	"Morocc Field 12",dmocfild12,
+	"Morocc Field 13",dmocfild13,
+        "Morocc Field 14",dmocfild14,
+        "Morocc Field 15",dmocfild15,
+	"Morocc Field 16",dmocfild16,
+	"Morocc Field 17",dmocfild17,
+	"Morocc Field 18",dmocfild18,
+	"Morocc Field 19",dmocfild19,
+	"Satan Morocc Field 20",dmocfild20,
+	"Satan Morocc Field 21",dmocfild21,
+	"Satan Morocc Field 22",dmocfild22;
+
+wpayfor:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Payon Forest 1",dpayfild1,
+	"Payon Forest 2",dpayfild2,
+	"Payon Forest 3",dpayfild3,
+	"Payon Forest 4",dpayfild4,
+	"Payon Forest 5",dpayfild5,
+	"Payon Forest 6",dpayfild6,
+	"Payon Forest 7",dpayfild7,
+	"Payon Forest 8",dpayfild8,
+	"Payon Forest 9",dpayfild9,
+	"Payon Forest 10",dpayfild10,
+	"Payon Forest 11",dpayfild11;
+
+wprtfild:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Prontera Field 1",dprtfild1,
+	"Prontera Field 2",dprtfild2,
+	"Prontera Field 3",dprtfild3,
+	"Prontera Field 4",dprtfild4,
+	"Prontera Field 5",dprtfild5,
+	"Prontera Field 6",dprtfild6,
+	"Prontera Field 7",dprtfild7,
+	"Prontera Field 8",dprtfild8,
+	"Prontera Field 9",dprtfild9,
+	"Prontera Field 10",dprtfild10,
+	"Prontera Field 11",dprtfild11;
+
+wxmasfild:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Lutie Field 1",dxmasfild1;
+
+wcmdfild:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Comodo Field 1",dcmdfild1,
+	"Comodo Field 2",dcmdfild2,
+	"Comodo Field 3",dcmdfild3,
+	"Comodo Field 4",dcmdfild4,
+	"Comodo Field 5",dcmdfild5,
+	"Comodo Field 6",dcmdfild6,
+	"Comodo Field 7",dcmdfild7,
+	"Comodo Field 8",dcmdfild8,
+	"Comodo Field 9",dcmdfild9;
+
+dicafild:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"El Dicastes Field 1",dicafild1,
+	"El Dicastes Field 2",dicafild2;
+	
+wyunofild:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Yuno Field 1",dyunofild1,
+	"Yuno Field 2",dyunofild2,
+	"Yuno Field 3",dyunofild3,
+	"Yuno Field 4",dyunofild4,
+	"Yuno Field 5",dyunofild5,
+	"Yuno Field 6",dyunofild6,
+	"Yuno Field 7",dyunofild7,
+	"Yuno Field 8",dyunofild8,
+	"Yuno Field 9",dyunofild9,
+	"Yuno Field 10",dyunofild10,
+	"Yuno Field 11",dyunofild11,
+	"Yuno Field 12",dyunofild12;
+
+wamafild:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Amatsu Field 1",damafild1;
+
+wgonfild:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Gonryun Field 1",dgonfild1;
+
+wumfild:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Umbala Field 1",dumfild1,
+	"Umbala Field 2",dumfild2,
+	"Umbala Field 3",dumfild3,
+	"Umbala Field 4",dumfild4;
+
+wniffild:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Niflheim Field 1",dniffild1,
+	"Niflheim Field 2",dniffild2;
+
+wodint:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Odin Temple 1",wodtemp1,
+	"Odin Temple 2",wodtemp2,
+	"Odin Temple 3",wodtemp3;
+
+wloufild:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Louyang Field 1",dloufild1;
+
+wayofild:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Ayothaya Field 1",dayofild1,
+	"Ayothaya Field 2",dayofild2;
+
+weinfild:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Einbroch Field 1",deinfild1,
+	"Einbroch Field 2",deinfild2,
+	"Einbroch Field 3",deinfild3,
+	"Einbroch Field 4",deinfild4,
+	"Einbroch Field 5",deinfild5,
+	"Einbroch Field 6",deinfild6,
+	"Einbroch Field 7",deinfild7,
+	"Einbroch Field 8",deinfild8,
+	"Einbroch Field 9",deinfild9,
+	"Einbroch Field 10",deinfild10;
+
+wlhzfild:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Lighthalzen Field 1",dlhzfild1,
+	"Lighthalzen Field 2",dlhzfild2,
+	"Lighthalzen Field 3",dlhzfild3;
+
+whufild:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Hugel Field 1",dhufild1,
+	"Hugel Field 2",dhufild2,
+	"Hugel Field 3",dhufild3,
+	"Hugel Field 4",dhufild4,
+	"Hugel Field 5",dhufild5,
+	"Hugel Field 6",dhufild6,
+	"Hugel Field 7",dhufild7;
+
+wveinsfild:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu	"Veins Field 1",dvfild1,
+	"Veins Field 2",dvfild2,
+	"Veins Field 3",dvfild3,
+	"Veins Field 4",dvfild4,
+	"Veins Field 5",dvfild5,
+	"Veins Field 6",dvfild6,
+	"Veins Field 7",dvfild7;
+
+//-------------------------------
+//          Dungeons
+//-------------------------------
+
+wjuper:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Level 1",djuperos1,
+	"Level 2",djuperos3,
+	"Core",djuperos2;
+
+wumdun:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Carpenter's Shop in the Tree",dumdun1,
+	"Passage to a Foreign World",dumdun2,
+	"Hvergermil's Fountain",dyggdrasil1;
+
+wloudun:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"The Royal Tomb",dloudun1,
+	"Inside the Royal Tomb",dloudun2,
+	"Suei Long Gon",dloudun3;
+
+wayodun:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Ancient Shrine Maze",dayodun1,
+	"Inside Ancient Shrine",dayodun2;
+
+weindun:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Level 1",deindun1,
+	"Level 2",deindun2;
+
+wlhzdun:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Level 1",dlhzdun1,
+	"Level 2",dlhzdun2,
+	"Level 3",dlhzdun3,
+	"Level 4",dlhzdun4;
+
+wabyss:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Level 1",dabyss1,
+	"Level 2",dabyss2,
+	"Level 3",dabyss3;
+
+wthat:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Level 1",dthat1,
+	"Level 2",dthat2,
+	"Level 3",dthat3,
+	"Level 4",dthat4,
+	"Level 5",dthat5,
+	"Level 6",dthat6,
+	"Level 7",dthat7,
+	"Level 8",dthat8,
+	"Level 9",dthat9,
+	"Level 10",dthat10,
+	"Level 11",dthat11,
+	"Level 12",dthat12,
+	"Level Boss",dthat13;
+
+wkieldun:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Level 1",dkieldun1,
+	"Level 2",dkieldun2;
+
+ant:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Level 1",danthell1,
+	"Level 2",danthell2;
+
+beach:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Level 1",dbeach1,
+	"Level 2",dbeach2,
+	"Level 3",dbeach3;
+
+byalan:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Level 1",dbyalan1,
+	"Level 2",dbyalan2,
+	"Level 3",dbyalan3,
+	"Level 4",dbyalan4,
+	"Level 5",dbyalan5;
+clock:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Level 1",dclock1,
+	"Level 2",dclock2,
+	"Level 3",dclock3,
+	"Level 4",dclock4,
+	"Basement 1",dalde1,
+	"Basement 2",dalde2,
+	"Basement 3",dalde3,
+	"Basement 4",dalde4;
+
+coal:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Level 1",dcoal1,
+	"Level 2",dcoal2,
+	"Level 3",dcoal3;
+
+culvert:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Level 1",dculvert1,
+	"Level 2",dculvert2,
+	"Level 3",dculvert3,
+	"Level 4",dculvert4;
+
+geffen:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Level 1",dgeffen1,
+	"Level 2",dgeffen2,
+	"Level 3",dgeffen3,
+	"Level 4",dgeffen4;
+
+glast:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Entrance",dglastent,
+	"Castle 1",dglastcast1,
+	"Castle 2",dglastcast2,
+	"Chivalry 1",dglastchiv1,
+	"Chivalry 2",dglastchiv2,
+	"Churchyard",dglastyard,
+	"Culvert 1",dglastcul1,
+	"Culvert 2",dglastcul1,
+	"Culvert 3",dglastcul3,
+	"Culvert 4",dglastcul4,
+	"St.Abbey",dglastchur,
+	"Staircase Dungeon",dglaststep,
+	"Underground Cave 1",dglastcave1,
+	"Underground Cave 2",dglastcave2,
+	"Underground Prison 1",dglastpris1,
+	"Underground Prison 2",dglastpris2;
+
+hidden:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Level 1",dhidden1,
+	"Level 2",dhidden2,
+	"Level 3",dhidden3;
+
+iced:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Level 1",diced1,
+	"Level 2",diced2,
+	"Level 3",diced3;
+
+magma:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Level 1",dmagma1,
+	"Level 2",dmagma2;
+
+moscovia:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Level 1",dmoscovia1,
+	"Level 2",dmoscovia2,
+	"Level 3",dmoscovia3;
+
+orc:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Level 1",dorc1,
+	"Level 2",dorc2;
+
+payon:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Level 1",dpayon1,
+	"Level 2",dpayon2,
+	"Level 3",dpayon3,
+	"Level 4",dpayon4,
+	"Level 5",dpayon5;
+
+pyramids:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Level 1",dpyramids1,
+	"Level 2",dpyramids2,
+	"Level 3",dpyramids3,
+	"Level 4",dpyramids4,
+	"Basement 1",dpyramidsb1,
+	"Basement 2",dpyramidsb2;
+
+sphinx:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Level 1",dsphinx1,
+	"Level 2",dsphinx2,
+	"Level 3",dsphinx3,
+	"Level 4",dsphinx4,
+	"Level 5",dsphinx5;
+
+sunken:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Level 1",dsunken1,
+	"Level 2",dsunken2;
+
+toy:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Level 1",dtoy1,
+	"Level 2",dtoy2;
+
+turtle:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Entrance",dturtleent,
+	"Level 1",dturtle1,
+	"Level 2",dturtle2,
+	"Level 3",dturtle3;
+
+ama:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Level 1",dama1,
+	"Level 2",dama2,
+	"Level 3",dama3;
+
+gon:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Level 1",dgon1,
+	"Level 2",dgon2,
+	"Level 3",dgon3;
+
+gefenia:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Level 1",dgefenia1,
+	"Level 2",dgefenia2,
+	"Level 3",dgefenia3,
+	"Level 4",dgefenia4;
+
+wthor:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Level 1",dthor1,
+	"Level 2",dthor2,
+	"Level 3",dthor3;
+
+rachels:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Level 1",drachel1,
+	"Level 2",drachel2,
+	"Level 3",drachel3,
+	"Level 4",drachel4,		
+	"Level 5",drachel5;
+
+wabbey:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Level 1",dabbey1,
+	"Level 2",dabbey2,
+	"Level 3",dabbey3;
+
+wbradun:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"At the Dusk - 01",dbradun1,
+	"At the Dusk - 02",dbradun2;
+
+
+dnyd:
+mes "[ พนักงานวาป ]";
+mes "เจ้าต้องการไปชั้นไหน จงเลือก";
+mes "ถ้าชักช้า ระวังจะไม่มีเงาหัว";
+next;
+menu 	"Level 1",dnyd1;
+	//"Level 2",dnyd2,
+	//"Nest Level 1",dnyd3,
+	//"Nest Level 2",dnyd4;
+
+
+
+//-------------------------------
+//        Dungeon Warps
+//-------------------------------
+
+
+dkieldun1:	warp "kh_dun01.gat",28,226;	goto W_save;	end;
+dkieldun2:	warp "kh_dun02.gat",41,198;	goto W_save;	end;
+djuperos1:	warp "juperos_01.gat",53,247;	goto W_save;	end;
+djuperos3:	warp "juperos_02.gat",37,63;	goto W_save;	end;
+djuperos2:	warp "jupe_core.gat",150,285;	goto W_save;	end;
+dumdun1:	warp "um_dun01.gat",42,31;	goto W_save;	end;
+dumdun2:	warp "um_dun01.gat",48,30;	goto W_save;	end;
+dloudun1:	warp "lou_dun01.gat",218,196;	goto W_save;	end;
+dloudun2:	warp "lou_dun02.gat",282,20;	goto W_save;	end;
+dloudun3:	warp "lou_dun03.gat",165,38;	goto W_save;	end;
+dayodun1:	warp "ayo_dun01.gat",275,19;	goto W_save;	end;
+dayodun2:	warp "ayo_dun02.gat",24,26;	goto W_save;	end;
+dbradun1:	warp "bra_dun01.gat",87,47;	goto W_save;	end;
+dbradun2:	warp "bra_dun02.gat",261,258;	goto W_save;	end;
+deindun1:	warp "ein_dun01.gat",22,14;	goto W_save;	end;
+deindun2:	warp "ein_dun02.gat",292,290;	goto W_save;	end;
+dlhzdun1:	warp "lhz_dun01.gat",150,288;	goto W_save;	end;
+dlhzdun2:	warp "lhz_dun02.gat",150,18;	goto W_save;	end;
+dlhzdun3:	warp "lhz_dun03.gat",140,132;	goto W_save;	end;
+dlhzdun4:	warp "lhz_dun04.gat",245,53;	goto W_save;	end;
+dabyss1:	warp "abyss_01.gat",261,271;	goto W_save;	end;
+dabyss2:	warp "abyss_02.gat",275,270;	goto W_save;	end;
+dabyss3:	warp "abyss_03.gat",116,27;	goto W_save;	end;
+dthat1:		warp "tha_t01.gat",150,39;	goto W_save;	end;
+dthat2:		warp "tha_t02.gat",150,136;	goto W_save;	end;
+dthat3:		warp "tha_t03.gat",220,158;	goto W_save;	end;
+dthat4:		warp "tha_t04.gat",59,143;	goto W_save;	end;
+dthat5:		warp "tha_t05.gat",62,11;	goto W_save;	end;
+dthat6:		warp "tha_t06.gat",89,221;	goto W_save;	end;
+dthat7:		warp "tha_t07.gat",35,166;	goto W_save;	end;
+dthat8:		warp "tha_t08.gat",93,148;	goto W_save;	end;
+dthat9:		warp "tha_t09.gat",29,107;	goto W_save;	end;
+dthat10:	warp "tha_t10.gat",159,138;	goto W_save;	end;
+dthat11:	warp "tha_t11.gat",19,20;	goto W_save;	end;
+dthat12:	warp "tha_t12.gat",130,52;	goto W_save;	end;
+dthat13:	warp "thana_boss.gat",135,124;	goto W_save;	end;
+danthell1:	warp "anthell01.gat",35,262;	goto W_save;	end;
+danthell2:	warp "anthell02.gat",168,170;	goto W_save;	end;
+dbeach1:	warp "beach_dun.gat",266,67;	goto W_save;	end;
+dbeach2:	warp "beach_dun2.gat",255,244;	goto W_save;	end;
+dbeach3:	warp "beach_dun3.gat",23,260;	goto W_save;	end;
+dbyalan1:	warp "iz_dun00.gat",168,168;	goto W_save;	end;
+dbyalan2:	warp "iz_dun01.gat",253,252;	goto W_save;	end;
+dbyalan3:	warp "iz_dun02.gat",236,204;	goto W_save;	end;
+dbyalan4:	warp "iz_dun03.gat",32,63;	goto W_save;	end;
+dbyalan5:	warp "iz_dun04.gat",26,27;	goto W_save;	end;
+dalde1:		warp "alde_dun01.gat",297,25;	goto W_save;	end;
+dalde2:		warp "alde_dun02.gat",127,169;	goto W_save;	end;
+dalde3:		warp "alde_dun03.gat",277,178;	goto W_save;	end;
+dalde4:		warp "alde_dun04.gat",268,74;	goto W_save;	end;
+dclock1:	warp "c_tower1.gat",199,159;	goto W_save;	end;
+dclock2:	warp "c_tower2.gat",148,283;	goto W_save;	end;
+dclock3:	warp "c_tower3.gat",65,147;	goto W_save;	end;
+dclock4:	warp "c_tower4.gat",56,155;	goto W_save;	end;
+dcoal1:		warp "mjo_dun01.gat",52,17;	goto W_save;	end;
+dcoal2:		warp "mjo_dun02.gat",381,343;	goto W_save;	end;
+dcoal3:		warp "mjo_dun03.gat",302,262;	goto W_save;	end;
+dculvert1:	warp "prt_sewb1.gat",131,247;	goto W_save;	end;
+dculvert2:	warp "prt_sewb2.gat",19,19;	goto W_save;	end;
+dculvert3:	warp "prt_sewb3.gat",180,169;	goto W_save;	end;
+dculvert4:	warp "prt_sewb4.gat",100,92;	goto W_save;	end;
+dgeffen1:	warp "gef_dun00.gat",104,99;	goto W_save;	end;
+dgeffen2:	warp "gef_dun01.gat",115,236;	goto W_save;	end;
+dgeffen3:	warp "gef_dun02.gat",106,132;	goto W_save;	end;
+dgeffen4:	warp "gef_dun03.gat",203,200;	goto W_save;	end;
+dglastent:	warp "glast_01.gat",375,304;	goto W_save;	end;
+dglastcast1:	warp "gl_cas01.gat",199,29;	goto W_save;	end;
+dglastcast2:	warp "gl_cas02.gat",104,25;	goto W_save;	end;
+dglastchiv1:	warp "gl_knt01.gat",150,15;	goto W_save;	end;
+dglastchiv2:	warp "gl_knt02.gat",157,287;	goto W_save;	end;
+dglastyard:	warp "gl_chyard.gat",147,15;	goto W_save;	end;
+dglastcul1:	warp "gl_sew01.gat",258,255;	goto W_save;	end;
+dglastcul2:	warp "gl_sew02.gat",108,291;	goto W_save;	end;
+dglastcul3:	warp "gl_sew03.gat",171,283;	goto W_save;	end;
+dglastcul4:	warp "gl_sew04.gat",68,277;	goto W_save;	end;
+dglastchur:	warp "gl_church.gat",156,7;	goto W_save;	end;
+dglaststep:	warp "gl_step.gat",12,7;	goto W_save;	end;
+dglastcave1:	warp "gl_dun01.gat",133,271;	goto W_save;	end;
+dglastcave2:	warp "gl_dun02.gat",224,274;	goto W_save;	end;
+dglastpris1:	warp "gl_prison.gat",14,70;	goto W_save;	end;
+dglastpris2:	warp "gl_prison1.gat",150,14;	goto W_save;	end;
+dhidden1:	warp "prt_maze01.gat",176,7;	goto W_save;	end;
+dhidden2:	warp "prt_maze02.gat",94,9;	goto W_save;	end;
+dhidden3:	warp "prt_maze03.gat",23,8;	goto W_save;	end;
+diced1:		warp "ice_dun01.gat",157,14;	goto W_save;	end;
+diced2:		warp "ice_dun02.gat",151,155;	goto W_save;	end;
+diced3:		warp "ice_dun03.gat",149,22;	goto W_save;	end;
+dmagma1:	warp "mag_dun01.gat",126,68;	goto W_save;	end;
+dmagma2:	warp "mag_dun02.gat",47,30;	goto W_save;	end;
+dmoscovia1:	warp "mosk_dun01.gat",190,46;	goto W_save;	end;
+dmoscovia2:	warp "mosk_dun02.gat",163,31;	goto W_save;	end;
+dmoscovia3:	warp "mosk_dun03.gat",33,136;	goto W_save;	end;
+dorc1:		warp "orcsdun01.gat",32,170;	goto W_save;	end;
+dorc2:		warp "orcsdun02.gat",21,185;	goto W_save;	end;
+dpayon1:	warp "pay_dun00.gat",21,183;	goto W_save;	end;
+dpayon2:	warp "pay_dun01.gat",19,33;	goto W_save;	end;
+dpayon3:	warp "pay_dun02.gat",19,63;	goto W_save;	end;
+dpayon4:	warp "pay_dun03.gat",155,159;	goto W_save;	end;
+dpayon5:	warp "pay_dun04.gat",201,204;	goto W_save;	end;
+dpyramids1:	warp "moc_pryd01.gat",192,9;	goto W_save;	end;
+dpyramids2:	warp "moc_pryd02.gat",10,192;	goto W_save;	end;
+dpyramids3:	warp "moc_pryd03.gat",100,92;	goto W_save;	end;
+dpyramids4:	warp "moc_pryd04.gat",181,11;	goto W_save;	end;
+dpyramidsb1:	warp "moc_pryd05.gat",94,96;	goto W_save;	end;
+dpyramidsb2:	warp "moc_pryd06.gat",192,8;	goto W_save;	end;
+dsphinx1:	warp "in_sphinx1.gat",288,9;	goto W_save;	end;
+dsphinx2:	warp "in_sphinx2.gat",149,81;	goto W_save;	end;
+dsphinx3:	warp "in_sphinx3.gat",210,54;	goto W_save;	end;
+dsphinx4:	warp "in_sphinx4.gat",10,222;	goto W_save;	end;
+dsphinx5:	warp "in_sphinx5.gat",100,99;	goto W_save;	end;
+dsunken1:	warp "treasure01.gat",69,24;	goto W_save;	end;
+dsunken2:	warp "treasure02.gat",102,27;	goto W_save;	end;
+dtoy1:		warp "xmas_dun01.gat",205,15;	goto W_save;	end;
+dtoy2:		warp "xmas_dun02.gat",129,133;	goto W_save;	end;
+dturtleent:	warp "tur_dun01.gat",154,49;	goto W_save;	end;
+dturtle1:	warp "tur_dun02.gat",148,261;	goto W_save;	end;
+dturtle2:	warp "tur_dun03.gat",132,189;	goto W_save;	end;
+dturtle3:	warp "tur_dun04.gat",100,192;	goto W_save;	end;
+dama1:		warp "ama_dun01.gat",228,11;	goto W_save;	end;
+dama2:		warp "ama_dun02.gat",34,41;	goto W_save;	end;
+dama3:		warp "ama_dun03.gat",119,14;	goto W_save;	end;
+dgon1:		warp "gon_dun01.gat",153,53;	goto W_save;	end;
+dgon2:		warp "gon_dun02.gat",28,113;	goto W_save;	end;
+dgon3:		warp "gon_dun03.gat",68,16;	goto W_save;	end;
+dgefenia1:	warp "gefenia01.gat",40,103;	goto W_save;	end;
+dgefenia2:	warp "gefenia02.gat",203,34;	goto W_save;	end;
+dgefenia3:	warp "gefenia03.gat",266,168;	goto W_save;	end;
+dgefenia4:	warp "gefenia04.gat",130,272;	goto W_save;	end;
+dgldun1:	warp "gld_dun01.gat",119,93;	goto W_save;	end;
+dgldun2:	warp "gld_dun02.gat",39,161;	goto W_save;	end;
+dgldun3:	warp "gld_dun03.gat",50,44;	goto W_save;	end;
+dgldun4:	warp "gld_dun04.gat",116,45;	goto W_save;	end;
+casino:		warp "cmd_in02.gat",179,129;	goto W_save;	end;
+dthor1:		warp "thor_v01.gat",21,228;	goto W_save;	end;
+dthor2:		warp "thor_v02.gat",75,205;	goto W_save;	end;
+dthor3:		warp "thor_v03.gat",34,272;	goto W_save;	end;
+drachel1:	warp "ra_san01.gat",140,11;	goto W_save;	end;
+drachel2:	warp "ra_san02.gat",32,21;	goto W_save;	end;
+drachel3:	warp "ra_san03.gat",12,149;	goto W_save;	end;
+drachel4:	warp "ra_san04.gat",204,218;	goto W_save;	end;
+drachel5:	warp "ra_san05.gat",150,9;	goto W_save;	end;
+dabbey1:	warp "abbey01.gat",51,14;	goto W_save;	end;
+dabbey2:	warp "abbey02.gat",150,11;	goto W_save;	end;
+dabbey3:	warp "abbey03.gat",120,10;	goto W_save;	end;
+dsealed1:	warp "monk_test.gat",306,143;	goto W_save;	end;
+dendless1:	warp "1@tower.gat",0,0;	goto W_save;	end;
+dendless2:	warp "2@tower.gat",0,0;	goto W_save;	end;
+dendless3:	warp "3@tower.gat",0,0;	goto W_save;	end;
+dendless4:	warp "4@tower.gat",0,0;	goto W_save;	end;
+dendless5:	warp "5@tower.gat",0,0;	goto W_save;	end;
+dendless6:	warp "6@tower.gat",31,11;	goto W_save;	end;
+dnyd1:	warp "nyd_dun01",61,239;	goto W_save;	end;
+dnyd2:	warp "nyd_dun02",60,271;	goto W_save;	end;
+dnyd3:	warp "1@nyd",168,205;	goto W_save;	end;
+dnyd4:	warp "2@nyd",199,17;	goto W_save;	end;
+
+
+//-------------------------------
+//         Field Warps
+//-------------------------------
+
+drunfild1:	warp "ra_fild01.gat",192,162;	goto W_save;	end;
+drunfild2:	warp "ra_fild02.gat",235,166;	goto W_save;	end;
+drunfild3:	warp "ra_fild03.gat",202,206;	goto W_save;	end;
+drunfild4:	warp "ra_fild04.gat",202,208;	goto W_save;	end;
+drunfild5:	warp "ra_fild05.gat",225,202;	goto W_save;	end;
+drunfild6:	warp "ra_fild06.gat",202,214;	goto W_save;	end;
+drunfild7:	warp "ra_fild07.gat",263,196;	goto W_save;	end;
+drunfild8:	warp "ra_fild08.gat",217,201;	goto W_save;	end;
+drunfild9:	warp "ra_fild09.gat",87,121;	goto W_save;	end;
+drunfild10:	warp "ra_fild10.gat",277,181;	goto W_save;	end;
+drunfild11:	warp "ra_fild11.gat",221,185;	goto W_save;	end;
+drunfild12:	warp "ra_fild12.gat",175,200;	goto W_save;	end;
+drunfild13:	warp "ra_fild13.gat",174,197;	goto W_save;	end;
+dgeffild00:	warp "gef_fild00.gat",46,199;	goto W_save;	end;
+dgeffild01:	warp "gef_fild01.gat",213,204;	goto W_save;	end;
+dgeffild02:	warp "gef_fild02.gat",195,212;	goto W_save;	end;
+dgeffild03:	warp "gef_fild03.gat",257,192;	goto W_save;	end;
+dgeffild04:	warp "gef_fild04.gat",188,171;	goto W_save;	end;
+dgeffild05:	warp "gef_fild05.gat",166,263;	goto W_save;	end;
+dgeffild06:	warp "gef_fild06.gat",248,158;	goto W_save;	end;
+dgeffild07:	warp "gef_fild07.gat",195,191;	goto W_save;	end;
+dgeffild08:	warp "gef_fild08.gat",186,183;	goto W_save;	end;
+dgeffild09:	warp "gef_fild09.gat",221,117;	goto W_save;	end;
+dgeffild10:	warp "gef_fild10.gat",178,218;	goto W_save;	end;
+dgeffild11:	warp "gef_fild11.gat",136,328;	goto W_save;	end;
+dgeffild12:	warp "gef_fild12.gat",240,181;	goto W_save;	end;
+dgeffild13:	warp "gef_fild13.gat",235,235;	goto W_save;	end;
+dgeffild14:	warp "gef_fild14.gat",211,185;	goto W_save;	end;
+dmjolnir1:	warp "mjolnir_01.gat",204,120;	goto W_save;	end;
+dmjolnir2:	warp "mjolnir_02.gat",175,193;	goto W_save;	end;
+dmjolnir3:	warp "mjolnir_03.gat",208,213;	goto W_save;	end;
+dmjolnir4:	warp "mjolnir_04.gat",179,180;	goto W_save;	end;
+dmjolnir5:	warp "mjolnir_05.gat",181,240;	goto W_save;	end;
+dmjolnir6:	warp "mjolnir_06.gat",195,270;	goto W_save;	end;
+dmjolnir7:	warp "mjolnir_07.gat",235,202;	goto W_save;	end;
+dmjolnir8:	warp "mjolnir_08.gat",188,215;	goto W_save;	end;
+dmjolnir9:	warp "mjolnir_09.gat",205,144;	goto W_save;	end;
+dmjolnir10:	warp "mjolnir_10.gat",245,223;	goto W_save;	end;
+dmjolnir11:	warp "mjolnir_11.gat",180,206;	goto W_save;	end;
+dmjolnir12:	warp "mjolnir_12.gat",196,208;	goto W_save;	end;
+dmocfild1:	warp "moc_fild01.gat",219,205;	goto W_save;	end;
+dmocfild2:	warp "moc_fild02.gat",177,206;	goto W_save;	end;
+dmocfild3:	warp "moc_fild03.gat",194,182;	goto W_save;	end;
+dmocfild4:	warp "moc_fild04.gat",194,182;	goto W_save;	end;
+dmocfild5:	warp "moc_fild05.gat",194,182;	goto W_save;	end;
+dmocfild6:	warp "moc_fild06.gat",194,182;	goto W_save;	end;
+dmocfild7:	warp "moc_fild07.gat",224,170;	goto W_save;	end;
+dmocfild8:	warp "moc_fild08.gat",194,182;	goto W_save;	end;
+dmocfild9:	warp "moc_fild09.gat",194,182;	goto W_save;	end;
+dmocfild10:	warp "moc_fild10.gat",71,137;	goto W_save;	end;
+dmocfild11:	warp "moc_fild11.gat",198,216;	goto W_save;	end;
+dmocfild12:	warp "moc_fild12.gat",156,187;	goto W_save;	end;
+dmocfild13:	warp "moc_fild13.gat",185,263;	goto W_save;	end;
+dmocfild14:	warp "moc_fild14.gat",194,182;	goto W_save;	end;
+dmocfild15:	warp "moc_fild15.gat",194,182;	goto W_save;	end;
+dmocfild16:	warp "moc_fild16.gat",206,228;	goto W_save;	end;
+dmocfild17:	warp "moc_fild17.gat",208,238;	goto W_save;	end;
+dmocfild18:	warp "moc_fild18.gat",209,223;	goto W_save;	end;
+dmocfild19:	warp "moc_fild19.gat",85,97;	goto W_save;	end;
+dmocfild20:	warp "moc_fild20.gat",249,203;	goto W_save;	end;
+dmocfild21:	warp "moc_fild21.gat",174,226;	goto W_save;	end;
+dmocfild22:	warp "moc_fild22.gat",222,200;	goto W_save;	end;
+dpayfild1:	warp "pay_fild01.gat",158,206;	goto W_save;	end;
+dpayfild2:	warp "pay_fild02.gat",151,219;	goto W_save;	end;
+dpayfild3:	warp "pay_fild03.gat",205,148;	goto W_save;	end;
+dpayfild4:	warp "pay_fild04.gat",186,247;	goto W_save;	end;
+dpayfild5:	warp "pay_fild05.gat",134,204;	goto W_save;	end;
+dpayfild6:	warp "pay_fild06.gat",193,235;	goto W_save;	end;
+dpayfild7:	warp "pay_fild07.gat",200,177;	goto W_save;	end;
+dpayfild8:	warp "pay_fild08.gat",137,189;	goto W_save;	end;
+dpayfild9:	warp "pay_fild09.gat",201,224;	goto W_save;	end;
+dpayfild10:	warp "pay_fild10.gat",160,205;	goto W_save;	end;
+dpayfild11:	warp "pay_fild11.gat",194,150;	goto W_save;	end;
+dprtfild0:	warp "prt_fild00.gat",184,235;	goto W_save;	end;
+dprtfild1:	warp "prt_fild01.gat",190,206;	goto W_save;	end;
+dprtfild2:	warp "prt_fild02.gat",240,206;	goto W_save;	end;
+dprtfild3:	warp "prt_fild03.gat",190,143;	goto W_save;	end;
+dprtfild4:	warp "prt_fild04.gat",307,252;	goto W_save;	end;
+dprtfild5:	warp "prt_fild05.gat",239,213;	goto W_save;	end;
+dprtfild6:	warp "prt_fild06.gat",185,188;	goto W_save;	end;
+dprtfild7:	warp "prt_fild07.gat",193,194;	goto W_save;	end;
+dprtfild8:	warp "prt_fild08.gat",187,218;	goto W_save;	end;
+dprtfild9:	warp "prt_fild09.gat",210,183;	goto W_save;	end;
+dprtfild10:	warp "prt_fild10.gat",195,149;	goto W_save;	end;
+dprtfild11:	warp "prt_fild11.gat",198,164;	goto W_save;	end;
+dxmasfild1:	warp "xmas_fild01.gat",115,145;	goto W_save;	end;
+dcmdfild1:	warp "cmd_fild01.gat",180,178;	goto W_save;	end;
+dcmdfild2:	warp "cmd_fild02.gat",231,160;	goto W_save;	end;
+dcmdfild3:	warp "cmd_fild03.gat",191,172;	goto W_save;	end;
+dcmdfild4:	warp "cmd_fild04.gat",228,194;	goto W_save;	end;
+dcmdfild5:	warp "cmd_fild05.gat",224,203;	goto W_save;	end;
+dcmdfild6:	warp "cmd_fild06.gat",190,223;	goto W_save;	end;
+dcmdfild7:	warp "cmd_fild07.gat",234,177;	goto W_save;	end;
+dcmdfild8:	warp "cmd_fild08.gat",194,175;	goto W_save;	end;
+dcmdfild9:	warp "cmd_fild09.gat",172,172;	goto W_save;	end;
+
+dicafild1:	warp "dic_fild01.gat",150,276;	goto W_save;	end;
+dicafild2:	warp "dic_fild02.gat",71,370;	goto W_save;	end;
+
+dyunofild1:	warp "yuno_fild01.gat",189,224;	goto W_save;	end;
+dyunofild2:	warp "yuno_fild02.gat",192,207;	goto W_save;	end;
+dyunofild3:	warp "yuno_fild03.gat",221,157;	goto W_save;	end;
+dyunofild4:	warp "yuno_fild04.gat",226,199;	goto W_save;	end;
+dyunofild5:	warp "yuno_fild05.gat",223,177;	goto W_save;	end;
+dyunofild6:	warp "yuno_fild06.gat",187,232;	goto W_save;	end;
+dyunofild7:	warp "yuno_fild07.gat",231,174;	goto W_save;	end;
+dyunofild8:	warp "yuno_fild08.gat",196,203;	goto W_save;	end;
+dyunofild9:	warp "yuno_fild09.gat",183,214;	goto W_save;	end;
+dyunofild10:	warp "yuno_fild10.gat",200,124;	goto W_save;	end;
+dyunofild11:	warp "yuno_fild11.gat",195,226;	goto W_save;	end;
+dyunofild12:	warp "yuno_fild12.gat",210,304;	goto W_save;	end;
+damafild1:	warp "ama_fild01.gat",190,197;	goto W_save;	end;
+dgonfild1:	warp "gon_fild01.gat",220,227;	goto W_save;	end;
+dumfild1:	warp "um_fild01.gat",217,206;	goto W_save;	end;
+dumfild2:	warp "um_fild02.gat",223,221;	goto W_save;	end;
+dumfild3:	warp "um_fild03.gat",237,215;	goto W_save;	end;
+dumfild4:	warp "um_fild04.gat",202,197;	goto W_save;	end;
+dniffild1:	warp "nif_fild01.gat",215,229;	goto W_save;	end;
+dniffild2:	warp "nif_fild02.gat",167,234;	goto W_save;	end;
+dyggdrasil1:	warp "yggdrasil01.gat",204,78;	goto W_save;	end;
+dloufild1:	warp "lou_fild01.gat",229,187;	goto W_save;	end;
+dayofild1:	warp "ayo_fild01.gat",173,134;	goto W_save;	end;
+dayofild2:	warp "ayo_fild02.gat",212,150;	goto W_save;	end;
+deinfild1:	warp "ein_fild01.gat",142,225;	goto W_save;	end;
+deinfild2:	warp "ein_fild02.gat",182,141;	goto W_save;	end;
+deinfild3:	warp "ein_fild03.gat",187,228;	goto W_save;	end;
+deinfild4:	warp "ein_fild04.gat",185,173;	goto W_save;	end;
+deinfild5:	warp "ein_fild05.gat",216,173;	goto W_save;	end;
+deinfild6:	warp "ein_fild06.gat",195,148;	goto W_save;	end;
+deinfild7:	warp "ein_fild07.gat",272,220;	goto W_save;	end;
+deinfild8:	warp "ein_fild08.gat",173,214;	goto W_save;	end;
+deinfild9:	warp "ein_fild09.gat",207,174;	goto W_save;	end;
+deinfild10:	warp "ein_fild10.gat",196,200;	goto W_save;	end;
+dlhzfild1:	warp "lhz_fild01.gat",240,179;	goto W_save;	end;
+dlhzfild2:	warp "lhz_fild02.gat",185,235;	goto W_save;	end;
+dlhzfild3:	warp "lhz_fild03.gat",240,226;	goto W_save;	end;
+dhufild1:	warp "hu_fild01.gat",268,101;	goto W_save;	end;
+dhufild2:	warp "hu_fild02.gat",222,193;	goto W_save;	end;
+dhufild3:	warp "hu_fild03.gat",232,185;	goto W_save;	end;
+dhufild4:	warp "hu_fild04.gat",252,189;	goto W_save;	end;
+dhufild5:	warp "hu_fild05.gat",196,106;	goto W_save;	end;
+dhufild6:	warp "hu_fild06.gat",216,220;	goto W_save;	end;
+dhufild7:	warp "hu_fild07.gat",227,197;	goto W_save;	end;
+wodtemp1:	warp "odin_tem01.gat",298,167;	goto W_save;	end;
+wodtemp2:	warp "odin_tem02.gat",224,149;	goto W_save;	end;
+wodtemp3:	warp "odin_tem03.gat",266,280;	goto W_save;	end;
+dvfild1:	warp "ve_fild01",186,175;	goto W_save;	end;
+dvfild2:	warp "ve_fild02",196,370;	goto W_save;	end;
+dvfild3:	warp "ve_fild03",222,45;	goto W_save;	end;
+dvfild4:	warp "ve_fild04",51,250;	goto W_save;	end;
+dvfild5:	warp "ve_fild05",202,324;	goto W_save;	end;
+dvfild6:	warp "ve_fild06",150,223;	goto W_save;	end;
+dvfild7:	warp "ve_fild07",149,307;	goto W_save;	end;
+darudun01:	warp "arug_dun01",199,195;	goto W_save;	end;
+dschdun01:	warp "schg_dun01",200,124;	goto W_save;	end;
+dsplenfild1:	warp "spl_fild01",289,32;	goto W_save;	end;
+dsplenfild2:	warp "spl_fild02",12,241;	goto W_save;	end;
+dsplenfild3:	warp "spl_fild03",306,375;	goto W_save;	end;
+dmanfild1:	warp "man_fild01",35,236;	goto W_save;	end;
+dmanfild2:	warp "man_fild02",35,262;	goto W_save;	end;
+dmanfild3:	warp "man_fild03",84,365;	goto W_save;	end;
+dbrafild1:	warp "bra_fild01",74,32;	goto W_save;	end;
+
+
+//-------------------------------
+//          Town Warps
+//-------------------------------
+wbos1:		warp "ordeal_1-2.gat",0,0;			end;
+wbos2:		warp "ordeal_2-2.gat",0,0;			end;
+wbos3:	warp "dic_fild01.gat",0,0;		end;
+wbos4:		warp "dic_fild02.gat",0,0;			end;
+wbos5:		warp "bossnia_01.gat",0,0;			end;
+wbos6:		warp "bossnia_02.gat",0,0;			end;
+wpay_fild04:	warp "pay_fild04.gat",0,0;			end;
+wmain:		warp "like_game",126,109;		goto W_save;	end;
+wdicastes01:	warp "dicastes01.gat",198,220;	goto W_save;	end;
+wbrasilis:	warp "brasilis.gat", 195,208;	goto W_save;	end;
+wmalangdo:	warp "malangdo.gat", 171,129;	goto W_save;	end;
+wmora:	warp "mora.gat", 103,101;	goto W_save;	end;
+wdewata:	warp "dewata.gat", 200,175;	goto W_save;	end;
+walberta:		warp "alberta.gat",117,51;		goto W_save;	end;
+waldebaran:	warp "aldebaran.gat",140,111;	goto W_save;	end;
+wamatsu:		warp "amatsu.gat",112,144;		goto W_save;	end;
+wayot:		warp "ayothaya.gat",217,166;		goto W_save;	end;
+capitolina:	warp "prt_monk.gat",249,244;		goto W_save;	end;
+wcomodo:	warp "comodo.gat",189,149;		goto W_save;	end;
+weinbech:	warp "einbech.gat",175,123;		goto W_save;	end;
+weinbroch:	warp "einbroch.gat",232,195;		goto W_save;	end;
+wgeffen:		warp "geffen.gat",120,58;		goto W_save;	end;
+wgonryun:	warp "gonryun.gat",159,115;		goto W_save;	end;
+whugel:		warp "hugel.gat",97,150;		goto W_save;	end;
+wizlude:		warp "izlude.gat",128,101;		goto W_save;	end;
+wjawaii:		warp "jawaii.gat",119,263;		goto W_save;	end;
+wlighthalzen:	warp "lighthalzen.gat",159,92;	goto W_save;	end;
+wlouyang:	warp "louyang.gat",218,97;		goto W_save;	end;
+wxmas:		warp "xmas.gat",148,126;		goto W_save;	end;
+wmoscovia:	warp "moscovia.gat",223,194;		goto W_save;	end;
+wnameless:	warp "nameless_n.gat",256,215;	goto W_save;	end;
+wniflheim:	warp "niflheim.gat",201,175;		goto W_save;	end;
+wpayon:		warp "payon.gat",172,92;		goto W_save;	end;
+wprontera:	warp "prontera.gat",155,182;		goto W_save;	end;
+wafeltz:		warp "rachel.gat",133,138;		goto W_save;	end;
+wthorcamp:	warp "thor_camp.gat",203,219;		goto W_save;	end;
+wumbala:		warp "umbala.gat",122,136;		goto W_save;	end;
+wveins:		warp "veins.gat",205,117;		goto W_save;	end;
+wyuno:		warp "yuno.gat",157,181;			goto W_save;	end;
+wmidcamp:	warp "mid_camp.gat",210,288;	goto W_save;	end;
+
+W_save:
+	//getmapxy .@mapname$,.@mapx,.@mapy,0,strcharinfo(0);
+	getmapxy(.@map$,.@x,.@y,BL_PC);
+	set youlastwarp$,.@map$;
+	set youlastwarp_x,.@x;
+	set youlastwarp_y,.@y;
+	//dispbottom "ทำการบันทึก จุดวาป..";
+	end;
+OnInit:
+//waitingroom ">วาป บอส หาเงิน<",0;
+end;
+}
+
+
+
+
+
+
+
+
+
+
+
+////npcตามเมืองต่างๆ
+//mooc,161,96,4	duplicate(Warper)	Warp Express#mooc	677
+//dicastes01.gat,196,227,4	duplicate(Warper)	Warp Express#3	677
+//brasilis.gat,194,184,4	duplicate(Warper)	Warp Express#4	677
+//dewata.gat,197,185,4	duplicate(Warper)	Warp Express#5	677
+//aldebaran.gat,139,117,4	duplicate(Warper)	Warp Express#6	677
+//amatsu.gat,110,153,4	duplicate(Warper)	Warp Express#7	677
+//ayothaya.gat,206,266,4	duplicate(Warper)	Warp Express#8	677
+//comodo.gat,205,302,4	duplicate(Warper)	Warp Express#9	677
+//geffen.gat,117,66,4	duplicate(Warper)	Warp Express#10	677
+//gonryun.gat,157,122,4	duplicate(Warper)	Warp Express#11	677
+//hugel.gat,95,153,4	duplicate(Warper)	Warp Express#12	677
+//jawaii.gat,201,293,4	duplicate(Warper)	Warp Express#14	677
+//louyang.gat,213,104,4	duplicate(Warper)	Warp Express#15	677
+//xmas.gat,146,135,4	duplicate(Warper)	Warp Express#16	677
+//payon.gat,153,237,4	duplicate(Warper)	Warp Express#17	677
+//prontera.gat,154,185,4	duplicate(Warper)	Warp Express#18	677
+//alberta.gat,217,110,4	duplicate(Warper)	Warp Express#19	677
+//lighthalzen.gat,156,100,4	duplicate(Warper)	Warp Express#20	677
+//moscovia.gat,221,201,4	duplicate(Warper)	Warp Express#21	677
+//rachel.gat,131,144,4	duplicate(Warper)	Warp Express#22	677
+//yuno.gat,154,187,4	duplicate(Warper)	Warp Express#23	677
+//veins.gat,202,125,4	duplicate(Warper)	Warp Express#24	677
+//thor_camp.gat,199,211,4	duplicate(Warper)	Warp Express#25	677
+//umbala.gat,139,166,4	duplicate(Warper)	Warp Express#26	677
+
+like_game,132,116,4	duplicate(Warper)	Warp Express#funtown5	478		//warp
+like_game,131,158,4	duplicate(Warper)	Warp Express#funtown7	478		//warp
+funtown,253,246,4	duplicate(Warper)	Warp Express#funtown9	478		//warp
+like_game,99,136,4	duplicate(Warper)	Warp Express#funtown4	478		//warp
+eternal,160,94,4	duplicate(Warper)	Warp Express#funtown6	478		//warp
+eternal,103,156,4	duplicate(Warper)	Warp Express#funtown8	478		//warp
+like_game,165,136,4	duplicate(Warper)	Warp Express#funtown63	478		//warp

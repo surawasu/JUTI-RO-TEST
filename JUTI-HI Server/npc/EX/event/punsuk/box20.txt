@@ -1,0 +1,22 @@
+-	script	punsuk20	-1,{
+OnStart:
+disable_items;
+if(#CASHPOINTS < 100){
+mes "[PunsukPunjai Box 20 บาท]";
+mes "ต้องใช้ 100 Cash ในการเปิด";
+end;
+}
+#CASHPOINTS -= 100;
+delitem 161105,1;
+.@randpunsuk20 = rand(1,1000);
+if(.@randpunsuk20 == 0 && $punsuk20_2 < 100){
+getitem 161108,1;
+$punsuk20_2 += 1;
+announce "[PunSuk PunJai] ผู้เล่น"+strcharinfo(0)+" ได้เปิด[ PunsukPunjai Box 20 บาท] ได้รับ PunsukPunjai 20 บาท ["+$punsuk20_2+"/100]",0,0xFF1493;
+}else{
+.@randzeny = rand(20,50);
+#CASHPOINTS += .@randzeny;
+dispbottom "เสียใจด้วยท่านได้รับ เงินปลอบใจ "+.@randzeny+" Cash";
+}
+end;
+}

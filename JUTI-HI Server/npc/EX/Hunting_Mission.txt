@@ -1,0 +1,82 @@
+funtown,235,177,4	script	Hunting Event#Event	686,{
+
+disable_items;
+query_sql "SELECT `punsuk_point` FROM `char` WHERE `char_id`='"+getcharid(0)+"'",.@cpoint;
+mes	"[Hunting Event]";
+mes "คุณ ^FF0000[ "+ strcharinfo(0) +" ]^000000";
+mes "คะแนนปัจจุบันของคุณคือ "+callfunc("F_InsertComma",(.@cpoint))+" คะแนน";
+mes "เลือกรายการด้านล่าง";
+/*
+menu	"• ส่ง Hunting Card",SENDMENU,
+		"• จัดอันดับผู้้เล่น",RANK,
+		"• ยกเลิก",ex;	
+*/		
+menu	"• จัดอันดับผู้้เล่น",RANK,
+		"• ยกเลิก",ex;	
+		
+		
+SENDMENU:
+next;
+mes	"[Hunting Event]";
+menu	"• ส่ง 1 ครั้ง",SEND1,
+		"• ส่งทั้งหมด "+callfunc("F_InsertComma",(countitem(60022)))+" ครั้ง",SEND2,
+		"• ยกเลิก",ex;	
+		
+SEND1:
+if(countitem(60022)<1){
+next;
+mes	"[Hunting Event]";
+mes "ไม่พบ <ITEM>"+getitemname(60022)+"<INFO>"+60022+"</INFO></ITEM>";
+end;
+}
+delitem 60022,1;
+query_sql "UPDATE `char` SET `punsuk_point`=(`punsuk_point` + 1) WHERE `char_id`='"+getcharid(0)+"' LIMIT 1";
+query_sql "SELECT `punsuk_point` FROM `char` WHERE `char_id`='"+getcharid(0)+"'",.@cpoint;
+
+dispbottom "========================================================";
+dispbottom "System : คะแนนปัจจุบันของท่านคือ :  "+callfunc("F_InsertComma",(.@cpoint))+" คะแนน";
+dispbottom "========================================================";
+announce "[ Hunting Event ] : "+ strcharinfo(0) +" ส่ง Hunting Card 1 ครั้ง มีคะแนนรวม "+callfunc("F_InsertComma",(.@cpoint))+" คะแนน ",bc_all,0xFFFF00;
+end;
+
+SEND2:
+if(countitem(60022)<1){
+next;
+mes	"[Hunting Event]";
+mes "ไม่พบ <ITEM>"+getitemname(60022)+"<INFO>"+60022+"</INFO></ITEM>";
+end;
+}
+.@amount = countitem(60022);
+delitem 60022,.@amount;
+query_sql "UPDATE `char` SET `punsuk_point`=(`punsuk_point` + "+.@amount+") WHERE `char_id`='"+getcharid(0)+"' LIMIT 1";
+query_sql "SELECT `punsuk_point` FROM `char` WHERE `char_id`='"+getcharid(0)+"'",.@cpoint;
+dispbottom "========================================================";
+dispbottom "System : คะแนนปัจจุบันของท่านคือ :  "+callfunc("F_InsertComma",(.@cpoint))+" คะแนน";
+dispbottom "========================================================";
+announce "[ Hunting Event ] : "+ strcharinfo(0) +" ส่ง Hunting Card "+.@amount+" ครั้ง มีคะแนนรวม "+callfunc("F_InsertComma",(.@cpoint))+" คะแนน ",bc_all,0xFFFF00;
+
+end;
+
+
+RANK:
+	close2;
+		query_sql "SELECT `name`,`punsuk_point` FROM `char` ORDER BY `punsuk_point` DESC , `gacha_time_stamp` ASC LIMIT 20 ",.@name$,.@point;
+		dispbottom"====================== HUNTING RANKING ======================";
+		for (set .@i,0; .@i < 20; set .@i,.@i+1) {
+			if (.@point[.@i] == 0) set .@name$[.@i],"None";
+		dispbottom "["+(.@i+1)+"]  "+.@name$[.@i]+" : "+callfunc("F_InsertComma",(.@point[.@i]))+" คะแนน ";
+		}
+		dispbottom "=========================================================";
+		query_sql "SELECT `punsuk_point` FROM `char` WHERE `char_id`='"+getcharid(0)+"'",.@cpoint;
+		dispbottom "คะแนนปัจจุบันของท่านคือ :  "+callfunc("F_InsertComma",(.@cpoint))+" คะแนน";
+		dispbottom "=========================================================";
+		end;
+		
+ex:
+end;
+
+
+OnInit:
+waitingroom "[CBT]Hunting Event",0;
+end;
+}

@@ -1,0 +1,702 @@
+-	script	collection_script	-1,{
+
+function calbonus;
+function ADD;
+function DISPLAY;
+getstoragelist (getcharid(0),INV_ALL,10);
+	
+Onstat2:
+	CallSub ClearDesc;
+	set .@i,0;
+	for( .@i = 0 ; .@i < @inventorylist_count ; .@i++ ){
+		if(@inventorylist_id[.@i] > 0){
+			calbonus( @inventorylist_id[.@i] );
+		}
+		
+	}
+end;
+
+Oninit:	
+	bindatcmd("collection",strnpcinfo(0)+"::OnCommand");
+	end;
+
+ClearDesc:
+	for(set .@i,0 ; .@i < @inventorylist_count+41 ; .@i++){
+		setd "@COL_DESC_"+.@i+"$","";
+		setd "@COL_VAL_"+.@i,0;
+		//dispbottom "clearssssssssssss";
+	}
+	return;
+end;
+
+
+OnBuyItem:
+mes "[^9400D3Col^4B0082lec^0000FFtion ^00FF00St^DEC20Bor^FF7F00ag^FF0000e^000000]";
+mes "ไม่สามารถซื้อไอเท็มได้";
+end;
+
+Onstat:
+	if (@inventorylist_count < 1){
+		mes "[^9400D3Col^4B0082lec^0000FFtion ^00FF00St^DEC20Bor^FF7F00ag^FF0000e^000000]";
+		mes "ท่านยังไม่ได้รับโบนัสใดๆจาก Collection.";
+	end;
+	}
+	//mes "[ สถานะที่ได้ทั้งหมดที่ท่านได้รับ ]";
+	dispbottom "==============[ สถานะที่ได้ทั้งหมดที่ท่านได้รับ ]==============";
+	DISPLAY("Str");		//bStr
+	DISPLAY("Agi");		//bAgi
+	DISPLAY("Vit");		//bVit
+	DISPLAY("Int");		//bInt
+	DISPLAY("Dex");		//bDex
+	DISPLAY("Luk");		//bLuk
+	DISPLAY("HP");	//bMaxHP
+	DISPLAY("SP");	//bMaxSP
+	DISPLAY("HP%");	//bMaxHPRate
+	DISPLAY("SP%");	//bMaxSPRate
+	DISPLAY("Def");		//bDef
+	DISPLAY("Def%");	//bDefRate
+	DISPLAY("Mdef");	//bMdef
+	DISPLAY("Mdef%");	//bMdefRate
+	DISPLAY("Atk");		//bBaseAtk
+	DISPLAY("ATK%");	//bonus2 bAddClass,Class_All
+	DISPLAY("Matk");	//bMatk
+	DISPLAY("MATK%");	//bMatkRate
+	DISPLAY("Aspd");	//bAspd
+	DISPLAY("Aspd%");	//bAspdRate
+	DISPLAY("Flee");	//bFlee
+	DISPLAY("Flee%");	//bFleeRate
+	DISPLAY("Hit");		//bHit
+	DISPLAY("Hit%");	//bHitRate
+	DISPLAY("Perfect Dodge");	//bFlee2
+	DISPLAY("Perfect Hit%");	//bPerfectHitAddRate
+	DISPLAY("Cri");		//bCritical
+	DISPLAY("Cri%");	//bCriticalRate
+	DISPLAY("ความเสียหายคริติคอล%");	//bCritAtkRate
+	DISPLAY("พลังโจมตีระยะใกล้%");	//bShortAtkRate
+	DISPLAY("พลังโจมตีระยะไกล%");	//bLongAtkRate
+	DISPLAY("เพิ่มน้ำหนักสูงสุด");	//bAddMaxWeight
+	DISPLAY("อัตราการฟื้นฟู HP%");	//bHPrecovRate
+	DISPLAY("อัตราการฟื้นฟู SP%");	//bSPrecovRate
+	DISPLAY("ลดการใช้ SP%");	//bUseSPrate
+	DISPLAY("Heal Power%");	//bHealPower2
+	DISPLAY("ลดระยะเวลาร่าย%");	//bCastrate
+	DISPLAY("ลดดีเลย์หลังใช้สกิล%");	//bonus bDelayrate,n;
+	DISPLAY("EXP%");	//bonus2 bExpAddRace
+	DISPLAY("Drop%");	//bonus2 bDropAddRace
+	doevent "collection_script::Onstart3";
+end;
+
+Onstart3:
+	DISPLAY("Pow");		//bPow
+	DISPLAY("Sta");		//bSta
+	DISPLAY("Wis");		//bWis
+	DISPLAY("Spl");		//bSpl
+	DISPLAY("Con");		//bCon
+	DISPLAY("Crt");		//bCrt
+	DISPLAY("Weapon Atk Rate");	//bWeaponAtkRate
+	DISPLAY("Weapon Matk Rate");	//bWeaponMatkRate
+	DISPLAY("PAtk");	//bPAtk
+	DISPLAY("PAtk%");	//bPAtkRate
+	DISPLAY("SMatk");	//bSMatk
+	DISPLAY("SMatk%");	//bSMatkRate
+	DISPLAY("Res");		//bRes
+	DISPLAY("Res%");	//bResRate
+	DISPLAY("MRes");	//bMRes
+	DISPLAY("MRes%");	//bMResRate
+	DISPLAY("HPlus");	//bHPlus
+	DISPLAY("HPlus%");	//bHPlusRate
+	DISPLAY("CRate");	//bCRate
+	DISPLAY("CRate%");	//bCRateRate
+	DISPLAY("ลดความเสียหายจากคริติคอล%");	//bCritDefRate
+	DISPLAY("ลดโอกาสการติดคริติคอลจากศัตรู%");	//bCriticalDef
+	DISPLAY("ป้องกันการโจมตีระยะใกล้%");	//bNearAtkDef
+	DISPLAY("ป้องกันการโจมตีระยะไกล%");	//bLongAtkDef
+	DISPLAY("ป้องกันการโจมตีทางเวทย์มนต์%");	//bMagicAtkDef
+	DISPLAY("ลดความเสียหายที่ได้รับจากมอนเตอร์ขนาดเล็ก%");	//bSubSize
+	DISPLAY("ลดความเสียหายที่ได้รับจากมอนเตอร์ขนาดกลาง%");	//bSubSize
+	DISPLAY("ลดความเสียหายที่ได้รับจากมอนเตอร์ขนาดใหญ่%");	//bSubSize
+	DISPLAY("เพิ่มความเสียหายต่อมอนเตอร์ขนาดเล็ก%");	//bAddSize
+	DISPLAY("เพิ่มความเสียหายต่อมอนเตอร์ขนาดกลาง%");	//bAddSize
+	DISPLAY("เพิ่มความเสียหายต่อมอนเตอร์ขนาดใหญ่%");	//bAddSize
+	doevent "collection_script::Onstart4";
+end;
+
+Onstart4:
+	DISPLAY("เพิ่มความเสียหายทางกายภาพธาตุ Dark%");	//bAddEle,Ele_Dark
+	DISPLAY("เพิ่มความเสียหายทางกายภาพธาตุ Earth%");	//bAddEle,Ele_Earth
+	DISPLAY("เพิ่มความเสียหายทางกายภาพธาตุ Fire%");	//bAddEle,Ele_Fire
+	DISPLAY("เพิ่มความเสียหายทางกายภาพธาตุ Ghost%");	//bAddEle,Ele_Ghost
+	DISPLAY("เพิ่มความเสียหายทางกายภาพธาตุ Holy%");	//bAddEle,Ele_Holy
+	DISPLAY("เพิ่มความเสียหายทางกายภาพธาตุ Neutral%");	//bAddEle,Ele_Neutral
+	DISPLAY("เพิ่มความเสียหายทางกายภาพธาตุ Poison%");	//bAddEle,Ele_Poison
+	DISPLAY("เพิ่มความเสียหายทางกายภาพธาตุ Undead%");	//bAddEle,Ele_Undead
+	DISPLAY("เพิ่มความเสียหายทางกายภาพธาตุ Water%");	//bAddEle,Ele_Water
+	DISPLAY("เพิ่มความเสียหายทางกายภาพธาตุ Wind%");	//bAddEle,Ele_Wind
+	DISPLAY("เพิ่มความเสียหายทางเวทย์มนต์ธาตุ Dark%");	//bMagicAddEle,Ele_Dark
+	DISPLAY("เพิ่มความเสียหายทางเวทย์มนต์ธาตุ Earth%");	//bMagicAddEle,Ele_Earth
+	DISPLAY("เพิ่มความเสียหายทางเวทย์มนต์ธาตุ Fire%");	//bMagicAddEle,Ele_Fire
+	DISPLAY("เพิ่มความเสียหายทางเวทย์มนต์ธาตุ Ghost%");	//bMagicAddEle,Ele_Ghost
+	DISPLAY("เพิ่มความเสียหายทางเวทย์มนต์ธาตุ Holy%");	//bMagicAddEle,Ele_Holy
+	DISPLAY("เพิ่มความเสียหายทางเวทย์มนต์ธาตุ Neutral%");	//bMagicAddEle,Ele_Neutral
+	DISPLAY("เพิ่มความเสียหายทางเวทย์มนต์ธาตุ Poison%");	//bMagicAddEle,Ele_Poison
+	DISPLAY("เพิ่มความเสียหายทางเวทย์มนต์ธาตุ Undead%");	//bMagicAddEle,Ele_Undead
+	DISPLAY("เพิ่มความเสียหายทางเวทย์มนต์ธาตุ Water%");	//bMagicAddEle,Ele_Water
+	DISPLAY("เพิ่มความเสียหายทางเวทย์มนต์ธาตุ Wind%");	//bMagicAddEle,Ele_Wind
+	DISPLAY("ลดความเสียหายที่ได้รับจากธาตุ Dark");	//bSubEle,Ele_Dark
+	DISPLAY("ลดความเสียหายที่ได้รับจากธาตุ Earth");	//bSubEle,Ele_Earth
+	DISPLAY("ลดความเสียหายที่ได้รับจากธาตุ Fire");	//bSubEle,Ele_Fire
+	DISPLAY("ลดความเสียหายที่ได้รับจากธาตุ Ghost");	//bSubEle,Ele_Ghost
+	DISPLAY("ลดความเสียหายที่ได้รับจากธาตุ Holy");	//bSubEle,Ele_Holy
+	DISPLAY("ลดความเสียหายที่ได้รับจากธาตุ Neutral");	//bSubEle,Ele_Neutral
+	DISPLAY("ลดความเสียหายที่ได้รับจากธาตุ Poison");	//bSubEle,Ele_Poison
+	DISPLAY("ลดความเสียหายที่ได้รับจากธาตุ Undead");	//bSubEle,Ele_Undead
+	DISPLAY("ลดความเสียหายที่ได้รับจากธาตุ Water");	//bSubEle,Ele_Water
+	DISPLAY("ลดความเสียหายที่ได้รับจากธาตุ Wind");	//bSubEle,Ele_Wind
+	doevent "collection_script::Onstart5";
+end;
+
+Onstart5:
+	DISPLAY("เพิ่มความเสียหายทางกายภาพต่อประเภท Angel%");	//bAddRace,RC_Angel
+	DISPLAY("เพิ่มความเสียหายทางกายภาพต่อประเภท Brute%");	//bAddRace,RC_Brute
+	DISPLAY("เพิ่มความเสียหายทางกายภาพต่อประเภท DemiHuman%");	//bAddRace,RC_DemiHuman
+	DISPLAY("เพิ่มความเสียหายทางกายภาพต่อประเภท Demon%");	//bAddRace,RC_Demon
+	DISPLAY("เพิ่มความเสียหายทางกายภาพต่อประเภท Dragon%");	//bAddRace,RC_Dragon
+	DISPLAY("เพิ่มความเสียหายทางกายภาพต่อประเภท Fish%");	//bAddRace,RC_Fish
+	DISPLAY("เพิ่มความเสียหายทางกายภาพต่อประเภท Formless%");	//bAddRace,RC_Formless
+	DISPLAY("เพิ่มความเสียหายทางกายภาพต่อประเภท Insect%");	//bAddRace,RC_Insect
+	DISPLAY("เพิ่มความเสียหายทางกายภาพต่อประเภท Plant%");	//bAddRace,RC_Plant
+	DISPLAY("เพิ่มความเสียหายทางกายภาพต่อประเภท Player Human%");	//bAddRace,RC_Player_Human
+	DISPLAY("เพิ่มความเสียหายทางกายภาพต่อประเภท Player Doram%");	//bAddRace,RC_Player_Doram
+	DISPLAY("เพิ่มความเสียหายทางกายภาพต่อประเภท Undead%");	//bAddRace,RC_Undead
+	DISPLAY("เพิ่มความเสียหายทางกายภาพต่อประเภท All%");	//bAddRace,RC_All
+	DISPLAY("เพิ่มความเสียหายทางเวทย์มนต์ต่อประเภท Angel%");	//bMagicAddRace,RC_Angel
+	DISPLAY("เพิ่มความเสียหายทางเวทย์มนต์ต่อประเภท Brute%");	//bMagicAddRace,RC_Brute
+	DISPLAY("เพิ่มความเสียหายทางเวทย์มนต์ต่อประเภท DemiHuman%");	//bMagicAddRace,RC_DemiHuman
+	DISPLAY("เพิ่มความเสียหายทางเวทย์มนต์ต่อประเภท Demon%");	//bMagicAddRace,RC_Demon
+	DISPLAY("เพิ่มความเสียหายทางเวทย์มนต์ต่อประเภท Dragon%");	//bMagicAddRace,RC_Dragon
+	DISPLAY("เพิ่มความเสียหายทางเวทย์มนต์ต่อประเภท Fish%");	//bMagicAddRace,RC_Fish
+	DISPLAY("เพิ่มความเสียหายทางเวทย์มนต์ต่อประเภท Formless%");	//bMagicAddRace,RC_Formless
+	DISPLAY("เพิ่มความเสียหายทางเวทย์มนต์ต่อประเภท Insect%");	//bMagicAddRace,RC_Insect
+	DISPLAY("เพิ่มความเสียหายทางเวทย์มนต์ต่อประเภท Plant%");	//bMagicAddRace,RC_Plant
+	DISPLAY("เพิ่มความเสียหายทางเวทย์มนต์ต่อประเภท Player Human%");	//bMagicAddRace,RC_Player_Human
+	DISPLAY("เพิ่มความเสียหายทางเวทย์มนต์ต่อประเภท Player Doram%");	//bMagicAddRace,RC_Player_Doram
+	DISPLAY("เพิ่มความเสียหายทางเวทย์มนต์ต่อประเภท Undead%");	//bMagicAddRace,RC_Undead
+    doevent "collection_script::Onstart6";
+end;
+
+Onstart6:
+	DISPLAY("ลดความเสียหายที่ได้รับจากประเภท Angel%");	//bSubRace,RC_Angel
+	DISPLAY("ลดความเสียหายที่ได้รับจากประเภท Brute%");	//bSubRace,RC_Brute
+	DISPLAY("ลดความเสียหายที่ได้รับจากประเภท DemiHuman%");	//bSubRace,RC_DemiHuman
+	DISPLAY("ลดความเสียหายที่ได้รับจากประเภท Demon%");	//bSubRace,RC_Demon
+	DISPLAY("ลดความเสียหายที่ได้รับจากประเภท Dragon%");	//bSubRace,RC_Dragon
+	DISPLAY("ลดความเสียหายที่ได้รับจากประเภท Fish%");	//bSubRace,RC_Fish
+	DISPLAY("ลดความเสียหายที่ได้รับจากประเภท Formless%");	//bSubRace,RC_Formless
+	DISPLAY("ลดความเสียหายที่ได้รับจากประเภท Insect%");	//bSubRace,RC_Insect
+	DISPLAY("ลดความเสียหายที่ได้รับจากประเภท Plant%");	//bSubRace,RC_Plant
+	DISPLAY("ลดความเสียหายที่ได้รับจากประเภท Player Human%");	//bSubRace,RC_Player_Human
+	DISPLAY("ลดความเสียหายที่ได้รับจากประเภท Player Doram%");	//bSubRace,RC_Player_Doram
+	DISPLAY("ลดความเสียหายที่ได้รับจากประเภท Undead%");	//bSubRace,RC_Undead
+	DISPLAY("Normal physical Damage%");	//bAddClass,bMagicAddClass, Normal
+	DISPLAY("Normal Magicical Damage%");	//bMagicAddClass, Normal
+	DISPLAY("Boss physical Damage%");	//bAddClass,bMagicAddClass, BOSS
+	DISPLAY("Boss Magicical Damage%");	//bMagicAddClass, BOSS
+	DISPLAY("Normal Reduce%");	//bSubClass,Normal
+	DISPLAY("Boss Reduce%");	//bSubClass,BOSS	
+	DISPLAY("ป้องกันทานาทอส%");		//bonus bDef2Rate,n; bonus bDefRate,n; 
+	DISPLAY("เพิ่มความเร็วในการเคลื่อนที่%");	//bonus bSpeedAddRate,n;
+	DISPLAY("ลดดาเมจที่ได้รับจากการสะท้อนลง%");	//bonus bReduceDamageReturn,n;
+	DISPLAY("เมื่อโจมตีมีโอกาศที่จะฟื้นฟู Hp ของความเสียหาย%");	//bonus2 bHPDrainRate,x,n;
+	DISPLAY("ลดการติดสถานะ Bleeding%");	
+	DISPLAY("ลดการติดสถานะ Blind%");		
+	DISPLAY("ลดการติดสถานะ Confusion%");	
+	DISPLAY("ลดการติดสถานะ Curse%");		
+	DISPLAY("ลดการติดสถานะ Freeze%");	
+	DISPLAY("ลดการติดสถานะ Poison%");	
+	DISPLAY("ลดการติดสถานะ Silence%");	
+	DISPLAY("ลดการติดสถานะ Sleep%");	
+	DISPLAY("ลดการติดสถานะ Stone%");	
+	DISPLAY("ลดการติดสถานะ Stun%");	
+
+end;
+
+OnOpen:
+	callfunc "opencollection";
+end;
+
+function DISPLAY {
+	for(set .@i,0 ; .@i < @inventorylist_count+40 ; .@i++){
+		//dispbottom ""+getd("@COL_DESC_"+.@i+"$");
+		if(getd("@COL_DESC_"+.@i+"$") == getarg(0)){
+			dispbottom " • " + getarg(0)+" : "+getd("@COL_VAL_"+.@i);
+			//mes " • " + getarg(0)+" : "+getd("@COL_VAL_"+.@i);
+			return;
+		}
+	}
+	return;
+}
+
+
+function ADD {
+	//dispbottom "x"+getarg(0);
+	for(set .@i,0 ; .@i < @inventorylist_count+40 ; .@i++){
+		if(getd("@COL_DESC_"+.@i+"$") == getarg(0)){
+			setd "@COL_VAL_"+.@i, getd("@COL_VAL_"+.@i)+getarg(1);
+			return;
+		}else if(getd("@COL_DESC_"+.@i+"$") == ""){
+			setd "@COL_DESC_"+.@i+"$",getarg(0);
+			setd "@COL_VAL_"+.@i,getarg(1);
+			return;
+		}
+	}
+	return;
+}
+
+function calbonus {
+	switch(getarg(0)){
+		case 2944007:
+			bonus bMaxHP,5000;
+			bonus bMaxHPRate,25;
+			ADD("HP%",25);
+			ADD("HP",5000);
+			break;
+		case 3300000:    //Wing 3000
+		case 3300001:    //Wing 3000
+		case 3300002:    //Wing 3000
+		case 3300003:    //Wing 3000
+		case 3300004:    //Wing 3000
+		case 3300005:    //Wing 3000
+		case 3300006:    //Wing 3000
+		case 3300007:    //Wing 3000
+		case 3300129:    //Wing 3000
+		case 3300130:    //Wing 3000
+			bonus bAllStats,1; 
+			bonus bMaxHP,100;
+			bonus bMaxHPRate,1;
+			ADD("Str",1);	
+			ADD("Agi",1);	
+			ADD("Vit",1);	
+			ADD("Int",1);	
+			ADD("Dex",1);	
+			ADD("Luk",1);	
+			ADD("HP",100);
+			ADD("HP%",1);
+			break;
+		case 54000:    //Boss Collection
+		case 54001:    //Boss Collection
+		case 54002:    //Boss Collection
+		case 54003:    //Boss Collection
+		case 54004:    //Boss Collection
+		case 54005:    //Boss Collection
+		case 54006:    //Boss Collection
+		case 54007:    //Boss Collection
+		case 54008:    //Boss Collection
+		case 54009:    //Boss Collection
+		case 54010:    //Boss Collection
+		case 54011:    //Boss Collection
+		case 3300008:    //Wing 1000
+		case 3300046:    //Wing 1000
+		case 3300086:    //Wing 1000
+		case 3300101:    //Wing 1000
+		case 3300009:    //Wing 1000
+		case 3300026:    //Wing 1000
+		case 3300025:    //Wing 1000
+		case 3300048:    //Wing 1000
+		case 3300092:    //Wing 1000
+		case 3300100:    //Wing 1000
+			bonus bMaxHP,100;
+			bonus bMaxHPRate,1;
+			ADD("HP",100);
+			ADD("HP%",1);
+			break;
+		case 60028:    //event 1 collection
+			bonus2 bDropAddRace,RC_All,10;
+			bonus2 bAddClass,Class_All,1;
+			bonus2 bMagicAddClass,Class_All,1;		
+			ADD("Drop%",10);	
+			ADD("ATK%",1);	
+			ADD("MATK%",1);	
+			break;
+		case 64000:    //event cbt collection
+		case 64001:    //event cbt collection
+			bonus2 bDropAddRace,RC_All,5;
+			bonus2 bAddClass,Class_Boss,5;
+			bonus2 bMagicAddClass,Class_Boss,5;		
+			ADD("Drop%",5);	
+			ADD("Boss physical Damage%",5);		
+			ADD("Boss Magicical Damage%",5);	
+			break;
+		case 53000:
+			bonus bMaxHP,200;
+			bonus2 bResEff,Eff_Blind,1200;
+			bonus2 bResEff,Eff_Bleeding,1200;
+			ADD("HP",200);
+			ADD("ลดการติดสถานะ Blind%",12);
+			ADD("ลดการติดสถานะ Bleeding%",12);
+			break;
+		case 53001:
+			bonus bMaxHP,200;
+			bonus2 bResEff,Eff_Sleep,1200;
+			ADD("HP",200);
+			ADD("ลดการติดสถานะ Sleep%",12);
+			break;
+		case 53002:
+			bonus bMaxHP,200;
+			bonus2 bResEff,Eff_Confusion,1200;
+			ADD("HP",200);
+			ADD("ลดการติดสถานะ Confusion%",12);
+			break;
+		case 53003:
+			bonus bMaxHP,200;
+			bonus2 bResEff,Eff_Silence,1200;
+			ADD("HP",200);
+			ADD("ลดการติดสถานะ Silence%",12);
+			break;
+		case 53004:
+			bonus bMaxHP,200;
+			bonus2 bResEff,Eff_Stone,1200;
+			ADD("HP",200);
+			ADD("ลดการติดสถานะ Stone%",12);
+			break;
+		case 53005:
+			bonus bMaxHP,200;
+			bonus2 bResEff,Eff_Stun,1200;
+			ADD("HP",200);
+			ADD("ลดการติดสถานะ Stun%",12);
+			break;
+		case 53006:
+			bonus bMaxHP,200;
+			bonus2 bResEff,Eff_Curse,1200;
+			ADD("HP",200);
+			ADD("ลดการติดสถานะ Curse%",12);
+			break;
+		case 53007:
+			bonus bMaxHP,200;
+			bonus2 bResEff,Eff_Freeze,1200;
+			ADD("HP",200);
+			ADD("ลดการติดสถานะ Freeze%",12);
+			break;
+		case 53008:
+			bonus2 bSubEle,Ele_Earth,3;
+			ADD("ลดความเสียหายที่ได้รับจากธาตุ Earth",3);
+			break;
+		case 53009:
+			bonus2 bSubEle,Ele_Water,3;
+			ADD("ลดความเสียหายที่ได้รับจากธาตุ Water",3);
+			break;
+		case 53010:
+			bonus2 bSubEle,Ele_Wind,3;
+			ADD("ลดความเสียหายที่ได้รับจากธาตุ Wind",3);
+			break;
+		case 53011:
+			bonus2 bSubEle,Ele_Fire,3;
+			ADD("ลดความเสียหายที่ได้รับจากธาตุ Fire",3);
+			break;
+		case 53012:
+			bonus2 bSubEle,Ele_Holy,3;
+			ADD("ลดความเสียหายที่ได้รับจากธาตุ Holy",3);
+			break;
+		case 53013:
+			bonus2 bSubEle,Ele_Ghost,3;
+			ADD("ลดความเสียหายที่ได้รับจากธาตุ Ghost",3);
+			break;
+		case 53014:
+			bonus2 bSubEle,Ele_Dark,3;
+			ADD("ลดความเสียหายที่ได้รับจากธาตุ Dark",3);
+			break;
+		case 53015:
+			bonus2 bSubEle,Ele_Neutral,3;
+			ADD("ลดความเสียหายที่ได้รับจากธาตุ Neutral",3);
+			break;
+		case 53016:
+			bonus2 bSubEle,Ele_Poison,3;
+			ADD("ลดความเสียหายที่ได้รับจากธาตุ Poison",3);
+			break;
+		case 53017:
+			bonus2 bSubEle,Ele_Undead,3;
+			ADD("ลดความเสียหายที่ได้รับจากธาตุ Undead",3);
+			break;
+		case 53018:
+			bonus bLongAtkRate,3;
+			ADD("พลังโจมตีระยะไกล%",3);
+			break;
+		case 53019:
+			bonus bShortAtkRate,3;
+			ADD("พลังโจมตีระยะใกล้%",3);
+			break;
+		case 53020:
+			bonus bCritAtkRate,5;
+			ADD("ความเสียหายคริติคอล%",5);
+			break;
+		case 53021:
+			bonus bBaseAtk,20;
+			bonus2 bAddRace,RC_DemiHuman,2;
+			bonus2 bAddRace,RC_Player_Human,2;
+			ADD("Atk",20);
+			ADD("เพิ่มความเสียหายทางกายภาพต่อประเภท DemiHuman",2);
+			ADD("เพิ่มความเสียหายทางกายภาพต่อประเภท Player Human",2);
+			break;
+		case 53022:
+			bonus bMatk,20;
+			bonus2 bMagicAddRace,RC_DemiHuman,2;
+			bonus2 bMagicAddRace,RC_Player_Human,2;
+			ADD("Matk",20);
+			ADD("เพิ่มความเสียหายทางเวทย์มนต์ต่อประเภท DemiHuman",2);
+			ADD("เพิ่มความเสียหายทางเวทย์มนต์ต่อประเภท Player Human",2);
+			break;
+		case 53023:
+		case 53024:
+			bonus bBaseAtk,10;
+			bonus bMatk,10;
+			bonus2 bAddClass,Class_Boss,5;
+			ADD("Atk",10);			
+			ADD("Matk",10);		
+			ADD("Boss physical Damage%",5);			
+			break;
+		case 53025:
+		case 53026:
+			bonus bBaseAtk,10;
+			bonus bMatk,10;
+			bonus2 bMagicAddClass,Class_Boss,5;
+			ADD("Atk",10);			
+			ADD("Matk",10);		
+			ADD("Boss Magicical Damage%",5);		
+			break;
+		case 53027:
+		case 53028:
+		case 53029:
+		case 53030:
+		case 53031:
+			bonus bStr,3;
+			bonus2 bAddClass,Class_All,1;
+			ADD("Str",3);			
+			ADD("ATK%",1);				
+			break;
+		case 53032:
+		case 53033:
+		case 53034:
+		case 53035:
+		case 53036:
+			bonus bInt,3;
+			bonus2 bMagicAddClass,Class_All,1;
+			ADD("Int",3);			
+			ADD("MATK%",1);				
+			break;
+		case 53037:
+		case 53038:
+		case 53039:
+		case 53040:
+		case 53041:
+			bonus bDex,3;
+			bonus bLongAtkRate,1;
+			ADD("Dex",3);			
+			ADD("พลังโจมตีระยะไกล%",1);		
+			break;
+		case 53042:
+			bonus bSpeedAddRate,5;	
+			ADD("เพิ่มความเร็วในการเคลื่อนที่%",5);			
+			break;
+		case 53043:
+			bonus bReduceDamageReturn,5;
+			ADD("ลดดาเมจที่ได้รับจากการสะท้อนลง%",5);			
+			break;
+		case 53044:
+			bonus bBaseAtk,10;
+			bonus bMatk,10;
+			bonus bUseSPrate,-5;
+			ADD("Atk",10);			
+			ADD("Matk",10);	
+			ADD("ลดการใช้ SP%",5);			
+			break;
+		case 53045:
+			bonus bDelayrate,-5;
+			ADD("ลดดีเลย์หลังใช้สกิล%",5);	
+			break;
+		case 53046:
+			bonus bLongAtkDef,2;
+			bonus bAllStats,1; 
+			ADD("Str",1);	
+			ADD("Agi",1);	
+			ADD("Vit",1);	
+			ADD("Int",1);	
+			ADD("Dex",1);	
+			ADD("Luk",1);	
+			ADD("ป้องกันการโจมตีระยะไกล%",2);	
+			break;
+		case 53047:
+			bonus bNearAtkDef,2;
+			bonus bAllStats,1; 
+			ADD("Str",1);	
+			ADD("Agi",1);	
+			ADD("Vit",1);	
+			ADD("Int",1);	
+			ADD("Dex",1);	
+			ADD("Luk",1);	
+			ADD("ป้องกันการโจมตีระยะใกล้%",2);	
+			break;
+		case 53048:
+			bonus bMagicAtkDef,2;
+			bonus bAllStats,1; 
+			ADD("Str",1);	
+			ADD("Agi",1);	
+			ADD("Vit",1);	
+			ADD("Int",1);	
+			ADD("Dex",1);	
+			ADD("Luk",1);	
+			ADD("ป้องกันการโจมตีทางเวทย์มนต์%",2);	
+			break;
+		case 53049:
+			bonus bDefRate,-5;  
+			bonus bDef2Rate,-5; 
+			bonus bAllStats,1; 
+			ADD("Str",1);	
+			ADD("Agi",1);	
+			ADD("Vit",1);	
+			ADD("Int",1);	
+			ADD("Dex",1);	
+			ADD("Luk",1);	
+			ADD("ป้องกันทานาทอส%",5);	
+			break;
+		case 53050:
+			bonus bMaxHPrate,5; 
+			bonus bAllStats,1; 
+			ADD("Str",1);	
+			ADD("Agi",1);	
+			ADD("Vit",1);	
+			ADD("Int",1);	
+			ADD("Dex",1);	
+			ADD("Luk",1);	
+			ADD("HP%",5);	
+			break;
+		case 53051:
+			bonus bMaxSPrate,5; 
+			bonus bAllStats,1; 
+			ADD("Str",1);	
+			ADD("Agi",1);	
+			ADD("Vit",1);	
+			ADD("Int",1);	
+			ADD("Dex",1);	
+			ADD("Luk",1);	
+			ADD("SP%",5);	
+			break;
+		case 58001:
+		case 58002:
+		case 58003:
+		case 58004:
+		case 58005:
+		case 58006:
+		case 58007:
+		case 58008:
+		case 58009:
+		case 58010:
+		case 58011:
+		case 58012:
+		case 58013:
+		case 58015:
+		case 58016:
+		case 58017:
+		case 58018:
+		case 58019:
+		case 58020:
+		case 58101:
+		case 58102:
+		case 58103:
+		case 58104:
+		case 58105:
+		case 58106:
+		case 58107:
+		case 58108:
+		case 58109:
+		case 58110:
+		case 58111:
+		case 58112:
+		case 58113:
+		case 58115:
+		case 58116:
+		case 58117:
+		case 58118:
+		case 58119:
+		case 58120:
+		case 58201:
+		case 58202:
+		case 58203:
+		case 58204:
+		case 58205:
+		case 58206:
+		case 58207:
+		case 58208:
+		case 58209:
+		case 58210:
+		case 58211:
+		case 58212:
+		case 58213:
+		case 58215:
+		case 58216:
+		case 58217:
+		case 58218:
+		case 58219:
+		case 58220:
+		case 58301:
+		case 58302:
+		case 58303:
+		case 58304:
+		case 58305:
+		case 58306:
+		case 58307:
+		case 58308:
+		case 58309:
+		case 58310:
+		case 58311:
+		case 58312:
+		case 58313:
+		case 58315:
+		case 58316:
+		case 58317:
+		case 58318:
+		case 58319:
+		case 58320:
+			bonus bMaxHP,100;
+			ADD("HP",100);
+			break;
+		case 64002:
+			bonus bBaseAtk,30;
+			bonus2 bAddRace,RC_DemiHuman,3;
+			bonus2 bAddRace,RC_Player_Human,3;
+			bonus bMatk,30;
+			bonus2 bMagicAddRace,RC_DemiHuman,3;
+			bonus2 bMagicAddRace,RC_Player_Human,3;
+			bonus2 bDropAddRace,RC_All,5;	
+			ADD("Atk",30);
+			ADD("เพิ่มความเสียหายทางกายภาพต่อประเภท DemiHuman",3);
+			ADD("เพิ่มความเสียหายทางกายภาพต่อประเภท Player Human",3);
+			ADD("Matk",30);
+			ADD("เพิ่มความเสียหายทางเวทย์มนต์ต่อประเภท DemiHuman",3);
+			ADD("เพิ่มความเสียหายทางเวทย์มนต์ต่อประเภท Player Human",3);
+			ADD("Drop%",5);
+			break;
+		case 64003:
+			bonus bMaxHP,300;
+			bonus bMaxHPRate,3;
+			bonus bDefRate,-2;  
+			bonus bDef2Rate,-2; 
+			bonus2 bDropAddRace,RC_All,5;	
+			ADD("HP",300);
+			ADD("HP%",3);
+			ADD("ป้องกันทานาทอส%",2);	
+			ADD("Drop%",5);
+			break;
+		default:
+			break;
+	}
+	return;
+}
+
+
+
+end;
+
+}
+
+//-	shop	collection_shop	-1,3300000:1000,3300001:1000,3300002:1000,3300003:1000,3300004:1000,3300005:1000,3300006:1000,3300007:1000,3000000:1000,3000001:1000,3000002:1000,3000003:1000,3000004:1000,3000005:1000,3000006:1000,3000007:1000,20514:1000,20516:1000,20526:1000,20528:1000,20546:1000,20570:1000,20578:1000,20588:1000,20594:1000,20597:1000,20598:1000,20599:1000,20602:1000,20603:1000,20605:1000,20607:1000,20727:1000,20988:1000,3300089:1000,3300094:1000,3300097:1000,3300084:1000,3300090:1000,3300091:1000,3000123:1000,3000151:1000,3000201:1000,3000203:1000,3000145:1000,3000144:1000,3100033:1000,3100044:1000,3100070:1000,3100077:1000,3100082:1000,3100034:1000,3200104:1000,3200120:1000,3200145:1000,3200115:1000,3200159:1000,3200087:1000,2984720:1000,2984721:1000,2984722:1000,2984723:1000,2984724:1000,2984725:1000,2984726:1000,2984727:1000,2984728:1000,2984729:1000,2984730:1000,2984731:1000,2984733:1000,2984734:1000,2984735:1000,2984736:1000,2984737:1000,2984738:1000,2984739:1000,2984740:1000,2984741:1000,2984742:1000,2984743:1000,2984744:1000,2984745:1000,2984746:1000,2984747:1000,2984748:1000,2984749:1000,2984750:1000,2984751:1000,2984752:1000,2984753:1000,2984754:1000,2984755:1000,2984756:1000,2984757:1000,2984758:1000,2984759:1000,2984760:1000,2984761:1000,2984762:1000,2984763:1000,2984764:1000,2984765:1000,2984766:1000,2984767:1000,2984768:1000,2984769:1000,2984770:1000,2984771:1000,2984772:1000,3130005:1000,3130009:1000,3130010:1000,3130011:1000,3000143:1000,3300111:1000,3130054:1000,3130055:1000,3130056:1000
+
+//morocc,151,89,5	shop	collection_shop_1	667,19836:1000,20325:1000,20430:1000,20448:1000,20514:1000,20516:1000,20519:1000,20526:1000,20528:1000,20541:1000,20543:1000,20570:1000,20546:1000,20582:1000,20588:1000,20597:1000,20594:1000,20599:1000,20602:1000,20603:1000,20604:1000,20605:1000,20607:1000,20727:1000,20988:1000,31721:1000,31816:1000,31885:1000,18740:1000,19158:1000,19291:1000,19776:1000,19781:1000,19834:1000,20248:1000,20249:1000,20250:1000,31100:1000,31101:1000,31102:1000,31103:1000,31104:1000,31299:1000,31300:1000,31317:1000,31452:1000,31533:1000,31548:1000,31551:1000,31614:1000,31615:1000,31621:1000,31623:1000,31693:1000,31940:1000,31951:1000,3300000:1000,3300001:1000,3300002:1000,3300003:1000,3300004:1000,3300005:1000,3300006:1000,3300007:1000,3000008:1000,3000009:1000,3000010:1000,3000011:1000,3000012:1000,3000013:1000,3000014:1000,3000000:1000,3000001:1000,3000002:1000,3000003:1000,3000004:1000,3000005:1000,3000006:1000,3000007:1000,3100000:1000,3100001:1000,3100002:1000,3100003:1000,3100004:1000,3100005:1000,3100006:1000,3100007:1000,3200000:1000,3200001:1000,3200002:1000,3200003:1000,3200004:1000,3200005:1000,3200006:1000,3300093:1000,20590:1000,3000204:1000,3000124:1000,31589:1000,31849:1000,3100035:1000,3100069:1000,31120:1000,31538:1000,3200105:1000,3200144:1000,31566:1000,31616:1000,31867:1000,31868:1000,31869:1000,31870:1000,31871:1000,31872:1000,31873:1000,31770:1000,31771:1000,31772:1000,31773:1000,31774:1000,31775:1000,31776:1000,31777:1000,31778:1000,31779:1000,31754:1000,31755:1000,31756:1000,31757:1000,31758:1000,31759:1000,31760:1000,31761:1000

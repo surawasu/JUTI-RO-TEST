@@ -1,0 +1,342 @@
+//===== rAthena Script =======================================
+//= Hot Week
+//===== By: ==================================================
+//= DurexzOfficial
+//= Striker
+//===== Current Version: =====================================
+//= Ver.1.0 - กำหนดไอเท็ม ราคา จำนวนที่ต้องการจำกัดการซื้อ
+//= Ver.1.1 - เพิ่มเมนูเลือก Zeny หรือ Cashpoints
+//= Ver.1.2 - เพิ่มคำสั่งในการเปิด - ปิด @hottimezz
+//= Ver.1.3 - เพิ่มคำสั่งในการรีเซ็ตค่า @clearhottimezz
+//= Ver.1.4 - เพิ่มคลิกโชว์รูปไอเท็ม
+//===== Compatible With: =====================================
+//= rAthena Project
+//============================================================
+
+funtown,178,181,6	script	Hot Sale	900,{
+
+	disable_items;
+	
+
+	if (checkweight(1201,1) == 0) {
+		mes .npc$;
+		mes "^FF0000ช่องเก็บของไม่เพียงพอ^000000";
+		end;
+	}
+	if (MaxWeight - Weight < 5000) {
+		mes .npc$;
+		mes "^FF0000น้ำหนักของท่านมากเกินไป^000000";
+		end;
+	}	
+
+	if(getgmlevel()==99){
+	mes .npc$;
+	mes "โปรดเลือกเมนู";
+	menu 
+	"^FF0000•^000000 ร้านค้า Cash",shopzeny,//
+	"^FF0000•^000000 ดูอันดับการเปิด Hot-Sale Box",rank,//
+	"^FF0000•^000000 Reset ร้าน",OnhottimezzClear,//
+	"^FF0000•^000000 เปิด ร้าน",ON,//
+	"^FF0000•^000000 ปิด ร้าน",OFF,//
+	"^FF0000•^000000 ยกเลิก",ex;//
+	}
+	if(getgmlevel()<99){
+	mes .npc$;
+	mes "โปรดเลือกเมนู";
+	menu 
+//	"^FF0000•^000000 แลก Cash",cashex,//
+	"^FF0000•^000000 ร้านค้า Cash",shopzeny,//
+	"^FF0000•^000000 ดูอันดับการเปิด Hot-Sale Box",rank,//
+	"^FF0000•^000000 ยกเลิก",ex;//
+	}
+	end;
+	
+ON:
+$hotsale = 1;
+end;
+
+OFF:
+$hotsale = 0;
+end;
+
+rank:
+		clear;
+		query_sql "SELECT `name`,`point_gacha` FROM `char` ORDER BY `point_gacha` DESC , `gacha_time_stamp` ASC LIMIT 10 ",.@name$,.@point;
+		mes"===================== HOTSALE-BOX RANKING =====================";
+		for (set .@i,0; .@i < 10; set .@i,.@i+1) {
+			if (.@point[.@i] == 0) set .@name$[.@i],"None";
+			mes "["+(.@i+1)+"]  "+.@name$[.@i]+" : คะแนน " +.@point[.@i]+"";
+		}
+		mes "-----------------------------------------------------";
+		dispbottom"======================= HOTSALE-BOX RANKING =======================";
+		for (set .@i,0; .@i < 10; set .@i,.@i+1) {
+			if (.@point[.@i] == 0) set .@name$[.@i],"None";
+		dispbottom "["+(.@i+1)+"]  "+.@name$[.@i]+" : คะแนน " +.@point[.@i]+"";
+		}
+		dispbottom "========================================================";
+		
+		
+		query_sql "SELECT `point_gacha` FROM `char` WHERE `char_id`='"+getcharid(0)+"'",.@cpoint;
+		mes "คุณมีคะแนน : "+.@cpoint;
+		mes "==============================================";		
+		dispbottom "คุณมีคะแนน : "+.@cpoint;
+		dispbottom "========================================================";
+		close;
+		
+cashset:
+	next;
+	mes .npc$;
+	mes "กรอกจำนวนที่ต้องการแลกเปลี่ยน";
+	input .@num;
+	next;
+	if( .@num < 1){
+	end;
+	}
+	$cashrate = .@num;
+	end;
+cashex:
+	next;
+	mes .npc$;
+	mes "1CC = "+callfunc("F_InsertComma",$cashrate)+" Zeny";
+	mes "----------------------------------";
+	mes "คุณมี : "+callfunc("F_InsertComma",Zeny)+" zeny";	
+	mes "----------------------------------";
+	mes "กรอกจำนวนที่ต้องการแลกเปลี่ยน";
+	input .@num;
+	next;
+	if( .@num<1){
+	end;
+	}
+	mes .npc$;
+	mes "แลกเปลี่ยน "+ callfunc("F_InsertComma",.@num) +" Cash Point ?";
+	mes "----------------------------------";
+	mes "ต้องการ "+ callfunc("F_InsertComma",.@num*$cashrate) +" Zeny ?";
+	mes "----------------------------------";
+	mes "ยืนยันที่จะแลกเปลี่ยนหรือไม่ ? ";
+	switch(select(
+	""+.Sysbol$+" ยืนยัน",
+	""+.Sysbol$+" ยกเลิก"
+	)) {
+	next;
+	case 1:
+	if(Zeny<.@num*$cashrate){
+	mes .npc$;
+	mes "ท่านมี Zeny ไม่เพียงพอ";
+	end;
+	}
+	mes .npc$;
+	mes "เรียบร้อย";
+	set Zeny, Zeny - .@num*$cashrate;
+	#CASHPOINTS += .@num;
+	$cashex += .@num;
+	dispbottom "-------------------------------------------------------------------";
+	dispbottom "[ ระบบ ] : ใช้ "+ callfunc("F_InsertComma",.@num*$cashrate) +" Zeny";
+	dispbottom "[ ระบบ ] : ได้รับ "+ callfunc("F_InsertComma",.@num) +" Cash Points";				
+	dispbottom "[ ระบบ ] : Cash ทั้งหมด "+ callfunc("F_InsertComma",#CASHPOINTS) +" Cash Points";				
+	dispbottom "-------------------------------------------------------------------";
+	end;
+	case 2:
+	mes .npc$;
+	mes "แล้วพบกันใหม่"; 
+	close;
+	}
+	
+end;
+	
+	
+shopzeny:
+	
+	clear;
+	mes .npc$;
+	mes "สามารถซื้อได้มากที่สุดครั้งละ 1 ชิ้นเท่านั้น";
+	mes "-----------------------------------------------------";
+	mes "ยกเว้น <ITEM>"+getitemname(6635)+"<INFO>"+6635+"</INFO></ITEM> สามารถซื้อได้มากที่สุดครั้งละ 100 ชิ้น";
+	mes "-----------------------------------------------------";
+	next;
+	mes .npc$;
+	for(.@i = 0; .@i < getarraysize(.item); .@i = .@i+2) {
+	mes "[^0000FF<ITEM>"+getitemname(.item[.@i])+"<INFO>"+.item[.@i]+"</INFO></ITEM> ^000000] เหลือ [^0000FF"+(.limit[.@i/2] - getd("$hot_time_zz_"+.item[.@i]))+"^000000/^FF0000"+.limit[.@i/2]+"^000000]";
+	}
+	
+	callshop "hottimezz",1;
+	npcshopattach "hottimezz";
+	end;
+	
+OnBuyItem:
+
+	if($hotsale<1){
+		mes .npc$;
+		mes "^FF0000ยังไม่เปิดให้บริการ^000000";
+		end;
+	}	
+		
+	if( getarraysize(@bought_nameid) > 1) {
+		mes .npc$;
+		mes "^FF0000ปล. สามารถซื้อได้ครั้งละ 1 รายการเท่านั้น^000000";
+		end;
+	}
+	for(.@i = 0; .@i < getarraysize(@bought_nameid); .@i = .@i+1){
+		
+		
+	if(@bought_nameid != 6635){
+		if( @bought_quantity[.@i] > 1) {
+			mes .npc$;
+			mes "^FF0000ปล. สามารถซื้อได้มากที่สุดครั้งละ 1 ชิ้นเท่านั้น^000000";
+			end;
+		}
+	}	
+	if(@bought_nameid == 6635){
+		if( @bought_quantity[.@i] > 100) {
+			mes .npc$;
+			mes "^FF0000ปล. สามารถซื้อได้มากที่สุดครั้งละ 100 ชิ้นเท่านั้น^000000";
+			end;
+		}
+	}	
+	}	
+	setarray .@q[0],@bought_nameid[0],@bought_quantity[0];
+	for(.@i = 0; .@i < getarraysize(@bought_nameid); .@i = .@i+1)
+		for(.@j = 0; .@j < getarraysize(.item); .@j = .@j+2)
+			if(@bought_nameid[.@i] == .item[.@j])
+				.@cost += .item[.@j+1]*@bought_quantity[.@i];
+	if(.use$[.use] == "Zeny"){
+		if(zeny < .@cost) {
+			mes .npc$;
+			mes "ท่านมี^FF0000 "+.use$[.use]+"^000000 ไม่เพียงพอ";
+			end;
+		}
+	}else{
+		if( #CASHPOINTS < .@cost) {
+			mes .npc$;
+			mes "ท่านมี^FF0000 "+.use$[.use]+"^000000 ไม่เพียงพอ";
+			end;
+		}
+	}
+	
+	.@pos = inarray(.item[0], .@q[0]);
+	if( .@pos >= 0 ) {
+		if( getd("$hot_time_zz_"+.@q[0]) < .limit[.@pos/2]){
+			for(set .@i,0; .@i<getarraysize(@bought_nameid); set .@i,.@i+1) {
+				getitem @bought_nameid[.@i], @bought_quantity[.@i];
+				setd(("$hot_time_zz_"+.@q[0]),getd("$hot_time_zz_"+.@q[0]) + @bought_quantity[.@i]);
+				announce "ผู้เล่น ["+strcharinfo(0)+"] ได้ซื้อ ["+getitemname(@bought_nameid[.@i])+"] จำนวน "+@bought_quantity[.@i]+" ชิ้น จากHot Sale.. !!!",bc_all;
+				for(.@i = 0; .@i < getarraysize(@bought_nameid); .@i = .@i+2) {
+				announce "ไอเท็ม ["+getitemname(@bought_nameid[.@i])+"] เหลือ ["+(.limit[.@pos/2] - getd("$hot_time_zz_"+.@q[0]))+"/"+.limit[.@pos/2]+"]",bc_all;
+				}
+			}
+			if(.use$[.use] == "Zeny"){
+				zeny -= .@cost;
+				end;
+			}else{
+				#CASHPOINTS -= .@cost;
+				end;
+			}
+		}else{
+			mes .npc$;
+			mes "ไอเท็มนี้ถูกซื้อจนครบ ^FF0000"+.limit[.@pos/2]+"^000000 ชิ้นแล้ว";
+		}
+	}
+	end;
+
+	
+OnClear:
+	//announce "[ Hot Sale ]  :  เร่เข้ามาจ้า  เร่เข้ามา  มีของแปลกๆ มาขายจ้า.. มีขายไม่เยอะนะ",bc_all,0xFFFF00;
+	for(.@i = 0; .@i < getarraysize(.item); .@i = .@i+2)
+		setd(("$hot_time_zz_"+.item[.@i]),0);
+end;
+	
+ex:
+end;	
+
+/*	
+OnClock0000:
+OnClock0100:
+OnClock0200:
+OnClock0300:
+OnClock0400:
+OnClock0500:
+OnClock0600:
+OnClock0700:
+OnClock0800:
+OnClock0900:
+OnClock1000:
+OnClock1100:
+OnClock1200:
+OnClock1300:
+OnClock1400:
+OnClock1500:
+OnClock1600:
+OnClock1700:
+OnClock1800:
+OnClock1900:
+OnClock2000:
+OnClock2100:
+OnClock2200:
+OnClock2300:
+if($cashex>999){$cashrate += (($cashrate*5)/100);}
+if($cashex<1000){$cashrate += (($cashrate*($cashex/200))/100);}
+if($cashex==0){$cashrate -= (($cashrate*10)/100);}
+if($cashrate<6300){$cashrate = 6300;}
+$cashex = 0;
+end;	
+*/	
+
+OnhottimezzClear:
+	donpcevent "Hot Sale::OnClear";
+	message strcharinfo(0),"ท่านรีเซ็ตค่าของเรียบร้อยแล้ว";
+	end;
+
+Oninit:
+	//hideonnpc strnpcinfo(0);
+	.npc$ = "[ Hot Sale ]";
+	.use = 1;	// 0: ใช้ Zeny 1: ใช้ Cashpoints
+	setarray .use$[0],"Zeny","Cashpoints";
+	setarray .item[0],
+	6635,75,
+	60054,5000,
+	60017,500000,
+	60018,100000,
+	64010,600000,	
+	60051,700000; 	
+	
+	// <ITEM_ID>,<COST> (รหัสไอเท็ม,ราคา)
+	
+ 	setarray .limit[0],30000,5000,10,20,10,10; // Limit ITEM (จำกัดจำนวนไอเท็ม)
+	npcshopdelitem "hottimezz",501;
+	//$cashrate = 6300;
+	//$cashex = 0;
+	for(.@i = 0;.@i < getarraysize(.item);.@i = .@i+2)
+		npcshopadditem "hottimezz",.item[.@i],.item[.@i+1];
+
+waitingroom " # Hot Sale #",0;
+end;
+}
+
+-	shop	hottimezz	-1,no,501:-1
+
+-	script	gmclearshottimezzeny	-1,{
+
+Oninit:
+	bindatcmd "hottimezz", strnpcinfo(0)+"::Onhottimezz",99,99;
+	bindatcmd "clearhottimezz", strnpcinfo(0)+"::OnhottimezzClear",99,99;
+	end;
+
+Onhottimezz:
+	mes "ท่านต้องการเปิด";
+	mes "กิจกรรม Hot Sale ใช่มั้ย??";
+	if(select("เปิด:ปิด")==1){
+		announce "[ Hot Sale ] : ขณะนี้กิจกรรมจับจ่ายใช้สอยประจำวัน เปิดให้บริการแล้วจ้า",bc_all,0xFFFF00;
+		//hideoffnpc "Hot Sale";
+		$hotsale = 1;
+		end;
+	}else{
+		announce "[ Hot Sale ] : ขณะนี้ กิจกรรมจับจ่ายใช้สอยประจำวัน ได้สิ้นสุดลงแล้ว ขอบคุณทุกท่านที่ใช้บริการ",bc_all;
+		//hideonnpc "Hot Sale";
+		$hotsale = 0;
+		end;
+	}
+	
+OnhottimezzClear:
+	donpcevent "Hot Sale::OnClear";
+	message strcharinfo(0),"ท่านรีเซ็ตค่าของเรียบร้อยแล้ว";
+	end;
+}

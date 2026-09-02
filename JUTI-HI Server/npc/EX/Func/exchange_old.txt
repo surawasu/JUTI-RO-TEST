@@ -1,0 +1,336 @@
+-	script	DONATE	-1,{
+end;
+OnInit:
+	set .@bonus_item,0; //กำหนดตัวรหัสไอเท็มโบนัส ควรตั้งน้ำหนักของเป็น 0 กันตก // ถ้าใส่ 0 จะไม่แจกของ
+	//setarray .@extra_item[0],25451001,25451002; //กำหนดตัวรหัสไอเท็มของแถม ควรตั้งน้ำหนักของเป็น 0 กันตก // ถ้าใส่ 0 จะไม่แจกของ > setarray .@extra_item[0],0;
+	setarray .@extra_item[0],0,0; //กำหนดตัวรหัสไอเท็มของแถม ควรตั้งน้ำหนักของเป็น 0 กันตก // ถ้าใส่ 0 จะไม่แจกของ > setarray .@extra_item[0],0;
+	setarray .get_cash_amount[1],150,50,0,0; //ตั้งค่าของที่ผู้เล่นจะได้รับ [ยอดเงิน],พ้อยที่ได้รับ,โบนัสที่จะได้รับ,จำนวนของแถมที่ได้รับต้องมีจำนวนตรงกับ .@extra_item
+	setarray .get_cash_amount[50],150,50,0,0; //ตั้งค่าของที่ผู้เล่นจะได้รับ [ยอดเงิน],พ้อยที่ได้รับ,โบนัสที่จะได้รับ,จำนวนของแถมที่ได้รับต้องมีจำนวนตรงกับ .@extra_item
+	setarray .get_cash_amount[100],300,100,0,0; //ตั้งค่าของที่ผู้เล่นจะได้รับ [ยอดเงิน],พ้อยที่ได้รับ,โบนัสที่จะได้รับ,จำนวนของแถมที่ได้รับต้องมีจำนวนตรงกับ .@extra_item
+	setarray .get_cash_amount[200],600,200,0,0; //ตั้งค่าของที่ผู้เล่นจะได้รับ [ยอดเงิน],พ้อยที่ได้รับ,โบนัสที่จะได้รับ,จำนวนของแถมที่ได้รับ
+	setarray .get_cash_amount[300],900,300,0,0; //ตั้งค่าของที่ผู้เล่นจะได้รับ [ยอดเงิน],พ้อยที่ได้รับ,โบนัสที่จะได้รับ,จำนวนของแถมที่ได้รับ
+	setarray .get_cash_amount[400],1200,400,0,0; //ตั้งค่าของที่ผู้เล่นจะได้รับ [ยอดเงิน],พ้อยที่ได้รับ,โบนัสที่จะได้รับ,จำนวนของแถมที่ได้รับ
+	setarray .get_cash_amount[500],1500,500,1,0; //ตั้งค่าของที่ผู้เล่นจะได้รับ [ยอดเงิน],พ้อยที่ได้รับ,โบนัสที่จะได้รับ,จำนวนของแถมที่ได้รับ
+	setarray .get_cash_amount[600],1800,600,0,0; //ตั้งค่าของที่ผู้เล่นจะได้รับ [ยอดเงิน],พ้อยที่ได้รับ,โบนัสที่จะได้รับ,จำนวนของแถมที่ได้รับ
+	setarray .get_cash_amount[700],2100,700,0,0; //ตั้งค่าของที่ผู้เล่นจะได้รับ [ยอดเงิน],พ้อยที่ได้รับ,โบนัสที่จะได้รับ,จำนวนของแถมที่ได้รับ
+	setarray .get_cash_amount[800],2400,800,0,0; //ตั้งค่าของที่ผู้เล่นจะได้รับ [ยอดเงิน],พ้อยที่ได้รับ,โบนัสที่จะได้รับ,จำนวนของแถมที่ได้รับ
+	setarray .get_cash_amount[900],2700,900,0,0; //ตั้งค่าของที่ผู้เล่นจะได้รับ [ยอดเงิน],พ้อยที่ได้รับ,โบนัสที่จะได้รับ,จำนวนของแถมที่ได้รับ
+	setarray .get_cash_amount[1000],3000,1000,2,1; //ตั้งค่าของที่ผู้เล่นจะได้รับ [ยอดเงิน],พ้อยที่ได้รับ,โบนัสที่จะได้รับ,จำนวนของแถมที่ได้รับ
+	setarray .get_cash_amount[2000],6000,2000,4,2; //ตั้งค่าของที่ผู้เล่นจะได้รับ [ยอดเงิน],พ้อยที่ได้รับ,โบนัสที่จะได้รับ,จำนวนของแถมที่ได้รับ
+	setarray .get_cash_amount[3000],9000,3000,6,3; //ตั้งค่าของที่ผู้เล่นจะได้รับ [ยอดเงิน],พ้อยที่ได้รับ,โบนัสที่จะได้รับ,จำนวนของแถมที่ได้รับ
+	setarray .get_cash_amount[5000],15000,5000,12,6; //ตั้งค่าของที่ผู้เล่นจะได้รับ [ยอดเงิน],พ้อยที่ได้รับ,โบนัสที่จะได้รับ,จำนวนของแถมที่ได้รับ
+	setarray .get_cash_amount[10000],30000,10000,30,15; //ตั้งค่าของที่ผู้เล่นจะได้รับ [ยอดเงิน],พ้อยที่ได้รับ,โบนัสที่จะได้รับ,จำนวนของแถมที่ได้รับ
+
+////// พ่อค้าแม่ค้า
+	setarray .get_cash_amount[80],300,100,0,0; //ตั้งค่าของที่ผู้เล่นจะได้รับ [ยอดเงิน],พ้อยที่ได้รับ,โบนัสที่จะได้รับ,จำนวนของแถมที่ได้รับต้องมีจำนวนตรงกับ .@extra_item
+	setarray .get_cash_amount[240],900,300,0,0; //ตั้งค่าของที่ผู้เล่นจะได้รับ [ยอดเงิน],พ้อยที่ได้รับ,โบนัสที่จะได้รับ,จำนวนของแถมที่ได้รับ
+	setarray .get_cash_amount[400],1500,500,1,0; //ตั้งค่าของที่ผู้เล่นจะได้รับ [ยอดเงิน],พ้อยที่ได้รับ,โบนัสที่จะได้รับ,จำนวนของแถมที่ได้รับ
+	setarray .get_cash_amount[800],3000,1000,2,1; //ตั้งค่าของที่ผู้เล่นจะได้รับ [ยอดเงิน],พ้อยที่ได้รับ,โบนัสที่จะได้รับ,จำนวนของแถมที่ได้รับ
+	setarray .get_cash_amount[1600],6000,2000,4,2; //ตั้งค่าของที่ผู้เล่นจะได้รับ [ยอดเงิน],พ้อยที่ได้รับ,โบนัสที่จะได้รับ,จำนวนของแถมที่ได้รับ
+	setarray .get_cash_amount[2400],9000,3000,6,3; //ตั้งค่าของที่ผู้เล่นจะได้รับ [ยอดเงิน],พ้อยที่ได้รับ,โบนัสที่จะได้รับ,จำนวนของแถมที่ได้รับ
+	setarray .get_cash_amount[4000],15000,5000,12,6; //ตั้งค่าของที่ผู้เล่นจะได้รับ [ยอดเงิน],พ้อยที่ได้รับ,โบนัสที่จะได้รับ,จำนวนของแถมที่ได้รับ
+	setarray .get_cash_amount[8000],30000,10000,30,15; //ตั้งค่าของที่ผู้เล่นจะได้รับ [ยอดเงิน],พ้อยที่ได้รับ,โบนัสที่จะได้รับ,จำนวนของแถมที่ได้รับ
+	
+	set .@cashplus,1;	//เติมคูณเท่าไหร่
+	set .@bonusplus,1;	//เติมคูณเท่าไหร่
+	set .@bonusitem,0;	//เติมคูณเท่าไหร่
+	while (1)
+	{
+		query_sql "SELECT `id`,`amount`,`account_id` FROM `donate` WHERE `status` = 1 ORDER BY RAND()",.donate_id,.donate_amount,.donate_account_id;
+		sleep 500;
+		
+		if (getarraysize(.donate_id) > 0) {
+			for (set .i,0; .i < getarraysize(.donate_id); set .i,.i+1) {
+				if(.donate_amount[.i] > 0 && attachrid(.donate_account_id[.i]) == 1)
+				{
+					// Cash ปกติ
+					set #CASHPOINTS,(#CASHPOINTS + (.get_cash_amount[.donate_amount[.i]]*.@cashplus));
+					//set #BONUSPOINTS,(#BONUSPOINTS + (.get_cash_amount[.donate_amount[.i]+1]*.@bonusplus));
+					dispbottom "[ Donate System ] : คุณได้รับ " + callfunc("F_InsertComma",.get_cash_amount[(.donate_amount[.i])]*.@cashplus) + " Cash Point รวมเป็น "+callfunc("F_InsertComma",#CASHPOINTS)+" Point",0xAEFF00;
+					//dispbottom "[ Donate System ] : และ " + callfunc("F_InsertComma",.get_cash_amount[(.donate_amount[.i]+1)]*.@bonusplus) + " Bonus Point รวมเป็น "+callfunc("F_InsertComma",#BONUSPOINTS)+" Point",0xAEFF00;
+					
+					////แต้มโปรโมชั่น Charm
+					//set #CHARMOINTS,(#CHARMOINTS + (.get_cash_amount[.donate_amount[.i]+1]));
+					
+					// Cash เพิ่มหัว Credit
+					if( countitem(3000163)>0 || countitem(3000164)>0 || countitem(3000165)>0 || countitem(3000166)>0 || countitem(23231012)>0 || countitem(23231013)>0 || countitem(23231014)>0 || countitem(23231015)>0 ){
+						//if(countitem(3000164)>0 || countitem(23231013)>0){
+						if(countitem(23231013)>0){
+							set .@CashCredit,2;
+							//set .@BonusCredit,2;
+						}
+						//if(countitem(3000165)>0 || countitem(23231014)>0){
+						if(countitem(23231014)>0){
+							set .@CashCredit,3;
+							//set .@BonusCredit,3;
+						}
+						//if(countitem(3000166)>0 || countitem(23231015)>0){
+						if(countitem(23231015)>0){
+							set .@CashCredit,4;
+							//set .@BonusCredit,4;
+						}
+						//if(countitem(3000163)>0 || countitem(23231012)>0){
+						if(countitem(23231012)>0){
+							set .@CashCredit,5;
+							//set .@BonusCredit,5;
+						}
+
+						set #CASHPOINTS,(#CASHPOINTS + (.get_cash_amount[.donate_amount[.i]]*.@cashplus)*.@CashCredit/100);
+						//set #BONUSPOINTS,(#BONUSPOINTS + (.get_cash_amount[.donate_amount[.i]+1]*.@bonusplus)*.@BonusCredit/100);
+						dispbottom "[ Bonus หัวเครดิต ] : คุณได้รับ " + callfunc("F_InsertComma",.get_cash_amount[(.donate_amount[.i])]*.@cashplus*.@CashCredit/100) + " Cash Point รวมเป็น "+callfunc("F_InsertComma",#CASHPOINTS)+" Point",0xAEFF00;
+						//dispbottom "[ Bonus หัวเครดิต ] : และ " + callfunc("F_InsertComma",.get_cash_amount[(.donate_amount[.i]+1)]*.@bonusplus*.@BonusCredit/100)  + " Bonus Point รวมเป็น "+callfunc("F_InsertComma",#BONUSPOINTS)+" Point",0xAEFF00;
+					}
+					// Cash เพิ่มหัว ClubMember
+					if( getstatus( SC_MEMBERLV5 ) || getstatus( SC_MEMBERLV6 ) || getstatus( SC_MEMBERLV7 ) || getstatus( SC_MEMBERLV8 ) || getstatus( SC_MEMBERLV9 ) || getstatus( SC_MEMBERLV10 ) ){
+						if(getstatus( SC_MEMBERLV5 ))
+							set .@Memberbonus,5;
+						if(getstatus( SC_MEMBERLV6 ))
+							set .@Memberbonus,6;
+						if(getstatus( SC_MEMBERLV7 ))
+							set .@Memberbonus,7;
+						if(getstatus( SC_MEMBERLV8 ))
+							set .@Memberbonus,8;
+						if(getstatus( SC_MEMBERLV9 ))
+							set .@Memberbonus,9;
+						if(getstatus( SC_MEMBERLV10 ))
+							set .@Memberbonus,10;
+						set #CASHPOINTS,(#CASHPOINTS + (.get_cash_amount[.donate_amount[.i]]*.@cashplus)*.@Memberbonus/100);
+						dispbottom "[ Bonus Epic Member Club ] : คุณได้รับ " + callfunc("F_InsertComma",.get_cash_amount[(.donate_amount[.i])]*.@cashplus*.@Memberbonus/100) + " Cash Point รวมเป็น "+callfunc("F_InsertComma",#CASHPOINTS)+" Point",0xAEFF00;
+					}
+					//ของแถมยอดเติมเงิน
+					if(.@bonusitem){
+						if(.donate_amount[.i] == 500){	// ยอดเติม 500
+							setarray .@mailitem[0],25451001,25451002;	//เลขไอเท็มที่จะเป็นโบนัส
+							setarray .@mailamount[0],1,0;				//จำนวนที่จะให้
+						}else if(.donate_amount[.i] == 1000){	// ยอดเติม 1000
+							setarray .@mailitem[0],25451001,25451002;	//เลขไอเท็มที่จะเป็นโบนัส
+							setarray .@mailamount[0],2,1;				//จำนวนที่จะให้
+						}else if(.donate_amount[.i] == 2000){	// ยอดเติม 2000
+							setarray .@mailitem[0],25451001,25451002;	//เลขไอเท็มที่จะเป็นโบนัส
+							setarray .@mailamount[0],4,2;				//จำนวนที่จะให้
+						}else if(.donate_amount[.i] == 3000){	// ยอดเติม 3000
+							setarray .@mailitem[0],25451001,25451002;	//เลขไอเท็มที่จะเป็นโบนัส
+							setarray .@mailamount[0],6,3;				//จำนวนที่จะให้
+						}else if(.donate_amount[.i] == 5000){	// ยอดเติม 5000
+							setarray .@mailitem[0],25451001,25451002;	//เลขไอเท็มที่จะเป็นโบนัส
+							setarray .@mailamount[0],12,6;				//จำนวนที่จะให้
+						}else if(.donate_amount[.i] == 10000){	// ยอดเติม 10000
+							setarray .@mailitem[0],25451001,25451002;	//เลขไอเท็มที่จะเป็นโบนัส
+							setarray .@mailamount[0],30,15;				//จำนวนที่จะให้
+						}
+	
+						if(.donate_amount[.i] >= 500){	//
+							set .@sender$,"ระบบเติมเงิน";
+							set .@title$,"ของแถมการเติมเงิน " + callfunc("F_InsertComma",.get_cash_amount[(.donate_amount[.i]+1)]) + " บาท";
+							set .@body$,"คุณได้ของแถมการเติมเงินจำนวน " + callfunc("F_InsertComma",.get_cash_amount[(.donate_amount[.i]+1)]) + " บาท  \nขอให้มีความสุขกับของรางวัล! ";
+							set .@zeny,0;
+							setarray .@mailrefine[0],0;
+							setarray .@mailbound[0],0;
+							setarray .@mailcard0[0],0;
+							setarray .@mailcard1[0],0;
+							setarray .@mailcard2[0],0;
+							mail getcharid(0),.@sender$,.@title$,.@body$,.@zeny,.@mailitem,.@mailamount,.@mailrefine,.@mailbound,.@mailcard0,.@mailcard1,.@mailcard2;	
+							dispbottom "[ Donate System ] : คุณได้รับของแถมจากการเติมเงินโปรดเช็คทาง จดหมาย [RODex] ",0xFFFFFF;						
+						}
+					}
+					
+					
+					query_sql "UPDATE `donate` SET `status` = 2, claim_time = NOW() WHERE `id` = " + .donate_id[.i];
+					if ( query_sql( "SELECT `money` FROM `club_member` WHERE `account_id` = '"+ .donate_account_id[.i] +"';", .@player_money ) ) {
+					query_sql( "UPDATE `club_member` SET `money` = `money`+'"+ .get_cash_amount[(.donate_amount[.i]+1)] +"' WHERE `account_id` = '"+ .donate_account_id[.i] +"';" );
+					} else {
+					query_sql( "SELECT `userid` FROM `login` WHERE `account_id` = '"+ .donate_account_id[.i] +"';", .player_userid$ ) ;
+					query_sql( "INSERT INTO `club_member` ( `account_id`, `userid`, `money` ) VALUES ( "+ .donate_account_id[.i] +", '"+ .player_userid$ +"', "+ .get_cash_amount[(.donate_amount[.i]+1)] +");" );
+					}
+					
+					/*
+					if ( query_sql( "SELECT `money` FROM `club_member3` WHERE `account_id` = '"+ .donate_account_id[.i] +"';", .@player_money ) ) {
+					query_sql( "UPDATE `club_member3` SET `money` = `money`+'"+ .donate_amount[.i] +"' WHERE `account_id` = '"+ .donate_account_id[.i] +"';" );
+					} else {
+					query_sql( "SELECT `userid` FROM `login` WHERE `account_id` = '"+ .donate_account_id[.i] +"';", .player_userid$ ) ;
+					query_sql( "INSERT INTO `club_member3` ( `account_id`, `userid`, `money` ) VALUES ( "+ .donate_account_id[.i] +", '"+ .player_userid$ +"', "+ .donate_amount[.i] +");" );
+					}
+					
+					if ( query_sql( "SELECT `money` FROM `promocoin` WHERE `account_id` = '"+ .donate_account_id[.i] +"';", .@player_money ) ) {
+					query_sql( "UPDATE `promocoin` SET `money` = `money`+'"+ .donate_amount[.i] +"' WHERE `account_id` = '"+ .donate_account_id[.i] +"';" );
+					} else {
+					query_sql( "SELECT `userid` FROM `login` WHERE `account_id` = '"+ .donate_account_id[.i] +"';", .player_userid$ ) ;
+					query_sql( "INSERT INTO `promocoin` ( `account_id`, `userid`, `money` ) VALUES ( "+ .donate_account_id[.i] +", '"+ .player_userid$ +"', "+ .donate_amount[.i] +");" );
+					}
+					*/
+					
+	query_sql "SELECT `account_id` FROM `club_member` WHERE `account_id`='"+getcharid(3)+"'",.@vip;
+	if(.@vip > 0){
+	query_sql "SELECT `money` FROM `club_member` WHERE `account_id`='"+getcharid(3)+"'",.@money;
+	}
+	if(.@money > 9999 && .@money <19999){
+	sc_end SC_MEMBERLV0;
+	sc_end SC_MEMBERLV1;
+	sc_end SC_MEMBERLV2;
+	sc_end SC_MEMBERLV3;
+	sc_end SC_MEMBERLV4;
+	sc_end SC_MEMBERLV5;
+	sc_end SC_MEMBERLV6;
+	sc_end SC_MEMBERLV7;
+	sc_end SC_MEMBERLV8;
+	sc_end SC_MEMBERLV9;
+	sc_end SC_MEMBERLV10;
+	sleep2 500;
+	sc_start SC_MEMBERLV1,-1,1;
+	end;
+	}	
+	if(.@money > 19999 && .@money <29999){
+	sc_end SC_MEMBERLV0;
+	sc_end SC_MEMBERLV1;
+	sc_end SC_MEMBERLV2;
+	sc_end SC_MEMBERLV3;
+	sc_end SC_MEMBERLV4;
+	sc_end SC_MEMBERLV5;
+	sc_end SC_MEMBERLV6;
+	sc_end SC_MEMBERLV7;
+	sc_end SC_MEMBERLV8;
+	sc_end SC_MEMBERLV9;
+	sc_end SC_MEMBERLV10;
+	sleep2 500;
+	sc_start SC_MEMBERLV2,-1,1;
+	end;
+	}	
+	if(.@money > 29999 && .@money <39999){
+	sc_end SC_MEMBERLV0;
+	sc_end SC_MEMBERLV1;
+	sc_end SC_MEMBERLV2;
+	sc_end SC_MEMBERLV3;
+	sc_end SC_MEMBERLV4;
+	sc_end SC_MEMBERLV5;
+	sc_end SC_MEMBERLV6;
+	sc_end SC_MEMBERLV7;
+	sc_end SC_MEMBERLV8;
+	sc_end SC_MEMBERLV9;
+	sc_end SC_MEMBERLV10;
+	sleep2 500;
+	sc_start SC_MEMBERLV3,-1,1;
+	end;
+	}	
+	if(.@money > 39999 && .@money <49999){
+	sc_end SC_MEMBERLV0;
+	sc_end SC_MEMBERLV1;
+	sc_end SC_MEMBERLV2;
+	sc_end SC_MEMBERLV3;
+	sc_end SC_MEMBERLV4;
+	sc_end SC_MEMBERLV5;
+	sc_end SC_MEMBERLV6;
+	sc_end SC_MEMBERLV7;
+	sc_end SC_MEMBERLV8;
+	sc_end SC_MEMBERLV9;
+	sc_end SC_MEMBERLV10;
+	sleep2 500;
+	sc_start SC_MEMBERLV4,-1,1;
+	end;
+	}	
+	if(.@money > 49999 && .@money <59999){
+	sc_end SC_MEMBERLV0;
+	sc_end SC_MEMBERLV1;
+	sc_end SC_MEMBERLV2;
+	sc_end SC_MEMBERLV3;
+	sc_end SC_MEMBERLV4;
+	sc_end SC_MEMBERLV5;
+	sc_end SC_MEMBERLV6;
+	sc_end SC_MEMBERLV7;
+	sc_end SC_MEMBERLV8;
+	sc_end SC_MEMBERLV9;
+	sc_end SC_MEMBERLV10;
+	sleep2 500;
+	sc_start SC_MEMBERLV5,-1,1;
+	end;
+	}	
+	if(.@money > 59999 && .@money <69999){
+	sc_end SC_MEMBERLV0;
+	sc_end SC_MEMBERLV1;
+	sc_end SC_MEMBERLV2;
+	sc_end SC_MEMBERLV3;
+	sc_end SC_MEMBERLV4;
+	sc_end SC_MEMBERLV5;
+	sc_end SC_MEMBERLV6;
+	sc_end SC_MEMBERLV7;
+	sc_end SC_MEMBERLV8;
+	sc_end SC_MEMBERLV9;
+	sc_end SC_MEMBERLV10;
+	sleep2 500;
+	sc_start SC_MEMBERLV6,-1,1;
+	end;
+	}	
+	if(.@money > 69999 && .@money <79999){
+	sc_end SC_MEMBERLV0;
+	sc_end SC_MEMBERLV1;
+	sc_end SC_MEMBERLV2;
+	sc_end SC_MEMBERLV3;
+	sc_end SC_MEMBERLV4;
+	sc_end SC_MEMBERLV5;
+	sc_end SC_MEMBERLV6;
+	sc_end SC_MEMBERLV7;
+	sc_end SC_MEMBERLV8;
+	sc_end SC_MEMBERLV9;
+	sc_end SC_MEMBERLV10;
+	sleep2 500;
+	sc_start SC_MEMBERLV7,-1,1;
+	end;
+	}	
+	if(.@money > 79999 && .@money <89999){
+	sc_end SC_MEMBERLV0;
+	sc_end SC_MEMBERLV1;
+	sc_end SC_MEMBERLV2;
+	sc_end SC_MEMBERLV3;
+	sc_end SC_MEMBERLV4;
+	sc_end SC_MEMBERLV5;
+	sc_end SC_MEMBERLV6;
+	sc_end SC_MEMBERLV7;
+	sc_end SC_MEMBERLV8;
+	sc_end SC_MEMBERLV9;
+	sc_end SC_MEMBERLV10;
+	sleep2 500;
+	sc_start SC_MEMBERLV8,-1,1;
+	end;
+	}	
+	if(.@money > 89999 && .@money <99999){
+	sc_end SC_MEMBERLV0;
+	sc_end SC_MEMBERLV1;
+	sc_end SC_MEMBERLV2;
+	sc_end SC_MEMBERLV3;
+	sc_end SC_MEMBERLV4;
+	sc_end SC_MEMBERLV5;
+	sc_end SC_MEMBERLV6;
+	sc_end SC_MEMBERLV7;
+	sc_end SC_MEMBERLV8;
+	sc_end SC_MEMBERLV9;
+	sc_end SC_MEMBERLV10;
+	sleep2 500;
+	sc_start SC_MEMBERLV9,-1,1;
+	end;
+	}		
+	if(.@money > 99999){
+	sc_end SC_MEMBERLV0;
+	sc_end SC_MEMBERLV1;
+	sc_end SC_MEMBERLV2;
+	sc_end SC_MEMBERLV3;
+	sc_end SC_MEMBERLV4;
+	sc_end SC_MEMBERLV5;
+	sc_end SC_MEMBERLV6;
+	sc_end SC_MEMBERLV7;
+	sc_end SC_MEMBERLV8;
+	sc_end SC_MEMBERLV9;
+	sc_end SC_MEMBERLV10;
+	sleep2 500;
+	sc_start SC_MEMBERLV10,-1,1;
+	end;
+	}	
+					detachrid;
+				}
+			}
+			deletearray .donate_id[0],getarraysize(.donate_id);
+			deletearray .donate_amount[0],getarraysize(.donate_amount);
+			deletearray .donate_account_id[0],getarraysize(.donate_account_id);
+		}
+		sleep 5000;
+	}
+	end;
+}

@@ -1,0 +1,274 @@
+/*
+eternal,116,56,4	script	แจกรางวัลผู้เล่นใหม่	567,{
+	disable_items;
+	if (checkweight(1201,1) == 0) {
+		mes "[แจกรางวัลผู้เล่นใหม่]";
+		mes "^FF0000คุณมีไอเทมมากเกินไป^000000";
+		end;
+	}
+	if (MaxWeight - Weight < 10000) {
+		mes "[แจกรางวัลผู้เล่นใหม่]";
+		mes "^FF0000กรุณาตรวจสอบน้ำหนักด้วย^000000";
+		end;
+	}
+
+	
+	mes "[แจกรางวัลผู้เล่นใหม่]";
+	mes "<ITEM>"+getitemname(50461)+"<INFO>50461</INFO></ITEM>จำกัดเวลา 5 ช.ม.";
+	mes "<ITEM>"+getitemname(50462)+"<INFO>50462</INFO></ITEM>จำกัดเวลา 5 ช.ม.";
+	mes "<ITEM>"+getitemname(50463)+"<INFO>50463</INFO></ITEM>จำกัดเวลา 5 ช.ม.";
+	mes "^FF0000 สามารถรับได้แค่คนละ1ครั้งเท่านั้นนะ^000000";
+	switch (select("รับรางวัล !!:ยังดีกว่า")) {
+	case 1:
+
+	if(!gepard_int_get("mimicnewplayer")){
+		next;
+		
+		mes "[แจกรางวัลผู้เล่นใหม่]";
+		mes "เอาหละรับของรางวัลไปได้เลย";
+
+		rentitem 50461,18000;
+		rentitem 50462,18000;
+		rentitem 50463,18000;
+		gepard_int_set("mimicnewplayer",1);
+		close;
+
+	}else{
+		next;
+		mes "[แจกรางวัลผู้เล่นใหม่]";
+		mes "^FF0000เจ้ารับของรางวัลไปแล้ว^000000";
+		close;
+	}
+	close;
+
+case 2:
+	
+	if(!gepard_int_get("exwelcomebacklv"))
+		{
+			next;
+			mes "[แจกรางวัลผู้เล่นใหม่]";
+			mes "ยินดีต้อนรับ : ^FF0000 "+strcharinfo(0)+" ^000000"; 
+			mes "เลือกอาชีพที่ต้องการได้เลย"; 
+			
+			if ( BaseLevel == 1){
+
+
+			if (Class == JOB_SUMMONER){
+				goto SPIRITHANDLERMENU;
+				end;
+			}
+			
+			if (Class == Job_Novice){
+				goto NOVICEMENU;
+				end;
+			}
+
+
+			SPIRITHANDLERMENU:
+			menu 
+			"^FF0000•^000000 Spirit Handler",J4308,
+			"^FF0000•^000000 CANCLE",ex;
+			
+			
+			
+			NOVICEMENU:
+			menu 
+			"^FF0000•^000000 Dragon Knight",J4252,
+			"^FF0000•^000000 Miester",J4253,
+			"^FF0000•^000000 Shadow Cross",J4254,
+			"^FF0000•^000000 Arch Mage",J4255,
+			"^FF0000•^000000 Cardinal",J4256,
+			"^FF0000•^000000 Wind Hawk",J4257,
+			"^FF0000•^000000 Imperial Guard",J4258,
+			"^FF0000•^000000 Biolo",J4259,
+			"^FF0000•^000000 Abyss Chaser",J4260,
+			"^FF0000•^000000 Element Master",J4261,
+			"^FF0000•^000000 Inquisitor",J4262,
+			"^FF0000•^000000 Troubodour & Trouvere",J4263,
+			"^FF0000•^000000 Sky Emperor",J4302,
+			"^FF0000•^000000 Soul Ascetic",J4303,
+			"^FF0000•^000000 Shinkiro & Shiranui",J4304,
+			"^FF0000•^000000 Night Watch",J4306,
+			"^FF0000•^000000 Hyper Novice",J4307,
+			"^FF0000•^000000 CANCLE",ex;
+			
+			J4252:
+			jobchange 4252;
+			set BaseLevel , 200;
+			//set JobLevel, MAX_LEVEL;
+			set SkillPoint, SkillPoint + 196;
+			gepard_int_set("exwelcomebacklv",1);
+			end;
+			
+			J4253:
+			jobchange 4253;
+			set BaseLevel , 200;
+			//set JobLevel, MAX_LEVEL;
+			set SkillPoint, SkillPoint + 196;
+			gepard_int_set("exwelcomebacklv",1);
+			end;
+			
+			J4254:
+			jobchange 4254;
+			set BaseLevel , 200;
+			//set JobLevel, MAX_LEVEL;
+			set SkillPoint, SkillPoint + 196;
+			gepard_int_set("exwelcomebacklv",1);
+			end;
+			
+			J4255:
+			jobchange 4255;
+			set BaseLevel , 200;
+			//set JobLevel, MAX_LEVEL;
+			set SkillPoint, SkillPoint + 196;
+			gepard_int_set("exwelcomebacklv",1);
+			end;
+			
+			J4256:
+			jobchange 4256;
+			set BaseLevel , 200;
+			//set JobLevel, MAX_LEVEL;
+			set SkillPoint, SkillPoint + 196;
+			gepard_int_set("exwelcomebacklv",1);
+			end;
+			
+			J4257:
+			jobchange 4257;
+			set BaseLevel , 200;
+			//set JobLevel, MAX_LEVEL;
+			set SkillPoint, SkillPoint + 196;
+			gepard_int_set("exwelcomebacklv",1);
+			end;
+			
+			J4258:
+			jobchange 4258;
+			set BaseLevel , 200;
+			//set JobLevel, MAX_LEVEL;
+			set SkillPoint, SkillPoint + 196;
+			gepard_int_set("exwelcomebacklv",1);
+			end;
+			
+			J4259:
+			jobchange 4259;
+			set BaseLevel , 200;
+			//set JobLevel, MAX_LEVEL;
+			set SkillPoint, SkillPoint + 196;
+			gepard_int_set("exwelcomebacklv",1);
+			end;
+			
+			J4260:
+			jobchange 4260;
+			set BaseLevel , 200;
+			//set JobLevel, MAX_LEVEL;
+			set SkillPoint, SkillPoint + 196;
+			gepard_int_set("exwelcomebacklv",1);
+			end;
+			
+			J4261:
+			jobchange 4261;
+			set BaseLevel , 200;
+			//set JobLevel, MAX_LEVEL;
+			set SkillPoint, SkillPoint + 196;
+			gepard_int_set("exwelcomebacklv",1);
+			end;
+			
+			J4262:
+			jobchange 4262;
+			set BaseLevel , 200;
+			//set JobLevel, MAX_LEVEL;
+			set SkillPoint, SkillPoint + 196;
+			gepard_int_set("exwelcomebacklv",1);
+			end;
+			
+			J4263:
+			jobchange 4263;
+			set BaseLevel , 200;
+			//set JobLevel, MAX_LEVEL;
+			set SkillPoint, SkillPoint + 196;
+			gepard_int_set("exwelcomebacklv",1);
+			end;
+			
+			J4302:
+			jobchange 4302;
+			set BaseLevel , 200;
+			//set JobLevel, MAX_LEVEL;
+			set SkillPoint, SkillPoint + 196;
+			gepard_int_set("exwelcomebacklv",1);
+			end;
+			
+			
+			J4303:
+			jobchange 4303;
+			set BaseLevel , 200;
+			//set JobLevel, MAX_LEVEL;
+			set SkillPoint, SkillPoint + 196;
+			gepard_int_set("exwelcomebacklv",1);
+			end;
+			
+			J4304:
+			jobchange 4304;
+			set BaseLevel , 200;
+			//set JobLevel, MAX_LEVEL;
+			set SkillPoint, SkillPoint + 196;
+			gepard_int_set("exwelcomebacklv",1);
+			end;
+			
+			J4306:
+			jobchange 4306;
+			set BaseLevel , 200;
+			//set JobLevel, MAX_LEVEL;
+			set SkillPoint, SkillPoint + 196;
+			gepard_int_set("exwelcomebacklv",1);
+			end;
+			
+			J4307:
+			jobchange 4307;
+			set BaseLevel , 200;
+			//set JobLevel, MAX_LEVEL;
+			set SkillPoint, SkillPoint + 178;
+			gepard_int_set("exwelcomebacklv",1);
+			end;
+			
+			J4308:
+			jobchange 4308;
+			set BaseLevel , 200;
+			//set JobLevel, MAX_LEVEL;
+			set SkillPoint, SkillPoint + 59;
+			gepard_int_set("exwelcomebacklv",1);
+			end;
+			
+			
+			ex:
+			end;
+			
+			
+			end;
+			}
+			next;
+			mes "[แจกรางวัลผู้เล่นใหม่]";
+			mes "ยินดีต้อนรับ : ^FF0000 "+strcharinfo(0)+" ^000000"; 
+			mes "ตัวละครต้อง LV.1 เท่านั้น !!";
+			end;
+
+	}else{
+		next;
+		mes "[แจกรางวัลผู้เล่นใหม่]";
+		mes "^FF0000ท่านได้ใช้บริการนี้ไปแล้ว^000000";
+		close;
+	}
+	
+	close;
+
+
+case 3:
+	next;
+	mes "[แจกรางวัลผู้เล่นใหม่]";
+	mes "หากเจ้าต้องการให้กลับมาได้เลย";
+	close;
+}
+
+OnInit:
+	waitingroom "แจกรางวัลผู้เล่นใหม่",0;
+	end;
+}
+*/

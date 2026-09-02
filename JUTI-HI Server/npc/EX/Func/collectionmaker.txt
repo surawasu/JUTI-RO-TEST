@@ -1,0 +1,929 @@
+-	shop	make_col_hi	90,2984720:5000000,2984721:5000000,2984722:5000000,2984723:5000000,2984724:5000000,2984725:5000000,2984726:5000000,2984727:5000000,2984728:5000000,2984729:5000000,2984730:5000000,2984731:5000000
+-	shop	make_col_nor	90,2984733:500000,2984734:500000,2984735:500000,2984736:500000,2984737:500000,2984738:500000,2984739:500000,2984740:500000,2984741:500000,2984742:500000,2984743:500000,2984744:500000,2984745:500000,2984746:500000,2984747:500000,2984748:500000,2984749:500000,2984750:500000,2984751:500000,2984752:500000,2984753:500000,2984754:500000,2984755:500000,2984756:500000,2984757:500000,2984758:500000,2984759:500000,2984760:500000,2984761:500000,2984762:500000,2984763:500000,2984764:500000,2984765:500000,2984766:500000,2984767:500000,2984768:500000,2984769:500000,2984770:500000,2984771:500000,2984772:500000
+morocc,144,67,3	script	Collection Maker	4_F_JP_CHROME,{
+disable_items;
+mes "[Collection Maker]";
+mes "โปรดเลือกบริการที่ท่านต้องการใช้";
+menu	"ทำ Collection หมวกบอส",make_col_hi,
+		"ทำ Collection หมวกทั่วไป",make_col_nor,
+		"เผลอกดเฉยๆหนะ",Exit;
+		
+		
+make_col_hi:
+next;
+mes "[^0000FFCollection Maker^000000]";
+mes "<font size = 20, color = FF0000>ให้ทำการซื้อไอเท็มที่ต้องการสร้าง</font>";
+close2;
+callshop "make_col_hi",1;    
+npcshopattach "make_col_hi";
+end;
+
+make_col_nor:
+next;
+mes "[^0000FFCollection Maker^000000]";
+mes "<font size = 20, color = FF0000>ให้ทำการซื้อไอเท็มที่ต้องการสร้าง</font>";
+close2;
+callshop "make_col_nor",1;    
+npcshopattach "make_col_nor";
+end;
+
+Exit:
+end;
+
+OnBuyItem:
+	switch( @bought_nameid ) {
+// Wing
+		case 2984720:
+			.@item1 = 2246;
+			.@item2 = 2339;
+			.@item3 = 714;
+			.@item4 = 969;
+			.@item5 = 742;
+			.@item6 = 7267;
+			.@item7 = 911;
+			.@item8 = 984;
+			.@item9 = 985;
+			.@item10 = 2943000;
+			.@amt1 = 1;
+			.@amt2 = 1;
+			.@amt3 = 20;
+			.@amt4 = 25;
+			.@amt5 = 30;
+			.@amt6 = 300;
+			.@amt7 = 300;
+			.@amt8 = 50;
+			.@amt9 = 50;
+			.@amt10 = 1;
+			.@req_zeny = 5000000;
+			.@rate = 100;
+			break;
+		case 2984721:
+			.@item1 = 2256;
+			.@item2 = 750;
+			.@item3 = 923;
+			.@item4 = 7265;
+			.@item5 = 947;
+			.@item6 = 7106;
+			.@item7 = 1021;
+			.@item8 = 984;
+			.@item9 = 985;
+			.@item10 = 2943000;
+			.@amt1 = 1;
+			.@amt2 = 10;
+			.@amt3 = 100;
+			.@amt4 = 150;
+			.@amt5 = 300;
+			.@amt6 = 300;
+			.@amt7 = 300;
+			.@amt8 = 50;
+			.@amt9 = 50;
+			.@amt10 = 1;
+			.@req_zeny = 5000000;
+			.@rate = 100;
+			break;
+		case 2984722:
+			.@item1 = 2258;
+			.@item2 = 2213;
+			.@item3 = 2210;
+			.@item4 = 6033;
+			.@item5 = 7206;
+			.@item6 = 1038;
+			.@item7 = 6032;
+			.@item8 = 984;
+			.@item9 = 985;
+			.@item10 = 2943000;
+			.@amt1 = 1;
+			.@amt2 = 1;
+			.@amt3 = 1;
+			.@amt4 = 3;
+			.@amt5 = 200;
+			.@amt6 = 300;
+			.@amt7 = 300;
+			.@amt8 = 50;
+			.@amt9 = 50;
+			.@amt10 = 1;
+			.@req_zeny = 5000000;
+			.@rate = 100;
+			break;
+		case 2984723:
+			.@item1 = 5019;
+			.@item2 = 7023;
+			.@item3 = 983;
+			.@item4 = 7212;
+			.@item5 = 604;
+			.@item6 = 1059;
+			.@item7 = 914;
+			.@item8 = 984;
+			.@item9 = 985;
+			.@item10 = 2943000;
+			.@amt1 = 1;
+			.@amt2 = 10;
+			.@amt3 = 10;
+			.@amt4 = 5;
+			.@amt5 = 50;
+			.@amt6 = 300;
+			.@amt7 = 300;
+			.@amt8 = 50;
+			.@amt9 = 50;
+			.@amt10 = 1;
+			.@req_zeny = 5000000;
+			.@rate = 100;
+			break;
+		case 2984724:
+			.@item1 = 2234;
+			.@item2 = 7020;
+			.@item3 = 714;
+			.@item4 = 969;
+			.@item5 = 7277;
+			.@item6 = 999;
+			.@item7 = 911;
+			.@item8 = 984;
+			.@item9 = 985;
+			.@item10 = 2943000;
+			.@amt1 = 1;
+			.@amt2 = 5;
+			.@amt3 = 20;
+			.@amt4 = 25;
+			.@amt5 = 50;
+			.@amt6 = 300;
+			.@amt7 = 300;
+			.@amt8 = 50;
+			.@amt9 = 50;
+			.@amt10 = 1;
+			.@req_zeny = 5000000;
+			.@rate = 100;
+			break;
+		case 2984725:
+			.@item1 = 2235;
+			.@item2 = 7020;
+			.@item3 = 751;
+			.@item4 = 7754;
+			.@item5 = 714;
+			.@item6 = 969;
+			.@item7 = 911;
+			.@item8 = 984;
+			.@item9 = 985;
+			.@item10 = 2943000;
+			.@amt1 = 1;
+			.@amt2 = 5;
+			.@amt3 = 10;
+			.@amt4 = 10;
+			.@amt5 = 20;
+			.@amt6 = 25;
+			.@amt7 = 300;
+			.@amt8 = 50;
+			.@amt9 = 50;
+			.@amt10 = 1;
+			.@req_zeny = 5000000;
+			.@rate = 100;
+			break;
+		case 2984726:
+			.@item1 = 5123;
+			.@item2 = 2280;
+			.@item3 = 983;
+			.@item4 = 754;
+			.@item5 = 930;
+			.@item6 = 914;
+			.@item7 = 919;
+			.@item8 = 984;
+			.@item9 = 985;
+			.@item10 = 2943000;
+			.@amt1 = 1;
+			.@amt2 = 1;
+			.@amt3 = 10;
+			.@amt4 = 50;
+			.@amt5 = 300;
+			.@amt6 = 300;
+			.@amt7 = 300;
+			.@amt8 = 50;
+			.@amt9 = 50;
+			.@amt10 = 1;
+			.@req_zeny = 5000000;
+			.@rate = 100;
+			break;
+		case 2984727:
+			.@item1 = 5053;
+			.@item2 = 10006;
+			.@item3 = 7268;
+			.@item4 = 7211;
+			.@item5 = 7113;
+			.@item6 = 7114;
+			.@item7 = 934;
+			.@item8 = 984;
+			.@item9 = 985;
+			.@item10 = 2943000;
+			.@amt1 = 1;
+			.@amt2 = 1;
+			.@amt3 = 50;
+			.@amt4 = 50;
+			.@amt5 = 50;
+			.@amt6 = 50;
+			.@amt7 = 300;
+			.@amt8 = 50;
+			.@amt9 = 50;
+			.@amt10 = 1;
+			.@req_zeny = 5000000;
+			.@rate = 100;
+			break;
+		case 2984728:
+			.@item1 = 5002;
+			.@item2 = 7754;
+			.@item3 = 714;
+			.@item4 = 969;
+			.@item5 = 753;
+			.@item6 = 7451;
+			.@item7 = 911;
+			.@item8 = 984;
+			.@item9 = 985;
+			.@item10 = 2943000;
+			.@amt1 = 1;
+			.@amt2 = 10;
+			.@amt3 = 20;
+			.@amt4 = 25;
+			.@amt5 = 50;
+			.@amt6 = 50;
+			.@amt7 = 300;
+			.@amt8 = 50;
+			.@amt9 = 50;
+			.@amt10 = 1;
+			.@req_zeny = 5000000;
+			.@rate = 100;
+			break;
+		case 2984729:
+			.@item1 = 5007;
+			.@item2 = 2233;
+			.@item3 = 714;
+			.@item4 = 969;
+			.@item5 = 743;
+			.@item6 = 719;
+			.@item7 = 911;
+			.@item8 = 984;
+			.@item9 = 985;
+			.@item10 = 2943000;
+			.@amt1 = 1;
+			.@amt2 = 1;
+			.@amt3 = 20;
+			.@amt4 = 25;
+			.@amt5 = 50;
+			.@amt6 = 100;
+			.@amt7 = 300;
+			.@amt8 = 50;
+			.@amt9 = 50;
+			.@amt10 = 1;
+			.@req_zeny = 5000000;
+			.@rate = 100;
+			break;
+		case 2984730:
+			.@item1 = 2249;
+			.@item2 = 7018;
+			.@item3 = 714;
+			.@item4 = 969;
+			.@item5 = 752;
+			.@item6 = 719;
+			.@item7 = 911;
+			.@item8 = 984;
+			.@item9 = 985;
+			.@item10 = 2943000;
+			.@amt1 = 1;
+			.@amt2 = 10;
+			.@amt3 = 20;
+			.@amt4 = 25;
+			.@amt5 = 50;
+			.@amt6 = 200;
+			.@amt7 = 300;
+			.@amt8 = 50;
+			.@amt9 = 50;
+			.@amt10 = 1;
+			.@req_zeny = 5000000;
+			.@rate = 100;
+		case 2984731:
+			.@item1 = 2268;
+			.@item2 = 7289;
+			.@item3 = 968;
+			.@item4 = 969;
+			.@item5 = 1003;
+			.@item6 = 999;
+			.@item7 = 998;
+			.@item8 = 984;
+			.@item9 = 985;
+			.@item10 = 2943000;
+			.@amt1 = 1;
+			.@amt2 = 10;
+			.@amt3 = 50;
+			.@amt4 = 25;
+			.@amt5 = 300;
+			.@amt6 = 300;
+			.@amt7 = 300;
+			.@amt8 = 50;
+			.@amt9 = 50;
+			.@amt10 = 1;
+			.@req_zeny = 5000000;
+			.@rate = 100;
+			break;
+////////// NormalHat
+		case 2984733:
+			.@item1 = 5497;
+			.@item2 = 2943000;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@amt1 = 1;
+			.@amt2 = 1;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@req_zeny = 500000;
+			.@rate = 60;
+			break;
+		case 2984734:
+			.@item1 = 8005388;
+			.@item2 = 2943000;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@amt1 = 1;
+			.@amt2 = 1;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@req_zeny = 500000;
+			.@rate = 60;
+			break;
+		case 2984735:
+			.@item1 = 5377;
+			.@item2 = 2943000;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@amt1 = 1;
+			.@amt2 = 1;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@req_zeny = 500000;
+			.@rate = 60;
+			break;
+		case 2984736:
+			.@item1 = 5325;
+			.@item2 = 2943000;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@amt1 = 1;
+			.@amt2 = 1;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@req_zeny = 500000;
+			.@rate = 60;
+			break;
+		case 2984737:
+			.@item1 = 5137;
+			.@item2 = 2943000;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@amt1 = 1;
+			.@amt2 = 1;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@req_zeny = 500000;
+			.@rate = 60;
+			break;
+		case 2984738:
+			.@item1 = 5359;
+			.@item2 = 2943000;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@amt1 = 1;
+			.@amt2 = 1;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@req_zeny = 500000;
+			.@rate = 60;
+			break;
+		case 2984739:
+			.@item1 = 8019156;
+			.@item2 = 2943000;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@amt1 = 1;
+			.@amt2 = 1;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@req_zeny = 500000;
+			.@rate = 60;
+			break;
+		case 2984740:
+			.@item1 = 5283;
+			.@item2 = 2943000;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@amt1 = 1;
+			.@amt2 = 1;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@req_zeny = 500000;
+			.@rate = 60;
+			break;
+		case 2984741:
+			.@item1 = 5135;
+			.@item2 = 2943000;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@amt1 = 1;
+			.@amt2 = 1;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@req_zeny = 500000;
+			.@rate = 60;
+			break;
+		case 2984742:
+			.@item1 = 5132;
+			.@item2 = 2943000;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@amt1 = 1;
+			.@amt2 = 1;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@req_zeny = 500000;
+			.@rate = 60;
+			break;
+		case 2984743:
+			.@item1 = 5074;
+			.@item2 = 2943000;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@amt1 = 1;
+			.@amt2 = 1;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@req_zeny = 500000;
+			.@rate = 60;
+			break;
+		case 2984744:
+			.@item1 = 5254;
+			.@item2 = 2943000;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@amt1 = 1;
+			.@amt2 = 1;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@req_zeny = 500000;
+			.@rate = 60;
+			break;
+		case 2984745:
+			.@item1 = 5068;
+			.@item2 = 2943000;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@amt1 = 1;
+			.@amt2 = 1;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@req_zeny = 500000;
+			.@rate = 60;
+			break;
+		case 2984746:
+			.@item1 = 5252;
+			.@item2 = 2943000;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@amt1 = 1;
+			.@amt2 = 1;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@req_zeny = 500000;
+			.@rate = 60;
+			break;
+		case 2984747:
+			.@item1 = 5304;
+			.@item2 = 2943000;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@amt1 = 1;
+			.@amt2 = 1;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@req_zeny = 500000;
+			.@rate = 60;
+			break;
+		case 2984748:
+			.@item1 = 5038;
+			.@item2 = 2943000;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@amt1 = 1;
+			.@amt2 = 1;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@req_zeny = 500000;
+			.@rate = 60;
+			break;
+		case 2984749:
+			.@item1 = 5333;
+			.@item2 = 2943000;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@amt1 = 1;
+			.@amt2 = 1;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@req_zeny = 500000;
+			.@rate = 60;
+			break;
+		case 2984750:
+			.@item1 = 5312;
+			.@item2 = 2943000;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@amt1 = 1;
+			.@amt2 = 1;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@req_zeny = 500000;
+			.@rate = 60;
+			break;
+		case 2984751:
+			.@item1 = 5379;
+			.@item2 = 2943000;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@amt1 = 1;
+			.@amt2 = 1;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@req_zeny = 500000;
+			.@rate = 60;
+			break;
+		case 2984752:
+			.@item1 = 5378;
+			.@item2 = 2943000;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@amt1 = 1;
+			.@amt2 = 1;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@req_zeny = 500000;
+			.@rate = 60;
+			break;
+		case 2984753:
+			.@item1 = 5431;
+			.@item2 = 2943000;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@amt1 = 1;
+			.@amt2 = 1;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@req_zeny = 500000;
+			.@rate = 60;
+			break;
+		case 2984754:
+			.@item1 = 5341;
+			.@item2 = 2943000;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@amt1 = 1;
+			.@amt2 = 1;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@req_zeny = 500000;
+			.@rate = 60;
+			break;
+		case 2984755:
+			.@item1 = 5170;
+			.@item2 = 2943000;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@amt1 = 1;
+			.@amt2 = 1;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@req_zeny = 500000;
+			.@rate = 60;
+			break;
+		case 2984756:
+			.@item1 = 5421;
+			.@item2 = 2943000;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@amt1 = 1;
+			.@amt2 = 1;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@req_zeny = 500000;
+			.@rate = 60;
+			break;
+		case 2984757:
+			.@item1 = 5155;
+			.@item2 = 2943000;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@amt1 = 1;
+			.@amt2 = 1;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@req_zeny = 500000;
+			.@rate = 60;
+			break;
+		case 2984758:
+			.@item1 = 5361;
+			.@item2 = 2943000;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@amt1 = 1;
+			.@amt2 = 1;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@req_zeny = 500000;
+			.@rate = 60;
+			break;
+		case 2984759:
+			.@item1 = 5363;
+			.@item2 = 2943000;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@amt1 = 1;
+			.@amt2 = 1;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@req_zeny = 500000;
+			.@rate = 60;
+			break;
+		case 2984760:
+			.@item1 = 5314;
+			.@item2 = 2943000;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@amt1 = 1;
+			.@amt2 = 1;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@req_zeny = 500000;
+			.@rate = 60;
+			break;
+		case 2984761:
+			.@item1 = 5360;
+			.@item2 = 2943000;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@amt1 = 1;
+			.@amt2 = 1;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@req_zeny = 500000;
+			.@rate = 60;
+			break;
+		case 2984762:
+			.@item1 = 5324;
+			.@item2 = 2943000;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@amt1 = 1;
+			.@amt2 = 1;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@req_zeny = 500000;
+			.@rate = 60;
+			break;
+		case 2984763:
+			.@item1 = 5393;
+			.@item2 = 2943000;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@amt1 = 1;
+			.@amt2 = 1;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@req_zeny = 500000;
+			.@rate = 60;
+			break;
+		case 2984764:
+			.@item1 = 5138;
+			.@item2 = 2943000;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@amt1 = 1;
+			.@amt2 = 1;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@req_zeny = 500000;
+			.@rate = 60;
+			break;
+		case 2984765:
+			.@item1 = 5389;
+			.@item2 = 2943000;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@amt1 = 1;
+			.@amt2 = 1;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@req_zeny = 500000;
+			.@rate = 60;
+			break;
+		case 2984766:
+			.@item1 = 5420;
+			.@item2 = 2943000;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@amt1 = 1;
+			.@amt2 = 1;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@req_zeny = 500000;
+			.@rate = 60;
+			break;
+		case 2984767:
+			.@item1 = 5430;
+			.@item2 = 2943000;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@amt1 = 1;
+			.@amt2 = 1;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@req_zeny = 500000;
+			.@rate = 60;
+			break;
+		case 2984768:
+			.@item1 = 5286;
+			.@item2 = 2943000;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@amt1 = 1;
+			.@amt2 = 1;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@req_zeny = 500000;
+			.@rate = 60;
+			break;
+		case 2984769:
+			.@item1 = 5182;
+			.@item2 = 2943000;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@amt1 = 1;
+			.@amt2 = 1;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@req_zeny = 500000;
+			.@rate = 60;
+			break;
+		case 2984770:
+			.@item1 = 5358;
+			.@item2 = 2943000;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@amt1 = 1;
+			.@amt2 = 1;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@req_zeny = 500000;
+			.@rate = 60;
+			break;
+		case 2984771:
+			.@item1 = 5462;
+			.@item2 = 2943000;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@amt1 = 1;
+			.@amt2 = 1;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@req_zeny = 500000;
+			.@rate = 60;
+			break;
+		case 2984772:
+			.@item1 = 5463;
+			.@item2 = 2943000;
+			.@item3 = 984;
+			.@item4 = 985;
+			.@amt1 = 1;
+			.@amt2 = 1;
+			.@amt3 = 20;
+			.@amt4 = 20;
+			.@req_zeny = 500000;
+			.@rate = 60;
+			break;
+	}
+	mes "[^0000FFCollection Maker^000000]";
+	mes "ท่านต้องการสร้าง";
+	mes "<ITEM>"+getitemname(@bought_nameid)+"<INFO>"+@bought_nameid+"</INFO></ITEM>";
+	mes "โอกาสสำเร็จ ^0000FF"+.@rate+" %^000000";
+	mes "ต้องใช้ไอเท็มดังต่อไปนี้";
+	mes "1.<ITEM>"+getitemname(.@item1)+"<INFO>"+.@item1+"</INFO></ITEM> จำนวน "+.@amt1+" ea";
+	mes "2.<ITEM>"+getitemname(.@item2)+"<INFO>"+.@item2+"</INFO></ITEM> จำนวน "+.@amt2+" ea";
+	mes "3.<ITEM>"+getitemname(.@item3)+"<INFO>"+.@item3+"</INFO></ITEM> จำนวน "+.@amt3+" ea";
+	mes "4.<ITEM>"+getitemname(.@item4)+"<INFO>"+.@item4+"</INFO></ITEM> จำนวน "+.@amt4+" ea";
+	if(.@item5 > 0)
+		mes "5.<ITEM>"+getitemname(.@item5)+"<INFO>"+.@item5+"</INFO></ITEM> จำนวน "+.@amt5+" ea";
+	if(.@item6 > 0)
+		mes "6.<ITEM>"+getitemname(.@item6)+"<INFO>"+.@item6+"</INFO></ITEM> จำนวน "+.@amt6+" ea";
+	if(.@item7 > 0)
+		mes "7.<ITEM>"+getitemname(.@item7)+"<INFO>"+.@item7+"</INFO></ITEM> จำนวน "+.@amt7+" ea";
+	if(.@item8 > 0)
+		mes "8.<ITEM>"+getitemname(.@item8)+"<INFO>"+.@item8+"</INFO></ITEM> จำนวน "+.@amt8+" ea";
+	if(.@item9 > 0)
+		mes "9.<ITEM>"+getitemname(.@item9)+"<INFO>"+.@item9+"</INFO></ITEM> จำนวน "+.@amt9+" ea";
+	if(.@item10 > 0)
+		mes "10.<ITEM>"+getitemname(.@item10)+"<INFO>"+.@item10+"</INFO></ITEM> จำนวน "+.@amt10+" ea";
+	mes "และ "+callfunc("F_InsertComma",.@req_zeny)+" Zeny";
+	menu	"เริ่มเลย",L_OK,
+			"ยังก่อน",Exit;
+			
+L_OK:
+next;
+if( countitem(.@item1)< .@amt1 || countitem(.@item2)< .@amt2 || countitem(.@item3)< .@amt3 || countitem(.@item4)< .@amt4 || zeny < .@req_zeny){
+	mes "[^0000FFCollection Maker^000000]";
+	mes "โปรดตรวจเช็คของให้ครบถ้วน";
+	end;
+}
+if(.@item5 > 0){
+	if(countitem(.@item5)<.@amt5){
+		mes "[^0000FFCollection Maker^000000]";
+		mes "โปรดตรวจเช็คของให้ครบถ้วน";
+		end;
+	}
+}
+if(.@item6 > 0){
+	if(countitem(.@item6)<.@amt6){
+		mes "[^0000FFCollection Maker^000000]";
+		mes "โปรดตรวจเช็คของให้ครบถ้วน";
+		end;
+	}
+}
+if(.@item7 > 0){
+	if(countitem(.@item7)<.@amt7){
+		mes "[^0000FFCollection Maker^000000]";
+		mes "โปรดตรวจเช็คของให้ครบถ้วน";
+		end;
+	}
+}
+if(.@item8 > 0){
+	if(countitem(.@item8)<.@amt8){
+		mes "[^0000FFCollection Maker^000000]";
+		mes "โปรดตรวจเช็คของให้ครบถ้วน";
+		end;
+	}
+}
+if(.@item9 > 0){
+	if(countitem(.@item9)<.@amt9){
+		mes "[^0000FFCollection Maker^000000]";
+		mes "โปรดตรวจเช็คของให้ครบถ้วน";
+		end;
+	}
+}
+if(.@item10 > 0){
+	if(countitem(.@item10)<.@amt10){
+		mes "[^0000FFCollection Maker^000000]";
+		mes "โปรดตรวจเช็คของให้ครบถ้วน";
+		end;
+	}
+}
+//progressbar "000000",3;
+//delitem	.@blueprint,.@bp;
+.@randrate = rand(1,100);
+delitem	.@item1,.@amt1;
+delitem	.@item2,.@amt2;
+delitem	.@item3,.@amt3;
+delitem	.@item4,.@amt4;
+if(.@item5 > 0)
+	delitem .@item5,.@amt5;
+if(.@item6 > 0)
+	delitem .@item6,.@amt6;
+if(.@item7 > 0)
+	delitem .@item7,.@amt7;
+if(.@item8 > 0)
+	delitem .@item8,.@amt8;
+if(.@item9 > 0)
+	delitem .@item9,.@amt9;
+if(.@item10 > 0)
+	delitem .@item10,.@amt10;
+zeny -= .@req_zeny;
+if(.@randrate > .@rate){
+mes "[^0000FFCollection Maker^000000]";
+mes "อ๊าาาาา เสียใจด้วยข้าพลาดไปหน่อย.";
+specialeffect2 155;
+specialeffect2 611;
+end;
+}else{
+specialeffect2 154;
+specialeffect2 610;
+getitem @bought_nameid,1;
+mes "[^0000FFCollection Maker^000000]";
+mes "เรียบร้อยโปรดตรวจสอบItem.";
+end;
+}
+
+OnInit:
+	setarray .messages$," ","ส","ร้","า","ง","C","o","l","l","e","c","t","i","o","n";
+	while(1)
+	{
+		set .Display$,"";
+		for( set .i,0; .i < getarraysize( .messages$ ); set .i,.i + 1 )
+		{
+			set .Display$,.Display$ + .messages$[.i];
+			delwaitingroom;
+			waitingroom .Display$,0;
+			sleep 100;
+		}
+	sleep 1000;
+	}
+end;
+}

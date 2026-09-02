@@ -1,0 +1,219 @@
+1@lab,1,1,0	script	#BOSSJUTI	-1,{
+	end;
+
+OnClock1240:
+OnClock2040:
+if($Boss_Spawn != 1)
+donpcevent strnpcinfo(0)+"::Onstart";
+end;
+
+
+Onstart:
+$Boss_Spawn = 1;
+announce "[ WorldBoss ]  :  ขณะนี้ ..บอสประจำเซิฟเวอร์ได้ปรากฏตัวแล้ว ผู้ที่สังหารมัน....จะได้รับของรางวัลมากมาย",bc_all,0xFFFF00;
+monster "1@lab",91,88,"Big Boss",30087,1,"#BOSSJUTI::OnBossDead";
+$mob_boss = $@mobid[0];
+getunitdata $mob_boss, .@data;
+$boss_DT2 = 1;
+setunitdata $mob_boss, UMOB_DAMAGETAKEN2, $boss_DT2;
+donpcevent "#Crystal1::OnStartEvent";
+donpcevent "#Crystal2::OnStartEvent";
+donpcevent "#Crystal3::OnStartEvent";
+donpcevent "#Crystal4::OnStartEvent";
+end;
+
+OnBossDead:
+$Boss_Spawn = 0;
+$Crystal1 = 0;
+$Crystal2 = 0;
+$Crystal3 = 0;
+$Crystal4 = 0;
+killmonster "1@lab","#Crystal1::OnCrystal1Dead";
+killmonster "1@lab","#Crystal2::OnCrystal2Dead";
+killmonster "1@lab","#Crystal3::OnCrystal3Dead";
+killmonster "1@lab","#Crystal4::OnCrystal4Dead";
+stopnpctimer "#Crystal1::OnCrystal1Dead";
+stopnpctimer "#Crystal2::OnCrystal2Dead";
+stopnpctimer "#Crystal3::OnCrystal3Dead";
+stopnpctimer "#Crystal4::OnCrystal4Dead";
+announce "[ WorldBoss ]  :  ขณะนี้ ..บอสประจำเซิฟเวอร์ได้ถูกสังหารเรียบร้อยแล้ว แต่ไม่นานมันจะกลับมาอีกครั้ง.",bc_all,0xFFFF00;
+end;
+
+OnTestStart:
+donpcevent strnpcinfo(0)+"::Onstart";
+end;
+
+OnTestStop:
+killmonster "1@lab","#BOSSJUTI::OnBossDead";
+donpcevent strnpcinfo(0)+"::OnBossDead";
+end;
+
+OnInit:
+$Boss_Spawn = 0;
+$Crystal1 = 0;
+$Crystal2 = 0;
+$Crystal3 = 0;
+$Crystal4 = 0;
+bindatcmd "bstart", strnpcinfo(0)+"::OnTestStart",99,99;
+bindatcmd "bstop", strnpcinfo(0)+"::OnTestStop",99,99;
+end;
+	
+}
+	
+1@lab,1,1,0	script	#Crystal1	-1,{
+	end;
+
+OnCrystal1Dead:
+$Crystal1 = 0;
+if($Boss_Spawn ==0)end;
+getunitdata $mob_boss, .@data;
+$boss_DT2 = .@data[UMOB_DAMAGETAKEN2];
+$boss_DT2 = $boss_DT2 + 25;
+if($boss_DT2>100)$boss_DT2 = 100;
+setunitdata $mob_boss, UMOB_DAMAGETAKEN2, $boss_DT2;	
+initnpctimer;
+end;
+
+OnStartEvent:
+$Crystal1 = 1;
+monster "1@lab",73,101,"--en--",30041,1,"#Crystal1::OnCrystal1Dead";
+end;
+
+
+OnTimer60000:	
+	if($Crystal1 ==0 && $Boss_Spawn ==1){
+		mapannounce "1@lab", "Green Orb : เมื่อแท่นบูชา ถูกทำลายบอสจะอ่อนแอลง.. !!",bc_map,"0x00FF00";
+		monster "1@lab",73,101,"--en--",30041,1,"#Crystal1::OnCrystal1Dead";
+		$Crystal1 = 1;
+		getunitdata $mob_boss, .@data;
+		$boss_DT2 = .@data[UMOB_DAMAGETAKEN2];
+		$boss_DT2 = $boss_DT2 - 25;
+		if($boss_DT2<1)$boss_DT2 = 1;
+		setunitdata $mob_boss, UMOB_DAMAGETAKEN2, $boss_DT2;		
+	}
+	initnpctimer;
+end;
+
+
+end;
+}
+
+1@lab,1,1,0	script	#Crystal2	-1,{
+	end;
+
+OnCrystal2Dead:
+$Crystal2 = 0;
+if($Boss_Spawn ==0)end;
+getunitdata $mob_boss, .@data;
+$boss_DT2 = .@data[UMOB_DAMAGETAKEN2];
+$boss_DT2 = $boss_DT2 + 25;
+if($boss_DT2>100)$boss_DT2 = 100;
+setunitdata $mob_boss, UMOB_DAMAGETAKEN2, $boss_DT2;	
+initnpctimer;
+end;
+
+OnStartEvent:
+$Crystal2 = 1;
+monster "1@lab",108,101,"--en--",30042,1,"#Crystal2::OnCrystal2Dead";
+end;
+
+
+OnTimer60000:
+	
+	if($Crystal2 == 0 && $Boss_Spawn ==1){
+		mapannounce "1@lab", "Red Orb : เมื่อแท่นบูชา ถูกทำลายบอสจะอ่อนแอลง.. !!",bc_map,"0x00FF00";
+		monster "1@lab",108,101,"--en--",30042,1,"#Crystal2::OnCrystal2Dead";
+		$Crystal2 = 1;
+		getunitdata $mob_boss, .@data;
+		$boss_DT2 = .@data[UMOB_DAMAGETAKEN2];
+		$boss_DT2 = $boss_DT2 - 25;
+		if($boss_DT2<1)$boss_DT2 = 1;
+		setunitdata $mob_boss, UMOB_DAMAGETAKEN2, $boss_DT2;			
+	}
+	initnpctimer;
+end;
+
+
+end;
+
+}
+
+1@lab,1,1,0	script	#Crystal3	-1,{
+	end;
+
+OnCrystal3Dead:
+$Crystal3 = 0;
+if($Boss_Spawn ==0)end;
+getunitdata $mob_boss, .@data;
+$boss_DT2 = .@data[UMOB_DAMAGETAKEN2];
+$boss_DT2 = $boss_DT2 + 25;
+if($boss_DT2>100)$boss_DT2 = 100;
+setunitdata $mob_boss, UMOB_DAMAGETAKEN2, $boss_DT2;	
+initnpctimer;
+end;
+
+OnStartEvent:
+monster "1@lab",108,75,"--en--",30043,1,"#Crystal3::OnCrystal3Dead";
+$Crystal3 = 1;
+end;
+
+
+OnTimer60000:
+	
+	if($Crystal3 == 0 && $Boss_Spawn ==1){
+		mapannounce "1@lab", "Orange Orb : เมื่อแท่นบูชา ถูกทำลายบอสจะอ่อนแอลง.. !!",bc_map,"0x00FF00";
+		monster "1@lab",108,75,"--en--",30043,1,"#Crystal3::OnCrystal3Dead";
+		$Crystal3 = 1;
+		getunitdata $mob_boss, .@data;
+		$boss_DT2 = .@data[UMOB_DAMAGETAKEN2];
+		$boss_DT2 = $boss_DT2 - 25;
+		if($boss_DT2<1)$boss_DT2 = 1;
+		setunitdata $mob_boss, UMOB_DAMAGETAKEN2, $boss_DT2;		
+	}
+	initnpctimer;
+end;
+
+
+end;
+
+}
+
+1@lab,1,1,0	script	#Crystal4	-1,{
+	end;
+
+OnCrystal4Dead:
+$Crystal4 = 0;
+if($Boss_Spawn ==0)end;
+getunitdata $mob_boss, .@data;
+$boss_DT2 = .@data[UMOB_DAMAGETAKEN2];
+$boss_DT2 = $boss_DT2 + 25;
+if($boss_DT2>100)$boss_DT2 = 100;
+setunitdata $mob_boss, UMOB_DAMAGETAKEN2, $boss_DT2;	
+initnpctimer;
+end;
+
+OnStartEvent:
+monster "1@lab",73,76,"--en--",30044,1,"#Crystal4::OnCrystal4Dead";
+$Crystal4 = 1;
+end;
+
+
+OnTimer60000:	
+	if($Crystal4 == 0 && $Boss_Spawn ==1){
+		mapannounce "1@lab", "Blue Orb : เมื่อแท่นบูชา ถูกทำลายบอสจะอ่อนแอลง.. !!",bc_map,"0x00FF00";
+		monster "1@lab",73,76,"--en--",30044,1,"#Crystal4::OnCrystal4Dead";
+		$Crystal4 = 1;
+		getunitdata $mob_boss, .@data;
+		$boss_DT2 = .@data[UMOB_DAMAGETAKEN2];
+		$boss_DT2 = $boss_DT2 - 25;
+		if($boss_DT2<1)$boss_DT2 = 1;
+		setunitdata $mob_boss, UMOB_DAMAGETAKEN2, $boss_DT2;	
+	}
+	initnpctimer;
+end;
+
+
+end;
+
+}
+

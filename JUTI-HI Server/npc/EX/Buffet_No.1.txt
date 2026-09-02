@@ -1,0 +1,418 @@
+// เมื่อจะก็อปแยกตัวให้เปลี่ยนเลข 1 ไปเรื่อยๆ (เลขต้องตรงกับ .Type ในตั้งค่าล่างๆ)
+-	shop	Buffet3_ETC	-1,909:-1
+-	shop	Buffet3_Equip	-1,909:-1
+-	shop	Buffet3_HTop	-1,909:-1
+-	shop	Buffet3_HMid	-1,909:-1
+-	shop	Buffet3_HLow	-1,909:-1
+-	shop	Buffet3_KVM	-1,909:-1
+-	shop	Buffet3_Acc	-1,909:-1
+-	shop	Buffet3_CosHeadB	-1,909:-1
+-	shop	Buffet3_CosMidB	-1,909:-1
+-	shop	Buffet3_CosLowerB	-1,909:-1
+-	shop	Buffet3_CosClassicB	-1,909:-1
+-	shop	Buffet3_CosHeadT	-1,909:-1
+-	shop	Buffet3_CosMidT	-1,909:-1
+-	shop	Buffet3_CosLowerT	-1,909:-1
+-	shop	Buffet3_CosMufferT	-1,909:-1
+-	shop	Buffet3_CosInvisibleT	-1,909:-1
+-	shop	Buffet3_CosClassicT	-1,909:-1
+-	shop	Buffet3_CosLeftT	-1,909:-1
+
+
+
+izlude,120,110,4	script	Buffet No.3	564,{
+	
+	switch(select("- ซื้อของในตู้:- ดูของในตู้")) {
+		case 1:
+			set getd("MenuMode_"+.Type), 1;
+			if (checkweight(1201,3) == 0) {
+				mes .Name$;
+				mes " ";
+				mes "^FF0000ท่านพกของมาหนักเกินไป^000000";
+				close;
+			}
+			query_sql("SELECT COUNT(*) FROM `buffet_time` WHERE account_id = "+getcharid(3)+" AND type = "+.Type+"",.@chk);
+			if (!.@chk) {
+				mes .Name$;
+				mes " ";
+				mes "^FF0000ท่านยังไม่ได้กดไอเทม <ITEM>^FF00CC"+getitemname(12891)+"^000000<INFO>12891</INFO></ITEM>";
+				mes " ";
+				mes "สามารถซื้อไอเทม <ITEM>^FF00CC"+getitemname(12891)+"^000000<INFO>12891</INFO></ITEM>";
+				mes " ";
+				mes "ได้จากตู้  ^FF00CCTrue Shop^000000";
+				close;
+			}
+			query_sql("SELECT UNIX_TIMESTAMP(expire),expire FROM `buffet_time` WHERE account_id = " + getcharid(3) + " AND type = "+.Type+" LIMIT 1", .@expire, .@exp$);
+			.@diff = .@expire - gettimetick(2);
+			if(.@diff <= 0) {
+				mes .Name$;
+				mes " ";
+				mes "^FF0000เวลา Buffet No.3 ของท่านหมดแล้ว^000000";
+				mes "(วันหมดอายุ " + .@exp$ + ")";
+				close;
+			}
+			dispbottom "เวลา Buffet No.3 จะหมดใน " + .@exp$;
+			mes .Name$;
+			mes " ";
+			mes "กรุณาเลือกร้านค้าที่ท่านต้องการ";
+			next;
+			switch(select("- ของใช้ทั่วไป:- Equipment:- หมวก:- หู:- ปาก:- อาวุธ KVM:- Accessory:- Costume หัว(Bc):- Costume หู(Bc):- Costume ปาก(Bc):- Costume Classic(Bc):- Costume หัว(True):- Costume หู(True):- Costume ปาก(True):- Costume ผ้าคลุม:- Costume ล่องหน:- Costume Classic(True):- Costume ประดับซ้าย")) {
+				case 1:
+					// ตั้งค่าโหมดตีบวกเมนู ของใช้ทั่วไป (0 = ดึงแล้วของไม่บวก || 1 = ดึงแล้วจะได้ของบวก)
+					set getd("RefMode"+.Type), 0;
+					callshop "Buffet"+.Type+"_ETC",1;
+					npcshopattach "Buffet"+.Type+"_ETC";
+					end;
+				case 2:
+					// ตั้งค่าโหมดตีบวกเมนู Equipment (0 = ดึงแล้วของไม่บวก || 1 = ดึงแล้วจะได้ของบวก)
+					set getd("RefMode"+.Type), 1;
+					callshop "Buffet"+.Type+"_Equip",1;
+					npcshopattach "Buffet"+.Type+"_Equip";
+					end;
+				case 3:
+					// ตั้งค่าโหมดตีบวกเมนู หมวก (0 = ดึงแล้วของไม่บวก || 1 = ดึงแล้วจะได้ของบวก)
+					set getd("RefMode"+.Type), 1;
+					callshop "Buffet"+.Type+"_HTop",1;
+					npcshopattach "Buffet"+.Type+"_HTop";
+					end;
+				case 4:
+					// ตั้งค่าโหมดตีบวกเมนู หู (0 = ดึงแล้วของไม่บวก || 1 = ดึงแล้วจะได้ของบวก)
+					set getd("RefMode"+.Type), 0;
+					callshop "Buffet"+.Type+"_HMid",1;
+					npcshopattach "Buffet"+.Type+"_HMid";
+					end;
+				case 5:
+					// ตั้งค่าโหมดตีบวกเมนู ปาก (0 = ดึงแล้วของไม่บวก || 1 = ดึงแล้วจะได้ของบวก)
+					set getd("RefMode"+.Type), 0;
+					callshop "Buffet"+.Type+"_HLow",1;
+					npcshopattach "Buffet"+.Type+"_HLow";
+					end;
+				case 6:
+					// ตั้งค่าโหมดตีบวกเมนู อาวุธ KVM (0 = ดึงแล้วของไม่บวก || 1 = ดึงแล้วจะได้ของบวก)
+					set getd("RefMode"+.Type), 1;
+					callshop "Buffet"+.Type+"_KVM",1;
+					npcshopattach "Buffet"+.Type+"_KVM";
+					end;
+				case 7:
+					// ตั้งค่าโหมดตีบวกเมนู Accessory (0 = ดึงแล้วของไม่บวก || 1 = ดึงแล้วจะได้ของบวก)
+					set getd("RefMode"+.Type), 0;
+					callshop "Buffet"+.Type+"_Acc",1;
+					npcshopattach "Buffet"+.Type+"_Acc";
+					end;
+				case 8:
+					// ตั้งค่าโหมดตีบวกเมนู Costume หัว (0 = ดึงแล้วของไม่บวก || 1 = ดึงแล้วจะได้ของบวก)
+					set getd("RefMode"+.Type), 0;
+					callshop "Buffet"+.Type+"_CosHeadB",1;
+					npcshopattach "Buffet"+.Type+"_CosHeadB";
+					end;
+				case 9:
+					// ตั้งค่าโหมดตีบวกเมนู Costume หู (0 = ดึงแล้วของไม่บวก || 1 = ดึงแล้วจะได้ของบวก)
+					set getd("RefMode"+.Type), 0;
+					callshop "Buffet"+.Type+"_CosMidB",1;
+					npcshopattach "Buffet"+.Type+"_CosMidB";
+					end;
+				case 10:
+					// ตั้งค่าโหมดตีบวกเมนู Costume ปาก (0 = ดึงแล้วของไม่บวก || 1 = ดึงแล้วจะได้ของบวก)
+					set getd("RefMode"+.Type), 0;
+					callshop "Buffet"+.Type+"_CosLowerB",1;
+					npcshopattach "Buffet"+.Type+"_CosLowerB";
+					end;
+				case 11:
+					// ตั้งค่าโหมดตีบวกเมนู Costume Classic (0 = ดึงแล้วของไม่บวก || 1 = ดึงแล้วจะได้ของบวก)
+					set getd("RefMode"+.Type), 0;
+					callshop "Buffet"+.Type+"_CosClassicB",1;
+					npcshopattach "Buffet"+.Type+"_CosClassicB";
+					end;
+					
+				case 12:
+					// ตั้งค่าโหมดตีบวกเมนู Costume หัว (0 = ดึงแล้วของไม่บวก || 1 = ดึงแล้วจะได้ของบวก)
+					set getd("RefMode"+.Type), 0;
+					callshop "Buffet"+.Type+"_CosHeadT",1;
+					npcshopattach "Buffet"+.Type+"_CosHeadT";
+					end;
+				case 13:
+					// ตั้งค่าโหมดตีบวกเมนู Costume หู (0 = ดึงแล้วของไม่บวก || 1 = ดึงแล้วจะได้ของบวก)
+					set getd("RefMode"+.Type), 0;
+					callshop "Buffet"+.Type+"_CosMidT",1;
+					npcshopattach "Buffet"+.Type+"_CosMidT";
+					end;
+				case 14:
+					// ตั้งค่าโหมดตีบวกเมนู Costume ปาก (0 = ดึงแล้วของไม่บวก || 1 = ดึงแล้วจะได้ของบวก)
+					set getd("RefMode"+.Type), 0;
+					callshop "Buffet"+.Type+"_CosLowerT",1;
+					npcshopattach "Buffet"+.Type+"_CosLowerT";
+					end;
+				case 15:
+					// ตั้งค่าโหมดตีบวกเมนู Costume ผ้าคลุม (0 = ดึงแล้วของไม่บวก || 1 = ดึงแล้วจะได้ของบวก)
+					set getd("RefMode"+.Type), 0;
+					callshop "Buffet"+.Type+"_CosMufferT",1;
+					npcshopattach "Buffet"+.Type+"_CosMufferT";
+					end;
+				case 16:
+					// ตั้งค่าโหมดตีบวกเมนู Costume ล่องหน (0 = ดึงแล้วของไม่บวก || 1 = ดึงแล้วจะได้ของบวก)
+					set getd("RefMode"+.Type), 0;
+					callshop "Buffet"+.Type+"_CosInvisibleT",1;
+					npcshopattach "Buffet"+.Type+"_CosInvisibleT";
+					end;
+				case 17:
+					// ตั้งค่าโหมดตีบวกเมนู Costume Classic (0 = ดึงแล้วของไม่บวก || 1 = ดึงแล้วจะได้ของบวก)
+					set getd("RefMode"+.Type), 0;
+					callshop "Buffet"+.Type+"_CosClassicT",1;
+					npcshopattach "Buffet"+.Type+"_CosClassicT";
+					end;
+				case 18:
+					// ตั้งค่าโหมดตีบวกเมนู Costume ประดับซ้าย (0 = ดึงแล้วของไม่บวก || 1 = ดึงแล้วจะได้ของบวก)
+					set getd("RefMode"+.Type), 0;
+					callshop "Buffet"+.Type+"_CosLeftT",1;
+					npcshopattach "Buffet"+.Type+"_CosLeftT";
+					end;
+			}
+		case 2:
+			set getd("MenuMode_"+.Type), 2;
+			mes .Name$;
+			mes " ";
+			mes "กรุณาเลือกร้านค้าที่ท่านต้องการ";
+			next;
+			switch(select("- ของใช้ทั่วไป:- Equipment:- หมวก:- หู:- ปาก:- อาวุธ KVM:- Accessory:- Costume หัว(Bc):- Costume หู(Bc):- Costume ปาก(Bc):- Costume Classic(Bc):- Costume หัว(True):- Costume หู(True):- Costume ปาก(True):- Costume ผ้าคลุม:- Costume ล่องหน:- Costume Classic(True):- Costume ประดับขวา")) {
+				case 1:
+					callshop "Buffet"+.Type+"_ETC",1;
+					npcshopattach "Buffet"+.Type+"_ETC";
+					end;
+				case 2:
+					callshop "Buffet"+.Type+"_Equip",1;
+					npcshopattach "Buffet"+.Type+"_Equip";
+					end;
+				case 3:
+					callshop "Buffet"+.Type+"_HTop",1;
+					npcshopattach "Buffet"+.Type+"_HTop";
+					end;
+				case 4:
+					callshop "Buffet"+.Type+"_HMid",1;
+					npcshopattach "Buffet"+.Type+"_HMid";
+					end;
+				case 5:
+					callshop "Buffet"+.Type+"_HLow",1;
+					npcshopattach "Buffet"+.Type+"_HLow";
+					end;
+				case 6:
+					callshop "Buffet"+.Type+"_KVM",1;
+					npcshopattach "Buffet"+.Type+"_KVM";
+					end;
+				case 7:
+					callshop "Buffet"+.Type+"_Acc",1;
+					npcshopattach "Buffet"+.Type+"_Acc";
+					end;
+				case 8:
+					callshop "Buffet"+.Type+"_CosHeadB",1;
+					npcshopattach "Buffet"+.Type+"_CosHeadB";
+					end;
+				case 9:
+					callshop "Buffet"+.Type+"_CosMidB",1;
+					npcshopattach "Buffet"+.Type+"_CosMidB";
+					end;
+				case 10:
+					callshop "Buffet"+.Type+"_CosLowerB",1;
+					npcshopattach "Buffet"+.Type+"_CosLowerB";
+					end;
+				case 11:
+					callshop "Buffet"+.Type+"_CosClassicB",1;
+					npcshopattach "Buffet"+.Type+"_CosClassicB";
+					end;
+					
+				case 12:
+					callshop "Buffet"+.Type+"_CosHeadT",1;
+					npcshopattach "Buffet"+.Type+"_CosHeadT";
+					end;
+				case 13:
+					callshop "Buffet"+.Type+"_CosMidT",1;
+					npcshopattach "Buffet"+.Type+"_CosMidT";
+					end;
+				case 14:
+					callshop "Buffet"+.Type+"_CosLowerT",1;
+					npcshopattach "Buffet"+.Type+"_CosLowerT";
+					end;
+				case 15:
+					callshop "Buffet"+.Type+"_CosMufferT",1;
+					npcshopattach "Buffet"+.Type+"_CosMufferT";
+					end;
+				case 16:
+					callshop "Buffet"+.Type+"_CosInvisibleT",1;
+					npcshopattach "Buffet"+.Type+"_CosInvisibleT";
+					end;
+				case 17:
+					callshop "Buffet"+.Type+"_CosClassicT",1;
+					npcshopattach "Buffet"+.Type+"_CosClassicT";
+					end;
+				case 18:
+					callshop "Buffet"+.Type+"_CosLeftT",1;
+					npcshopattach "Buffet"+.Type+"_CosLeftT";
+					end;
+			}
+	}
+	
+OnBuyItem:
+	if (getd("MenuMode_"+.Type) == 2) { end; }
+	query_sql("SELECT COUNT(*) FROM `buffet_time` WHERE account_id = "+getcharid(3)+" AND type = "+.Type+"",.@chk);
+	if (!.@chk) {
+		mes .Name$;
+		mes " ";
+		mes "^FF0000ท่านยังไม่ได้กดไอเทม Buffet ตู้ No.3^000000";
+		close;
+	}
+	query_sql("SELECT UNIX_TIMESTAMP(expire),expire FROM `buffet_time` WHERE account_id = " + getcharid(3) + " AND type = "+.Type+" LIMIT 1", .@expire, .@exp$);
+	.@diff = .@expire - gettimetick(2);
+	if(.@diff <= 0) {
+		mes .Name$;
+		mes " ";
+		mes "^FF0000เวลา Buffet No.3 ของท่านหมดแล้ว^000000";
+		mes "(วันหมดอายุ " + .@exp$ + ")";
+		close;
+	}
+	for(.@i = 0; .@i < getarraysize(@bought_nameid); ++.@i) {
+		if (getd("RefMode"+.Type)) {
+			switch(getiteminfo((@bought_nameid[.@i]), ITEMINFO_WEAPONLEVEL)) {
+				case 1:
+				case 2:
+				case 3:
+				case 4:
+					rentitem2 @bought_nameid[.@i],.@diff,1,.Ref+1,0,0,0,0,0;
+					break;
+				default:
+					rentitem2 @bought_nameid[.@i],.@diff,1,.Ref,0,0,0,0,0;
+					break;
+			}
+		}
+		else {
+			rentitem @bought_nameid[.@i],.@diff;
+		}
+	}
+	end;
+	
+OnInit:
+	// ตั้งค่าชื่อ NPC
+	set .Name$, "[ Buffet No.3 ]";
+	// ตั้งค่าข้อความป้ายบนหัว NPC
+	waitingroom "  Buffet No.3",0;
+	// ตั้งค่าเลขตู้ (ห้ามซ้ำกัน)
+	set .Type, 3;
+	// ตั้งค่าดึงของแล้วจะได้ของบวกเท่าไหร่ (ใส่ 0 ถ้าไม่อยากให้บวก)
+	set .Ref, 9;
+	
+	// ตั้งค่ารหัสไอเทมเมนู ของใช้ทั่วไป
+	setarray .Item_Id_ETC,39022,39023,39024,39025,2383,2423;
+	// ตั้งค่ารหัสไอเทมเมนู Equipment
+	setarray .Item_Id_Equip,15000,15032,13017,1265,13412,13413,1185,1228,1230,2357,2115,2421,2374,2375,2537,2433,2367,2524,2376,2377,2378,2379,2380,2381,2382,2538,2539,2540,2435,2436,2437;
+	// ตั้งค่ารหัสไอเทมเมนู หมวก
+	setarray .Item_Id_HTop, 5506,5658,5766,5507,5342,5344,5345,18509,18600,18613,19507,5497,18612,18960,27004;
+	// ตั้งค่ารหัสไอเทมเมนู หู
+	setarray .Item_Id_HMid, 5402,5820,5786,5788,5650,5358,5421,18894,18599;
+	// ตั้งค่ารหัสไอเทมเมนู ปาก
+	setarray .Item_Id_HLow, 5787,5377,5597,5403,18750,18602,18648,18677,18867,18642,18900,18567;
+	// ตั้งค่ารหัสไอเทมเมนู  อาวุธ KVM
+	setarray .Item_Id_KVM, 1187,1281,1282,1310,1382,1426,1486,1546,1576,1577,1640,1641,1743,1826,1827,1927,1981,2002,13042,13110,13176,13177,13178,13179,13307,13416,13417,13418;
+	// ตั้งค่ารหัสไอเทมเมนู Accessory
+	setarray .Item_Id_Acc, 2729,2720,2721,2722,2723,2724,2725,2733,2679,2678,2641,2780,2784,2787,2808,2843,2854,2860,2861,2872,2875,2935,2948,2977,2995,5825,2794,2795,2751;
+	// ตั้งค่ารหัสไอเทมเมนู Costume หัว
+	setarray .Item_Id_CosHeadB, 27006,27012,27013,27020,27021,27022,27023,27024,27030,27031,27032,27036,27037,27038,27040,27041,27043,27044,27046,27047,27048,27060,27064,27065,27086,27089,27090,27091,27093,27001,27002,40075,40076,40077,40078,40079,40080,40081,40082,40083,40084,40085,40086,40087,40088,40089,40090,40092,40093,40094,40095,40096,40097,38235,38243,38244,38245,38248,38249,38250,38251,38252,38254,38255,38256;
+	// ตั้งค่ารหัสไอเทมเมนู Costume หู
+	setarray .Item_Id_CosMidB,27029,44141,44142,44143,44144,44145,44146,44050,44051,44054,44065,44066,44067,44079,44080,44081,44084,44085,44086,44087,44088,44089,44090,44091,44093,44094,44095,44096,28014,28016,28029,28037,28038,28039,28040,28041,28043,28044,28056;
+	// ตั้งค่ารหัสไอเทมเมนู Costume ปาก
+	setarray .Item_Id_CosLowerB,37000,37001,37002,37003,37004,37005,37006,47017,47018,47020,47021,47022,47023,47000,47001,47002,47003,47004,47005,47006,47007,47009,47010;
+	// ตั้งค่ารหัสไอเทมเมนู Costume Classic
+	setarray .Item_Id_CosClassicB,22003,22004,22005,22006,22007,22008,22009,22010,22011,22012,22013,22014,22015,22016,22017,22018,22019 ;
+	
+	// ตั้งค่ารหัสไอเทมเมนู Costume หัว
+	setarray .Item_Id_CosHeadT,47066,47067,47068,47069,47070,43034,43035,43036,43037,43038,43039,43040,43013,36036,36037,36038,36010,40039,27003,27033,27034,27035,27039,27050,27052,27066,27070,27072,27026,27028;
+	// ตั้งค่ารหัสไอเทมเมนู Costume หู
+	setarray .Item_Id_CosMidT,36025,36100,36101,36117,36121,36122,36123,36124,36125,36126,44012,44013,44014,44015,44016,44017,44018,44019,44032,44033,44034,44035,44036,44037,44038,44041,44042,44043,44046,44047,44049,44057,44077,44083,44092,44147,44148,44149,44150,44168,44169,44170,28001,28003,28008,28009,28010,28011,28012,28019,28027,28072;
+	// ตั้งค่ารหัสไอเทมเมนู Costume ปาก
+	setarray .Item_Id_CosLowerT,27073,37007,37008,37009,37010,37011,37012,37013,37014,37015,37016,47033,47034,47035,47036,47037,47038,47039,47040,47041,47042,47043,47044,47046,47047,47048,47049,47050,47051,47052,47053,47054,47055;
+	// ตั้งค่ารหัสไอเทมเมนู Costume ผ้าคลุม
+	setarray .Item_Id_CosMufferT,36000,36001,36002,36003,36004,36005,36006,36007,36008,36009,38137,38136;
+	// ตั้งค่ารหัสไอเทมเมนู Costume ล่องหน
+	setarray .Item_Id_CosInvisibleT,21000,21001,21002,21003;
+	// ตั้งค่ารหัสไอเทมเมนู Costume Classic
+	setarray .Item_Id_CosClassicT,23000,23001,23002,23003,23004,23005,23006,23007,23008,23009,23010,23011,23012,23013,23014,23015,23016;
+	// ตั้งค่ารหัสไอเทมเมนู Costume ประดับซ้าย
+	setarray .Item_Id_CosLeftT,50021,28107,50029,28109,28104,28100,28110,28105,28113,28103,28114,28115,28116,28101,28106,28112;
+	
+	
+	npcshopdelitem "Buffet"+.Type+"_ETC",909;
+	for ( set .@i,0; .@i<getarraysize(.Item_Id_ETC); set .@i,.@i+1 )
+		npcshopadditem "Buffet"+.Type+"_ETC",.Item_Id_ETC[.@i],0;
+	
+	npcshopdelitem "Buffet"+.Type+"_Equip",909;
+	for ( set .@i,0; .@i<getarraysize(.Item_Id_Equip); set .@i,.@i+1 )
+		npcshopadditem "Buffet"+.Type+"_Equip",.Item_Id_Equip[.@i],0;
+	
+	npcshopdelitem "Buffet"+.Type+"_HTop",909;
+	for ( set .@i,0; .@i<getarraysize(.Item_Id_HTop); set .@i,.@i+1 )
+		npcshopadditem "Buffet"+.Type+"_HTop",.Item_Id_HTop[.@i],0;
+	
+	npcshopdelitem "Buffet"+.Type+"_HMid",909;
+	for ( set .@i,0; .@i<getarraysize(.Item_Id_HMid); set .@i,.@i+1 )
+		npcshopadditem "Buffet"+.Type+"_HMid",.Item_Id_HMid[.@i],0;
+	
+	npcshopdelitem "Buffet"+.Type+"_HLow",909;
+	for ( set .@i,0; .@i<getarraysize(.Item_Id_HLow); set .@i,.@i+1 )
+		npcshopadditem "Buffet"+.Type+"_HLow",.Item_Id_HLow[.@i],0;
+	
+	npcshopdelitem "Buffet"+.Type+"_KVM",909;
+	for ( set .@i,0; .@i<getarraysize(.Item_Id_KVM); set .@i,.@i+1 )
+		npcshopadditem "Buffet"+.Type+"_KVM",.Item_Id_KVM[.@i],0;
+	
+	npcshopdelitem "Buffet"+.Type+"_Acc",909;
+	for ( set .@i,0; .@i<getarraysize(.Item_Id_Acc); set .@i,.@i+1 )
+		npcshopadditem "Buffet"+.Type+"_Acc",.Item_Id_Acc[.@i],0;
+		
+	npcshopdelitem "Buffet"+.Type+"_CosHeadB",909;
+	for ( set .@i,0; .@i<getarraysize(.Item_Id_CosHeadB); set .@i,.@i+1 )
+		npcshopadditem "Buffet"+.Type+"_CosHeadB",.Item_Id_CosHeadB[.@i],0;
+		
+	npcshopdelitem "Buffet"+.Type+"_CosMidB",909;
+	for ( set .@i,0; .@i<getarraysize(.Item_Id_CosMidB); set .@i,.@i+1 )
+		npcshopadditem "Buffet"+.Type+"_CosMidB",.Item_Id_CosMidB[.@i],0;
+		
+	npcshopdelitem "Buffet"+.Type+"_CosLowerB",909;
+	for ( set .@i,0; .@i<getarraysize(.Item_Id_CosLowerB); set .@i,.@i+1 )
+		npcshopadditem "Buffet"+.Type+"_CosLowerB",.Item_Id_CosLowerB[.@i],0;
+		
+	npcshopdelitem "Buffet"+.Type+"_CosClassicB",909;	
+	for ( set .@i,0; .@i<getarraysize(.Item_Id_CosClassicB); set .@i,.@i+1 )
+		npcshopadditem "Buffet"+.Type+"_CosClassicB",.Item_Id_CosClassicB[.@i],0;
+		
+		
+	npcshopdelitem "Buffet"+.Type+"_CosHeadT",909;
+	for ( set .@i,0; .@i<getarraysize(.Item_Id_CosHeadT); set .@i,.@i+1 )
+		npcshopadditem "Buffet"+.Type+"_CosHeadT",.Item_Id_CosHeadT[.@i],0;
+		
+	npcshopdelitem "Buffet"+.Type+"_CosMidT",909;
+	for ( set .@i,0; .@i<getarraysize(.Item_Id_CosMidT); set .@i,.@i+1 )
+		npcshopadditem "Buffet"+.Type+"_CosMidT",.Item_Id_CosMidT[.@i],0;
+		
+	npcshopdelitem "Buffet"+.Type+"_CosLowerT",909;
+	for ( set .@i,0; .@i<getarraysize(.Item_Id_CosLowerT); set .@i,.@i+1 )
+		npcshopadditem "Buffet"+.Type+"_CosLowerT",.Item_Id_CosLowerT[.@i],0;
+		
+	npcshopdelitem "Buffet"+.Type+"_CosMufferT",909;
+	for ( set .@i,0; .@i<getarraysize(.Item_Id_CosMufferT); set .@i,.@i+1 )
+		npcshopadditem "Buffet"+.Type+"_CosMufferT",.Item_Id_CosMufferT[.@i],0;
+		
+	npcshopdelitem "Buffet"+.Type+"_CosInvisibleT",909;
+	for ( set .@i,0; .@i<getarraysize(.Item_Id_CosInvisibleT); set .@i,.@i+1 )
+		npcshopadditem "Buffet"+.Type+"_CosInvisibleT",.Item_Id_CosInvisibleT[.@i],0;
+			
+	npcshopdelitem "Buffet"+.Type+"_CosClassicT",909;
+	for ( set .@i,0; .@i<getarraysize(.Item_Id_CosClassicT); set .@i,.@i+1 )
+		npcshopadditem "Buffet"+.Type+"_CosClassicT",.Item_Id_CosClassicT[.@i],0;
+		
+	npcshopdelitem "Buffet"+.Type+"_CosLeftT",909;
+	for ( set .@i,0; .@i<getarraysize(.Item_Id_CosLeftT); set .@i,.@i+1 )
+		npcshopadditem "Buffet"+.Type+"_CosLeftT",.Item_Id_CosLeftT[.@i],0;
+		
+		
+		
+		
+		
+	end;
+}

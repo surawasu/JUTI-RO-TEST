@@ -1,0 +1,242 @@
+function	script	F_punsukbox	{
+//ตั้งจำนวนทั้งหมด
+.@MM500 = 10;	//บัตรแลกเงินสด 500บาท
+.@MM100 = 50;	//บัตรแลกเงินสด 100บาท
+.@VC500 = 10;	//Gift Voucher เติมเงิน 500บาท
+.@VC100 = 50;	//Gift Voucher เติมเงิน 100บาท
+
+.@rand	= rand(1,1000);
+if(.@rand == 779 && $punsukMM500 < 10){
+getitem 3130035,1;
+$punsukMM500 += 1;
+announce "[ PunSuk Box ] : ผู้เล่น ["+strcharinfo(0)+"] ได้รับ บัตรแลกเงินสด 500บาท ( "+$punsukMM500+"/"+.@MM500+" )",bc_all,0xFF8000;
+}
+else if (.@rand == 277 && $punsukMM100 < 50){
+getitem 3130038,1;
+$punsukMM100 += 1;
+announce "[ PunSuk Box ] : ผู้เล่น ["+strcharinfo(0)+"] ได้รับ บัตรแลกเงินสด 100บาท ( "+$punsukMM100+"/"+.@MM100+" )",bc_all,0xFF8000;
+}
+else if (.@rand == 377 && $punsukVC500 < 10){
+getitem 3130039,1;
+$punsukVC500 += 1;
+announce "[ PunSuk Box ] : ผู้เล่น ["+strcharinfo(0)+"] ได้รับ Gift Voucher เติมเงิน 500บาท ( "+$punsukVC500+"/"+.@VC500+" )",bc_all,0xFF8000;
+}
+else if (.@rand == 877 && $punsukVC100 < 50){
+getitem 3130040,1;
+$punsukVC100 += 1;
+announce "[ PunSuk Box ] : ผู้เล่น ["+strcharinfo(0)+"] ได้รับ Gift Voucher เติมเงิน 100บาท ( "+$punsukVC100+"/"+.@VC100+" )",bc_all,0xFF8000;
+}
+else{
+.@randzeny = rand(500,7000);
+zeny += .@randzeny;
+dispbottom "[ PunSuk Box ] : คุณได้รับรางวัลปลอบใจ " + callfunc("F_InsertComma",.@randzeny) + " Zeny",0xAEFF00;
+end;
+}
+}
+
+
+
+function	script	F_Fire	{
+//ตั้งจำนวนทั้งหมด
+.@MM1000F = 1;	//บัตรแลกเงินสด 1000บาท
+.@MM300F = 10;	//บัตรแลกเงินสด 100บาท
+
+.@rand	= rand(1,1000);
+if(.@rand == 779 && $punsukMM1000F < .@MM1000F){
+getitem 3130034,1;
+$punsukMM1000F += 1;
+announce "[ PunSuk Box Fire ] : ผู้เล่น ["+strcharinfo(0)+"] ได้รับ บัตรแลกเงินสด 1,000บาท ( "+$punsukMM1000F+"/"+.@MM1000F+" )",bc_all,0xFF8000;
+}
+else if (.@rand == 277 && $punsukMM300F < .@MM300F){
+getitem 3130036,1;
+$punsukMM300F += 1;
+announce "[ PunSuk Box Fire ] : ผู้เล่น ["+strcharinfo(0)+"] ได้รับ บัตรแลกเงินสด 300บาท ( "+$punsukMM300F+"/"+.@MM300F+" )",bc_all,0xFF8000;
+}
+else{
+.@randzeny = rand(500,7000);
+zeny += .@randzeny;
+dispbottom "[ PunSuk Box Fire ] : คุณได้รับรางวัลปลอบใจ " + callfunc("F_InsertComma",.@randzeny) + " Zeny",0xAEFF00;
+end;
+}
+
+}
+
+function	script	F_Ice	{
+//ตั้งจำนวนทั้งหมด
+.@MM300I = 10;	//บัตรแลกเงินสด 300บาท
+
+.@rand	= rand(1,1000);
+if(.@rand == 779 && $punsukMM300I < .@MM300I){
+getitem 3130036,1;
+$punsukMM300I += 1;
+announce "[ PunSuk Box Ice ] : ผู้เล่น ["+strcharinfo(0)+"] ได้รับ บัตรแลกเงินสด 300บาท ( "+$punsukMM300I+"/"+.@MM300I+" )",bc_all,0xFF8000;
+}
+else{
+.@randzeny = rand(500,7000);
+zeny += .@randzeny;
+dispbottom "[ PunSuk Box Ice ] : คุณได้รับรางวัลปลอบใจ " + callfunc("F_InsertComma",.@randzeny) + " Zeny",0xAEFF00;
+end;
+}
+}
+
+function	script	F_Metal	{
+//ตั้งจำนวนทั้งหมด
+.@MM300ME = 10;	//บัตรแลกเงินสด 300บาท
+
+.@rand	= rand(1,1000);
+if(.@rand == 779 && $punsukMM300ME < .@MM300ME){
+getitem 3130036,1;
+$punsukMM300ME += 1;
+announce "[ PunSuk Box Metal ] : ผู้เล่น ["+strcharinfo(0)+"] ได้รับ บัตรแลกเงินสด 300บาท ( "+$punsukMM300ME+"/"+.@MM300ME+" )",bc_all,0xFF8000;
+}
+else{
+.@randzeny = rand(500,7000);
+zeny += .@randzeny;
+dispbottom "[ PunSuk Box Metal ] : คุณได้รับรางวัลปลอบใจ " + callfunc("F_InsertComma",.@randzeny) + " Zeny",0xAEFF00;
+end;
+}
+}
+
+function	script	F_Holy	{
+//ตั้งจำนวนทั้งหมด
+.@MM300HO = 10;	//บัตรแลกเงินสด 300บาท
+
+.@rand	= rand(1,1000);
+if(.@rand == 779 && $punsukMM300HO < .@MM300HO){
+getitem 3130036,1;
+$punsukMM300HO += 1;
+announce "[ PunSuk Box Holy ] : ผู้เล่น ["+strcharinfo(0)+"] ได้รับ บัตรแลกเงินสด 300บาท ( "+$punsukMM300HO+"/"+.@MM300HO+" )",bc_all,0xFF8000;
+}
+else{
+.@randzeny = rand(500,7000);
+zeny += .@randzeny;
+dispbottom "[ PunSuk Box Holy ] : คุณได้รับรางวัลปลอบใจ " + callfunc("F_InsertComma",.@randzeny) + " Zeny",0xAEFF00;
+end;
+}
+}
+
+
+
+-	script	dummypunsuk	-1,{
+
+
+OnPunsuk:
+.@MM500 = 10;	//บัตรแลกเงินสด 500บาท
+.@MM100 = 50;	//บัตรแลกเงินสด 100บาท
+.@VC500 = 10;	//Gift Voucher เติมเงิน 500บาท
+.@VC100 = 50;	//Gift Voucher เติมเงิน 100บาท
+
+.@MM1000F = 1;	//บัตรแลกเงินสด 1000บาท
+.@MM300F = 10;	//บัตรแลกเงินสด 100บาท
+
+.@MM300I = 10;	//บัตรแลกเงินสด 300บาท
+
+.@MM300ME = 10;	//บัตรแลกเงินสด 300บาท
+
+.@MM300HO = 10;	//บัตรแลกเงินสด 300บาท
+mes "เลือกเมนูด้านล่าง";
+switch(select("กล่องรวม","Fire","Ice","Metal","Holy")){
+case 1:
+next;
+	mes "เลือกเมนูด้านล่าง";
+		switch(select("เงินสด 500","เงินสด 100","เติมเงิน 500","เติมเงิน 100")){
+		case 1:
+			if($punsukMM500 == .@MM500){ mes "ครบแล้ว";  end; }
+			$punsukMM500 += 1;
+			announce "[ PunSuk Box ] : ผู้เล่น ["+strcharinfo(0)+"] ได้รับ บัตรแลกเงินสด 500บาท ( "+$punsukMM500+"/"+.@MM500+" )",bc_all,0xFF8000;
+		end;
+		case 2:
+			if($punsukMM100 == .@MM100){ mes "ครบแล้ว";  end; }
+			$punsukMM100 += 1;
+			announce "[ PunSuk Box ] : ผู้เล่น ["+strcharinfo(0)+"] ได้รับ บัตรแลกเงินสด 100บาท ( "+$punsukMM100+"/"+.@MM100+" )",bc_all,0xFF8000;
+		end;
+		case 3:
+			if($punsukVC500 == .@VC500){ mes "ครบแล้ว";  end; }
+			$punsukVC500 += 1;
+			announce "[ PunSuk Box ] : ผู้เล่น ["+strcharinfo(0)+"] ได้รับ Gift Voucher เติมเงิน 500บาท ( "+$punsukVC500+"/"+.@VC500+" )",bc_all,0xFF8000;
+		end;
+		case 4:
+			if($punsukVC100 == .@VC100){ mes "ครบแล้ว";  end; }
+			$punsukVC100 += 1;
+			announce "[ PunSuk Box ] : ผู้เล่น ["+strcharinfo(0)+"] ได้รับ Gift Voucher เติมเงิน 100บาท ( "+$punsukVC100+"/"+.@VC100+" )",bc_all,0xFF8000;
+		end;
+	}
+end;
+case 2:
+next;
+	mes "เลือกเมนูด้านล่าง";
+		switch(select("เงินสด 1000","เงินสด 100")){
+		case 1:
+			if($punsukMM1000F == .@MM1000F){ mes "ครบแล้ว";  end; }
+			$punsukMM1000F += 1;
+			announce "[ PunSuk Box Fire ] : ผู้เล่น ["+strcharinfo(0)+"] ได้รับ บัตรแลกเงินสด 1,000บาท ( "+$punsukMM1000F+"/"+.@MM1000F+" )",bc_all,0xFF8000;
+		end;
+		case 2:
+			if($punsukMM300F == .@MM300F){ mes "ครบแล้ว";  end; }
+			$punsukMM300F += 1;
+		announce "[ PunSuk Box Fire ] : ผู้เล่น ["+strcharinfo(0)+"] ได้รับ บัตรแลกเงินสด 300บาท ( "+$punsukMM300F+"/"+.@MM300F+" )",bc_all,0xFF8000;
+		end;
+	}
+end;
+case 3:
+if($punsukMM300I == .@MM300I){ mes "ครบแล้ว";  end; }
+$punsukMM300I += 1;
+announce "[ PunSuk Box Ice ] : ผู้เล่น ["+strcharinfo(0)+"] ได้รับ บัตรแลกเงินสด 1,000บาท ( "+$punsukMM300I+"/"+.@MM300I+" )",bc_all,0xFF8000;
+end;
+
+case 4:
+if($punsukMM300ME == .@MM300ME){ mes "ครบแล้ว";  end; }
+$punsukMM300ME += 1;
+announce "[ PunSuk Box Metal ] : ผู้เล่น ["+strcharinfo(0)+"] ได้รับ บัตรแลกเงินสด 1,000บาท ( "+$punsukMM300ME+"/"+.@MM300ME+" )",bc_all,0xFF8000;
+end;
+
+case 5:
+if($punsukMM300HO == .@MM300HO){ mes "ครบแล้ว";  end; }
+$punsukMM300HO += 1;
+announce "[ PunSuk Box Holy ] : ผู้เล่น ["+strcharinfo(0)+"] ได้รับ บัตรแลกเงินสด 300บาท ( "+$punsukMM300HO+"/"+.@MM300HO+" )",bc_all,0xFF8000;
+end;
+}
+
+OnResetFire:
+set $punsukMM1000F,0;
+set $punsukMM300F,0;
+end;
+
+OnResetIce:
+set $punsukMM300I,0;
+end;
+
+OnResetMetal:
+set $punsukMM300ME,0;
+end;
+
+OnResetHoly:
+set $punsukMM300HO,0;
+end;
+
+OnResetBox:
+set $punsukMM500,0;
+set $punsukMM100,0;
+set $punsukVC500,0;
+set $punsukVC100,0;
+
+set $punsukMM1000F,0;
+set $punsukMM300F,0;
+
+set $punsukMM300I,0;
+
+set $punsukMM300ME,0;
+
+set $punsukMM300HO,0;
+dispbottom "Reset แล้ว",0xAEFF00;
+end;
+
+OnInit:
+bindatcmd "dummypunsuk",strnpcinfo(3)+"::OnPunsuk",0,0;
+//bindatcmd "punsukfire",strnpcinfo(3)+"::OnResetFire",0,99;
+//bindatcmd "punsukice",strnpcinfo(3)+"::OnResetIce",0,99;
+//bindatcmd "punsukmetal",strnpcinfo(3)+"::OnResetMetal",0,99;
+//bindatcmd "punsukholy",strnpcinfo(3)+"::OnResetHoly",0,99;
+bindatcmd "punsukboxreset",strnpcinfo(3)+"::OnResetBox",0,99;
+end;
+}

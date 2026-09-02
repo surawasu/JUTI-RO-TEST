@@ -1,0 +1,367 @@
+/*
+nakhyang,17,41,2	script	Recycle_Soul#Hic	4_M_DEATH2,{
+	if (checkweight(1301,1) == 0) {
+		mes "- Please stop here!! -";
+		mes "- You have carried too much items, -";
+		mes "- Therefore unable receive any item again, -";
+		mes "- Please reduce your weight, -";
+		mes "- And come back again later! -";
+		close;
+	}
+	disable_items;
+	mes "[นักล่าวิญญาณ]";
+	mes "ข้าคือนักสะสมวิญญาณ";
+	mes "เจ้าสามารถนำ Soul มาย่อยเป็น Fragment";
+	mes "เจ้าต้องการเริ่มเลยไหม?";
+	next;
+	if (select( "เริ่มเลย ย่อย Soul", "ลองพูดคุยกับเขาดู" ) == 2) {
+		mes "[นักล่าวิญญาณ]";
+		mes "อืมมวันนี้อากาศดีเจ้าเป็นยังไงบ้าง!";
+		close;
+	}
+	mes "[" + strcharinfo(0) + "]";
+	mes "ดูเหมือนมันจะไม่ใช่นะมีอื่นๆอีกไหม ?.";
+	next;
+	mes "[นักล่าวิญญาณ]";
+	mes "ข้าสามารถเปลี่ยน Soul เป็น <ITEM>"+getitemname(8006820)+"<INFO>"+8006820+"</INFO></ITEM>.ได้";
+	next;
+	mes "- กำลังค้นหารายการ Soul -";
+	next;
+	// ====================================================================
+	// =================== Pokemon Egg Exchange To Bsb ===================
+	// ====================================================================
+	.@box_list[17] = 8006820;		// Normal Pokemon
+	setarray .@item_list_17[0],
+		8006814,
+		8006815,
+		8006816,
+		8006817,
+		8006818,
+		8006819;
+
+	.@box_list[18] = 8006820;		// Boss Pokemon
+	setarray .@item_list_18[0],
+		9229;
+
+	while(1) {
+		for ( .@i = 0; .@i < 19; ++.@i ) {
+			if (getiteminfo(.@box_list[.@i], ITEMINFO_TYPE) == -1)	// temporary check
+				continue;
+			.@size = getarraysize( getd(".@item_list_" + .@i) );
+			for ( .@h = 0; .@h < .@size; ++.@h ) {
+				.@id = getd( ".@item_list_" + .@i + "[" + .@h + "]" );
+				if (getiteminfo(.@id, ITEMINFO_TYPE) == -1)	// temporary check
+					continue;
+				if (countitem(.@id) < 1)
+					continue;
+				mes "[นักล่าวิญญาณ]";
+				if(.@id==.@item_list_18){
+				mes "เจอแล้ว นี่มัน <ITEM>"+getitemname(.@id)+"<INFO>"+.@id+"</INFO></ITEM>. เจ้าต้องแลก Soul เป็น <ITEM>"+getitemname(8006820)+"<INFO>"+8006820+"</INFO></ITEM> 100 ea. เลยหรือไม่?";
+				}else{
+				mes "เจอแล้ว นี่มัน <ITEM>"+getitemname(.@id)+"<INFO>"+.@id+"</INFO></ITEM>. เจ้าต้องแลก Soul เป็น<ITEM>"+getitemname(8006820)+"<INFO>"+8006820+"</INFO></ITEM> 1 ea. เลยหรือไม่?";
+				}
+				next;
+				switch( select( "แลกเลย", "ลองดูอย่างอื่นก่อน", "หยุดก่อนแล้วกัน" ) ) {
+				case 1:
+					mes "[นักล่าวิญญาณ]";
+					if (countitem(.@id) < 1)
+						mes "อืมมม ดูเหมือนว่าไม่มี Soul ที่แลกเปลี่ยนได้แล้ว...";
+					else {
+						if(.@id==.@item_list_18){
+						input $@amount;
+							if($@amount == 0){
+								end;
+							}else{
+								if(countitem(.@id) < $@amount){
+								next;
+								mes "เจ้ากรอกจำนวนเยอะเกินกว่าที่มีอยู่";
+								end;
+								}
+							}
+						
+						delitem .@id, $@amount;
+						getitem .@box_list[.@i], $@amount;
+						mes "การแลกเปลี่ยนเสร็จสิ้น.";
+						}else{
+						mes "โปรดระบุจำนวนที่ต้องการแลก";
+						input $@amount;
+							if($@amount == 0){
+								end;
+							}else{
+								if(countitem(.@id) < $@amount){
+								next;
+								mes "เจ้ากรอกจำนวนเยอะเกินกว่าที่มีอยู่";
+								end;
+								}
+							}
+						
+						delitem .@id, $@amount;
+						getitem .@box_list[.@i], $@amount;
+						mes "การแลกเปลี่ยนเสร็จสิ้น.";
+						}
+					}
+					mes "โปรดเช็คดูอีกที...";
+					next;
+					break;
+				case 2:
+					break;
+				case 3:
+					mes "[นักล่าวิญญาณ]";
+					mes "อืมมมมไว้เจอกันใหม่.";
+					close;
+				}
+			}
+		}
+		mes "[นักล่าวิญญาณ]";
+		mes "เดาไว้ว่านั้นคือทั้งหมดที่มีแล้ว.";
+		next;
+		if (select( "ดูรายละเอียดเพิ่มเติม", "ออกก่อน" ) == 2) {
+			mes "[นักล่าวิญญาณ]";
+			mes "ลาก่อน~";
+			close;
+		}
+	}
+OnInit:
+	waitingroom "แลกเปลี่ยนวิญญาณ",0;
+end;
+}
+*/
+
+morocc,113,59,5	script	Medal of Honor	635,{
+	if (checkweight(1301,1) == 0) {
+		mes "- Please stop here!! -";
+		mes "- You have carried too much items, -";
+		mes "- Therefore unable receive any item again, -";
+		mes "- Please reduce your weight, -";
+		mes "- And come back again later! -";
+		close;
+	}
+	disable_items;
+	mes "[Medal of Honor]";
+	mes "ข้าคือผู้สร้าง";
+	mes "เจ้าต้องการเริ่มเลยไหม?";
+	next;
+	mes "[Medal of Honor]";
+	mes "เจ้าต้องนำของที่ข้าต้องการมา";
+	mes "ข้าจะสร้างสิ่งที่ยิ่งใหญ่ให้เจ้า";
+	next;
+	setarray .@item_name$[0],
+		getitemname(8002720),	// Medal of Swordman
+		getitemname(8002721),	// Medal of Thief
+		getitemname(8002722),	// Medal of Acolyte
+		getitemname(8002723),	// Medal of Mage
+		getitemname(8002724),	// Medal of Archer
+		getitemname(8002725);	// Medal of Merchant
+	while(true) {
+		if (checkweight(2677,5) == 0) {
+			mes "[Medal of Honor]";
+			mes "Your backpack..";
+			mes "is filled...";
+			close;
+		}
+		if (select( "เจ้าต้องการให้ข้าสร้างชิ้นไหน.", "ข้ากลัวหนีดีกว่า บั๊ย." ) == 2) {
+			mes "[Medal of Honor]";
+			mes "ฮ่าๆ ตลกจริงๆ วิ่งจุกตูด";
+			close;
+		}
+		mes "[Medal of Honor]";
+		mes "ถ้าเจ้ามอบ...จิตวิญญาณให้ข้า...ข้าจะทำบางสิ่ง...ที่เต็มไปด้วย... พลังพิเศษ..โดยใช้การผสมผสาน...";
+		mes "เจ้าต้องการใช่ไหม";
+		while(true) {
+			next;
+			switch( select( "ขอคิดใหม่แปบ.", .@item_name$[0], .@item_name$[1], .@item_name$[2], .@item_name$[3], .@item_name$[4], .@item_name$[5] + "s" ) ) {
+			case 1:
+				break;
+			case 2:
+				mes "- " + .@item_name$[0] + " -";
+				mes "^006400ATK +5%^000000";
+				mes "^006400Vit +3^000000";
+				mes "^006400MaxHP +500^000000";
+				mes "^006400Bowling Bash +20%^000000";
+				mes "^006400Pierce +20%^000000";
+				mes "^006400Holy Cross +20%^000000";
+				mes "^006400Grand Cross +20%^000000";
+				mes "^006400ประเภท: Accessory^000000";
+				mes "^006400ตำแหน่ง: Accessory Right^000000";
+				mes "^006400น้ำหนัก: 0^000000";
+				mes "^006400SLOT: 1^000000";
+				mes "^006400เลเวลที่ต้องการ: 70^000000";
+				mes "^006400อาชีพที่ใช้ได้: Swordman^000000";
+				callsub S_Make,
+					8002720,	// Medal_Swordman_Hi
+					19961,		// C_Rune_Circlet
+					8006814;	// Swordman_Soul_Hi
+				continue;
+			case 3:
+				mes "- " + .@item_name$[1] + " -";
+				mes "^006400ATK +5%^000000";
+				mes "^006400Luk +3^000000";
+				mes "^006400Aspd +10%^000000";
+				mes "^006400Sonic Blow +20%^000000";
+				mes "^006400Soul Destroyer +20%^000000";
+				mes "^006400Triple Attack +20%^000000";
+				mes "^006400Lightning Bolt +20%^000000";
+				mes "^006400Fire Bolt +20%^000000";
+				mes "^006400Cold Bolt +20%^000000";
+				mes "^006400ประเภท: Accessory^000000";
+				mes "^006400ตำแหน่ง: Accessory Right^000000";
+				mes "^006400น้ำหนัก: 0^000000";
+				mes "^006400SLOT: 1^000000";
+				mes "^006400เลเวลที่ต้องการ: 70^000000";
+				mes "^006400อาชีพที่ใช้ได้: Thief^000000";
+				callsub S_Make,
+					8002721,	// Medal_Thief_Hi
+					19973,		// C_Circlet_Of_Bone
+					8006816;	// Thief_Soul_Hi
+				continue;
+			case 4:
+				mes "- " + .@item_name$[2] + " -";
+				mes "^006400STR +3^000000";
+				mes "^006400MATK +5%^000000";
+				mes "^006400MaxSp +150^000000";
+				mes "^006400Magnus Exorcismus +20%^000000";
+				mes "^006400โจมตีบอสแรง +20%^000000";
+				mes "^006400ประเภท: Accessory^000000";
+				mes "^006400ตำแหน่ง: Accessory Right^000000";
+				mes "^006400น้ำหนัก: 0^000000";
+				mes "^006400SLOT: 1^000000";
+				mes "^006400เลเวลที่ต้องการ: 70^000000";
+				mes "^006400อาชีพที่ใช้ได้: Acolyte^000000";
+				callsub S_Make,
+					8002722,	// Medal_Acolyte_Hi
+					19962,		// C_Mitra
+					8006819;	// Acolyte_Soul_Hi
+				continue;
+			case 5:
+				mes "- " + .@item_name$[3] + " -";
+				mes "^006400ไอเทมนี้ไม่สามารถแลกเปลี่ยนได้.^000000";
+				mes "^006400MATK +5%^000000";
+				mes "^006400Int +3^000000";
+				mes "^006400Reduce Casting Time +5%^000000";
+				mes "^006400Meteor Storm +20%^000000";
+				mes "^006400Lord of Vermillion +20%^000000";
+				mes "^006400Storm Gust +20%^000000";
+				mes "^006400Lightning Bolt +20%^000000";
+				mes "^006400Fire Bolt +20%^000000";
+				mes "^006400Cold Bolt +20%^000000";
+				mes "^006400ประเภท: Accessory^000000";
+				mes "^006400ตำแหน่ง: Accessory Right^000000";
+				mes "^006400น้ำหนัก: 0^000000";
+				mes "^006400SLOT: 1^000000";
+				mes "^006400เลเวลที่ต้องการ: 70^000000";
+				mes "^006400อาชีพที่ใช้ได้: Mage^000000";
+				callsub S_Make,
+					8002723,	// Medal_Acolyte_Hi
+					19968,		// C_Magic_Stone_Hat
+					8006817;	// Magician_Soul_Hi
+				continue;
+			case 6:
+				mes "- " + .@item_name$[4] + " -";
+				mes "^006400ไอเทมนี้ไม่สามารถแลกเปลี่ยนได้.^000000";
+				mes "^006400ATK +5%^000000";
+				mes "^006400Dex +3^000000";
+				mes "^006400Critical +10^000000";
+				mes "^006400Sharp Shooting +20%^000000";
+				mes "^006400Double Strafe +20%^000000";
+				mes "^006400Blitz Beat +100%^000000";
+				mes "^006400ประเภท: Accessory^000000";
+				mes "^006400ตำแหน่ง: Accessory Right^000000";
+				mes "^006400น้ำหนัก: 0^000000";
+				mes "^006400SLOT: 1^000000";
+				mes "^006400เลเวลที่ต้องการ: 70^000000";
+				mes "^006400อาชีพที่ใช้ได้: Archer^000000";
+				callsub S_Make,
+					8002724,	// Medal_Archer_Hi
+					19974,		// C_Camouflage_RabbitHood
+					8006818;	// Archer_Soul_Hi
+				continue;
+			case 7:
+				mes "- " + .@item_name$[5] + " -";
+				mes "^006400ไอเทมนี้ไม่สามารถแลกเปลี่ยนได้.^000000";
+				mes "^006400ATK +5%^000000";
+				mes "^006400Str +3^000000";
+				mes "^006400HIT +10^000000";
+				mes "^006400Cart Termination +20%^000000";
+				mes "^006400Cart Revolution +20%^000000";
+				mes "^006400Acid Demonstration +20%^000000";
+				mes "^006400ประเภท: Accessory^000000";
+				mes "^006400ตำแหน่ง: Accessory Right^000000";
+				mes "^006400น้ำหนัก: 0^000000";
+				mes "^006400SLOT: 1^000000";
+				mes "^006400เลเวลที่ต้องการ: 70^000000";
+				mes "^006400อาชีพที่ใช้ได้: Merchant^000000";
+				callsub S_Make,
+					8002725,	// Medal_Merchant_Hi
+					19963,		// C_Driver_Band_R
+					8006815;	// Merchant_Soul_Hi
+			}
+			break;
+		}
+	}
+
+S_Make:
+	.@reward_id = getarg(0);
+	.@equipment_req = getarg(1);
+	.@item_misc_req = getarg(2);
+	if (getarg(3,0)) {
+		setarray .@string$[0], "chill", "cloak";
+		setarray .@material[0],20,100;	// chill, energy
+	}
+	else {
+		setarray .@string$[0], "soul", "hat";
+		setarray .@material[0],10,50;	// soul, energy
+	}
+	next;
+	mes "[Medal of Honor]";
+	mes "สิ่งที่เจ้าต้องการคือ... ^006400" + getitemname(.@reward_id) + "^000000...";
+	next;
+	mes "[Medal of Honor]";
+	mes "ข้าต้องการ \n^0000FF1^000000 " + getitemname(.@equipment_req) + ", \n^0000FF" + .@material[0] + "^000000 " + getitemname(.@item_misc_req) + "... \n^0000FF" + .@material[1] + "^000000 " + getitemname(8006820) + "..";
+	mes "ต้องการให้ข้าเริ่มเลยไหม ?";
+	next;
+	switch( select( "ลืมของไว้ที่บ้าน.", "มอบ " + .@material[1] + " energies, " + .@material[0] + "soul ให้กับยมทูต" ) ) {
+	case 1:
+		mes "[Medal of Honor]";
+		mes "กลับบ้านดีๆนะ...";
+		return;
+	case 2:
+		.@rate = 1;
+		break;
+	}
+	if (countitem(.@equipment_req) < 1 || countitem(.@item_misc_req) < (.@material[0] * .@rate) || countitem(8006820) < (.@material[1] * .@rate)) {
+		mes "[Medal of Honor]";
+		mes "เจ้าเตรียมของมาไม่ครบ... ^006400" + getitemname(.@reward_id) + "^000000...";
+		return;
+	}
+	progressbar "000000",5;
+	percentheal -50,-50;
+	specialeffect2 EF_POISONSMOKE;
+	specialeffect2 EF_NPC_BURNT;
+	delitem .@equipment_req, 1;
+	delitem .@item_misc_req, (.@material[0] * .@rate);
+	delitem 8006820, (.@material[1] * .@rate);// Energy Fragment
+
+	if ((20*.@rate) > rand(100)) {
+		specialeffect EF_BLACKBODY;
+		specialeffect EF_GUMGANG4;
+		specialeffect EF_DARKCASTING2;
+		specialeffect EF_RG_COIN7;
+		mes "[Medal of Honor]";
+		mes "ข้าทำสำเร็จแล้ว... ^006400" + getitemname(.@reward_id) + "^000000...";
+		getitem .@reward_id,1;
+	}
+	else {
+		specialeffect EF_POISONSMOKE;
+		specialeffect EF_GUMGANG4;
+		mes "[Medal of Honor]";
+		mes "^006400" + getitemname(.@reward_id) + "^000000... เสียใจด้วยไม่สำเร็จ...";
+	}
+	next;
+	mes "- ฉันได้รับความเสียหายร้ายแรง - - โดยคลื่นพลังของจิตใจ - - ซึ่งซึมเข้าสู่ร่างกายของฉัน. -";
+	next;
+	mes "[Medal of Honor]";
+	mes "มีอะไร... อะไร... ให้ฉันช่วยได้ไหม?";
+	return;
+OnInit:
+	waitingroom "สร้างประดับ Medal",0;
+}

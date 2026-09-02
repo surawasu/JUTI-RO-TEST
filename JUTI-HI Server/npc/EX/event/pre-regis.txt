@@ -1,0 +1,52 @@
+morocc,168,66,3	script	รับของรางวัล Pre-Regis	569,{
+
+if(#getitempre > 0){
+	mes "[ รับของรางวัล Pre-Regis ]";
+	mes "^FF0000เจ้ารับของรางวัลไปแล้ว^000000";
+	close;
+
+}
+.id = getcharid(3);
+
+if(.id < 2000870){
+
+	mes "[ รับของรางวัล Pre-Regis ]";
+	mes "^0000FFต้องสมัครก่อนวันที่ 30 ธันวาคม 2566^000000";
+	mes "^FF0000บรรลุเป้าหมาย 1,000 ID^000000";
+	mes "^FF0000สามารถรับได้ ID ละ1ครั้งเท่านั้นนะ^000000";
+	switch (select("รับไอเท็มเลย !!:ยังดีกว่า")) {
+	case 1:
+		next;
+		//getitem .reward, .qty;
+		//rentitem 23431026,(15*24*60*60);
+		getitem 3130000,3;
+		getitem 3130001,3;
+		getitem 3130002,3;
+		getitem 3130003,100;
+		getitem 3130004,100;
+		getitem 3130005,1;
+		getitem 3130006,1;
+		getitem 3130007,1;
+		#getitempre = 1;
+		mes "[ รับของรางวัล Pre-Regis ]";
+		mes "ยินดีด้วยท่านตรงตามเงื่อนไขรับรางวัลไปได้เลย!";
+		close;
+
+	case 2:
+		next;
+		mes "[ รับของรางวัล Pre-Regis ]";
+		mes "หากเจ้าต้องการให้กลับมาได้เลย";
+		close;
+	}
+
+}else{
+mes "[ รับของรางวัล Pre-Regis ]";
+mes "ท่านไม่ตรงตามเงื่อนไข!";
+mes "^0000FFต้องสมัครก่อนวันที่ 30 ธันวาคม 2566^000000";
+}
+
+	
+OnInit:
+waitingroom "รับของรางวัล Pre-Regis",0;
+	end;
+}

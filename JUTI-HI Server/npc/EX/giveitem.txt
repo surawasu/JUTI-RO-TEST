@@ -1,0 +1,249 @@
+-	script	giveitem	-1,{
+    
+    OnInit:
+        bindatcmd "itemmap",strnpcinfo(3)+"::OnItemMap",99,99;
+    end;
+    
+    OnItemMap:
+        message strcharinfo(0),"โปรดเลือก คำสั่งที่ท่านต้องการใช้งาน.";
+        switch(select("01. ^0000FFแจกของในแมพที่อยู่^000000 :02. ^0000FFแจกของในแมพที่อยู่^FF0000(เฉพาะคนไม่ตาย)^000000^000000 :03. ^00FF00แจกเงินเซนนีในแมพที่อยู่^000000:04. ^FF0000แจกแคชในแมพที่อยู่^000000")) {
+        case 1:
+			 message strcharinfo(0),"โปรดเลือก คำสั่งที่ท่านต้องการใช้งาน.";
+			switch(select("01. ^0000FFแจกของ ID ไม่เกิน 9 หลัก^000000 :02. ^00FF00แจกของ ID เกิน9หลัก^000000:03. ^FF0000ยกเลิก^000000")) {
+					case 1:
+						message strcharinfo(0),"Input Item ID.";
+						input $@item;
+				
+						message strcharinfo(0),"Input Item Amount.";
+						input $@amount;
+						
+						message strcharinfo(0),"Input LV เท่าไหร่ขึ้นไปถึงจะได้ของ.";
+						input $@lv;
+				
+						message strcharinfo(0),"ท่านได้มอบ "+getitemname($@item)+" ให้แก่ผู้เล่นจำนวน "+$@amount+" ea ที่มี LV มากกว่า "+$@lv+"";
+						if(select("- ^FF0000No^000000 :- ^00FF00Yes^000000") - 2) end;
+						addrid(1);
+						if(checkvending() || BaseLevel < $@lv){
+						end;
+						}else{
+						getitem $@item,$@amount;
+						}
+						end;
+					case 2:
+						switch(select(" ใบ JRO NT : ใบกันแตก JRO NT: EXP 500%: EXP 1000%: Cos Zombie")) {
+							case 1:
+								message strcharinfo(0),"Input Item Amount.";
+								input $@amount;
+								
+								message strcharinfo(0),"Input LV เท่าไหร่ขึ้นไปถึงจะได้ของ.";
+								input $@lv;
+						
+								message strcharinfo(0),"ท่านได้มอบ "+getitemname(23431029)+" ให้แก่ผู้เล่นจำนวน "+$@amount+" ea ที่มี LV มากกว่า "+$@lv+"";
+								if(select("- ^FF0000No^000000 :- ^00FF00Yes^000000") - 2) end;
+								addrid(1);
+								if(checkvending() || BaseLevel < $@lv){
+								end;
+								}else{
+								getitem 23431029,$@amount;
+								}
+								end;
+							case 2:
+								message strcharinfo(0),"Input Item Amount.";
+								input $@amount;
+								
+								message strcharinfo(0),"Input LV เท่าไหร่ขึ้นไปถึงจะได้ของ.";
+								input $@lv;
+						
+								message strcharinfo(0),"ท่านได้มอบ "+getitemname(23431030)+" ให้แก่ผู้เล่นจำนวน "+$@amount+" ea ที่มี LV มากกว่า "+$@lv+"";
+								if(select("- ^FF0000No^000000 :- ^00FF00Yes^000000") - 2) end;
+								addrid(1);
+								if(checkvending() || BaseLevel < $@lv){
+								end;
+								}else{
+								getitem 23431030,$@amount;
+								}
+								end;
+							case 3:
+								message strcharinfo(0),"Input Item Amount.";
+								input $@amount;
+								
+								message strcharinfo(0),"Input LV เท่าไหร่ขึ้นไปถึงจะได้ของ.";
+								input $@lv;
+						
+								message strcharinfo(0),"ท่านได้มอบ "+getitemname(23441043)+" ให้แก่ผู้เล่นจำนวน "+$@amount+" ea ที่มี LV มากกว่า "+$@lv+"";
+								if(select("- ^FF0000No^000000 :- ^00FF00Yes^000000") - 2) end;
+								addrid(1);
+								if(checkvending() || BaseLevel < $@lv){
+								end;
+								}else{
+								getitem 23441043,$@amount;
+								}
+								end;
+							case 4:
+								message strcharinfo(0),"Input Item Amount.";
+								input $@amount;
+								
+								message strcharinfo(0),"Input LV เท่าไหร่ขึ้นไปถึงจะได้ของ.";
+								input $@lv;
+						
+								message strcharinfo(0),"ท่านได้มอบ "+getitemname(23431028)+" ให้แก่ผู้เล่นจำนวน "+$@amount+" ea ที่มี LV มากกว่า "+$@lv+"";
+								if(select("- ^FF0000No^000000 :- ^00FF00Yes^000000") - 2) end;
+								addrid(1);
+								if(checkvending() || BaseLevel < $@lv){
+								end;
+								}else{
+								getitem 23431028,$@amount;
+								}
+								end;
+							case 5:
+								message strcharinfo(0),"Input Item Amount.";
+								input $@amount;
+								
+								message strcharinfo(0),"Input LV เท่าไหร่ขึ้นไปถึงจะได้ของ.";
+								input $@lv;
+						
+								message strcharinfo(0),"ท่านได้มอบ "+getitemname(3100063)+" ให้แก่ผู้เล่นจำนวน "+$@amount+" ea ที่มี LV มากกว่า "+$@lv+"";
+								if(select("- ^FF0000No^000000 :- ^00FF00Yes^000000") - 2) end;
+								addrid(1);
+								if(checkvending() || BaseLevel < $@lv){
+								end;
+								}else{
+								getitem 3100063,$@amount;
+								}
+								end;
+						}
+					case 3:
+					end;
+				}
+        case 2:
+			 message strcharinfo(0),"โปรดเลือก คำสั่งที่ท่านต้องการใช้งาน.";
+			switch(select("01. ^0000FFแจกของ ID ไม่เกิน 9 หลัก^000000 :02. ^00FF00แจกของ ID เกิน9หลัก^000000:03. ^FF0000ยกเลิก^000000")) {
+					case 1:
+						message strcharinfo(0),"Input Item ID.";
+						input $@item;
+				
+						message strcharinfo(0),"Input Item Amount.";
+						input $@amount;
+						
+						message strcharinfo(0),"Input LV เท่าไหร่ขึ้นไปถึงจะได้ของ.";
+						input $@lv;
+				
+						message strcharinfo(0),"ท่านได้มอบ "+getitemname($@item)+" ให้แก่ผู้เล่นจำนวน "+$@amount+" ea ที่มี LV มากกว่า "+$@lv+"";
+						if(select("- ^FF0000No^000000 :- ^00FF00Yes^000000") - 2) end;
+						addrid(1);
+						if(checkvending() || BaseLevel < $@lv || Hp < 1){
+						end;
+						}else{
+						getitem $@item,$@amount;
+						}
+						end;
+					case 2:
+						switch(select(" ใบ JRO NT : ใบกันแตก JRO NT: EXP 500%: EXP 1000%: Cos Zombie")) {
+							case 1:
+								message strcharinfo(0),"Input Item Amount.";
+								input $@amount;
+								
+								message strcharinfo(0),"Input LV เท่าไหร่ขึ้นไปถึงจะได้ของ.";
+								input $@lv;
+						
+								message strcharinfo(0),"ท่านได้มอบ "+getitemname(23431029)+" ให้แก่ผู้เล่นจำนวน "+$@amount+" ea ที่มี LV มากกว่า "+$@lv+"";
+								if(select("- ^FF0000No^000000 :- ^00FF00Yes^000000") - 2) end;
+								addrid(1);
+								if(checkvending() || BaseLevel < $@lv || Hp < 1){
+								end;
+								}else{
+								getitem 23431029,$@amount;
+								}
+								end;
+							case 2:
+								message strcharinfo(0),"Input Item Amount.";
+								input $@amount;
+								
+								message strcharinfo(0),"Input LV เท่าไหร่ขึ้นไปถึงจะได้ของ.";
+								input $@lv;
+						
+								message strcharinfo(0),"ท่านได้มอบ "+getitemname(23431030)+" ให้แก่ผู้เล่นจำนวน "+$@amount+" ea ที่มี LV มากกว่า "+$@lv+"";
+								if(select("- ^FF0000No^000000 :- ^00FF00Yes^000000") - 2) end;
+								addrid(1);
+								if(checkvending() || BaseLevel < $@lv || Hp < 1){
+								end;
+								}else{
+								getitem 23431030,$@amount;
+								}
+								end;
+							case 3:
+								message strcharinfo(0),"Input Item Amount.";
+								input $@amount;
+								
+								message strcharinfo(0),"Input LV เท่าไหร่ขึ้นไปถึงจะได้ของ.";
+								input $@lv;
+						
+								message strcharinfo(0),"ท่านได้มอบ "+getitemname(23441043)+" ให้แก่ผู้เล่นจำนวน "+$@amount+" ea ที่มี LV มากกว่า "+$@lv+"";
+								if(select("- ^FF0000No^000000 :- ^00FF00Yes^000000") - 2) end;
+								addrid(1);
+								if(checkvending() || BaseLevel < $@lv || Hp < 1){
+								end;
+								}else{
+								getitem 23441043,$@amount;
+								}
+								end;
+							case 4:
+								message strcharinfo(0),"Input Item Amount.";
+								input $@amount;
+								
+								message strcharinfo(0),"Input LV เท่าไหร่ขึ้นไปถึงจะได้ของ.";
+								input $@lv;
+						
+								message strcharinfo(0),"ท่านได้มอบ "+getitemname(23431028)+" ให้แก่ผู้เล่นจำนวน "+$@amount+" ea ที่มี LV มากกว่า "+$@lv+"";
+								if(select("- ^FF0000No^000000 :- ^00FF00Yes^000000") - 2) end;
+								addrid(1);
+								if(checkvending() || BaseLevel < $@lv || Hp < 1){
+								end;
+								}else{
+								getitem 23431028,$@amount;
+								}
+								end;
+							case 5:
+								message strcharinfo(0),"Input Item Amount.";
+								input $@amount;
+								
+								message strcharinfo(0),"Input LV เท่าไหร่ขึ้นไปถึงจะได้ของ.";
+								input $@lv;
+						
+								message strcharinfo(0),"ท่านได้มอบ "+getitemname(3100063)+" ให้แก่ผู้เล่นจำนวน "+$@amount+" ea ที่มี LV มากกว่า "+$@lv+"";
+								if(select("- ^FF0000No^000000 :- ^00FF00Yes^000000") - 2) end;
+								addrid(1);
+								if(checkvending() || BaseLevel < $@lv || Hp < 1){
+								end;
+								}else{
+								getitem 3100063,$@amount;
+								}
+								end;
+						}
+					case 3:
+					end;
+				}
+        case 3:
+        message strcharinfo(0),"Input Zeny.";
+        input $@zeny;
+
+        message strcharinfo(0),"ท่านได้มอบ "+callfunc("F_InsertComma",$@zeny)+"  Zeny ให้แก่ผู้เล่น";
+        if(select("- ^FF0000No^000000 :- ^00FF00Yes^000000") - 2) end;
+        addrid(1);
+        Zeny += $@zeny;
+        message strcharinfo(0),"คุณได้รับ "+callfunc("F_InsertComma",$@zeny)+" Zeny จากทีมงาน";
+        end;;
+        
+        case 4:
+        message strcharinfo(0),"Input Cash Point.";
+        input $@cash;
+        
+        message strcharinfo(0),"ท่านได้มอบ "+callfunc("F_InsertComma",$@cash)+"  Cash Point ให้แก่ผู้เล่น";
+        addrid(1);
+        #CASHPOINTS += $@cash;
+        message strcharinfo(0),"คุณได้รับ "+callfunc("F_InsertComma",$@cash)+" Cash Point จากทีมงาน";
+            end;;
+        }
+        
+    close;
+}

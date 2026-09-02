@@ -1,0 +1,31 @@
+hell_abyss3,0,0,0,0	monster	Weak Knight Seyren	2415,2,5000
+hell_abyss3,0,0,0,0	monster	Weak Assassin Eremes	2416,2,5000
+hell_abyss3,0,0,0,0	monster	Weak Blacksmith Howard	2417,2,5000
+hell_abyss3,0,0,0,0	monster	Weak Hunter Cecil	2418,2,5000
+hell_abyss3,0,0,0,0	monster	Weak Wizard Kathryne	2419,2,5000
+hell_abyss3,0,0,0,0	monster	Weak Priest Margaretha	2420,2,5000
+hell_abyss3,0,0,0,0	monster	Weak Crusader Egnigem	2421,2,5000
+hell_abyss3,0,0,0,0	monster	Weak Rogue Wickebine	2422,2,5000
+hell_abyss3,0,0,0,0	monster	Weak Alchemist Armeyer	2423,2,5000
+hell_abyss3,0,0,0,0	monster	Weak Bard Kavach	2424,2,5000
+hell_abyss3,0,0,0,0	monster	Weak Dancer Josephina	2425,2,5000
+hell_abyss3,0,0,0,0	monster	Weak Sage Laurell	2426,2,5000
+hell_abyss3,0,0,0,0	monster	Weak Monk Errende	2427,2,5000
+hell_abyss3,0,0,0,0	monster	Weak Gemini-S58	1681,2,5000
+
+
+hell_abyss3,0,0,0,0	monster	Weak Menblatt	2363,2,5000
+hell_abyss3,0,0,0,0	monster	Weak Petal	2364,2,5000
+hell_abyss3,0,0,0,0	monster	Weak Cenere	2365,2,5000
+hell_abyss3,0,0,0,0	monster	Weak Antique Book	2366,2,5000
+hell_abyss3,0,0,0,0	monster	Weak Wakwak	2315,2,5000
+hell_abyss3,0,0,0,0	monster	Weak Jejeling	2316,2,5000
+
+
+hell_abyss3,0,0,0,0	monster	Weak Purple Ferus	20612,2,5000
+hell_abyss3,0,0,0,0	monster	Weak Treasure Mimic	20613,2,5000
+hell_abyss3,0,0,0,0	monster	Weak Black Acidus	20614,2,5000
+hell_abyss3,0,0,0,0	monster	Weak Silver Acidus	20615,2,5000
+hell_abyss3,0,0,0,0	monster	Weak Bone Ferus	20616,2,5000
+hell_abyss3,0,0,0,0	monster	Weak Bone Acidus	20617,2,5000
+

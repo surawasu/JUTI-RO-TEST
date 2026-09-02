@@ -1,0 +1,222 @@
+
+-	script	Funtown#1::TownFlagPR1	722,{
+
+end;
+
+OnRecvCastlePt01:
+	FlagEmblem GetCastleData("prtg_cas01",1);
+	end;
+}
+
+funtown,188,243,4	duplicate(TownFlagPR1)	Kriemhild#Funtown	722
+
+-	script	Funtown#1::TownFlagPR2	722,{
+
+end;
+
+OnRecvCastlePt02:
+	FlagEmblem GetCastleData("prtg_cas02",1);
+	end;
+}
+
+funtown,192,243,4	duplicate(TownFlagPR2)	Swanhild#Funtown	722
+
+-	script	Funtown#1::TownFlagPR3	722,{
+
+end;
+
+OnRecvCastlePt03:
+	FlagEmblem GetCastleData("prtg_cas03",1);
+	end;
+}
+
+funtown,196,243,4	duplicate(TownFlagPR3)	Fadhgridh#Funtown	722
+
+-	script	Funtown#1::TownFlagPR4	722,{
+
+end;
+
+OnRecvCastlePt04:
+	FlagEmblem GetCastleData("prtg_cas04",1);
+	end;
+}
+
+funtown,200,243,4	duplicate(TownFlagPR4)	Skoegul#Funtown	722
+
+-	script	Funtown#1::TownFlagPR5	722,{
+
+end;
+
+OnRecvCastlePt05:
+	FlagEmblem GetCastleData("prtg_cas05",1);
+	end;
+}
+
+funtown,204,243,4	duplicate(TownFlagPR5)	Gondul#Funtown	722
+
+
+
+-	script	Funtown#1::TownFlagPY1	722,{
+
+end;
+
+OnRecvCastlePy01:
+	FlagEmblem GetCastleData("payg_cas01",1);
+	end;
+}
+
+funtown,188,247,4	duplicate(TownFlagPY1)	Bright Arbor#Funtown	722
+
+-	script	Funtown#1::TownFlagPY2	722,{
+
+end;
+
+OnRecvCastlePy02:
+	FlagEmblem GetCastleData("payg_cas02",1);
+	end;
+}
+
+funtown,192,247,4	duplicate(TownFlagPY2)	Sacred Palace#Funtown	722
+
+-	script	Funtown#1::TownFlagPY3	722,{
+
+end;
+
+OnRecvCastlePy03:
+	FlagEmblem GetCastleData("payg_cas03",1);
+	end;
+}
+
+funtown,196,247,4	duplicate(TownFlagPY3)	Holy Shadow#Funtown	722
+
+-	script	Funtown#1::TownFlagPY4	722,{
+
+end;
+
+OnRecvCastlePy04:
+	FlagEmblem GetCastleData("payg_cas04",1);
+	end;
+}
+
+funtown,200,247,4	duplicate(TownFlagPY4)	Scarlet Palace#Funtown	722
+
+-	script	Funtown#1::TownFlagPY5	722,{
+
+end;
+
+OnRecvCastlePy05:
+	FlagEmblem GetCastleData("payg_cas05",1);
+	end;
+}
+
+funtown,204,247,4	duplicate(TownFlagPY5)	Bamboo Groove Hill#Funtown	722
+
+-	script	Funtown#1::TownFlagGF1	722,{
+
+end;
+
+OnRecvCastleG01:
+	FlagEmblem GetCastleData("gefg_cas01",1);
+	end;
+}
+
+funtown,215,247,4	duplicate(TownFlagGF1)	Repherion#Funtown	722
+
+-	script	Funtown#1::TownFlagGF2	722,{
+
+end;
+
+OnRecvCastleG02:
+	FlagEmblem GetCastleData("gefg_cas02",1);
+	end;
+}
+
+funtown,219,247,4	duplicate(TownFlagGF2)	Eeyorbriggar#Funtown	722
+
+-	script	Funtown#1::TownFlagGF3	722,{
+
+end;
+
+OnRecvCastleG03:
+	FlagEmblem GetCastleData("gefg_cas03",1);
+	end;
+}
+
+funtown,223,247,4	duplicate(TownFlagGF3)	Yesnelph#Funtown	722
+
+-	script	Funtown#1::TownFlagGF4	722,{
+
+end;
+
+OnRecvCastleG04:
+	FlagEmblem GetCastleData("gefg_cas04",1);
+	end;
+}
+
+funtown,227,247,4	duplicate(TownFlagGF4)	Bergel#Funtown	722
+
+-	script	Funtown#1::TownFlagGF5	722,{
+
+end;
+
+OnRecvCastleG05:
+	FlagEmblem GetCastleData("gefg_cas05",1);
+	end;
+}
+
+funtown,231,247,4	duplicate(TownFlagGF5)	Mersetzdeitz#Funtown	722
+
+-	script	Funtown#1::TownFlagAD1	722,{
+
+end;
+
+OnRecvCastleA01:
+	FlagEmblem GetCastleData("aldeg_cas01",1);
+	end;
+}
+
+funtown,215,243,4	duplicate(TownFlagAD1)	Neuschwanstein#Funtown	722
+
+-	script	Funtown#1::TownFlagAD2	722,{
+
+end;
+
+OnRecvCastleA02:
+	FlagEmblem GetCastleData("aldeg_cas02",1);
+	end;
+}
+
+funtown,219,243,4	duplicate(TownFlagAD2)	Hohenschwangau#Funtown	722
+
+-	script	Funtown#1::TownFlagAD3	722,{
+
+end;
+
+OnRecvCastleA03:
+	FlagEmblem GetCastleData("aldeg_cas03",1);
+	end;
+}
+
+funtown,223,243,4	duplicate(TownFlagAD3)	Nuernberg#Funtown	722
+
+-	script	Funtown#1::TownFlagAD4	722,{
+
+end;
+
+OnRecvCastleA04:
+	FlagEmblem GetCastleData("aldeg_cas04",1);
+	end;
+}
+
+funtown,227,243,4	duplicate(TownFlagAD4)	Wuerzburg#Funtown	722
+
+-	script	Funtown#1::TownFlagAD5	722,{
+
+end;
+
+OnRecvCastleA05:
+	FlagEmblem GetCastleData("aldeg_cas05",1);
+	end;
+}
+
+funtown,231,243,4	duplicate(TownFlagAD5)	Rothenburg#Funtown	722

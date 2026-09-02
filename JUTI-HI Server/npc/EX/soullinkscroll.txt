@@ -1,0 +1,64 @@
+function	script	Soullinker_Scroll	{
+        
+			switch ( basejob ) {
+			  case Job_Alchemist:	set .@spirit, 445; break;
+			  case Job_Monk:	 set .@spirit, 447; break;
+			  case Job_Star_Gladiator:  set .@spirit, 448; break;
+			  case Job_Sage:	 set .@spirit, 449; break;
+			  case Job_Crusader:	set .@spirit, 450; break;
+			  case Job_SuperNovice:   set .@spirit, 451; break;
+			  case Job_Knight:	set .@spirit, 452; break;
+			  case Job_Wizard:	set .@spirit, 453; break;
+			  case Job_Priest:	set .@spirit, 454; break;
+			  case Job_Bard: case Job_Dancer: set .@spirit, 455; break;
+			  //case Job_Rogue:	 set .@spirit, 456; break;
+			  case Job_Assassin:	set .@spirit, 457; break;
+			  case Job_Blacksmith:   set .@spirit, 458; break;
+			  case Job_Hunter:	set .@spirit, 460; break;
+			  case Job_Soul_Linker:   set .@spirit, 461; break;
+			  default:
+			   if ( upper == 1 && baselevel < 70 )
+				set .@spirit, 494;
+			}
+			if ( .@spirit ) {
+			  sc_start4 sc_spirit, 600000, 5, .@spirit,0,0;
+			  skilleffect .@spirit, 5;
+			}
+end;
+}
+
+function	script	SM_SELFPROVOKE	{
+
+			specialeffect2 67;
+			sc_start SC_PROVOKE,30000,1;
+end;
+}
+
+
+function	script	SM_ENDURE	{
+
+			if(getstatus(SC_ENDURE))end;
+			sc_start SC_ENDURE,10000,1;
+			specialeffect2 11;
+end;
+}
+
+function	script	ITEM_ENCHANTARMS	{
+			
+		switch(getarg(0)) {
+			case 2:	
+				sc_start SC_ENCHANTARMS,180000,1;	//water
+				end;
+			case 3:	
+				sc_start SC_ENCHANTARMS,180000,2;	//earth
+				end;
+			case 4:	
+				sc_start SC_ENCHANTARMS,180000,3;	//fire
+				end;
+			case 5:	
+				sc_start SC_ENCHANTARMS,180000,4;	//wind
+				end;
+		}
+			
+end;
+}

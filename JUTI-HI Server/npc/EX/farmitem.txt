@@ -1,0 +1,674 @@
+/*
+moc_fild13_	mapflag	pvp
+moc_fild13_	mapflag	noteleport
+
+moc_fild13_,35,341	monster	CHAOS-Soul	31016,1
+moc_fild13_,35,340	monster	CHAOS-Soul	31016,1
+moc_fild13_,34,341	monster	CHAOS-Soul	31016,1
+moc_fild13_,34,340	monster	CHAOS-Soul	31016,1
+moc_fild13_,33,341	monster	CHAOS-Soul	31016,1
+moc_fild13_,33,340	monster	CHAOS-Soul	31016,1
+moc_fild13_,32,341	monster	CHAOS-Soul	31016,1
+moc_fild13_,32,340	monster	CHAOS-Soul	31016,1
+moc_fild13_,31,341	monster	CHAOS-Soul	31016,1
+moc_fild13_,31,340	monster	CHAOS-Soul	31016,1
+moc_fild13_,30,341	monster	CHAOS-Soul	31016,1
+moc_fild13_,30,340	monster	CHAOS-Soul	31016,1
+
+moc_fild13_,67,358	monster	CHAOS-Soul	31016,1
+moc_fild13_,67,357	monster	CHAOS-Soul	31016,1
+moc_fild13_,66,358	monster	CHAOS-Soul	31016,1
+moc_fild13_,66,357	monster	CHAOS-Soul	31016,1
+moc_fild13_,65,358	monster	CHAOS-Soul	31016,1
+moc_fild13_,65,357	monster	CHAOS-Soul	31016,1
+moc_fild13_,64,358	monster	CHAOS-Soul	31016,1
+moc_fild13_,63,358	monster	CHAOS-Soul	31016,1
+
+moc_fild13_,90,343	monster	CHAOS-Soul	31016,1
+moc_fild13_,90,342	monster	CHAOS-Soul	31016,1
+moc_fild13_,91,343	monster	CHAOS-Soul	31016,1
+moc_fild13_,91,342	monster	CHAOS-Soul	31016,1
+moc_fild13_,92,343	monster	CHAOS-Soul	31016,1
+moc_fild13_,93,342	monster	CHAOS-Soul	31016,1
+moc_fild13_,93,343	monster	CHAOS-Soul	31016,1
+moc_fild13_,94,343	monster	CHAOS-Soul	31016,1
+
+moc_fild13_,190,335	monster	CHAOS-Soul	31016,1
+moc_fild13_,190,334	monster	CHAOS-Soul	31016,1
+moc_fild13_,191,335	monster	CHAOS-Soul	31016,1
+moc_fild13_,191,334	monster	CHAOS-Soul	31016,1
+moc_fild13_,192,334	monster	CHAOS-Soul	31016,1
+moc_fild13_,192,335	monster	CHAOS-Soul	31016,1
+moc_fild13_,193,334	monster	CHAOS-Soul	31016,1
+moc_fild13_,193,335	monster	CHAOS-Soul	31016,1
+moc_fild13_,194,334	monster	CHAOS-Soul	31016,1
+moc_fild13_,194,335	monster	CHAOS-Soul	31016,1
+
+moc_fild13_,137,360	monster	CHAOS-Soul	31016,1
+moc_fild13_,137,359	monster	CHAOS-Soul	31016,1
+moc_fild13_,138,360	monster	CHAOS-Soul	31016,1
+moc_fild13_,138,359	monster	CHAOS-Soul	31016,1
+moc_fild13_,139,360	monster	CHAOS-Soul	31016,1
+moc_fild13_,139,359	monster	CHAOS-Soul	31016,1
+moc_fild13_,140,360	monster	CHAOS-Soul	31016,1
+moc_fild13_,140,359	monster	CHAOS-Soul	31016,1
+moc_fild13_,141,360	monster	CHAOS-Soul	31016,1
+moc_fild13_,141,359	monster	CHAOS-Soul	31016,1
+moc_fild13_,142,360	monster	CHAOS-Soul	31016,1
+moc_fild13_,142,359	monster	CHAOS-Soul	31016,1
+moc_fild13_,143,360	monster	CHAOS-Soul	31016,1
+moc_fild13_,143,359	monster	CHAOS-Soul	31016,1
+moc_fild13_,144,360	monster	CHAOS-Soul	31016,1
+moc_fild13_,144,359	monster	CHAOS-Soul	31016,1
+moc_fild13_,145,360	monster	CHAOS-Soul	31016,1
+moc_fild13_,145,359	monster	CHAOS-Soul	31016,1
+moc_fild13_,146,360	monster	CHAOS-Soul	31016,1
+moc_fild13_,146,359	monster	CHAOS-Soul	31016,1
+
+
+moc_fild13_,49,311	monster	CHAOS-Soul	31169,1
+moc_fild13_,49,310	monster	CHAOS-Soul	31169,1
+moc_fild13_,50,311	monster	CHAOS-Soul	31169,1
+moc_fild13_,50,310	monster	CHAOS-Soul	31169,1
+moc_fild13_,51,311	monster	CHAOS-Soul	31169,1
+moc_fild13_,51,310	monster	CHAOS-Soul	31169,1
+moc_fild13_,52,311	monster	CHAOS-Soul	31169,1
+moc_fild13_,52,310	monster	CHAOS-Soul	31169,1
+moc_fild13_,53,311	monster	CHAOS-Soul	31169,1
+moc_fild13_,53,310	monster	CHAOS-Soul	31169,1
+moc_fild13_,54,311	monster	CHAOS-Soul	31169,1
+moc_fild13_,54,310	monster	CHAOS-Soul	31169,1
+
+moc_fild13_,79,305	monster	CHAOS-Soul	31169,1
+moc_fild13_,79,306	monster	CHAOS-Soul	31169,1
+moc_fild13_,78,305	monster	CHAOS-Soul	31169,1
+moc_fild13_,78,306	monster	CHAOS-Soul	31169,1
+moc_fild13_,77,305	monster	CHAOS-Soul	31169,1
+moc_fild13_,77,306	monster	CHAOS-Soul	31169,1
+moc_fild13_,80,305	monster	CHAOS-Soul	31169,1
+moc_fild13_,80,306	monster	CHAOS-Soul	31169,1
+
+moc_fild13_,119,284	monster	CHAOS-Soul	31169,1
+moc_fild13_,119,283	monster	CHAOS-Soul	31169,1
+moc_fild13_,118,284	monster	CHAOS-Soul	31169,1
+moc_fild13_,118,283	monster	CHAOS-Soul	31169,1
+moc_fild13_,117,284	monster	CHAOS-Soul	31169,1
+moc_fild13_,117,283	monster	CHAOS-Soul	31169,1
+moc_fild13_,116,284	monster	CHAOS-Soul	31169,1
+moc_fild13_,116,283	monster	CHAOS-Soul	31169,1
+moc_fild13_,115,284	monster	CHAOS-Soul	31169,1
+moc_fild13_,115,283	monster	CHAOS-Soul	31169,1
+moc_fild13_,114,284	monster	CHAOS-Soul	31169,1
+moc_fild13_,114,283	monster	CHAOS-Soul	31169,1
+moc_fild13_,113,284	monster	CHAOS-Soul	31169,1
+moc_fild13_,113,283	monster	CHAOS-Soul	31169,1
+moc_fild13_,112,284	monster	CHAOS-Soul	31169,1
+moc_fild13_,112,283	monster	CHAOS-Soul	31169,1
+moc_fild13_,111,284	monster	CHAOS-Soul	31169,1
+moc_fild13_,111,283	monster	CHAOS-Soul	31169,1
+moc_fild13_,110,284	monster	CHAOS-Soul	31169,1
+moc_fild13_,110,283	monster	CHAOS-Soul	31169,1
+
+moc_fild13_,92,259	monster	CHAOS-Soul	31169,1
+moc_fild13_,92,260	monster	CHAOS-Soul	31169,1
+moc_fild13_,91,259	monster	CHAOS-Soul	31169,1
+moc_fild13_,91,260	monster	CHAOS-Soul	31169,1
+moc_fild13_,90,259	monster	CHAOS-Soul	31169,1
+moc_fild13_,90,260	monster	CHAOS-Soul	31169,1
+
+moc_fild13_,55,284	monster	CHAOS-Soul	31169,1
+moc_fild13_,55,285	monster	CHAOS-Soul	31169,1
+moc_fild13_,54,284	monster	CHAOS-Soul	31169,1
+moc_fild13_,54,285	monster	CHAOS-Soul	31169,1
+moc_fild13_,53,284	monster	CHAOS-Soul	31169,1
+moc_fild13_,53,285	monster	CHAOS-Soul	31169,1
+moc_fild13_,52,284	monster	CHAOS-Soul	31169,1
+moc_fild13_,52,285	monster	CHAOS-Soul	31169,1
+moc_fild13_,51,284	monster	CHAOS-Soul	31169,1
+moc_fild13_,51,285	monster	CHAOS-Soul	31169,1
+moc_fild13_,50,284	monster	CHAOS-Soul	31169,1
+moc_fild13_,50,285	monster	CHAOS-Soul	31169,1
+
+moc_fild13_,86,280	monster	CHAOS-Soul	31169,1
+moc_fild13_,86,281	monster	CHAOS-Soul	31169,1
+moc_fild13_,85,280	monster	CHAOS-Soul	31169,1
+moc_fild13_,85,281	monster	CHAOS-Soul	31169,1
+moc_fild13_,84,280	monster	CHAOS-Soul	31169,1
+moc_fild13_,84,281	monster	CHAOS-Soul	31169,1
+moc_fild13_,83,280	monster	CHAOS-Soul	31169,1
+moc_fild13_,83,281	monster	CHAOS-Soul	31169,1
+
+
+moc_fild13_,118,230	monster	CHAOS-Soul	31068,1
+moc_fild13_,118,231	monster	CHAOS-Soul	31068,1
+moc_fild13_,117,230	monster	CHAOS-Soul	31068,1
+moc_fild13_,117,231	monster	CHAOS-Soul	31068,1
+moc_fild13_,116,230	monster	CHAOS-Soul	31068,1
+moc_fild13_,116,231	monster	CHAOS-Soul	31068,1
+moc_fild13_,115,230	monster	CHAOS-Soul	31068,1
+moc_fild13_,115,231	monster	CHAOS-Soul	31068,1
+moc_fild13_,114,230	monster	CHAOS-Soul	31068,1
+moc_fild13_,114,231	monster	CHAOS-Soul	31068,1
+moc_fild13_,113,230	monster	CHAOS-Soul	31068,1
+moc_fild13_,113,231	monster	CHAOS-Soul	31068,1
+
+moc_fild13_,116,209	monster	CHAOS-Soul	31068,1
+moc_fild13_,115,209	monster	CHAOS-Soul	31068,1
+moc_fild13_,114,209	monster	CHAOS-Soul	31068,1
+moc_fild13_,113,209	monster	CHAOS-Soul	31068,1
+
+moc_fild13_,116,189	monster	CHAOS-Soul	31068,1
+moc_fild13_,115,189	monster	CHAOS-Soul	31068,1
+moc_fild13_,114,189	monster	CHAOS-Soul	31068,1
+moc_fild13_,113,189	monster	CHAOS-Soul	31068,1
+moc_fild13_,112,189	monster	CHAOS-Soul	31068,1
+moc_fild13_,111,189	monster	CHAOS-Soul	31068,1
+
+moc_fild13_,110,172	monster	CHAOS-Soul	31068,1
+moc_fild13_,110,171	monster	CHAOS-Soul	31068,1
+moc_fild13_,110,170	monster	CHAOS-Soul	31068,1
+moc_fild13_,109,172	monster	CHAOS-Soul	31068,1
+moc_fild13_,109,171	monster	CHAOS-Soul	31068,1
+moc_fild13_,109,170	monster	CHAOS-Soul	31068,1
+moc_fild13_,108,172	monster	CHAOS-Soul	31068,1
+moc_fild13_,108,171	monster	CHAOS-Soul	31068,1
+moc_fild13_,108,170	monster	CHAOS-Soul	31068,1
+moc_fild13_,107,172	monster	CHAOS-Soul	31068,1
+moc_fild13_,107,171	monster	CHAOS-Soul	31068,1
+moc_fild13_,107,170	monster	CHAOS-Soul	31068,1
+moc_fild13_,106,172	monster	CHAOS-Soul	31068,1
+moc_fild13_,106,171	monster	CHAOS-Soul	31068,1
+moc_fild13_,106,170	monster	CHAOS-Soul	31068,1
+moc_fild13_,105,172	monster	CHAOS-Soul	31068,1
+moc_fild13_,105,171	monster	CHAOS-Soul	31068,1
+moc_fild13_,105,170	monster	CHAOS-Soul	31068,1
+
+
+moc_fild13_,79,240	monster	CHAOS-Soul	31219,1
+moc_fild13_,79,239	monster	CHAOS-Soul	31219,1
+moc_fild13_,82,239	monster	CHAOS-Soul	31219,1
+moc_fild13_,82,240	monster	CHAOS-Soul	31219,1
+moc_fild13_,84,239	monster	CHAOS-Soul	31219,1
+moc_fild13_,84,240	monster	CHAOS-Soul	31219,1
+moc_fild13_,86,239	monster	CHAOS-Soul	31219,1
+moc_fild13_,86,240	monster	CHAOS-Soul	31219,1
+
+moc_fild13_,32,269	monster	CHAOS-Soul	31219,1
+moc_fild13_,32,268	monster	CHAOS-Soul	31219,1
+moc_fild13_,30,269	monster	CHAOS-Soul	31219,1
+moc_fild13_,30,268	monster	CHAOS-Soul	31219,1
+moc_fild13_,34,269	monster	CHAOS-Soul	31219,1
+moc_fild13_,34,268	monster	CHAOS-Soul	31219,1
+moc_fild13_,36,269	monster	CHAOS-Soul	31219,1
+moc_fild13_,36,268	monster	CHAOS-Soul	31219,1
+moc_fild13_,38,269	monster	CHAOS-Soul	31219,1
+moc_fild13_,38,268	monster	CHAOS-Soul	31219,1
+moc_fild13_,40,269	monster	CHAOS-Soul	31219,1
+moc_fild13_,40,268	monster	CHAOS-Soul	31219,1
+
+moc_fild13_,41,241	monster	CHAOS-Soul	31219,1
+moc_fild13_,42,241	monster	CHAOS-Soul	31219,1
+moc_fild13_,43,241	monster	CHAOS-Soul	31219,1
+moc_fild13_,44,241	monster	CHAOS-Soul	31219,1
+moc_fild13_,45,241	monster	CHAOS-Soul	31219,1
+moc_fild13_,46,241	monster	CHAOS-Soul	31219,1
+
+
+moc_fild13_,40,220	monster	CHAOS-Soul	31375,1
+moc_fild13_,40,221	monster	CHAOS-Soul	31375,1
+moc_fild13_,41,220	monster	CHAOS-Soul	31375,1
+moc_fild13_,41,221	monster	CHAOS-Soul	31375,1
+moc_fild13_,42,220	monster	CHAOS-Soul	31375,1
+moc_fild13_,42,221	monster	CHAOS-Soul	31375,1
+moc_fild13_,43,220	monster	CHAOS-Soul	31375,1
+moc_fild13_,43,221	monster	CHAOS-Soul	31375,1
+moc_fild13_,44,220	monster	CHAOS-Soul	31375,1
+moc_fild13_,44,221	monster	CHAOS-Soul	31375,1
+moc_fild13_,45,220	monster	CHAOS-Soul	31375,1
+moc_fild13_,45,221	monster	CHAOS-Soul	31375,1
+moc_fild13_,46,220	monster	CHAOS-Soul	31375,1
+moc_fild13_,46,221	monster	CHAOS-Soul	31375,1
+
+moc_fild13_,87,218	monster	CHAOS-Soul	31375,1
+moc_fild13_,87,217	monster	CHAOS-Soul	31375,1
+moc_fild13_,87,216	monster	CHAOS-Soul	31375,1
+moc_fild13_,88,218	monster	CHAOS-Soul	31375,1
+moc_fild13_,88,216	monster	CHAOS-Soul	31375,1
+moc_fild13_,88,217	monster	CHAOS-Soul	31375,1
+moc_fild13_,89,218	monster	CHAOS-Soul	31375,1
+moc_fild13_,89,216	monster	CHAOS-Soul	31375,1
+moc_fild13_,89,217	monster	CHAOS-Soul	31375,1
+moc_fild13_,90,218	monster	CHAOS-Soul	31375,1
+moc_fild13_,90,216	monster	CHAOS-Soul	31375,1
+moc_fild13_,90,217	monster	CHAOS-Soul	31375,1
+moc_fild13_,91,218	monster	CHAOS-Soul	31375,1
+moc_fild13_,91,216	monster	CHAOS-Soul	31375,1
+moc_fild13_,91,217	monster	CHAOS-Soul	31375,1
+moc_fild13_,92,218	monster	CHAOS-Soul	31375,1
+moc_fild13_,92,216	monster	CHAOS-Soul	31375,1
+moc_fild13_,92,217	monster	CHAOS-Soul	31375,1
+
+moc_fild13_,68,205	monster	CHAOS-Soul	31375,1
+moc_fild13_,68,204	monster	CHAOS-Soul	31375,1
+moc_fild13_,67,205	monster	CHAOS-Soul	31375,1
+moc_fild13_,67,204	monster	CHAOS-Soul	31375,1
+moc_fild13_,69,205	monster	CHAOS-Soul	31375,1
+moc_fild13_,69,204	monster	CHAOS-Soul	31375,1
+moc_fild13_,70,205	monster	CHAOS-Soul	31375,1
+moc_fild13_,70,204	monster	CHAOS-Soul	31375,1
+
+moc_fild13_,52,191	monster	CHAOS-Soul	31375,1
+moc_fild13_,52,190	monster	CHAOS-Soul	31375,1
+moc_fild13_,53,191	monster	CHAOS-Soul	31375,1
+moc_fild13_,53,190	monster	CHAOS-Soul	31375,1
+moc_fild13_,54,191	monster	CHAOS-Soul	31375,1
+moc_fild13_,54,190	monster	CHAOS-Soul	31375,1
+moc_fild13_,55,191	monster	CHAOS-Soul	31375,1
+moc_fild13_,55,190	monster	CHAOS-Soul	31375,1
+moc_fild13_,56,191	monster	CHAOS-Soul	31375,1
+moc_fild13_,56,190	monster	CHAOS-Soul	31375,1
+
+
+moc_fild13_,115,146	monster	CHAOS-Soul	31979,1
+moc_fild13_,115,147	monster	CHAOS-Soul	31979,1
+moc_fild13_,116,146	monster	CHAOS-Soul	31979,1
+moc_fild13_,116,147	monster	CHAOS-Soul	31979,1
+moc_fild13_,117,146	monster	CHAOS-Soul	31979,1
+moc_fild13_,117,147	monster	CHAOS-Soul	31979,1
+moc_fild13_,114,146	monster	CHAOS-Soul	31979,1
+moc_fild13_,114,147	monster	CHAOS-Soul	31979,1
+moc_fild13_,113,146	monster	CHAOS-Soul	31979,1
+moc_fild13_,113,147	monster	CHAOS-Soul	31979,1
+moc_fild13_,112,146	monster	CHAOS-Soul	31979,1
+moc_fild13_,112,147	monster	CHAOS-Soul	31979,1
+moc_fild13_,111,146	monster	CHAOS-Soul	31979,1
+moc_fild13_,111,147	monster	CHAOS-Soul	31979,1
+moc_fild13_,110,146	monster	CHAOS-Soul	31979,1
+moc_fild13_,110,147	monster	CHAOS-Soul	31979,1
+
+moc_fild13_,85,185	monster	CHAOS-Soul	31979,1
+moc_fild13_,84,185	monster	CHAOS-Soul	31979,1
+moc_fild13_,83,185	monster	CHAOS-Soul	31979,1
+moc_fild13_,82,185	monster	CHAOS-Soul	31979,1
+moc_fild13_,81,185	monster	CHAOS-Soul	31979,1
+moc_fild13_,80,185	monster	CHAOS-Soul	31979,1
+
+moc_fild13_,64,165	monster	CHAOS-Soul	31979,1
+moc_fild13_,64,164	monster	CHAOS-Soul	31979,1
+moc_fild13_,63,165	monster	CHAOS-Soul	31979,1
+moc_fild13_,63,164	monster	CHAOS-Soul	31979,1
+moc_fild13_,62,165	monster	CHAOS-Soul	31979,1
+moc_fild13_,62,164	monster	CHAOS-Soul	31979,1
+moc_fild13_,61,165	monster	CHAOS-Soul	31979,1
+moc_fild13_,61,164	monster	CHAOS-Soul	31979,1
+moc_fild13_,60,165	monster	CHAOS-Soul	31979,1
+moc_fild13_,60,164	monster	CHAOS-Soul	31979,1
+
+moc_fild13_,43,147	monster	CHAOS-Soul	31979,1
+moc_fild13_,43,146	monster	CHAOS-Soul	31979,1
+moc_fild13_,44,147	monster	CHAOS-Soul	31979,1
+moc_fild13_,44,146	monster	CHAOS-Soul	31979,1
+moc_fild13_,45,147	monster	CHAOS-Soul	31979,1
+moc_fild13_,45,146	monster	CHAOS-Soul	31979,1
+moc_fild13_,46,147	monster	CHAOS-Soul	31979,1
+moc_fild13_,46,146	monster	CHAOS-Soul	31979,1
+moc_fild13_,47,147	monster	CHAOS-Soul	31979,1
+moc_fild13_,47,146	monster	CHAOS-Soul	31979,1
+moc_fild13_,42,147	monster	CHAOS-Soul	31979,1
+moc_fild13_,42,146	monster	CHAOS-Soul	31979,1
+moc_fild13_,41,147	monster	CHAOS-Soul	31979,1
+moc_fild13_,41,146	monster	CHAOS-Soul	31979,1
+moc_fild13_,48,147	monster	CHAOS-Soul	31979,1
+moc_fild13_,48,146	monster	CHAOS-Soul	31979,1
+moc_fild13_,49,147	monster	CHAOS-Soul	31979,1
+moc_fild13_,49,146	monster	CHAOS-Soul	31979,1
+
+moc_fild13_,98,110	monster	CHAOS-Soul	31034,1
+moc_fild13_,98,109	monster	CHAOS-Soul	31034,1
+moc_fild13_,97,110	monster	CHAOS-Soul	31034,1
+moc_fild13_,97,109	monster	CHAOS-Soul	31034,1
+moc_fild13_,96,110	monster	CHAOS-Soul	31034,1
+moc_fild13_,96,109	monster	CHAOS-Soul	31034,1
+moc_fild13_,95,110	monster	CHAOS-Soul	31034,1
+moc_fild13_,95,109	monster	CHAOS-Soul	31034,1
+
+moc_fild13_,76,125	monster	CHAOS-Soul	31034,1
+moc_fild13_,76,126	monster	CHAOS-Soul	31034,1
+moc_fild13_,75,125	monster	CHAOS-Soul	31034,1
+moc_fild13_,75,126	monster	CHAOS-Soul	31034,1
+moc_fild13_,74,125	monster	CHAOS-Soul	31034,1
+moc_fild13_,74,126	monster	CHAOS-Soul	31034,1
+moc_fild13_,73,125	monster	CHAOS-Soul	31034,1
+moc_fild13_,73,126	monster	CHAOS-Soul	31034,1
+moc_fild13_,72,125	monster	CHAOS-Soul	31034,1
+moc_fild13_,72,126	monster	CHAOS-Soul	31034,1
+moc_fild13_,71,125	monster	CHAOS-Soul	31034,1
+moc_fild13_,71,126	monster	CHAOS-Soul	31034,1
+moc_fild13_,70,125	monster	CHAOS-Soul	31034,1
+moc_fild13_,70,126	monster	CHAOS-Soul	31034,1
+
+moc_fild13_,28,125	monster	CHAOS-Soul	31034,1
+moc_fild13_,28,124	monster	CHAOS-Soul	31034,1
+moc_fild13_,29,125	monster	CHAOS-Soul	31034,1
+moc_fild13_,29,124	monster	CHAOS-Soul	31034,1
+moc_fild13_,30,125	monster	CHAOS-Soul	31034,1
+moc_fild13_,30,124	monster	CHAOS-Soul	31034,1
+
+moc_fild13_,53,110	monster	CHAOS-Soul	31034,1
+moc_fild13_,53,109	monster	CHAOS-Soul	31034,1
+moc_fild13_,54,110	monster	CHAOS-Soul	31034,1
+moc_fild13_,54,109	monster	CHAOS-Soul	31034,1
+moc_fild13_,55,110	monster	CHAOS-Soul	31034,1
+moc_fild13_,55,109	monster	CHAOS-Soul	31034,1
+
+
+moc_fild13_,43,43	monster	CHAOS-Soul	31146,1
+moc_fild13_,43,44	monster	CHAOS-Soul	31146,1
+moc_fild13_,42,43	monster	CHAOS-Soul	31146,1
+moc_fild13_,42,44	monster	CHAOS-Soul	31146,1
+moc_fild13_,41,43	monster	CHAOS-Soul	31146,1
+moc_fild13_,41,44	monster	CHAOS-Soul	31146,1
+moc_fild13_,40,43	monster	CHAOS-Soul	31146,1
+moc_fild13_,40,44	monster	CHAOS-Soul	31146,1
+moc_fild13_,39,43	monster	CHAOS-Soul	31146,1
+moc_fild13_,39,44	monster	CHAOS-Soul	31146,1
+moc_fild13_,38,43	monster	CHAOS-Soul	31146,1
+moc_fild13_,38,44	monster	CHAOS-Soul	31146,1
+
+moc_fild13_,26,81	monster	CHAOS-Soul	31146,1
+moc_fild13_,26,80	monster	CHAOS-Soul	31146,1
+moc_fild13_,27,81	monster	CHAOS-Soul	31146,1
+moc_fild13_,27,80	monster	CHAOS-Soul	31146,1
+moc_fild13_,28,81	monster	CHAOS-Soul	31146,1
+moc_fild13_,28,80	monster	CHAOS-Soul	31146,1
+moc_fild13_,29,81	monster	CHAOS-Soul	31146,1
+moc_fild13_,29,80	monster	CHAOS-Soul	31146,1
+moc_fild13_,30,81	monster	CHAOS-Soul	31146,1
+moc_fild13_,30,80	monster	CHAOS-Soul	31146,1
+
+moc_fild13_,83,89	monster	CHAOS-Soul	31146,1
+moc_fild13_,83,88	monster	CHAOS-Soul	31146,1
+moc_fild13_,82,89	monster	CHAOS-Soul	31146,1
+moc_fild13_,82,88	monster	CHAOS-Soul	31146,1
+moc_fild13_,81,89	monster	CHAOS-Soul	31146,1
+moc_fild13_,81,88	monster	CHAOS-Soul	31146,1
+moc_fild13_,80,89	monster	CHAOS-Soul	31146,1
+moc_fild13_,80,88	monster	CHAOS-Soul	31146,1
+
+moc_fild13_,282,341	monster	CHAOS-Soul	2363,1
+moc_fild13_,282,340	monster	CHAOS-Soul	2363,1
+moc_fild13_,283,341	monster	CHAOS-Soul	2363,1
+moc_fild13_,283,340	monster	CHAOS-Soul	2363,1
+moc_fild13_,284,341	monster	CHAOS-Soul	2363,1
+moc_fild13_,284,340	monster	CHAOS-Soul	2363,1
+moc_fild13_,285,341	monster	CHAOS-Soul	2363,1
+moc_fild13_,285,340	monster	CHAOS-Soul	2363,1
+
+moc_fild13_,304,303	monster	CHAOS-Soul	2363,1
+moc_fild13_,304,302	monster	CHAOS-Soul	2363,1
+moc_fild13_,303,303	monster	CHAOS-Soul	2363,1
+moc_fild13_,303,302	monster	CHAOS-Soul	2363,1
+moc_fild13_,302,303	monster	CHAOS-Soul	2363,1
+moc_fild13_,302,302	monster	CHAOS-Soul	2363,1
+moc_fild13_,301,303	monster	CHAOS-Soul	2363,1
+moc_fild13_,301,302	monster	CHAOS-Soul	2363,1
+
+moc_fild13_,270,313	monster	CHAOS-Soul	2363,1
+moc_fild13_,270,311	monster	CHAOS-Soul	2363,1
+moc_fild13_,271,313	monster	CHAOS-Soul	2363,1
+moc_fild13_,271,311	monster	CHAOS-Soul	2363,1
+moc_fild13_,272,313	monster	CHAOS-Soul	2363,1
+moc_fild13_,272,311	monster	CHAOS-Soul	2363,1
+moc_fild13_,273,313	monster	CHAOS-Soul	2363,1
+moc_fild13_,273,311	monster	CHAOS-Soul	2363,1
+moc_fild13_,274,313	monster	CHAOS-Soul	2363,1
+moc_fild13_,274,311	monster	CHAOS-Soul	2363,1
+moc_fild13_,275,313	monster	CHAOS-Soul	2363,1
+moc_fild13_,275,311	monster	CHAOS-Soul	2363,1
+
+
+moc_fild13_,263,286	monster	CHAOS-Soul	2364,1
+moc_fild13_,263,284	monster	CHAOS-Soul	2364,1
+moc_fild13_,264,286	monster	CHAOS-Soul	2364,1
+moc_fild13_,264,284	monster	CHAOS-Soul	2364,1
+moc_fild13_,265,286	monster	CHAOS-Soul	2364,1
+moc_fild13_,265,284	monster	CHAOS-Soul	2364,1
+moc_fild13_,266,286	monster	CHAOS-Soul	2364,1
+moc_fild13_,266,284	monster	CHAOS-Soul	2364,1
+moc_fild13_,267,286	monster	CHAOS-Soul	2364,1
+moc_fild13_,267,284	monster	CHAOS-Soul	2364,1
+
+moc_fild13_,311,270	monster	CHAOS-Soul	2364,1
+moc_fild13_,311,268	monster	CHAOS-Soul	2364,1
+moc_fild13_,310,270	monster	CHAOS-Soul	2364,1
+moc_fild13_,310,268	monster	CHAOS-Soul	2364,1
+moc_fild13_,309,270	monster	CHAOS-Soul	2364,1
+moc_fild13_,309,268	monster	CHAOS-Soul	2364,1
+moc_fild13_,308,270	monster	CHAOS-Soul	2364,1
+moc_fild13_,308,268	monster	CHAOS-Soul	2364,1
+moc_fild13_,307,270	monster	CHAOS-Soul	2364,1
+moc_fild13_,307,268	monster	CHAOS-Soul	2364,1
+
+moc_fild13_,270,261	monster	CHAOS-Soul	2364,1
+moc_fild13_,270,263	monster	CHAOS-Soul	2364,1
+moc_fild13_,271,261	monster	CHAOS-Soul	2364,1
+moc_fild13_,271,263	monster	CHAOS-Soul	2364,1
+moc_fild13_,272,261	monster	CHAOS-Soul	2364,1
+moc_fild13_,272,263	monster	CHAOS-Soul	2364,1
+moc_fild13_,273,261	monster	CHAOS-Soul	2364,1
+moc_fild13_,273,263	monster	CHAOS-Soul	2364,1
+
+moc_fild13_,299,242	monster	CHAOS-Soul	2364,1
+moc_fild13_,299,240	monster	CHAOS-Soul	2364,1
+moc_fild13_,298,242	monster	CHAOS-Soul	2364,1
+moc_fild13_,298,240	monster	CHAOS-Soul	2364,1
+moc_fild13_,297,242	monster	CHAOS-Soul	2364,1
+moc_fild13_,297,240	monster	CHAOS-Soul	2364,1
+moc_fild13_,296,242	monster	CHAOS-Soul	2364,1
+moc_fild13_,296,240	monster	CHAOS-Soul	2364,1
+moc_fild13_,295,242	monster	CHAOS-Soul	2364,1
+moc_fild13_,295,240	monster	CHAOS-Soul	2364,1
+moc_fild13_,294,242	monster	CHAOS-Soul	2364,1
+moc_fild13_,294,240	monster	CHAOS-Soul	2364,1
+
+
+moc_fild13_,299,210	monster	CHAOS-Soul	2365,1
+moc_fild13_,299,208	monster	CHAOS-Soul	2365,1
+moc_fild13_,298,210	monster	CHAOS-Soul	2365,1
+moc_fild13_,298,208	monster	CHAOS-Soul	2365,1
+moc_fild13_,297,210	monster	CHAOS-Soul	2365,1
+moc_fild13_,297,208	monster	CHAOS-Soul	2365,1
+moc_fild13_,296,210	monster	CHAOS-Soul	2365,1
+moc_fild13_,296,208	monster	CHAOS-Soul	2365,1
+moc_fild13_,295,210	monster	CHAOS-Soul	2365,1
+moc_fild13_,295,208	monster	CHAOS-Soul	2365,1
+
+moc_fild13_,261,208	monster	CHAOS-Soul	2365,1
+moc_fild13_,261,206	monster	CHAOS-Soul	2365,1
+moc_fild13_,262,208	monster	CHAOS-Soul	2365,1
+moc_fild13_,262,206	monster	CHAOS-Soul	2365,1
+moc_fild13_,263,208	monster	CHAOS-Soul	2365,1
+moc_fild13_,263,206	monster	CHAOS-Soul	2365,1
+moc_fild13_,264,208	monster	CHAOS-Soul	2365,1
+moc_fild13_,264,206	monster	CHAOS-Soul	2365,1
+moc_fild13_,265,208	monster	CHAOS-Soul	2365,1
+moc_fild13_,265,206	monster	CHAOS-Soul	2365,1
+
+moc_fild13_,243,182	monster	CHAOS-Soul	2365,1
+moc_fild13_,243,180	monster	CHAOS-Soul	2365,1
+moc_fild13_,244,182	monster	CHAOS-Soul	2365,1
+moc_fild13_,244,180	monster	CHAOS-Soul	2365,1
+moc_fild13_,245,182	monster	CHAOS-Soul	2365,1
+moc_fild13_,245,180	monster	CHAOS-Soul	2365,1
+moc_fild13_,246,182	monster	CHAOS-Soul	2365,1
+moc_fild13_,246,180	monster	CHAOS-Soul	2365,1
+moc_fild13_,247,182	monster	CHAOS-Soul	2365,1
+moc_fild13_,247,180	monster	CHAOS-Soul	2365,1
+moc_fild13_,248,182	monster	CHAOS-Soul	2365,1
+moc_fild13_,248,180	monster	CHAOS-Soul	2365,1
+
+moc_fild13_,280,170	monster	CHAOS-Soul	2366,1
+moc_fild13_,280,168	monster	CHAOS-Soul	2366,1
+moc_fild13_,281,170	monster	CHAOS-Soul	2366,1
+moc_fild13_,281,168	monster	CHAOS-Soul	2366,1
+moc_fild13_,282,170	monster	CHAOS-Soul	2366,1
+moc_fild13_,282,168	monster	CHAOS-Soul	2366,1
+moc_fild13_,283,170	monster	CHAOS-Soul	2366,1
+moc_fild13_,283,168	monster	CHAOS-Soul	2366,1
+
+moc_fild13_,258,144	monster	CHAOS-Soul	2366,1
+moc_fild13_,258,142	monster	CHAOS-Soul	2366,1
+moc_fild13_,259,144	monster	CHAOS-Soul	2366,1
+moc_fild13_,259,142	monster	CHAOS-Soul	2366,1
+moc_fild13_,260,144	monster	CHAOS-Soul	2366,1
+moc_fild13_,260,142	monster	CHAOS-Soul	2366,1
+moc_fild13_,261,144	monster	CHAOS-Soul	2366,1
+moc_fild13_,261,142	monster	CHAOS-Soul	2366,1
+moc_fild13_,262,144	monster	CHAOS-Soul	2366,1
+moc_fild13_,262,142	monster	CHAOS-Soul	2366,1
+
+moc_fild13_,311,132	monster	CHAOS-Soul	2315,1
+moc_fild13_,310,132	monster	CHAOS-Soul	2315,1
+moc_fild13_,311,131	monster	CHAOS-Soul	2315,1
+moc_fild13_,310,131	monster	CHAOS-Soul	2315,1
+moc_fild13_,311,130	monster	CHAOS-Soul	2315,1
+moc_fild13_,310,130	monster	CHAOS-Soul	2315,1
+moc_fild13_,311,129	monster	CHAOS-Soul	2315,1
+moc_fild13_,310,129	monster	CHAOS-Soul	2315,1
+
+moc_fild13_,250,117	monster	CHAOS-Soul	2315,1
+moc_fild13_,250,115	monster	CHAOS-Soul	2315,1
+moc_fild13_,251,117	monster	CHAOS-Soul	2315,1
+moc_fild13_,251,115	monster	CHAOS-Soul	2315,1
+moc_fild13_,252,117	monster	CHAOS-Soul	2315,1
+moc_fild13_,252,115	monster	CHAOS-Soul	2315,1
+moc_fild13_,253,117	monster	CHAOS-Soul	2315,1
+moc_fild13_,253,115	monster	CHAOS-Soul	2315,1
+moc_fild13_,254,117	monster	CHAOS-Soul	2315,1
+moc_fild13_,254,115	monster	CHAOS-Soul	2315,1
+moc_fild13_,255,117	monster	CHAOS-Soul	2315,1
+moc_fild13_,255,115	monster	CHAOS-Soul	2315,1
+
+moc_fild13_,282,106	monster	CHAOS-Soul	2315,1
+moc_fild13_,282,108	monster	CHAOS-Soul	2315,1
+moc_fild13_,283,106	monster	CHAOS-Soul	2315,1
+moc_fild13_,283,108	monster	CHAOS-Soul	2315,1
+moc_fild13_,284,106	monster	CHAOS-Soul	2315,1
+moc_fild13_,284,108	monster	CHAOS-Soul	2315,1
+moc_fild13_,285,106	monster	CHAOS-Soul	2315,1
+moc_fild13_,285,108	monster	CHAOS-Soul	2315,1
+moc_fild13_,286,106	monster	CHAOS-Soul	2315,1
+moc_fild13_,286,108	monster	CHAOS-Soul	2315,1
+moc_fild13_,287,106	monster	CHAOS-Soul	2315,1
+moc_fild13_,287,108	monster	CHAOS-Soul	2315,1
+moc_fild13_,288,106	monster	CHAOS-Soul	2315,1
+moc_fild13_,288,108	monster	CHAOS-Soul	2315,1
+moc_fild13_,289,106	monster	CHAOS-Soul	2315,1
+moc_fild13_,289,108	monster	CHAOS-Soul	2315,1
+
+
+moc_fild13_,240,83	monster	CHAOS-Soul	2316,1
+moc_fild13_,240,85	monster	CHAOS-Soul	2316,1
+moc_fild13_,241,83	monster	CHAOS-Soul	2316,1
+moc_fild13_,241,85	monster	CHAOS-Soul	2316,1
+moc_fild13_,242,83	monster	CHAOS-Soul	2316,1
+moc_fild13_,242,85	monster	CHAOS-Soul	2316,1
+moc_fild13_,243,83	monster	CHAOS-Soul	2316,1
+moc_fild13_,243,85	monster	CHAOS-Soul	2316,1
+moc_fild13_,244,83	monster	CHAOS-Soul	2316,1
+moc_fild13_,244,85	monster	CHAOS-Soul	2316,1
+moc_fild13_,245,83	monster	CHAOS-Soul	2316,1
+moc_fild13_,245,85	monster	CHAOS-Soul	2316,1
+moc_fild13_,246,83	monster	CHAOS-Soul	2316,1
+moc_fild13_,246,85	monster	CHAOS-Soul	2316,1
+moc_fild13_,247,83	monster	CHAOS-Soul	2316,1
+moc_fild13_,247,85	monster	CHAOS-Soul	2316,1
+moc_fild13_,248,83	monster	CHAOS-Soul	2316,1
+moc_fild13_,248,85	monster	CHAOS-Soul	2316,1
+
+moc_fild13_,294,73	monster	CHAOS-Soul	2316,1
+moc_fild13_,294,75	monster	CHAOS-Soul	2316,1
+moc_fild13_,295,73	monster	CHAOS-Soul	2316,1
+moc_fild13_,295,75	monster	CHAOS-Soul	2316,1
+moc_fild13_,296,73	monster	CHAOS-Soul	2316,1
+moc_fild13_,296,75	monster	CHAOS-Soul	2316,1
+moc_fild13_,297,73	monster	CHAOS-Soul	2316,1
+moc_fild13_,297,75	monster	CHAOS-Soul	2316,1
+moc_fild13_,298,73	monster	CHAOS-Soul	2316,1
+moc_fild13_,298,75	monster	CHAOS-Soul	2316,1
+moc_fild13_,299,73	monster	CHAOS-Soul	2316,1
+moc_fild13_,299,75	monster	CHAOS-Soul	2316,1
+
+moc_fild13_,266,57	monster	CHAOS-Soul	1681,1
+moc_fild13_,266,58	monster	CHAOS-Soul	1681,1
+moc_fild13_,267,57	monster	CHAOS-Soul	1681,1
+moc_fild13_,267,59	monster	CHAOS-Soul	1681,1
+moc_fild13_,268,57	monster	CHAOS-Soul	1681,1
+moc_fild13_,268,60	monster	CHAOS-Soul	1681,1
+moc_fild13_,269,57	monster	CHAOS-Soul	1681,1
+moc_fild13_,269,61	monster	CHAOS-Soul	1681,1
+moc_fild13_,270,57	monster	CHAOS-Soul	1681,1
+moc_fild13_,270,62	monster	CHAOS-Soul	1681,1
+moc_fild13_,271,57	monster	CHAOS-Soul	1681,1
+moc_fild13_,271,63	monster	CHAOS-Soul	1681,1
+
+moc_fild13_,303,52	monster	CHAOS-Soul	1681,1
+moc_fild13_,304,52	monster	CHAOS-Soul	1681,1
+moc_fild13_,305,52	monster	CHAOS-Soul	1681,1
+moc_fild13_,306,52	monster	CHAOS-Soul	1681,1
+moc_fild13_,307,52	monster	CHAOS-Soul	1681,1
+moc_fild13_,308,52	monster	CHAOS-Soul	1681,1
+moc_fild13_,309,52	monster	CHAOS-Soul	1681,1
+
+moc_fild13_,158,270	monster	CHAOS-Soul	31170,1
+moc_fild13_,158,269	monster	CHAOS-Soul	31170,1
+moc_fild13_,159,270	monster	CHAOS-Soul	31170,1
+moc_fild13_,159,270	monster	CHAOS-Soul	31170,1
+moc_fild13_,160,269	monster	CHAOS-Soul	31170,1
+moc_fild13_,160,270	monster	CHAOS-Soul	31170,1
+moc_fild13_,161,269	monster	CHAOS-Soul	31170,1
+moc_fild13_,161,270	monster	CHAOS-Soul	31170,1
+moc_fild13_,162,269	monster	CHAOS-Soul	31170,1
+moc_fild13_,162,270	monster	CHAOS-Soul	31170,1
+
+moc_fild13_,191,213	monster	CHAOS-Soul	31170,1
+moc_fild13_,191,214	monster	CHAOS-Soul	31170,1
+moc_fild13_,192,213	monster	CHAOS-Soul	31170,1
+moc_fild13_,192,214	monster	CHAOS-Soul	31170,1
+moc_fild13_,193,213	monster	CHAOS-Soul	31170,1
+moc_fild13_,193,214	monster	CHAOS-Soul	31170,1
+moc_fild13_,194,213	monster	CHAOS-Soul	31170,1
+moc_fild13_,194,214	monster	CHAOS-Soul	31170,1
+moc_fild13_,195,213	monster	CHAOS-Soul	31170,1
+moc_fild13_,195,214	monster	CHAOS-Soul	31170,1
+moc_fild13_,196,213	monster	CHAOS-Soul	31170,1
+moc_fild13_,196,214	monster	CHAOS-Soul	31170,1
+moc_fild13_,197,213	monster	CHAOS-Soul	31170,1
+moc_fild13_,197,214	monster	CHAOS-Soul	31170,1
+
+moc_fild13_,211,244	monster	CHAOS-Soul	31170,1
+moc_fild13_,212,244	monster	CHAOS-Soul	31170,1
+moc_fild13_,213,244	monster	CHAOS-Soul	31170,1
+moc_fild13_,214,244	monster	CHAOS-Soul	31170,1
+moc_fild13_,215,244	monster	CHAOS-Soul	31170,1
+moc_fild13_,216,244	monster	CHAOS-Soul	31170,1
+
+moc_fild13_,220,193	monster	CHAOS-Soul	31170,1
+moc_fild13_,220,194	monster	CHAOS-Soul	31170,1
+moc_fild13_,221,193	monster	CHAOS-Soul	31170,1
+moc_fild13_,221,194	monster	CHAOS-Soul	31170,1
+moc_fild13_,222,193	monster	CHAOS-Soul	31170,1
+moc_fild13_,222,194	monster	CHAOS-Soul	31170,1
+moc_fild13_,223,193	monster	CHAOS-Soul	31170,1
+moc_fild13_,223,194	monster	CHAOS-Soul	31170,1
+moc_fild13_,224,193	monster	CHAOS-Soul	31170,1
+moc_fild13_,224,194	monster	CHAOS-Soul	31170,1
+moc_fild13_,225,193	monster	CHAOS-Soul	31170,1
+moc_fild13_,225,194	monster	CHAOS-Soul	31170,1
+moc_fild13_,226,193	monster	CHAOS-Soul	31170,1
+moc_fild13_,226,194	monster	CHAOS-Soul	31170,1
+moc_fild13_,227,193	monster	CHAOS-Soul	31170,1
+moc_fild13_,227,194	monster	CHAOS-Soul	31170,1
+moc_fild13_,228,193	monster	CHAOS-Soul	31170,1
+moc_fild13_,228,194	monster	CHAOS-Soul	31170,1
+*/

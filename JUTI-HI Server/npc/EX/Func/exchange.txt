@@ -1,0 +1,83 @@
+-	script	DONATE	-1,{
+end;
+OnInit:
+	set .@bonus_item,0; //กำหนดตัวรหัสไอเท็มโบนัส ควรตั้งน้ำหนักของเป็น 0 กันตก // ถ้าใส่ 0 จะไม่แจกของ
+	setarray .@extra_item[0],0,0,0; //กำหนดตัวรหัสไอเท็มของแถม ควรตั้งน้ำหนักของเป็น 0 กันตก // ถ้าใส่ 0 จะไม่แจกของ > setarray .@extra_item[0],0;
+	setarray .get_cash_amount[100],10000,100,1,2,3; //ตั้งค่าของที่ผู้เล่นจะได้รับ [ยอดเงิน],พ้อยที่ได้รับ,โบนัสที่จะได้รับ,จำนวนของแถมที่ได้รับต้องมีจำนวนตรงกับ .@extra_item
+	setarray .get_cash_amount[300],30000,300,1,2,3; //ตั้งค่าของที่ผู้เล่นจะได้รับ [ยอดเงิน],พ้อยที่ได้รับ,โบนัสที่จะได้รับ,จำนวนของแถมที่ได้รับ
+	setarray .get_cash_amount[500],50000,500,1,2,3; //ตั้งค่าของที่ผู้เล่นจะได้รับ [ยอดเงิน],พ้อยที่ได้รับ,โบนัสที่จะได้รับ,จำนวนของแถมที่ได้รับ
+	setarray .get_cash_amount[1000],100000,1000,1,2,3; //ตั้งค่าของที่ผู้เล่นจะได้รับ [ยอดเงิน],พ้อยที่ได้รับ,โบนัสที่จะได้รับ,จำนวนของแถมที่ได้รับ
+	setarray .get_cash_amount[2000],210000,2000,1,2,3; //ตั้งค่าของที่ผู้เล่นจะได้รับ [ยอดเงิน],พ้อยที่ได้รับ,โบนัสที่จะได้รับ,จำนวนของแถมที่ได้รับ
+	setarray .get_cash_amount[3000],325000,3000,1,2,3; //ตั้งค่าของที่ผู้เล่นจะได้รับ [ยอดเงิน],พ้อยที่ได้รับ,โบนัสที่จะได้รับ,จำนวนของแถมที่ได้รับ
+	setarray .get_cash_amount[5000],540000,5000,1,2,3; //ตั้งค่าของที่ผู้เล่นจะได้รับ [ยอดเงิน],พ้อยที่ได้รับ,โบนัสที่จะได้รับ,จำนวนของแถมที่ได้รับ
+	setarray .get_cash_amount[10000],1100000,10000,1,2,3; //ตั้งค่าของที่ผู้เล่นจะได้รับ [ยอดเงิน],พ้อยที่ได้รับ,โบนัสที่จะได้รับ,จำนวนของแถมที่ได้รับ
+	
+	while (1)
+	{
+		query_sql "SELECT `id`,`amount`,`account_id` FROM `donate` WHERE `status` = 1 ORDER BY RAND()",.donate_id,.donate_amount,.donate_account_id;
+		sleep 500;
+		
+		if (getarraysize(.donate_id) > 0) {
+			for (set .i,0; .i < getarraysize(.donate_id); set .i,.i+1) {
+				if(.donate_amount[.i] > 0 && attachrid(.donate_account_id[.i]) == 1)
+				{
+					
+					set #CASHPOINTS,(#CASHPOINTS + .get_cash_amount[.donate_amount[.i]]);
+					dispbottom "[ Donate System ] : คุณได้รับ " + callfunc("F_InsertComma",.get_cash_amount[(.donate_amount[.i])]) + " Cash รวมเป็น "+callfunc("F_InsertComma",#CASHPOINTS)+" Cash",0xAEFF00;
+					set #BONUSPOINTS,(#BONUSPOINTS + .get_cash_amount[(.donate_amount[.i]+1)]);
+					dispbottom "[ Donate System ] : คุณได้รับ " + callfunc("F_InsertComma",.get_cash_amount[(.donate_amount[.i]+1)]) + " Bonus รวมเป็น "+callfunc("F_InsertComma",#BONUSPOINTS)+" Bonus",0xAEFF00;		
+
+					//set #REFILLPOINTS1000,(#REFILLPOINTS1000 + .get_cash_amount[(.donate_amount[.i]+1)]);
+					//set #REFILLPOINTS3000,(#REFILLPOINTS3000 + .get_cash_amount[(.donate_amount[.i]+1)]);
+					set #PROMOTION1POINT,(#PROMOTION1POINT + .get_cash_amount[(.donate_amount[.i]+1)]);
+						
+					if( countitem(3000440)>0 || countitem(3000441)>0 || countitem(3000442)>0 ){
+					
+						if(countitem(3000440)>0){
+							set .@CashCredit,10;
+						}
+						if(countitem(3000441)>0){
+							set .@CashCredit,15;
+						}
+						if(countitem(3000442)>0){
+							set .@CashCredit,20;
+						}
+						set #CASHPOINTS,(#CASHPOINTS + (.get_cash_amount[.donate_amount[.i]]*.@CashCredit/100));
+						dispbottom "[ Bonus หัวเครดิต ] : คุณได้รับ " + callfunc("F_InsertComma",.get_cash_amount[(.donate_amount[.i])]*.@CashCredit/100) + " Cash Point รวมเป็น "+callfunc("F_InsertComma",#CASHPOINTS)+" Point",0xAEFF00;		
+						set #BONUSPOINTS,(#BONUSPOINTS + (.get_cash_amount[(.donate_amount[.i]+1)]*.@CashCredit/100));
+						dispbottom "[ Bonus หัวเครดิต ] : คุณได้รับ " + callfunc("F_InsertComma",.get_cash_amount[(.donate_amount[.i]+1)]*.@CashCredit/100) + " Bonus Point รวมเป็น "+callfunc("F_InsertComma",#BONUSPOINTS)+" Point",0xAEFF00;		
+					}					
+					
+					
+					if ( .@bonus_item > 0 ) { //แจกโบนัสเป็นไอเท็ม
+						getitem .@bonus_item,.get_cash_amount[(.donate_amount[.i]+1)];
+						dispbottom "[ Donate System ] : คุณได้รับไอเท็มโบนัส จำนวน " + callfunc("F_InsertComma",.get_cash_amount[(.donate_amount[.i]+1)]) + " อัน",0xFFFB00;
+					}
+					
+					if ( getarraysize(.@extra_item) > 0 ) {
+						for (set .b,0; .b < getarraysize(.@extra_item); set .b,.b+1) {
+							dispbottom "[ Donate System ] : คุณได้รับของแถมเป็น " + getitemname(.@extra_item[.b])+ " | จำนวน " + callfunc("F_InsertComma",.get_cash_amount[(.donate_amount[.i]+2+.b)]) + " ชิ้น",0xFFFFFF;
+							getitem .@extra_item[.b],.get_cash_amount[(.donate_amount[.i]+2+.b)];
+						}
+					}
+					query_sql "UPDATE `donate` SET `status` = 2, updated_at = NOW() WHERE `id` = " + .donate_id[.i];
+					
+					//Add Point Club_member
+					if ( query_sql( "SELECT `money` FROM `club_member` WHERE `account_id` = '"+ .donate_account_id[.i] +"';", .@player_money ) ) {
+					query_sql( "UPDATE `club_member` SET `money` = `money`+'"+ .get_cash_amount[(.donate_amount[.i]+1)] +"' WHERE `account_id` = '"+ .donate_account_id[.i] +"';" );
+					} else {
+					query_sql( "SELECT `userid` FROM `login` WHERE `account_id` = '"+ .donate_account_id[.i] +"';", .player_userid$ ) ;
+					query_sql( "INSERT INTO `club_member` ( `account_id`, `userid`, `money` ) VALUES ( "+ .donate_account_id[.i] +", '"+ .player_userid$ +"', "+ .get_cash_amount[(.donate_amount[.i]+1)] +");" );
+					}
+					dispbottom "[ Donate System ] : ออกไปสู้หน้าเลือกตัวละครเพื่ออัพเดท Member Lv.",0xFFFB00;			
+					detachrid;
+				}
+			}
+			deletearray .donate_id[0],getarraysize(.donate_id);
+			deletearray .donate_amount[0],getarraysize(.donate_amount);
+			deletearray .donate_account_id[0],getarraysize(.donate_account_id);
+		}
+		sleep 5000;
+	}
+	end;
+}

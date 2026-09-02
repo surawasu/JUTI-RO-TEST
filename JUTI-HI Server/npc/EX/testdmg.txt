@@ -1,0 +1,5 @@
+like_game,158,109	monster	หินกิล	21078,1
+like_game,164,109	monster	ทดสอบดาเมจบอส	21066,1
+
+like_game,158,103	monster	ผู้เล่น (Vit/Def300)	21069,1
+like_game,164,103	monster	ผู้เล่น (Vit/Def100)	21070,1

@@ -1,0 +1,29 @@
+morocc,152,80,6	script	CBT Donate Exchange	4_RED_FLOWER,{
+disable_items;
+mes "[CBT Donate Exchange]";
+mes "นี่คือ NPC แลกของโปรโมชั่นเติมเงิน";
+mes "ช่วง Close Beta Test";
+mes "โปรดเลือกรายการที่ต้องการแลก";
+menu	"• โปรโมชั่น 1,000 บาท",CBT1000,
+		"• โปรโมชั่น 2,000 บาท",CBT2000,
+		"• โปรโมชั่น 3,000 บาท",CBT3000;
+
+CBT1000:
+close2;
+callshop "shadowcbt",1;
+end;
+
+CBT2000:
+close2;
+callshop "PET_Pokemon_Hi",1;
+end;
+
+CBT3000:
+close2;
+callshop "blackstartweapon",1;
+end;
+
+OnInit:
+waitingroom "แลกของโปรโมชั่น CBT",0;
+end;
+}

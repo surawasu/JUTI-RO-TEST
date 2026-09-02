@@ -1,0 +1,165 @@
+e_tower,70,117,6	script	CT Vending Machine	562,{
+	mes "[CT Vending Machine]";
+	mes "ท่านต้องการบริการใดโปรดเลือกด่านล่าง";
+	switch(select("แลกเปลี่ยน Meteorite:Enchant")){
+		case 1:
+			next;
+			mes "[CT Vending Machine]";
+			mes "ท่านต้องการเลือกเปลี่ยนประเภทไหน";
+			switch(select("แลกเปลี่ยน Nebula Armor:แลกเปลี่ยน Stellar Seal Accessories")){
+					case 1:
+						callshop "nebu_ex",1;
+						end;
+					case 2:
+						callshop "stellar_ex",1;
+						end;
+			end;
+			}
+		case 2:
+		next;
+			mes "[CT Vending Machine]";
+			mes "ท่านต้องการเลือกเปลี่ยนประเภทไหน";
+			switch(select("Nebula Armor of Power:Nebula Armor of Stamina:Nebula Suit of Concentration:Nebula Suit of Creative:Nebula Robe of Spell:Nebula Robe of Wisdom:Stellar Seal Accessories:Exit")){
+					case 1:
+						item_enchant(7);
+						end;
+					case 2:
+						item_enchant(8);
+						end;
+					case 3:
+						item_enchant(9);
+						end;
+					case 4:
+						item_enchant(10);
+						end;
+					case 5:
+						item_enchant(11);
+						end;
+					case 6:
+						item_enchant(12);
+						end;
+					case 7:
+						item_enchant(13);
+						end;
+					case 8:
+					end;
+			
+			}
+	}
+}
+/*
+
+-	exbartershop	nebu_ex	-1
+-	script	nebu_ex1	-1,{
+
+
+OnInit:
+	npcshopadditem "nebu_ex",1000373,-1,0,1000372,50,0,0,0,0,0,0,0,0,0,0,0,0,0;
+	npcshopadditem "nebu_ex",450166,-1,0,1000373,50,0,1000396,5,0,0,0,0,0,0,0,0,0,0;
+	npcshopadditem "nebu_ex",450167,-1,0,1000373,50,0,1000396,5,0,0,0,0,0,0,0,0,0,0;
+	npcshopadditem "nebu_ex",450168,-1,0,1000373,50,0,1000396,5,0,0,0,0,0,0,0,0,0,0;
+
+	npcshopadditem "nebu_ex",450169,-1,0,1000373,50,0,1000398,30,0,1000397,10,0,450168,1,0,0,0,0;
+	npcshopadditem "nebu_ex",450170,-1,0,1000373,50,0,1000399,30,0,1000397,10,0,450168,1,0,0,0,0;
+	npcshopadditem "nebu_ex",450171,-1,0,1000373,50,0,1000400,30,0,1000397,10,0,450167,1,0,0,0,0;
+	npcshopadditem "nebu_ex",450172,-1,0,1000373,50,0,1000401,30,0,1000397,10,0,450167,1,0,0,0,0;
+	npcshopadditem "nebu_ex",450173,-1,0,1000373,50,0,1000402,30,0,1000397,10,0,450166,1,0,0,0,0;
+	npcshopadditem "nebu_ex",450174,-1,0,1000373,50,0,1000403,30,0,1000397,10,0,450166,1,0,0,0,0;
+
+	end;
+}
+
+
+-	exbartershop	galax_ex	-1
+-	script	galax_ex1	-1,{
+
+
+OnInit:
+	npcshopadditem "galax_ex",4652002,-1,50000000,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0;
+	npcshopadditem "galax_ex",4652003,-1,0,4652004,1,0,0,0,0,0,0,0,0,0,0,0,0,0;
+	npcshopadditem "galax_ex",4652003,-1,0,4652005,1,0,0,0,0,0,0,0,0,0,0,0,0,0;
+	npcshopadditem "galax_ex",4652003,-1,0,4652006,1,0,0,0,0,0,0,0,0,0,0,0,0,0;
+	npcshopadditem "galax_ex",4652003,-1,0,4652007,1,0,0,0,0,0,0,0,0,0,0,0,0,0;
+	npcshopadditem "galax_ex",4652003,-1,0,4652008,1,0,0,0,0,0,0,0,0,0,0,0,0,0;
+	npcshopadditem "galax_ex",4652003,-1,0,4652009,1,0,0,0,0,0,0,0,0,0,0,0,0,0;
+	
+	npcshopadditem "galax_ex",1800025,-1,5000000,450169,1,9,4652004,5,0,1000442,10,0,1000398,20,0,0,0,0;
+	npcshopadditem "galax_ex",1800026,-1,5000000,450170,1,9,4652005,5,0,1000443,10,0,1000399,20,0,0,0,0;
+	npcshopadditem "galax_ex",1800027,-1,5000000,450171,1,9,4652006,5,0,1000444,10,0,1000400,20,0,0,0,0;
+
+	npcshopadditem "galax_ex",1800028,-1,5000000,450172,1,9,4652007,5,0,1000445,10,0,1000401,20,0,0,0,0;
+	npcshopadditem "galax_ex",1800029,-1,5000000,450173,1,9,4652008,5,0,1000446,10,0,1000402,20,0,0,0,0;
+	npcshopadditem "galax_ex",1800030,-1,5000000,450174,1,9,4652009,5,0,1000447,10,0,1000403,20,0,0,0,0;
+	
+	end;
+}
+
+
+-	exbartershop	stellar_ex	-1
+-	script	stellar_ex1	-1,{
+
+
+OnInit:
+	npcshopadditem "stellar_ex",490131,-1,0,1000372,50,0,0,0,0,0,0,0,0,0,0,0,0,0;
+	npcshopadditem "stellar_ex",490132,-1,0,1000373,50,0,1000398,30,0,490131,1,0,0,0,0,0,0,0;
+	npcshopadditem "stellar_ex",490133,-1,0,1000373,50,0,1000399,30,0,490131,1,0,0,0,0,0,0,0;
+	npcshopadditem "stellar_ex",490134,-1,0,1000373,50,0,1000400,30,0,490131,1,0,0,0,0,0,0,0;
+	npcshopadditem "stellar_ex",490135,-1,0,1000373,50,0,1000401,30,0,490131,1,0,0,0,0,0,0,0;
+	npcshopadditem "stellar_ex",490136,-1,0,1000373,50,0,1000402,30,0,490131,1,0,0,0,0,0,0,0;
+	npcshopadditem "stellar_ex",490137,-1,0,1000373,50,0,1000403,30,0,490131,1,0,0,0,0,0,0,0;
+
+	end;
+}
+*/
+
+e_tower,73,117,3	script	CT Breaking Machine	563,{
+	disable_items;
+	.@inbag = countitem(1000373);
+
+	if ((MaxWeight - Weight) < 1000) {
+		mes "เจ้าแบกของมาหนักเกินไป. ลองลดน้ำหนักลงแล้วมาใหม่.";
+		close;
+	}
+	if (checkweight(501,1) == 0) {
+		mes "เจ้าพกของมามากเกินไป. ลองลดของลงแล้วมาใหม่.";
+		close;
+	}
+	mes "[CT Breaking Machine]";
+	mes "ท่านมี  <ITEM>"+getitemname(1000373)+"<INFO>"+1000373+"</INFO></ITEM>";
+	mes "จำนวน ^00FF00"+.@inbag+ "^000000 ea  ";
+	mes "โปรดระบุจำนวนที่ท่านต้องการแลก";
+	input .@CC;
+	next;
+	if (.@CC == 0) {
+		mes "[CT Breaking Machine]";
+		mes "";
+		mes " ^FF0000 ท่านไม่ได้ระบุจำนวนที่ต้องการแลกเปลี่ยน^000000";
+		close;
+	} if (.@inbag >= .@CC) {
+		mes "[CT Breaking Machine]";
+		mes "ท่านต้องการแลก";
+		mes "<ITEM>"+getitemname(1000373)+"<INFO>"+1000372+"</INFO></ITEM>     จำนวน ^00FF00"+.@CC+ "^000000 ea";
+		mes "เป็น";
+		mes "<ITEM>"+getitemname(1000372)+"<INFO>"+1000372+"</INFO></ITEM>     จำนวน ^00FF00"+(.@CC)*40+ "^000000 ea";
+		mes "ใช่หรือไม่?";
+		switch(select("ใช่:ไม่ใช่")){
+		case 1:
+			next;
+			mes "[CT Breaking Machine]";
+			mes "";
+			mes " ^0000FF ท่านได้รับ <ITEM>"+getitemname(1000372)+"<INFO>"+1000372+"</INFO></ITEM>     จำนวน ^00FF00"+(.@CC)*40+ "^000000 ea^000000";
+			getitem 1000372,(.@CC)*40;
+			delitem 1000373,.@CC;
+			close;
+		case 2:
+			next;
+			mes "[CT Breaking Machine]";
+			mes "หากท่านต้องการแลกเปลี่ยนกลับมาได้เสมอ";
+			close;
+		}
+	} else {
+		mes "[CT Breaking Machine]";
+		mes "^FF0000ท่านมีไอเท็มไม่พอตามจำนวนที่ต้องการ.^000000";
+		close;
+}
+}

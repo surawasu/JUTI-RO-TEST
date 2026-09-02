@@ -1,0 +1,3371 @@
+1@ch_t_h,1,1,0	script	#towercontrolH	-1,{
+	end;
+
+	
+OnInstanceInit:
+	'map1$ = instance_mapname("1@ch_t_h");
+	'map2$ = instance_mapname("2@ch_t_h");
+	'map3$ = instance_mapname("3@ch_t_h");
+	'Boss_Spawn = 0;
+	end;
+	
+	
+}
+
+//วาป 2 7 
+1@ch_t_h,13,221,3	script	warp#ctw1h	PORTAL,{
+if(('floorClear == 1 || 'floorClear == 6 || 'floorClear == 11 || 'floorClear == 16 || 'floorClear == 21 || 'floorClear == 26 || 'floorClear == 31 || 'floorClear == 36 || 'floorClear == 41 || 'floorClear == 46) && 'canwarp == 1){
+	warpparty 'map1$,132,183,getcharid(1),'map1$;
+	areamonster 'map1$,90,219,116,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw1h")+"::OnMyMobDead";
+	areamonster 'map1$,90,219,116,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw1h")+"::OnMyMobDead";
+	areamonster 'map1$,90,219,116,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw1h")+"::OnMyMobDead";
+	areamonster 'map1$,90,219,116,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw1h")+"::OnMyMobDead";
+	areamonster 'map1$,90,219,116,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw1h")+"::OnMyMobDead";
+	areamonster 'map1$,90,219,116,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw1h")+"::OnMyMobDead";
+	areamonster 'map1$,90,219,116,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw1h")+"::OnMyMobDead";
+	areamonster 'map1$,90,219,116,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw1h")+"::OnMyMobDead";
+	areamonster 'map1$,90,219,116,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw1h")+"::OnMyMobDead";
+	areamonster 'map1$,90,219,116,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw1h")+"::OnMyMobDead";
+	areamonster 'map1$,90,219,116,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw1h")+"::OnMyMobDead";
+	areamonster 'map1$,90,219,116,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw1h")+"::OnMyMobDead";
+	areamonster 'map1$,90,219,116,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw1h")+"::OnMyMobDead";
+	areamonster 'map1$,90,219,116,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw1h")+"::OnMyMobDead";
+	areamonster 'map1$,90,219,116,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw1h")+"::OnMyMobDead";
+	'mobfloor = 15;
+	'canwarp = 0;
+	}
+	end;
+	
+OnInstanceInit:
+	'map1$ = instance_mapname("1@ch_t_h");
+	'map2$ = instance_mapname("2@ch_t_h");
+	'map3$ = instance_mapname("3@ch_t_h");
+	end;
+OnMyMobDead:
+	'mobfloor--;
+	if('mobfloor <= 0) {
+		mapannounce instance_mapname('map1$), "มอนเตอร์ชในชั้นที่ "+ ('floorClear + 1) +" ถูกกำจัดหมดแล้วไปชั้นต่อไปได้",bc_map,"0x00ff99";
+		'floorClear += 1;
+		'canwarp = 1;
+		end;
+		}
+end;
+}
+
+//วาป 3 8 
+1@ch_t_h,97,221,3	script	warp#ctw2h	PORTAL,{
+if(('floorClear == 2 || 'floorClear == 7 || 'floorClear == 12 || 'floorClear == 17 || 'floorClear == 22 || 'floorClear == 27 || 'floorClear == 32 || 'floorClear == 37 || 'floorClear == 42 || 'floorClear == 47) && 'canwarp == 1){
+	warpparty 'map1$,220,183,getcharid(1),'map1$;
+	areamonster 'map1$,178,219,201,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw2h")+"::OnMyMobDead";
+	areamonster 'map1$,178,219,201,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw2h")+"::OnMyMobDead";
+	areamonster 'map1$,178,219,201,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw2h")+"::OnMyMobDead";
+	areamonster 'map1$,178,219,201,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw2h")+"::OnMyMobDead";
+	areamonster 'map1$,178,219,201,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw2h")+"::OnMyMobDead";
+	areamonster 'map1$,178,219,201,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw2h")+"::OnMyMobDead";
+	areamonster 'map1$,178,219,201,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw2h")+"::OnMyMobDead";
+	areamonster 'map1$,178,219,201,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw2h")+"::OnMyMobDead";
+	areamonster 'map1$,178,219,201,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw2h")+"::OnMyMobDead";
+	areamonster 'map1$,178,219,201,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw2h")+"::OnMyMobDead";
+	areamonster 'map1$,178,219,201,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw2h")+"::OnMyMobDead";
+	areamonster 'map1$,178,219,201,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw2h")+"::OnMyMobDead";
+	areamonster 'map1$,178,219,201,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw2h")+"::OnMyMobDead";
+	areamonster 'map1$,178,219,201,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw2h")+"::OnMyMobDead";
+	areamonster 'map1$,178,219,201,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw2h")+"::OnMyMobDead";
+	'mobfloor = 15;
+	'canwarp = 0;
+	}
+	end;
+	
+OnInstanceInit:
+	'map1$ = instance_mapname("1@ch_t_h");
+	'map2$ = instance_mapname("2@ch_t_h");
+	'map3$ = instance_mapname("3@ch_t_h");
+	end;
+OnMyMobDead:
+	'mobfloor--;
+	if('mobfloor <= 0) {
+		mapannounce instance_mapname('map1$), "มอนเตอร์ชในชั้นที่ "+ ('floorClear + 1) +" ถูกกำจัดหมดแล้วไปชั้นต่อไปได้",bc_map,"0x00ff99";
+		'floorClear += 1;
+		'canwarp = 1;
+		end;
+		}
+end;
+}
+
+
+//วาป 4 9 
+1@ch_t_h,185,221,3	script	warp#ctw3h	PORTAL,{
+if(('floorClear == 3 || 'floorClear == 8 || 'floorClear == 13 || 'floorClear == 18 || 'floorClear == 23 || 'floorClear == 28 || 'floorClear == 33 || 'floorClear == 38 || 'floorClear == 43 || 'floorClear == 48) && 'canwarp == 1){
+	warpparty 'map1$,306,183,getcharid(1),'map1$;
+	areamonster 'map1$,264,219,288,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw3h")+"::OnMyMobDead";
+	areamonster 'map1$,264,219,288,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw3h")+"::OnMyMobDead";
+	areamonster 'map1$,264,219,288,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw3h")+"::OnMyMobDead";
+	areamonster 'map1$,264,219,288,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw3h")+"::OnMyMobDead";
+	areamonster 'map1$,264,219,288,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw3h")+"::OnMyMobDead";
+	areamonster 'map1$,264,219,288,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw3h")+"::OnMyMobDead";
+	areamonster 'map1$,264,219,288,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw3h")+"::OnMyMobDead";
+	areamonster 'map1$,264,219,288,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw3h")+"::OnMyMobDead";
+	areamonster 'map1$,264,219,288,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw3h")+"::OnMyMobDead";
+	areamonster 'map1$,264,219,288,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw3h")+"::OnMyMobDead";
+	areamonster 'map1$,264,219,288,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw3h")+"::OnMyMobDead";
+	areamonster 'map1$,264,219,288,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw3h")+"::OnMyMobDead";
+	areamonster 'map1$,264,219,288,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw3h")+"::OnMyMobDead";
+	areamonster 'map1$,264,219,288,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw3h")+"::OnMyMobDead";
+	areamonster 'map1$,264,219,288,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw3h")+"::OnMyMobDead";
+	'mobfloor = 15;
+	'canwarp = 0;
+	}
+	end;
+	
+OnInstanceInit:
+	'map1$ = instance_mapname("1@ch_t_h");
+	'map2$ = instance_mapname("2@ch_t_h");
+	'map3$ = instance_mapname("3@ch_t_h");
+	end;
+OnMyMobDead:
+	'mobfloor--;
+	if('mobfloor <= 0) {
+		mapannounce instance_mapname('map1$), "มอนเตอร์ชในชั้นที่ "+ ('floorClear + 1) +" ถูกกำจัดหมดแล้วไปชั้นต่อไปได้",bc_map,"0x00ff99";
+		'floorClear += 1;
+		'canwarp = 1;
+		end;
+		}
+end;
+}
+
+//วาป 5 10 
+1@ch_t_h,271,221,3	script	warp#ctw4h	PORTAL,{
+if(('floorClear == 4 || 'floorClear == 9 || 'floorClear == 14 || 'floorClear == 19 || 'floorClear == 24 || 'floorClear == 29 || 'floorClear == 34 || 'floorClear == 39 || 'floorClear == 44 || 'floorClear == 49) && 'canwarp == 1){
+	warpparty 'map1$,390,183,getcharid(1),'map1$;
+	areamonster 'map1$,348,219,372,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw4h")+"::OnMyMobDead";
+	areamonster 'map1$,348,219,372,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw4h")+"::OnMyMobDead";
+	areamonster 'map1$,348,219,372,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw4h")+"::OnMyMobDead";
+	areamonster 'map1$,348,219,372,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw4h")+"::OnMyMobDead";
+	areamonster 'map1$,348,219,372,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw4h")+"::OnMyMobDead";
+	areamonster 'map1$,348,219,372,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw4h")+"::OnMyMobDead";
+	areamonster 'map1$,348,219,372,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw4h")+"::OnMyMobDead";
+	areamonster 'map1$,348,219,372,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw4h")+"::OnMyMobDead";
+	areamonster 'map1$,348,219,372,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw4h")+"::OnMyMobDead";
+	areamonster 'map1$,348,219,372,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw4h")+"::OnMyMobDead";
+	areamonster 'map1$,348,219,372,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw4h")+"::OnMyMobDead";
+	areamonster 'map1$,348,219,372,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw4h")+"::OnMyMobDead";
+	areamonster 'map1$,348,219,372,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw4h")+"::OnMyMobDead";
+	areamonster 'map1$,348,219,372,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw4h")+"::OnMyMobDead";
+	areamonster 'map1$,348,219,372,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw4h")+"::OnMyMobDead";
+	monster 'map1$,372,213,"--ja--",rand(21325,21358),1,instance_npcname("warp#ctw4h")+"::OnMyMobDead";
+	'mobboss5 = $@mobid[0];
+	setunitdata 'mob_boss, UMOB_DAMAGETAKEN, 5;
+	'mobfloor = 16;
+	'canwarp = 0;
+	}
+	end;
+	
+OnInstanceInit:
+	'map1$ = instance_mapname("1@ch_t_h");
+	'map2$ = instance_mapname("2@ch_t_h");
+	'map3$ = instance_mapname("3@ch_t_h");
+	end;
+OnMyMobDead:
+	'mobfloor--;
+	if('mobfloor <= 0) {
+		mapannounce instance_mapname('map1$), "มอนเตอร์ชในชั้นที่ "+ ('floorClear + 1) +" ถูกกำจัดหมดแล้วไปชั้นต่อไปได้",bc_map,"0x00ff99";
+		'floorClear += 1;
+		'canwarp = 1;
+		end;
+		}
+end;
+}
+
+//วาป 1 6 
+1@ch_t_h,355,221,3	script	warp#ctw5h	PORTAL,{
+if(('floorClear == 5 || 'floorClear == 10 || 'floorClear == 15 || 'floorClear == 20 || 'floorClear == 30 || 'floorClear == 35 || 'floorClear == 40 || 'floorClear == 45) && 'canwarp == 1){
+	warpparty 'map1$,48,183,getcharid(1),'map1$;
+	areamonster 'map1$,6,218,32,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw5h")+"::OnMyMobDead";
+	areamonster 'map1$,6,218,32,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw5h")+"::OnMyMobDead";
+	areamonster 'map1$,6,218,32,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw5h")+"::OnMyMobDead";
+	areamonster 'map1$,6,218,32,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw5h")+"::OnMyMobDead";
+	areamonster 'map1$,6,218,32,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw5h")+"::OnMyMobDead";
+	areamonster 'map1$,6,218,32,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw5h")+"::OnMyMobDead";
+	areamonster 'map1$,6,218,32,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw5h")+"::OnMyMobDead";
+	areamonster 'map1$,6,218,32,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw5h")+"::OnMyMobDead";
+	areamonster 'map1$,6,218,32,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw5h")+"::OnMyMobDead";
+	areamonster 'map1$,6,218,32,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw5h")+"::OnMyMobDead";
+	areamonster 'map1$,6,218,32,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw5h")+"::OnMyMobDead";
+	areamonster 'map1$,6,218,32,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw5h")+"::OnMyMobDead";
+	areamonster 'map1$,6,218,32,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw5h")+"::OnMyMobDead";
+	areamonster 'map1$,6,218,32,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw5h")+"::OnMyMobDead";
+	areamonster 'map1$,6,218,32,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw5h")+"::OnMyMobDead";
+	'mobfloor = 15;
+	'canwarp = 0;
+	end;
+	}
+
+if('floorClear == 25 && 'canwarp == 1){ //ชั้น 25จบไปเลือกสู้บอส
+	warpparty 'map3$,32,17,getcharid(1),'map1$;
+	areamonster 'map1$,6,218,32,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw5h")+"::OnMyMobDead";
+	areamonster 'map1$,6,218,32,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw5h")+"::OnMyMobDead";
+	areamonster 'map1$,6,218,32,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw5h")+"::OnMyMobDead";
+	areamonster 'map1$,6,218,32,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw5h")+"::OnMyMobDead";
+	areamonster 'map1$,6,218,32,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw5h")+"::OnMyMobDead";
+	areamonster 'map1$,6,218,32,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw5h")+"::OnMyMobDead";
+	areamonster 'map1$,6,218,32,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw5h")+"::OnMyMobDead";
+	areamonster 'map1$,6,218,32,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw5h")+"::OnMyMobDead";
+	areamonster 'map1$,6,218,32,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw5h")+"::OnMyMobDead";
+	areamonster 'map1$,6,218,32,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw5h")+"::OnMyMobDead";
+	areamonster 'map1$,6,218,32,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw5h")+"::OnMyMobDead";
+	areamonster 'map1$,6,218,32,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw5h")+"::OnMyMobDead";
+	areamonster 'map1$,6,218,32,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw5h")+"::OnMyMobDead";
+	areamonster 'map1$,6,218,32,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw5h")+"::OnMyMobDead";
+	areamonster 'map1$,6,218,32,175,"--ja--",rand(20998,21047),1,instance_npcname("warp#ctw5h")+"::OnMyMobDead";
+	'mobfloor = 15;
+	'canwarp = 0;
+	end;
+	}	
+
+
+if('floorClear == 50 && 'canwarp == 1){
+	warpparty 'map3$,32,17,getcharid(1),'map1$;
+	end;
+	}
+	
+end;
+	
+OnInstanceInit:
+	'map1$ = instance_mapname("1@ch_t_h");
+	'map2$ = instance_mapname("2@ch_t_h");
+	'map3$ = instance_mapname("3@ch_t_h");
+	end;	
+OnMyMobDead:
+	'mobfloor--;
+	if('mobfloor <= 0) {
+		mapannounce instance_mapname('map1$), "มอนเตอร์ชในชั้นที่ "+ ('floorClear + 1) +" ถูกกำจัดหมดแล้วไปชั้นต่อไปได้",bc_map,"0x00ff99";
+		'floorClear += 1;
+		'canwarp = 1;
+		end;
+		}
+end;
+}
+
+
+1@ch_t_h,45,189,3	script	Oscar#ctwh	10307,{
+	if(is_party_leader()){
+		if(summoner == 1){
+		mes "[Oscar]";
+		mes "ขอให้พลังจงสถิตอยู่กับท่าน";
+		end;
+		}
+		mes "[Oscar]";
+		mes "โปรดเตรียมสัมภาระให้พร้อม";
+		mes "ด้านในอันตรายมากโปรดระวังด้วย";
+		mes "ต้องการเริ่มกันเลยไหม";
+		switch(select("เริ่มเลย:ยังก่อน")){
+		case 1:
+					
+			//SkipTest
+			//'floorClear = 50;
+			//warpparty 'map3$,41,93,getcharid(1),'map1$;
+			
+			donpcevent instance_npcname("#globaltimerCTH") + "::OnT_s";
+			areamonster 'map1$,6,218,32,175,"--ja--",rand(20998,21047),1,instance_npcname("Oscar#ctwh")+"::OnMyMobDead";
+			areamonster 'map1$,6,218,32,175,"--ja--",rand(20998,21047),1,instance_npcname("Oscar#ctwh")+"::OnMyMobDead";
+			areamonster 'map1$,6,218,32,175,"--ja--",rand(20998,21047),1,instance_npcname("Oscar#ctwh")+"::OnMyMobDead";
+			areamonster 'map1$,6,218,32,175,"--ja--",rand(20998,21047),1,instance_npcname("Oscar#ctwh")+"::OnMyMobDead";
+			areamonster 'map1$,6,218,32,175,"--ja--",rand(20998,21047),1,instance_npcname("Oscar#ctwh")+"::OnMyMobDead";
+			areamonster 'map1$,6,218,32,175,"--ja--",rand(20998,21047),1,instance_npcname("Oscar#ctwh")+"::OnMyMobDead";
+			areamonster 'map1$,6,218,32,175,"--ja--",rand(20998,21047),1,instance_npcname("Oscar#ctwh")+"::OnMyMobDead";
+			areamonster 'map1$,6,218,32,175,"--ja--",rand(20998,21047),1,instance_npcname("Oscar#ctwh")+"::OnMyMobDead";
+			areamonster 'map1$,6,218,32,175,"--ja--",rand(20998,21047),1,instance_npcname("Oscar#ctwh")+"::OnMyMobDead";
+			areamonster 'map1$,6,218,32,175,"--ja--",rand(20998,21047),1,instance_npcname("Oscar#ctwh")+"::OnMyMobDead";
+			areamonster 'map1$,6,218,32,175,"--ja--",rand(20998,21047),1,instance_npcname("Oscar#ctwh")+"::OnMyMobDead";
+			areamonster 'map1$,6,218,32,175,"--ja--",rand(20998,21047),1,instance_npcname("Oscar#ctwh")+"::OnMyMobDead";
+			areamonster 'map1$,6,218,32,175,"--ja--",rand(20998,21047),1,instance_npcname("Oscar#ctwh")+"::OnMyMobDead";
+			areamonster 'map1$,6,218,32,175,"--ja--",rand(20998,21047),1,instance_npcname("Oscar#ctwh")+"::OnMyMobDead";
+			areamonster 'map1$,6,218,32,175,"--ja--",rand(20998,21047),1,instance_npcname("Oscar#ctwh")+"::OnMyMobDead";
+			'mobfloor = 15;
+			'canwarp = 0;
+			'floorClear = 0;
+			summoner += 1;
+			hideonnpc instance_npcname("Oscar#ctwh",instance_id());
+			end;
+		case 2:
+		next;
+		mes "[Oscar]";
+		mes "หากพร้อมเมื่อไหร่ค่อยกลับมานะ";
+		end;
+		}
+	}
+	else {
+	mes "[Oscar]";
+	mes "เจ้าไม่ใช่หัวหน้าปาร์ตี้";
+	close;
+	}
+	end;
+	
+OnInstanceInit:
+	'map1$ = instance_mapname("1@ch_t_h");
+	'map2$ = instance_mapname("2@ch_t_h");
+	'map3$ = instance_mapname("3@ch_t_h");
+	end;
+	
+OnMyMobDead:
+	'mobfloor--;
+	if('mobfloor <= 0) {
+		mapannounce instance_mapname('map1$), "มอนเตอร์ชในชั้นที่ "+ ('floorClear + 1) +" ถูกกำจัดหมดแล้วไปชั้นต่อไปได้",bc_map,"0x00ff99";
+		'floorClear += 1;
+		'canwarp = 1;
+	}
+end;
+}
+
+
+3@ch_t_h,41,93,3	script	Oscar#ctwbossh	10307,{
+	
+	
+	if(is_party_leader()){
+		mes "[Oscar]";
+		mes "โปรดเตรียมสัมภาระให้พร้อม";
+		mes "ด้านในอันตรายมากโปรดระวังด้วย";
+		mes "ต้องการเริ่มกันเลยไหม";
+		next;
+		////floorClear == 25
+		if('floorClear == 25){
+		switch(select(":ไปต่อเพื่อท้าทาย Betelgeuse:ยังก่อน")){
+				case 1:
+					next;
+					mes "[Oscar]";
+					mes "เจ้าแน่ใจนะว่าจะท้าทาย Naght Sieger";
+					switch(select("แน่ใจ:ยังก่อน")){
+						case 1:
+							warpparty 'map2$,73,73,getcharid(1),'map3$;
+							end;
+						case 2:
+							next;
+							mes "[Oscar]";
+							mes "หากพร้อมเมื่อไหร่ค่อยกลับมานะ";
+							end;
+						}
+				case 2:
+					next;
+					mes "[Oscar]";
+					mes "เจ้าแน่ใจนะว่าจะไปต่อเพื่อท้าทาย Betelgeuse";
+					switch(select("แน่ใจ:ยังก่อน")){
+						case 1:
+							warpparty 'map1$,48,183,getcharid(1),'map3$;					
+							end;
+						case 2:
+							next;
+							mes "[Oscar]";
+							mes "หากพร้อมเมื่อไหร่ค่อยกลับมานะ";
+							end;
+						}
+				case 3:
+					next;
+					mes "[Oscar]";
+					mes "หากพร้อมเมื่อไหร่ค่อยกลับมานะ";
+					end;
+			}
+		}
+		goto F50;
+	}
+	else {
+	mes "[Oscar]";
+	mes "เจ้าไม่ใช่หัวหน้าปาร์ตี้";
+	close;
+	}
+	end;
+	
+F50:
+	
+		addrid(4,0,0,999,999,0);{
+		if(!is_party_leader()){
+		mes "[Oscar]";
+		clear;
+		mes "[Oscar]";
+		mes "นี่คือค่าสถานะของ Betelgeuse";
+		if('stathp == 0){
+		mes "HP - ^FF0000Sealed (Weak)^000000";}
+		if('stathp == 1){
+		mes "HP - #";}
+		if('stathp == 2){
+		mes "HP - # #";}
+		if('stathp == 3){
+		mes "HP - # # #";}
+		if('statdmg == 0){
+		mes "Damage - ^FF0000Sealed (Weak)^000000";}
+		if('statdmg == 1){
+		mes "Damage - #";}
+		if('statdmg == 2){
+		mes "Damage - # #";}
+		if('statdmg == 3){
+		mes "Damage - # # #";}
+		if('statheal == 0){
+		mes "Heal - ^FF0000Sealed (Weak)^000000";}
+		if('statheal == 1){
+		mes "Heal - #";}
+		if('statheal == 2){
+		mes "Heal - # #";}
+		if('statheal == 3){
+		mes "Heal - # # #";}
+		if('statdef == 0){
+		mes "Defend - ^FF0000Sealed (Weak)^000000";}
+		if('statdef == 1){
+		mes "Defend - #";}
+		if('statdef == 2){
+		mes "Defend - # #";}
+		if('statdef == 3){
+		mes "Defend - # # #";}
+		if('stattrap == 0){
+		mes "Trap - ^FF0000Sealed (Weak)^000000";}
+		if('stattrap == 1){
+		mes "Trap - #";}
+		if('stattrap == 2){
+		mes "Trap - # #";}
+		if('stattrap == 3){
+		mes "Trap - # # #";}
+		close;
+		}
+		}
+	
+		mes "[Oscar]";
+		mes "นี่คือค่าสถานะของ Betelgeuse";
+		if('stathp == 0){
+		mes "HP - ^FF0000Sealed (Weak)^000000";}
+		if('stathp == 1){
+		mes "HP - #";}
+		if('stathp == 2){
+		mes "HP - # #";}
+		if('stathp == 3){
+		mes "HP - # # #";}
+		if('statdmg == 0){
+		mes "Damage - ^FF0000Sealed (Weak)^000000";}
+		if('statdmg == 1){
+		mes "Damage - #";}
+		if('statdmg == 2){
+		mes "Damage - # #";}
+		if('statdmg == 3){
+		mes "Damage - # # #";}
+		if('statheal == 0){
+		mes "Heal - ^FF0000Sealed (Weak)^000000";}
+		if('statheal == 1){
+		mes "Heal - #";}
+		if('statheal == 2){
+		mes "Heal - # #";}
+		if('statheal == 3){
+		mes "Heal - # # #";}
+		if('statdef == 0){
+		mes "Defend - ^FF0000Sealed (Weak)^000000";}
+		if('statdef == 1){
+		mes "Defend - #";}
+		if('statdef == 2){
+		mes "Defend - # #";}
+		if('statdef == 3){
+		mes "Defend - # # #";}
+		if('stattrap == 0){
+		mes "Trap - ^FF0000Sealed (Weak)^000000";}
+		if('stattrap == 1){
+		mes "Trap - #";}
+		if('stattrap == 2){
+		mes "Trap - # #";}
+		if('stattrap == 3){
+		mes "Trap - # # #";}
+		next;
+		mes "[Oscar]";
+		mes "หากเจ้าคิดว่ามันแข็งแกร่งเกินไป สามารถเสี่ยงดวงเพื่อสุ่มค่าสถานะของ Betelgeuse ได้จนกว่าจะพอใจ";
+		mes "คิดค่าสุ่มแค่ 20  Metereorite Powder";
+		switch(select("สุ่มค่าสถานะของ Berelgeuse ใหม่ (^FF0000สุ่มได้อีก "+(5-'statran)+"^000000):ท้าทาย Betelgeuse:ยังก่อน")){
+				case 1:
+					next;
+					mes "[Oscar]";
+					mes "ท่าต้องการสุ่มค่าสถานะของ Berelgeuse หรือไม่";
+					switch(select("แน่ใจ:ยังก่อน")){
+						case 1:
+						next;
+						
+						if ('statran >= 5){
+						mes "[Oscar]";
+						mes "^FF0000สุ่มค่าสถานะของ Berelgeuse ได้เพียง 5 ครั้งเท่านั้น^000000";
+						end;
+						}
+						
+						if (countitem(1000372)< 20){
+						mes "[Oscar]";
+						mes "^FF0000ต้องการ ^000000";
+						mes "20 <ITEM>"+getitemname(1000372)+"<INFO>"+1000372+"</INFO></ITEM>";
+						end;
+						}
+						delitem 1000372,20;
+						'statran += 1;
+						'stathp = rand(1,3);
+						'statdmg = rand(1,3);
+						'statheal = rand(1,3);
+						'statdef = rand(1,3);
+						'stattrap = rand(1,3);
+						goto F50;
+						end;
+						
+						case 2:
+							next;
+							mes "[Oscar]";
+							mes "หากพร้อมเมื่อไหร่ค่อยกลับมานะ";
+							end;
+						}
+				case 2:
+					next;
+					mes "[Oscar]";
+					mes "เจ้าแน่ใจนะว่าจะท้าทาย Betelgeuse";
+					switch(select("แน่ใจ:ยังก่อน")){
+						case 1:
+							warpparty 'map3$,156,66,getcharid(1),'map3$;
+							setcell 'map3$,130,150,180,115,cell_walkable,0;
+							hideonnpc instance_npcname("Portal#ctwboss2h",instance_id());				
+							hideonnpc instance_npcname("Betelgeuse#ctwboss2h",instance_id());				
+							hideonnpc instance_npcname("Special Treasure Chests#bigboxh",instance_id());	
+							hideonnpc instance_npcname("Treasure Chests#box1h",instance_id());	
+							hideonnpc instance_npcname("Treasure Chests#box2h",instance_id());	
+							hideonnpc instance_npcname("Treasure Chests#box3h",instance_id());	
+							hideonnpc instance_npcname("Treasure Chests#box4h",instance_id());	
+							hideonnpc instance_npcname("Treasure Chests#box5h",instance_id());	
+							hideonnpc instance_npcname("Treasure Chests#box6h",instance_id());
+							hideonnpc instance_npcname("Treasure Chests#box7h",instance_id());	
+							hideonnpc instance_npcname("Treasure Chests#box8h",instance_id());	
+							hideonnpc instance_npcname("Treasure Chests#box9h",instance_id());
+							hideonnpc instance_npcname("Treasure Chests#box10h",instance_id());					
+							end;
+						case 2:
+							next;
+							mes "[Oscar]";
+							mes "หากพร้อมเมื่อไหร่ค่อยกลับมานะ";
+							end;
+						}
+				case 3:
+					next;
+					mes "[Oscar]";
+					mes "หากพร้อมเมื่อไหร่ค่อยกลับมานะ";
+					end;
+			}		
+end;
+
+OnInstanceInit:
+'statran = 0;
+'stathp = rand(1,3);
+'statdmg = rand(1,3);
+'statheal = rand(1,3);
+'statdef = rand(1,3);
+'stattrap = rand(1,3);
+end;
+
+}
+
+2@ch_t_h,91,95,7	script	Dragon Girl#ctwbossh	4_4job_leticia,{
+
+		if ('canleave == 1) {
+		mes "[Dragon Girl]";
+		mes "เจ้าต้องการออกไปเลยไหม?";
+		switch (select ("ยังก่อน", "ใช่ไปกันเลย")) {
+			case 1:
+			end;
+			case 2:
+			warp "e_tower",74,112;
+			//getitem 1000396,1;
+			end;
+			}
+		}
+
+	if(is_party_leader()){
+
+		
+		mes "[Dragon Girl]";
+		mes "เจ้าแน่ใจนะว่าจะท้าทาย Naght Sieger";
+		switch(select("แน่ใจ:ยังก่อน")){
+			case 1:
+				mapannounce instance_mapname('map2$), "โปรดระวังตัวให้ดี บางสิ่งกำลังมา",bc_map,"0x00ff99";
+				donpcevent instance_npcname("Naght Sieger#ctwbossh")+"::OnStart";
+				end;
+			case 2:
+				next;
+				mes "[Dragon Girl]";
+				mes "หากพร้อมเมื่อไหร่ค่อยกลับมานะ";
+				end;
+		}
+		end;
+	}
+	else {
+	mes "[Dragon Girl]";
+	mes "เจ้าไม่ใช่หัวหน้าปาร์ตี้";
+	close;
+	}
+end;
+}
+
+
+2@ch_t_h,102,105,4	script	Naght Sieger#ctwbossh	1956 ,{
+end;
+
+
+OnInstanceInit:
+npcspeed 240;
+//hideonnpc instance_npcname("Naght Sieger#ctwbossh");
+end;
+
+OnStart:
+hideoffnpc instance_npcname("Naght Sieger#ctwbossh");
+sleep 3000;
+unitwalk getnpcid(0),94,97;
+sleep 3000;
+hideonnpc instance_npcname("Dragon Girl#ctwbossh",instance_id());
+sleep 1000;
+hideonnpc instance_npcname("Naght Sieger#ctwbossh");
+sleep 500;
+monster 'map2$,94,97,"--ja--",20996,1,instance_npcname("Naght Sieger#ctwbossh")+"::OnMyMobDead";
+end;
+
+OnMyMobDead:
+	'canleave = 1;
+	sleep 2000;
+	hideoffnpc instance_npcname("Dragon Girl#ctwbossh",instance_id());
+end;
+
+}
+3@ch_t_h,157,94,3	script	Betelgeuse#ctwboss2h	20994,{
+	if ('canleave == 1) {
+		mes "[Betelgeuse]";
+		mes "นี่คือคะแนนของรอบนี้ "+('Boss_Score)+"";
+		mes "ทำได้เยี่ยมมาก รับรางวัลเลยไหมละ ?";
+		switch (select ("ยังก่อน", "ใช่เลย")) {
+			case 1:
+			end;
+			case 2:
+			getitem 1000373,5;
+			getitem 1000372,2;
+			warp "e_tower",74,112;
+			end;
+		}
+	}
+end;
+}
+
+3@ch_t_h,156,92,3	script	Betelgeuse#ctwbossh	20994,{
+	if('Boss_Spawn == 1){
+		end;
+	}
+	'partyId = getcharid(1);
+		
+	if(is_party_leader()){
+		
+			
+		mes "[Betelgeuse]";
+		mes "เริ่มกันเลยไหม";
+		switch(select("แน่ใจ:ยังก่อน")){
+			case 1:
+				donpcevent instance_npcname("Betelgeuse#ctwbossh")+"::Onstart";
+				'Boss_Spawn = 1;
+				end;
+						
+				
+			case 2:
+				next;
+				mes "[Betelgeuse]";
+				mes "หากพร้อมเมื่อไหร่ค่อยกลับมานะ";
+				end;
+		}
+		end;
+	}
+	else {
+	mes "[Betelgeuse]";
+	mes "เจ้าไม่ใช่หัวหน้าปาร์ตี้";
+	close;
+	}
+	end;
+
+OnStart:
+	mapannounce instance_mapname('map3$), "โปรดระวังตัวให้ดี บางสิ่งกำลังมา",bc_map,"0x00ff99";
+	specialeffect EF_MAGIC_FLOOR,AREA,instance_npcname("Betelgeuse#ctwbossh");
+	sleep 5000;
+	removespecialeffect EF_MAGIC_FLOOR,AREA,instance_npcname("Betelgeuse#ctwbossh");
+	hideonnpc instance_npcname("Betelgeuse#ctwbossh",instance_id());
+	if('statdmg==0){
+	monster 'map3$,156,92,"--ja--",20994,1,'mobboss$;
+	}
+	if('statdmg==1){
+	monster 'map3$,156,92,"--ja--",20993,1,'mobboss$;
+	}
+	if('statdmg==2){
+	monster 'map3$,156,92,"--ja--",20992,1,'mobboss$;
+	}
+	if('statdmg==3){
+	monster 'map3$,156,92,"--ja--",20991,1,'mobboss$;
+	}	
+	'mob_boss = $@mobid[0];
+	'bossalive = 1;
+	'bossreset = 0;
+	getunitdata 'mob_boss, .@data;
+	getunitdata 'mob_boss, .@datamin;
+	getunitdata 'mob_boss, .@datamax;
+	getunitdata 'mob_boss, .@mdatamin;
+	getunitdata 'mob_boss, .@mdatamax;
+	'boss_atk = .@datamin[UMOB_ATKMIN];
+	'boss_atkm = .@datamax[UMOB_ATKMAX];
+	'boss_matk = .@mdatamin[UMOB_MATKMIN];
+	'boss_matkm = .@mdatamax[UMOB_MATKMAX];
+	'boss_Res = 125+125*'statdef;
+	'boss_Mres = 125+125*'statdef;
+	'boss_DT = 3;
+	'boss_DT2 = 1000;
+	setunitdata 'mob_boss, UMOB_MAXHP, 1000000000 + 250000000 * (1+'stathp) ;
+	//setunitdata 'mob_boss, UMOB_ATKMIN, 'boss_atk * 'statdmg;
+	//setunitdata 'mob_boss, UMOB_ATKMAX, 'boss_atkm * 'statdmg;
+	//setunitdata 'mob_boss, UMOB_MATKMIN, 'boss_matk * 'statdmg;
+	//setunitdata 'mob_boss, UMOB_MATKMAX, 'boss_matkm * 'statdmg;
+	setunitdata 'mob_boss, UMOB_RES, 'boss_Res;
+	setunitdata 'mob_boss, UMOB_MRES, 'boss_Mres;
+	setunitdata 'mob_boss, UMOB_DAMAGETAKEN, 'boss_DT;
+	setunitdata 'mob_boss, UMOB_DAMAGETAKEN2, 'boss_DT2;
+	donpcevent instance_npcname("#bossevent1h") + "::OnEvent";
+	donpcevent instance_npcname("#bossevent2h") + "::OnEvent";
+	donpcevent instance_npcname("#bossevent3h") + "::OnEvent";
+	donpcevent instance_npcname("#bossevent4h") + "::OnEvent";	
+	donpcevent instance_npcname("#bossevent5h") + "::OnEvent";
+	donpcevent instance_npcname("#bossevent6h") + "::OnEvent";
+	initnpctimer;
+	end;
+
+
+
+OnMyMobDead1:
+	hideoffnpc instance_npcname("Betelgeuse#ctwbossh",instance_id());
+	sleep 2000;
+	donpcevent instance_npcname("Betelgeuse#ctwbossh")+"::Onstart1";
+	end;
+	
+OnStart1:
+
+	sleep 2000;
+	unitwalk getnpcid(0),156,88;
+	sleep 3000;
+	specialeffect EF_MAGIC_FLOOR,AREA,instance_npcname("Betelgeuse#ctwbossh");
+	sleep 5000;
+	removespecialeffect EF_MAGIC_FLOOR,AREA,instance_npcname("Betelgeuse#ctwbossh");
+	hideonnpc instance_npcname("Betelgeuse#ctwbossh",instance_id());
+	if('statdmg==0){
+	monster 'map3$,156,88,"--ja--",20994,1,'mobboss$;
+	}
+	if('statdmg==1){
+	monster 'map3$,156,88,"--ja--",20993,1,'mobboss$;
+	}
+	if('statdmg==2){
+	monster 'map3$,156,88,"--ja--",20992,1,'mobboss$;
+	}
+	if('statdmg==3){
+	monster 'map3$,156,88,"--ja--",20991,1,'mobboss$;
+	}	
+	'mob_boss = $@mobid[0];
+	setunitdata 'mob_boss, UMOB_MAXHP, 1000000000 + 250000000 * (1+'stathp) ;
+	setunitdata 'mob_boss, UMOB_HP, 'Boss_HP ;
+	//setunitdata 'mob_boss, UMOB_ATKMIN, 'boss_atk;
+	//setunitdata 'mob_boss, UMOB_ATKMAX, 'boss_atkm;
+	//setunitdata 'mob_boss, UMOB_MATKMIN, 'boss_matk;
+	//setunitdata 'mob_boss, UMOB_MATKMAX, 'boss_matkm;
+	setunitdata 'mob_boss, UMOB_RES, 'boss_Res;
+	setunitdata 'mob_boss, UMOB_MRES, 'boss_Mres;
+	setunitdata 'mob_boss, UMOB_DAMAGETAKEN, 'boss_DT;
+	setunitdata 'mob_boss, UMOB_DAMAGETAKEN2, 'boss_DT2;
+	'bossalive = 1;	
+	donpcevent instance_npcname("#bossevent5h") + "::OnEvent";
+	donpcevent instance_npcname("#bossevent6h") + "::OnEvent";
+	donpcevent instance_npcname("#testcontrapbluestarth")+"::OnStart"; //phase2 
+	sleep rand(10000,20000);
+	donpcevent instance_npcname("#deadsoulh")+"::OnStart"; //deadsoul 
+	end;
+
+OnMyMobDead2:
+	movenpc instance_npcname("Betelgeuse#ctwbossh",instance_id()),156,92;
+	sleep 1000;
+	hideoffnpc instance_npcname("Betelgeuse#ctwbossh",instance_id());
+	sleep 2000;
+	donpcevent instance_npcname("Betelgeuse#ctwbossh")+"::OnStart2"; //phase2 
+	end;
+	
+OnStart2:
+	sleep 2000;
+	unitwalk getnpcid(0),156,88;
+	sleep 3000;
+	specialeffect EF_MAGIC_FLOOR,AREA,instance_npcname("Betelgeuse#ctwbossh");
+	sleep 3000;
+	donpcevent instance_npcname("#testcontrapblueh")+"::OnRed"; 
+	donpcevent instance_npcname("#testcontrapblue2h")+"::OnRed"; 
+	donpcevent instance_npcname("#testcontrapblue3h")+"::OnRed"; 
+	donpcevent instance_npcname("#testcontrapblue4h")+"::OnRed"; 
+	donpcevent instance_npcname("#testcontrapblue5h")+"::OnRed"; 
+	donpcevent instance_npcname("#testcontrapblue6h")+"::OnRed"; 
+	donpcevent instance_npcname("#testcontrapblue7h")+"::OnRed"; 
+	donpcevent instance_npcname("#testcontrapblue8h")+"::OnRed"; 
+	donpcevent instance_npcname("#testcontrapblue9h")+"::OnRed"; 
+	donpcevent instance_npcname("#testcontrapblue10h")+"::OnRed"; 
+	sleep 5000;
+	removespecialeffect EF_MAGIC_FLOOR,AREA,instance_npcname("Betelgeuse#ctwbossh");
+	hideonnpc instance_npcname("Betelgeuse#ctwbossh",instance_id());
+	if('statdmg==0){
+	monster 'map3$,156,88,"--ja--",20994,1,instance_npcname("Betelgeuse#ctwbossh")+"::OnMyMobDead3";
+	}
+	if('statdmg==1){
+	monster 'map3$,156,88,"--ja--",20993,1,instance_npcname("Betelgeuse#ctwbossh")+"::OnMyMobDead3";
+	}
+	if('statdmg==2){
+	monster 'map3$,156,88,"--ja--",20992,1,instance_npcname("Betelgeuse#ctwbossh")+"::OnMyMobDead3";
+	}
+	if('statdmg==3){
+	monster 'map3$,156,88,"--ja--",20991,1,instance_npcname("Betelgeuse#ctwbossh")+"::OnMyMobDead3";
+	}
+	'mob_boss = $@mobid[0];
+	setunitdata 'mob_boss, UMOB_MAXHP, 1000000000 + 250000000 * (1+'stathp) ;
+	setunitdata 'mob_boss, UMOB_HP, 'Boss_HP ;
+	//setunitdata 'mob_boss, UMOB_ATKMIN, 'boss_atk;
+	//setunitdata 'mob_boss, UMOB_ATKMAX, 'boss_atkm;
+	//setunitdata 'mob_boss, UMOB_MATKMIN, 'boss_matk;
+	//setunitdata 'mob_boss, UMOB_MATKMAX, 'boss_matkm;
+	setunitdata 'mob_boss, UMOB_RES, 'boss_Res;
+	setunitdata 'mob_boss, UMOB_MRES, 'boss_Mres;
+	setunitdata 'mob_boss, UMOB_DAMAGETAKEN, 'boss_DT;
+	setunitdata 'mob_boss, UMOB_DAMAGETAKEN2, 'boss_DT2;
+	'bossalive = 1;
+	stopnpctimer;
+	end;	
+	
+
+	
+	
+
+
+
+
+OnTimer1000:
+		
+	if('bossalive == 1){
+	
+		getunitdata 'mob_boss, .@data;
+		'Boss_MaxHP = .@data[UMOB_MAXHP];
+		'Boss_HP = .@data[UMOB_HP];	
+
+	
+	
+		if( (('Boss_HP) <= (6*('Boss_MaxHP)/10)) && ('Boss_HP60 == 0) && ('Boss_HP90 == 1)) {
+	
+			'Boss_HP60 += 1;
+			'bossalive = 0;
+			getunitdata 'mob_boss, .@data;
+			'Boss_MaxHP = .@data[UMOB_MAXHP];
+			'Boss_HP = .@data[UMOB_HP];	
+			killmonster 'map3$,'mobboss$;
+			warpparty 'map3$,156,85,'partyId,'map3$;
+			donpcevent instance_npcname("Betelgeuse#ctwbossh")+"::OnMyMobDead2";
+		}
+	
+	}
+end;
+
+
+OnTimer2000:
+	
+	if('bossalive == 1){
+	
+		getunitdata 'mob_boss, .@data;
+		'Boss_MaxHP = .@data[UMOB_MAXHP];
+		'Boss_HP = .@data[UMOB_HP];	
+
+	
+	
+		if( (('Boss_HP) <= (9*('Boss_MaxHP)/10)) && ('Boss_HP90 == 0) ) {
+		
+			'Boss_HP90 += 1;
+			'bossalive = 0;
+			getunitdata 'mob_boss, .@data;
+			'Boss_MaxHP = .@data[UMOB_MAXHP];
+			'Boss_HP = .@data[UMOB_HP];	
+			killmonster 'map3$,'mobboss$;
+			warpparty 'map3$,156,85,'partyId,'map3$;
+			donpcevent instance_npcname("Betelgeuse#ctwbossh")+"::OnMyMobDead1";
+		}
+	
+	}
+	initnpctimer;
+	
+end;
+
+
+OnMyMobDead3:	
+
+	if('bossreset == 1)end;
+	//Normal Time
+	'conh_str_face$ = strcharinfo(0);	
+	donpcevent instance_npcname("#globaltimerCTH") + "::OnT_s2";
+	stopnpctimer instance_npcname("#bossevent1h");
+	stopnpctimer instance_npcname("#bossevent2h");
+	stopnpctimer instance_npcname("#bossevent3h");
+	stopnpctimer instance_npcname("#bossevent4h");
+	stopnpctimer instance_npcname("#bossevent5h");
+	stopnpctimer instance_npcname("#bossevent6h");	
+	hideoffnpc instance_npcname("Portal#ctwboss2h",instance_id());
+	hideoffnpc instance_npcname("Betelgeuse#ctwboss2h",instance_id());
+	if('Boss_Score>=450){hideoffnpc instance_npcname("Special Treasure Chests#bigboxh",instance_id());}	
+	hideoffnpc instance_npcname("Treasure Chests#box1h",instance_id());	
+	hideoffnpc instance_npcname("Treasure Chests#box2h",instance_id());	
+	hideoffnpc instance_npcname("Treasure Chests#box3h",instance_id());	
+	hideoffnpc instance_npcname("Treasure Chests#box4h",instance_id());	
+	hideoffnpc instance_npcname("Treasure Chests#box5h",instance_id());	
+	hideoffnpc instance_npcname("Treasure Chests#box6h",instance_id());
+	hideoffnpc instance_npcname("Treasure Chests#box7h",instance_id());	
+	hideoffnpc instance_npcname("Treasure Chests#box8h",instance_id());	
+	hideoffnpc instance_npcname("Treasure Chests#box9h",instance_id());
+	hideoffnpc instance_npcname("Treasure Chests#box10h",instance_id());		
+	'canleave = 1;
+	'thebox = 1;
+	'box1 = 1;
+	'box2 = 1;
+	'box3 = 1;
+	'box4 = 1;
+	'box5 = 1;
+	'box6 = 1;
+	'box7 = 1;
+	'box8 = 1;
+	'box9 = 1;
+	'box10 = 1;
+	'Boss_HP90 = 0;
+	'Boss_HP60 = 0;
+
+	disablenpc instance_npcname("#testcontrapblueh"); 
+	disablenpc instance_npcname("#testcontrapblue2h"); 
+	disablenpc instance_npcname("#testcontrapblue3h");    
+	disablenpc instance_npcname("#testcontrapblue4h");  
+	disablenpc instance_npcname("#testcontrapblue5h");  
+	disablenpc instance_npcname("#testcontrapblue6h");  
+	disablenpc instance_npcname("#testcontrapblue7h");  
+	disablenpc instance_npcname("#testcontrapblue8h");  
+	disablenpc instance_npcname("#testcontrapblue9h");  
+	disablenpc instance_npcname("#testcontrapblue10h"); 
+	
+	addrid(4,0,0,999,999,0);{
+	sc_end SC_DEADLY_DEFEASANCE; 
+	end;
+	}
+	
+end;
+
+OnInstanceInit:
+	npcspeed 350;
+	'map1$ = instance_mapname("1@ch_t_h");
+	'map2$ = instance_mapname("2@ch_t_h");
+	'map3$ = instance_mapname("3@ch_t_h");
+	setmapflag 'map1$, mf_nosave;
+	setmapflag 'map1$, mf_monster_noteleport;
+	setmapflag 'map1$, mf_noteleport;
+	setmapflag 'map1$, mf_nobranch;
+	setmapflag 'map1$, mf_nopenalty;
+	setmapflag 'map1$, mf_noexp;
+	setmapflag 'map1$, mf_noicewall;
+	setmapflag 'map1$, mf_nomemo;
+	
+	setmapflag 'map2$, mf_nosave;
+	setmapflag 'map2$, mf_monster_noteleport;
+	setmapflag 'map2$, mf_noteleport;
+	setmapflag 'map2$, mf_nobranch;
+	setmapflag 'map2$, mf_nopenalty;
+	setmapflag 'map2$, mf_noexp;
+	setmapflag 'map2$, mf_noicewall;
+	setmapflag 'map2$, mf_nomemo;
+	
+	setmapflag 'map3$, mf_nosave;
+	setmapflag 'map3$, mf_monster_noteleport;
+	setmapflag 'map3$, mf_noteleport;
+	setmapflag 'map3$, mf_nobranch;
+	setmapflag 'map3$, mf_nopenalty;
+	setmapflag 'map3$, mf_noexp;
+	setmapflag 'map3$, mf_noicewall;
+	setmapflag 'map3$, mf_nomemo;
+		
+	
+	'canleave = 0;
+	'Boss_HP90 = 0;
+	'Boss_HP60 = 0;
+	'mob_boss = 0;
+	'Boss_Score = (300+(15*(1+'stathp))+(15*(1+'statdmg))+(15*(1+'statheal))+(15*(1+'statdef))+(15*(1+'stattrap)));
+	end;
+}
+
+
+3@ch_t_h,156,106,3	script	Portal#ctwboss2h	PORTAL,{		
+	
+	if ('canleave == 1) {
+		mes "[Portal]";
+		mes "เจ้าต้องการออกไปเลยไหม?";
+		switch (select ("ยังก่อน", "ใช่ไปกันเลย")) {
+			case 1:
+			end;
+			case 2:
+			warp "e_tower",74,112;
+			sc_end SC_DEADLY_DEFEASANCE; 
+			end;
+		}
+	}
+end;
+}
+
+3@ch_t_h,156,88,3	script	Special Treasure Chests#bigboxh	4_STAR_BOX_SCORE,{
+
+if ('thebox == 1) {
+	getmapxy 'map3$,.@x,.@y, BL_NPC, instance_npcname(strnpcinfo(0));;// XY npc sample
+	for ( .@i = -1; .@i <= 1; .@i++ )// x
+		for ( .@j = -1; .@j <= 1; .@j++ )// y
+			if ( checkcell( 'map3$, (.@x+.@i), (.@y+.@j), cell_chkpass ) ) {// can pass
+				.@cell_x[.@size] = .@x+.@i;
+				.@cell_y[.@size] = .@y+.@j;
+				.@size++;
+			}
+	.@r = rand( .@size );// random index
+	makeitem rand(1000396,1000397),1,'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	if ('Boss_Score <= 400){
+	.@rand = rand(1,6);
+	if (.@rand == 1){
+	makeitem rand(1000396,1000397),1,'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	}
+	makeitem rand(1000444,1000445),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000444,1000445),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000444,1000445),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	if ('Boss_Score <= 450){
+	.@rand = rand(1,5);
+	if (.@rand == 1){
+	makeitem rand(1000396,1000397),1,'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	}
+	makeitem rand(1000398,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000398,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000398,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000398,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	if ('Boss_Score <= 500){
+	.@rand = rand(1,4);
+	if (.@rand == 1){
+	makeitem rand(1000396,1000397),1,'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	}
+	makeitem rand(1000398,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	makeitem rand(1000398,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000398,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000398,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000398,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	
+	if ('Boss_Score <= 550){
+	.@rand = rand(1,3);
+	if (.@rand == 1){
+	makeitem rand(1000396,1000397),1,'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	}
+	makeitem rand(1000398,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	makeitem rand(1000398,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000398,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000398,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000398,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000398,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	if ('Boss_Score <= 600){
+	.@rand = rand(1,2);
+	if (.@rand == 1){
+	makeitem rand(1000396,1000397),1,'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	}
+	makeitem rand(1000398,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	makeitem rand(1000398,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	makeitem rand(1000398,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000398,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000398,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000398,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000398,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	}
+
+
+end;
+}
+
+
+3@ch_t_h,148,84,3	script	Treasure Chests#box1h	4_STAR_BOX_POW1,{
+if('box1 == 1){
+	getmapxy 'map3$,.@x,.@y, BL_NPC, instance_npcname(strnpcinfo(0));;// XY npc sample
+	for ( .@i = -1; .@i <= 1; .@i++ )// x
+		for ( .@j = -1; .@j <= 1; .@j++ )// y
+			if ( checkcell( 'map3$, (.@x+.@i), (.@y+.@j), cell_chkpass ) ) {// can pass
+				.@cell_x[.@size] = .@x+.@i;
+				.@cell_y[.@size] = .@y+.@j;
+				.@size++;
+			}
+			
+	.@r = rand( .@size );// random index
+	makeitem rand(1000398,1000399),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	if ('Boss_Score <= 400){
+	makeitem rand(1000398,1000399),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000398,1000399),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000398,1000399),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	if ('Boss_Score <= 450){
+	makeitem rand(1000398,1000399),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000398,1000399),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000398,1000399),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000398,1000399),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	if ('Boss_Score <= 500){
+	makeitem rand(1000398,1000399),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	makeitem rand(1000398,1000399),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000398,1000399),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000398,1000399),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	
+	if ('Boss_Score <= 550){
+	makeitem rand(1000398,1000399),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	makeitem rand(1000398,1000399),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000398,1000399),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000398,1000399),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000398,1000399),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	if ('Boss_Score <= 600){
+	makeitem rand(1000398,1000399),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	makeitem rand(1000398,1000399),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	makeitem rand(1000398,1000399),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000398,1000399),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000398,1000399),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000398,1000399),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	}
+
+end;
+}
+
+3@ch_t_h,152,84,3	script	Treasure Chests#box2h	4_STAR_BOX_POW1,{
+if('box2 == 1){
+	getmapxy 'map3$,.@x,.@y, BL_NPC, instance_npcname(strnpcinfo(0));;// XY npc sample
+	for ( .@i = -1; .@i <= 1; .@i++ )// x
+		for ( .@j = -1; .@j <= 1; .@j++ )// y
+			if ( checkcell( 'map3$, (.@x+.@i), (.@y+.@j), cell_chkpass ) ) {// can pass
+				.@cell_x[.@size] = .@x+.@i;
+				.@cell_y[.@size] = .@y+.@j;
+				.@size++;
+			}
+	.@r = rand( .@size );// random index
+	makeitem rand(1000398,1000399),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	if ('Boss_Score <= 400){
+	makeitem rand(1000398,1000399),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000398,1000399),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000398,1000399),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	if ('Boss_Score <= 450){
+	makeitem rand(1000398,1000399),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000398,1000399),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000398,1000399),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000398,1000399),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	if ('Boss_Score <= 500){
+	makeitem rand(1000398,1000399),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	makeitem rand(1000398,1000399),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000398,1000399),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000398,1000399),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	
+	if ('Boss_Score <= 550){
+	makeitem rand(1000398,1000399),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	makeitem rand(1000398,1000399),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000398,1000399),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000398,1000399),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000398,1000399),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	if ('Boss_Score <= 600){
+	makeitem rand(1000398,1000399),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	makeitem rand(1000398,1000399),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	makeitem rand(1000398,1000399),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000398,1000399),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000398,1000399),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000398,1000399),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	}
+
+end;
+}
+
+3@ch_t_h,156,84,3	script	Treasure Chests#box3h	4_STAR_BOX_POW1,{
+if('box3 == 1){
+	getmapxy 'map3$,.@x,.@y, BL_NPC, instance_npcname(strnpcinfo(0));;// XY npc sample
+	for ( .@i = -1; .@i <= 1; .@i++ )// x
+		for ( .@j = -1; .@j <= 1; .@j++ )// y
+			if ( checkcell( 'map3$, (.@x+.@i), (.@y+.@j), cell_chkpass ) ) {// can pass
+				.@cell_x[.@size] = .@x+.@i;
+				.@cell_y[.@size] = .@y+.@j;
+				.@size++;
+			}
+	.@r = rand( .@size );// random index
+	makeitem rand(1000402,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	if ('Boss_Score <= 400){
+	makeitem rand(1000402,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000402,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000402,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	if ('Boss_Score <= 450){
+	makeitem rand(1000402,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000402,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000402,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000402,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	if ('Boss_Score <= 500){
+	makeitem rand(1000402,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	makeitem rand(1000402,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000402,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000402,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	
+	if ('Boss_Score <= 550){
+	makeitem rand(1000402,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	makeitem rand(1000402,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000402,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000402,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000402,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	if ('Boss_Score <= 600){
+	makeitem rand(1000402,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	makeitem rand(1000402,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	makeitem rand(1000402,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000402,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000402,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000402,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	}
+
+end;
+}
+
+3@ch_t_h,160,84,3	script	Treasure Chests#box4h	4_STAR_BOX_POW1,{
+if('box4 == 1){
+	getmapxy 'map3$,.@x,.@y, BL_NPC, instance_npcname(strnpcinfo(0));;// XY npc sample
+	for ( .@i = -1; .@i <= 1; .@i++ )// x
+		for ( .@j = -1; .@j <= 1; .@j++ )// y
+			if ( checkcell( 'map3$, (.@x+.@i), (.@y+.@j), cell_chkpass ) ) {// can pass
+				.@cell_x[.@size] = .@x+.@i;
+				.@cell_y[.@size] = .@y+.@j;
+				.@size++;
+			}
+	.@r = rand( .@size );// random index
+	makeitem rand(1000402,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	if ('Boss_Score <= 400){
+	makeitem rand(1000402,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000402,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000402,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	if ('Boss_Score <= 450){
+	makeitem rand(1000402,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000402,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000402,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000402,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	if ('Boss_Score <= 500){
+	makeitem rand(1000402,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	makeitem rand(1000402,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000402,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000402,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	
+	if ('Boss_Score <= 550){
+	makeitem rand(1000402,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	makeitem rand(1000402,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000402,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000402,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000402,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	if ('Boss_Score <= 600){
+	makeitem rand(1000402,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	makeitem rand(1000402,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	makeitem rand(1000402,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000402,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000402,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000402,1000403),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	}
+
+end;
+}
+
+3@ch_t_h,164,84,3	script	Treasure Chests#box5h	4_STAR_BOX_POW1,{
+if('box5 == 1){
+	getmapxy 'map3$,.@x,.@y, BL_NPC, instance_npcname(strnpcinfo(0));;// XY npc sample
+	for ( .@i = -1; .@i <= 1; .@i++ )// x
+		for ( .@j = -1; .@j <= 1; .@j++ )// y
+			if ( checkcell( 'map3$, (.@x+.@i), (.@y+.@j), cell_chkpass ) ) {// can pass
+				.@cell_x[.@size] = .@x+.@i;
+				.@cell_y[.@size] = .@y+.@j;
+				.@size++;
+			}
+	
+	.@r = rand( .@size );// random index
+	makeitem rand(1000400,1000401),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	if ('Boss_Score <= 400){
+	makeitem rand(1000400,1000401),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000400,1000401),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000400,1000401),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	if ('Boss_Score <= 450){
+	makeitem rand(1000400,1000401),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000400,1000401),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000400,1000401),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000400,1000401),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	if ('Boss_Score <= 500){
+	makeitem rand(1000400,1000401),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	makeitem rand(1000400,1000401),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000400,1000401),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000400,1000401),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	
+	if ('Boss_Score <= 550){
+	makeitem rand(1000400,1000401),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	makeitem rand(1000400,1000401),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000400,1000401),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000400,1000401),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000400,1000401),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	if ('Boss_Score <= 600){
+	makeitem rand(1000400,1000401),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	makeitem rand(1000400,1000401),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	makeitem rand(1000400,1000401),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000400,1000401),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000400,1000401),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000400,1000401),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	}
+	
+end;
+}
+
+3@ch_t_h,148,81,3	script	Treasure Chests#box6h	4_STAR_BOX_POW1,{
+if('box6 == 1){
+	getmapxy 'map3$,.@x,.@y, BL_NPC, instance_npcname(strnpcinfo(0));;// XY npc sample
+	for ( .@i = -1; .@i <= 1; .@i++ )// x
+		for ( .@j = -1; .@j <= 1; .@j++ )// y
+			if ( checkcell( 'map3$, (.@x+.@i), (.@y+.@j), cell_chkpass ) ) {// can pass
+				.@cell_x[.@size] = .@x+.@i;
+				.@cell_y[.@size] = .@y+.@j;
+				.@size++;
+			}
+	.@r = rand( .@size );// random index
+	makeitem rand(1000442,1000443),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	if ('Boss_Score <= 400){
+	makeitem rand(1000442,1000443),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000442,1000443),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000442,1000443),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	if ('Boss_Score <= 450){
+	makeitem rand(1000442,1000443),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000442,1000443),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000442,1000443),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000442,1000443),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	if ('Boss_Score <= 500){
+	makeitem rand(1000442,1000443),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	makeitem rand(1000442,1000443),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000442,1000443),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000442,1000443),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	
+	if ('Boss_Score <= 550){
+	makeitem rand(1000442,1000443),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	makeitem rand(1000442,1000443),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000442,1000443),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000442,1000443),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000442,1000443),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	if ('Boss_Score <= 600){
+	makeitem rand(1000442,1000443),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	makeitem rand(1000442,1000443),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	makeitem rand(1000442,1000443),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000442,1000443),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000442,1000443),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000442,1000443),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	}
+
+end;
+}
+
+3@ch_t_h,152,81,3	script	Treasure Chests#box7h	4_STAR_BOX_POW1,{
+if('box7 == 1){
+	getmapxy 'map3$,.@x,.@y, BL_NPC, instance_npcname(strnpcinfo(0));;// XY npc sample
+	for ( .@i = -1; .@i <= 1; .@i++ )// x
+		for ( .@j = -1; .@j <= 1; .@j++ )// y
+			if ( checkcell( 'map3$, (.@x+.@i), (.@y+.@j), cell_chkpass ) ) {// can pass
+				.@cell_x[.@size] = .@x+.@i;
+				.@cell_y[.@size] = .@y+.@j;
+				.@size++;
+			}
+	.@r = rand( .@size );// random index
+	makeitem rand(1000442,1000443),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	if ('Boss_Score <= 400){
+	makeitem rand(1000442,1000443),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000442,1000443),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000442,1000443),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	if ('Boss_Score <= 450){
+	makeitem rand(1000442,1000443),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000442,1000443),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000442,1000443),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000442,1000443),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	if ('Boss_Score <= 500){
+	makeitem rand(1000442,1000443),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	makeitem rand(1000442,1000443),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000442,1000443),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000442,1000443),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	
+	if ('Boss_Score <= 550){
+	makeitem rand(1000442,1000443),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	makeitem rand(1000442,1000443),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000442,1000443),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000442,1000443),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000442,1000443),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	if ('Boss_Score <= 600){
+	makeitem rand(1000442,1000443),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	makeitem rand(1000442,1000443),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	makeitem rand(1000442,1000443),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000442,1000443),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000442,1000443),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000442,1000443),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	}
+
+end;
+}
+
+3@ch_t_h,156,81,3	script	Treasure Chests#box8h	4_STAR_BOX_POW1,{
+if('box8 == 1){
+	getmapxy 'map3$,.@x,.@y, BL_NPC, instance_npcname(strnpcinfo(0));;// XY npc sample
+	for ( .@i = -1; .@i <= 1; .@i++ )// x
+		for ( .@j = -1; .@j <= 1; .@j++ )// y
+			if ( checkcell( 'map3$, (.@x+.@i), (.@y+.@j), cell_chkpass ) ) {// can pass
+				.@cell_x[.@size] = .@x+.@i;
+				.@cell_y[.@size] = .@y+.@j;
+				.@size++;
+			}
+	.@r = rand( .@size );// random index
+	makeitem rand(1000446,1000447),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	if ('Boss_Score <= 400){
+	makeitem rand(1000446,1000447),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000446,1000447),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000446,1000447),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	if ('Boss_Score <= 450){
+	makeitem rand(1000446,1000447),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000446,1000447),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000446,1000447),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000446,1000447),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	if ('Boss_Score <= 500){
+	makeitem rand(1000446,1000447),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	makeitem rand(1000446,1000447),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000446,1000447),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000446,1000447),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	
+	if ('Boss_Score <= 550){
+	makeitem rand(1000446,1000447),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	makeitem rand(1000446,1000447),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000446,1000447),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000446,1000447),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000446,1000447),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	if ('Boss_Score <= 600){
+	makeitem rand(1000446,1000447),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	makeitem rand(1000446,1000447),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	makeitem rand(1000446,1000447),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000446,1000447),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000446,1000447),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000446,1000447),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	}
+
+end;
+}
+
+3@ch_t_h,160,81,3	script	Treasure Chests#box9h	4_STAR_BOX_POW1,{
+if('box9 == 1){
+	getmapxy 'map3$,.@x,.@y, BL_NPC, instance_npcname(strnpcinfo(0));;// XY npc sample
+	for ( .@i = -1; .@i <= 1; .@i++ )// x
+		for ( .@j = -1; .@j <= 1; .@j++ )// y
+			if ( checkcell( 'map3$, (.@x+.@i), (.@y+.@j), cell_chkpass ) ) {// can pass
+				.@cell_x[.@size] = .@x+.@i;
+				.@cell_y[.@size] = .@y+.@j;
+				.@size++;
+			}
+	.@r = rand( .@size );// random index
+	makeitem rand(1000446,1000447),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	if ('Boss_Score <= 400){
+	makeitem rand(1000446,1000447),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000446,1000447),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000446,1000447),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	if ('Boss_Score <= 450){
+	makeitem rand(1000446,1000447),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000446,1000447),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000446,1000447),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000446,1000447),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	if ('Boss_Score <= 500){
+	makeitem rand(1000446,1000447),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	makeitem rand(1000446,1000447),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000446,1000447),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000446,1000447),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	
+	if ('Boss_Score <= 550){
+	makeitem rand(1000446,1000447),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	makeitem rand(1000446,1000447),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000446,1000447),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000446,1000447),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000446,1000447),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	if ('Boss_Score <= 600){
+	makeitem rand(1000446,1000447),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	makeitem rand(1000446,1000447),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	makeitem rand(1000446,1000447),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000446,1000447),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000446,1000447),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000446,1000447),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	}
+
+end;
+}
+
+3@ch_t_h,164,81,3	script	Treasure Chests#box10h	4_STAR_BOX_POW1,{
+if('box10 == 1){
+	getmapxy 'map3$,.@x,.@y, BL_NPC, instance_npcname(strnpcinfo(0));;// XY npc sample
+	for ( .@i = -1; .@i <= 1; .@i++ )// x
+		for ( .@j = -1; .@j <= 1; .@j++ )// y
+			if ( checkcell( 'map3$, (.@x+.@i), (.@y+.@j), cell_chkpass ) ) {// can pass
+				.@cell_x[.@size] = .@x+.@i;
+				.@cell_y[.@size] = .@y+.@j;
+				.@size++;
+			}
+	.@r = rand( .@size );// random index
+	makeitem rand(1000444,1000445),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];	
+	if ('Boss_Score <= 400){
+	makeitem rand(1000444,1000445),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000444,1000445),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000444,1000445),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	if ('Boss_Score <= 450){
+	makeitem rand(1000444,1000445),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000444,1000445),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000444,1000445),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000444,1000445),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	if ('Boss_Score <= 500){
+	makeitem rand(1000444,1000445),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	makeitem rand(1000444,1000445),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000444,1000445),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000444,1000445),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	
+	if ('Boss_Score <= 550){
+	makeitem rand(1000444,1000445),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	makeitem rand(1000444,1000445),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000444,1000445),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000444,1000445),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000444,1000445),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	if ('Boss_Score <= 600){
+	makeitem rand(1000444,1000445),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	makeitem rand(1000444,1000445),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	makeitem rand(1000444,1000445),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000444,1000445),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000444,1000445),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	.@r = rand(0,1);
+	if(.@r==1)makeitem rand(1000444,1000445),rand(1,2),'map3$,.@cell_x[.@r],.@cell_y[.@r];
+	hideonnpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	}
+	
+
+
+end;
+}
+
+
+3@ch_t_h,1,1,0	script	#testcontrapbluestarth	MD_MANHOLE,1,1,{
+end;
+
+OnStart:
+donpcevent instance_npcname("#testcontrapblueh")+"::OnPreMove"; 
+donpcevent instance_npcname("#testcontrapblue3h")+"::OnPreMove"; 
+donpcevent instance_npcname("#testcontrapblue5h")+"::OnPreMove";   
+donpcevent instance_npcname("#testcontrapblue7h")+"::OnPreMove"; 
+donpcevent instance_npcname("#testcontrapblue9h")+"::OnPreMove"; 
+sleep 5000;
+donpcevent instance_npcname("#testcontrapblue2h")+"::OnPreMove"; 
+donpcevent instance_npcname("#testcontrapblue4h")+"::OnPreMove"; 
+donpcevent instance_npcname("#testcontrapblue6h")+"::OnPreMove"; 
+donpcevent instance_npcname("#testcontrapblue8h")+"::OnPreMove"; 
+donpcevent instance_npcname("#testcontrapblue10h")+"::OnPreMove"; 
+end;
+
+}
+
+3@ch_t_h,143,95,4	script	#testcontrapblueh	MD_MANHOLE,1,1,{
+	end;
+	
+OnTouch:
+
+	if ('blue == 1) {
+	specialeffect2 636;
+	}
+	if ('red == 1) {
+	specialeffect2 EF_FIREHIT;
+	}
+	getmapxy( .@map$, .@x, .@y, BL_PC );
+	getmapxy( .@map$, .@x_npc, .@y_npc, BL_NPC );
+
+	.@r = rand(1,4);	
+	if (.@r == 2) {
+		if (.@y < .@y_npc)pushpc DIR_NORTH, 1;
+		if (.@y > .@y_npc)pushpc DIR_SOUTH, 1;
+	}
+	if (.@r == 3) {
+		pushpc DIR_WEST, 1;
+	}
+	if (.@r == 4) {
+		pushpc DIR_EAST, 1;
+	}
+	
+	if ('blue == 1) {
+	heal -(MaxHp*(30+(5*(1+('stattrap))))/100),0;	// note: heal command is used to (potentially) kill the target
+	}
+	if ('red == 1) {
+	heal -(MaxHp*(40+(5*(1+('stattrap))))/100),0;	// note: heal command is used to (potentially) kill the target
+	}
+	
+	end;
+
+OnPreMove:
+	if('canleave == 1){
+	disablenpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	if('bossalive == 0 && 'bossreset == 1){
+	disablenpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	disablenpc instance_npcname(strnpcinfo(0));
+	sleep rand(500,1000); npcspeed rand(130,180);
+	enablenpc instance_npcname(strnpcinfo(0));
+	if ('blue == 1){setnpcdisplay( instance_npcname( strnpcinfo(0) ), 20112 );}
+	if ('red == 1){setnpcdisplay( instance_npcname( strnpcinfo(0) ), 20351 );}
+	donpcevent instance_npcname(strnpcinfo(0)) + "::OnMove1";
+	end;
+
+
+OnMove1:
+	getmapxy( .@map$, .@x, .@y, BL_NPC );
+	unitwalk( getnpcid(0),.@x,65, instance_npcname(strnpcinfo(0)) + "::OnMove2" );
+	'On1Move1 = 1;
+	'On1Move2 = 0;
+	end;
+	
+OnMove2:
+	getmapxy( .@map$, .@x, .@y, BL_NPC );
+	unitwalk( getnpcid(0),.@x,95, instance_npcname( strnpcinfo(0) ) + "::OnPreMove" );
+	'On1Move2 = 1;
+	'On1Move1 = 0;
+	end;
+
+OnRed:
+'blue = 0;
+'red = 1;
+if('On1Move2 == 1){
+getmapxy( .@map$, .@x, .@y, BL_NPC ); 
+if(.@y != 95){
+unitstopwalk getnpcid(0), USW_FORCE_STOP;
+setnpcdisplay( instance_npcname( strnpcinfo(0) ), 20351 );
+unitwalk( getnpcid(0),.@x,95, instance_npcname( strnpcinfo(0) ) + "::OnPreMove" );
+}
+end;
+}
+
+if('On1Move1 == 1){
+getmapxy( .@map$, .@x, .@y, BL_NPC ); 
+if(.@y != 95){
+unitstopwalk getnpcid(0), USW_FORCE_STOP;
+setnpcdisplay( instance_npcname( strnpcinfo(0) ), 20351 );
+unitwalk( getnpcid(0),.@x,65, instance_npcname(strnpcinfo(0) ) + "::OnMove2" );
+}
+end;
+}
+end;
+
+	
+OnStop:
+unitstopwalk getnpcid(0), USW_FORCE_STOP;
+disablenpc instance_npcname(strnpcinfo(0));
+end;
+
+OnInstanceInit:
+	npcspeed rand(130,180);
+	disablenpc instance_npcname(strnpcinfo(0));
+	'blue = 1;
+	'red = 0;
+	end;
+}
+
+3@ch_t_h,146,95,4	script	#testcontrapblue2h	MD_MANHOLE,1,1,{
+	end;
+	
+OnTouch:
+
+	if ('blue == 1) {
+	specialeffect2 636;
+	}
+	if ('red == 1) {
+	specialeffect2 EF_FIREHIT;
+	}
+	getmapxy( .@map$, .@x, .@y, BL_PC );
+	getmapxy( .@map$, .@x_npc, .@y_npc, BL_NPC );
+	
+	.@r = rand(1,4);	
+	if (.@r == 2) {
+		if (.@y < .@y_npc)pushpc DIR_NORTH, 1;
+		if (.@y > .@y_npc)pushpc DIR_SOUTH, 1;
+	}
+	if (.@r == 3) {
+		pushpc DIR_WEST, 1;
+	}
+	if (.@r == 4) {
+		pushpc DIR_EAST, 1;
+	}
+	
+	if ('blue == 1) {
+	heal -(MaxHp*(30+(5*(1+('stattrap))))/100),0;	// note: heal command is used to (potentially) kill the target
+	}
+	if ('red == 1) {
+	heal -(MaxHp*(40+(5*(1+('stattrap))))/100),0;	// note: heal command is used to (potentially) kill the target
+	}
+	
+	end;
+
+OnPreMove:
+	if('canleave == 1){
+	disablenpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	if('bossalive == 0 && 'bossreset == 1){
+	disablenpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	disablenpc instance_npcname(strnpcinfo(0));
+	sleep rand(500,1000); npcspeed rand(130,180);
+	enablenpc instance_npcname(strnpcinfo(0));
+	if ('blue == 1){setnpcdisplay( instance_npcname( strnpcinfo(0) ), 20112 );}
+	if ('red == 1){setnpcdisplay( instance_npcname( strnpcinfo(0) ), 20351 );}
+	donpcevent instance_npcname(strnpcinfo(0)) + "::OnMove1";
+	end;
+
+
+OnMove1:
+	getmapxy( .@map$, .@x, .@y, BL_NPC );
+	unitwalk( getnpcid(0),.@x,65, instance_npcname(strnpcinfo(0)) + "::OnMove2" );
+	'On2Move1 = 1;
+	'On2Move2 = 0;
+	end;
+	
+OnMove2:
+	getmapxy( .@map$, .@x, .@y, BL_NPC );
+	unitwalk( getnpcid(0),.@x,95, instance_npcname( strnpcinfo(0) ) + "::OnPreMove" );
+	'On2Move2 = 1;
+	'On2Move1 = 0;
+	end;
+
+OnRed:
+'blue = 0;
+'red = 1;
+if('On2Move2 == 1){
+getmapxy( .@map$, .@x, .@y, BL_NPC ); 
+if(.@y != 95){
+unitstopwalk getnpcid(0), USW_FORCE_STOP;
+setnpcdisplay( instance_npcname( strnpcinfo(0) ), 20351 );
+unitwalk( getnpcid(0),.@x,95, instance_npcname( strnpcinfo(0) ) + "::OnPreMove" );
+}
+
+end;
+}
+if('On2Move1 == 1){
+getmapxy( .@map$, .@x, .@y, BL_NPC ); 
+if(.@y != 95){
+unitstopwalk getnpcid(0), USW_FORCE_STOP;
+setnpcdisplay( instance_npcname( strnpcinfo(0) ), 20351 );
+unitwalk( getnpcid(0),.@x,65, instance_npcname(strnpcinfo(0) ) + "::OnMove2" );
+}
+
+end;
+}
+end;
+
+	
+OnStop:
+unitstopwalk getnpcid(0), USW_FORCE_STOP;
+disablenpc instance_npcname(strnpcinfo(0));
+end;
+
+OnInstanceInit:
+	npcspeed rand(130,180);
+	disablenpc instance_npcname(strnpcinfo(0));
+	'blue = 1;
+	'red = 0;
+	end;
+}
+
+3@ch_t_h,149,95,4	script	#testcontrapblue3h	MD_MANHOLE,1,1,{
+	end;
+	
+OnTouch:
+
+	if ('blue == 1) {
+	specialeffect2 636;
+	}
+	if ('red == 1) {
+	specialeffect2 EF_FIREHIT;
+	}
+	getmapxy( .@map$, .@x, .@y, BL_PC );
+	getmapxy( .@map$, .@x_npc, .@y_npc, BL_NPC );
+	
+	.@r = rand(1,4);	
+	if (.@r == 2) {
+		if (.@y < .@y_npc)pushpc DIR_NORTH, 1;
+		if (.@y > .@y_npc)pushpc DIR_SOUTH, 1;
+	}
+	if (.@r == 3) {
+		pushpc DIR_WEST, 1;
+	}
+	if (.@r == 4) {
+		pushpc DIR_EAST, 1;
+	}
+	
+	if ('blue == 1) {
+	heal -(MaxHp*(30+(5*(1+('stattrap))))/100),0;	// note: heal command is used to (potentially) kill the target
+	}
+	if ('red == 1) {
+	heal -(MaxHp*(40+(5*(1+('stattrap))))/100),0;	// note: heal command is used to (potentially) kill the target
+	}
+	
+	end;
+
+OnPreMove:
+	if('canleave == 1){
+	disablenpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	if('bossalive == 0 && 'bossreset == 1){
+	disablenpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	disablenpc instance_npcname(strnpcinfo(0));
+	sleep rand(500,1000); npcspeed rand(130,180);
+	enablenpc instance_npcname(strnpcinfo(0));
+	if ('blue == 1){setnpcdisplay( instance_npcname( strnpcinfo(0) ), 20112 );}
+	if ('red == 1){setnpcdisplay( instance_npcname( strnpcinfo(0) ), 20351 );}
+	donpcevent instance_npcname(strnpcinfo(0)) + "::OnMove1";
+	end;
+
+
+OnMove1:
+	getmapxy( .@map$, .@x, .@y, BL_NPC );
+	unitwalk( getnpcid(0),.@x,65, instance_npcname(strnpcinfo(0)) + "::OnMove2" );
+	'On3Move1 = 1;
+	'On3Move2 = 0;
+	end;
+	
+OnMove2:
+	getmapxy( .@map$, .@x, .@y, BL_NPC );
+	unitwalk( getnpcid(0),.@x,95, instance_npcname( strnpcinfo(0) ) + "::OnPreMove" );
+	'On3Move2 = 1;
+	'On3Move1 = 0;
+	end;
+
+OnRed:
+'blue = 0;
+'red = 1;
+if('On3Move2 == 1){
+getmapxy( .@map$, .@x, .@y, BL_NPC ); 
+if(.@y != 95){
+unitstopwalk getnpcid(0), USW_FORCE_STOP;
+setnpcdisplay( instance_npcname( strnpcinfo(0) ), 20351 );
+unitwalk( getnpcid(0),.@x,95, instance_npcname( strnpcinfo(0) ) + "::OnPreMove" );
+}
+
+end;
+}
+if('On3Move1 == 1){
+getmapxy( .@map$, .@x, .@y, BL_NPC ); 
+if(.@y != 95){
+unitstopwalk getnpcid(0), USW_FORCE_STOP;
+setnpcdisplay( instance_npcname( strnpcinfo(0) ), 20351 );
+unitwalk( getnpcid(0),.@x,65, instance_npcname(strnpcinfo(0) ) + "::OnMove2" );
+}
+
+end;
+}
+end;
+
+	
+OnStop:
+unitstopwalk getnpcid(0), USW_FORCE_STOP;
+disablenpc instance_npcname(strnpcinfo(0));
+end;
+
+OnInstanceInit:
+	npcspeed rand(130,180);
+	disablenpc instance_npcname(strnpcinfo(0));
+	'blue = 1;
+	'red = 0;
+	end;
+}
+
+3@ch_t_h,152,95,4	script	#testcontrapblue4h	MD_MANHOLE,1,1,{
+	end;
+	
+OnTouch:
+
+	if ('blue == 1) {
+	specialeffect2 636;
+	}
+	if ('red == 1) {
+	specialeffect2 EF_FIREHIT;
+	}
+	getmapxy( .@map$, .@x, .@y, BL_PC );
+	getmapxy( .@map$, .@x_npc, .@y_npc, BL_NPC );
+	
+	.@r = rand(1,4);	
+	if (.@r == 2) {
+		if (.@y < .@y_npc)pushpc DIR_NORTH, 1;
+		if (.@y > .@y_npc)pushpc DIR_SOUTH, 1;
+	}
+	if (.@r == 3) {
+		pushpc DIR_WEST, 1;
+	}
+	if (.@r == 4) {
+		pushpc DIR_EAST, 1;
+	}
+	
+	if ('blue == 1) {
+	heal -(MaxHp*(30+(5*(1+('stattrap))))/100),0;	// note: heal command is used to (potentially) kill the target
+	}
+	if ('red == 1) {
+	heal -(MaxHp*(40+(5*(1+('stattrap))))/100),0;	// note: heal command is used to (potentially) kill the target
+	}
+	
+	end;
+
+OnPreMove:
+	if('canleave == 1){
+	disablenpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	if('bossalive == 0 && 'bossreset == 1){
+	disablenpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	disablenpc instance_npcname(strnpcinfo(0));
+	sleep rand(500,1000); npcspeed rand(130,180);
+	enablenpc instance_npcname(strnpcinfo(0));
+	if ('blue == 1){setnpcdisplay( instance_npcname( strnpcinfo(0) ), 20112 );}
+	if ('red == 1){setnpcdisplay( instance_npcname( strnpcinfo(0) ), 20351 );}
+	donpcevent instance_npcname(strnpcinfo(0)) + "::OnMove1";
+	end;
+
+
+OnMove1:
+	getmapxy( .@map$, .@x, .@y, BL_NPC );
+	unitwalk( getnpcid(0),.@x,65, instance_npcname(strnpcinfo(0)) + "::OnMove2" );
+	'On4Move1 = 1;
+	'On4Move2 = 0;
+	end;
+	
+OnMove2:
+	getmapxy( .@map$, .@x, .@y, BL_NPC );
+	unitwalk( getnpcid(0),.@x,95, instance_npcname( strnpcinfo(0) ) + "::OnPreMove" );
+	'On4Move2 = 1;
+	'On4Move1 = 0;
+	end;
+
+OnRed:
+'blue = 0;
+'red = 1;
+if('On4Move2 == 1){
+getmapxy( .@map$, .@x, .@y, BL_NPC ); 
+if(.@y != 95){
+unitstopwalk getnpcid(0), USW_FORCE_STOP;
+setnpcdisplay( instance_npcname( strnpcinfo(0) ), 20351 );
+unitwalk( getnpcid(0),.@x,95, instance_npcname( strnpcinfo(0) ) + "::OnPreMove" );
+}
+
+end;
+}
+if('On4Move1 == 1){
+getmapxy( .@map$, .@x, .@y, BL_NPC ); 
+if(.@y != 95){
+unitstopwalk getnpcid(0), USW_FORCE_STOP;
+setnpcdisplay( instance_npcname( strnpcinfo(0) ), 20351 );
+unitwalk( getnpcid(0),.@x,65, instance_npcname(strnpcinfo(0) ) + "::OnMove2" );
+}
+
+end;
+}
+end;
+
+	
+OnStop:
+unitstopwalk getnpcid(0), USW_FORCE_STOP;
+disablenpc instance_npcname(strnpcinfo(0));
+end;
+
+OnInstanceInit:
+	npcspeed rand(130,180);
+	disablenpc instance_npcname(strnpcinfo(0));
+	'blue = 1;
+	'red = 0;
+	end;
+}
+
+3@ch_t_h,155,95,4	script	#testcontrapblue5h	MD_MANHOLE,1,1,{
+	end;
+	
+OnTouch:
+
+	if ('blue == 1) {
+	specialeffect2 636;
+	}
+	if ('red == 1) {
+	specialeffect2 EF_FIREHIT;
+	}
+	getmapxy( .@map$, .@x, .@y, BL_PC );
+	getmapxy( .@map$, .@x_npc, .@y_npc, BL_NPC );
+	
+	.@r = rand(1,4);	
+	if (.@r == 2) {
+		if (.@y < .@y_npc)pushpc DIR_NORTH, 1;
+		if (.@y > .@y_npc)pushpc DIR_SOUTH, 1;
+	}
+	if (.@r == 3) {
+		pushpc DIR_WEST, 1;
+	}
+	if (.@r == 4) {
+		pushpc DIR_EAST, 1;
+	}
+	
+	if ('blue == 1) {
+	heal -(MaxHp*(30+(5*(1+('stattrap))))/100),0;	// note: heal command is used to (potentially) kill the target
+	}
+	if ('red == 1) {
+	heal -(MaxHp*(40+(5*(1+('stattrap))))/100),0;	// note: heal command is used to (potentially) kill the target
+	}
+	
+	end;
+
+OnPreMove:
+	if('canleave == 1){
+	disablenpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	if('bossalive == 0 && 'bossreset == 1){
+	disablenpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	disablenpc instance_npcname(strnpcinfo(0));
+	sleep rand(500,1000); npcspeed rand(130,180);
+	enablenpc instance_npcname(strnpcinfo(0));
+	if ('blue == 1){setnpcdisplay( instance_npcname( strnpcinfo(0) ), 20112 );}
+	if ('red == 1){setnpcdisplay( instance_npcname( strnpcinfo(0) ), 20351 );}
+	donpcevent instance_npcname(strnpcinfo(0)) + "::OnMove1";
+	end;
+
+
+OnMove1:
+	getmapxy( .@map$, .@x, .@y, BL_NPC );
+	unitwalk( getnpcid(0),.@x,65, instance_npcname(strnpcinfo(0)) + "::OnMove2" );
+	'On5Move1 = 1;
+	'On5Move2 = 0;
+	end;
+	
+OnMove2:
+	getmapxy( .@map$, .@x, .@y, BL_NPC );
+	unitwalk( getnpcid(0),.@x,95, instance_npcname( strnpcinfo(0) ) + "::OnPreMove" );
+	'On5Move2 = 1;
+	'On5Move1 = 0;
+	end;
+
+OnRed:
+'blue = 0;
+'red = 1;
+if('On5Move2 == 1){
+getmapxy( .@map$, .@x, .@y, BL_NPC ); 
+if(.@y != 95){
+unitstopwalk getnpcid(0), USW_FORCE_STOP;
+setnpcdisplay( instance_npcname( strnpcinfo(0) ), 20351 );
+unitwalk( getnpcid(0),.@x,95, instance_npcname( strnpcinfo(0) ) + "::OnPreMove" );
+}
+
+end;
+}
+if('On5Move1 == 1){
+getmapxy( .@map$, .@x, .@y, BL_NPC ); 
+if(.@y != 95){
+unitstopwalk getnpcid(0), USW_FORCE_STOP;
+setnpcdisplay( instance_npcname( strnpcinfo(0) ), 20351 );
+unitwalk( getnpcid(0),.@x,65, instance_npcname(strnpcinfo(0) ) + "::OnMove2" );
+}
+
+end;
+}
+end;
+
+	
+OnStop:
+unitstopwalk getnpcid(0), USW_FORCE_STOP;
+disablenpc instance_npcname(strnpcinfo(0));
+end;
+
+OnInstanceInit:
+	npcspeed rand(130,180);
+	disablenpc instance_npcname(strnpcinfo(0));
+	'blue = 1;
+	'red = 0;
+	end;
+}
+
+3@ch_t_h,158,95,4	script	#testcontrapblue6h	MD_MANHOLE,1,1,{
+	end;
+	
+OnTouch:
+
+	if ('blue == 1) {
+	specialeffect2 636;
+	}
+	if ('red == 1) {
+	specialeffect2 EF_FIREHIT;
+	}
+	getmapxy( .@map$, .@x, .@y, BL_PC );
+	getmapxy( .@map$, .@x_npc, .@y_npc, BL_NPC );
+	
+	.@r = rand(1,4);	
+	if (.@r == 2) {
+		if (.@y < .@y_npc)pushpc DIR_NORTH, 1;
+		if (.@y > .@y_npc)pushpc DIR_SOUTH, 1;
+	}
+	if (.@r == 3) {
+		pushpc DIR_WEST, 1;
+	}
+	if (.@r == 4) {
+		pushpc DIR_EAST, 1;
+	}
+	
+	if ('blue == 1) {
+	heal -(MaxHp*(30+(5*(1+('stattrap))))/100),0;	// note: heal command is used to (potentially) kill the target
+	}
+	if ('red == 1) {
+	heal -(MaxHp*(40+(5*(1+('stattrap))))/100),0;	// note: heal command is used to (potentially) kill the target
+	}
+	
+	end;
+
+OnPreMove:
+	if('canleave == 1){
+	disablenpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	if('bossalive == 0 && 'bossreset == 1){
+	disablenpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	disablenpc instance_npcname(strnpcinfo(0));
+	sleep rand(500,1000); npcspeed rand(130,180);
+	enablenpc instance_npcname(strnpcinfo(0));
+	if ('blue == 1){setnpcdisplay( instance_npcname( strnpcinfo(0) ), 20112 );}
+	if ('red == 1){setnpcdisplay( instance_npcname( strnpcinfo(0) ), 20351 );}
+	donpcevent instance_npcname(strnpcinfo(0)) + "::OnMove1";
+	end;
+
+
+OnMove1:
+	getmapxy( .@map$, .@x, .@y, BL_NPC );
+	unitwalk( getnpcid(0),.@x,65, instance_npcname(strnpcinfo(0)) + "::OnMove2" );
+	'On6Move1 = 1;
+	'On6Move2 = 0;
+	end;
+	
+OnMove2:
+	getmapxy( .@map$, .@x, .@y, BL_NPC );
+	unitwalk( getnpcid(0),.@x,95, instance_npcname( strnpcinfo(0) ) + "::OnPreMove" );
+	'On6Move2 = 1;
+	'On6Move1 = 0;
+	end;
+
+OnRed:
+'blue = 0;
+'red = 1;
+if('On6Move2 == 1){
+getmapxy( .@map$, .@x, .@y, BL_NPC ); 
+if(.@y != 95){
+unitstopwalk getnpcid(0), USW_FORCE_STOP;
+setnpcdisplay( instance_npcname( strnpcinfo(0) ), 20351 );
+unitwalk( getnpcid(0),.@x,95, instance_npcname( strnpcinfo(0) ) + "::OnPreMove" );
+}
+
+end;
+}
+if('On6Move1 == 1){
+getmapxy( .@map$, .@x, .@y, BL_NPC ); 
+if(.@y != 95){
+unitstopwalk getnpcid(0), USW_FORCE_STOP;
+setnpcdisplay( instance_npcname( strnpcinfo(0) ), 20351 );
+unitwalk( getnpcid(0),.@x,65, instance_npcname(strnpcinfo(0) ) + "::OnMove2" );
+}
+
+end;
+}
+end;
+
+	
+OnStop:
+unitstopwalk getnpcid(0), USW_FORCE_STOP;
+disablenpc instance_npcname(strnpcinfo(0));
+end;
+
+OnInstanceInit:
+	npcspeed rand(130,180);
+	disablenpc instance_npcname(strnpcinfo(0));
+	'blue = 1;
+	'red = 0;
+	end;
+}
+
+
+3@ch_t_h,161,95,4	script	#testcontrapblue7h	MD_MANHOLE,1,1,{
+	end;
+	
+OnTouch:
+
+	if ('blue == 1) {
+	specialeffect2 636;
+	}
+	if ('red == 1) {
+	specialeffect2 EF_FIREHIT;
+	}
+	getmapxy( .@map$, .@x, .@y, BL_PC );
+	getmapxy( .@map$, .@x_npc, .@y_npc, BL_NPC );
+	
+	.@r = rand(1,4);	
+	if (.@r == 2) {
+		if (.@y < .@y_npc)pushpc DIR_NORTH, 1;
+		if (.@y > .@y_npc)pushpc DIR_SOUTH, 1;
+	}
+	if (.@r == 3) {
+		pushpc DIR_WEST, 1;
+	}
+	if (.@r == 4) {
+		pushpc DIR_EAST, 1;
+	}
+	
+	if ('blue == 1) {
+	heal -(MaxHp*(30+(5*(1+('stattrap))))/100),0;	// note: heal command is used to (potentially) kill the target
+	}
+	if ('red == 1) {
+	heal -(MaxHp*(40+(5*(1+('stattrap))))/100),0;	// note: heal command is used to (potentially) kill the target
+	}
+	
+	end;
+
+OnPreMove:
+	if('canleave == 1){
+	disablenpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	if('bossalive == 0 && 'bossreset == 1){
+	disablenpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	disablenpc instance_npcname(strnpcinfo(0));
+	sleep rand(500,1000); npcspeed rand(130,180);
+	enablenpc instance_npcname(strnpcinfo(0));
+	if ('blue == 1){setnpcdisplay( instance_npcname( strnpcinfo(0) ), 20112 );}
+	if ('red == 1){setnpcdisplay( instance_npcname( strnpcinfo(0) ), 20351 );}
+	donpcevent instance_npcname(strnpcinfo(0)) + "::OnMove1";
+	end;
+
+
+OnMove1:
+	getmapxy( .@map$, .@x, .@y, BL_NPC );
+	unitwalk( getnpcid(0),.@x,65, instance_npcname(strnpcinfo(0)) + "::OnMove2" );
+	'On7Move1 = 1;
+	'On7Move2 = 0;
+	end;
+	
+OnMove2:
+	getmapxy( .@map$, .@x, .@y, BL_NPC );
+	unitwalk( getnpcid(0),.@x,95, instance_npcname( strnpcinfo(0) ) + "::OnPreMove" );
+	'On7Move2 = 1;
+	'On7Move1 = 0;
+	end;
+
+OnRed:
+'blue = 0;
+'red = 1;
+if('On7Move2 == 1){
+getmapxy( .@map$, .@x, .@y, BL_NPC ); 
+if(.@y != 95){
+unitstopwalk getnpcid(0), USW_FORCE_STOP;
+setnpcdisplay( instance_npcname( strnpcinfo(0) ), 20351 );
+unitwalk( getnpcid(0),.@x,95, instance_npcname( strnpcinfo(0) ) + "::OnPreMove" );
+}
+
+end;
+}
+if('On7Move1 == 1){
+getmapxy( .@map$, .@x, .@y, BL_NPC ); 
+if(.@y != 95){
+unitstopwalk getnpcid(0), USW_FORCE_STOP;
+setnpcdisplay( instance_npcname( strnpcinfo(0) ), 20351 );
+unitwalk( getnpcid(0),.@x,65, instance_npcname(strnpcinfo(0) ) + "::OnMove2" );
+}
+
+end;
+}
+end;
+
+	
+OnStop:
+unitstopwalk getnpcid(0), USW_FORCE_STOP;
+disablenpc instance_npcname(strnpcinfo(0));
+end;
+
+OnInstanceInit:
+	npcspeed rand(130,180);
+	disablenpc instance_npcname(strnpcinfo(0));
+	'blue = 1;
+	'red = 0;
+	end;
+}
+
+
+3@ch_t_h,164,95,4	script	#testcontrapblue8h	MD_MANHOLE,1,1,{
+	end;
+	
+OnTouch:
+
+	if ('blue == 1) {
+	specialeffect2 636;
+	}
+	if ('red == 1) {
+	specialeffect2 EF_FIREHIT;
+	}
+	getmapxy( .@map$, .@x, .@y, BL_PC );
+	getmapxy( .@map$, .@x_npc, .@y_npc, BL_NPC );
+	
+	.@r = rand(1,4);	
+	if (.@r == 2) {
+		if (.@y < .@y_npc)pushpc DIR_NORTH, 1;
+		if (.@y > .@y_npc)pushpc DIR_SOUTH, 1;
+	}
+	if (.@r == 3) {
+		pushpc DIR_WEST, 1;
+	}
+	if (.@r == 4) {
+		pushpc DIR_EAST, 1;
+	}
+	
+	if ('blue == 1) {
+	heal -(MaxHp*(30+(5*(1+('stattrap))))/100),0;	// note: heal command is used to (potentially) kill the target
+	}
+	if ('red == 1) {
+	heal -(MaxHp*(40+(5*(1+('stattrap))))/100),0;	// note: heal command is used to (potentially) kill the target
+	}
+	
+	end;
+
+OnPreMove:
+	if('canleave == 1){
+	disablenpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	if('bossalive == 0 && 'bossreset == 1){
+	disablenpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	disablenpc instance_npcname(strnpcinfo(0));
+	sleep rand(500,1000); npcspeed rand(130,180);
+	enablenpc instance_npcname(strnpcinfo(0));
+	if ('blue == 1){setnpcdisplay( instance_npcname( strnpcinfo(0) ), 20112 );}
+	if ('red == 1){setnpcdisplay( instance_npcname( strnpcinfo(0) ), 20351 );}
+	donpcevent instance_npcname(strnpcinfo(0)) + "::OnMove1";
+	end;
+
+
+OnMove1:
+	getmapxy( .@map$, .@x, .@y, BL_NPC );
+	unitwalk( getnpcid(0),.@x,65, instance_npcname(strnpcinfo(0)) + "::OnMove2" );
+	'On8Move1 = 1;
+	'On8Move2 = 0;
+	end;
+	
+OnMove2:
+	getmapxy( .@map$, .@x, .@y, BL_NPC );
+	unitwalk( getnpcid(0),.@x,95, instance_npcname( strnpcinfo(0) ) + "::OnPreMove" );
+	'On8Move2 = 1;
+	'On8Move1 = 0;
+	end;
+
+OnRed:
+'blue = 0;
+'red = 1;
+
+if('On8Move2 == 1){
+getmapxy( .@map$, .@x, .@y, BL_NPC ); 
+if(.@y != 95){
+unitstopwalk getnpcid(0), USW_FORCE_STOP;
+setnpcdisplay( instance_npcname( strnpcinfo(0) ), 20351 );
+unitwalk( getnpcid(0),.@x,95, instance_npcname( strnpcinfo(0) ) + "::OnPreMove" );
+}
+
+end;
+}
+if('On8Move1 == 1){
+getmapxy( .@map$, .@x, .@y, BL_NPC ); 
+if(.@y != 95){
+unitstopwalk getnpcid(0), USW_FORCE_STOP;
+setnpcdisplay( instance_npcname( strnpcinfo(0) ), 20351 );
+unitwalk( getnpcid(0),.@x,65, instance_npcname(strnpcinfo(0) ) + "::OnMove2" );
+}
+
+end;
+}
+end;
+
+	
+OnStop:
+unitstopwalk getnpcid(0), USW_FORCE_STOP;
+disablenpc instance_npcname(strnpcinfo(0));
+end;
+
+OnInstanceInit:
+	npcspeed rand(130,180);
+	disablenpc instance_npcname(strnpcinfo(0));
+	'blue = 1;
+	'red = 0;
+	end;
+}
+
+
+3@ch_t_h,167,95,4	script	#testcontrapblue9h	MD_MANHOLE,1,1,{
+	end;
+	
+OnTouch:
+
+	if ('blue == 1) {
+	specialeffect2 636;
+	}
+	if ('red == 1) {
+	specialeffect2 EF_FIREHIT;
+	}
+	getmapxy( .@map$, .@x, .@y, BL_PC );
+	getmapxy( .@map$, .@x_npc, .@y_npc, BL_NPC );
+	
+	.@r = rand(1,4);	
+	if (.@r == 2) {
+		if (.@y < .@y_npc)pushpc DIR_NORTH, 1;
+		if (.@y > .@y_npc)pushpc DIR_SOUTH, 1;
+	}
+	if (.@r == 3) {
+		pushpc DIR_WEST, 1;
+	}
+	if (.@r == 4) {
+		pushpc DIR_EAST, 1;
+	}
+	
+	if ('blue == 1) {
+	heal -(MaxHp*(30+(5*(1+('stattrap))))/100),0;	// note: heal command is used to (potentially) kill the target
+	}
+	if ('red == 1) {
+	heal -(MaxHp*(40+(5*(1+('stattrap))))/100),0;	// note: heal command is used to (potentially) kill the target
+	}
+	
+	end;
+
+OnPreMove:
+	if('canleave == 1){
+	disablenpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	if('bossalive == 0 && 'bossreset == 1){
+	disablenpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	disablenpc instance_npcname(strnpcinfo(0));
+	sleep rand(500,1000); npcspeed rand(130,180);
+	enablenpc instance_npcname(strnpcinfo(0));
+	if ('blue == 1){setnpcdisplay( instance_npcname( strnpcinfo(0) ), 20112 );}
+	if ('red == 1){setnpcdisplay( instance_npcname( strnpcinfo(0) ), 20351 );}
+	donpcevent instance_npcname(strnpcinfo(0)) + "::OnMove1";
+	end;
+
+
+OnMove1:
+	getmapxy( .@map$, .@x, .@y, BL_NPC );
+	unitwalk( getnpcid(0),.@x,65, instance_npcname(strnpcinfo(0)) + "::OnMove2" );
+	'On9Move1 = 1;
+	'On9Move2 = 0;
+	end;
+	
+OnMove2:
+	getmapxy( .@map$, .@x, .@y, BL_NPC );
+	unitwalk( getnpcid(0),.@x,95, instance_npcname( strnpcinfo(0) ) + "::OnPreMove" );
+	'On9Move2 = 1;
+	'On9Move1 = 0;
+	end;
+
+OnRed:
+'blue = 0;
+'red = 1;
+if('On9Move2 == 1){
+getmapxy( .@map$, .@x, .@y, BL_NPC ); 
+if(.@y != 95){
+unitstopwalk getnpcid(0), USW_FORCE_STOP;
+setnpcdisplay( instance_npcname( strnpcinfo(0) ), 20351 );
+unitwalk( getnpcid(0),.@x,95, instance_npcname( strnpcinfo(0) ) + "::OnPreMove" );
+}
+
+end;
+}
+if('On9Move1 == 1){
+getmapxy( .@map$, .@x, .@y, BL_NPC ); 
+if(.@y != 95){
+unitstopwalk getnpcid(0), USW_FORCE_STOP;
+setnpcdisplay( instance_npcname( strnpcinfo(0) ), 20351 );
+unitwalk( getnpcid(0),.@x,65, instance_npcname(strnpcinfo(0) ) + "::OnMove2" );
+}
+
+end;
+}
+end;
+
+	
+OnStop:
+unitstopwalk getnpcid(0), USW_FORCE_STOP;
+disablenpc instance_npcname(strnpcinfo(0));
+end;
+
+OnInstanceInit:
+	npcspeed rand(130,180);
+	disablenpc instance_npcname(strnpcinfo(0));
+	'blue = 1;
+	'red = 0;
+	end;
+}
+
+
+3@ch_t_h,169,95,4	script	#testcontrapblue10h	MD_MANHOLE,1,1,{
+	end;
+	
+OnTouch:
+
+	if ('blue == 1) {
+	specialeffect2 636;
+	}
+	if ('red == 1) {
+	specialeffect2 EF_FIREHIT;
+	}
+	getmapxy( .@map$, .@x, .@y, BL_PC );
+	getmapxy( .@map$, .@x_npc, .@y_npc, BL_NPC );
+	
+	.@r = rand(1,4);	
+	if (.@r == 2) {
+		if (.@y < .@y_npc)pushpc DIR_NORTH, 1;
+		if (.@y > .@y_npc)pushpc DIR_SOUTH, 1;
+	}
+	if (.@r == 3) {
+		pushpc DIR_WEST, 1;
+	}
+	if (.@r == 4) {
+		pushpc DIR_EAST, 1;
+	}
+	
+	if ('blue == 1) {
+	heal -(MaxHp*(30+(5*(1+('stattrap))))/100),0;	// note: heal command is used to (potentially) kill the target
+	}
+	if ('red == 1) {
+	heal -(MaxHp*(40+(5*(1+('stattrap))))/100),0;	// note: heal command is used to (potentially) kill the target
+	}
+	
+	end;
+
+OnPreMove:
+	if('canleave == 1){
+	disablenpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	if('bossalive == 0 && 'bossreset == 1){
+	disablenpc instance_npcname(strnpcinfo(0));
+	end;
+	}
+	disablenpc instance_npcname(strnpcinfo(0));
+	sleep rand(500,1000); npcspeed rand(130,180);
+	enablenpc instance_npcname(strnpcinfo(0));
+	if ('blue == 1){setnpcdisplay( instance_npcname( strnpcinfo(0) ), 20112 );}
+	if ('red == 1){setnpcdisplay( instance_npcname( strnpcinfo(0) ), 20351 );}
+	donpcevent instance_npcname(strnpcinfo(0)) + "::OnMove1";
+	end;
+
+
+OnMove1:
+	getmapxy( .@map$, .@x, .@y, BL_NPC );
+	unitwalk( getnpcid(0),.@x,65, instance_npcname(strnpcinfo(0)) + "::OnMove2" );
+	'On10Move1 = 1;
+	'On10Move2 = 0;
+	end;
+	
+OnMove2:
+	getmapxy( .@map$, .@x, .@y, BL_NPC );
+	unitwalk( getnpcid(0),.@x,95, instance_npcname( strnpcinfo(0) ) + "::OnPreMove" );
+	'On10Move2 = 1;
+	'On10Move1 = 0;
+	end;
+
+OnRed:
+'blue = 0;
+'red = 1;
+if('On10Move2 == 1){
+getmapxy( .@map$, .@x, .@y, BL_NPC ); 
+if(.@y != 95){
+unitstopwalk getnpcid(0), USW_FORCE_STOP;
+setnpcdisplay( instance_npcname( strnpcinfo(0) ), 20351 );
+unitwalk( getnpcid(0),.@x,95, instance_npcname( strnpcinfo(0) ) + "::OnPreMove" );
+}
+
+end;
+}
+if('On10Move1 == 1){
+getmapxy( .@map$, .@x, .@y, BL_NPC ); 
+if(.@y != 95){
+unitstopwalk getnpcid(0), USW_FORCE_STOP;
+setnpcdisplay( instance_npcname( strnpcinfo(0) ), 20351 );
+unitwalk( getnpcid(0),.@x,65, instance_npcname(strnpcinfo(0) ) + "::OnMove2" );
+}
+
+end;
+}
+end;
+
+	
+OnStop:
+unitstopwalk getnpcid(0), USW_FORCE_STOP;
+disablenpc instance_npcname(strnpcinfo(0));
+end;
+
+OnInstanceInit:
+	npcspeed rand(130,180);
+	disablenpc instance_npcname(strnpcinfo(0));
+	'blue = 1;
+	'red = 0;
+	end;
+}
+
+3@ch_t_h,1,1,0	script	#deadsoulh	CLEAR_NPC,1,1,{
+end;
+
+
+OnStart:
+	initnpctimer;
+end;
+
+
+OnTimer30000:
+	if('canleave == 1){
+		stopnpctimer;
+		end;
+	}
+	if('deadsoulspawn == 0 && 'bossalive == 1){
+	'boss_DT2 = 1;
+	mapannounce instance_mapname('map3$), "Dead Soul ปรากฏตัวขึ้น  รีบจัดการมันสะ !!",bc_map,"0x00ff99";
+	setunitdata 'mob_boss, UMOB_DAMAGETAKEN2,1;
+	areamonster 'map3$,142,95,189,64,"--ja--",20995,1,instance_npcname("#deadsoulh")+"::OnMyMobDead";
+	'deadsoulspawn = 1;
+	end;
+	}
+	end;
+	
+OnTimer60000:	
+	initnpctimer;	
+	end;
+	
+	
+OnMyMobDead:
+	'deadsoulspawn = 0;	
+	'boss_DT2 = 1000;
+	if('canleave == 1){
+		end;
+	}
+	if('bossalive == 1){
+		setunitdata 'mob_boss, UMOB_DAMAGETAKEN2, 'boss_DT2;
+		end;
+	}
+	
+end;
+
+}
+
+3@ch_t_h,1,1,0	script	#bossevent1h	CLEAR_NPC,1,1,{
+end;
+
+OnEvent:
+	initnpctimer;
+	end;
+	
+OnTimer2000:	
+addrid(4,0,130,110,185,64);
+if(getstatus(SC_DEADLY_DEFEASANCE)){
+end;
+}
+if(Hp != 0){
+sc_start SC_DEADLY_DEFEASANCE,60000,1; 
+end;
+}
+end;
+
+OnTimer10000:	
+initnpctimer;
+end;
+
+}
+
+3@ch_t_h,1,1,0	script	#bossevent2h	CLEAR_NPC,1,1,{
+end;
+
+OnEvent:
+	initnpctimer;
+	end;
+	
+OnTimer15000:
+	if('bossalive == 1){
+		getunitdata 'mob_boss, .@data;
+		'Boss_MAXHP = .@data[UMOB_MAXHP];	
+		'Heal = .@data[UMOB_HP]+(2000000*(1+('statheal)));	
+		if('Heal > 'Boss_MAXHP){
+		'Heal = 'Boss_MAXHP;
+		}
+		unitskilluseid 'mob_boss,28,21,'mob_boss,-1000;
+		setunitdata 'mob_boss, UMOB_HP, 'Heal;	// heal 2m * Star
+		end;
+	}
+end;
+
+OnTimer16000:
+initnpctimer;
+end;
+
+}
+
+3@ch_t_h,1,1,0	script	#bossevent3h	CLEAR_NPC,1,1,{
+end;
+
+OnEvent:
+	initnpctimer;
+	end;
+	
+OnTimer1500:
+	if('bossalive == 1){
+		getunitdata 'mob_boss,.@data;
+		if(.@data[UMOB_X]>168||.@data[UMOB_X]<143||.@data[UMOB_Y]>95||.@data[UMOB_Y]<64){
+			if('deadsoulspawn == 1)end;			
+			warpparty 'map3$,156,85,'partyId,'map3$;
+			stopnpctimer instance_npcname("#bossevent1h");
+			stopnpctimer instance_npcname("#bossevent2h");
+			stopnpctimer instance_npcname("#bossevent3h");
+			stopnpctimer instance_npcname("#bossevent4h");
+			stopnpctimer instance_npcname("#bossevent5h");
+			stopnpctimer instance_npcname("#bossevent6h");
+			'bossalive = 0;
+			'bossreset = 1;		
+			killmonster 'map3$,instance_npcname("Betelgeuse#ctwbossh")+"::OnMyMobDead3";	
+			killmonster 'map3$,'mobboss$;
+			if('deadsoulspawn == 1){
+				killmonster 'map3$,instance_npcname("#deadsoulh")+"::OnMyMobDead";
+				stopnpctimer instance_npcname("#deadsoulh");
+			}
+			'Boss_HP90 = 0;
+			'Boss_HP60 = 0;	
+			'Boss_Spawn = 0;
+			'blue = 1;
+			'red = 0;
+			hideoffnpc instance_npcname("Betelgeuse#ctwbossh",instance_id());
+			disablenpc instance_npcname("#testcontrapblueh"); 
+			disablenpc instance_npcname("#testcontrapblue2h"); 
+			disablenpc instance_npcname("#testcontrapblue3h");    
+			disablenpc instance_npcname("#testcontrapblue4h");  
+			disablenpc instance_npcname("#testcontrapblue5h");  
+			disablenpc instance_npcname("#testcontrapblue6h");  
+			disablenpc instance_npcname("#testcontrapblue7h");  
+			disablenpc instance_npcname("#testcontrapblue8h");  
+			disablenpc instance_npcname("#testcontrapblue9h");  
+			disablenpc instance_npcname("#testcontrapblue10h");			
+			end;
+		}
+	end;
+	}
+end;
+
+OnTimer3000:	
+	initnpctimer;
+end;
+
+}
+
+3@ch_t_h,1,1,0	script	#bossevent4h	CLEAR_NPC,1,1,{
+end;
+
+OnEvent:
+	initnpctimer;
+	end;
+	
+OnTimer10000:
+	if('bossalive == 1){
+		getunitdata 'mob_boss, .@data;
+		if(unitexists('mob_boss))
+			unitskillusepos 'mob_boss,483,1,.@data[UMOB_X]-8,.@data[UMOB_Y]+8,-1000;
+			sleep 20;
+		if(unitexists('mob_boss))
+			unitskillusepos 'mob_boss,483,1,.@data[UMOB_X]-4,.@data[UMOB_Y]+8,-1000;
+			sleep 20;
+		if(unitexists('mob_boss))
+			unitskillusepos 'mob_boss,483,1,.@data[UMOB_X],.@data[UMOB_Y]+8,-1000;
+			sleep 20;
+		if(unitexists('mob_boss))
+			unitskillusepos 'mob_boss,483,1,.@data[UMOB_X]+4,.@data[UMOB_Y]+8,-1000;
+			sleep 20;
+		if(unitexists('mob_boss))
+			unitskillusepos 'mob_boss,483,1,.@data[UMOB_X]+8,.@data[UMOB_Y]+8,-1000;
+			sleep 50;
+		
+		if(unitexists('mob_boss))
+			unitskillusepos 'mob_boss,483,1,.@data[UMOB_X]-8,.@data[UMOB_Y]+4,-1000;
+			sleep 20;
+		if(unitexists('mob_boss))
+			unitskillusepos 'mob_boss,483,1,.@data[UMOB_X]-4,.@data[UMOB_Y]+4,-1000;
+			sleep 20;
+		if(unitexists('mob_boss))
+			unitskillusepos 'mob_boss,483,1,.@data[UMOB_X],.@data[UMOB_Y]+4,-1000;
+			sleep 20;
+		if(unitexists('mob_boss))
+			unitskillusepos 'mob_boss,483,1,.@data[UMOB_X]+4,.@data[UMOB_Y]+4,-1000;
+			sleep 20;
+		if(unitexists('mob_boss))
+			unitskillusepos 'mob_boss,483,1,.@data[UMOB_X]+8,.@data[UMOB_Y]+4,-1000;
+			sleep 50;
+		
+		if(unitexists('mob_boss))
+			unitskillusepos 'mob_boss,483,1,.@data[UMOB_X]-8,.@data[UMOB_Y],-1000;
+			sleep 20;
+		if(unitexists('mob_boss))
+			unitskillusepos 'mob_boss,483,1,.@data[UMOB_X]-4,.@data[UMOB_Y],-1000;
+			sleep 20;
+		if(unitexists('mob_boss))
+			unitskillusepos 'mob_boss,483,1,.@data[UMOB_X],.@data[UMOB_Y],-1000;
+			sleep 20;
+		if(unitexists('mob_boss))
+			unitskillusepos 'mob_boss,483,1,.@data[UMOB_X]+4,.@data[UMOB_Y],-1000;
+			sleep 20;
+		if(unitexists('mob_boss))
+			unitskillusepos 'mob_boss,483,1,.@data[UMOB_X]+8,.@data[UMOB_Y],-1000;
+			sleep 50;
+		
+		if(unitexists('mob_boss))
+			unitskillusepos 'mob_boss,483,1,.@data[UMOB_X]-8,.@data[UMOB_Y]-4,-1000;
+			sleep 20;
+		if(unitexists('mob_boss))
+			unitskillusepos 'mob_boss,483,1,.@data[UMOB_X]-4,.@data[UMOB_Y]-4,-1000;
+			sleep 20;
+		if(unitexists('mob_boss))
+			unitskillusepos 'mob_boss,483,1,.@data[UMOB_X],.@data[UMOB_Y]-4,-1000;
+			sleep 20;
+		if(unitexists('mob_boss))
+			unitskillusepos 'mob_boss,483,1,.@data[UMOB_X]+4,.@data[UMOB_Y]-4,-1000;
+			sleep 20;
+		if(unitexists('mob_boss))
+			unitskillusepos 'mob_boss,483,1,.@data[UMOB_X]+8,.@data[UMOB_Y]-4,-1000;
+			sleep 50;
+
+		if(unitexists('mob_boss))
+			unitskillusepos 'mob_boss,483,1,.@data[UMOB_X]-8,.@data[UMOB_Y]-8,-1000;
+			sleep 20;
+		if(unitexists('mob_boss))
+			unitskillusepos 'mob_boss,483,1,.@data[UMOB_X]-4,.@data[UMOB_Y]-8,-1000;
+			sleep 20;
+		if(unitexists('mob_boss))
+			unitskillusepos 'mob_boss,483,1,.@data[UMOB_X],.@data[UMOB_Y]-8,-1000;
+			sleep 20;
+		if(unitexists('mob_boss))
+			unitskillusepos 'mob_boss,483,1,.@data[UMOB_X]+4,.@data[UMOB_Y]-8,-1000;
+			sleep 20;
+		if(unitexists('mob_boss))
+			unitskillusepos 'mob_boss,483,1,.@data[UMOB_X]+8,.@data[UMOB_Y]-8,-1000;
+			sleep 50;	
+	}
+end;
+
+OnTimer15000:
+initnpctimer;
+end;
+
+}
+
+3@ch_t_h,1,1,0	script	#bossevent5h	CLEAR_NPC,1,1,{
+end;
+
+OnEvent:
+	initnpctimer;
+	end;
+
+Onstop:
+	stopnpctimer;
+	end;
+	
+OnTimer500:
+'HP0 = 0;
+end;
+
+
+OnTimer1000:
+	addrid(4,0,130,110,185,64);{
+		if (Hp == 0){
+			'HP0 = 1;
+		}
+	}
+	if ('HP0 == 0 && 'bossalive == 1){
+	setunitdata 'mob_boss, UMOB_DAMAGETAKEN2, 'boss_DT2;
+	}
+	if ('HP0 == 1 && 'bossalive == 1){
+	setunitdata 'mob_boss, UMOB_DAMAGETAKEN2, 1;
+	mapannounce instance_mapname('map3$), "ถ้ามีผู้เล่นตาย Berelgeuse เข้าสู่สถานะ Invincibility",bc_map,"0x00ff99";
+	}
+	initnpctimer;
+	end;
+}
+
+3@ch_t_h,1,1,0	script	#bossevent6h	CLEAR_NPC,1,1,{
+end;
+
+OnEvent:
+	initnpctimer;
+	end;
+
+Onstop:
+	stopnpctimer;
+	end;
+	
+OnTimer4000:
+'XY = 0;
+addrid(4,0,130,110,185,64);
+getmapxy .@mapname$,.@mapx,.@mapy,BL_PC;
+if( .@mapx > 168 || .@mapx < 143 || .@mapy > 95 || .@mapy < 64 ){
+
+	if('deadsoulspawn == 1 || 'bossalive == 0 || 'bossreset == 1){
+	end;
+	}
+	'XY = 1;
+}
+end;
+
+
+OnTimer4500:
+//'XY = 1;
+if ('XY == 0 && 'bossalive == 1){
+	setunitdata 'mob_boss, UMOB_ADELAY, 900;
+	setunitdata 'mob_boss, UMOB_AMOTION, 1000;
+}
+if ('XY == 1 && 'bossalive == 1){
+	mapannounce instance_mapname('map3$), "มีผู้เล่นอยู่นอกขอบเขตการต่อสู้ Berelgeuse บ้าคลั่ง !!",bc_map,"0x00ff99";
+	unitskilluseid 'mob_boss,349,10,'mob_boss,-1000;
+	setunitdata 'mob_boss, UMOB_ADELAY, 280;
+	setunitdata 'mob_boss, UMOB_AMOTION, 200;
+	/*
+	addrid(4,0,0,999,999,0);{
+		if (Hp != 0){
+			specialeffect2 97;
+			percentheal -50,-50;
+		}	
+	}
+	*/
+	
+}
+end;
+
+OnTimer5500:
+if ('XY == 1 && 'bossalive == 1){
+	set .@qualskill,rand(1,3);	
+	if(.@qualskill == 1){
+		sleep 500;
+		unitskilluseid 'mob_boss,653,5,'mob_boss,-1000;
+		sleep 500;
+		unitskilluseid 'mob_boss,653,5,'mob_boss,-1000;
+	}
+	if(.@qualskill == 2){
+		sleep 500;
+		unitskilluseid 'mob_boss,662,5,'mob_boss,-1000;
+		sleep 500;
+		unitskilluseid 'mob_boss,662,5,'mob_boss,-1000;
+	}
+	if(.@qualskill == 3){
+		sleep 500;
+		getunitdata 'mob_boss,.@data;	
+		sleep rand(100,1000);
+		unitskillusepos 'mob_boss,83,10,.@data[UMOB_X],.@data[UMOB_Y],-1000;
+		sleep rand(100,1000);
+		unitskillusepos 'mob_boss,83,10,.@data[UMOB_X]+4,.@data[UMOB_Y],-1000;
+		sleep rand(100,1000);
+		unitskillusepos 'mob_boss,83,10,.@data[UMOB_X],.@data[UMOB_Y]+4,-1000;
+		sleep rand(100,1000);
+		unitskillusepos 'mob_boss,83,10,.@data[UMOB_X]-4,.@data[UMOB_Y],-1000;
+		sleep rand(100,1000);
+		unitskillusepos 'mob_boss,83,10,.@data[UMOB_X],.@data[UMOB_Y]-4,-1000;
+	}
+}
+end;
+
+OnTimer6000:
+	initnpctimer;
+	end;
+}
+
+
+	
+1@ch_t_h,3,1,5	script	#globaltimerCTH	CLEAR_NPC,{
+	end;
+OnT_s:
+	initnpctimer;
+	end;
+OnT_s2:
+	.@face_timer = $contimeh_num_face;
+	if (!.@face_timer)
+		.@face_timer = 3600;
+	.@face_member = getmapusers('map3$) - 1;
+	.@winner_name$ = 'conh_str_face$;
+	.@current_timer = getnpctimer(0) / 1000;
+	if (.@current_timer < 1)
+		end;
+	.@time_m = .@current_timer / 60;
+	.@time_s = .@current_timer % 60;
+	if (.@current_timer < 60)
+		.@time_txt$ = callfunc( "F_InsertPlural", .@time_s, "วินาที" );
+	else
+		.@time_txt$ = callfunc( "F_InsertPlural", .@time_m, "นาที" ) + " " + callfunc( "F_InsertPlural", .@time_s, "วินาที" );
+	if (.@current_timer >= .@face_timer)
+		mapannounce 'map3$, "A time of " + .@time_txt$ + " ได้ถูกบันทึกไว้บนกระดาน แต่ก็ไม่ได้ทำลายสถิติที่ดีที่สุด.",bc_map,"0xffff33";
+	else {
+		if (!.@face_member)
+			announce .@winner_name$ + " ทำลายสถิติในการผ่าน Constellation Tower (HM) (" + .@time_txt$ + ").",bc_all,"0xffff33",FW_NORMAL,15;
+		else
+			announce .@winner_name$ + " with " + .@face_member + " party " + ( .@face_member > 1 ? "members" : "members" ) + " ทำลายสถิติในการผ่าน Constellation Tower (HM) (" + .@time_txt$ + ").",bc_all,"0xffff33",FW_NORMAL,15;
+		$conh_str_face$ = .@winner_name$;
+		$contimeh_num_face = .@current_timer;
+		$conmemh_num_face = .@face_member;
+	}
+	end;
+OnTimer3600000:
+	stopnpctimer;
+	end;
+OnInstanceInit:
+	hideonnpc instance_npcname("#globaltimerCTH");
+	end;
+}
+
+e_tower,82,112,5	script	Old Sign(HM)#999	4_BOARD3,{
+	.@face_name$ = $conh_str_face$;
+	.@face_timer  = $contimeh_num_face;
+	.@face_member = $conmemh_num_face;
+	.@time_m = .@face_timer / 60;
+	.@time_s = .@face_timer - (.@time_m * 60);
+	if (.@face_name$ == "") {
+		mes "There's no sign because no one updates the record.";// Custom text
+		close;
+	}
+	if (.@face_timer < 60)
+		.@time_txt$ = callfunc( "F_InsertPlural", .@time_s, "วินาที" );
+	else
+		.@time_txt$ = callfunc( "F_InsertPlural", .@time_m, "นาที" ) + " " + callfunc( "F_InsertPlural", .@time_s, "Second" );
+	if (.@face_member > 0)
+		.@string$ =  " with ^ff0044" + .@face_member + " party " + ( .@face_member > 1 ? "members" : "members" )  + "^000000";
+	mes "-- Constellation Tower Records (HM) --";
+	mes "ผู้เล่นที่ทำเวลาได้ดีที่สุดคือ ^ff0044" + .@face_name$ + "^000000" + .@string$ + ".";
+	mes "เวลที่ทำได้ ^0000ff" + .@time_txt$ + "^000000.";
+	close;
+
+OnInit:
+	if (!$contimeh_num_face)
+		$contimeh_num_face = 3600;
+	if (rand(1,100) > 97) {
+		$contimeh_num_face = 3600;
+		$conh_str_face$ = "";
+	}
+	end;
+}
+

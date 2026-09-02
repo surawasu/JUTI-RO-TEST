@@ -1,0 +1,159 @@
+morocc,168,63,3	script	แลกตัวอักษรSavage	4_M_MELODY,{
+disable_items;
+mes "[แลกตัวอักษรSavage]";
+mes "เมื่อท่านสะสมตัวอักษรจาก ";
+mes "Monster Savageในเมือง";
+mes "เมื่อเรียกกันครบเป็นคำว่า";
+mes "<font size = 20, color = FF0000>S A V A G E H I C L A S S</font>";
+next;
+mes "[แลกตัวอักษรSavage]";
+mes "<ITEM>"+getitemname(3130031)+"<INFO>3130031</INFO></ITEM> จำนวน 3 EA  <ITEM>"+getitemname(3130024)+"<INFO>3130024</INFO></ITEM> จำนวน 3 EA";
+mes "<ITEM>"+getitemname(3130032)+"<INFO>3130032</INFO></ITEM> จำนวน 1 EA  <ITEM>"+getitemname(3130027)+"<INFO>3130027</INFO></ITEM> จำนวน 1 EA";
+mes "<ITEM>"+getitemname(3130026)+"<INFO>3130026</INFO></ITEM> จำนวน 1 EA  <ITEM>"+getitemname(3130028)+"<INFO>3130028</INFO></ITEM> จำนวน 1 EA";
+mes "<ITEM>"+getitemname(3130029)+"<INFO>3130029</INFO></ITEM> จำนวน 1 EA  <ITEM>"+getitemname(3130025)+"<INFO>3130025</INFO></ITEM> จำนวน 1 EA";
+mes "<ITEM>"+getitemname(3130030)+"<INFO>3130030</INFO></ITEM> จำนวน 1 EA";
+next;
+mes "[แลกตัวอักษรSavage]";
+mes "ท่านหามาครบแล้วงั้นเหรอ";
+mes "มาลองตรวจสอบกันก่อนแล้วกัน";
+switch(select("ส่งมอบดู","ดูเหมือนว่าจะยังไม่ครบ")){
+case 1:
+next;
+if(countitem(3130031) < 3 || countitem(3130024) < 3 || countitem(3130032) < 1 || countitem(3130027) < 1 ||
+	countitem(3130026) < 1 || countitem(3130028) < 1 || countitem(3130029) < 1 || countitem(3130025) < 1 || countitem(3130030) < 1){
+	mes "[แลกตัวอักษรSavage]";
+	mes "ดูเหมือนท่าจะยังสะสมไม่ครบนะ";
+	end;
+}
+delitem 3130031,3;	//S
+delitem 3130024,3;	//A
+delitem 3130032,1;	//V
+delitem 3130027,1;	//G
+delitem 3130026,1;	//E
+delitem 3130028,1;	//H
+delitem 3130029,1;	//I
+delitem 3130025,1;	//C
+delitem 3130030,1;	//L
+getitem 3130016,1;	//Superior Box
+mes "[แลกตัวอักษรSavage]";
+mes "โอเคครบแล้วรับรางวัลไปได้เลย";
+end;
+
+case 2:
+end;
+}
+OnInit:
+waitingroom "แลกตัวอักษรSavage",0;
+end;
+}
+
+function	script	Superior_Box_HI	{
+.@rand	= rand(1,100);
+if(.@rand == 9 || .@rand == 19 || .@rand == 29 || .@rand == 39 || .@rand == 49 || .@rand == 59 || .@rand == 69 || .@rand == 79 || .@rand == 89 || .@rand == 99){
+getitem 3130019,1;
+}
+else if (.@rand == 8 || .@rand == 18 || .@rand == 28 || .@rand == 38 || .@rand == 48 || .@rand == 58 || .@rand == 68 || .@rand == 78 || .@rand == 88 || .@rand == 98){
+getitem 3130022,1;
+}
+else if (.@rand == 7 || .@rand == 17 || .@rand == 27 || .@rand == 37 || .@rand == 47 || .@rand == 57 || .@rand == 67 || .@rand == 77 || .@rand == 87 || .@rand == 97 || .@rand == 6 || .@rand == 16 || .@rand == 26 || .@rand == 36 || .@rand == 46 || .@rand == 56 || .@rand == 66 || .@rand == 76 || .@rand == 86 || .@rand == 96 || .@rand == 5 || .@rand == 15 || .@rand == 25 || .@rand == 35 || .@rand == 45 || .@rand == 55 || .@rand == 65 || .@rand == 75 || .@rand == 85 || .@rand == 95){
+getitem 3130017,1;
+}
+else{
+getitem 668,1;
+getitem 11501,10;
+getitem 11502,10;
+end;
+}
+}
+
+
+//===============================
+// Script : Event Treasure Box
+// Designe By : ParadoX
+//===============================
+
+morocc,0,0,0	script	::NewYearEvent	111,{
+	close;
+trevstart:
+	set $@trevent,rand(30,50);
+	set $@ftrevent,0;
+	announce "OBT Event : Savage ได้ปรากฏตัว ณ เมือง morocc จำนวน "+$@trevent+" ตัว มีเวลาในการจัดการ 5 นาที",0,0xFF9900;
+	monster "morocc",0,0,"Savage",30029,$@trevent,"NewYearEvent::OnTreasureDie";
+	set $savagestartevent,1;
+	end;
+OnTreasureDie:
+	set $@ftrevent,$@ftrevent+1;
+	if($@ftrevent>=$@trevent){
+	announce "ผู้เล่น " + strcharinfo(0) + " ได้จัดการ Savage ตัวสุดท้ายแล้ว",0,0x33CC33;
+	set $savagestartevent,0;
+	}
+	if($@ftrevent!=$@trevent)
+	announce "ผู้เล่น " + strcharinfo(0) + " ได้จัดการ Savage ตัวที่ "+$@ftrevent+"/"+$@trevent+"",0,0x33CC33;
+	//.@rand = rand(1,100);
+	//if(.@rand <= 50){
+	getitem rand(3130024,3130032),1;
+	//}
+	end;
+trevend:
+	if($@ftrevent!=$@trevent)
+	announce "หมดเวลาในการจัดการ Savage ทุกตัวได้หายไปแล้ว",0,0xFF6347;
+	killmonster "morocc","NewYearEvent::OnTreasureDie";
+	end;
+OnTimeout:
+	end;
+
+OnClock0005:
+OnClock0105:
+OnClock0205:
+OnClock0305:
+OnClock0405:
+OnClock0505:
+OnClock0605:
+OnClock0705:
+OnClock0805:
+OnClock0905:
+OnClock1005:
+OnClock1105:
+OnClock1205:
+OnClock1305:
+OnClock1405:
+OnClock1505:
+OnClock1605:
+OnClock1705:
+OnClock1805:
+OnClock1905:
+OnClock2005:
+OnClock2105:
+OnClock2205:
+OnClock2305:
+	goto trevstart;
+	end;
+OnClock0010:
+OnClock0110:
+OnClock0210:
+OnClock0310:
+OnClock0410:
+OnClock0510:
+OnClock0610:
+OnClock0710:
+OnClock0810:
+OnClock0910:
+OnClock1010:
+OnClock1110:
+OnClock1210:
+OnClock1310:
+OnClock1410:
+OnClock1510:
+OnClock1610:
+OnClock1710:
+OnClock1810:
+OnClock1910:
+OnClock2010:
+OnClock2110:
+OnClock2210:
+OnClock2310:
+	if($savagestartevent == 0)	end;
+	goto trevend;
+	end;
+
+}

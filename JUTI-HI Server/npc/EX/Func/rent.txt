@@ -1,0 +1,95 @@
+//===== rAthena Script =======================================
+//= Universal Rental NPC
+//===== By: ==================================================
+//= Euphy
+//===== Current Version: =====================================
+//= 1.0a
+//===== Compatible With: =====================================
+//= rAthena Project
+//===== Description: =========================================
+//= One-click automatic mount rentals.
+//============================================================
+
+like_game,118,122,6	script	เช่าทุกอย่าง	875,{
+	if (ismounting()) {
+		message strcharinfo(0),"You must first remove your mount.";
+		end;
+	} else if (((eaclass()&EAJ_THIRDMASK)==EAJ_RANGER) && !countitem(6124) && class != Job_Windhawk) {
+		if (!checkfalcon() && getskilllv("HT_FALCON") && !checkwug()) {
+			switch(select(" ~ Falcon: ~ Warg")){
+	case 1:
+		setfalcon;
+end;
+	case 2:
+		if ( countitem(6124) > 0 ) {
+	mes	"ท่านมี ไอเท็มสำหรับเรียกอยู่แล้ว";
+		close;
+	}
+ 			getitem 6124,1; //Wolf's_Flute
+end;
+}
+}
+}
+		if (class == Job_Windhawk && !checkfalcon()) {
+			switch(select(" ~ Falcon: ~ Warg")){
+	case 1:
+		if ( countitem(1000311) > 0 ) {
+	mes	"ท่านมี ไอเท็มสำหรับเรียกอยู่แล้ว";
+		close;
+	}
+			else getitem 1000311,1;
+end;
+	case 2:
+		if ( countitem(6124) > 0 ) {
+	mes	"ท่านมี ไอเท็มสำหรับเรียกอยู่แล้ว";
+		close;
+	}
+ 			getitem 6124,1; //Wolf's_Flute
+end;
+}
+
+//		} else getitem 6124,1; //Wolf's_Flute
+	} else if (((eaclass()&EAJ_THIRDMASK)==EAJ_MECHANIC) && getskilllv("MC_PUSHCART")) {
+//		if (!checkcart() && !checkmadogear() && getskilllv("NC_MADOLICENCE")) {
+			switch(select(" ~ Cart: ~ Mado:")){
+	case 1:
+		if (checkcart() && getskilllv("MC_PUSHCART")) {
+		mes "ท่านยังไม่ได้อัพสกิลที่จำเป็นสำหรับการเช่า";
+		close;
+} else setcart;
+		end;
+	case 2:
+		if (!checkmadogear() && getskilllv("NC_MADOLICENCE")) {
+		switch(select(" ~ Mado Gear: ~ Mado Suit")){
+		case 1:	
+			setmadogear;
+			end;
+		case 2:
+			setmadogear true,MADO_SUIT;
+			end;
+}
+}
+}
+//		} else setcart;
+	} else if (!checkcart() && getskilllv("MC_PUSHCART") && Class != Job_Mechanic_T && Class != Job_Mechanic && Class != Job_Meister) {
+			switch(select(" ~ Cart")){
+	case 1:
+		setcart;
+}
+}
+	else if (!checkfalcon() && getskilllv("HT_FALCON") && !checkwug() && class == Job_Sniper || class == Job_Hunter) setfalcon;
+	else if (!checkriding() && !checkdragon() && getskilllv("KN_RIDING")) {
+		if ((eaclass()&EAJ_THIRDMASK)==EAJ_RUNE_KNIGHT) setdragon;
+		else setriding;
+}
+//	} else if (!checkmadogear() && getskilllv("NC_MADOLICENCE")) setmadogear;
+	else {
+		message strcharinfo(0),"ท่านไม่สามารถใช้บริการได้ .";
+		end;
+	}
+//	specialeffect2 EF_TEIHIT3;
+	end;
+OnInit:
+waitingroom "  เช่าทุกอย่าง",0;
+end;
+}

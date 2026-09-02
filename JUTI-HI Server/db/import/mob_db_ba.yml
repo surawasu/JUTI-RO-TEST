@@ -1,0 +1,3324 @@
+# This file is a part of rAthena.
+#   Copyright(C) 2021 rAthena Development Team
+#   https://rathena.org - https://github.com/rathena
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
+###########################################################################
+# Monster Database
+###########################################################################
+#
+# Monster Settings
+#
+###########################################################################
+# - Id                      Monster ID.
+#   AegisName               Server name to reference the monster in scripts and lookups, should use no spaces.
+#   Name                    Name in English.
+#   JapaneseName            Name in Japanese. (Default: 'Name' value)
+#   Level                   Level. (Default: 1)
+#   Hp                      Total HP. (Default: 1)
+#   Sp                      Total SP. (Default: 1)
+#   BaseExp                 Base experience gained. (Default: 0)
+#   JobExp                  Job experience gained. (Default: 0)
+#   MvpExp                  MVP experience gained. (Default: 0)
+#   Attack                  Minimum attack in pre-renewal and base attack in renewal. (Default: 0)
+#   Attack2                 Maximum attack in pre-renewal and base magic attack in renewal. (Default: 0)
+#   Defense                 Physical defense of the monster, reduces melee and ranged physical attack/skill damage. (Default: 0)
+#   MagicDefense            Magic defense of the monster, reduces magical skill damage. (Default: 0)
+#   Str                     Strength which affects attack. (Default: 1)
+#   Agi                     Agility which affects flee. (Default: 1)
+#   Vit                     Vitality which affects defense. (Default: 1)
+#   Int                     Intelligence which affects magic attack. (Default: 1)
+#   Dex                     Dexterity which affects hit rate. (Default: 1)
+#   Luk                     Luck which affects perfect dodge/lucky flee/lerfect flee/lucky dodge rate. (Default: 1)
+#   AttackRange             Attack range. (Default: 0)
+#   SkillRange              Skill cast range. (Default: 0)
+#   ChaseRange              Chase range. (Default: 0)
+#   Size                    Size. (Default: Small)
+#   Race                    Race. (Default: Formless)
+#   RaceGroups:             List of secondary groups the monster may be part of. (Optional)
+#     <group>: <value>      Group to toggle.
+#   Element                 Element. (Default: Neutral)
+#   ElementLevel            Level of element. (Default: 1)
+#   WalkSpeed               Walk speed. (Default: DEFAULT_WALK_SPEED)
+#   AttackDelay             Attack speed. (Default: 0)
+#   AttackMotion            Attack animation speed. (Default: 0)
+#   DamageMotion            Damage animation speed. (Default: 0)
+#   DamageTaken             Rate at which the monster will receive incoming damage. (Default: 100)
+#   Ai                      Aegis monster type AI behavior. (Default: 06)
+#   Class                   Aegis monster class. (Default: Normal)
+#   Modes:                  List of unique behavior not defined by AI, Class, or Attribute. (Optional)
+#     <mode>: <value>       Mode to toggle.
+#   MvpDrops:               List of possible MVP prize items. Max of MAX_MVP_DROP. (Optional)
+#     - Item                Item name.
+#       Rate                Drop rate of item. (Default: 1)
+#       RandomOptionGroup   Random Option Group applied to item on drop. (Default: None)
+#       Index               Index used for overwriting item. (Optional)
+#   Drops:                  List of possible normal item drops. Max of MAX_MOB_DROP. (Optional)
+#     - Item                Item name.
+#       Rate                Drop rate of item. (Default: 1)
+#       StealProtected      If the item is shielded from TF_STEAL. (Default: false)
+#       RandomOptionGroup   Random Option Group applied to item on drop. (Default: None)
+#       Index               Index used for overwriting item. (Optional)
+###########################################################################
+
+Header:
+  Type: MOB_DB
+  Version: 3
+
+Body:
+  - Id: 31400
+    AegisName: CARD_A_1
+    Name: Card A 1
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31401
+    AegisName: CARD_A_2
+    Name: Card A 2
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31402
+    AegisName: CARD_A_3
+    Name: Card A 3
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31403
+    AegisName: CARD_A_4
+    Name: Card A 4
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31404
+    AegisName: CARD_2_1
+    Name: Card 2 1
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31405
+    AegisName: CARD_2_2
+    Name: Card 2 2
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31406
+    AegisName: CARD_2_3
+    Name: Card 2 3
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31407
+    AegisName: CARD_2_4
+    Name: Card 2 4
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31408
+    AegisName: CARD_3_1
+    Name: Card 3 1
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31409
+    AegisName: CARD_3_2
+    Name: Card 3 2
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31410
+    AegisName: CARD_3_3
+    Name: Card 3 3
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31411
+    AegisName: CARD_3_4
+    Name: Card 3 4
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31412
+    AegisName: CARD_4_1
+    Name: Card 4 1
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31413
+    AegisName: CARD_4_2
+    Name: Card 4 2
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31414
+    AegisName: CARD_4_3
+    Name: Card 4 3
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31415
+    AegisName: CARD_4_4
+    Name: Card 4 4
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31416
+    AegisName: CARD_5_1
+    Name: Card 5 1
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31417
+    AegisName: CARD_5_2
+    Name: Card 5 2
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31418
+    AegisName: CARD_5_3
+    Name: Card 5 3
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31419
+    AegisName: CARD_5_4
+    Name: Card 5 4
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31420
+    AegisName: CARD_6_1
+    Name: Card 6 1
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31421
+    AegisName: CARD_6_2
+    Name: Card 6 2
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31422
+    AegisName: CARD_6_3
+    Name: Card 6 3
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31423
+    AegisName: CARD_6_4
+    Name: Card 6 4
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31424
+    AegisName: CARD_7_1
+    Name: Card 7 1
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31425
+    AegisName: CARD_7_2
+    Name: Card 7 2
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31426
+    AegisName: CARD_7_3
+    Name: Card 7 3
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31427
+    AegisName: CARD_7_4
+    Name: Card 7 4
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31428
+    AegisName: CARD_8_1
+    Name: Card 8 1
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31429
+    AegisName: CARD_8_2
+    Name: Card 8 2
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31430
+    AegisName: CARD_8_3
+    Name: Card 8 3
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31431
+    AegisName: CARD_8_4
+    Name: Card 8 4
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31432
+    AegisName: CARD_9_1
+    Name: Card 9 1
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31433
+    AegisName: CARD_9_2
+    Name: Card 9 2
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31434
+    AegisName: CARD_9_3
+    Name: Card 9 3
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31435
+    AegisName: CARD_9_4
+    Name: Card 9 4
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31436
+    AegisName: CARD_10_1
+    Name: Card 10 1
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31437
+    AegisName: CARD_10_2
+    Name: Card 10 2
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31438
+    AegisName: CARD_10_3
+    Name: Card 10 3
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31439
+    AegisName: CARD_10_4
+    Name: Card 10 4
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31440
+    AegisName: CARD_11_1
+    Name: Card 11 1
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31441
+    AegisName: CARD_11_2
+    Name: Card 11 2
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31442
+    AegisName: CARD_11_3
+    Name: Card 11 3
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31443
+    AegisName: CARD_11_4
+    Name: Card 11 4
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31444
+    AegisName: CARD_12_1
+    Name: Card 12 1
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31445
+    AegisName: CARD_12_2
+    Name: Card 12 2
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31446
+    AegisName: CARD_12_3
+    Name: Card 12 3
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31447
+    AegisName: CARD_12_4
+    Name: Card 12 4
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31448
+    AegisName: CARD_13_1
+    Name: Card 13 1
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31449
+    AegisName: CARD_13_2
+    Name: Card 13 2
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31450
+    AegisName: CARD_13_3
+    Name: Card 13 3
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31451
+    AegisName: CARD_13_4
+    Name: Card 13 4
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31452
+    AegisName: CARD_B
+    Name: Card B
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31453
+    AegisName: CARD_R
+    Name: Card R
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31454
+    AegisName: E_CARD_A_1
+    Name: E Card A 1
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31455
+    AegisName: E_CARD_A_2
+    Name: E Card A 2
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31456
+    AegisName: E_CARD_A_3
+    Name: E Card A 3
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31457
+    AegisName: E_CARD_A_4
+    Name: E Card A 4
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31458
+    AegisName: E_CARD_2_1
+    Name: E Card 2 1
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31459
+    AegisName: E_CARD_2_2
+    Name: E Card 2 2
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31460
+    AegisName: E_CARD_2_3
+    Name: E Card 2 3
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31461
+    AegisName: E_CARD_2_4
+    Name: E Card 2 4
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31462
+    AegisName: E_CARD_3_1
+    Name: E Card 3 1
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31463
+    AegisName: E_CARD_3_2
+    Name: E Card 3 2
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31464
+    AegisName: E_CARD_3_3
+    Name: E Card 3 3
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31465
+    AegisName: E_CARD_3_4
+    Name: E Card 3 4
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31466
+    AegisName: E_CARD_4_1
+    Name: E Card 4 1
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31467
+    AegisName: E_CARD_4_2
+    Name: E Card 4 2
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31468
+    AegisName: E_CARD_4_3
+    Name: E Card 4 3
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31469
+    AegisName: E_CARD_4_4
+    Name: E Card 4 4
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31470
+    AegisName: E_CARD_5_1
+    Name: E Card 5 1
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31471
+    AegisName: E_CARD_5_2
+    Name: E Card 5 2
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31472
+    AegisName: E_CARD_5_3
+    Name: E Card 5 3
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31473
+    AegisName: E_CARD_5_4
+    Name: E Card 5 4
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31474
+    AegisName: E_CARD_6_1
+    Name: E Card 6 1
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31475
+    AegisName: E_CARD_6_2
+    Name: E Card 6 2
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31476
+    AegisName: E_CARD_6_3
+    Name: E Card 6 3
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31477
+    AegisName: E_CARD_6_4
+    Name: E Card 6 4
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31478
+    AegisName: E_CARD_7_1
+    Name: E Card 7 1
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31479
+    AegisName: E_CARD_7_2
+    Name: E Card 7 2
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31480
+    AegisName: E_CARD_7_3
+    Name: E Card 7 3
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31481
+    AegisName: E_CARD_7_4
+    Name: E Card 7 4
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31482
+    AegisName: E_CARD_8_1
+    Name: E Card 8 1
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31483
+    AegisName: E_CARD_8_2
+    Name: E Card 8 2
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31484
+    AegisName: E_CARD_8_3
+    Name: E Card 8 3
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31485
+    AegisName: E_CARD_8_4
+    Name: E Card 8 4
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31486
+    AegisName: E_CARD_9_1
+    Name: E Card 9 1
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31487
+    AegisName: E_CARD_9_2
+    Name: E Card 9 2
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31488
+    AegisName: E_CARD_9_3
+    Name: E Card 9 3
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31489
+    AegisName: E_CARD_9_4
+    Name: E Card 9 4
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31490
+    AegisName: E_CARD_10_1
+    Name: E Card 10 1
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31491
+    AegisName: E_CARD_10_2
+    Name: E Card 10 2
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31492
+    AegisName: E_CARD_10_3
+    Name: E Card 10 3
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31493
+    AegisName: E_CARD_10_4
+    Name: E Card 10 4
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31494
+    AegisName: E_CARD_11_1
+    Name: E Card 11 1
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31495
+    AegisName: E_CARD_11_2
+    Name: E Card 11 2
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31496
+    AegisName: E_CARD_11_3
+    Name: E Card 11 3
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31497
+    AegisName: E_CARD_11_4
+    Name: E Card 11 4
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31498
+    AegisName: E_CARD_12_1
+    Name: E Card 12 1
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31499
+    AegisName: E_CARD_12_2
+    Name: E Card 12 2
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31500
+    AegisName: E_CARD_12_3
+    Name: E Card 12 3
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31501
+    AegisName: E_CARD_12_4
+    Name: E Card 12 4
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31502
+    AegisName: E_CARD_13_1
+    Name: E Card 13 1
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31503
+    AegisName: E_CARD_13_2
+    Name: E Card 13 2
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31504
+    AegisName: E_CARD_13_3
+    Name: E Card 13 3
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31505
+    AegisName: E_CARD_13_4
+    Name: E Card 13 4
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31506
+    AegisName: E_CARD_B
+    Name: E Card B
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+  - Id: 31507
+    AegisName: E_CARD_R
+    Name: E Card R
+    Level: 1
+    Hp: 10
+    Attack: 1
+    Attack2: 1
+    Defense: 100
+    MagicDefense: 99
+    AttackRange: 1
+    SkillRange: 7
+    ChaseRange: 12
+    Size: Small
+    Race: Plant
+    Element: Earth
+    ElementLevel: 1
+    WalkSpeed: 1000
+    AttackDelay: 1
+    AttackMotion: 1
+    DamageMotion: 1
+    Modes:
+      IgnoreMagic: true
+      IgnoreMelee: true
+      IgnoreMisc: true
+      IgnoreRanged: true
+    Drops:
+      - Item: Yellow_Herb
+        Rate: 2750
+        StealProtected: true
+        
+  - Id: 2718
+    AegisName: C5_PECOPECO
+    Name: Peco Peco
+    Level: 58
+    Hp: 8054
+    BaseExp: 2387
+    JobExp: 1361
+    Attack: 444
+    Attack2: 565
+    Defense: 37
+    MagicDefense: 30
+    Agi: 66
+    Vit: 66
+    Int: 50
+    Dex: 71
+    Luk: 51
+    AttackRange: 2
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Brute
+    Element: Fire
+    ElementLevel: 2
+    WalkSpeed: 165
+    AttackDelay: 1460
+    AttackMotion: 960
+    DamageMotion: 432
+    Ai: 21
+  - Id: 2810
+    AegisName: C2_GRAND_PECO
+    Name: Grand Peco
+    Level: 58
+    Hp: 8054
+    BaseExp: 2387
+    JobExp: 1361
+    Attack: 444
+    Attack2: 565
+    Defense: 37
+    MagicDefense: 30
+    Agi: 66
+    Vit: 66
+    Int: 50
+    Dex: 71
+    Luk: 51
+    AttackRange: 2
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Large
+    Race: Brute
+    Element: Fire
+    ElementLevel: 2
+    WalkSpeed: 165
+    AttackDelay: 1460
+    AttackMotion: 960
+    DamageMotion: 432
+    Ai: 21
+    
+  - Id: 3760
+    AegisName: ILL_MUNAK
+    Name: Munak
+    Level: 32
+    Hp: 5000
+    BaseExp: 424
+    JobExp: 242
+    Attack: 220
+    Attack2: 260
+    Str: 45
+    Agi: 15
+    Vit: 36
+    Int: 10
+    Dex: 48
+    Luk: 15
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Plant
+    Element: Wind
+    ElementLevel: 1
+    WalkSpeed: 200
+    AttackDelay: 1720
+    AttackMotion: 500
+    DamageMotion: 420
+    Ai: 09
+  - Id: 3761
+    AegisName: ILL_BON_GUN
+    Name: Bongun
+    Level: 32
+    Hp: 5000
+    BaseExp: 424
+    JobExp: 242
+    Attack: 220
+    Attack2: 260
+    Str: 45
+    Agi: 15
+    Vit: 36
+    Int: 10
+    Dex: 48
+    Luk: 15
+    AttackRange: 1
+    SkillRange: 10
+    ChaseRange: 12
+    Size: Medium
+    Race: Plant
+    Element: Wind
+    ElementLevel: 1
+    WalkSpeed: 200
+    AttackDelay: 1720
+    AttackMotion: 500
+    DamageMotion: 420
+    Ai: 09

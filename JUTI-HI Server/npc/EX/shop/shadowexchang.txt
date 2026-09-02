@@ -1,0 +1,147 @@
+like_game,87,111,6	script	เควสแลกคอสชาโด้ว	4_BLUE_FLOWER,{
+
+disable_items;
+
+	menu
+	"• เควสแลกคอสชาโด้ว",MENU1, 
+	//"• ย่อยคอสชาโด้ว&หินออฟ",MENU2, 
+	"• ยกเลิก",no01; 
+
+MENU1:
+callshop "Shadow_Shop_EX",1;
+end;
+
+MENU2:
+mes "^FF0000[ ย่อยคอสชาโด้ว&หินออฟ ]^000000";
+mes "คอสชาโด้วอาชีพแลกคืนได้ 350 ชิ้น";
+mes "หินออฟชาโด้วแลกคืนได้ 200 ชิ้น";
+mes "^FF0000อย่าลิมถอดหินออฟนะจ๊ะ !!^000000";
+
+
+callshop "recycleshadowshop",2;
+npcshopattach "recycleshadowshop";
+end;
+
+
+OnSellItem:
+disable_items;
+
+	if(@sold_nameid >= 50001 && @sold_nameid <= 50070 )
+	{
+		goto Recycle;
+	}
+	if(@sold_nameid >= 52001 && @sold_nameid <= 52007 )
+	{
+		goto Recycle;
+	}
+	if(@sold_nameid >= 52101 && @sold_nameid <= 52116 )
+	{
+		goto Recycle;
+	}
+	
+	mes "^FF0000[ Recycle คอสชาโด้ว ]^000000";
+	mes "ไอเทมชิ้นนี้ไม่ย่อยได้";
+	end;
+
+Recycle:	
+mes "^FF0000[ Recycle คอสชาโด้ว ]^000000";
+if(@sold_nameid == getequipid(EQI_SHADOW_ARMOR)
+||@sold_nameid == getequipid(EQI_SHADOW_SHOES)
+||@sold_nameid == getequipid(EQI_SHADOW_ACC_R)
+||@sold_nameid == getequipid(EQI_SHADOW_ACC_L)){
+	mes "<ITEM>"+getitemname((@sold_nameid))+"<INFO>"+(@sold_nameid)+"</INFO></ITEM> ตรงกับไอเทมที่สวมใส่อยู่ในตัว";
+	end;
+}
+
+if(countitem (@sold_nameid)>1){
+	mes "มี <ITEM>"+getitemname((@sold_nameid))+"<INFO>"+(@sold_nameid)+"</INFO></ITEM> มากกว่า 1 ชิ้น";
+	end;
+}
+
+
+if(@sold_nameid >= 50001 && @sold_nameid <= 50070 )
+{
+	mes "<ITEM>"+getitemname((@sold_nameid))+"<INFO>"+(@sold_nameid)+"</INFO></ITEM>";
+	mes "สามารถแลกเปลี่ยนได้ 350 ชิ้น";
+	mes "ต้องการย่อยหรือไม่ ";
+	menu
+	"• ย่อยเลย (ได้รับ 350 Research Note)",LYES1, 
+	"• ยกเลิก",no01; 
+	
+	LYES1:
+	delitem @sold_nameid,1;
+	getitem 60008,350;
+	end;
+}
+
+if(@sold_nameid >= 52001 && @sold_nameid <= 52007 )
+{
+	mes "<ITEM>"+getitemname((@sold_nameid))+"<INFO>"+(@sold_nameid)+"</INFO></ITEM>";
+	mes "สามารถแลกเปลี่ยนได้ 200 ชิ้น";
+	mes "ต้องการย่อยหรือไม่ ";
+	menu
+	"• ย่อยเลย (ได้รับ 200 Research Note)",LYES2, 
+	"• ยกเลิก",no01; 
+	
+	LYES2:
+	delitem @sold_nameid,1;
+	getitem 60008,200;
+	end;
+}
+
+if(@sold_nameid >= 52101 && @sold_nameid <= 52116 )
+{
+	mes "<ITEM>"+getitemname((@sold_nameid))+"<INFO>"+(@sold_nameid)+"</INFO></ITEM>";
+	mes "สามารถแลกเปลี่ยนได้ 200 ชิ้น";
+	mes "ต้องการย่อยหรือไม่ ";
+	menu
+	"• ย่อยเลย (ได้รับ 200 Research Note)",LYES3, 
+	"• ยกเลิก",no01; 
+	
+	LYES3:
+	delitem @sold_nameid,1;
+	getitem 60008,200;
+	end;
+}
+
+
+end;
+
+no01:	
+end;	
+
+
+
+OnInit:
+waitingroom "เควสแลกคอสชาโด้ว",0;
+end;
+}
+
+-	shop	recycleshadowshop	-1,909:-1
+
+
+like_game,90,118,4	script	เควสแลกคอสชาโด้ว#2	4_BLUE_FLOWER,{
+
+disable_items;
+
+	menu
+	"• เควสแลกคอสชาโด้ว DG",MENU1, 
+	"• เควสแลกคอสชาโด้ว XG",MENU2, 
+	"• ยกเลิก",no01; 
+
+MENU1:
+callshop "Shadow_Shop_EX_DG",1;
+end;
+
+
+MENU2:
+callshop "Shadow_Shop_EX_XG",1;
+end;
+
+no01:	
+end;
+
+OnInit:
+waitingroom "เควสแลกคอสชาโด้ว",0;
+end;
+}

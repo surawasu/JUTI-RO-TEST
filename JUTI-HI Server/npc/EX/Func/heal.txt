@@ -1,0 +1,279 @@
+//===== rAthena Script =======================================
+//= Healer
+//===== By: ==================================================
+//= Euphy
+//===== Current Version: =====================================
+//= 1.1
+//===== Compatible With: =====================================
+//= rAthena Project
+//===== Description: =========================================
+//= Basic healer script.
+//===== Additional Comments: =================================
+//= 1.0 Initial script.
+//= 1.1 Aligned coordinates with @go.
+//============================================================
+
+-	script	Healer	-1,{
+
+	.@Price = 0;	// Zeny required for heal
+	.@Buffs = 1;	// Also buff players? (1: yes / 0: no)
+	.@Delay = 3;	// Heal delay, in seconds
+//mes "[Healer]";
+//mes "ขอให้พระเจ้าอวยพร";
+//mes "ท่านต้องการทำสิ่งใด?";
+//switch(select("^0000FFรับ Buff^000000:"+(bragion?"^FF0000ปิดการรับ Bragi/Service จาก NPC^000000":"^339900เปิดการรับ Bragi/Service จาก NPC^000000")+"")){
+//case 1:
+	if (@HD > gettimetick(2))
+		end;
+	if (.@Price) {
+		message strcharinfo(0), "Healing costs " + callfunc("F_InsertComma",.@Price) + " Zeny.";
+		if (Zeny < .@Price)
+			end;
+		if (select("^0055FFHeal^000000:^777777Cancel^000000") == 2)
+			end;
+		Zeny -= .@Price;
+	}
+	
+	/*
+	if (getcharid(0) == 1815 ||getcharid(0) == 2270 ||getcharid(0) == 1897 ||getcharid(0) == 1823 ||getcharid(0) == 1425 ||getcharid(0) == 1407 ||getcharid(0) == 408 ||getcharid(0) == 2200 ||getcharid(0) == 1606 ||getcharid(0) == 1590 ||getcharid(0) == 2132 ||getcharid(0) == 1816 ||getcharid(0) == 1849 ||getcharid(0) == 1971 || getcharid(0)== 1290 ||getcharid(0)==1609 || getcharid(0)==700 || getcharid(0)==1880 || getcharid(0)==1879 || getcharid(0)==1645 || getcharid(0)==1469 || getcharid(0)==731 || getcharid(0)==1897|| getcharid(0)==1404 || getcharid(0)==58|| getcharid(0)==1154|| getcharid(0)==1582) { 		
+		//bonus_script "{ bonus2 bResEff,Eff_Freeze,8000; bonus bDef2Rate,-10; }",18000,8;
+	}
+	
+	if (getcharid(0)==2470 ||getcharid(0)==2425 ||getcharid(0)==2425 ||getcharid(0)==2423 ||getcharid(0)==2430 || getcharid(0)==2343 ||getcharid(0)==2429 ||getcharid(0)==2428 ||getcharid(0)==2394 ||getcharid(0) == 2396 ||getcharid(0) == 2426 ||getcharid(0) == 2424 ||getcharid(0) == 2351 ||getcharid(0) == 2438 ||getcharid(0) == 2420 ||getcharid(0) == 2432 ||getcharid(0) == 1815 ||getcharid(0) == 2270 ||getcharid(0) == 1897 ||getcharid(0) == 1823 ||getcharid(0) == 1425 ||getcharid(0) == 1407 ||getcharid(0) == 408 ||getcharid(0) == 2200 ||getcharid(0) == 1606 ||getcharid(0) == 1590 ||getcharid(0) == 2132 ||getcharid(0) == 1816 ||getcharid(0) == 1849 ||getcharid(0) == 1971 || getcharid(0)== 1290 ||getcharid(0)==1609 || getcharid(0)==700 || getcharid(0)==1880 || getcharid(0)==1879 || getcharid(0)==1645 || getcharid(0)==1469 || getcharid(0)==731 || getcharid(0)==1404 || getcharid(0)==58|| getcharid(0)==1154|| getcharid(0)==1582) { 		
+		bonus_script "{ bonus bDelayrate,-5; bonus bDefEle,Ele_Ghost; bonus bDef2Rate,-10; bonus bMaxHPrate,20; bonus bNoWeaponDamage,30; bonus bNoMagicDamage,30; }",18000,8;
+		//bonus_script "{ bonus bDelayrate,-5; bonus bDefEle,Ele_Ghost; bonus bDef2Rate,-10; bonus bMaxHPrate,20; bonus bNoWeaponDamage,50; bonus bNoMagicDamage,50; }",18000,8;
+	}
+	
+	if(getcharid(0)==1606 ){	//master
+		bonus_script "{ bonus bNoWeaponDamage,20; bonus bNoMagicDamage,20; }",18000,8;
+	}
+	
+	if(getcharid(0)==1815 ||getcharid(0)==2428 ||getcharid(0)==2394 ){	//bio
+		bonus_script "{ bonus2 bSkillAtk,\"CR_ACIDDEMONSTRATION\",20; }",18000,8;
+	}
+	
+	if(getcharid(0) == 2470 ||getcharid(0) == 1469 ||getcharid(0) == 2270 || getcharid(0) == 408 || getcharid(0) == 2420|| getcharid(0) == 2423|| getcharid(0) == 2425){	//sni
+		//bonus_script "{ bonus2 bSkillAtk,\"AC_DOUBLE\",20; bonus2 bSkillAtk,\"SN_SHARPSHOOTING\",10; bonus3 bAutoSpell,\"SA_DISPELL\",2,200; bonus2 bAddEff,Eff_Sleep,2000; bonus2 bAddEff,Eff_Silence,2000; bonus2 bAddEff,Eff_Curse,500; bonus2 bAddEff,Eff_Confusion,500; }",18000,8;
+		bonus_script "{  bonus2 bSkillAtk,\"AC_DOUBLE\",10; bonus2 bSkillAtk,\"SN_SHARPSHOOTING\",10; bonus2 bAddEff,Eff_Sleep,2000; bonus2 bAddEff,Eff_Silence,2000; bonus2 bAddEff,Eff_Curse,500; bonus2 bAddEff,Eff_Confusion,500; }",18000,8;
+	}
+	
+	if(getcharid(0)==2396 || getcharid(0)==1823 || getcharid(0)==2200|| getcharid(0)==1404|| getcharid(0)==2430 ){	//bard + pala
+		bonus_script "{ bonus bDef2Rate,-10; bonus bMaxHPrate,50; }",18000,8;
+	}
+	
+	if(getcharid(0)==1897 ){	//ws
+		bonus_script "{ bonus4 bAutoSpellOnSkill,\"WS_CARTTERMINATION\",\"WS_CARTTERMINATION\",10,1000; }",18000,8;		
+	}
+	
+	if(getcharid(0)==700 ||getcharid(0)==1606 ||getcharid(0)==2343 || getcharid(0)==2429 ){	//wiz
+		bonus_script "{ bonus bMaxHPrate,20; bonus bDelayrate,-5; bonus2 bSkillAtk,\"WZ_METEOR\",50; bonus2 bSkillAtk,\"WZ_JUPITEL\",20; }",18000,8;
+	}
+	
+	if(getcharid(0)==2438 ||getcharid(0)==2351 ||getcharid(0)==1645 || getcharid(0)==58 ){	//monk
+		bonus_script "{ bonus2 bSkillAtk,\"MO_FINGEROFFENSIVE\",20; bonus bMaxSPrate,20;}",18000,8;
+	}
+		
+	if(getcharid(0)==2432 ){	//scho
+		bonus_script "{ bonus2 bSkillAtk,\"MG_FIREBOLT\",20; bonus2 bSkillAtk,\"MG_LIGHTNINGBOLT\",20; bonus2 bSkillAtk,\"MG_COLDBOLT\",20; }",18000,8;
+	}
+	*/
+	
+	sc_start SC_CP_WEAPON,1800000,5;
+	sc_start SC_CP_SHIELD,1800000,5;
+	sc_start SC_CP_ARMOR,1800000,5;
+	sc_start SC_CP_HELM,1800000,5;
+    if ( getpetinfo(PETINFO_EGGID)>0){
+		atcommand "@petfriendly 1000";
+	}
+	
+	atcommand "@repairall";
+	identifyall;
+	sc_start SC_STRFood,900000,10;
+	sc_start SC_AGIFood,900000,10;
+	sc_start SC_VITFood,900000,10;
+	sc_start SC_INTFood,900000,10;
+	sc_start SC_DEXFood,900000,10;
+	sc_start SC_LUKFood,900000,10;
+	sc_start4 SC_POEMBRAGI,1800000,10,50,100,0;	
+	
+	
+	//sc_start SC_POEMBRAGI,60000,10;
+
+	//sc_start4 <effect type>,<ticks>,<value 1>,<value 2>,<value 3>,<value 4>{,<rate>,<flag>{,<GID>}};
+
+    //}
+	//atcommand "@homfriendly 1000";
+	//identifyall;
+	//sc_end SC_XMAS;
+	//hateffect 184,false;
+	//sc_start SC_RANKMASTER,1800000,1;
+	//sc_end SC_RANKMASTER;
+	
+ 	//if(getcharid(0)==576){
+	////sc_start SC_REFRESH,1800000,1;
+	
+	////sc_start SC_ADD_MATK_DAMAGE,1800000,15;
+	////sc_start SC_ADD_ATK_DAMAGE,1800000,15;
+	////sc_start SC_SIEGFRIED,1800000,5;
+	////sc_start SC_ASPDPOTION2,1800000,9;
+	////sc_start SC_EPICLESIS,600000,5;
+	////bonus_script "{ bonus bIntravision; }",1800,1;	
+	////bonus_script "{ bonus bNoGemStone; }",1800,1;	
+	//sc_start SC_CP_WEAPON,1800000,5;
+	//sc_start SC_CP_SHIELD,1800000,5;
+	//sc_start SC_CP_ARMOR,1800000,5;
+	//sc_start SC_CP_HELM,1800000,5;
+	////sc_start SC_SUFFRAGIUM,1800000,10;
+	//sc_start SC_DROCERA_HERB_STEAMED,1800000,20;
+	//sc_start SC_PUTTI_TAILS_NOODLES,1800000,20;
+	//sc_start SC_SIROMA_ICE_TEA,1800000,20;
+	//sc_start SC_MINOR_BBQ,1800000,20;
+	//sc_start SC_SAVAGE_STEAK,1800000,20;
+	//sc_start SC_COCKTAIL_WARG_BLOOD,1800000,20;
+	//sc_start SC_ITEMBOOST,1800000,1000;
+	//} 
+	
+	if(#APACHE_PREMIUM_TIME > gettimetick(2)){
+	specialeffect2 EF_HEAL2;
+	skilleffect 75,0; sc_start SC_GLORIA,900000,5;
+	skilleffect 74,0; sc_start SC_MAGNIFICAT,900000,5;
+	//skilleffect 33,0; sc_start SC_ANGELUS,900000,5;
+	//if(bragion == 1){
+	//sc_start SC_POEMBRAGI,60000,10;
+	//sc_start SC_SERVICE4U,60000,10;
+	//}
+	sc_start SC_STRFood,900000,10;
+	sc_start SC_AGIFood,900000,10;
+	sc_start SC_VITFood,900000,10;
+	sc_start SC_INTFood,900000,10;
+	sc_start SC_DEXFood,900000,10;
+	sc_start SC_LUKFood,900000,10;
+	//sc_start SC_DROCERA_HERB_STEAMED,1800000,20;
+	//sc_start SC_PUTTI_TAILS_NOODLES,1800000,20;
+	//sc_start SC_SIROMA_ICE_TEA,1800000,20;
+	//sc_start SC_MINOR_BBQ,1800000,20;
+	//sc_start SC_SAVAGE_STEAK,1800000,20;
+	//sc_start SC_COCKTAIL_WARG_BLOOD,1800000,20;
+	//sc_start SC_CP_WEAPON,1800000,5;
+	//sc_start SC_CP_SHIELD,1800000,5;
+	//sc_start SC_CP_ARMOR,1800000,5;
+	//sc_start SC_CP_HELM,1800000,5;
+	//sc_start SC_HitFood,1800000,10;
+	//sc_start SC_FleeFood,1800000,10;
+	//sc_start SC_BATKFood,1800000,10;
+	//sc_start SC_MATKFood,1800000,10;
+	specialeffect2 EF_HEAL2;
+	specialeffect2 EF_INCAGILITY;
+	sc_start SC_INCREASEAGI,900000,10;
+	specialeffect2 EF_BLESSING;
+	sc_start SC_BLESSING,900000,10;
+	atcommand "@repairall";
+	sc_end SC_Poison;
+	sc_end SC_Freeze;
+	sc_end SC_Sleep;
+	sc_end SC_Stan;
+	sc_end SC_Stun;
+	sc_end SC_ORCISH;
+	sc_end SC_Stone;
+	sc_end SC_Silence;
+	sc_end SC_Blind;
+	sc_end SC_Bleeding;
+	sc_end SC_Confusion;
+	sc_end SC_Curse;
+	sc_end SC_Hallucination;
+	sc_end SC_DPOISON;
+	percentheal 100,100;
+	
+	if (.@Delay)
+		@HD = gettimetick(2) + .@Delay;
+	} else {
+	//if(bragion == 1){
+	//sc_start SC_POEMBRAGI,60000,5;
+	//sc_start SC_SERVICE4U,60000,5;
+	//}
+	percentheal 100,100;
+	specialeffect2 EF_HEAL2;
+	specialeffect2 EF_INCAGILITY;
+	sc_start SC_INCREASEAGI,900000,5;
+	specialeffect2 EF_BLESSING;
+	sc_start SC_BLESSING,900000,5;
+	atcommand "@repairall";
+	sc_end SC_Poison;
+	sc_end SC_Freeze;
+	sc_end SC_Sleep;
+	sc_end SC_Stan;
+	sc_end SC_Stun;
+	sc_end SC_ORCISH;
+	sc_end SC_Stone;
+	sc_end SC_Silence;
+	sc_end SC_Blind;
+	sc_end SC_Bleeding;
+	sc_end SC_Confusion;
+	sc_end SC_Curse;
+	sc_end SC_Hallucination;
+	sc_end SC_DPOISON;
+	if (.@Delay)
+		@HD = gettimetick(2) + .@Delay;
+	}
+end;
+
+//OnInit:
+//	waitingroom "     Healer",0;
+//end; 
+
+}
+
+
+like_game,126,116,6	duplicate(Healer)	Healer#funtown5	569
+like_game,128,158,6	duplicate(Healer)	Healer#funtown7	569
+funtown,247,246,6	duplicate(Healer)	Healer#funtown9	569
+like_game,93,136,6	duplicate(Healer)	Healer#funtown4	569
+eternal,154,94,6	duplicate(Healer)	Healer#funtown6	569
+eternal,97,156,6	duplicate(Healer)	Healer#funtown8	569
+like_game,159,136,6	duplicate(Healer)	Healer#funtown63	569
+
+// Duplicates
+//============================================================
+//alberta,25,240,6	duplicate(Healer)	Healer#alb	4_TOWER_10
+//aldebaran,135,118,6	duplicate(Healer)	Healer#alde	4_TOWER_10
+//amatsu,200,79,4	duplicate(Healer)	Healer#ama	4_TOWER_10
+//ayothaya,207,169,6	duplicate(Healer)	Healer#ayo	4_TOWER_10
+//comodo,184,158,6	duplicate(Healer)	Healer#com	4_TOWER_10
+//einbech,57,36,6	duplicate(Healer)	Healer#einbe	4_TOWER_10
+//einbroch,57,202,6	duplicate(Healer)	Healer#einbr	4_TOWER_10
+//geffen,115,72,6	duplicate(Healer)	Healer#gef	4_TOWER_10
+//gonryun,156,122,6	duplicate(Healer)	Healer#gon	4_TOWER_10
+//hugel,89,150,6	duplicate(Healer)	Healer#hug	4_TOWER_10
+//izlude,129,114,6	duplicate(Healer)	Healer#izl	4_TOWER_10	//Pre-RE: (125,118)
+//jawaii,250,139,4	duplicate(Healer)	Healer#jaw	4_TOWER_10
+//lighthalzen,152,100,6	duplicate(Healer)	Healer#lhz	4_TOWER_10
+//louyang,226,103,4	duplicate(Healer)	Healer#lou	4_TOWER_10
+//manuk,272,144,6	duplicate(Healer)	Healer#man	4_TOWER_10
+//mid_camp,203,289,6	duplicate(Healer)	Healer#mid	4_TOWER_10
+//moc_ruins,72,164,4	duplicate(Healer)	Healer#moc	4_TOWER_10
+//morocc,162,97,6	duplicate(Healer)	Healer#mor	4_TOWER_10
+////trinity,108,96,5	duplicate(Healer)	Healer#main	4_TOWER_10
+//moscovia,220,191,4	duplicate(Healer)	Healer#mos	4_TOWER_10
+//niflheim,212,182,5	duplicate(Healer)	Healer#nif	4_TOWER_10
+//payon,179,106,4	duplicate(Healer)	Healer#pay	4_TOWER_10
+//prontera,152,196,6	duplicate(Healer)	Healer#prt	4_TOWER_10
+//rachel,125,116,6	duplicate(Healer)	Healer#rac	4_TOWER_10
+//splendide,201,153,4	duplicate(Healer)	Healer#spl	4_TOWER_10
+//thor_camp,249,74,4	duplicate(Healer)	Healer#thor	4_TOWER_10
+//umbala,105,148,3	duplicate(Healer)	Healer#umb	4_TOWER_10
+//veins,217,121,4	duplicate(Healer)	Healer#ve	4_TOWER_10
+//xmas,143,136,4	duplicate(Healer)	Healer#xmas	4_TOWER_10
+//yuno,164,45,4	duplicate(Healer)	Healer#yuno	4_TOWER_10
+
+// Duplicates (Renewal)
+//============================================================
+//brasilis,194,221,6	duplicate(Healer)	Healer#bra	4_TOWER_10
+//dewata,195,187,4	duplicate(Healer)	Healer#dew	4_TOWER_10
+//dicastes01,201,194,4	duplicate(Healer)	Healer#dic	4_TOWER_10
+//ecl_in01,45,60,4	duplicate(Healer)	Healer#ecl	4_TOWER_10
+//malangdo,132,114,6	duplicate(Healer)	Healer#mal	4_TOWER_10
+//malaya,227,204,6	duplicate(Healer)	Healer#ma	4_TOWER_10
+//mora,55,152,4	duplicate(Healer)	Healer#mora1	4_TOWER_10
+//new_1-3,89,34,5	duplicate(Healer)	Healer#mora2	4_TOWER_10
+
+

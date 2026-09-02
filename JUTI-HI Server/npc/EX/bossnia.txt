@@ -1,0 +1,2332 @@
+
+-	script	bossniatcg	-1,{
+end;
+
+OnNPCKillEvent:
+/*
+if(strcharinfo(3) == "bossnia_03" || strcharinfo(3) == "bossnia_m01"
+|| strcharinfo(3) == "bossnia_m02"
+|| strcharinfo(3) == "bossnia_m03"
+|| strcharinfo(3) == "bossnia_m04"
+|| strcharinfo(3) == "bossnia_m05"
+|| strcharinfo(3) == "bossnia_m06"
+|| strcharinfo(3) == "bossnia_m07"
+|| strcharinfo(3) == "bossnia_m08"
+|| strcharinfo(3) == "bossnia_m09"
+|| strcharinfo(3) == "bossnia_m10"){
+	.@change = rand(1,100);
+	if(.@change<26){
+		getitem 51000,1;
+	}
+}
+if(strcharinfo(3) == "bossnia_04"|| strcharinfo(3) == "bossnia_m01"
+|| strcharinfo(3) == "bossnia_m02"
+|| strcharinfo(3) == "bossnia_m03"
+|| strcharinfo(3) == "bossnia_m04"
+|| strcharinfo(3) == "bossnia_m05"
+|| strcharinfo(3) == "bossnia_m06"
+|| strcharinfo(3) == "bossnia_m07"
+|| strcharinfo(3) == "bossnia_m08"
+|| strcharinfo(3) == "bossnia_m09"
+|| strcharinfo(3) == "bossnia_m10" ){
+	.@change = rand(1,10);
+	if(.@change==1){
+		getitem 51000,1;
+	}
+}
+*/
+
+if (strcharinfo(3) == "bossnia_01" 
+|| strcharinfo(3) == "bossnia_02" 
+|| strcharinfo(3) == "bossnia_03" 
+|| strcharinfo(3) == "bossnia_04"
+|| strcharinfo(3) == "bossnia_m01"
+|| strcharinfo(3) == "bossnia_m02"
+|| strcharinfo(3) == "bossnia_m03"
+|| strcharinfo(3) == "bossnia_m04"
+|| strcharinfo(3) == "bossnia_m05"
+|| strcharinfo(3) == "bossnia_m06"
+|| strcharinfo(3) == "bossnia_m07"
+|| strcharinfo(3) == "bossnia_m08"
+|| strcharinfo(3) == "bossnia_m09"
+|| strcharinfo(3) == "bossnia_m10"){
+.@randtcgV2 = rand(1,100);
+	if(.@randtcgV2 < 70){
+		getitem 7227,1;
+	}
+end;
+}
+if (strcharinfo(3) == "bossnia_m11"
+|| strcharinfo(3) == "bossnia_m12"
+|| strcharinfo(3) == "bossnia_m13"
+|| strcharinfo(3) == "bossnia_m14"
+|| strcharinfo(3) == "bossnia_m15"){
+.@randtcgV3 = rand(1,100);
+	if(.@randtcgV3 < 70){
+		getitem 7227,1;
+	}
+end;
+}
+if (strcharinfo(3) == "bossnia_m16"
+|| strcharinfo(3) == "bossnia_m17"
+|| strcharinfo(3) == "bossnia_m18"
+|| strcharinfo(3) == "bossnia_m19"
+|| strcharinfo(3) == "bossnia_m20"){
+.@randtcgV4 = rand(1,100);
+	if(.@randtcgV4 < 80){
+		getitem 7227,1;
+	}
+end;
+}
+if (strcharinfo(3) == "bossnia_m21"
+|| strcharinfo(3) == "bossnia_m22"
+|| strcharinfo(3) == "bossnia_m23"
+|| strcharinfo(3) == "bossnia_m24"
+|| strcharinfo(3) == "bossnia_m25"){
+.@randtcgV5 = rand(1,100);
+	if(.@randtcgV5 < 90){
+		getitem 7227,1;
+	}
+end;
+}
+if (strcharinfo(3) == "bossnia_m26"
+|| strcharinfo(3) == "bossnia_m27"
+|| strcharinfo(3) == "bossnia_m28"
+|| strcharinfo(3) == "bossnia_m29"
+|| strcharinfo(3) == "bossnia_m30"){
+		getitem 7227,1;
+end;
+}
+
+
+end;
+}
+
+like_game,134,102,1	script	ล่าบอส#funtown	565,{
+query_sql "SELECT `money` FROM `club_member` WHERE `account_id`='"+getcharid(3)+"'",.@money_new;
+query_sql "SELECT `money` FROM `club_member2` WHERE `account_id`='"+getcharid(3)+"'",.@money_old;
+.@money = (.@money_old + .@money_new);
+mes	"[ ห้องล่าบอส ]";
+mes "เลือกห้องบอสที่ต้องการ";
+menu	
+" ~ ล่าบอส (สำหรับมาโคร) ["+getmapusers("bossnia_01")*2+"] คน",MVP1,
+" ~ ล่าบอส (สำหรับมาโคร) ["+getmapusers("bossnia_02")*2+"] คน",MVP2,
+" ~ ล่าบอส (^FF0000ห้ามวิง^000000) ^FF0000Drop Rate+50%^000000 ["+getmapusers("bossnia_03")*2+"] คน",MVP3,
+" ~ ล่าบอส (^FF0000เมพ PVP^000000) ^FF0000Drop Rate+50%^000000 ["+getmapusers("bossnia_04")*2+"] คน",MVP4,
+//" ~ ล่าบอส Member LV.1 ["+getmapusers("bossnia_m01")*2+"] คน",MVPM1,
+//" ~ ล่าบอส Member LV.2 ["+getmapusers("bossnia_m02")*2+"] คน",MVPM2,
+//" ~ ล่าบอส Member LV.3 ["+getmapusers("bossnia_m03")*2+"] คน",MVPM3,
+//" ~ ล่าบอส Member LV.4 ["+getmapusers("bossnia_m04")*2+"] คน",MVPM4,
+//" ~ ล่าบอส Member LV.5 ["+getmapusers("bossnia_m05")*2+"] คน",MVPM5,
+//" ~ ล่าบอส Member LV.6 ["+getmapusers("bossnia_m06")*2+"] คน",MVPM6,
+//" ~ ล่าบอส Member LV.7 ["+getmapusers("bossnia_m07")*2+"] คน",MVPM7,
+//" ~ ล่าบอส Member LV.8 ["+getmapusers("bossnia_m08")*2+"] คน",MVPM8,
+//" ~ ล่าบอส Member LV.9 ["+getmapusers("bossnia_m09")*2+"] คน",MVPM9,
+//" ~ ล่าบอส Member LV.10 ["+getmapusers("bossnia_m10")*2+"] คน",MVPM10,
+//" ~ ล่าบอส Member LV.11 ["+getmapusers("bossnia_m11")*2+"] คน",MVPM11,
+//" ~ ล่าบอส Member LV.12 ["+getmapusers("bossnia_m12")*2+"] คน",MVPM12,
+//" ~ ล่าบอส Member LV.13 ["+getmapusers("bossnia_m13")*2+"] คน",MVPM13,
+//" ~ ล่าบอส Member LV.14 ["+getmapusers("bossnia_m14")*2+"] คน",MVPM14,
+//" ~ ล่าบอส Member LV.15 ["+getmapusers("bossnia_m15")*2+"] คน",MVPM15,
+//" ~ ล่าบอส Member LV.16 ["+getmapusers("bossnia_m16")*2+"] คน",MVPM16,
+//" ~ ล่าบอส Member LV.17 ["+getmapusers("bossnia_m17")*2+"] คน",MVPM17,
+//" ~ ล่าบอส Member LV.18 ["+getmapusers("bossnia_m18")*2+"] คน",MVPM18,
+//" ~ ล่าบอส Member LV.19 ["+getmapusers("bossnia_m19")*2+"] คน",MVPM19,
+//" ~ ล่าบอส Member LV.20 ["+getmapusers("bossnia_m20")*2+"] คน",MVPM20,
+//" ~ ล่าบอส Member LV.21 ["+getmapusers("bossnia_m21")*2+"] คน",MVPM21,
+//" ~ ล่าบอส Member LV.22 ["+getmapusers("bossnia_m22")*2+"] คน",MVPM22,
+//" ~ ล่าบอส Member LV.23 ["+getmapusers("bossnia_m23")*2+"] คน",MVPM23,
+//" ~ ล่าบอส Member LV.24 ["+getmapusers("bossnia_m24")*2+"] คน",MVPM24,
+//" ~ ล่าบอส Member LV.25 ["+getmapusers("bossnia_m25")*2+"] คน",MVPM25,
+//" ~ ล่าบอส Member LV.26 ["+getmapusers("bossnia_m26")*2+"] คน",MVPM26,
+//" ~ ล่าบอส Member LV.27 ["+getmapusers("bossnia_m27")*2+"] คน",MVPM27,
+//" ~ ล่าบอส Member LV.28 ["+getmapusers("bossnia_m28")*2+"] คน",MVPM28,
+//" ~ ล่าบอส Member LV.29 ["+getmapusers("bossnia_m29")*2+"] คน",MVPM29,
+//" ~ ล่าบอส Member LV.30 ["+getmapusers("bossnia_m30")*2+"] คน",MVPM30,
+" ~ ออก",EX;
+
+MVP1:
+warp "bossnia_01",0,0;
+end;
+
+MVP2:
+warp "bossnia_02",0,0;
+end;
+
+MVP3:
+warp "bossnia_03",0,0;
+end;
+
+MVP4:
+warp "bossnia_04",0,0;
+end;
+
+MVPM1:
+if (.@money < 1000)goto notmem;
+warp "bossnia_m01",0,0;
+end;
+
+MVPM2:
+if (.@money < 2000)goto notmem;
+warp "bossnia_m02",0,0;
+end;
+
+MVPM3:
+if (.@money < 3000)goto notmem;
+warp "bossnia_m03",0,0;
+end;
+
+MVPM4:
+if (.@money < 4000)goto notmem;
+warp "bossnia_m04",0,0;
+end;
+
+MVPM5:
+if (.@money < 5000)goto notmem;
+warp "bossnia_m05",0,0;
+end;
+
+MVPM6:
+if (.@money < 6000)goto notmem;
+warp "bossnia_m06",0,0;
+end;
+
+MVPM7:
+if (.@money < 7000)goto notmem;
+warp "bossnia_m07",0,0;
+end;
+
+MVPM8:
+if (.@money < 8000)goto notmem;
+warp "bossnia_m08",0,0;
+end;
+
+MVPM9:
+if (.@money < 9000)goto notmem;
+warp "bossnia_m09",0,0;
+end;
+
+MVPM10:
+if (.@money < 10000)goto notmem;
+warp "bossnia_m10",0,0;
+end;
+
+MVPM11:
+if (.@money < 11000)goto notmem;
+warp "bossnia_m11",0,0;
+end;
+MVPM12:
+if (.@money < 12000)goto notmem;
+warp "bossnia_m12",0,0;
+end;
+MVPM13:
+if (.@money < 13000)goto notmem;
+warp "bossnia_m13",0,0;
+end;
+MVPM14:
+if (.@money < 14000)goto notmem;
+warp "bossnia_m14",0,0;
+end;
+MVPM15:
+if (.@money < 15000)goto notmem;
+warp "bossnia_m50",0,0;
+end;
+MVPM16:
+if (.@money < 16000)goto notmem;
+warp "bossnia_m60",0,0;
+end;
+MVPM17:
+if (.@money < 17000)goto notmem;
+warp "bossnia_m70",0,0;
+end;
+MVPM18:
+if (.@money < 18000)goto notmem;
+warp "bossnia_m80",0,0;
+end;
+MVPM19:
+if (.@money < 19000)goto notmem;
+warp "bossnia_m90",0,0;
+end;
+MVPM20:
+if (.@money < 20000)goto notmem;
+warp "bossnia_m20",0,0;
+end;
+
+MVPM21:
+if (.@money < 21000)goto notmem;
+warp "bossnia_m21",0,0;
+end;
+
+MVPM22:
+if (.@money < 22000)goto notmem;
+warp "bossnia_m22",0,0;
+end;
+MVPM23:
+if (.@money < 23000)goto notmem;
+warp "bossnia_m23",0,0;
+end;
+MVPM24:
+if (.@money < 24000)goto notmem;
+warp "bossnia_m24",0,0;
+end;
+MVPM25:
+if (.@money < 25000)goto notmem;
+warp "bossnia_m25",0,0;
+end;
+MVPM26:
+if (.@money < 26000)goto notmem;
+warp "bossnia_m26",0,0;
+end;
+MVPM27:
+if (.@money < 27000)goto notmem;
+warp "bossnia_m27",0,0;
+end;
+MVPM28:
+if (.@money < 28000)goto notmem;
+warp "bossnia_m28",0,0;
+end;
+MVPM29:
+if (.@money < 29000)goto notmem;
+warp "bossnia_m29",0,0;
+end;
+MVPM30:
+if (.@money < 30000)goto notmem;
+warp "bossnia_m30",0,0;
+end;
+
+notmem:
+next;
+mes	"[ ห้องล่าบอส ]";
+mes "ระดับ Member Lv. ของท่านต่ำกว่าที่กำหนด !!";
+end;
+
+
+EX:
+end;
+
+OnInit:
+do {
+delwaitingroom;
+.@count1 = getmapusers("bossnia_01");
+.@count2 = getmapusers("bossnia_02");
+.@count3 = getmapusers("bossnia_03");
+.@count4 = getmapusers("bossnia_04");
+.@count = (.@count1+.@count2+.@count3+.@count4)*2;
+waitingroom " ล่าบอส  [ "+.@count+" ] คน",0;
+sleep 80; // Evites super infinity loop
+} while(1); // End Loop
+end;
+}
+
+like_game,138,103,1	script	ล่าบอส Member#MEMBER	565,{
+query_sql "SELECT `money` FROM `club_member` WHERE `account_id`='"+getcharid(3)+"'",.@money_new;
+query_sql "SELECT `money` FROM `club_member2` WHERE `account_id`='"+getcharid(3)+"'",.@money_old;
+.@money = (.@money_old + .@money_new);
+mes	"[ ห้องล่าบอส ]";
+mes "เลือกห้องบอสที่ต้องการ";
+menu	
+//" ~ ล่าบอส (สำหรับมาโคร) ["+getmapusers("bossnia_01")*2+"] คน",MVP1,
+//" ~ ล่าบอส (สำหรับมาโคร) ["+getmapusers("bossnia_02")*2+"] คน",MVP2,
+//" ~ ล่าบอส (^FF0000ห้ามวิง^000000) ^FF0000Drop Rate+50%^000000 ["+getmapusers("bossnia_03")*2+"] คน",MVP3,
+//" ~ ล่าบอส (^FF0000เมพ PVP^000000) ^FF0000Drop Rate+50%^000000 ["+getmapusers("bossnia_04")*2+"] คน",MVP4,
+" ~ ล่าบอส Member LV.1 ["+getmapusers("bossnia_m01")+"] คน",MVPM1,
+//" ~ ล่าบอส Member LV.2 ["+getmapusers("bossnia_m02")+"] คน",MVPM2,
+//" ~ ล่าบอส Member LV.3 ["+getmapusers("bossnia_m03")+"] คน",MVPM3,
+//" ~ ล่าบอส Member LV.4 ["+getmapusers("bossnia_m04")+"] คน",MVPM4,
+" ~ ล่าบอส Member LV.5 ["+getmapusers("bossnia_m05")+"] คน",MVPM5,
+//" ~ ล่าบอส Member LV.6 ["+getmapusers("bossnia_m06")+"] คน",MVPM6,
+//" ~ ล่าบอส Member LV.7 ["+getmapusers("bossnia_m07")+"] คน",MVPM7,
+//" ~ ล่าบอส Member LV.8 ["+getmapusers("bossnia_m08")+"] คน",MVPM8,
+//" ~ ล่าบอส Member LV.9 ["+getmapusers("bossnia_m09")+"] คน",MVPM9,
+" ~ ล่าบอส Member LV.10 ["+getmapusers("bossnia_m10")+"] คน",MVPM10,
+//" ~ ล่าบอส Member LV.11 ["+getmapusers("bossnia_m11")+"] คน",MVPM11,
+//" ~ ล่าบอส Member LV.12 ["+getmapusers("bossnia_m12")+"] คน",MVPM12,
+//" ~ ล่าบอส Member LV.13 ["+getmapusers("bossnia_m13")+"] คน",MVPM13,
+//" ~ ล่าบอส Member LV.14 ["+getmapusers("bossnia_m14")+"] คน",MVPM14,
+" ~ ล่าบอส Member LV.15 ["+getmapusers("bossnia_m15")+"] คน",MVPM15,
+//" ~ ล่าบอส Member LV.16 ["+getmapusers("bossnia_m16")+"] คน",MVPM16,
+//" ~ ล่าบอส Member LV.17 ["+getmapusers("bossnia_m17")+"] คน",MVPM17,
+//" ~ ล่าบอส Member LV.18 ["+getmapusers("bossnia_m18")+"] คน",MVPM18,
+//" ~ ล่าบอส Member LV.19 ["+getmapusers("bossnia_m19")+"] คน",MVPM19,
+//" ~ ล่าบอส Member LV.20 ["+getmapusers("bossnia_m20")+"] คน",MVPM20,
+//" ~ ล่าบอส Member LV.21 ["+getmapusers("bossnia_m21")+"] คน",MVPM21,
+//" ~ ล่าบอส Member LV.22 ["+getmapusers("bossnia_m22")+"] คน",MVPM22,
+//" ~ ล่าบอส Member LV.23 ["+getmapusers("bossnia_m23")+"] คน",MVPM23,
+//" ~ ล่าบอส Member LV.24 ["+getmapusers("bossnia_m24")+"] คน",MVPM24,
+//" ~ ล่าบอส Member LV.25 ["+getmapusers("bossnia_m25")+"] คน",MVPM25,
+//" ~ ล่าบอส Member LV.26 ["+getmapusers("bossnia_m26")+"] คน",MVPM26,
+//" ~ ล่าบอส Member LV.27 ["+getmapusers("bossnia_m27")+"] คน",MVPM27,
+//" ~ ล่าบอส Member LV.28 ["+getmapusers("bossnia_m28")+"] คน",MVPM28,
+//" ~ ล่าบอส Member LV.29 ["+getmapusers("bossnia_m29")+"] คน",MVPM29,
+//" ~ ล่าบอส Member LV.30 ["+getmapusers("bossnia_m30")+"] คน",MVPM30,
+" ~ ออก",EX;
+
+MVP1:
+warp "bossnia_01",0,0;
+end;
+
+MVP2:
+warp "bossnia_02",0,0;
+end;
+
+MVP3:
+warp "bossnia_03",0,0;
+end;
+
+MVP4:
+warp "bossnia_04",0,0;
+end;
+
+MVPM1:
+if (.@money < 1000)goto notmem;
+warp "bossnia_m01",0,0;
+end;
+
+MVPM2:
+if (.@money < 2000)goto notmem;
+warp "bossnia_m02",0,0;
+end;
+
+MVPM3:
+if (.@money < 3000)goto notmem;
+warp "bossnia_m03",0,0;
+end;
+
+MVPM4:
+if (.@money < 4000)goto notmem;
+warp "bossnia_m04",0,0;
+end;
+
+MVPM5:
+if (.@money < 5000)goto notmem;
+warp "bossnia_m05",0,0;
+end;
+
+MVPM6:
+if (.@money < 6000)goto notmem;
+warp "bossnia_m06",0,0;
+end;
+
+MVPM7:
+if (.@money < 7000)goto notmem;
+warp "bossnia_m07",0,0;
+end;
+
+MVPM8:
+if (.@money < 8000)goto notmem;
+warp "bossnia_m08",0,0;
+end;
+
+MVPM9:
+if (.@money < 9000)goto notmem;
+warp "bossnia_m09",0,0;
+end;
+
+MVPM10:
+if (.@money < 10000)goto notmem;
+warp "bossnia_m10",0,0;
+end;
+
+MVPM11:
+if (.@money < 11000)goto notmem;
+warp "bossnia_m11",0,0;
+end;
+MVPM12:
+if (.@money < 12000)goto notmem;
+warp "bossnia_m12",0,0;
+end;
+MVPM13:
+if (.@money < 13000)goto notmem;
+warp "bossnia_m13",0,0;
+end;
+MVPM14:
+if (.@money < 14000)goto notmem;
+warp "bossnia_m14",0,0;
+end;
+MVPM15:
+if (.@money < 15000)goto notmem;
+warp "bossnia_m15",0,0;
+end;
+MVPM16:
+if (.@money < 16000)goto notmem;
+warp "bossnia_m16",0,0;
+end;
+MVPM17:
+if (.@money < 17000)goto notmem;
+warp "bossnia_m17",0,0;
+end;
+MVPM18:
+if (.@money < 18000)goto notmem;
+warp "bossnia_m18",0,0;
+end;
+MVPM19:
+if (.@money < 19000)goto notmem;
+warp "bossnia_m19",0,0;
+end;
+MVPM20:
+if (.@money < 20000)goto notmem;
+warp "bossnia_m20",0,0;
+end;
+
+MVPM21:
+if (.@money < 21000)goto notmem;
+warp "bossnia_m21",0,0;
+end;
+
+MVPM22:
+if (.@money < 22000)goto notmem;
+warp "bossnia_m22",0,0;
+end;
+MVPM23:
+if (.@money < 23000)goto notmem;
+warp "bossnia_m23",0,0;
+end;
+MVPM24:
+if (.@money < 24000)goto notmem;
+warp "bossnia_m24",0,0;
+end;
+MVPM25:
+if (.@money < 25000)goto notmem;
+warp "bossnia_m25",0,0;
+end;
+MVPM26:
+if (.@money < 26000)goto notmem;
+warp "bossnia_m26",0,0;
+end;
+MVPM27:
+if (.@money < 27000)goto notmem;
+warp "bossnia_m27",0,0;
+end;
+MVPM28:
+if (.@money < 28000)goto notmem;
+warp "bossnia_m28",0,0;
+end;
+MVPM29:
+if (.@money < 29000)goto notmem;
+warp "bossnia_m29",0,0;
+end;
+MVPM30:
+if (.@money < 30000)goto notmem;
+warp "bossnia_m30",0,0;
+end;
+
+notmem:
+next;
+mes	"[ ห้องล่าบอส ]";
+mes "ระดับ Member Lv. ของท่านต่ำกว่าที่กำหนด !!";
+end;
+
+
+EX:
+end;
+
+OnInit:
+do {
+delwaitingroom;
+.@countm1 = getmapusers("bossnia_m01");
+.@countm2 = getmapusers("bossnia_m02");
+.@countm3 = getmapusers("bossnia_m03");
+.@countm4 = getmapusers("bossnia_m04");
+.@countm5 = getmapusers("bossnia_m05");
+.@countm6 = getmapusers("bossnia_m06");
+.@countm7 = getmapusers("bossnia_m07");
+.@countm8 = getmapusers("bossnia_m08");
+.@countm9 = getmapusers("bossnia_m09");
+.@countm10 = getmapusers("bossnia_m10");
+.@countm11 = getmapusers("bossnia_m11");
+.@countm12 = getmapusers("bossnia_m12");
+.@countm13 = getmapusers("bossnia_m13");
+.@countm14 = getmapusers("bossnia_m14");
+.@countm15 = getmapusers("bossnia_m15");
+.@countm16 = getmapusers("bossnia_m16");
+.@countm17 = getmapusers("bossnia_m17");
+.@countm18 = getmapusers("bossnia_m18");
+.@countm19 = getmapusers("bossnia_m19");
+.@countm20 = getmapusers("bossnia_m20");
+.@countm21 = getmapusers("bossnia_m21");
+.@countm22 = getmapusers("bossnia_m22");
+.@countm23 = getmapusers("bossnia_m23");
+.@countm24 = getmapusers("bossnia_m24");
+.@countm25 = getmapusers("bossnia_m25");
+.@countm26 = getmapusers("bossnia_m26");
+.@countm27 = getmapusers("bossnia_m27");
+.@countm28 = getmapusers("bossnia_m28");
+.@countm29 = getmapusers("bossnia_m29");
+.@countm30 = getmapusers("bossnia_m30");
+.@count = (.@countm1+.@countm2+.@countm3+.@countm4+.@countm5+.@countm6+.@countm7+.@countm8+.@countm9+.@countm10+.@countm11+.@countm12+.@countm13+.@countm14+.@countm15+.@countm11+.@countm16+.@countm17+.@countm18+.@countm19+.@countm20+.@countm21+.@countm22+.@countm23+.@countm24+.@countm25+.@countm26+.@countm27+.@countm28+.@countm29+.@countm30);
+waitingroom "ล่าบอส  Member[ "+.@count+" ] คน",0;
+sleep 80; // Evites super infinity loop
+} while(1); // End Loop
+end;
+}
+
+//bossnia_01	monster	--en--	2476,2,1000,7000
+
+bossnia_01	monster	--en--	1096,2,1000,7000
+bossnia_01	monster	--en--	1120,2,1000,7000
+bossnia_01	monster	--en--	1582,2,1000,7000
+bossnia_01	monster	--en--	1511,2,1000,7000
+bossnia_01	monster	--en--	1647,2,1000,7000
+bossnia_01	monster	--en--	1785,2,1000,7000
+bossnia_01	monster	--en--	1630,2,1000,7000
+bossnia_01	monster	--en--	1039,2,1000,7000
+bossnia_01	monster	--en--	1874,2,1000,7000
+bossnia_01	monster	--en--	2068,2,1000,7000
+bossnia_01	monster	--en--	1272,2,1000,7000
+bossnia_01	monster	--en--	1719,2,1000,7000
+bossnia_01	monster	--en--	1046,2,1000,7000
+bossnia_01	monster	--en--	1389,2,1000,7000
+bossnia_01	monster	--en--	1112,2,1000,7000
+bossnia_01	monster	--en--	1115,2,1000,7000
+bossnia_01	monster	--en--	1418,2,1000,7000
+bossnia_01	monster	--en--	1871,2,1000,7000
+bossnia_01	monster	--en--	1252,2,1000,7000
+bossnia_01	monster	--en--	1768,2,1000,7000
+bossnia_01	monster	--en--	1086,2,1000,7000
+bossnia_01	monster	--en--	1885,2,1000,7000
+bossnia_01	monster	--en--	1649,2,1000,7000
+bossnia_01	monster	--en--	1651,2,1000,7000
+bossnia_01	monster	--en--	1832,2,1000,7000
+bossnia_01	monster	--en--	1492,2,1000,7000
+bossnia_01	monster	--en--	1734,2,1000,7000
+bossnia_01	monster	--en--	1251,2,1000,7000
+bossnia_01	monster	--en--	1779,2,1000,7000
+bossnia_01	monster	--en--	1688,2,1000,7000
+bossnia_01	monster	--en--	1646,2,1000,7000
+bossnia_01	monster	--en--	1373,2,1000,7000
+bossnia_01	monster	--en--	1147,2,1000,7000
+bossnia_01	monster	--en--	1059,2,1000,7000
+bossnia_01	monster	--en--	1150,2,1000,7000
+bossnia_01	monster	--en--	2022,2,1000,7000
+bossnia_01	monster	--en--	1087,2,1000,7000
+bossnia_01	monster	--en--	1190,2,1000,7000
+bossnia_01	monster	--en--	1038,2,1000,7000
+bossnia_01	monster	--en--	1157,2,1000,7000
+bossnia_01	monster	--en--	1159,2,1000,7000
+bossnia_01	monster	--en--	1623,2,1000,7000
+bossnia_01	monster	--en--	1650,2,1000,7000
+bossnia_01	monster	--en--	1583,2,1000,7000
+bossnia_01	monster	--en--	1708,2,1000,7000
+bossnia_01	monster	--en--	1312,2,1000,7000
+bossnia_01	monster	--en--	1751,2,1000,7000
+bossnia_01	monster	--en--	1685,2,1000,7000
+bossnia_01	monster	--en--	1648,2,1000,7000
+bossnia_01	monster	--en--	1917,2,1000,7000
+bossnia_01	monster	--en--	1658,2,1000,7000
+
+bossnia_02	monster	--en--	1096,2,1000,7000
+bossnia_02	monster	--en--	1120,2,1000,7000
+bossnia_02	monster	--en--	1582,2,1000,7000
+bossnia_02	monster	--en--	1511,2,1000,7000
+bossnia_02	monster	--en--	1647,2,1000,7000
+bossnia_02	monster	--en--	1785,2,1000,7000
+bossnia_02	monster	--en--	1630,2,1000,7000
+bossnia_02	monster	--en--	1039,2,1000,7000
+bossnia_02	monster	--en--	1874,2,1000,7000
+bossnia_02	monster	--en--	2068,2,1000,7000
+bossnia_02	monster	--en--	1272,2,1000,7000
+bossnia_02	monster	--en--	1719,2,1000,7000
+bossnia_02	monster	--en--	1046,2,1000,7000
+bossnia_02	monster	--en--	1389,2,1000,7000
+bossnia_02	monster	--en--	1112,2,1000,7000
+bossnia_02	monster	--en--	1115,2,1000,7000
+bossnia_02	monster	--en--	1418,2,1000,7000
+bossnia_02	monster	--en--	1871,2,1000,7000
+bossnia_02	monster	--en--	1252,2,1000,7000
+bossnia_02	monster	--en--	1768,2,1000,7000
+bossnia_02	monster	--en--	1086,2,1000,7000
+bossnia_02	monster	--en--	1885,2,1000,7000
+bossnia_02	monster	--en--	1649,2,1000,7000
+bossnia_02	monster	--en--	1651,2,1000,7000
+bossnia_02	monster	--en--	1832,2,1000,7000
+bossnia_02	monster	--en--	1492,2,1000,7000
+bossnia_02	monster	--en--	1734,2,1000,7000
+bossnia_02	monster	--en--	1251,2,1000,7000
+bossnia_02	monster	--en--	1779,2,1000,7000
+bossnia_02	monster	--en--	1688,2,1000,7000
+bossnia_02	monster	--en--	1646,2,1000,7000
+bossnia_02	monster	--en--	1373,2,1000,7000
+bossnia_02	monster	--en--	1147,2,1000,7000
+bossnia_02	monster	--en--	1059,2,1000,7000
+bossnia_02	monster	--en--	1150,2,1000,7000
+bossnia_02	monster	--en--	2022,2,1000,7000
+bossnia_02	monster	--en--	1087,2,1000,7000
+bossnia_02	monster	--en--	1190,2,1000,7000
+bossnia_02	monster	--en--	1038,2,1000,7000
+bossnia_02	monster	--en--	1157,2,1000,7000
+bossnia_02	monster	--en--	1159,2,1000,7000
+bossnia_02	monster	--en--	1623,2,1000,7000
+bossnia_02	monster	--en--	1650,2,1000,7000
+bossnia_02	monster	--en--	1583,2,1000,7000
+bossnia_02	monster	--en--	1708,2,1000,7000
+bossnia_02	monster	--en--	1312,2,1000,7000
+bossnia_02	monster	--en--	1751,2,1000,7000
+bossnia_02	monster	--en--	1685,2,1000,7000
+bossnia_02	monster	--en--	1648,2,1000,7000
+bossnia_02	monster	--en--	1917,2,1000,7000
+bossnia_02	monster	--en--	1658,2,1000,7000
+
+bossnia_03	monster	--en--	1096,2,1000,7000
+bossnia_03	monster	--en--	1120,2,1000,7000
+bossnia_03	monster	--en--	1582,2,1000,7000
+bossnia_03	monster	--en--	1511,2,1000,7000
+bossnia_03	monster	--en--	1647,2,1000,7000
+bossnia_03	monster	--en--	1785,2,1000,7000
+bossnia_03	monster	--en--	1630,2,1000,7000
+bossnia_03	monster	--en--	1039,2,1000,7000
+bossnia_03	monster	--en--	1874,2,1000,7000
+bossnia_03	monster	--en--	2068,2,1000,7000
+bossnia_03	monster	--en--	1272,2,1000,7000
+bossnia_03	monster	--en--	1719,2,1000,7000
+bossnia_03	monster	--en--	1046,2,1000,7000
+bossnia_03	monster	--en--	1389,2,1000,7000
+bossnia_03	monster	--en--	1112,2,1000,7000
+bossnia_03	monster	--en--	1115,2,1000,7000
+bossnia_03	monster	--en--	1418,2,1000,7000
+bossnia_03	monster	--en--	1871,2,1000,7000
+bossnia_03	monster	--en--	1252,2,1000,7000
+bossnia_03	monster	--en--	1768,2,1000,7000
+bossnia_03	monster	--en--	1086,2,1000,7000
+bossnia_03	monster	--en--	1885,2,1000,7000
+bossnia_03	monster	--en--	1649,2,1000,7000
+bossnia_03	monster	--en--	1651,2,1000,7000
+bossnia_03	monster	--en--	1832,2,1000,7000
+bossnia_03	monster	--en--	1492,2,1000,7000
+bossnia_03	monster	--en--	1734,2,1000,7000
+bossnia_03	monster	--en--	1251,2,1000,7000
+bossnia_03	monster	--en--	1779,2,1000,7000
+bossnia_03	monster	--en--	1688,2,1000,7000
+bossnia_03	monster	--en--	1646,2,1000,7000
+bossnia_03	monster	--en--	1373,2,1000,7000
+bossnia_03	monster	--en--	1147,2,1000,7000
+bossnia_03	monster	--en--	1059,2,1000,7000
+bossnia_03	monster	--en--	1150,2,1000,7000
+bossnia_03	monster	--en--	2022,2,1000,7000
+bossnia_03	monster	--en--	1087,2,1000,7000
+bossnia_03	monster	--en--	1190,2,1000,7000
+bossnia_03	monster	--en--	1038,2,1000,7000
+bossnia_03	monster	--en--	1157,2,1000,7000
+bossnia_03	monster	--en--	1159,2,1000,7000
+bossnia_03	monster	--en--	1623,2,1000,7000
+bossnia_03	monster	--en--	1650,2,1000,7000
+bossnia_03	monster	--en--	1583,2,1000,7000
+bossnia_03	monster	--en--	1708,2,1000,7000
+bossnia_03	monster	--en--	1312,2,1000,7000
+bossnia_03	monster	--en--	1751,2,1000,7000
+bossnia_03	monster	--en--	1685,2,1000,7000
+bossnia_03	monster	--en--	1648,2,1000,7000
+bossnia_03	monster	--en--	1917,2,1000,7000
+bossnia_03	monster	--en--	1658,2,1000,7000
+
+bossnia_04	monster	--en--	1096,2,1000,7000
+bossnia_04	monster	--en--	1120,2,1000,7000
+bossnia_04	monster	--en--	1582,2,1000,7000
+bossnia_04	monster	--en--	1511,2,1000,7000
+bossnia_04	monster	--en--	1647,2,1000,7000
+bossnia_04	monster	--en--	1785,2,1000,7000
+bossnia_04	monster	--en--	1630,2,1000,7000
+bossnia_04	monster	--en--	1039,2,1000,7000
+bossnia_04	monster	--en--	1874,2,1000,7000
+bossnia_04	monster	--en--	2068,2,1000,7000
+bossnia_04	monster	--en--	1272,2,1000,7000
+bossnia_04	monster	--en--	1719,2,1000,7000
+bossnia_04	monster	--en--	1046,2,1000,7000
+bossnia_04	monster	--en--	1389,2,1000,7000
+bossnia_04	monster	--en--	1112,2,1000,7000
+bossnia_04	monster	--en--	1115,2,1000,7000
+bossnia_04	monster	--en--	1418,2,1000,7000
+bossnia_04	monster	--en--	1871,2,1000,7000
+bossnia_04	monster	--en--	1252,2,1000,7000
+bossnia_04	monster	--en--	1768,2,1000,7000
+bossnia_04	monster	--en--	1086,2,1000,7000
+bossnia_04	monster	--en--	1885,2,1000,7000
+bossnia_04	monster	--en--	1649,2,1000,7000
+bossnia_04	monster	--en--	1651,2,1000,7000
+bossnia_04	monster	--en--	1832,2,1000,7000
+bossnia_04	monster	--en--	1492,2,1000,7000
+bossnia_04	monster	--en--	1734,2,1000,7000
+bossnia_04	monster	--en--	1251,2,1000,7000
+bossnia_04	monster	--en--	1779,2,1000,7000
+bossnia_04	monster	--en--	1688,2,1000,7000
+bossnia_04	monster	--en--	1646,2,1000,7000
+bossnia_04	monster	--en--	1373,2,1000,7000
+bossnia_04	monster	--en--	1147,2,1000,7000
+bossnia_04	monster	--en--	1059,2,1000,7000
+bossnia_04	monster	--en--	1150,2,1000,7000
+bossnia_04	monster	--en--	2022,2,1000,7000
+bossnia_04	monster	--en--	1087,2,1000,7000
+bossnia_04	monster	--en--	1190,2,1000,7000
+bossnia_04	monster	--en--	1038,2,1000,7000
+bossnia_04	monster	--en--	1157,2,1000,7000
+bossnia_04	monster	--en--	1159,2,1000,7000
+bossnia_04	monster	--en--	1623,2,1000,7000
+bossnia_04	monster	--en--	1650,2,1000,7000
+bossnia_04	monster	--en--	1583,2,1000,7000
+bossnia_04	monster	--en--	1708,2,1000,7000
+bossnia_04	monster	--en--	1312,2,1000,7000
+bossnia_04	monster	--en--	1751,2,1000,7000
+bossnia_04	monster	--en--	1685,2,1000,7000
+bossnia_04	monster	--en--	1648,2,1000,7000
+bossnia_04	monster	--en--	1917,2,1000,7000
+bossnia_04	monster	--en--	1658,2,1000,7000
+
+bossnia_m01	monster	--en--	1096,2,1000,4000
+bossnia_m01	monster	--en--	1120,2,1000,4000
+bossnia_m01	monster	--en--	1582,2,1000,4000
+bossnia_m01	monster	--en--	1511,2,1000,4000
+bossnia_m01	monster	--en--	1647,2,1000,4000
+bossnia_m01	monster	--en--	1785,2,1000,4000
+bossnia_m01	monster	--en--	1630,2,1000,4000
+bossnia_m01	monster	--en--	1039,2,1000,4000
+bossnia_m01	monster	--en--	1874,2,1000,4000
+bossnia_m01	monster	--en--	2068,2,1000,4000
+bossnia_m01	monster	--en--	1272,2,1000,4000
+bossnia_m01	monster	--en--	1719,2,1000,4000
+bossnia_m01	monster	--en--	1046,2,1000,4000
+bossnia_m01	monster	--en--	1389,2,1000,4000
+bossnia_m01	monster	--en--	1112,2,1000,4000
+bossnia_m01	monster	--en--	1115,2,1000,4000
+bossnia_m01	monster	--en--	1418,2,1000,4000
+bossnia_m01	monster	--en--	1871,2,1000,4000
+bossnia_m01	monster	--en--	1252,2,1000,4000
+bossnia_m01	monster	--en--	1768,2,1000,4000
+bossnia_m01	monster	--en--	1086,2,1000,4000
+bossnia_m01	monster	--en--	1885,2,1000,4000
+bossnia_m01	monster	--en--	1649,2,1000,4000
+bossnia_m01	monster	--en--	1651,2,1000,4000
+bossnia_m01	monster	--en--	1832,2,1000,4000
+bossnia_m01	monster	--en--	1492,2,1000,4000
+bossnia_m01	monster	--en--	1734,2,1000,4000
+bossnia_m01	monster	--en--	1251,2,1000,4000
+bossnia_m01	monster	--en--	1779,2,1000,4000
+bossnia_m01	monster	--en--	1688,2,1000,4000
+bossnia_m01	monster	--en--	1646,2,1000,4000
+bossnia_m01	monster	--en--	1373,2,1000,4000
+bossnia_m01	monster	--en--	1147,2,1000,4000
+bossnia_m01	monster	--en--	1059,2,1000,4000
+bossnia_m01	monster	--en--	1150,2,1000,4000
+bossnia_m01	monster	--en--	2022,2,1000,4000
+bossnia_m01	monster	--en--	1087,2,1000,4000
+bossnia_m01	monster	--en--	1190,2,1000,4000
+bossnia_m01	monster	--en--	1038,2,1000,4000
+bossnia_m01	monster	--en--	1157,2,1000,4000
+bossnia_m01	monster	--en--	1159,2,1000,4000
+bossnia_m01	monster	--en--	1623,2,1000,4000
+bossnia_m01	monster	--en--	1650,2,1000,4000
+bossnia_m01	monster	--en--	1583,2,1000,4000
+bossnia_m01	monster	--en--	1708,2,1000,4000
+bossnia_m01	monster	--en--	1312,2,1000,4000
+bossnia_m01	monster	--en--	1751,2,1000,4000
+bossnia_m01	monster	--en--	1685,2,1000,4000
+bossnia_m01	monster	--en--	1648,2,1000,4000
+bossnia_m01	monster	--en--	1917,2,1000,4000
+bossnia_m01	monster	--en--	1658,2,1000,4000
+
+bossnia_m02	monster	--en--	1096,2,1000,4000
+bossnia_m02	monster	--en--	1120,2,1000,4000
+bossnia_m02	monster	--en--	1582,2,1000,4000
+bossnia_m02	monster	--en--	1511,2,1000,4000
+bossnia_m02	monster	--en--	1647,2,1000,4000
+bossnia_m02	monster	--en--	1785,2,1000,4000
+bossnia_m02	monster	--en--	1630,2,1000,4000
+bossnia_m02	monster	--en--	1039,2,1000,4000
+bossnia_m02	monster	--en--	1874,2,1000,4000
+bossnia_m02	monster	--en--	2068,2,1000,4000
+bossnia_m02	monster	--en--	1272,2,1000,4000
+bossnia_m02	monster	--en--	1719,2,1000,4000
+bossnia_m02	monster	--en--	1046,2,1000,4000
+bossnia_m02	monster	--en--	1389,2,1000,4000
+bossnia_m02	monster	--en--	1112,2,1000,4000
+bossnia_m02	monster	--en--	1115,2,1000,4000
+bossnia_m02	monster	--en--	1418,2,1000,4000
+bossnia_m02	monster	--en--	1871,2,1000,4000
+bossnia_m02	monster	--en--	1252,2,1000,4000
+bossnia_m02	monster	--en--	1768,2,1000,4000
+bossnia_m02	monster	--en--	1086,2,1000,4000
+bossnia_m02	monster	--en--	1885,2,1000,4000
+bossnia_m02	monster	--en--	1649,2,1000,4000
+bossnia_m02	monster	--en--	1651,2,1000,4000
+bossnia_m02	monster	--en--	1832,2,1000,4000
+bossnia_m02	monster	--en--	1492,2,1000,4000
+bossnia_m02	monster	--en--	1734,2,1000,4000
+bossnia_m02	monster	--en--	1251,2,1000,4000
+bossnia_m02	monster	--en--	1779,2,1000,4000
+bossnia_m02	monster	--en--	1688,2,1000,4000
+bossnia_m02	monster	--en--	1646,2,1000,4000
+bossnia_m02	monster	--en--	1373,2,1000,4000
+bossnia_m02	monster	--en--	1147,2,1000,4000
+bossnia_m02	monster	--en--	1059,2,1000,4000
+bossnia_m02	monster	--en--	1150,2,1000,4000
+bossnia_m02	monster	--en--	2022,2,1000,4000
+bossnia_m02	monster	--en--	1087,2,1000,4000
+bossnia_m02	monster	--en--	1190,2,1000,4000
+bossnia_m02	monster	--en--	1038,2,1000,4000
+bossnia_m02	monster	--en--	1157,2,1000,4000
+bossnia_m02	monster	--en--	1159,2,1000,4000
+bossnia_m02	monster	--en--	1623,2,1000,4000
+bossnia_m02	monster	--en--	1650,2,1000,4000
+bossnia_m02	monster	--en--	1583,2,1000,4000
+bossnia_m02	monster	--en--	1708,2,1000,4000
+bossnia_m02	monster	--en--	1312,2,1000,4000
+bossnia_m02	monster	--en--	1751,2,1000,4000
+bossnia_m02	monster	--en--	1685,2,1000,4000
+bossnia_m02	monster	--en--	1648,2,1000,4000
+bossnia_m02	monster	--en--	1917,2,1000,4000
+bossnia_m02	monster	--en--	1658,2,1000,4000
+
+bossnia_m03	monster	--en--	1096,2,1000,4000
+bossnia_m03	monster	--en--	1120,2,1000,4000
+bossnia_m03	monster	--en--	1582,2,1000,4000
+bossnia_m03	monster	--en--	1511,2,1000,4000
+bossnia_m03	monster	--en--	1647,2,1000,4000
+bossnia_m03	monster	--en--	1785,2,1000,4000
+bossnia_m03	monster	--en--	1630,2,1000,4000
+bossnia_m03	monster	--en--	1039,2,1000,4000
+bossnia_m03	monster	--en--	1874,2,1000,4000
+bossnia_m03	monster	--en--	2068,2,1000,4000
+bossnia_m03	monster	--en--	1272,2,1000,4000
+bossnia_m03	monster	--en--	1719,2,1000,4000
+bossnia_m03	monster	--en--	1046,2,1000,4000
+bossnia_m03	monster	--en--	1389,2,1000,4000
+bossnia_m03	monster	--en--	1112,2,1000,4000
+bossnia_m03	monster	--en--	1115,2,1000,4000
+bossnia_m03	monster	--en--	1418,2,1000,4000
+bossnia_m03	monster	--en--	1871,2,1000,4000
+bossnia_m03	monster	--en--	1252,2,1000,4000
+bossnia_m03	monster	--en--	1768,2,1000,4000
+bossnia_m03	monster	--en--	1086,2,1000,4000
+bossnia_m03	monster	--en--	1885,2,1000,4000
+bossnia_m03	monster	--en--	1649,2,1000,4000
+bossnia_m03	monster	--en--	1651,2,1000,4000
+bossnia_m03	monster	--en--	1832,2,1000,4000
+bossnia_m03	monster	--en--	1492,2,1000,4000
+bossnia_m03	monster	--en--	1734,2,1000,4000
+bossnia_m03	monster	--en--	1251,2,1000,4000
+bossnia_m03	monster	--en--	1779,2,1000,4000
+bossnia_m03	monster	--en--	1688,2,1000,4000
+bossnia_m03	monster	--en--	1646,2,1000,4000
+bossnia_m03	monster	--en--	1373,2,1000,4000
+bossnia_m03	monster	--en--	1147,2,1000,4000
+bossnia_m03	monster	--en--	1059,2,1000,4000
+bossnia_m03	monster	--en--	1150,2,1000,4000
+bossnia_m03	monster	--en--	2022,2,1000,4000
+bossnia_m03	monster	--en--	1087,2,1000,4000
+bossnia_m03	monster	--en--	1190,2,1000,4000
+bossnia_m03	monster	--en--	1038,2,1000,4000
+bossnia_m03	monster	--en--	1157,2,1000,4000
+bossnia_m03	monster	--en--	1159,2,1000,4000
+bossnia_m03	monster	--en--	1623,2,1000,4000
+bossnia_m03	monster	--en--	1650,2,1000,4000
+bossnia_m03	monster	--en--	1583,2,1000,4000
+bossnia_m03	monster	--en--	1708,2,1000,4000
+bossnia_m03	monster	--en--	1312,2,1000,4000
+bossnia_m03	monster	--en--	1751,2,1000,4000
+bossnia_m03	monster	--en--	1685,2,1000,4000
+bossnia_m03	monster	--en--	1648,2,1000,4000
+bossnia_m03	monster	--en--	1917,2,1000,4000
+bossnia_m03	monster	--en--	1658,2,1000,4000
+
+bossnia_m04	monster	--en--	1096,3,1000,4000
+bossnia_m04	monster	--en--	1120,3,1000,4000
+bossnia_m04	monster	--en--	1582,3,1000,4000
+bossnia_m04	monster	--en--	1511,3,1000,4000
+bossnia_m04	monster	--en--	1647,3,1000,4000
+bossnia_m04	monster	--en--	1785,3,1000,4000
+bossnia_m04	monster	--en--	1630,3,1000,4000
+bossnia_m04	monster	--en--	1039,3,1000,4000
+bossnia_m04	monster	--en--	1874,3,1000,4000
+bossnia_m04	monster	--en--	2068,3,1000,4000
+bossnia_m04	monster	--en--	1272,3,1000,4000
+bossnia_m04	monster	--en--	1719,3,1000,4000
+bossnia_m04	monster	--en--	1046,3,1000,4000
+bossnia_m04	monster	--en--	1389,3,1000,4000
+bossnia_m04	monster	--en--	1112,3,1000,4000
+bossnia_m04	monster	--en--	1115,3,1000,4000
+bossnia_m04	monster	--en--	1418,3,1000,4000
+bossnia_m04	monster	--en--	1871,3,1000,4000
+bossnia_m04	monster	--en--	1252,3,1000,4000
+bossnia_m04	monster	--en--	1768,3,1000,4000
+bossnia_m04	monster	--en--	1086,3,1000,4000
+bossnia_m04	monster	--en--	1885,3,1000,4000
+bossnia_m04	monster	--en--	1649,3,1000,4000
+bossnia_m04	monster	--en--	1651,3,1000,4000
+bossnia_m04	monster	--en--	1832,3,1000,4000
+bossnia_m04	monster	--en--	1492,3,1000,4000
+bossnia_m04	monster	--en--	1734,3,1000,4000
+bossnia_m04	monster	--en--	1251,3,1000,4000
+bossnia_m04	monster	--en--	1779,3,1000,4000
+bossnia_m04	monster	--en--	1688,3,1000,4000
+bossnia_m04	monster	--en--	1646,3,1000,4000
+bossnia_m04	monster	--en--	1373,3,1000,4000
+bossnia_m04	monster	--en--	1147,3,1000,4000
+bossnia_m04	monster	--en--	1059,3,1000,4000
+bossnia_m04	monster	--en--	1150,3,1000,4000
+bossnia_m04	monster	--en--	2022,3,1000,4000
+bossnia_m04	monster	--en--	1087,3,1000,4000
+bossnia_m04	monster	--en--	1190,3,1000,4000
+bossnia_m04	monster	--en--	1038,3,1000,4000
+bossnia_m04	monster	--en--	1157,3,1000,4000
+bossnia_m04	monster	--en--	1159,3,1000,4000
+bossnia_m04	monster	--en--	1623,3,1000,4000
+bossnia_m04	monster	--en--	1650,3,1000,4000
+bossnia_m04	monster	--en--	1583,3,1000,4000
+bossnia_m04	monster	--en--	1708,3,1000,4000
+bossnia_m04	monster	--en--	1312,3,1000,4000
+bossnia_m04	monster	--en--	1751,3,1000,4000
+bossnia_m04	monster	--en--	1685,3,1000,4000
+bossnia_m04	monster	--en--	1648,3,1000,4000
+bossnia_m04	monster	--en--	1917,3,1000,4000
+bossnia_m04	monster	--en--	1658,3,1000,4000
+
+bossnia_m05	monster	--en--	1096,3,1000,4000
+bossnia_m05	monster	--en--	1120,3,1000,4000
+bossnia_m05	monster	--en--	1582,3,1000,4000
+bossnia_m05	monster	--en--	1511,3,1000,4000
+bossnia_m05	monster	--en--	1647,3,1000,4000
+bossnia_m05	monster	--en--	1785,3,1000,4000
+bossnia_m05	monster	--en--	1630,3,1000,4000
+bossnia_m05	monster	--en--	1039,3,1000,4000
+bossnia_m05	monster	--en--	1874,3,1000,4000
+bossnia_m05	monster	--en--	2068,3,1000,4000
+bossnia_m05	monster	--en--	1272,3,1000,4000
+bossnia_m05	monster	--en--	1719,3,1000,4000
+bossnia_m05	monster	--en--	1046,3,1000,4000
+bossnia_m05	monster	--en--	1389,3,1000,4000
+bossnia_m05	monster	--en--	1112,3,1000,4000
+bossnia_m05	monster	--en--	1115,3,1000,4000
+bossnia_m05	monster	--en--	1418,3,1000,4000
+bossnia_m05	monster	--en--	1871,3,1000,4000
+bossnia_m05	monster	--en--	1252,3,1000,4000
+bossnia_m05	monster	--en--	1768,3,1000,4000
+bossnia_m05	monster	--en--	1086,3,1000,4000
+bossnia_m05	monster	--en--	1885,3,1000,4000
+bossnia_m05	monster	--en--	1649,3,1000,4000
+bossnia_m05	monster	--en--	1651,3,1000,4000
+bossnia_m05	monster	--en--	1832,3,1000,4000
+bossnia_m05	monster	--en--	1492,3,1000,4000
+bossnia_m05	monster	--en--	1734,3,1000,4000
+bossnia_m05	monster	--en--	1251,3,1000,4000
+bossnia_m05	monster	--en--	1779,3,1000,4000
+bossnia_m05	monster	--en--	1688,3,1000,4000
+bossnia_m05	monster	--en--	1646,3,1000,4000
+bossnia_m05	monster	--en--	1373,3,1000,4000
+bossnia_m05	monster	--en--	1147,3,1000,4000
+bossnia_m05	monster	--en--	1059,3,1000,4000
+bossnia_m05	monster	--en--	1150,3,1000,4000
+bossnia_m05	monster	--en--	2022,3,1000,4000
+bossnia_m05	monster	--en--	1087,3,1000,4000
+bossnia_m05	monster	--en--	1190,3,1000,4000
+bossnia_m05	monster	--en--	1038,3,1000,4000
+bossnia_m05	monster	--en--	1157,3,1000,4000
+bossnia_m05	monster	--en--	1159,3,1000,4000
+bossnia_m05	monster	--en--	1623,3,1000,4000
+bossnia_m05	monster	--en--	1650,3,1000,4000
+bossnia_m05	monster	--en--	1583,3,1000,4000
+bossnia_m05	monster	--en--	1708,3,1000,4000
+bossnia_m05	monster	--en--	1312,3,1000,4000
+bossnia_m05	monster	--en--	1751,3,1000,4000
+bossnia_m05	monster	--en--	1685,3,1000,4000
+bossnia_m05	monster	--en--	1648,3,1000,4000
+bossnia_m05	monster	--en--	1917,3,1000,4000
+bossnia_m05	monster	--en--	1658,3,1000,4000
+
+bossnia_m06	monster	--en--	1096,3,1000,4000
+bossnia_m06	monster	--en--	1120,3,1000,4000
+bossnia_m06	monster	--en--	1582,3,1000,4000
+bossnia_m06	monster	--en--	1511,3,1000,4000
+bossnia_m06	monster	--en--	1647,3,1000,4000
+bossnia_m06	monster	--en--	1785,3,1000,4000
+bossnia_m06	monster	--en--	1630,3,1000,4000
+bossnia_m06	monster	--en--	1039,3,1000,4000
+bossnia_m06	monster	--en--	1874,3,1000,4000
+bossnia_m06	monster	--en--	2068,3,1000,4000
+bossnia_m06	monster	--en--	1272,3,1000,4000
+bossnia_m06	monster	--en--	1719,3,1000,4000
+bossnia_m06	monster	--en--	1046,3,1000,4000
+bossnia_m06	monster	--en--	1389,3,1000,4000
+bossnia_m06	monster	--en--	1112,3,1000,4000
+bossnia_m06	monster	--en--	1115,3,1000,4000
+bossnia_m06	monster	--en--	1418,3,1000,4000
+bossnia_m06	monster	--en--	1871,3,1000,4000
+bossnia_m06	monster	--en--	1252,3,1000,4000
+bossnia_m06	monster	--en--	1768,3,1000,4000
+bossnia_m06	monster	--en--	1086,3,1000,4000
+bossnia_m06	monster	--en--	1885,3,1000,4000
+bossnia_m06	monster	--en--	1649,3,1000,4000
+bossnia_m06	monster	--en--	1651,3,1000,4000
+bossnia_m06	monster	--en--	1832,3,1000,4000
+bossnia_m06	monster	--en--	1492,3,1000,4000
+bossnia_m06	monster	--en--	1734,3,1000,4000
+bossnia_m06	monster	--en--	1251,3,1000,4000
+bossnia_m06	monster	--en--	1779,3,1000,4000
+bossnia_m06	monster	--en--	1688,3,1000,4000
+bossnia_m06	monster	--en--	1646,3,1000,4000
+bossnia_m06	monster	--en--	1373,3,1000,4000
+bossnia_m06	monster	--en--	1147,3,1000,4000
+bossnia_m06	monster	--en--	1059,3,1000,4000
+bossnia_m06	monster	--en--	1150,3,1000,4000
+bossnia_m06	monster	--en--	2022,3,1000,4000
+bossnia_m06	monster	--en--	1087,3,1000,4000
+bossnia_m06	monster	--en--	1190,3,1000,4000
+bossnia_m06	monster	--en--	1038,3,1000,4000
+bossnia_m06	monster	--en--	1157,3,1000,4000
+bossnia_m06	monster	--en--	1159,3,1000,4000
+bossnia_m06	monster	--en--	1623,3,1000,4000
+bossnia_m06	monster	--en--	1650,3,1000,4000
+bossnia_m06	monster	--en--	1583,3,1000,4000
+bossnia_m06	monster	--en--	1708,3,1000,4000
+bossnia_m06	monster	--en--	1312,3,1000,4000
+bossnia_m06	monster	--en--	1751,3,1000,4000
+bossnia_m06	monster	--en--	1685,3,1000,4000
+bossnia_m06	monster	--en--	1648,3,1000,4000
+bossnia_m06	monster	--en--	1917,3,1000,4000
+bossnia_m06	monster	--en--	1658,3,1000,4000
+
+bossnia_m07	monster	--en--	1096,3,1000,4000
+bossnia_m07	monster	--en--	1120,3,1000,4000
+bossnia_m07	monster	--en--	1582,3,1000,4000
+bossnia_m07	monster	--en--	1511,3,1000,4000
+bossnia_m07	monster	--en--	1647,3,1000,4000
+bossnia_m07	monster	--en--	1785,3,1000,4000
+bossnia_m07	monster	--en--	1630,3,1000,4000
+bossnia_m07	monster	--en--	1039,3,1000,4000
+bossnia_m07	monster	--en--	1874,3,1000,4000
+bossnia_m07	monster	--en--	2068,3,1000,4000
+bossnia_m07	monster	--en--	1272,3,1000,4000
+bossnia_m07	monster	--en--	1719,3,1000,4000
+bossnia_m07	monster	--en--	1046,3,1000,4000
+bossnia_m07	monster	--en--	1389,3,1000,4000
+bossnia_m07	monster	--en--	1112,3,1000,4000
+bossnia_m07	monster	--en--	1115,3,1000,4000
+bossnia_m07	monster	--en--	1418,3,1000,4000
+bossnia_m07	monster	--en--	1871,3,1000,4000
+bossnia_m07	monster	--en--	1252,3,1000,4000
+bossnia_m07	monster	--en--	1768,3,1000,4000
+bossnia_m07	monster	--en--	1086,3,1000,4000
+bossnia_m07	monster	--en--	1885,3,1000,4000
+bossnia_m07	monster	--en--	1649,3,1000,4000
+bossnia_m07	monster	--en--	1651,3,1000,4000
+bossnia_m07	monster	--en--	1832,3,1000,4000
+bossnia_m07	monster	--en--	1492,3,1000,4000
+bossnia_m07	monster	--en--	1734,3,1000,4000
+bossnia_m07	monster	--en--	1251,3,1000,4000
+bossnia_m07	monster	--en--	1779,3,1000,4000
+bossnia_m07	monster	--en--	1688,3,1000,4000
+bossnia_m07	monster	--en--	1646,3,1000,4000
+bossnia_m07	monster	--en--	1373,3,1000,4000
+bossnia_m07	monster	--en--	1147,3,1000,4000
+bossnia_m07	monster	--en--	1059,3,1000,4000
+bossnia_m07	monster	--en--	1150,3,1000,4000
+bossnia_m07	monster	--en--	2022,3,1000,4000
+bossnia_m07	monster	--en--	1087,3,1000,4000
+bossnia_m07	monster	--en--	1190,3,1000,4000
+bossnia_m07	monster	--en--	1038,3,1000,4000
+bossnia_m07	monster	--en--	1157,3,1000,4000
+bossnia_m07	monster	--en--	1159,3,1000,4000
+bossnia_m07	monster	--en--	1623,3,1000,4000
+bossnia_m07	monster	--en--	1650,3,1000,4000
+bossnia_m07	monster	--en--	1583,3,1000,4000
+bossnia_m07	monster	--en--	1708,3,1000,4000
+bossnia_m07	monster	--en--	1312,3,1000,4000
+bossnia_m07	monster	--en--	1751,3,1000,4000
+bossnia_m07	monster	--en--	1685,3,1000,4000
+bossnia_m07	monster	--en--	1648,3,1000,4000
+bossnia_m07	monster	--en--	1917,3,1000,4000
+bossnia_m07	monster	--en--	1658,3,1000,4000
+
+bossnia_m08	monster	--en--	1096,3,1000,4000
+bossnia_m08	monster	--en--	1120,3,1000,4000
+bossnia_m08	monster	--en--	1582,3,1000,4000
+bossnia_m08	monster	--en--	1511,3,1000,4000
+bossnia_m08	monster	--en--	1647,3,1000,4000
+bossnia_m08	monster	--en--	1785,3,1000,4000
+bossnia_m08	monster	--en--	1630,3,1000,4000
+bossnia_m08	monster	--en--	1039,3,1000,4000
+bossnia_m08	monster	--en--	1874,3,1000,4000
+bossnia_m08	monster	--en--	2068,3,1000,4000
+bossnia_m08	monster	--en--	1272,3,1000,4000
+bossnia_m08	monster	--en--	1719,3,1000,4000
+bossnia_m08	monster	--en--	1046,3,1000,4000
+bossnia_m08	monster	--en--	1389,3,1000,4000
+bossnia_m08	monster	--en--	1112,3,1000,4000
+bossnia_m08	monster	--en--	1115,3,1000,4000
+bossnia_m08	monster	--en--	1418,3,1000,4000
+bossnia_m08	monster	--en--	1871,3,1000,4000
+bossnia_m08	monster	--en--	1252,3,1000,4000
+bossnia_m08	monster	--en--	1768,3,1000,4000
+bossnia_m08	monster	--en--	1086,3,1000,4000
+bossnia_m08	monster	--en--	1885,3,1000,4000
+bossnia_m08	monster	--en--	1649,3,1000,4000
+bossnia_m08	monster	--en--	1651,3,1000,4000
+bossnia_m08	monster	--en--	1832,3,1000,4000
+bossnia_m08	monster	--en--	1492,3,1000,4000
+bossnia_m08	monster	--en--	1734,3,1000,4000
+bossnia_m08	monster	--en--	1251,3,1000,4000
+bossnia_m08	monster	--en--	1779,3,1000,4000
+bossnia_m08	monster	--en--	1688,3,1000,4000
+bossnia_m08	monster	--en--	1646,3,1000,4000
+bossnia_m08	monster	--en--	1373,3,1000,4000
+bossnia_m08	monster	--en--	1147,3,1000,4000
+bossnia_m08	monster	--en--	1059,3,1000,4000
+bossnia_m08	monster	--en--	1150,3,1000,4000
+bossnia_m08	monster	--en--	2022,3,1000,4000
+bossnia_m08	monster	--en--	1087,3,1000,4000
+bossnia_m08	monster	--en--	1190,3,1000,4000
+bossnia_m08	monster	--en--	1038,3,1000,4000
+bossnia_m08	monster	--en--	1157,3,1000,4000
+bossnia_m08	monster	--en--	1159,3,1000,4000
+bossnia_m08	monster	--en--	1623,3,1000,4000
+bossnia_m08	monster	--en--	1650,3,1000,4000
+bossnia_m08	monster	--en--	1583,3,1000,4000
+bossnia_m08	monster	--en--	1708,3,1000,4000
+bossnia_m08	monster	--en--	1312,3,1000,4000
+bossnia_m08	monster	--en--	1751,3,1000,4000
+bossnia_m08	monster	--en--	1685,3,1000,4000
+bossnia_m08	monster	--en--	1648,3,1000,4000
+bossnia_m08	monster	--en--	1917,3,1000,4000
+bossnia_m08	monster	--en--	1658,3,1000,4000
+
+bossnia_m09	monster	--en--	1096,4,1000,4000
+bossnia_m09	monster	--en--	1120,4,1000,4000
+bossnia_m09	monster	--en--	1582,4,1000,4000
+bossnia_m09	monster	--en--	1511,4,1000,4000
+bossnia_m09	monster	--en--	1647,4,1000,4000
+bossnia_m09	monster	--en--	1785,4,1000,4000
+bossnia_m09	monster	--en--	1630,4,1000,4000
+bossnia_m09	monster	--en--	1039,4,1000,4000
+bossnia_m09	monster	--en--	1874,4,1000,4000
+bossnia_m09	monster	--en--	2068,4,1000,4000
+bossnia_m09	monster	--en--	1272,4,1000,4000
+bossnia_m09	monster	--en--	1719,4,1000,4000
+bossnia_m09	monster	--en--	1046,4,1000,4000
+bossnia_m09	monster	--en--	1389,4,1000,4000
+bossnia_m09	monster	--en--	1112,4,1000,4000
+bossnia_m09	monster	--en--	1115,4,1000,4000
+bossnia_m09	monster	--en--	1418,4,1000,4000
+bossnia_m09	monster	--en--	1871,4,1000,4000
+bossnia_m09	monster	--en--	1252,4,1000,4000
+bossnia_m09	monster	--en--	1768,4,1000,4000
+bossnia_m09	monster	--en--	1086,4,1000,4000
+bossnia_m09	monster	--en--	1885,4,1000,4000
+bossnia_m09	monster	--en--	1649,4,1000,4000
+bossnia_m09	monster	--en--	1651,4,1000,4000
+bossnia_m09	monster	--en--	1832,4,1000,4000
+bossnia_m09	monster	--en--	1492,4,1000,4000
+bossnia_m09	monster	--en--	1734,4,1000,4000
+bossnia_m09	monster	--en--	1251,4,1000,4000
+bossnia_m09	monster	--en--	1779,4,1000,4000
+bossnia_m09	monster	--en--	1688,4,1000,4000
+bossnia_m09	monster	--en--	1646,4,1000,4000
+bossnia_m09	monster	--en--	1373,4,1000,4000
+bossnia_m09	monster	--en--	1147,4,1000,4000
+bossnia_m09	monster	--en--	1059,4,1000,4000
+bossnia_m09	monster	--en--	1150,4,1000,4000
+bossnia_m09	monster	--en--	2022,4,1000,4000
+bossnia_m09	monster	--en--	1087,4,1000,4000
+bossnia_m09	monster	--en--	1190,4,1000,4000
+bossnia_m09	monster	--en--	1038,4,1000,4000
+bossnia_m09	monster	--en--	1157,4,1000,4000
+bossnia_m09	monster	--en--	1159,4,1000,4000
+bossnia_m09	monster	--en--	1623,4,1000,4000
+bossnia_m09	monster	--en--	1650,4,1000,4000
+bossnia_m09	monster	--en--	1583,4,1000,4000
+bossnia_m09	monster	--en--	1708,4,1000,4000
+bossnia_m09	monster	--en--	1312,4,1000,4000
+bossnia_m09	monster	--en--	1751,4,1000,4000
+bossnia_m09	monster	--en--	1685,4,1000,4000
+bossnia_m09	monster	--en--	1648,4,1000,4000
+bossnia_m09	monster	--en--	1917,4,1000,4000
+bossnia_m09	monster	--en--	1658,4,1000,4000
+
+bossnia_m10	monster	--en--	1096,5,1000,4000
+bossnia_m10	monster	--en--	1120,5,1000,4000
+bossnia_m10	monster	--en--	1582,5,1000,4000
+bossnia_m10	monster	--en--	1511,5,1000,4000
+bossnia_m10	monster	--en--	1647,5,1000,4000
+bossnia_m10	monster	--en--	1785,5,1000,4000
+bossnia_m10	monster	--en--	1630,5,1000,4000
+bossnia_m10	monster	--en--	1039,5,1000,4000
+bossnia_m10	monster	--en--	1874,5,1000,4000
+bossnia_m10	monster	--en--	2068,5,1000,4000
+bossnia_m10	monster	--en--	1272,5,1000,4000
+bossnia_m10	monster	--en--	1719,5,1000,4000
+bossnia_m10	monster	--en--	1046,5,1000,4000
+bossnia_m10	monster	--en--	1389,5,1000,4000
+bossnia_m10	monster	--en--	1112,5,1000,4000
+bossnia_m10	monster	--en--	1115,5,1000,4000
+bossnia_m10	monster	--en--	1418,5,1000,4000
+bossnia_m10	monster	--en--	1871,5,1000,4000
+bossnia_m10	monster	--en--	1252,5,1000,4000
+bossnia_m10	monster	--en--	1768,5,1000,4000
+bossnia_m10	monster	--en--	1086,5,1000,4000
+bossnia_m10	monster	--en--	1885,5,1000,4000
+bossnia_m10	monster	--en--	1649,5,1000,4000
+bossnia_m10	monster	--en--	1651,5,1000,4000
+bossnia_m10	monster	--en--	1832,5,1000,4000
+bossnia_m10	monster	--en--	1492,5,1000,4000
+bossnia_m10	monster	--en--	1734,5,1000,4000
+bossnia_m10	monster	--en--	1251,5,1000,4000
+bossnia_m10	monster	--en--	1779,5,1000,4000
+bossnia_m10	monster	--en--	1688,5,1000,4000
+bossnia_m10	monster	--en--	1646,5,1000,4000
+bossnia_m10	monster	--en--	1373,5,1000,4000
+bossnia_m10	monster	--en--	1147,5,1000,4000
+bossnia_m10	monster	--en--	1059,5,1000,4000
+bossnia_m10	monster	--en--	1150,5,1000,4000
+bossnia_m10	monster	--en--	2022,5,1000,4000
+bossnia_m10	monster	--en--	1087,5,1000,4000
+bossnia_m10	monster	--en--	1190,5,1000,4000
+bossnia_m10	monster	--en--	1038,5,1000,4000
+bossnia_m10	monster	--en--	1157,5,1000,4000
+bossnia_m10	monster	--en--	1159,5,1000,4000
+bossnia_m10	monster	--en--	1623,5,1000,4000
+bossnia_m10	monster	--en--	1650,5,1000,4000
+bossnia_m10	monster	--en--	1583,5,1000,4000
+bossnia_m10	monster	--en--	1708,5,1000,4000
+bossnia_m10	monster	--en--	1312,5,1000,4000
+bossnia_m10	monster	--en--	1751,5,1000,4000
+bossnia_m10	monster	--en--	1685,5,1000,4000
+bossnia_m10	monster	--en--	1648,5,1000,4000
+bossnia_m10	monster	--en--	1917,5,1000,4000
+bossnia_m10	monster	--en--	1658,5,1000,4000
+
+bossnia_m11	monster	--en--	1096,5,1000,4000
+bossnia_m11	monster	--en--	1120,5,1000,4000
+bossnia_m11	monster	--en--	1582,5,1000,4000
+bossnia_m11	monster	--en--	1511,5,1000,4000
+bossnia_m11	monster	--en--	1647,5,1000,4000
+bossnia_m11	monster	--en--	1785,5,1000,4000
+bossnia_m11	monster	--en--	1630,5,1000,4000
+bossnia_m11	monster	--en--	1039,5,1000,4000
+bossnia_m11	monster	--en--	1874,5,1000,4000
+bossnia_m11	monster	--en--	2068,5,1000,4000
+bossnia_m11	monster	--en--	1272,5,1000,4000
+bossnia_m11	monster	--en--	1719,5,1000,4000
+bossnia_m11	monster	--en--	1046,5,1000,4000
+bossnia_m11	monster	--en--	1389,5,1000,4000
+bossnia_m11	monster	--en--	1112,5,1000,4000
+bossnia_m11	monster	--en--	1115,5,1000,4000
+bossnia_m11	monster	--en--	1418,5,1000,4000
+bossnia_m11	monster	--en--	1871,5,1000,4000
+bossnia_m11	monster	--en--	1252,5,1000,4000
+bossnia_m11	monster	--en--	1768,5,1000,4000
+bossnia_m11	monster	--en--	1086,5,1000,4000
+bossnia_m11	monster	--en--	1885,5,1000,4000
+bossnia_m11	monster	--en--	1649,5,1000,4000
+bossnia_m11	monster	--en--	1651,5,1000,4000
+bossnia_m11	monster	--en--	1832,5,1000,4000
+bossnia_m11	monster	--en--	1492,5,1000,4000
+bossnia_m11	monster	--en--	1734,5,1000,4000
+bossnia_m11	monster	--en--	1251,5,1000,4000
+bossnia_m11	monster	--en--	1779,5,1000,4000
+bossnia_m11	monster	--en--	1688,5,1000,4000
+bossnia_m11	monster	--en--	1646,5,1000,4000
+bossnia_m11	monster	--en--	1373,5,1000,4000
+bossnia_m11	monster	--en--	1147,5,1000,4000
+bossnia_m11	monster	--en--	1059,5,1000,4000
+bossnia_m11	monster	--en--	1150,5,1000,4000
+bossnia_m11	monster	--en--	2022,5,1000,4000
+bossnia_m11	monster	--en--	1087,5,1000,4000
+bossnia_m11	monster	--en--	1190,5,1000,4000
+bossnia_m11	monster	--en--	1038,5,1000,4000
+bossnia_m11	monster	--en--	1157,5,1000,4000
+bossnia_m11	monster	--en--	1159,5,1000,4000
+bossnia_m11	monster	--en--	1623,5,1000,4000
+bossnia_m11	monster	--en--	1650,5,1000,4000
+bossnia_m11	monster	--en--	1583,5,1000,4000
+bossnia_m11	monster	--en--	1708,5,1000,4000
+bossnia_m11	monster	--en--	1312,5,1000,4000
+bossnia_m11	monster	--en--	1751,5,1000,4000
+bossnia_m11	monster	--en--	1685,5,1000,4000
+bossnia_m11	monster	--en--	1648,5,1000,4000
+bossnia_m11	monster	--en--	1917,5,1000,4000
+bossnia_m11	monster	--en--	1658,5,1000,4000
+
+bossnia_m12	monster	--en--	1096,5,1000,4000
+bossnia_m12	monster	--en--	1120,5,1000,4000
+bossnia_m12	monster	--en--	1582,5,1000,4000
+bossnia_m12	monster	--en--	1511,5,1000,4000
+bossnia_m12	monster	--en--	1647,5,1000,4000
+bossnia_m12	monster	--en--	1785,5,1000,4000
+bossnia_m12	monster	--en--	1630,5,1000,4000
+bossnia_m12	monster	--en--	1039,5,1000,4000
+bossnia_m12	monster	--en--	1874,5,1000,4000
+bossnia_m12	monster	--en--	2068,5,1000,4000
+bossnia_m12	monster	--en--	1272,5,1000,4000
+bossnia_m12	monster	--en--	1719,5,1000,4000
+bossnia_m12	monster	--en--	1046,5,1000,4000
+bossnia_m12	monster	--en--	1389,5,1000,4000
+bossnia_m12	monster	--en--	1112,5,1000,4000
+bossnia_m12	monster	--en--	1115,5,1000,4000
+bossnia_m12	monster	--en--	1418,5,1000,4000
+bossnia_m12	monster	--en--	1871,5,1000,4000
+bossnia_m12	monster	--en--	1252,5,1000,4000
+bossnia_m12	monster	--en--	1768,5,1000,4000
+bossnia_m12	monster	--en--	1086,5,1000,4000
+bossnia_m12	monster	--en--	1885,5,1000,4000
+bossnia_m12	monster	--en--	1649,5,1000,4000
+bossnia_m12	monster	--en--	1651,5,1000,4000
+bossnia_m12	monster	--en--	1832,5,1000,4000
+bossnia_m12	monster	--en--	1492,5,1000,4000
+bossnia_m12	monster	--en--	1734,5,1000,4000
+bossnia_m12	monster	--en--	1251,5,1000,4000
+bossnia_m12	monster	--en--	1779,5,1000,4000
+bossnia_m12	monster	--en--	1688,5,1000,4000
+bossnia_m12	monster	--en--	1646,5,1000,4000
+bossnia_m12	monster	--en--	1373,5,1000,4000
+bossnia_m12	monster	--en--	1147,5,1000,4000
+bossnia_m12	monster	--en--	1059,5,1000,4000
+bossnia_m12	monster	--en--	1150,5,1000,4000
+bossnia_m12	monster	--en--	2022,5,1000,4000
+bossnia_m12	monster	--en--	1087,5,1000,4000
+bossnia_m12	monster	--en--	1190,5,1000,4000
+bossnia_m12	monster	--en--	1038,5,1000,4000
+bossnia_m12	monster	--en--	1157,5,1000,4000
+bossnia_m12	monster	--en--	1159,5,1000,4000
+bossnia_m12	monster	--en--	1623,5,1000,4000
+bossnia_m12	monster	--en--	1650,5,1000,4000
+bossnia_m12	monster	--en--	1583,5,1000,4000
+bossnia_m12	monster	--en--	1708,5,1000,4000
+bossnia_m12	monster	--en--	1312,5,1000,4000
+bossnia_m12	monster	--en--	1751,5,1000,4000
+bossnia_m12	monster	--en--	1685,5,1000,4000
+bossnia_m12	monster	--en--	1648,5,1000,4000
+bossnia_m12	monster	--en--	1917,5,1000,4000
+bossnia_m12	monster	--en--	1658,5,1000,4000
+
+bossnia_m13	monster	--en--	1096,5,1000,4000
+bossnia_m13	monster	--en--	1120,5,1000,4000
+bossnia_m13	monster	--en--	1582,5,1000,4000
+bossnia_m13	monster	--en--	1511,5,1000,4000
+bossnia_m13	monster	--en--	1647,5,1000,4000
+bossnia_m13	monster	--en--	1785,5,1000,4000
+bossnia_m13	monster	--en--	1630,5,1000,4000
+bossnia_m13	monster	--en--	1039,5,1000,4000
+bossnia_m13	monster	--en--	1874,5,1000,4000
+bossnia_m13	monster	--en--	2068,5,1000,4000
+bossnia_m13	monster	--en--	1272,5,1000,4000
+bossnia_m13	monster	--en--	1719,5,1000,4000
+bossnia_m13	monster	--en--	1046,5,1000,4000
+bossnia_m13	monster	--en--	1389,5,1000,4000
+bossnia_m13	monster	--en--	1112,5,1000,4000
+bossnia_m13	monster	--en--	1115,5,1000,4000
+bossnia_m13	monster	--en--	1418,5,1000,4000
+bossnia_m13	monster	--en--	1871,5,1000,4000
+bossnia_m13	monster	--en--	1252,5,1000,4000
+bossnia_m13	monster	--en--	1768,5,1000,4000
+bossnia_m13	monster	--en--	1086,5,1000,4000
+bossnia_m13	monster	--en--	1885,5,1000,4000
+bossnia_m13	monster	--en--	1649,5,1000,4000
+bossnia_m13	monster	--en--	1651,5,1000,4000
+bossnia_m13	monster	--en--	1832,5,1000,4000
+bossnia_m13	monster	--en--	1492,5,1000,4000
+bossnia_m13	monster	--en--	1734,5,1000,4000
+bossnia_m13	monster	--en--	1251,5,1000,4000
+bossnia_m13	monster	--en--	1779,5,1000,4000
+bossnia_m13	monster	--en--	1688,5,1000,4000
+bossnia_m13	monster	--en--	1646,5,1000,4000
+bossnia_m13	monster	--en--	1373,5,1000,4000
+bossnia_m13	monster	--en--	1147,5,1000,4000
+bossnia_m13	monster	--en--	1059,5,1000,4000
+bossnia_m13	monster	--en--	1150,5,1000,4000
+bossnia_m13	monster	--en--	2022,5,1000,4000
+bossnia_m13	monster	--en--	1087,5,1000,4000
+bossnia_m13	monster	--en--	1190,5,1000,4000
+bossnia_m13	monster	--en--	1038,5,1000,4000
+bossnia_m13	monster	--en--	1157,5,1000,4000
+bossnia_m13	monster	--en--	1159,5,1000,4000
+bossnia_m13	monster	--en--	1623,5,1000,4000
+bossnia_m13	monster	--en--	1650,5,1000,4000
+bossnia_m13	monster	--en--	1583,5,1000,4000
+bossnia_m13	monster	--en--	1708,5,1000,4000
+bossnia_m13	monster	--en--	1312,5,1000,4000
+bossnia_m13	monster	--en--	1751,5,1000,4000
+bossnia_m13	monster	--en--	1685,5,1000,4000
+bossnia_m13	monster	--en--	1648,5,1000,4000
+bossnia_m13	monster	--en--	1917,5,1000,4000
+bossnia_m13	monster	--en--	1658,5,1000,4000
+
+bossnia_m14	monster	--en--	1096,5,1000,4000
+bossnia_m14	monster	--en--	1120,5,1000,4000
+bossnia_m14	monster	--en--	1582,5,1000,4000
+bossnia_m14	monster	--en--	1511,5,1000,4000
+bossnia_m14	monster	--en--	1647,5,1000,4000
+bossnia_m14	monster	--en--	1785,5,1000,4000
+bossnia_m14	monster	--en--	1630,5,1000,4000
+bossnia_m14	monster	--en--	1039,5,1000,4000
+bossnia_m14	monster	--en--	1874,5,1000,4000
+bossnia_m14	monster	--en--	2068,5,1000,4000
+bossnia_m14	monster	--en--	1272,5,1000,4000
+bossnia_m14	monster	--en--	1719,5,1000,4000
+bossnia_m14	monster	--en--	1046,5,1000,4000
+bossnia_m14	monster	--en--	1389,5,1000,4000
+bossnia_m14	monster	--en--	1112,5,1000,4000
+bossnia_m14	monster	--en--	1115,5,1000,4000
+bossnia_m14	monster	--en--	1418,5,1000,4000
+bossnia_m14	monster	--en--	1871,5,1000,4000
+bossnia_m14	monster	--en--	1252,5,1000,4000
+bossnia_m14	monster	--en--	1768,5,1000,4000
+bossnia_m14	monster	--en--	1086,5,1000,4000
+bossnia_m14	monster	--en--	1885,5,1000,4000
+bossnia_m14	monster	--en--	1649,5,1000,4000
+bossnia_m14	monster	--en--	1651,5,1000,4000
+bossnia_m14	monster	--en--	1832,5,1000,4000
+bossnia_m14	monster	--en--	1492,5,1000,4000
+bossnia_m14	monster	--en--	1734,5,1000,4000
+bossnia_m14	monster	--en--	1251,5,1000,4000
+bossnia_m14	monster	--en--	1779,5,1000,4000
+bossnia_m14	monster	--en--	1688,5,1000,4000
+bossnia_m14	monster	--en--	1646,5,1000,4000
+bossnia_m14	monster	--en--	1373,5,1000,4000
+bossnia_m14	monster	--en--	1147,5,1000,4000
+bossnia_m14	monster	--en--	1059,5,1000,4000
+bossnia_m14	monster	--en--	1150,5,1000,4000
+bossnia_m14	monster	--en--	2022,5,1000,4000
+bossnia_m14	monster	--en--	1087,5,1000,4000
+bossnia_m14	monster	--en--	1190,5,1000,4000
+bossnia_m14	monster	--en--	1038,5,1000,4000
+bossnia_m14	monster	--en--	1157,5,1000,4000
+bossnia_m14	monster	--en--	1159,5,1000,4000
+bossnia_m14	monster	--en--	1623,5,1000,4000
+bossnia_m14	monster	--en--	1650,5,1000,4000
+bossnia_m14	monster	--en--	1583,5,1000,4000
+bossnia_m14	monster	--en--	1708,5,1000,4000
+bossnia_m14	monster	--en--	1312,5,1000,4000
+bossnia_m14	monster	--en--	1751,5,1000,4000
+bossnia_m14	monster	--en--	1685,5,1000,4000
+bossnia_m14	monster	--en--	1648,5,1000,4000
+bossnia_m14	monster	--en--	1917,5,1000,4000
+bossnia_m14	monster	--en--	1658,5,1000,4000
+
+bossnia_m15	monster	--en--	1096,6,1000,4000
+bossnia_m15	monster	--en--	1120,6,1000,4000
+bossnia_m15	monster	--en--	1582,6,1000,4000
+bossnia_m15	monster	--en--	1511,6,1000,4000
+bossnia_m15	monster	--en--	1647,6,1000,4000
+bossnia_m15	monster	--en--	1785,6,1000,4000
+bossnia_m15	monster	--en--	1630,6,1000,4000
+bossnia_m15	monster	--en--	1039,6,1000,4000
+bossnia_m15	monster	--en--	1874,6,1000,4000
+bossnia_m15	monster	--en--	2068,6,1000,4000
+bossnia_m15	monster	--en--	1272,6,1000,4000
+bossnia_m15	monster	--en--	1719,6,1000,4000
+bossnia_m15	monster	--en--	1046,6,1000,4000
+bossnia_m15	monster	--en--	1389,6,1000,4000
+bossnia_m15	monster	--en--	1112,6,1000,4000
+bossnia_m15	monster	--en--	1115,6,1000,4000
+bossnia_m15	monster	--en--	1418,6,1000,4000
+bossnia_m15	monster	--en--	1871,6,1000,4000
+bossnia_m15	monster	--en--	1252,6,1000,4000
+bossnia_m15	monster	--en--	1768,6,1000,4000
+bossnia_m15	monster	--en--	1086,6,1000,4000
+bossnia_m15	monster	--en--	1885,6,1000,4000
+bossnia_m15	monster	--en--	1649,6,1000,4000
+bossnia_m15	monster	--en--	1651,6,1000,4000
+bossnia_m15	monster	--en--	1832,6,1000,4000
+bossnia_m15	monster	--en--	1492,6,1000,4000
+bossnia_m15	monster	--en--	1734,6,1000,4000
+bossnia_m15	monster	--en--	1251,6,1000,4000
+bossnia_m15	monster	--en--	1779,6,1000,4000
+bossnia_m15	monster	--en--	1688,6,1000,4000
+bossnia_m15	monster	--en--	1646,6,1000,4000
+bossnia_m15	monster	--en--	1373,6,1000,4000
+bossnia_m15	monster	--en--	1147,6,1000,4000
+bossnia_m15	monster	--en--	1059,6,1000,4000
+bossnia_m15	monster	--en--	1150,6,1000,4000
+bossnia_m15	monster	--en--	2022,6,1000,4000
+bossnia_m15	monster	--en--	1087,6,1000,4000
+bossnia_m15	monster	--en--	1190,6,1000,4000
+bossnia_m15	monster	--en--	1038,6,1000,4000
+bossnia_m15	monster	--en--	1157,6,1000,4000
+bossnia_m15	monster	--en--	1159,6,1000,4000
+bossnia_m15	monster	--en--	1623,6,1000,4000
+bossnia_m15	monster	--en--	1650,6,1000,4000
+bossnia_m15	monster	--en--	1583,6,1000,4000
+bossnia_m15	monster	--en--	1708,6,1000,4000
+bossnia_m15	monster	--en--	1312,6,1000,4000
+bossnia_m15	monster	--en--	1751,6,1000,4000
+bossnia_m15	monster	--en--	1685,6,1000,4000
+bossnia_m15	monster	--en--	1648,6,1000,4000
+bossnia_m15	monster	--en--	1917,6,1000,4000
+bossnia_m15	monster	--en--	1658,6,1000,4000
+
+bossnia_m16	monster	--en--	1096,6,1000,4000
+bossnia_m16	monster	--en--	1120,6,1000,4000
+bossnia_m16	monster	--en--	1582,6,1000,4000
+bossnia_m16	monster	--en--	1511,6,1000,4000
+bossnia_m16	monster	--en--	1647,6,1000,4000
+bossnia_m16	monster	--en--	1785,6,1000,4000
+bossnia_m16	monster	--en--	1630,6,1000,4000
+bossnia_m16	monster	--en--	1039,6,1000,4000
+bossnia_m16	monster	--en--	1874,6,1000,4000
+bossnia_m16	monster	--en--	2068,6,1000,4000
+bossnia_m16	monster	--en--	1272,6,1000,4000
+bossnia_m16	monster	--en--	1719,6,1000,4000
+bossnia_m16	monster	--en--	1046,6,1000,4000
+bossnia_m16	monster	--en--	1389,6,1000,4000
+bossnia_m16	monster	--en--	1112,6,1000,4000
+bossnia_m16	monster	--en--	1115,6,1000,4000
+bossnia_m16	monster	--en--	1418,6,1000,4000
+bossnia_m16	monster	--en--	1871,6,1000,4000
+bossnia_m16	monster	--en--	1252,6,1000,4000
+bossnia_m16	monster	--en--	1768,6,1000,4000
+bossnia_m16	monster	--en--	1086,6,1000,4000
+bossnia_m16	monster	--en--	1885,6,1000,4000
+bossnia_m16	monster	--en--	1649,6,1000,4000
+bossnia_m16	monster	--en--	1651,6,1000,4000
+bossnia_m16	monster	--en--	1832,6,1000,4000
+bossnia_m16	monster	--en--	1492,6,1000,4000
+bossnia_m16	monster	--en--	1734,6,1000,4000
+bossnia_m16	monster	--en--	1251,6,1000,4000
+bossnia_m16	monster	--en--	1779,6,1000,4000
+bossnia_m16	monster	--en--	1688,6,1000,4000
+bossnia_m16	monster	--en--	1646,6,1000,4000
+bossnia_m16	monster	--en--	1373,6,1000,4000
+bossnia_m16	monster	--en--	1147,6,1000,4000
+bossnia_m16	monster	--en--	1059,6,1000,4000
+bossnia_m16	monster	--en--	1150,6,1000,4000
+bossnia_m16	monster	--en--	2022,6,1000,4000
+bossnia_m16	monster	--en--	1087,6,1000,4000
+bossnia_m16	monster	--en--	1190,6,1000,4000
+bossnia_m16	monster	--en--	1038,6,1000,4000
+bossnia_m16	monster	--en--	1157,6,1000,4000
+bossnia_m16	monster	--en--	1159,6,1000,4000
+bossnia_m16	monster	--en--	1623,6,1000,4000
+bossnia_m16	monster	--en--	1650,6,1000,4000
+bossnia_m16	monster	--en--	1583,6,1000,4000
+bossnia_m16	monster	--en--	1708,6,1000,4000
+bossnia_m16	monster	--en--	1312,6,1000,4000
+bossnia_m16	monster	--en--	1751,6,1000,4000
+bossnia_m16	monster	--en--	1685,6,1000,4000
+bossnia_m16	monster	--en--	1648,6,1000,4000
+bossnia_m16	monster	--en--	1917,6,1000,4000
+bossnia_m16	monster	--en--	1658,6,1000,4000
+
+bossnia_m17	monster	--en--	1096,6,1000,4000
+bossnia_m17	monster	--en--	1120,6,1000,4000
+bossnia_m17	monster	--en--	1582,6,1000,4000
+bossnia_m17	monster	--en--	1511,6,1000,4000
+bossnia_m17	monster	--en--	1647,6,1000,4000
+bossnia_m17	monster	--en--	1785,6,1000,4000
+bossnia_m17	monster	--en--	1630,6,1000,4000
+bossnia_m17	monster	--en--	1039,6,1000,4000
+bossnia_m17	monster	--en--	1874,6,1000,4000
+bossnia_m17	monster	--en--	2068,6,1000,4000
+bossnia_m17	monster	--en--	1272,6,1000,4000
+bossnia_m17	monster	--en--	1719,6,1000,4000
+bossnia_m17	monster	--en--	1046,6,1000,4000
+bossnia_m17	monster	--en--	1389,6,1000,4000
+bossnia_m17	monster	--en--	1112,6,1000,4000
+bossnia_m17	monster	--en--	1115,6,1000,4000
+bossnia_m17	monster	--en--	1418,6,1000,4000
+bossnia_m17	monster	--en--	1871,6,1000,4000
+bossnia_m17	monster	--en--	1252,6,1000,4000
+bossnia_m17	monster	--en--	1768,6,1000,4000
+bossnia_m17	monster	--en--	1086,6,1000,4000
+bossnia_m17	monster	--en--	1885,6,1000,4000
+bossnia_m17	monster	--en--	1649,6,1000,4000
+bossnia_m17	monster	--en--	1651,6,1000,4000
+bossnia_m17	monster	--en--	1832,6,1000,4000
+bossnia_m17	monster	--en--	1492,6,1000,4000
+bossnia_m17	monster	--en--	1734,6,1000,4000
+bossnia_m17	monster	--en--	1251,6,1000,4000
+bossnia_m17	monster	--en--	1779,6,1000,4000
+bossnia_m17	monster	--en--	1688,6,1000,4000
+bossnia_m17	monster	--en--	1646,6,1000,4000
+bossnia_m17	monster	--en--	1373,6,1000,4000
+bossnia_m17	monster	--en--	1147,6,1000,4000
+bossnia_m17	monster	--en--	1059,6,1000,4000
+bossnia_m17	monster	--en--	1150,6,1000,4000
+bossnia_m17	monster	--en--	2022,6,1000,4000
+bossnia_m17	monster	--en--	1087,6,1000,4000
+bossnia_m17	monster	--en--	1190,6,1000,4000
+bossnia_m17	monster	--en--	1038,6,1000,4000
+bossnia_m17	monster	--en--	1157,6,1000,4000
+bossnia_m17	monster	--en--	1159,6,1000,4000
+bossnia_m17	monster	--en--	1623,6,1000,4000
+bossnia_m17	monster	--en--	1650,6,1000,4000
+bossnia_m17	monster	--en--	1583,6,1000,4000
+bossnia_m17	monster	--en--	1708,6,1000,4000
+bossnia_m17	monster	--en--	1312,6,1000,4000
+bossnia_m17	monster	--en--	1751,6,1000,4000
+bossnia_m17	monster	--en--	1685,6,1000,4000
+bossnia_m17	monster	--en--	1648,6,1000,4000
+bossnia_m17	monster	--en--	1917,6,1000,4000
+bossnia_m17	monster	--en--	1658,6,1000,4000
+
+bossnia_m18	monster	--en--	1096,6,1000,4000
+bossnia_m18	monster	--en--	1120,6,1000,4000
+bossnia_m18	monster	--en--	1582,6,1000,4000
+bossnia_m18	monster	--en--	1511,6,1000,4000
+bossnia_m18	monster	--en--	1647,6,1000,4000
+bossnia_m18	monster	--en--	1785,6,1000,4000
+bossnia_m18	monster	--en--	1630,6,1000,4000
+bossnia_m18	monster	--en--	1039,6,1000,4000
+bossnia_m18	monster	--en--	1874,6,1000,4000
+bossnia_m18	monster	--en--	2068,6,1000,4000
+bossnia_m18	monster	--en--	1272,6,1000,4000
+bossnia_m18	monster	--en--	1719,6,1000,4000
+bossnia_m18	monster	--en--	1046,6,1000,4000
+bossnia_m18	monster	--en--	1389,6,1000,4000
+bossnia_m18	monster	--en--	1112,6,1000,4000
+bossnia_m18	monster	--en--	1115,6,1000,4000
+bossnia_m18	monster	--en--	1418,6,1000,4000
+bossnia_m18	monster	--en--	1871,6,1000,4000
+bossnia_m18	monster	--en--	1252,6,1000,4000
+bossnia_m18	monster	--en--	1768,6,1000,4000
+bossnia_m18	monster	--en--	1086,6,1000,4000
+bossnia_m18	monster	--en--	1885,6,1000,4000
+bossnia_m18	monster	--en--	1649,6,1000,4000
+bossnia_m18	monster	--en--	1651,6,1000,4000
+bossnia_m18	monster	--en--	1832,6,1000,4000
+bossnia_m18	monster	--en--	1492,6,1000,4000
+bossnia_m18	monster	--en--	1734,6,1000,4000
+bossnia_m18	monster	--en--	1251,6,1000,4000
+bossnia_m18	monster	--en--	1779,6,1000,4000
+bossnia_m18	monster	--en--	1688,6,1000,4000
+bossnia_m18	monster	--en--	1646,6,1000,4000
+bossnia_m18	monster	--en--	1373,6,1000,4000
+bossnia_m18	monster	--en--	1147,6,1000,4000
+bossnia_m18	monster	--en--	1059,6,1000,4000
+bossnia_m18	monster	--en--	1150,6,1000,4000
+bossnia_m18	monster	--en--	2022,6,1000,4000
+bossnia_m18	monster	--en--	1087,6,1000,4000
+bossnia_m18	monster	--en--	1190,6,1000,4000
+bossnia_m18	monster	--en--	1038,6,1000,4000
+bossnia_m18	monster	--en--	1157,6,1000,4000
+bossnia_m18	monster	--en--	1159,6,1000,4000
+bossnia_m18	monster	--en--	1623,6,1000,4000
+bossnia_m18	monster	--en--	1650,6,1000,4000
+bossnia_m18	monster	--en--	1583,6,1000,4000
+bossnia_m18	monster	--en--	1708,6,1000,4000
+bossnia_m18	monster	--en--	1312,6,1000,4000
+bossnia_m18	monster	--en--	1751,6,1000,4000
+bossnia_m18	monster	--en--	1685,6,1000,4000
+bossnia_m18	monster	--en--	1648,6,1000,4000
+bossnia_m18	monster	--en--	1917,6,1000,4000
+bossnia_m18	monster	--en--	1658,6,1000,4000
+
+bossnia_m19	monster	--en--	1096,6,1000,4000
+bossnia_m19	monster	--en--	1120,6,1000,4000
+bossnia_m19	monster	--en--	1582,6,1000,4000
+bossnia_m19	monster	--en--	1511,6,1000,4000
+bossnia_m19	monster	--en--	1647,6,1000,4000
+bossnia_m19	monster	--en--	1785,6,1000,4000
+bossnia_m19	monster	--en--	1630,6,1000,4000
+bossnia_m19	monster	--en--	1039,6,1000,4000
+bossnia_m19	monster	--en--	1874,6,1000,4000
+bossnia_m19	monster	--en--	2068,6,1000,4000
+bossnia_m19	monster	--en--	1272,6,1000,4000
+bossnia_m19	monster	--en--	1719,6,1000,4000
+bossnia_m19	monster	--en--	1046,6,1000,4000
+bossnia_m19	monster	--en--	1389,6,1000,4000
+bossnia_m19	monster	--en--	1112,6,1000,4000
+bossnia_m19	monster	--en--	1115,6,1000,4000
+bossnia_m19	monster	--en--	1418,6,1000,4000
+bossnia_m19	monster	--en--	1871,6,1000,4000
+bossnia_m19	monster	--en--	1252,6,1000,4000
+bossnia_m19	monster	--en--	1768,6,1000,4000
+bossnia_m19	monster	--en--	1086,6,1000,4000
+bossnia_m19	monster	--en--	1885,6,1000,4000
+bossnia_m19	monster	--en--	1649,6,1000,4000
+bossnia_m19	monster	--en--	1651,6,1000,4000
+bossnia_m19	monster	--en--	1832,6,1000,4000
+bossnia_m19	monster	--en--	1492,6,1000,4000
+bossnia_m19	monster	--en--	1734,6,1000,4000
+bossnia_m19	monster	--en--	1251,6,1000,4000
+bossnia_m19	monster	--en--	1779,6,1000,4000
+bossnia_m19	monster	--en--	1688,6,1000,4000
+bossnia_m19	monster	--en--	1646,6,1000,4000
+bossnia_m19	monster	--en--	1373,6,1000,4000
+bossnia_m19	monster	--en--	1147,6,1000,4000
+bossnia_m19	monster	--en--	1059,6,1000,4000
+bossnia_m19	monster	--en--	1150,6,1000,4000
+bossnia_m19	monster	--en--	2022,6,1000,4000
+bossnia_m19	monster	--en--	1087,6,1000,4000
+bossnia_m19	monster	--en--	1190,6,1000,4000
+bossnia_m19	monster	--en--	1038,6,1000,4000
+bossnia_m19	monster	--en--	1157,6,1000,4000
+bossnia_m19	monster	--en--	1159,6,1000,4000
+bossnia_m19	monster	--en--	1623,6,1000,4000
+bossnia_m19	monster	--en--	1650,6,1000,4000
+bossnia_m19	monster	--en--	1583,6,1000,4000
+bossnia_m19	monster	--en--	1708,6,1000,4000
+bossnia_m19	monster	--en--	1312,6,1000,4000
+bossnia_m19	monster	--en--	1751,6,1000,4000
+bossnia_m19	monster	--en--	1685,6,1000,4000
+bossnia_m19	monster	--en--	1648,6,1000,4000
+bossnia_m19	monster	--en--	1917,6,1000,4000
+bossnia_m19	monster	--en--	1658,6,1000,4000
+
+bossnia_m20	monster	--en--	1096,7,1000,4000
+bossnia_m20	monster	--en--	1120,7,1000,4000
+bossnia_m20	monster	--en--	1582,7,1000,4000
+bossnia_m20	monster	--en--	1511,7,1000,4000
+bossnia_m20	monster	--en--	1647,7,1000,4000
+bossnia_m20	monster	--en--	1785,7,1000,4000
+bossnia_m20	monster	--en--	1630,7,1000,4000
+bossnia_m20	monster	--en--	1039,7,1000,4000
+bossnia_m20	monster	--en--	1874,7,1000,4000
+bossnia_m20	monster	--en--	2068,7,1000,4000
+bossnia_m20	monster	--en--	1272,7,1000,4000
+bossnia_m20	monster	--en--	1719,7,1000,4000
+bossnia_m20	monster	--en--	1046,7,1000,4000
+bossnia_m20	monster	--en--	1389,7,1000,4000
+bossnia_m20	monster	--en--	1112,7,1000,4000
+bossnia_m20	monster	--en--	1115,7,1000,4000
+bossnia_m20	monster	--en--	1418,7,1000,4000
+bossnia_m20	monster	--en--	1871,7,1000,4000
+bossnia_m20	monster	--en--	1252,7,1000,4000
+bossnia_m20	monster	--en--	1768,7,1000,4000
+bossnia_m20	monster	--en--	1086,7,1000,4000
+bossnia_m20	monster	--en--	1885,7,1000,4000
+bossnia_m20	monster	--en--	1649,7,1000,4000
+bossnia_m20	monster	--en--	1651,7,1000,4000
+bossnia_m20	monster	--en--	1832,7,1000,4000
+bossnia_m20	monster	--en--	1492,7,1000,4000
+bossnia_m20	monster	--en--	1734,7,1000,4000
+bossnia_m20	monster	--en--	1251,7,1000,4000
+bossnia_m20	monster	--en--	1779,7,1000,4000
+bossnia_m20	monster	--en--	1688,7,1000,4000
+bossnia_m20	monster	--en--	1646,7,1000,4000
+bossnia_m20	monster	--en--	1373,7,1000,4000
+bossnia_m20	monster	--en--	1147,7,1000,4000
+bossnia_m20	monster	--en--	1059,7,1000,4000
+bossnia_m20	monster	--en--	1150,7,1000,4000
+bossnia_m20	monster	--en--	2022,7,1000,4000
+bossnia_m20	monster	--en--	1087,7,1000,4000
+bossnia_m20	monster	--en--	1190,7,1000,4000
+bossnia_m20	monster	--en--	1038,7,1000,4000
+bossnia_m20	monster	--en--	1157,7,1000,4000
+bossnia_m20	monster	--en--	1159,7,1000,4000
+bossnia_m20	monster	--en--	1623,7,1000,4000
+bossnia_m20	monster	--en--	1650,7,1000,4000
+bossnia_m20	monster	--en--	1583,7,1000,4000
+bossnia_m20	monster	--en--	1708,7,1000,4000
+bossnia_m20	monster	--en--	1312,7,1000,4000
+bossnia_m20	monster	--en--	1751,7,1000,4000
+bossnia_m20	monster	--en--	1685,7,1000,4000
+bossnia_m20	monster	--en--	1648,7,1000,4000
+bossnia_m20	monster	--en--	1917,7,1000,4000
+bossnia_m20	monster	--en--	1658,7,1000,4000
+
+bossnia_m21	monster	--en--	1096,7,1000,4000
+bossnia_m21	monster	--en--	1120,7,1000,4000
+bossnia_m21	monster	--en--	1582,7,1000,4000
+bossnia_m21	monster	--en--	1511,7,1000,4000
+bossnia_m21	monster	--en--	1647,7,1000,4000
+bossnia_m21	monster	--en--	1785,7,1000,4000
+bossnia_m21	monster	--en--	1630,7,1000,4000
+bossnia_m21	monster	--en--	1039,7,1000,4000
+bossnia_m21	monster	--en--	1874,7,1000,4000
+bossnia_m21	monster	--en--	2068,7,1000,4000
+bossnia_m21	monster	--en--	1272,7,1000,4000
+bossnia_m21	monster	--en--	1719,7,1000,4000
+bossnia_m21	monster	--en--	1046,7,1000,4000
+bossnia_m21	monster	--en--	1389,7,1000,4000
+bossnia_m21	monster	--en--	1112,7,1000,4000
+bossnia_m21	monster	--en--	1115,7,1000,4000
+bossnia_m21	monster	--en--	1418,7,1000,4000
+bossnia_m21	monster	--en--	1871,7,1000,4000
+bossnia_m21	monster	--en--	1252,7,1000,4000
+bossnia_m21	monster	--en--	1768,7,1000,4000
+bossnia_m21	monster	--en--	1086,7,1000,4000
+bossnia_m21	monster	--en--	1885,7,1000,4000
+bossnia_m21	monster	--en--	1649,7,1000,4000
+bossnia_m21	monster	--en--	1651,7,1000,4000
+bossnia_m21	monster	--en--	1832,7,1000,4000
+bossnia_m21	monster	--en--	1492,7,1000,4000
+bossnia_m21	monster	--en--	1734,7,1000,4000
+bossnia_m21	monster	--en--	1251,7,1000,4000
+bossnia_m21	monster	--en--	1779,7,1000,4000
+bossnia_m21	monster	--en--	1688,7,1000,4000
+bossnia_m21	monster	--en--	1646,7,1000,4000
+bossnia_m21	monster	--en--	1373,7,1000,4000
+bossnia_m21	monster	--en--	1147,7,1000,4000
+bossnia_m21	monster	--en--	1059,7,1000,4000
+bossnia_m21	monster	--en--	1150,7,1000,4000
+bossnia_m21	monster	--en--	2022,7,1000,4000
+bossnia_m21	monster	--en--	1087,7,1000,4000
+bossnia_m21	monster	--en--	1190,7,1000,4000
+bossnia_m21	monster	--en--	1038,7,1000,4000
+bossnia_m21	monster	--en--	1157,7,1000,4000
+bossnia_m21	monster	--en--	1159,7,1000,4000
+bossnia_m21	monster	--en--	1623,7,1000,4000
+bossnia_m21	monster	--en--	1650,7,1000,4000
+bossnia_m21	monster	--en--	1583,7,1000,4000
+bossnia_m21	monster	--en--	1708,7,1000,4000
+bossnia_m21	monster	--en--	1312,7,1000,4000
+bossnia_m21	monster	--en--	1751,7,1000,4000
+bossnia_m21	monster	--en--	1685,7,1000,4000
+bossnia_m21	monster	--en--	1648,7,1000,4000
+bossnia_m21	monster	--en--	1917,7,1000,4000
+bossnia_m21	monster	--en--	1658,7,1000,4000
+
+bossnia_m22	monster	--en--	1096,7,1000,4000
+bossnia_m22	monster	--en--	1120,7,1000,4000
+bossnia_m22	monster	--en--	1582,7,1000,4000
+bossnia_m22	monster	--en--	1511,7,1000,4000
+bossnia_m22	monster	--en--	1647,7,1000,4000
+bossnia_m22	monster	--en--	1785,7,1000,4000
+bossnia_m22	monster	--en--	1630,7,1000,4000
+bossnia_m22	monster	--en--	1039,7,1000,4000
+bossnia_m22	monster	--en--	1874,7,1000,4000
+bossnia_m22	monster	--en--	2068,7,1000,4000
+bossnia_m22	monster	--en--	1272,7,1000,4000
+bossnia_m22	monster	--en--	1719,7,1000,4000
+bossnia_m22	monster	--en--	1046,7,1000,4000
+bossnia_m22	monster	--en--	1389,7,1000,4000
+bossnia_m22	monster	--en--	1112,7,1000,4000
+bossnia_m22	monster	--en--	1115,7,1000,4000
+bossnia_m22	monster	--en--	1418,7,1000,4000
+bossnia_m22	monster	--en--	1871,7,1000,4000
+bossnia_m22	monster	--en--	1252,7,1000,4000
+bossnia_m22	monster	--en--	1768,7,1000,4000
+bossnia_m22	monster	--en--	1086,7,1000,4000
+bossnia_m22	monster	--en--	1885,7,1000,4000
+bossnia_m22	monster	--en--	1649,7,1000,4000
+bossnia_m22	monster	--en--	1651,7,1000,4000
+bossnia_m22	monster	--en--	1832,7,1000,4000
+bossnia_m22	monster	--en--	1492,7,1000,4000
+bossnia_m22	monster	--en--	1734,7,1000,4000
+bossnia_m22	monster	--en--	1251,7,1000,4000
+bossnia_m22	monster	--en--	1779,7,1000,4000
+bossnia_m22	monster	--en--	1688,7,1000,4000
+bossnia_m22	monster	--en--	1646,7,1000,4000
+bossnia_m22	monster	--en--	1373,7,1000,4000
+bossnia_m22	monster	--en--	1147,7,1000,4000
+bossnia_m22	monster	--en--	1059,7,1000,4000
+bossnia_m22	monster	--en--	1150,7,1000,4000
+bossnia_m22	monster	--en--	2022,7,1000,4000
+bossnia_m22	monster	--en--	1087,7,1000,4000
+bossnia_m22	monster	--en--	1190,7,1000,4000
+bossnia_m22	monster	--en--	1038,7,1000,4000
+bossnia_m22	monster	--en--	1157,7,1000,4000
+bossnia_m22	monster	--en--	1159,7,1000,4000
+bossnia_m22	monster	--en--	1623,7,1000,4000
+bossnia_m22	monster	--en--	1650,7,1000,4000
+bossnia_m22	monster	--en--	1583,7,1000,4000
+bossnia_m22	monster	--en--	1708,7,1000,4000
+bossnia_m22	monster	--en--	1312,7,1000,4000
+bossnia_m22	monster	--en--	1751,7,1000,4000
+bossnia_m22	monster	--en--	1685,7,1000,4000
+bossnia_m22	monster	--en--	1648,7,1000,4000
+bossnia_m22	monster	--en--	1917,7,1000,4000
+bossnia_m22	monster	--en--	1658,7,1000,4000
+
+bossnia_m23	monster	--en--	1096,7,1000,4000
+bossnia_m23	monster	--en--	1120,7,1000,4000
+bossnia_m23	monster	--en--	1582,7,1000,4000
+bossnia_m23	monster	--en--	1511,7,1000,4000
+bossnia_m23	monster	--en--	1647,7,1000,4000
+bossnia_m23	monster	--en--	1785,7,1000,4000
+bossnia_m23	monster	--en--	1630,7,1000,4000
+bossnia_m23	monster	--en--	1039,7,1000,4000
+bossnia_m23	monster	--en--	1874,7,1000,4000
+bossnia_m23	monster	--en--	2068,7,1000,4000
+bossnia_m23	monster	--en--	1272,7,1000,4000
+bossnia_m23	monster	--en--	1719,7,1000,4000
+bossnia_m23	monster	--en--	1046,7,1000,4000
+bossnia_m23	monster	--en--	1389,7,1000,4000
+bossnia_m23	monster	--en--	1112,7,1000,4000
+bossnia_m23	monster	--en--	1115,7,1000,4000
+bossnia_m23	monster	--en--	1418,7,1000,4000
+bossnia_m23	monster	--en--	1871,7,1000,4000
+bossnia_m23	monster	--en--	1252,7,1000,4000
+bossnia_m23	monster	--en--	1768,7,1000,4000
+bossnia_m23	monster	--en--	1086,7,1000,4000
+bossnia_m23	monster	--en--	1885,7,1000,4000
+bossnia_m23	monster	--en--	1649,7,1000,4000
+bossnia_m23	monster	--en--	1651,7,1000,4000
+bossnia_m23	monster	--en--	1832,7,1000,4000
+bossnia_m23	monster	--en--	1492,7,1000,4000
+bossnia_m23	monster	--en--	1734,7,1000,4000
+bossnia_m23	monster	--en--	1251,7,1000,4000
+bossnia_m23	monster	--en--	1779,7,1000,4000
+bossnia_m23	monster	--en--	1688,7,1000,4000
+bossnia_m23	monster	--en--	1646,7,1000,4000
+bossnia_m23	monster	--en--	1373,7,1000,4000
+bossnia_m23	monster	--en--	1147,7,1000,4000
+bossnia_m23	monster	--en--	1059,7,1000,4000
+bossnia_m23	monster	--en--	1150,7,1000,4000
+bossnia_m23	monster	--en--	2022,7,1000,4000
+bossnia_m23	monster	--en--	1087,7,1000,4000
+bossnia_m23	monster	--en--	1190,7,1000,4000
+bossnia_m23	monster	--en--	1038,7,1000,4000
+bossnia_m23	monster	--en--	1157,7,1000,4000
+bossnia_m23	monster	--en--	1159,7,1000,4000
+bossnia_m23	monster	--en--	1623,7,1000,4000
+bossnia_m23	monster	--en--	1650,7,1000,4000
+bossnia_m23	monster	--en--	1583,7,1000,4000
+bossnia_m23	monster	--en--	1708,7,1000,4000
+bossnia_m23	monster	--en--	1312,7,1000,4000
+bossnia_m23	monster	--en--	1751,7,1000,4000
+bossnia_m23	monster	--en--	1685,7,1000,4000
+bossnia_m23	monster	--en--	1648,7,1000,4000
+bossnia_m23	monster	--en--	1917,7,1000,4000
+bossnia_m23	monster	--en--	1658,7,1000,4000
+
+bossnia_m24	monster	--en--	1096,7,1000,4000
+bossnia_m24	monster	--en--	1120,7,1000,4000
+bossnia_m24	monster	--en--	1582,7,1000,4000
+bossnia_m24	monster	--en--	1511,7,1000,4000
+bossnia_m24	monster	--en--	1647,7,1000,4000
+bossnia_m24	monster	--en--	1785,7,1000,4000
+bossnia_m24	monster	--en--	1630,7,1000,4000
+bossnia_m24	monster	--en--	1039,7,1000,4000
+bossnia_m24	monster	--en--	1874,7,1000,4000
+bossnia_m24	monster	--en--	2068,7,1000,4000
+bossnia_m24	monster	--en--	1272,7,1000,4000
+bossnia_m24	monster	--en--	1719,7,1000,4000
+bossnia_m24	monster	--en--	1046,7,1000,4000
+bossnia_m24	monster	--en--	1389,7,1000,4000
+bossnia_m24	monster	--en--	1112,7,1000,4000
+bossnia_m24	monster	--en--	1115,7,1000,4000
+bossnia_m24	monster	--en--	1418,7,1000,4000
+bossnia_m24	monster	--en--	1871,7,1000,4000
+bossnia_m24	monster	--en--	1252,7,1000,4000
+bossnia_m24	monster	--en--	1768,7,1000,4000
+bossnia_m24	monster	--en--	1086,7,1000,4000
+bossnia_m24	monster	--en--	1885,7,1000,4000
+bossnia_m24	monster	--en--	1649,7,1000,4000
+bossnia_m24	monster	--en--	1651,7,1000,4000
+bossnia_m24	monster	--en--	1832,7,1000,4000
+bossnia_m24	monster	--en--	1492,7,1000,4000
+bossnia_m24	monster	--en--	1734,7,1000,4000
+bossnia_m24	monster	--en--	1251,7,1000,4000
+bossnia_m24	monster	--en--	1779,7,1000,4000
+bossnia_m24	monster	--en--	1688,7,1000,4000
+bossnia_m24	monster	--en--	1646,7,1000,4000
+bossnia_m24	monster	--en--	1373,7,1000,4000
+bossnia_m24	monster	--en--	1147,7,1000,4000
+bossnia_m24	monster	--en--	1059,7,1000,4000
+bossnia_m24	monster	--en--	1150,7,1000,4000
+bossnia_m24	monster	--en--	2022,7,1000,4000
+bossnia_m24	monster	--en--	1087,7,1000,4000
+bossnia_m24	monster	--en--	1190,7,1000,4000
+bossnia_m24	monster	--en--	1038,7,1000,4000
+bossnia_m24	monster	--en--	1157,7,1000,4000
+bossnia_m24	monster	--en--	1159,7,1000,4000
+bossnia_m24	monster	--en--	1623,7,1000,4000
+bossnia_m24	monster	--en--	1650,7,1000,4000
+bossnia_m24	monster	--en--	1583,7,1000,4000
+bossnia_m24	monster	--en--	1708,7,1000,4000
+bossnia_m24	monster	--en--	1312,7,1000,4000
+bossnia_m24	monster	--en--	1751,7,1000,4000
+bossnia_m24	monster	--en--	1685,7,1000,4000
+bossnia_m24	monster	--en--	1648,7,1000,4000
+bossnia_m24	monster	--en--	1917,7,1000,4000
+bossnia_m24	monster	--en--	1658,7,1000,4000
+
+bossnia_m25	monster	--en--	1096,8,1000,4000
+bossnia_m25	monster	--en--	1120,8,1000,4000
+bossnia_m25	monster	--en--	1582,8,1000,4000
+bossnia_m25	monster	--en--	1511,8,1000,4000
+bossnia_m25	monster	--en--	1647,8,1000,4000
+bossnia_m25	monster	--en--	1785,8,1000,4000
+bossnia_m25	monster	--en--	1630,8,1000,4000
+bossnia_m25	monster	--en--	1039,8,1000,4000
+bossnia_m25	monster	--en--	1874,8,1000,4000
+bossnia_m25	monster	--en--	2068,8,1000,4000
+bossnia_m25	monster	--en--	1272,8,1000,4000
+bossnia_m25	monster	--en--	1719,8,1000,4000
+bossnia_m25	monster	--en--	1046,8,1000,4000
+bossnia_m25	monster	--en--	1389,8,1000,4000
+bossnia_m25	monster	--en--	1112,8,1000,4000
+bossnia_m25	monster	--en--	1115,8,1000,4000
+bossnia_m25	monster	--en--	1418,8,1000,4000
+bossnia_m25	monster	--en--	1871,8,1000,4000
+bossnia_m25	monster	--en--	1252,8,1000,4000
+bossnia_m25	monster	--en--	1768,8,1000,4000
+bossnia_m25	monster	--en--	1086,8,1000,4000
+bossnia_m25	monster	--en--	1885,8,1000,4000
+bossnia_m25	monster	--en--	1649,8,1000,4000
+bossnia_m25	monster	--en--	1651,8,1000,4000
+bossnia_m25	monster	--en--	1832,8,1000,4000
+bossnia_m25	monster	--en--	1492,8,1000,4000
+bossnia_m25	monster	--en--	1734,8,1000,4000
+bossnia_m25	monster	--en--	1251,8,1000,4000
+bossnia_m25	monster	--en--	1779,8,1000,4000
+bossnia_m25	monster	--en--	1688,8,1000,4000
+bossnia_m25	monster	--en--	1646,8,1000,4000
+bossnia_m25	monster	--en--	1373,8,1000,4000
+bossnia_m25	monster	--en--	1147,8,1000,4000
+bossnia_m25	monster	--en--	1059,8,1000,4000
+bossnia_m25	monster	--en--	1150,8,1000,4000
+bossnia_m25	monster	--en--	2022,8,1000,4000
+bossnia_m25	monster	--en--	1087,8,1000,4000
+bossnia_m25	monster	--en--	1190,8,1000,4000
+bossnia_m25	monster	--en--	1038,8,1000,4000
+bossnia_m25	monster	--en--	1157,8,1000,4000
+bossnia_m25	monster	--en--	1159,8,1000,4000
+bossnia_m25	monster	--en--	1623,8,1000,4000
+bossnia_m25	monster	--en--	1650,8,1000,4000
+bossnia_m25	monster	--en--	1583,8,1000,4000
+bossnia_m25	monster	--en--	1708,8,1000,4000
+bossnia_m25	monster	--en--	1312,8,1000,4000
+bossnia_m25	monster	--en--	1751,8,1000,4000
+bossnia_m25	monster	--en--	1685,8,1000,4000
+bossnia_m25	monster	--en--	1648,8,1000,4000
+bossnia_m25	monster	--en--	1917,8,1000,4000
+bossnia_m25	monster	--en--	1658,8,1000,4000
+
+bossnia_m26	monster	--en--	1096,8,1000,4000
+bossnia_m26	monster	--en--	1120,8,1000,4000
+bossnia_m26	monster	--en--	1582,8,1000,4000
+bossnia_m26	monster	--en--	1511,8,1000,4000
+bossnia_m26	monster	--en--	1647,8,1000,4000
+bossnia_m26	monster	--en--	1785,8,1000,4000
+bossnia_m26	monster	--en--	1630,8,1000,4000
+bossnia_m26	monster	--en--	1039,8,1000,4000
+bossnia_m26	monster	--en--	1874,8,1000,4000
+bossnia_m26	monster	--en--	2068,8,1000,4000
+bossnia_m26	monster	--en--	1272,8,1000,4000
+bossnia_m26	monster	--en--	1719,8,1000,4000
+bossnia_m26	monster	--en--	1046,8,1000,4000
+bossnia_m26	monster	--en--	1389,8,1000,4000
+bossnia_m26	monster	--en--	1112,8,1000,4000
+bossnia_m26	monster	--en--	1115,8,1000,4000
+bossnia_m26	monster	--en--	1418,8,1000,4000
+bossnia_m26	monster	--en--	1871,8,1000,4000
+bossnia_m26	monster	--en--	1252,8,1000,4000
+bossnia_m26	monster	--en--	1768,8,1000,4000
+bossnia_m26	monster	--en--	1086,8,1000,4000
+bossnia_m26	monster	--en--	1885,8,1000,4000
+bossnia_m26	monster	--en--	1649,8,1000,4000
+bossnia_m26	monster	--en--	1651,8,1000,4000
+bossnia_m26	monster	--en--	1832,8,1000,4000
+bossnia_m26	monster	--en--	1492,8,1000,4000
+bossnia_m26	monster	--en--	1734,8,1000,4000
+bossnia_m26	monster	--en--	1251,8,1000,4000
+bossnia_m26	monster	--en--	1779,8,1000,4000
+bossnia_m26	monster	--en--	1688,8,1000,4000
+bossnia_m26	monster	--en--	1646,8,1000,4000
+bossnia_m26	monster	--en--	1373,8,1000,4000
+bossnia_m26	monster	--en--	1147,8,1000,4000
+bossnia_m26	monster	--en--	1059,8,1000,4000
+bossnia_m26	monster	--en--	1150,8,1000,4000
+bossnia_m26	monster	--en--	2022,8,1000,4000
+bossnia_m26	monster	--en--	1087,8,1000,4000
+bossnia_m26	monster	--en--	1190,8,1000,4000
+bossnia_m26	monster	--en--	1038,8,1000,4000
+bossnia_m26	monster	--en--	1157,8,1000,4000
+bossnia_m26	monster	--en--	1159,8,1000,4000
+bossnia_m26	monster	--en--	1623,8,1000,4000
+bossnia_m26	monster	--en--	1650,8,1000,4000
+bossnia_m26	monster	--en--	1583,8,1000,4000
+bossnia_m26	monster	--en--	1708,8,1000,4000
+bossnia_m26	monster	--en--	1312,8,1000,4000
+bossnia_m26	monster	--en--	1751,8,1000,4000
+bossnia_m26	monster	--en--	1685,8,1000,4000
+bossnia_m26	monster	--en--	1648,8,1000,4000
+bossnia_m26	monster	--en--	1917,8,1000,4000
+bossnia_m26	monster	--en--	1658,8,1000,4000
+
+bossnia_m27	monster	--en--	1096,8,1000,4000
+bossnia_m27	monster	--en--	1120,8,1000,4000
+bossnia_m27	monster	--en--	1582,8,1000,4000
+bossnia_m27	monster	--en--	1511,8,1000,4000
+bossnia_m27	monster	--en--	1647,8,1000,4000
+bossnia_m27	monster	--en--	1785,8,1000,4000
+bossnia_m27	monster	--en--	1630,8,1000,4000
+bossnia_m27	monster	--en--	1039,8,1000,4000
+bossnia_m27	monster	--en--	1874,8,1000,4000
+bossnia_m27	monster	--en--	2068,8,1000,4000
+bossnia_m27	monster	--en--	1272,8,1000,4000
+bossnia_m27	monster	--en--	1719,8,1000,4000
+bossnia_m27	monster	--en--	1046,8,1000,4000
+bossnia_m27	monster	--en--	1389,8,1000,4000
+bossnia_m27	monster	--en--	1112,8,1000,4000
+bossnia_m27	monster	--en--	1115,8,1000,4000
+bossnia_m27	monster	--en--	1418,8,1000,4000
+bossnia_m27	monster	--en--	1871,8,1000,4000
+bossnia_m27	monster	--en--	1252,8,1000,4000
+bossnia_m27	monster	--en--	1768,8,1000,4000
+bossnia_m27	monster	--en--	1086,8,1000,4000
+bossnia_m27	monster	--en--	1885,8,1000,4000
+bossnia_m27	monster	--en--	1649,8,1000,4000
+bossnia_m27	monster	--en--	1651,8,1000,4000
+bossnia_m27	monster	--en--	1832,8,1000,4000
+bossnia_m27	monster	--en--	1492,8,1000,4000
+bossnia_m27	monster	--en--	1734,8,1000,4000
+bossnia_m27	monster	--en--	1251,8,1000,4000
+bossnia_m27	monster	--en--	1779,8,1000,4000
+bossnia_m27	monster	--en--	1688,8,1000,4000
+bossnia_m27	monster	--en--	1646,8,1000,4000
+bossnia_m27	monster	--en--	1373,8,1000,4000
+bossnia_m27	monster	--en--	1147,8,1000,4000
+bossnia_m27	monster	--en--	1059,8,1000,4000
+bossnia_m27	monster	--en--	1150,8,1000,4000
+bossnia_m27	monster	--en--	2022,8,1000,4000
+bossnia_m27	monster	--en--	1087,8,1000,4000
+bossnia_m27	monster	--en--	1190,8,1000,4000
+bossnia_m27	monster	--en--	1038,8,1000,4000
+bossnia_m27	monster	--en--	1157,8,1000,4000
+bossnia_m27	monster	--en--	1159,8,1000,4000
+bossnia_m27	monster	--en--	1623,8,1000,4000
+bossnia_m27	monster	--en--	1650,8,1000,4000
+bossnia_m27	monster	--en--	1583,8,1000,4000
+bossnia_m27	monster	--en--	1708,8,1000,4000
+bossnia_m27	monster	--en--	1312,8,1000,4000
+bossnia_m27	monster	--en--	1751,8,1000,4000
+bossnia_m27	monster	--en--	1685,8,1000,4000
+bossnia_m27	monster	--en--	1648,8,1000,4000
+bossnia_m27	monster	--en--	1917,8,1000,4000
+bossnia_m27	monster	--en--	1658,8,1000,4000
+
+bossnia_m28	monster	--en--	1096,9,1000,4000
+bossnia_m28	monster	--en--	1120,9,1000,4000
+bossnia_m28	monster	--en--	1582,9,1000,4000
+bossnia_m28	monster	--en--	1511,9,1000,4000
+bossnia_m28	monster	--en--	1647,9,1000,4000
+bossnia_m28	monster	--en--	1785,9,1000,4000
+bossnia_m28	monster	--en--	1630,9,1000,4000
+bossnia_m28	monster	--en--	1039,9,1000,4000
+bossnia_m28	monster	--en--	1874,9,1000,4000
+bossnia_m28	monster	--en--	2068,9,1000,4000
+bossnia_m28	monster	--en--	1272,9,1000,4000
+bossnia_m28	monster	--en--	1719,9,1000,4000
+bossnia_m28	monster	--en--	1046,9,1000,4000
+bossnia_m28	monster	--en--	1389,9,1000,4000
+bossnia_m28	monster	--en--	1112,9,1000,4000
+bossnia_m28	monster	--en--	1115,9,1000,4000
+bossnia_m28	monster	--en--	1418,9,1000,4000
+bossnia_m28	monster	--en--	1871,9,1000,4000
+bossnia_m28	monster	--en--	1252,9,1000,4000
+bossnia_m28	monster	--en--	1768,9,1000,4000
+bossnia_m28	monster	--en--	1086,9,1000,4000
+bossnia_m28	monster	--en--	1885,9,1000,4000
+bossnia_m28	monster	--en--	1649,9,1000,4000
+bossnia_m28	monster	--en--	1651,9,1000,4000
+bossnia_m28	monster	--en--	1832,9,1000,4000
+bossnia_m28	monster	--en--	1492,9,1000,4000
+bossnia_m28	monster	--en--	1734,9,1000,4000
+bossnia_m28	monster	--en--	1251,9,1000,4000
+bossnia_m28	monster	--en--	1779,9,1000,4000
+bossnia_m28	monster	--en--	1688,9,1000,4000
+bossnia_m28	monster	--en--	1646,9,1000,4000
+bossnia_m28	monster	--en--	1373,9,1000,4000
+bossnia_m28	monster	--en--	1147,9,1000,4000
+bossnia_m28	monster	--en--	1059,9,1000,4000
+bossnia_m28	monster	--en--	1150,9,1000,4000
+bossnia_m28	monster	--en--	2022,9,1000,4000
+bossnia_m28	monster	--en--	1087,9,1000,4000
+bossnia_m28	monster	--en--	1190,9,1000,4000
+bossnia_m28	monster	--en--	1038,9,1000,4000
+bossnia_m28	monster	--en--	1157,9,1000,4000
+bossnia_m28	monster	--en--	1159,9,1000,4000
+bossnia_m28	monster	--en--	1623,9,1000,4000
+bossnia_m28	monster	--en--	1650,9,1000,4000
+bossnia_m28	monster	--en--	1583,9,1000,4000
+bossnia_m28	monster	--en--	1708,9,1000,4000
+bossnia_m28	monster	--en--	1312,9,1000,4000
+bossnia_m28	monster	--en--	1751,9,1000,4000
+bossnia_m28	monster	--en--	1685,9,1000,4000
+bossnia_m28	monster	--en--	1648,9,1000,4000
+bossnia_m28	monster	--en--	1917,9,1000,4000
+bossnia_m28	monster	--en--	1658,9,1000,4000
+
+bossnia_m29	monster	--en--	1096,9,1000,4000
+bossnia_m29	monster	--en--	1120,9,1000,4000
+bossnia_m29	monster	--en--	1582,9,1000,4000
+bossnia_m29	monster	--en--	1511,9,1000,4000
+bossnia_m29	monster	--en--	1647,9,1000,4000
+bossnia_m29	monster	--en--	1785,9,1000,4000
+bossnia_m29	monster	--en--	1630,9,1000,4000
+bossnia_m29	monster	--en--	1039,9,1000,4000
+bossnia_m29	monster	--en--	1874,9,1000,4000
+bossnia_m29	monster	--en--	2068,9,1000,4000
+bossnia_m29	monster	--en--	1272,9,1000,4000
+bossnia_m29	monster	--en--	1719,9,1000,4000
+bossnia_m29	monster	--en--	1046,9,1000,4000
+bossnia_m29	monster	--en--	1389,9,1000,4000
+bossnia_m29	monster	--en--	1112,9,1000,4000
+bossnia_m29	monster	--en--	1115,9,1000,4000
+bossnia_m29	monster	--en--	1418,9,1000,4000
+bossnia_m29	monster	--en--	1871,9,1000,4000
+bossnia_m29	monster	--en--	1252,9,1000,4000
+bossnia_m29	monster	--en--	1768,9,1000,4000
+bossnia_m29	monster	--en--	1086,9,1000,4000
+bossnia_m29	monster	--en--	1885,9,1000,4000
+bossnia_m29	monster	--en--	1649,9,1000,4000
+bossnia_m29	monster	--en--	1651,9,1000,4000
+bossnia_m29	monster	--en--	1832,9,1000,4000
+bossnia_m29	monster	--en--	1492,9,1000,4000
+bossnia_m29	monster	--en--	1734,9,1000,4000
+bossnia_m29	monster	--en--	1251,9,1000,4000
+bossnia_m29	monster	--en--	1779,9,1000,4000
+bossnia_m29	monster	--en--	1688,9,1000,4000
+bossnia_m29	monster	--en--	1646,9,1000,4000
+bossnia_m29	monster	--en--	1373,9,1000,4000
+bossnia_m29	monster	--en--	1147,9,1000,4000
+bossnia_m29	monster	--en--	1059,9,1000,4000
+bossnia_m29	monster	--en--	1150,9,1000,4000
+bossnia_m29	monster	--en--	2022,9,1000,4000
+bossnia_m29	monster	--en--	1087,9,1000,4000
+bossnia_m29	monster	--en--	1190,9,1000,4000
+bossnia_m29	monster	--en--	1038,9,1000,4000
+bossnia_m29	monster	--en--	1157,9,1000,4000
+bossnia_m29	monster	--en--	1159,9,1000,4000
+bossnia_m29	monster	--en--	1623,9,1000,4000
+bossnia_m29	monster	--en--	1650,9,1000,4000
+bossnia_m29	monster	--en--	1583,9,1000,4000
+bossnia_m29	monster	--en--	1708,9,1000,4000
+bossnia_m29	monster	--en--	1312,9,1000,4000
+bossnia_m29	monster	--en--	1751,9,1000,4000
+bossnia_m29	monster	--en--	1685,9,1000,4000
+bossnia_m29	monster	--en--	1648,9,1000,4000
+bossnia_m29	monster	--en--	1917,9,1000,4000
+bossnia_m29	monster	--en--	1658,9,1000,4000
+
+bossnia_m30	monster	--en--	1096,10,1000,4000
+bossnia_m30	monster	--en--	1120,10,1000,4000
+bossnia_m30	monster	--en--	1582,10,1000,4000
+bossnia_m30	monster	--en--	1511,10,1000,4000
+bossnia_m30	monster	--en--	1647,10,1000,4000
+bossnia_m30	monster	--en--	1785,10,1000,4000
+bossnia_m30	monster	--en--	1630,10,1000,4000
+bossnia_m30	monster	--en--	1039,10,1000,4000
+bossnia_m30	monster	--en--	1874,10,1000,4000
+bossnia_m30	monster	--en--	2068,10,1000,4000
+bossnia_m30	monster	--en--	1272,10,1000,4000
+bossnia_m30	monster	--en--	1719,10,1000,4000
+bossnia_m30	monster	--en--	1046,10,1000,4000
+bossnia_m30	monster	--en--	1389,10,1000,4000
+bossnia_m30	monster	--en--	1112,10,1000,4000
+bossnia_m30	monster	--en--	1115,10,1000,4000
+bossnia_m30	monster	--en--	1418,10,1000,4000
+bossnia_m30	monster	--en--	1871,10,1000,4000
+bossnia_m30	monster	--en--	1252,10,1000,4000
+bossnia_m30	monster	--en--	1768,10,1000,4000
+bossnia_m30	monster	--en--	1086,10,1000,4000
+bossnia_m30	monster	--en--	1885,10,1000,4000
+bossnia_m30	monster	--en--	1649,10,1000,4000
+bossnia_m30	monster	--en--	1651,10,1000,4000
+bossnia_m30	monster	--en--	1832,10,1000,4000
+bossnia_m30	monster	--en--	1492,10,1000,4000
+bossnia_m30	monster	--en--	1734,10,1000,4000
+bossnia_m30	monster	--en--	1251,10,1000,4000
+bossnia_m30	monster	--en--	1779,10,1000,4000
+bossnia_m30	monster	--en--	1688,10,1000,4000
+bossnia_m30	monster	--en--	1646,10,1000,4000
+bossnia_m30	monster	--en--	1373,10,1000,4000
+bossnia_m30	monster	--en--	1147,10,1000,4000
+bossnia_m30	monster	--en--	1059,10,1000,4000
+bossnia_m30	monster	--en--	1150,10,1000,4000
+bossnia_m30	monster	--en--	2022,10,1000,4000
+bossnia_m30	monster	--en--	1087,10,1000,4000
+bossnia_m30	monster	--en--	1190,10,1000,4000
+bossnia_m30	monster	--en--	1038,10,1000,4000
+bossnia_m30	monster	--en--	1157,10,1000,4000
+bossnia_m30	monster	--en--	1159,10,1000,4000
+bossnia_m30	monster	--en--	1623,10,1000,4000
+bossnia_m30	monster	--en--	1650,10,1000,4000
+bossnia_m30	monster	--en--	1583,10,1000,4000
+bossnia_m30	monster	--en--	1708,10,1000,4000
+bossnia_m30	monster	--en--	1312,10,1000,4000
+bossnia_m30	monster	--en--	1751,10,1000,4000
+bossnia_m30	monster	--en--	1685,10,1000,4000
+bossnia_m30	monster	--en--	1648,10,1000,4000
+bossnia_m30	monster	--en--	1917,10,1000,4000
+bossnia_m30	monster	--en--	1658,10,1000,4000
+

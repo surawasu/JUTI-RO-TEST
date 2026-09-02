@@ -1,0 +1,110 @@
+//===== rAthena Script ======================================= 
+//= Close Beta Reward
+//===== Description ==========================================
+//= Collects player level and assign reward for OBT phase.
+//= วิธีใช้
+//= 1. สั่งให้ NPC รวบรวมข้อมูลก่อนปิดเซิฟCBT
+//= 2. backup ข้อมูลใน  table `secret_obt_reward`
+//= 3. เปิดแจกไอเทมเมื่อเปิด OBT
+//===== By: ================================================== 
+//= Secret's Scripting Service
+//===== Changelog: ===========================================
+//= 1.0 Initial version. [Secret]
+//============================================================
+
+izlude,100,100,4	script	Open Beta Reward	1_F_MARIA,{
+	if(getgmlevel() == 99) {
+		mes "[GM Menu]";
+		mes "ขณะนี้การรับรางวัลอยู่ในสถานะ: " + ($OPEN_BETA ? "เปิดให้" : "ปิดไม่ให้") + "รับรางวัล";
+		mes "ต้องการทำอะไร";
+		next;
+		switch(select("เก็บข้อมูลผู้เล่นเพื่อแจกรางวัลก่อนปิด Close Beta","เปิด/ปิดแจกรางวัล Open Beta","เข้าเมนูปกติ")) {
+			case 1:
+				.@count = query_sql("SHOW TABLES LIKE 'secret_obt_reward';");
+				if(.@count > 0) {
+					mes "มีข้อมูลอยู่แล้ว ลบทิ้งหรือไม่?";
+					next;
+					switch(select("ยกเลิก","ลบทิ้ง")) {
+						case 1:
+							close;
+						case 2:
+							query_sql("DROP TABLE `secret_obt_reward`;");
+							mes "ลบทิ้งเรียบร้อย";
+							next;
+							break;
+					}
+				}
+				query_sql("CREATE TABLE `secret_obt_reward` (`id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,	`account_id` INT(10) UNSIGNED NOT NULL DEFAULT '0', `max_level` INT(10) UNSIGNED NOT NULL DEFAULT '0',`reward_tier` INT(10) UNSIGNED NOT NULL DEFAULT '0', `received` INT(1) UNSIGNED NOT NULL DEFAULT '0',	PRIMARY KEY (`id`))");
+				.@sql$ = "SELECT lgn.account_id, groupedch.MaxLevel FROM login lgn " +
+							"INNER JOIN (SELECT account_id,MAX(base_level) AS MaxLevel FROM `char` GROUP BY account_id) groupedch " +
+							"ON lgn.account_id = groupedch.account_id;";
+				.@rst = query_sql(.@sql$, .@aid, .@level);
+				if(.@rst == -1) {
+					mes "การดึงข้อมูลล้มเหลว";
+					close;
+				} else if(!.@rst) {
+					mes "ไม่มีข้อมูลตัวละคร";
+					close;
+				} else {
+					.@sz = getarraysize(.@aid);
+					for(.@i = 0; .@i < .@sz; ++.@i) {
+						.@tier = 0;
+						for(.@j = 1; .@j <= .tier_size; ++.@j) {
+							if(.@level[.@i] >= .reward_tier[.@j]) {
+								.@tier = .@j;
+							}
+						}
+						.@rst = query_sql("INSERT INTO secret_obt_reward (account_id, max_level,reward_tier) VALUES (" + .@aid[.@i] + "," + .@level[.@i] + "," + .@tier + ");");
+						if(.@rst != -1) {
+							++.@count;
+						}
+					}
+					mes "เก็บข้อมูลผู้เล่นจำนวน " + .@count + " ไอดีเรียบร้อยแล้ว";
+					mes "อย่าลืม backup table `secret_obt_reward` ออกมาก่อนรีเซ็ตข้อมูลด้วยล่ะ";
+					close;
+				}
+			case 2:
+				$OPEN_BETA = !$OPEN_BETA;
+				mes ($OPEN_BETA ? "เปิด" : "ปิด") + "การแจกรางวัลเรียบร้อยแล้ว";
+				close;
+			case 3:
+				break;
+		}
+	}
+	if($OPEN_BETA) {
+		mes "[Server-RO]";
+		mes "ยินดีต้อนรับสู่ช่วง Open Beta";
+		close;
+	} else {
+		mes "[Server-RO]";
+		mes "ขอให้สนุกกับช่วง Close Beta นะคะ";
+		close;
+	}
+	end;
+
+OnPCLoginEvent:
+	if($OPEN_BETA && !#secret_obt_reward) {
+		.@rst = query_sql("SELECT reward_tier,received FROM `secret_obt_reward` WHERE account_id = " + getcharid(3) + ";", .@tier, .@received);
+		if(.@rst == -1 || !.@rst || .@received)
+			end;
+		getitem .reward_itemid[.@tier],1;
+		#secret_obt_reward = true;
+		query_sql("UPDATE `secret_obt_reward` SET received = 1 WHERE account_id = " + getcharid(3) + ";");
+		dispbottom "[Close Beta Reward] คุณได้รับรางวัลจากการเล่นในช่วง Close Beta";
+	}
+	end;
+
+OnInit:
+	// ระดับเลเวล
+	.reward_tier[1] = 70;
+	.reward_tier[2] = 80;
+	.reward_tier[3] = 90;
+	
+	// ไอเทมรางวัล
+	.reward_itemid[1] = 501;
+	.reward_itemid[2] = 502;
+	.reward_itemid[3] = 503;
+	
+	.tier_size = getarraysize(.reward_tier)-1;
+	end;
+}

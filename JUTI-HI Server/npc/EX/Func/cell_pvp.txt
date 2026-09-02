@@ -1,0 +1,108 @@
+-	script	PvP#main	-1,{
+end;
+
+
+OnPcloginevent:
+.@mapname$ = "eternal";
+getmapxy .@mapname$,.@mapx,.@mapy,BL_PC;
+if((strcharinfo(3) == .@mapname$) && (.@mapx >= 85 && .@mapx <= 114 ) && (.@mapy >= 75 && .@mapy <= 104))
+warp "savepoint",0,0;
+end;
+
+OnInit:
+	setcell "eternal", 85, 104, 114, 75, cell_pvp, 1;
+	end;
+}
+
+//eternal,85,104,0	warp	pvp_cell_out#1	1,1,eternal,168,79
+//eternal,114,75,0	warp	pvp_cell_out#2	1,1,eternal,168,79
+
+eternal,175,83,6	script	ผู้ดูแลสังเวียน	1045,{
+
+.@mapname$ = "eternal";
+getmapxy .@mapname$,.@mapx,.@mapy,BL_PC;
+if((strcharinfo(3) == .@mapname$) && (.@mapx >= 85 && .@mapx <= 114 ) && (.@mapy >= 75 && .@mapy <= 104)){
+
+mes	"[ผู้ดูแลสังเวียน]";
+mes	"เจ้าต้องการออกไปเลยไหม";
+switch(select("•ออกไปเลย:•ยังก่อน")){
+	case 1:
+		close2;
+		progressbar "000000",3;
+		warp	"eternal",159,87;
+		end;
+	case 2:
+		end;
+	}
+
+
+}
+
+
+mes	"[ผู้ดูแลสังเวียน]";
+mes	"เจ้าต้องการเข้าไปเลยไหม";
+switch(select("•เข้าไปเลย:•ยังก่อน")){
+	case 1:
+		sc_end SC_ADD_ATK_DAMAGE;
+		sc_end SC_ADD_MATK_DAMAGE;
+		warp	"eternal",rand(85,114),rand(75,104);
+		end;
+	case 2:
+		end;
+	}
+
+
+}
+/*
+-	script	pvp_points	-1,{
+OnPCKillEvent:
+.@mapname$ = "eternal";
+getmapxy .@mapname$,.@mapx,.@mapy,BL_PC;
+query_sql "SELECT `point_pvp` FROM `char` WHERE `char_id`='"+getcharid(0)+"'",.@cpoint;
+	if(killedrid == getcharid(3))
+		end;
+	if((strcharinfo(3) == .@mapname$) && (.@mapx >= 85 && .@mapx <= 114 ) && (.@mapy >= 75 && .@mapy <= 104)){
+			.@battle_map = true;
+	}
+	if(!.@battle_map)
+		end;
+	PVPPOINTSYSTEM++;
+	query_sql "UPDATE `char` SET `point_pvp`=(`point_pvp` + 1) WHERE `char_id`='"+getcharid(0)+"' LIMIT 1";
+	//PVPPOINTSYSTEM2++;
+	dispbottom "คุณได้รับแต้ม PVP Rank เพิ่มขึ้น 1 แต้ม แต้มทั้งหมดของคุณคือ "+ (.@cpoint) +" แต้ม";
+end;
+
+OnPCDieEvent:
+	.@mapname$ = "eternal";
+	getmapxy .@mapname$,.@mapx,.@mapy,BL_PC;
+	query_sql "SELECT `point_pvp` FROM `char` WHERE `char_id`='"+getcharid(0)+"'",.@cpoint;
+	if(killedrid == getcharid(3))
+		end;
+	if((strcharinfo(3) == .@mapname$) && (.@mapx >= 85 && .@mapx <= 114 ) && (.@mapy >= 75 && .@mapy <= 104)){
+			.@battle_map = true;
+	}
+	if(!.@battle_map)
+		end;
+	if(.@cpoint == 0){
+	}else{
+	query_sql "SELECT `point_pvp` FROM `char` WHERE `char_id`='"+getcharid(0)+"'",.@cpoint;
+	query_sql "UPDATE `char` SET `point_pvp`=(`point_pvp` - 1) WHERE `char_id`='"+getcharid(0)+"' LIMIT 1";
+	//PVPPOINTSYSTEM--;
+	dispbottom "คุณได้เสียแต้ม PVP Rank 1 แต้ม แต้มทั้งหมดของคุณคือ "+ (.@cpoint) +" แต้ม";
+	}
+	//if(.@cpoint == 0){
+	//}else{
+	////PVPPOINTSYSTEM2--;
+	//query_sql "UPDATE `char` SET `point_pvp`=(`point_pvp` - 1) WHERE `char_id`='"+getcharid(0)+"' LIMIT 1";
+	//}
+	
+end;
+
+
+OnInit:
+
+end;
+}
+*/
+
+eternal	mapflag	monster_noteleport

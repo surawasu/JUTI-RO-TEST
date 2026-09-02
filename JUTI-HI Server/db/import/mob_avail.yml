@@ -1,0 +1,123 @@
+# This file is a part of rAthena.
+#   Copyright(C) 2021 rAthena Development Team
+#   https://rathena.org - https://github.com/rathena
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
+###########################################################################
+# Mob Availability and Alias Database
+###########################################################################
+#
+# Mob Availability and Alias Settings
+#
+###########################################################################
+# - Mob                     Mob to adjust.
+#   Sprite                  Sprite which will be sent to the client instead of Mob.
+#   Sex                     Sex (if Sprite is a player). (Default: Female)
+#   HairStyle               Hair Style ID (if Sprite is a player). (Default: 0)
+#   HairColor               Hair Color ID (if Sprite is a player). (Default: 0)
+#   ClothColor              Cloth Color ID (if Sprite is a player). (Default: 0)
+#   Weapon                  Item name of weapon (if Sprite is a player). (Default: 0)
+#   Shield                  Item name of shield (if Sprite is a player). (Default: 0)
+#   HeadTop                 Item name of headgear (if Sprite is a player). (Default: 0)
+#   HeadMid                 Item name of headgear (if Sprite is a player). (Default: 0)
+#   HeadLow                 Item name of headgear (if Sprite is a player). (Default: 0)
+#   Robe                    Item name of robe (if Sprite is a player). (Default: 0)
+#   PetEquip                Item name of pet equipment (if Mob is a valid pet). (Default: 0)
+#   Options:                Set an option for an object. (Optional)
+#     <Option>: bool
+###########################################################################
+
+Header:
+  Type: MOB_AVAIL_DB
+  Version: 1
+
+Body:
+  - Mob: BONE_ACIDUS1
+    Sprite: bone_detale
+#  # Examples
+#  - Mob: S_DUMMY_100_SMALL
+#    Sprite: SAVAGE_BABE
+#  - Mob: S_DUMMY_100_MEDIUM
+#    Sprite: SKEL_WORKER
+#  - Mob: S_DUMMY_100_LARGE
+#    Sprite: RYBIO
+#  - Mob: S_DUMMY_100_NOTHING
+#    Sprite: INCREASE_SOIL
+#  - Mob: S_DUMMY_100_DRAGON
+#    Sprite: G_PETIT
+#  - Mob: S_DUMMY_100_ANIMAL
+#    Sprite: SAVAGE
+#  - Mob: S_DUMMY_100_HUMAN
+#    Sprite: HIGH_ORC
+#  - Mob: S_DUMMY_100_INSECT
+#    Sprite: THIEF_BUG
+#  - Mob: S_DUMMY_100_FISH
+#    Sprite: PHEN
+#  - Mob: S_DUMMY_100_DEMON
+#    Sprite: DEVIRUCHI
+#  - Mob: S_DUMMY_100_PLANT
+#    Sprite: GEOGRAPHER
+#  - Mob: S_DUMMY_100_ANGEL
+#    Sprite: FAKE_ANGEL
+#  - Mob: S_DUMMY_100_UNDEAD
+#    Sprite: ZOMBIE
+#  - Mob: S_DUMMY_100_NOTHING2
+#    Sprite: LUNATIC
+#  - Mob: S_DUMMY_100_WATER
+#    Sprite: VADON
+#  - Mob: S_DUMMY_100_GROUND
+#    Sprite: HODE
+#  - Mob: S_DUMMY_100_FIRE
+#    Sprite: HORONG
+#  - Mob: S_DUMMY_100_WIND
+#    Sprite: HARPY
+#  - Mob: S_DUMMY_100_POISON
+#    Sprite: POISON_TOAD
+#  - Mob: S_DUMMY_100_SAINT
+#    Sprite: SOLACE
+#  - Mob: S_DUMMY_100_DARKNESS
+#    Sprite: SKOGUL
+#  - Mob: S_DUMMY_100_TELEKINESIS
+#    Sprite: EGGYRA
+#  - Mob: S_DUMMY_100_UNDEAD2
+#    Sprite: ZOMBIE_PRISONER
+  - Mob: ARCHER_SKELETON_CH
+    Sprite: ARCHER_SKELETON
+  - Mob: SKEL_WORKER_CH
+    Sprite: SKEL_WORKER
+  - Mob: HYDRA_CH
+    Sprite: HYDRA
+  - Mob: KNIGHT_OF_ABYSS_CH
+    Sprite: KNIGHT_OF_ABYSS
+  - Mob: THE_PAPER_CH
+    Sprite: THE_PAPER
+  - Mob: ZAKUDAM_CH
+    Sprite: ZAKUDAM
+  - Mob: THARA_FROG_CH
+    Sprite: THARA_FROG
+  - Mob: MATYR_CH
+    Sprite: MATYR
+  - Mob: SOHEE_CH
+    Sprite: SOHEE
+  - Mob: PORING_AA
+    Sprite: PORING
+  - Mob: PORING_AAA
+    Sprite: PORING
+  - Mob: PORING_AAAA
+    Sprite: PORING
+  - Mob: S_DUMMY_100_HUMAN_2
+    Sprite: YGNIZEM
+  - Mob: S_DUMMY_100_HUMAN_1
+    Sprite: YGNIZEM

@@ -1,0 +1,44 @@
+/*
+like_game,131,110,3	script	สุ่มเหรียญ Chaos Coin	518,{
+disable_items;
+mes "[สุ่มเหรียญ Chaos Coin]";
+mes "ใช้ <ITEM>"+getitemname(161146)+"<INFO>161146</INFO></ITEM> จำนวน 100 ea";
+mes "ในการสุ่ม 1 ครั้ง";
+mes "เริ่มกันเลยไหม?";
+switch(select("ลุยยยยยย!","ยังก่อน")){
+case 1:
+next;
+if(countitem(161146) < 100){
+mes "[สุ่มเหรียญ Chaos Coin]";
+mes "ใช้ <ITEM>"+getitemname(161146)+"<INFO>161146</INFO></ITEM> จำนวน 100 ea";
+mes "ในการสุ่ม 1 ครั้ง";
+end;
+}
+delitem 161146,100;
+getitem callfunc("F_Rand",60030,161115,161116,161117,161118,161119,161120,161121),1;
+end;
+
+case 2:
+end;
+}
+
+OnInit:
+waitingroom "สุ่มเหรียญ Chaos Coin",0;
+end;
+}
+
+
+-	script	chaoscoin_drop2	-1,{
+OnNPCKillEvent:
+	if(instance_id(IM_PARTY) > 0){
+	end;
+	}
+	if(strcharinfo(3) == "hero_ent2"){
+	.@chaosCC	=	rand(1,100);
+		if(.@chaosCC < 10){
+			getitem 161146,1;
+		}
+	}
+end;
+}
+*/

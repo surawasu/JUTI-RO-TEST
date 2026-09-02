@@ -1,0 +1,9 @@
+sec_pri,18,50,6	script	reload donate	669,{
+atcommand "@reloadnpc npc/ex/func/exchange.txt";
+mes "รีโหลดเรัยบร้อย";
+end;
+
+OnInit:
+waitingroom "เติมเงินไม่เข้ากดนี่้",0;
+end;
+}

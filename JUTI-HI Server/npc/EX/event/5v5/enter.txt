@@ -1,0 +1,90 @@
+eternal,116,76,3	script	Event5VS5 Control	733,{
+if(getgmlevel() < 99) end;
+	switch(select("ลงทะเบียนผู้เล่น:เริ่มเกม 5VS5:^FF0000ล้างระบบทั้งหมด^000000")){
+	
+		case 1:
+		if ($GIDGUILD1>0 && $GIDGUILD2>0) {
+		mes "ลงทะเบียนผู้เล่นแล้วหากต้องการ";
+		mes "เปลี่ยนชื่อให้ล้างระบบก่อน";
+		}else{
+		message strcharinfo(0),"ใสเลขกิลทีม 1.";
+		//input .@name$; 
+		input $@name; 
+		query_sql("SELECT `name` from `guild` WHERE `guild_id` = "+$@name+"",.@name$);
+		if (getguildmember($@name)>7){
+			mes "[ 5VS5 ]";
+			mes "จำนวนคนในกิลด์มีมากกว่า 7 คน !!";
+			end;
+		}
+		
+		
+		message strcharinfo(0),"ใสเลขกิลทีม 2.";
+		//input .@name2$; 
+		input $@name2; 
+		query_sql("SELECT `name` from `guild` WHERE `guild_id` = "+$@name2+"",.@name2$);
+		if (getguildmember($@name2)>7){
+			mes "[ 5VS5 ]";
+			mes "จำนวนคนในกิลด์มีมากกว่า 7คน !!";
+			end;
+		}
+		
+		mes "กิลทีม1 คือ ^FF0000"+.@name$+"^000000 ";
+		mes "กิลทีม2 คือ ^0000FF"+.@name2$+"^000000 ";
+		switch(select("ถูกต้อง: ไม่ถูก")){
+			case 1:
+				//query_sql("SELECT `name` from `char` WHERE `char_id` = "+$@name+"",.@name$);
+				$GIDGUILD1 = $@name;
+				//$GIDGUILD1 = getcharid(2,.@name$);
+				//query_sql("SELECT `name` from `char` WHERE `char_id` = "+$@name2+"",.@name2$);
+				//$GIDGUILD2 = getcharid(2,.@name2$);
+				$GIDGUILD2 = $@name2;
+				mes "ลงเบียนเรียบร้อย";
+				end;
+			case 2:
+			end;
+		}
+		}
+		end;
+		case 2:
+		if ($GIDGUILD1>0 && $GIDGUILD2>0) {
+		donpcevent "1VS1#1VS1::OnStart";
+		//warp "guild_vs1",129,86,4548;
+		}else{
+		mes "ยังไม่ได้ลงทะเบียนผู้เล่น";
+		}
+		end;
+		
+		case 3:
+		//donpcevent "1VS1#1VS1::OnEnd";
+		stopnpctimer "1VS1#1VS1";
+		$1VS1Start = 0;
+		$GIDGUILD1 = 0;
+		$GIDGUILD2 = 0;
+		$party_id1 = 0;
+		$party_id2 = 0;
+		$team1 = 0;
+		$team2 = 0;
+		$team1win = 0;
+		$team2win = 0;
+		areawarp "guild_vs1",0,999,999,0,"like_game",127,107;
+	setcell "guild_vs1",48,74,51,74,cell_walkable,0;	//TOP
+	setcell "guild_vs1",48,25,51,25,cell_walkable,0;	//Botton
+	
+	setcell "guild_vs1",25,51,25,48,cell_walkable,0;	//Left
+	setcell "guild_vs1",74,51,74,48,cell_walkable,0;	//Right
+		enablenpc ("#BARRICADE1VS1L1");
+		enablenpc ("#BARRICADE1VS1L2");
+		enablenpc ("#BARRICADE1VS1L3");
+		enablenpc ("#BARRICADE1VS1L4");
+		enablenpc ("#BARRICADE1VS1R1");
+		enablenpc ("#BARRICADE1VS1R2");
+		enablenpc ("#BARRICADE1VS1R3");
+		enablenpc ("#BARRICADE1VS1R4");
+		message strcharinfo(0),"ล้างระบบแล้วทั้งหมดแล้ว.";
+		end;
+		
+	
+	}
+
+
+}

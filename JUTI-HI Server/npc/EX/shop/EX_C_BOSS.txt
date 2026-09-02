@@ -1,0 +1,120 @@
+//===== rAthena Script =======================================
+//= Exchange Item NPC dealer
+//===== By: ==================================================
+//= DurexzOfficial
+//===== Current Version: =====================================
+//= 1.0 เพิ่มร้านรับซื้อไอเทม
+//= 1.1 เพิ่มร้านแลกแต้ม
+//= 1.2 แก้บัคเมื่อขายไอเทมมากกว่า 6ชิ้นขึ้นไปแล้วค้าง
+//===== Compatible With: =====================================
+//= rAthena Project
+//===== Description: =========================================
+//= ให้ผู้เล่นเอาไอเทมตามกำหนดที่ไม่ได้ใช้งานมาแลกเป็น OCP Point
+//============================================================
+
+like_game,101,115,5	script	Card Boss แลก Cash	742,{
+
+	disable_items;
+	if (checkweight(1201,1) == 0) {
+		mes .NPCname$;
+		mes "^FF0000คุณมีไอเทมมากเกินไป^000000";
+		end;
+	}
+	if (MaxWeight - Weight < 10000) {
+		mes .NPCname$;
+		mes "^FF0000กรุณาตรวจสอบน้ำหนักด้วย^000000";
+		end;
+	}
+
+
+
+
+	mes .NPCname$;
+	mes "หวัดดี, "+strcharinfo(0)+"!";
+	mes "มีอะไรให้ข้ารับใช้ไหม ?";
+	next;
+	switch(select("> Card Boss แลก Cash:> ยกเลิก")){
+		case 1:
+				mes .NPCname$;
+				mes "กรุณาเลือกไอเทมที่ตรงตามรายการ";
+				mes "ที่ต้องการจะขาย";
+				/*
+				for ( .@j = 0; .@j < getarraysize(.list_item); .@j = .@j + 1 ) {
+					mes .@j+1+". <ITEM>"+getitemname(.list_item[.@j])+"<INFO>"+.list_item[.@j] +"</INFO></ITEM> [ID: "+.list_item[.@j]+"] ^FF0000["+.list_amount[.@j]+"] แต้ม";
+				}
+				*/
+				callshop "Shop_petr1",2;
+				npcshopattach "Shop_petr1";
+				end;
+		case 2:
+				mes .NPCname$;
+				mes "โอกาสหน้าเชิญใหม่ค่ะ.";
+				end;
+	}
+	
+OnSellItem:
+	mes "ไอเทมที่จะแลก:";
+	mes "-----------------------------------";
+	freeloop(1);
+	for ( .@i = 0; .@i < getarraysize(@sold_nameid); .@i = .@i + 1 ) {
+	
+		for ( .@j = 0; .@j < getarraysize(.list_item); .@j = .@j + 1 ) {
+		
+			if( @sold_nameid[.@i] == .list_item[.@j] ){
+				set .@item_id[getarraysize(.@item_id)], @sold_nameid[.@i];
+				set .@item_amt[getarraysize(.@item_amt)], @sold_quantity[.@i];
+				set .@item_total, .@item_total+(@sold_quantity[.@i]*.list_amount[.@j]);
+				mes "^777777"+@sold_quantity[.@i]+"x "+getitemname(@sold_nameid[.@i])+"^000000 ^FF0000["+.list_amount[.@j]+"]^000000 ใบ";
+			} // end if
+			
+		} // end for j
+		
+	} // end for i
+	freeloop(0);
+	deletearray @sold_nameid[0], getarraysize(@sold_nameid);
+	deletearray @sold_quantity[0], getarraysize(@sold_quantity);
+
+	if (!.@item_id) {
+		mes "  ^777777 (ไม่ใช่ไอเทมที่สามารถขายได้) ^000000";
+		close;
+	}
+	
+	mes "---------- รวมทั้งหมด:  ^0055FF"+.@item_total+" แต้ม.^000000 -------";
+	next;
+	
+	if(select(" > ^0055FFแลกเปลี่ยน...^000000: > ^777777ยกเลิก^000000") == 2) {
+		mes .NPCname$;
+		mes "ไว้พบกันใหม่ โอกาสหน้า";
+		close;
+	}
+	
+	for(.@i = 0; .@i < getarraysize(.@item_id); .@i = .@i + 1){
+		delitem .@item_id[.@i],.@item_amt[.@i];
+	}
+	set #CASHPOINTS, #CASHPOINTS + .@item_total;
+	dispbottom .NPCname$ + " : ท่านได้รับ Cash Point " + callfunc("F_InsertComma",.@item_total) + " รวมตอนนี้ " + callfunc("F_InsertComma",#CASHPOINTS);
+	//getitem 1000274,.@item_total;
+	mes .NPCname$;
+	mes "ขอบคุณที่ท่านไว้ใจ!";
+	mes "และนำไอเท็มมาขายกับร้านของเรา!";
+	mes "หวังว่าครั้งหน้าท่านจะนำมาขายเราอีก";
+	close;
+	
+	
+OnInit:
+	.NPCname$ = "[ Shop Exchange ]";
+	setarray .list_item,4342,4137,4236,4302,4121,4143,4330,4324,4146,4318,4132,4123,4054,4047,4386,4174,4144,4168,4367,4361,4359,4357,4365,4372,4376,27162,4374,4263,4352,4305,4399,4276,4441,4145,4148,4419,27126,4425,4430,4142,4408,4147,4131,4135,4134,4403,4363,4407,4128,4456,9999;	// <รหัสไอเท็ม> ,<รหัสไอเท็ม> ,<รหัสไอเท็ม> ,<รหัสไอเท็ม> เช่น 1201
+	setarray .list_amount,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100;	// <ราคาขาย>,<ราคาขาย>,<ราคาขาย>,<ราคาขาย> เช่น 1201 ได้แต้ม 5
+
+
+	
+
+	npcshopdelitem "Shop_petr1",909;
+	for(set .@i,0; .@i<getarraysize(.Shop); set .@i,.@i+2)
+		npcshopadditem "Shop_petr1",.Shop[.@i],.Shop[.@i+1];
+	
+waitingroom "Card Boss แลก Cash",0;	
+	end;
+}
+
+-	shop	Shop_petr1	-1,909:-1

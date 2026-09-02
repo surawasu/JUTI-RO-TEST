@@ -1,0 +1,1069 @@
+# This file is a part of rAthena.
+#   Copyright(C) 2022 rAthena Development Team
+#   https://rathena.org - https://github.com/rathena
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
+###########################################################################
+# Barter Database
+###########################################################################
+#
+# Barter Settings
+#
+###########################################################################
+#  - Name               NPC name.
+#    Map                Map name. (Default: not on a map)
+#    X                  Map x coordinate. (Default: 0)
+#    Y                  Map y coordinate. (Default: 0)
+#    Direction          Direction the NPC is looking. (Default: North)
+#    Sprite             Sprite name of the NPC. (Default: FakeNpc)
+#    Items:             List of sold items.
+#      - Index          Index of the item inside the shop. (0-...)
+#                       Maximum index depends on client.
+#        Item           Aegis name of the item.
+#        Stock          Amount of item in stock. 0 means unlimited. (Default: 0)
+#        Zeny           Cost of them item in Zeny. (Default: 0)
+#        RequiredItems: List of required items (Optional)
+#          - Index      Index of the required item. (0-4)
+#            Item       Aegis name of required item.
+#            Amount     Amount of required item. (Default: 1)
+#            Refine     Refine level of required item. (Default: 0)
+###########################################################################
+
+Header:
+  Type: BARTER_DB
+  Version: 1
+
+Body:
+  - Name: Crafting_Solaflash
+    Items:
+      - Index: 0
+        Item: C_Cos_1000
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Hi000
+            Amount: 10
+      - Index: 1
+        Item: C_Cos_1001
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Hi001
+            Amount: 10
+      - Index: 2
+        Item: C_Cos_1002
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Hi002
+            Amount: 10
+      - Index: 3
+        Item: C_Cos_1003
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Hi003
+            Amount: 10
+      - Index: 4
+        Item: C_Cos_1004
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Hi004
+            Amount: 10
+      - Index: 5
+        Item: C_Cos_1005
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Hi006
+            Amount: 10
+      - Index: 6
+        Item: C_Cos_1006
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Hi007
+            Amount: 10
+      - Index: 7
+        Item: C_Cos_1007
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Hi005
+            Amount: 10
+
+  - Name: Crafting_Angel_Move_Wing
+    Items:
+      - Index: 0
+        Item: C_Cos_4000
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Hi008
+            Amount: 10
+      - Index: 1
+        Item: C_Cos_4001
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Hi009
+            Amount: 10
+      - Index: 2
+        Item: C_Cos_4002
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Hi011
+            Amount: 10
+      - Index: 3
+        Item: C_Cos_4003
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Hi014
+            Amount: 10
+      - Index: 4
+        Item: C_Cos_4004
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Hi013
+            Amount: 10
+      - Index: 5
+        Item: C_Cos_4005
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Hi010
+            Amount: 10
+      - Index: 6
+        Item: C_Cos_4006
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Hi012
+            Amount: 10
+      - Index: 7
+        Item: C_Cos_4007
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Hi015
+            Amount: 10
+
+
+  - Name: Recycle_hat_boss
+    Items:
+      - Index: 0
+        Item: Mvp_coin_hi
+        Zeny: 1000000
+        RequiredItems:
+          - Index: 0
+            Item: Golden_Gear
+            Amount: 1
+      - Index: 1
+        Item: Mvp_coin_hi
+        Zeny: 1000000
+        RequiredItems:
+          - Index: 0
+            Item: Magestic_Goat
+            Amount: 1
+      - Index: 2
+        Item: Mvp_coin_hi
+        Zeny: 1000000
+        RequiredItems:
+          - Index: 0
+            Item: Sharp_Gear
+            Amount: 1
+      - Index: 3
+        Item: Mvp_coin_hi
+        Zeny: 1000000
+        RequiredItems:
+          - Index: 0
+            Item: Corsair
+            Amount: 1
+      - Index: 4
+        Item: Mvp_coin_hi
+        Zeny: 1000000
+        RequiredItems:
+          - Index: 0
+            Item: Tiara
+            Amount: 1
+      - Index: 5
+        Item: Mvp_coin_hi
+        Zeny: 1000000
+        RequiredItems:
+          - Index: 0
+            Item: Crown
+            Amount: 1
+      - Index: 6
+        Item: Mvp_coin_hi
+        Zeny: 1000000
+        RequiredItems:
+          - Index: 0
+            Item: Spinx_Helm
+            Amount: 1
+      - Index: 7
+        Item: Mvp_coin_hi
+        Zeny: 1000000
+        RequiredItems:
+          - Index: 0
+            Item: Ulle_Cap
+            Amount: 1
+
+  - Name: PET_Pokemon_Hi
+    Items:
+      - Index: 0
+        Item: Pokedex_Hi
+        RequiredItems:
+          - Index: 0
+            Item: Pokemon_Ticket_hi
+            Amount: 1
+      - Index: 1
+        Item: MegaRayquaza_Egg
+        RequiredItems:
+          - Index: 0
+            Item: Pokemon_Ticket_hi
+            Amount: 9999
+      - Index: 2
+        Item: Papilusion_Egg
+        RequiredItems:
+          - Index: 0
+            Item: Pokemon_Ticket_hi
+            Amount: 1
+      - Index: 3
+        Item: Florizarre_Egg
+        RequiredItems:
+          - Index: 0
+            Item: Pokemon_Ticket_hi
+            Amount: 1
+      - Index: 4
+        Item: Dracaufeu_Egg
+        RequiredItems:
+          - Index: 0
+            Item: Pokemon_Ticket_hi
+            Amount: 1
+      - Index: 5
+        Item: Dardargnan_Egg
+        RequiredItems:
+          - Index: 0
+            Item: Pokemon_Ticket_hi
+            Amount: 1
+      - Index: 6
+        Item: Tortank_Egg
+        RequiredItems:
+          - Index: 0
+            Item: Pokemon_Ticket_hi
+            Amount: 1
+      - Index: 7
+        Item: Pikachu01_Egg
+        RequiredItems:
+          - Index: 0
+            Item: Pokemon_Ticket_hi
+            Amount: 1
+      - Index: 8
+        Item: Kingler_Egg
+        RequiredItems:
+          - Index: 0
+            Item: Pokemon_Ticket_hi
+            Amount: 1
+      - Index: 9
+        Item: Weezing_Egg
+        RequiredItems:
+          - Index: 0
+            Item: Pokemon_Ticket_hi
+            Amount: 1
+      - Index: 10
+        Item: Golbet_Egg
+        RequiredItems:
+          - Index: 0
+            Item: Pokemon_Ticket_hi
+            Amount: 1
+      - Index: 11
+        Item: Poliwhirl_Egg
+        RequiredItems:
+          - Index: 0
+            Item: Pokemon_Ticket_hi
+            Amount: 1
+      - Index: 12
+        Item: Pidgeotto_Egg
+        RequiredItems:
+          - Index: 0
+            Item: Pokemon_Ticket_hi
+            Amount: 1
+      - Index: 13
+        Item: Gloom_Egg
+        RequiredItems:
+          - Index: 0
+            Item: Pokemon_Ticket_hi
+            Amount: 1
+      - Index: 14
+        Item: Primeape_Egg
+        RequiredItems:
+          - Index: 0
+            Item: Pokemon_Ticket_hi
+            Amount: 1
+      - Index: 15
+        Item: Magneton_Egg
+        RequiredItems:
+          - Index: 0
+            Item: Pokemon_Ticket_hi
+            Amount: 1
+      - Index: 16
+        Item: Golemmur_Egg
+        RequiredItems:
+          - Index: 0
+            Item: Pokemon_Ticket_hi
+            Amount: 1
+      - Index: 17
+        Item: Wigglytuff_Egg
+        RequiredItems:
+          - Index: 0
+            Item: Pokemon_Ticket_hi
+            Amount: 1
+      - Index: 18
+        Item: Starmie_Egg
+        RequiredItems:
+          - Index: 0
+            Item: Pokemon_Ticket_hi
+            Amount: 1
+      - Index: 19
+        Item: Chansey_Egg
+        RequiredItems:
+          - Index: 0
+            Item: Pokemon_Ticket_hi
+            Amount: 1
+      - Index: 20
+        Item: Dugtrio_Egg
+        RequiredItems:
+          - Index: 0
+            Item: Pokemon_Ticket_hi
+            Amount: 1
+      - Index: 21
+        Item: Kabutops_Egg
+        RequiredItems:
+          - Index: 0
+            Item: Pokemon_Ticket_hi
+            Amount: 1
+      - Index: 22
+        Item: Kadabra_Egg
+        RequiredItems:
+          - Index: 0
+            Item: Pokemon_Ticket_hi
+            Amount: 1
+      - Index: 23
+        Item: Lickitung_Egg
+        RequiredItems:
+          - Index: 0
+            Item: Pokemon_Ticket_hi
+            Amount: 1
+      - Index: 24
+        Item: Scyther_Egg
+        RequiredItems:
+          - Index: 0
+            Item: Pokemon_Ticket_hi
+            Amount: 1
+      - Index: 25
+        Item: Slowpoke_Egg
+        RequiredItems:
+          - Index: 0
+            Item: Pokemon_Ticket_hi
+            Amount: 1
+            
+  - Name: Temporal_Boots_Hi
+    Items:
+      - Index: 0
+        Item: Temporal_Str_Boots
+        Zeny: 1000000
+        RequiredItems:
+          - Index: 0
+            Item: Temporal_Crystal
+            Amount: 10
+      - Index: 1
+        Item: Temporal_Int_Boots
+        Zeny: 1000000
+        RequiredItems:
+          - Index: 0
+            Item: Temporal_Crystal
+            Amount: 10
+      - Index: 2
+        Item: Temporal_Agi_Boots
+        Zeny: 1000000
+        RequiredItems:
+          - Index: 0
+            Item: Temporal_Crystal
+            Amount: 10
+      - Index: 3
+        Item: Temporal_Vit_Boots
+        Zeny: 1000000
+        RequiredItems:
+          - Index: 0
+            Item: Temporal_Crystal
+            Amount: 10
+      - Index: 4
+        Item: Temporal_Dex_Boots
+        Zeny: 1000000
+        RequiredItems:
+          - Index: 0
+            Item: Temporal_Crystal
+            Amount: 10
+      - Index: 5
+        Item: Temporal_Luk_Boots
+        Zeny: 1000000
+        RequiredItems:
+          - Index: 0
+            Item: Temporal_Crystal
+            Amount: 10
+
+  - Name: Crafting_FlameGoat
+    Items:
+      - Index: 0
+        Item: C_Cos_1008
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Hi016
+            Amount: 10
+      - Index: 1
+        Item: C_Cos_1009
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Hi017
+            Amount: 10
+      - Index: 2
+        Item: C_Cos_1010
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Hi018
+            Amount: 10
+      - Index: 3
+        Item: C_Cos_1011
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Hi019
+            Amount: 10
+      - Index: 4
+        Item: C_Cos_1012
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Hi020
+            Amount: 10
+      - Index: 5
+        Item: C_Cos_1013
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Hi021
+            Amount: 10
+      - Index: 6
+        Item: C_Cos_1014
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Hi022
+            Amount: 10
+
+  - Name: Crafting_BirdsBlessing
+    Items:
+      - Index: 0
+        Item: C_Cos_2000
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Hi023
+            Amount: 10
+      - Index: 1
+        Item: C_Cos_2001
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Hi024
+            Amount: 10
+      - Index: 2
+        Item: C_Cos_2002
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Hi025
+            Amount: 10
+      - Index: 3
+        Item: C_Cos_2003
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Hi026
+            Amount: 10
+      - Index: 4
+        Item: C_Cos_2004
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Hi027
+            Amount: 10
+      - Index: 5
+        Item: C_Cos_2005
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Hi028
+            Amount: 10
+      - Index: 6
+        Item: C_Cos_2006
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Hi029
+            Amount: 10
+      - Index: 7
+        Item: C_Cos_2007
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Hi030
+            Amount: 10
+
+  - Name: Crafting_CupidScarf
+    Items:
+      - Index: 0
+        Item: C_Cos_3000
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Hi031
+            Amount: 10
+      - Index: 1
+        Item: C_Cos_3001
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Hi032
+            Amount: 10
+      - Index: 2
+        Item: C_Cos_3002
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Hi033
+            Amount: 10
+      - Index: 3
+        Item: C_Cos_3003
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Hi034
+            Amount: 10
+      - Index: 4
+        Item: C_Cos_3004
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Hi035
+            Amount: 10
+      - Index: 5
+        Item: C_Cos_3005
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Hi036
+            Amount: 10
+      - Index: 6
+        Item: C_Cos_3006
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Hi037
+            Amount: 10
+
+  - Name: Crafting_Cat_Pet
+    Items:
+      - Index: 0
+        Item: Persian_Egg_Hi
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Hi038
+            Amount: 10
+      - Index: 1
+        Item: Snowshoe_Egg_Hi
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Hi039
+            Amount: 10
+      - Index: 2
+        Item: Tiffanie_Egg_Hi
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Hi040
+            Amount: 10
+      - Index: 3
+        Item: Bengal_Egg_Hi
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Hi041
+            Amount: 10
+      - Index: 4
+        Item: Devonrex_Egg_Hi
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Hi042
+            Amount: 10
+      - Index: 5
+        Item: Sphinx_Egg_Hi
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Hi043
+            Amount: 10
+      - Index: 6
+        Item: Chinchilla_Egg_Hi
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Hi044
+            Amount: 10
+      - Index: 7
+        Item: Mainecoon_Egg_Hi
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Hi045
+            Amount: 10
+
+  - Name: Crafting_Stone_Box
+    Items:
+      - Index: 0
+        Item: Enchant_Stone_BoxHi
+        Zeny: 500000
+        RequiredItems:
+          - Index: 0
+            Item: Mvp_coin_hi1
+            Amount: 5
+
+#  - Name: Class_Scroll_Hi
+#    Items:
+#      - Index: 0
+#        Item: Scroll_Class_002
+#        Zeny: 5000000
+#        RequiredItems:
+#          - Index: 0
+#            Item: Nameless_Book_Hi
+#            Amount: 5
+#          - Index: 1
+#            Item: Overlord_Token_Hi
+#            Amount: 20
+#      - Index: 1
+#        Item: Scroll_Class_003
+#        Zeny: 5000000
+#        RequiredItems:
+#          - Index: 0
+#            Item: Nameless_Book_Hi
+#            Amount: 5
+#          - Index: 1
+#            Item: Overlord_Token_Hi
+#            Amount: 20
+#      - Index: 2
+#        Item: Scroll_Class_004
+#        Zeny: 5000000
+#        RequiredItems:
+#          - Index: 0
+#            Item: Nameless_Book_Hi
+#            Amount: 5
+#          - Index: 1
+#            Item: Overlord_Token_Hi
+#            Amount: 20
+#      - Index: 3
+#        Item: Scroll_Class_005
+#        Zeny: 5000000
+#        RequiredItems:
+#          - Index: 0
+#            Item: Nameless_Book_Hi
+#            Amount: 5
+#          - Index: 1
+#            Item: Overlord_Token_Hi
+#            Amount: 20
+#      - Index: 4
+#        Item: Scroll_Class_006
+#        Zeny: 5000000
+#        RequiredItems:
+#          - Index: 0
+#            Item: Nameless_Book_Hi
+#            Amount: 5
+#          - Index: 1
+#            Item: Overlord_Token_Hi
+#            Amount: 20
+#      - Index: 5
+#        Item: Scroll_Class_007
+#        Zeny: 5000000
+#        RequiredItems:
+#          - Index: 0
+#            Item: Nameless_Book_Hi
+#            Amount: 5
+#          - Index: 1
+#            Item: Overlord_Token_Hi
+#            Amount: 20
+#      - Index: 6
+#        Item: Scroll_Class_008
+#        Zeny: 5000000
+#        RequiredItems:
+#          - Index: 0
+#            Item: Nameless_Book_Hi
+#            Amount: 5
+#          - Index: 1
+#            Item: Overlord_Token_Hi
+#            Amount: 20
+#      - Index: 7
+#        Item: Scroll_Class_009
+#        Zeny: 5000000
+#        RequiredItems:
+#          - Index: 0
+#            Item: Nameless_Book_Hi
+#            Amount: 5
+#          - Index: 1
+#            Item: Overlord_Token_Hi
+#            Amount: 20
+#      - Index: 8
+#        Item: Scroll_Class_010
+#        Zeny: 5000000
+#        RequiredItems:
+#          - Index: 0
+#            Item: Nameless_Book_Hi
+#            Amount: 5
+#          - Index: 1
+#            Item: Overlord_Token_Hi
+#            Amount: 20
+#      - Index: 9
+#        Item: Scroll_Class_011
+#        Zeny: 5000000
+#        RequiredItems:
+#          - Index: 0
+#            Item: Nameless_Book_Hi
+#            Amount: 5
+#          - Index: 1
+#            Item: Overlord_Token_Hi
+#            Amount: 20
+#      - Index: 10
+#        Item: Scroll_Class_012
+#        Zeny: 5000000
+#        RequiredItems:
+#          - Index: 0
+#            Item: Nameless_Book_Hi
+#            Amount: 5
+#          - Index: 1
+#            Item: Overlord_Token_Hi
+#            Amount: 20
+#      - Index: 11
+#        Item: Scroll_Class_013
+#        Zeny: 5000000
+#        RequiredItems:
+#          - Index: 0
+#            Item: Nameless_Book_Hi
+#            Amount: 5
+#          - Index: 1
+#            Item: Overlord_Token_Hi
+#            Amount: 20
+#      - Index: 12
+#        Item: Scroll_Class_014
+#        Zeny: 5000000
+#        RequiredItems:
+#          - Index: 0
+#            Item: Nameless_Book_Hi
+#            Amount: 5
+#          - Index: 1
+#            Item: Overlord_Token_Hi
+#            Amount: 20
+#      - Index: 13
+#        Item: Scroll_Class_015
+#        Zeny: 5000000
+#        RequiredItems:
+#          - Index: 0
+#            Item: Nameless_Book_Hi
+#            Amount: 5
+#          - Index: 1
+#            Item: Overlord_Token_Hi
+#            Amount: 20
+#      - Index: 14
+#        Item: Scroll_Class_016
+#        Zeny: 5000000
+#        RequiredItems:
+#          - Index: 0
+#            Item: Nameless_Book_Hi
+#            Amount: 5
+#          - Index: 1
+#            Item: Overlord_Token_Hi
+#            Amount: 20
+#      - Index: 15
+#        Item: Scroll_Class_017
+#        Zeny: 5000000
+#        RequiredItems:
+#          - Index: 0
+#            Item: Nameless_Book_Hi
+#            Amount: 5
+#          - Index: 1
+#            Item: Overlord_Token_Hi
+#            Amount: 20
+#      - Index: 16
+#        Item: Scroll_Class_018
+#        Zeny: 5000000
+#        RequiredItems:
+#          - Index: 0
+#            Item: Nameless_Book_Hi
+#            Amount: 5
+#          - Index: 1
+#            Item: Overlord_Token_Hi
+#            Amount: 20
+#      - Index: 17
+#        Item: Scroll_Class_019
+#        Zeny: 5000000
+#        RequiredItems:
+#          - Index: 0
+#            Item: Nameless_Book_Hi
+#            Amount: 5
+#          - Index: 1
+#            Item: Overlord_Token_Hi
+#            Amount: 20
+#      - Index: 18
+#        Item: Scroll_Class_020
+#        Zeny: 5000000
+#        RequiredItems:
+#          - Index: 0
+#            Item: Nameless_Book_Hi
+#            Amount: 5
+#          - Index: 1
+#            Item: Overlord_Token_Hi
+#            Amount: 20
+#      - Index: 19
+#        Item: Scroll_Class_021
+#        Zeny: 5000000
+#        RequiredItems:
+#          - Index: 0
+#            Item: Nameless_Book_Hi
+#            Amount: 5
+#          - Index: 1
+#            Item: Overlord_Token_Hi
+#            Amount: 20
+#      - Index: 20
+#        Item: Scroll_Class_022
+#        Zeny: 5000000
+#        RequiredItems:
+#          - Index: 0
+#            Item: Nameless_Book_Hi
+#            Amount: 5
+#          - Index: 1
+#            Item: Overlord_Token_Hi
+#            Amount: 20
+#      - Index: 21
+#        Item: Scroll_Class_023
+#        Zeny: 5000000
+#        RequiredItems:
+#          - Index: 0
+#            Item: Nameless_Book_Hi
+#            Amount: 5
+#          - Index: 1
+#            Item: Overlord_Token_Hi
+#            Amount: 20
+#      - Index: 22
+#        Item: Scroll_Class_024
+#        Zeny: 5000000
+#        RequiredItems:
+#          - Index: 0
+#            Item: Nameless_Book_Hi
+#            Amount: 5
+#          - Index: 1
+#            Item: Overlord_Token_Hi
+#            Amount: 20
+#      - Index: 23
+#        Item: Scroll_Class_025
+#        Zeny: 5000000
+#        RequiredItems:
+#          - Index: 0
+#            Item: Nameless_Book_Hi
+#            Amount: 5
+#          - Index: 1
+#            Item: Overlord_Token_Hi
+#            Amount: 20
+
+  - Name: Crafting_Costume_Serie_V1
+    Items:
+      - Index: 0
+        Item: C_Cos_4093
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Serie_001
+            Amount: 10
+      - Index: 1
+        Item: C_Evil_Druid_Cross
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Serie_002
+            Amount: 10
+      - Index: 2
+        Item: C_Cos_1204
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Serie_003
+            Amount: 10
+      - Index: 3
+        Item: C_Cos_1124
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Serie_004
+            Amount: 10
+      - Index: 4
+        Item: C_Golden_Majestic_Goat
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Serie_005
+            Amount: 10
+      - Index: 5
+        Item: C_Runaway_Accelerator
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Serie_006
+            Amount: 10
+      - Index: 6
+        Item: C_Cos_2035
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Serie_007
+            Amount: 10
+      - Index: 7
+        Item: C_Cos_2069
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Serie_008
+            Amount: 10
+      - Index: 8
+        Item: C_Vampire_Familiar
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Serie_009
+            Amount: 10
+      - Index: 9
+        Item: C_Lovely_Feeling
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Serie_010
+            Amount: 10
+      - Index: 10
+        Item: C_Cos_3105
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Serie_011
+            Amount: 10
+      - Index: 11
+        Item: C_Cos_3144
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Serie_012
+            Amount: 10
+      - Index: 12
+        Item: C_Stole_Of_Dominion
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Serie_013
+            Amount: 10
+      - Index: 13
+        Item: C_Sleep_Sheep_TW
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Serie_014
+            Amount: 10
+  
+  - Name: shadowcbt
+    Items:
+      - Index: 0
+        Item: CBT_Shadow_Hi_001
+        RequiredItems:
+          - Index: 0
+            Item: CBT_SHADOW_TICKET
+            Amount: 1
+      - Index: 1
+        Item: CBT_Shadow_Hi_002
+        RequiredItems:
+          - Index: 0
+            Item: CBT_SHADOW_TICKET
+            Amount: 1
+      - Index: 2
+        Item: CBT_Shadow_Hi_003
+        RequiredItems:
+          - Index: 0
+            Item: CBT_SHADOW_TICKET
+            Amount: 1 
+  
+  - Name: blackstartweapon
+    Items:
+      - Index: 0
+        Item: Shadow_Hiclass_000
+        RequiredItems:
+          - Index: 0
+            Item: Blackstar_Ticket_Hi
+            Amount: 1
+      - Index: 1
+        Item: Shadow_Hiclass_001
+        RequiredItems:
+          - Index: 0
+            Item: Blackstar_Ticket_Hi
+            Amount: 1
+      - Index: 2
+        Item: Shadow_Hiclass_002
+        RequiredItems:
+          - Index: 0
+            Item: Blackstar_Ticket_Hi
+            Amount: 1
+      - Index: 3
+        Item: Shadow_Hiclass_003
+        RequiredItems:
+          - Index: 0
+            Item: Blackstar_Ticket_Hi
+            Amount: 1
+      - Index: 4
+        Item: Shadow_Hiclass_004
+        RequiredItems:
+          - Index: 0
+            Item: Blackstar_Ticket_Hi
+            Amount: 1
+      - Index: 5
+        Item: Shadow_Hiclass_005
+        RequiredItems:
+          - Index: 0
+            Item: Blackstar_Ticket_Hi
+            Amount: 1
+      - Index: 6
+        Item: Shadow_Hiclass_006
+        RequiredItems:
+          - Index: 0
+            Item: Blackstar_Ticket_Hi
+            Amount: 1
+      - Index: 7
+        Item: Shadow_Hiclass_007
+        RequiredItems:
+          - Index: 0
+            Item: Blackstar_Ticket_Hi
+            Amount: 1
+      - Index: 8
+        Item: Shadow_Hiclass_008
+        RequiredItems:
+          - Index: 0
+            Item: Blackstar_Ticket_Hi
+            Amount: 1
+      - Index: 9
+        Item: Shadow_Hiclass_009
+        RequiredItems:
+          - Index: 0
+            Item: Blackstar_Ticket_Hi
+            Amount: 1
+      - Index: 10
+        Item: Shadow_Hiclass_046
+        RequiredItems:
+          - Index: 0
+            Item: Blackstar_Ticket_Hi
+            Amount: 1
+      - Index: 11
+        Item: Shadow_Hiclass_020
+        RequiredItems:
+          - Index: 0
+            Item: Blackstar_Ticket_Hi
+            Amount: 1
+      - Index: 12
+        Item: Shadow_Hiclass_048
+        RequiredItems:
+          - Index: 0
+            Item: Blackstar_Ticket_Hi
+            Amount: 1
+      - Index: 13
+        Item: Shadow_Hiclass_100
+        RequiredItems:
+          - Index: 0
+            Item: Blackstar_Ticket_Hi
+            Amount: 1
+      - Index: 14
+        Item: Shadow_Hiclass_101
+        RequiredItems:
+          - Index: 0
+            Item: Blackstar_Ticket_Hi
+            Amount: 1
+
+
+  - Name: Crafting_Costume_Ticket
+    Items:
+      - Index: 0
+        Item: Costume_Ticket_ex
+        RequiredItems:
+          - Index: 0
+            Item: Jigsaw_Costume_TicketHi
+            Amount: 3

@@ -1,0 +1,140 @@
+-	shop	CardJutiBoss	90,77005:1000
+-	shop	CardJutiNonBoss	90,77005:1000
+
+
+mooc,124,69,6	script	ระบบอัพเกรดการ์ด#mallae	4_M_FARIY_HISIE,{
+disable_items;
+
+
+	disable_items;
+	if (checkweight(1201,1) == 0) {
+		mes "[^0000FFระบบอัพเกรดการ์ด^000000]";
+		mes "^FF0000มีไอเท็มมากเกินไป^000000";
+		end;
+	}
+	if (MaxWeight - Weight < 10000) {
+		mes "[^0000FFระบบอัพเกรดการ์ด^000000]";
+		mes "^FF0000น้ำหนักของท่านไม่เพียงพอ^000000";
+		end;
+	}
+
+
+
+mes "[^0000FFระบบอัพเกรดการ์ด^000000]";
+mes "เลือกการ์ดที่ต้องการอัพเกรดได้เลย";
+mes "^FF0000คำเตือน หากทำไม่สำเร็จ ไอเท็มทั้งหมดจะหายไป^000000";
+mes "^FF0000โปรดคิดให้ดีก่อนทำการอัพเกรด!^000000";
+//close2;
+
+
+menu 
+"^FF0000•^000000 อัพเกรดการ์ดฺ Boss ",C_UP01,
+"^FF0000•^000000 อัพเกรดการ์ด ทั่วไป",C_UP02,
+"^FF0000•^000000 ยกเลิก",C_UP03;
+
+
+C_UP01:
+close2;
+callshop "CardJutiBoss",1;    
+npcshopattach "CardJutiBoss";
+end;
+
+C_UP02:
+close2;
+callshop "CardJutiNonBoss",1;    
+npcshopattach "CardJutiNonBoss";
+end;
+
+
+
+C_UP03:
+end;
+
+OnBuyItem:
+
+	switch( @bought_nameid ) {
+	//boss
+	case 77005:	//Up_Golden_Bug_Card
+		.@requirement1 = 4128;
+		break;
+	//normal
+	case 77051:	//Up_Golden_Bug_Card
+		.@requirement1 = 4593;
+		break;
+	case 77052:	//Up_Petal_Card
+		.@requirement1 = 4594;
+		break;
+	case 77053:	//Up_Petal_Card
+		.@requirement1 = 4595;
+		break;
+	case 77054:	//Up_Petal_Card
+		.@requirement1 = 4596;
+		break;
+	case 77055:	//Up_Wakwak_Card
+		.@requirement1 = 4588;
+		break;
+	case 77056:	//Up_Wakwak_Card
+		.@requirement1 = 4589;
+		break;
+	case 77057:	//Up_Wakwak_Card
+		.@requirement1 = 4589;
+		break;
+	}
+	
+if((@bought_nameid)== 77005) goto UPGARDE;
+end;
+
+UPGARDE:
+	disable_items;
+	.@rate = 20;
+	.@amount1 = 20;
+	.@amount2 = 50;
+	.@cash = 10000;
+	.@requirement2 = 60005;
+	
+	if(#CASHPOINTS < .@cash || countitem(.@requirement1) < .@amount1 || countitem(.@requirement2) < .@amount2 ){
+	mes "[^0000FFระบบอัพเกรดการ์ด^000000]";
+	mes "ต้องการ";
+	mes "<ITEM>"+getitemname(.@requirement1)+"<INFO>"+(.@requirement1)+"</INFO></ITEM>จำนวน "+(.@amount1)+" ea";
+	mes "<ITEM>"+getitemname(.@requirement2)+"<INFO>"+(.@requirement2)+"</INFO></ITEM>จำนวน "+(.@amount2)+" ea";
+	mes ""+ callfunc("F_InsertComma",.@cash) +" Cash";
+	end;
+	}
+	
+	mes "[^0000FFระบบอัพเกรดการ์ด^000000]";
+	mes "โอกาสทำสำเร็จ 30 %";
+	mes "ต้องการ";
+	mes "<ITEM>"+getitemname(.@requirement1)+"<INFO>"+(.@requirement1)+"</INFO></ITEM>จำนวน "+(.@amount1)+" ea";
+	mes "<ITEM>"+getitemname(.@requirement2)+"<INFO>"+(.@requirement2)+"</INFO></ITEM>จำนวน "+(.@amount2)+" ea";
+	mes ""+ callfunc("F_InsertComma",.@cash) +" Cash";
+	next;
+	switch(select("^ff3333•^000000 เอาเลย","^ff3333•^000000 ยกเลิก")) 
+	{
+	
+			case 1:
+			next;
+			delitem .@requirement1,.@amount1;
+			delitem .@requirement2,.@amount2;
+			#CASHPOINTS -= .@cash;
+			
+			if (rand(100) < .@rate) {
+			mes "[^0000FFระบบอัพเกรดการ์ด^000000]";
+			mes "สำเร็จ !!";
+			specialeffect2 83;
+			getitem @bought_nameid,1; 
+			announce "[ •ระบบอัพเกรดการ์ด• ]  :  ดีใจด้วย ท่าน ["+strcharinfo(0)+"] ได้ทำการฟิวชั่นการ์ด [ "+getitemname(@bought_nameid)+" ] สำเร็จ !! ",bc_all,0x00FF00;
+			end;
+			}
+			
+			mes "[^0000FFระบบฟิวชั่นการ์ด^000000]";
+			mes "ขอโทษด้วยมันล้มเหลว";
+			announce "[ •ระบบอัพเกรดการ์ด• ]  : เสียใจด้วย ท่าน ["+strcharinfo(0)+"] ได้ทำการฟิวชั่นการ์ด [ "+getitemname(@bought_nameid)+" ] ล้มเหลว !! ",bc_all,0xCC3300;
+			specialeffect2 183;
+			end;
+			
+			case 2:
+			end;
+	
+end;
+
+}

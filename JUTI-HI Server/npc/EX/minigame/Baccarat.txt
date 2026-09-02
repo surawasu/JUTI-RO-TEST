@@ -1,0 +1,2869 @@
+//==================================================
+// Build date: 01/29/2023 - 12:36 PM
+// Author: Jhondominic
+// Website: https://jhondominic.com
+// Contact: https://web.facebook.com/1ST.Dominic
+// Script name: Baccarat
+// Script Version: v3.0
+// Base on: rAthena
+// Sell at: 04/08/2023 - 00:00 AM
+// Customer: C3-PROJECT#2062 - Discord
+//==================================================
+
+-	script	DB_Create	-1,{
+OnInit:
+	query_sql (
+		"CREATE TABLE IF NOT EXISTS `bac_results` ("+
+		"`id` int(12) NOT NULL AUTO_INCREMENT,"+
+		"`bet_round` int(12) NOT NULL,"+
+		"`results` int(1) NOT NULL,"+
+		"`datetime` datetime NOT NULL,"+
+		"PRIMARY KEY (`id`)"+
+		") ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;"
+	);
+	query_sql (
+		"CREATE TABLE IF NOT EXISTS `bet_banker` ("+
+		"`id` int(12) NOT NULL AUTO_INCREMENT,"+
+		"`acc_id` int(12) NOT NULL,"+
+		"`char_id` int(12) NOT NULL,"+
+		"`bet_round` int(12) NOT NULL,"+
+		"`char_name` varchar(255) NOT NULL,"+
+		"`item_id` int(12) NOT NULL,"+
+		"`bet_amount` int(12) NOT NULL,"+
+		"`get_bet` int(1) NOT NULL DEFAULT '0',"+
+		"PRIMARY KEY (`id`)"+
+		") ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;"
+	);
+	query_sql (
+		"CREATE TABLE IF NOT EXISTS `bet_bankerdouble` ("+
+		"`id` int(12) NOT NULL AUTO_INCREMENT,"+
+		"`acc_id` int(12) NOT NULL,"+
+		"`char_id` int(12) NOT NULL,"+
+		"`bet_round` int(12) NOT NULL,"+
+		"`char_name` varchar(255) NOT NULL,"+
+		"`item_id` int(12) NOT NULL,"+
+		"`bet_amount` int(12) NOT NULL,"+
+		"`get_bet` int(1) NOT NULL DEFAULT '0',"+
+		"PRIMARY KEY (`id`)"+
+		") ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;"
+	);
+	query_sql (
+		"CREATE TABLE IF NOT EXISTS `bet_bankernatural` ("+
+		"`id` int(12) NOT NULL AUTO_INCREMENT,"+
+		"`acc_id` int(12) NOT NULL,"+
+		"`char_id` int(12) NOT NULL,"+
+		"`bet_round` int(12) NOT NULL,"+
+		"`char_name` varchar(255) NOT NULL,"+
+		"`item_id` int(12) NOT NULL,"+
+		"`bet_amount` int(12) NOT NULL,"+
+		"`get_bet` int(1) NOT NULL DEFAULT '0',"+
+		"PRIMARY KEY (`id`)"+
+		") ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;"
+	);
+	query_sql (
+		"CREATE TABLE IF NOT EXISTS `bet_draw` ("+
+		"`id` int(12) NOT NULL AUTO_INCREMENT,"+
+		"`acc_id` int(12) NOT NULL,"+
+		"`char_id` int(12) NOT NULL,"+
+		"`bet_round` int(12) NOT NULL,"+
+		"`char_name` varchar(255) NOT NULL,"+
+		"`item_id` int(12) NOT NULL,"+
+		"`bet_amount` int(12) NOT NULL,"+
+		"`get_bet` int(1) NOT NULL DEFAULT '0',"+
+		"PRIMARY KEY (`id`)"+
+		") ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;"
+	);
+	query_sql (
+		"CREATE TABLE IF NOT EXISTS `bet_player` ("+
+		"`id` int(12) NOT NULL AUTO_INCREMENT,"+
+		"`acc_id` int(12) NOT NULL,"+
+		"`char_id` int(12) NOT NULL,"+
+		"`bet_round` int(12) NOT NULL,"+
+		"`char_name` varchar(255) NOT NULL,"+
+		"`item_id` int(12) NOT NULL,"+
+		"`bet_amount` int(12) NOT NULL,"+
+		"`get_bet` int(1) NOT NULL DEFAULT '0',"+
+		"PRIMARY KEY (`id`)"+
+		") ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;"
+	);
+	query_sql (
+		"CREATE TABLE IF NOT EXISTS `bet_playerdouble` ("+
+		"`id` int(12) NOT NULL AUTO_INCREMENT,"+
+		"`acc_id` int(12) NOT NULL,"+
+		"`char_id` int(12) NOT NULL,"+
+		"`bet_round` int(12) NOT NULL,"+
+		"`char_name` varchar(255) NOT NULL,"+
+		"`item_id` int(12) NOT NULL,"+
+		"`bet_amount` int(12) NOT NULL,"+
+		"`get_bet` int(1) NOT NULL DEFAULT '0',"+
+		"PRIMARY KEY (`id`)"+
+		") ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;"
+	);
+	query_sql (
+		"CREATE TABLE IF NOT EXISTS `bet_playernatural` ("+
+		"`id` int(12) NOT NULL AUTO_INCREMENT,"+
+		"`acc_id` int(12) NOT NULL,"+
+		"`char_id` int(12) NOT NULL,"+
+		"`bet_round` int(12) NOT NULL,"+
+		"`char_name` varchar(255) NOT NULL,"+
+		"`item_id` int(12) NOT NULL,"+
+		"`bet_amount` int(12) NOT NULL,"+
+		"`get_bet` int(1) NOT NULL DEFAULT '0',"+
+		"PRIMARY KEY (`id`)"+
+		") ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;"
+	);
+	query_sql (
+		"CREATE TABLE IF NOT EXISTS `bet_ip` ("+
+		"`id` int(12) NOT NULL AUTO_INCREMENT,"+
+		"`char_id` int(12) NOT NULL,"+
+		"`bet_round` int(12) NOT NULL,"+
+		"`ip` varchar(255) NOT NULL,"+
+		"PRIMARY KEY (`id`)"+
+		") ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;"
+	);
+	query_sql("SELECT COUNT(*) FROM `bac_results` WHERE bet_round = 0", .@BetCheck);
+	if (!.@BetCheck) {
+		query_sql("INSERT INTO `bac_results` (`bet_round`, `results`, `datetime`) VALUES (0, 1, NOW()) ");
+	}
+	end;
+}
+
+florian,147,168,4	script	Baccarat	721,{
+
+	if ($SystemStart == 1) {
+		mes .NPCName$;
+		mes "^FF0000รอบนี้กำลังแจกไพ่ กรุณารอรอบต่อไป^000000";
+		close;
+	}
+
+	if (BetRound != $BetRound) {
+		set TRBet, 0;
+		set DBBet, 0;
+		set NRBet, 0;
+	}
+
+	query_sql ("SELECT `last_ip` FROM `login` WHERE `account_id`="+getcharid(3)+"", .@lip$);
+	query_sql ("SELECT `char_id` FROM `bet_ip` WHERE `ip`='" + .@lip$ + "' AND `bet_round`="+$BetRound+"", .@mour);
+	if (.@mour) {
+		if (getcharid(0) != .@mour) {
+			mes .NPCName$;
+			mes "^FF00001 ไอพีแทงได้ 1 ตัวละครเท่านั้น^000000";
+			close;
+		}
+	}
+
+	mes .NPCName$;
+	mes "สวัสดี ^0000FF"+strcharinfo(0)+"^000000";
+	mes "ท่านจะแทงฝั่งไหนดีละ?";
+	mes "ผู้เล่น เจ้ามือ เสมอ ป็อก หรือคู่";
+	mes "รอบแทงที่ ^FF0000"+$BetRound+"^000000";
+	next;
+
+	menu "~ ^0000FFแทงฝั่งผู้เล่น^000000",-,"~ ^FF0000แทงฝั่งเจ้ามือ^000000",banker,"~ ^32CD32แทงเสมอ [1-8]^000000",DBet,"~ ยกเลิก",Cancel;
+
+	mes .NPCName$;
+	mes "ท่านจะแทงอะไรของฝั่งผู้เล่น?";
+	next;
+	menu "~ แทงฝั่งผู้เล่นชนะ [1-1]",PBet,"~ แทงฝั่งผู้เล่นไพ่คู่ [1-11]",PDBet,"~ แทงฝั่งผู้เล่นป็อก [1-8]",PNBet,"~ ยกเลิก",Cancel;
+
+PBet:
+	mes .NPCName$;
+	if ($BetMode == 3) {
+		mes "ท่านต้องใช้ ^FF0000"+getitemname(.BetItem)+"^000000";
+		mes "ในการแทง";
+	}
+	mes "ท่านจะแทงเท่าไหร่ดีล่ะ?";
+	next;
+	input .@Bet;
+
+	if (.@Bet == 0) { end; }
+
+	if (.@Bet < .LowBet) {
+		mes .NPCName$;
+		if ($BetMode == 1) {
+			mes "ขั้นต่ำในการแทงคือ ^FF0000"+callfunc("F_InsertComma", .LowBet)+"^000000 Zeny";
+		} else if ($BetMode == 2) {
+			mes "ขั้นต่ำในการแทงคือ ^FF0000"+callfunc("F_InsertComma", .LowBet)+"^000000 Cash";
+		} else if ($BetMode == 3) {
+			mes "ขั้นต่ำในการแทงคือ ^FF0000"+callfunc("F_InsertComma", .LowBet)+"^000000 ชื้น";
+		}
+		close;
+	}
+
+	if (.@Bet > .HighBet) {
+		mes .NPCName$;
+		if ($BetMode == 1) {
+			mes "กำจัดวงเงินแทงต่อรอบแค่ ^FF0000"+callfunc("F_InsertComma", .HighBet)+"^000000 Zeny";
+		} else if ($BetMode == 2) {
+			mes "กำจัดวงเงินแทงต่อรอบแค่ ^FF0000"+callfunc("F_InsertComma", .HighBet)+"^000000 Cash";
+		} else if ($BetMode == 3) {
+			mes "กำจัดไอเทมเดิมพันต่อรอบแค่ ^FF0000"+callfunc("F_InsertComma", .HighBet)+"^000000 ชื้น";
+		}
+		close;
+	}
+	
+	if ((TRBet+.@Bet) >= .BRLimit) {
+		mes .NPCName$;
+		mes "^FF0000จำนวนที่แทงถึงจำนวนจำกัดแทงต่อรอบแล้ว^000000";
+		close;
+	}
+
+	if ($BetMode == 1) {
+		if (.@Bet > ZENY) {
+			mes .NPCName$;
+			mes "^FF0000ท่านมี Zeny ไม่พอที่จะแทง^000000";
+			close;
+		}
+	} else if ($BetMode == 2) {
+		if (.@Bet > #CASHPOINTS) {
+			mes .NPCName$;
+			mes "^FF0000ท่านมี Cash ไม่พอที่จะแทง^000000";
+			close;
+		}
+	} else if ($BetMode == 3) {
+		if (.@Bet > countitem(.BetItem)) {
+			mes .NPCName$;
+			mes "^FF0000ท่านมี "+getitemname(.BetItem)+" ไม่พอที่จะแทง^000000";
+			close;
+		}
+	}
+	
+	mes .NPCName$;
+	mes "ท่านเลือก^0000FFแทงฝั่งผู้เล่นชนะ^000000";
+	if ($BetMode == 1) {
+		mes "จำนวน ^FF0000"+callfunc("F_InsertComma", .@Bet)+"^000000 Zeny";
+	} else if ($BetMode == 2) {
+		mes "จำนวน ^FF0000"+callfunc("F_InsertComma", .@Bet)+"^000000 Cash";
+	} else if ($BetMode == 3) {
+		mes "ด้วยไอเทม ^FF0000"+getitemname(.BetItem)+"^000000 จำนวน ^FF0000"+callfunc("F_InsertComma", .@Bet)+"^000000 ชิ้น";
+	}
+	mes "ยืนยันหรือไม่?";
+	next;
+	menu "~ ^FF0000ยกเลิก^000000",Cancel,"~ ^32CD32ยืนยัน^000000",-;
+
+	query_sql ("SELECT `last_ip` FROM `login` WHERE `account_id`="+getcharid(3)+"", .@lip$);
+	query_sql ("SELECT `char_id` FROM `bet_ip` WHERE `ip`='" + .@lip$ + "' AND `bet_round`="+$BetRound+"", .@mour);
+	if (.@mour) {
+		if (getcharid(0) != .@mour) {
+			mes .NPCName$;
+			mes "^FF00001 ไอพีแทงได้ 1 ตัวละครเท่านั้น^000000";
+			close;
+		}
+	}
+
+	if ($SystemStart == 1) {
+		mes .NPCName$;
+		mes "^FF0000รอบนี้กำลังแจกไพ่ กรุณารอรอบต่อไป^000000";
+		close;
+	}
+	if ($BetMode == 1) {
+		set ZENY, ZENY - .@Bet;
+	} else if ($BetMode == 2) {
+		set #CASHPOINTS, #CASHPOINTS - .@Bet;
+	} else if ($BetMode == 3) {
+		delitem .BetItem, .@Bet;
+	}
+	set $ALLPBET, $ALLPBET + .@Bet;
+	set .@BetAccID, getcharid(3);
+	set .@BetCharID, getcharid(0);
+	set TRBet, TRBet + .@Bet;
+	set BetRound, $BetRound;
+
+	query_sql("SELECT `last_ip` FROM `login` WHERE `account_id`="+getcharid(3)+"", .@lip$);
+	query_sql("SELECT COUNT(char_id) FROM `bet_ip` WHERE char_id = "+getcharid(0)+" AND bet_round = "+$BetRound+"",.@chkip);
+	if (!.@chkip) {
+		query_sql("INSERT INTO `bet_ip` (`char_id`, `bet_round`, `ip`) VALUES ("+.@BetCharID+", "+$BetRound+", '"+.@lip$+"') ");
+	}
+
+	if ($BetMode == 3) {
+		query_sql("INSERT INTO `bet_player` (`acc_id`, `char_id`, `bet_round`, `char_name`, `bet_amount`, `item_id`) VALUES ("+.@BetAccID+", "+.@BetCharID+", "+$BetRound+", '"+strcharinfo(0)+"', "+.@Bet+", "+.BetItem+") ");
+	} else {
+		query_sql("INSERT INTO `bet_player` (`acc_id`, `char_id`, `bet_round`, `char_name`, `bet_amount`) VALUES ("+.@BetAccID+", "+.@BetCharID+", "+$BetRound+", '"+strcharinfo(0)+"', "+.@Bet+") ");
+	}
+
+	dispbottom "====== Baccarat Bet ======";
+	dispbottom "รอบแทงที่ "+$BetRound+"";
+	if ($BetMode == 1) {
+		dispbottom "คุณแทงฝั่งผู้เล่นชนะ "+callfunc("F_InsertComma", .@Bet)+" Zeny";
+		dispbottom "ยอดเงินคงเหลือ "+callfunc("F_InsertComma", ZENY)+" Zeny";
+	} else if ($BetMode == 2) {
+		dispbottom "คุณแทงฝั่งผู้เล่นชนะ "+callfunc("F_InsertComma", .@Bet)+" Cash";
+		dispbottom "ยอดเงินคงเหลือ "+callfunc("F_InsertComma", #CASHPOINTS)+" Cash";
+	} else if ($BetMode == 3) {
+		dispbottom "คุณแทงฝั่งผู้เล่นชนะด้วยไอเทม "+getitemname(.BetItem)+" จำนวน "+callfunc("F_InsertComma", .@Bet)+" ชิ้น";
+	}
+	dispbottom "=====================";
+	close;
+
+PDBet:
+	mes .NPCName$;
+	if ($BetMode == 3) {
+		mes "ท่านต้องใช้ ^FF0000"+getitemname(.BetItem)+"^000000";
+		mes "ในการแทง";
+	}
+	mes "ท่านจะแทงเท่าไหร่ดีล่ะ?";
+	next;
+	input .@Bet;
+
+	if (.@Bet == 0) { end; }
+
+	if (.@Bet < .LowBet) {
+		mes .NPCName$;
+		if ($BetMode == 1) {
+			mes "ขั้นต่ำในการแทงคือ ^FF0000"+callfunc("F_InsertComma", .LowBet)+"^000000 Zeny";
+		} else if ($BetMode == 2) {
+			mes "ขั้นต่ำในการแทงคือ ^FF0000"+callfunc("F_InsertComma", .LowBet)+"^000000 Cash";
+		} else if ($BetMode == 3) {
+			mes "ขั้นต่ำในการแทงคือ ^FF0000"+callfunc("F_InsertComma", .LowBet)+"^000000 ชื้น";
+		}
+		close;
+	}
+
+	if (.@Bet > .HighBet) {
+		mes .NPCName$;
+		if ($BetMode == 1) {
+			mes "กำจัดวงเงินแทงต่อรอบแค่ ^FF0000"+callfunc("F_InsertComma", .HighBet)+"^000000 Zeny";
+		} else if ($BetMode == 2) {
+			mes "กำจัดวงเงินแทงต่อรอบแค่ ^FF0000"+callfunc("F_InsertComma", .HighBet)+"^000000 Cash";
+		} else if ($BetMode == 3) {
+			mes "กำจัดไอเทมเดิมพันต่อรอบแค่ ^FF0000"+callfunc("F_InsertComma", .HighBet)+"^000000 ชื้น";
+		}
+		close;
+	}
+	
+	if (.@Bet > .DoubleLimit) {
+		mes .NPCName$;
+		mes "^FF0000ท่านไม่สามารถแทงไพ่คู่ได้มากกว่า "+callfunc("F_InsertComma",.DoubleLimit)+"";
+		close;
+	}
+	
+	if ((DBBet+.@Bet) > .DoubleLimit) {
+		mes .NPCName$;
+		mes "^FF0000จำนวนที่แทงถึงจำนวนจำกัดแทงต่อรอบแล้ว^000000";
+		close;
+	}
+
+	if ((TRBet+.@Bet) > .BRLimit) {
+		mes .NPCName$;
+		mes "^FF0000จำนวนที่แทงถึงจำนวนจำกัดแทงต่อรอบแล้ว^000000";
+		close;
+	}
+
+	if ($BetMode == 1) {
+		if (.@Bet > ZENY) {
+			mes .NPCName$;
+			mes "^FF0000ท่านมี Zeny ไม่พอที่จะแทง^000000";
+			close;
+		}
+	} else if ($BetMode == 2) {
+		if (.@Bet > #CASHPOINTS) {
+			mes .NPCName$;
+			mes "^FF0000ท่านมี Cash ไม่พอที่จะแทง^000000";
+			close;
+		}
+	} else if ($BetMode == 3) {
+		if (.@Bet > countitem(.BetItem)) {
+			mes .NPCName$;
+			mes "^FF0000ท่านมี "+getitemname(.BetItem)+" ไม่พอที่จะแทง^000000";
+			close;
+		}
+	}
+	
+	mes .NPCName$;
+	mes "ท่านเลือก^0000FFแทงฝั่งผู้เล่นคู่^000000";
+	if ($BetMode == 1) {
+		mes "จำนวน ^FF0000"+callfunc("F_InsertComma", .@Bet)+"^000000 Zeny";
+	} else if ($BetMode == 2) {
+		mes "จำนวน ^FF0000"+callfunc("F_InsertComma", .@Bet)+"^000000 Cash";
+	} else if ($BetMode == 3) {
+		mes "ด้วยไอเทม ^FF0000"+getitemname(.BetItem)+"^000000 จำนวน ^FF0000"+callfunc("F_InsertComma", .@Bet)+"^000000 ชิ้น";
+	}
+	mes "ยืนยันหรือไม่?";
+	next;
+	menu "~ ^FF0000ยกเลิก^000000",Cancel,"~ ^32CD32ยืนยัน^000000",-;
+
+	query_sql ("SELECT `last_ip` FROM `login` WHERE `account_id`="+getcharid(3)+"", .@lip$);
+	query_sql ("SELECT `char_id` FROM `bet_ip` WHERE `ip`='" + .@lip$ + "' AND `bet_round`="+$BetRound+"", .@mour);
+	if (.@mour) {
+		if (getcharid(0) != .@mour) {
+			mes .NPCName$;
+			mes "^FF00001 ไอพีแทงได้ 1 ตัวละครเท่านั้น^000000";
+			close;
+		}
+	}
+
+	if ($SystemStart == 1) {
+		mes .NPCName$;
+		mes "^FF0000รอบนี้กำลังแจกไพ่ กรุณารอรอบต่อไป^000000";
+		close;
+	}
+
+	if ($BetMode == 1) {
+		set ZENY, ZENY - .@Bet;
+	} else if ($BetMode == 2) {
+		set #CASHPOINTS, #CASHPOINTS - .@Bet;
+	} else if ($BetMode == 3) {
+		delitem .BetItem, .@Bet;
+	}
+	set $ALLPDBET, $ALLPDBET + .@Bet;
+	set .@BetAccID, getcharid(3);
+	set .@BetCharID, getcharid(0);
+	set TRBet, TRBet + .@Bet;
+	set BetRound, $BetRound;
+	query_sql("SELECT `last_ip` FROM `login` WHERE `account_id`="+getcharid(3)+"", .@lip$);
+	query_sql("SELECT COUNT(char_id) FROM `bet_ip` WHERE char_id = "+getcharid(0)+" AND bet_round = "+$BetRound+"",.@chkip);
+	if (!.@chkip) {
+		query_sql("INSERT INTO `bet_ip` (`char_id`, `bet_round`, `ip`) VALUES ("+.@BetCharID+", "+$BetRound+", '"+.@lip$+"') ");
+	}
+	if ($BetMode == 3) {
+		query_sql("INSERT INTO `bet_playerdouble` (`acc_id`, `char_id`, `bet_round`, `char_name`, `bet_amount`, `item_id`) VALUES ("+.@BetAccID+", "+.@BetCharID+", "+$BetRound+", '"+strcharinfo(0)+"', "+.@Bet+", "+.BetItem+") ");
+	} else {
+		query_sql("INSERT INTO `bet_playerdouble` (`acc_id`, `char_id`, `bet_round`, `char_name`, `bet_amount`) VALUES ("+.@BetAccID+", "+.@BetCharID+", "+$BetRound+", '"+strcharinfo(0)+"', "+.@Bet+") ");
+	}
+
+	dispbottom "====== Baccarat Bet ======";
+	dispbottom "รอบแทงที่ "+$BetRound+"";
+	if ($BetMode == 1) {
+		dispbottom "คุณแทงฝั่งผู้เล่นคู่ "+callfunc("F_InsertComma", .@Bet)+" Zeny";
+		dispbottom "ยอดเงินคงเหลือ "+callfunc("F_InsertComma", ZENY)+" Zeny";
+	} else if ($BetMode == 2) {
+		dispbottom "คุณแทงฝั่งผู้เล่นคู่ "+callfunc("F_InsertComma", .@Bet)+" Cash";
+		dispbottom "ยอดเงินคงเหลือ "+callfunc("F_InsertComma", #CASHPOINTS)+" Cash";
+	}
+	 else if ($BetMode == 3) {
+		dispbottom "คุณแทงฝั่งผู้เล่นคู่ด้วยไอเทม "+getitemname(.BetItem)+" จำนวน "+callfunc("F_InsertComma", .@Bet)+" ชิ้น";
+	}
+	dispbottom "=====================";
+	close;
+
+PNBet:
+	mes .NPCName$;
+	if ($BetMode == 3) {
+		mes "ท่านต้องใช้ ^FF0000"+getitemname(.BetItem)+"^000000";
+		mes "ในการแทง";
+	}
+	mes "ท่านจะแทงเท่าไหร่ดีล่ะ?";
+	next;
+	input .@Bet;
+
+	if (.@Bet == 0) { end; }
+
+	if (.@Bet < .LowBet) {
+		mes .NPCName$;
+		if ($BetMode == 1) {
+			mes "ขั้นต่ำในการแทงคือ ^FF0000"+callfunc("F_InsertComma", .LowBet)+"^000000 Zeny";
+		} else if ($BetMode == 2) {
+			mes "ขั้นต่ำในการแทงคือ ^FF0000"+callfunc("F_InsertComma", .LowBet)+"^000000 Cash";
+		} else if ($BetMode == 3) {
+			mes "ขั้นต่ำในการแทงคือ ^FF0000"+callfunc("F_InsertComma", .LowBet)+"^000000 ชื้น";
+		}
+		close;
+	}
+
+	if (.@Bet > .HighBet) {
+		mes .NPCName$;
+		if ($BetMode == 1) {
+			mes "กำจัดวงเงินแทงต่อรอบแค่ ^FF0000"+callfunc("F_InsertComma", .HighBet)+"^000000 Zeny";
+		} else if ($BetMode == 2) {
+			mes "กำจัดวงเงินแทงต่อรอบแค่ ^FF0000"+callfunc("F_InsertComma", .HighBet)+"^000000 Cash";
+		} else if ($BetMode == 3) {
+			mes "กำจัดไอเทมเดิมพันต่อรอบแค่ ^FF0000"+callfunc("F_InsertComma", .HighBet)+"^000000 ชื้น";
+		}
+		close;
+	}
+	
+	if (.@Bet > .NaturalLimit) {
+		mes .NPCName$;
+		mes "^FF0000ท่านไม่สามารถแทงไพ่ป็อกได้มากกว่า "+callfunc("F_InsertComma",.DoubleLimit)+"";
+		close;
+	}
+	
+	if ((NRBet+.@Bet) >= .NaturalLimit) {
+		mes .NPCName$;
+		mes "^FF0000จำนวนที่แทงถึงจำนวนจำกัดแทงต่อรอบแล้ว^000000";
+		close;
+	}
+	
+	if ((TRBet+.@Bet) >= .BRLimit) {
+		mes .NPCName$;
+		mes "^FF0000จำนวนที่แทงถึงจำนวนจำกัดแทงต่อรอบแล้ว^000000";
+		close;
+	}
+
+	if ($BetMode == 1) {
+		if (.@Bet*2 > ZENY) {
+			mes .NPCName$;
+			mes "^FF0000ท่านมี Zeny ไม่พอที่จะแทง^000000";
+			close;
+		}
+	} else if ($BetMode == 2) {
+		if (.@Bet*2 > #CASHPOINTS) {
+			mes .NPCName$;
+			mes "^FF0000ท่านมี Cash ไม่พอที่จะแทง^000000";
+			close;
+		}
+	} else if ($BetMode == 3) {
+		if (.@Bet*2 > countitem(.BetItem)) {
+			mes .NPCName$;
+			mes "^FF0000ท่านมี "+getitemname(.BetItem)+" ไม่พอที่จะแทง^000000";
+			close;
+		}
+	}
+	
+	mes .NPCName$;
+	mes "ท่านเลือก^0000FFแทงฝั่งผู้เล่นป็อก^000000";
+	if ($BetMode == 1) {
+		mes "จำนวน ^FF0000"+callfunc("F_InsertComma", .@Bet*2)+"^000000 Zeny";
+	} else if ($BetMode == 2) {
+		mes "จำนวน ^FF0000"+callfunc("F_InsertComma", .@Bet*2)+"^000000 Cash";
+	} else if ($BetMode == 3) {
+		mes "ด้วยไอเทม ^FF0000"+getitemname(.BetItem)+"^000000 จำนวน ^FF0000"+callfunc("F_InsertComma", .@Bet*2)+"^000000 ชิ้น";
+	}
+	mes "ยืนยันหรือไม่?";
+	next;
+	menu "~ ^FF0000ยกเลิก^000000",Cancel,"~ ^32CD32ยืนยัน^000000",-;
+
+	query_sql ("SELECT `last_ip` FROM `login` WHERE `account_id`="+getcharid(3)+"", .@lip$);
+	query_sql ("SELECT `char_id` FROM `bet_ip` WHERE `ip`='" + .@lip$ + "' AND `bet_round`="+$BetRound+"", .@mour);
+	if (.@mour) {
+		if (getcharid(0) != .@mour) {
+			mes .NPCName$;
+			mes "^FF00001 ไอพีแทงได้ 1 ตัวละครเท่านั้น^000000";
+			close;
+		}
+	}
+
+	if ($SystemStart == 1) {
+		mes .NPCName$;
+		mes "^FF0000รอบนี้กำลังแจกไพ่ กรุณารอรอบต่อไป^000000";
+		close;
+	}
+	if ($BetMode == 1) {
+		set ZENY, ZENY - .@Bet*2;
+	} else if ($BetMode == 2) {
+		set #CASHPOINTS, #CASHPOINTS - .@Bet*2;
+	} else if ($BetMode == 3) {
+		delitem .BetItem, .@Bet*2;
+	}
+	set $ALLPNBET, $ALLPNBET + .@Bet;
+	set .@BetAccID, getcharid(3);
+	set .@BetCharID, getcharid(0);
+	set TRBet, TRBet + .@Bet;
+	set BetRound, $BetRound;
+	query_sql("SELECT `last_ip` FROM `login` WHERE `account_id`="+getcharid(3)+"", .@lip$);
+	query_sql("SELECT COUNT(char_id) FROM `bet_ip` WHERE char_id = "+getcharid(0)+" AND bet_round = "+$BetRound+"",.@chkip);
+	if (!.@chkip) {
+		query_sql("INSERT INTO `bet_ip` (`char_id`, `bet_round`, `ip`) VALUES ("+.@BetCharID+", "+$BetRound+", '"+.@lip$+"') ");
+	}
+
+	if ($BetMode == 3) {
+		query_sql("INSERT INTO `bet_playernatural` (`acc_id`, `char_id`, `bet_round`, `char_name`, `bet_amount`, `item_id`) VALUES ("+.@BetAccID+", "+.@BetCharID+", "+$BetRound+", '"+strcharinfo(0)+"', "+.@Bet+", "+.BetItem+") ");
+	} else {
+		query_sql("INSERT INTO `bet_playernatural` (`acc_id`, `char_id`, `bet_round`, `char_name`, `bet_amount`) VALUES ("+.@BetAccID+", "+.@BetCharID+", "+$BetRound+", '"+strcharinfo(0)+"', "+.@Bet+") ");
+	}
+
+	dispbottom "====== Baccarat Bet ======";
+	dispbottom "รอบแทงที่ "+$BetRound+"";
+
+	if ($BetMode == 1) {
+		dispbottom "คุณแทงฝั่งผู้เล่นป็อก "+callfunc("F_InsertComma", .@Bet*2)+" Zeny";
+		dispbottom "ยอดเงินคงเหลือ "+callfunc("F_InsertComma", ZENY)+" Zeny";
+	} else if ($BetMode == 2) {
+		dispbottom "คุณแทงฝั่งผู้เล่นป็อก "+callfunc("F_InsertComma", .@Bet*2)+" Cash";
+		dispbottom "ยอดเงินคงเหลือ "+callfunc("F_InsertComma", #CASHPOINTS)+" Cash";
+	}
+	 else if ($BetMode == 3) {
+		dispbottom "คุณแทงฝั่งผู้เล่นป็อกด้วยไอเทม "+getitemname(.BetItem)+" จำนวน "+callfunc("F_InsertComma", .@Bet*2)+" ชิ้น";
+	}
+	dispbottom "==========================";
+	close;
+
+banker:
+	mes .NPCName$;
+	mes "ท่านจะแทงอะไรของฝั่งเจ้ามือ?";
+	next;
+	menu "~ แทงฝั่งเจ้ามือชนะ [1-0."+(100-$Commission)+"]",BBet,"~ แทงฝั่งเจ้ามือไพ่คู่ [1-11]",BDBet,"~ แทงฝั่งเจ้ามือป็อก [1-8]",BNBet,"~ ยกเลิก",Cancel;
+
+BBet:
+	mes .NPCName$;
+	if ($BetMode == 3) {
+		mes "ท่านต้องใช้ ^FF0000"+getitemname(.BetItem)+"^000000";
+		mes "ในการแทง";
+	}
+	mes "ท่านจะแทงเท่าไหร่ดีล่ะ?";
+	next;
+	input .@Bet;
+
+	if (.@Bet == 0) { end; }
+
+	if (.@Bet < .LowBet) {
+		mes .NPCName$;
+		if ($BetMode == 1) {
+			mes "ขั้นต่ำในการแทงคือ ^FF0000"+callfunc("F_InsertComma", .LowBet)+"^000000 Zeny";
+		} else if ($BetMode == 2) {
+			mes "ขั้นต่ำในการแทงคือ ^FF0000"+callfunc("F_InsertComma", .LowBet)+"^000000 Cash";
+		} else if ($BetMode == 3) {
+			mes "ขั้นต่ำในการแทงคือ ^FF0000"+callfunc("F_InsertComma", .LowBet)+"^000000 ชื้น";
+		}
+		close;
+	}
+
+	if (.@Bet > .HighBet) {
+		mes .NPCName$;
+		if ($BetMode == 1) {
+			mes "กำจัดวงเงินแทงต่อรอบแค่ ^FF0000"+callfunc("F_InsertComma", .HighBet)+"^000000 Zeny";
+		} else if ($BetMode == 2) {
+			mes "กำจัดวงเงินแทงต่อรอบแค่ ^FF0000"+callfunc("F_InsertComma", .HighBet)+"^000000 Cash";
+		} else if ($BetMode == 3) {
+			mes "กำจัดไอเทมเดิมพันต่อรอบแค่ ^FF0000"+callfunc("F_InsertComma", .HighBet)+"^000000 ชื้น";
+		}
+		close;
+	}
+	
+	if ((TRBet+.@Bet) >= .BRLimit) {
+		mes .NPCName$;
+		mes "^FF0000จำนวนที่แทงถึงจำนวนจำกัดแทงต่อรอบแล้ว^000000";
+		close;
+	}
+
+	if ($BetMode == 1) {
+		if (.@Bet > ZENY) {
+			mes .NPCName$;
+			mes "^FF0000ท่านมี Zeny ไม่พอที่จะแทง^000000";
+			close;
+		}
+	} else if ($BetMode == 2) {
+		if (.@Bet > #CASHPOINTS) {
+			mes .NPCName$;
+			mes "^FF0000ท่านมี Cash ไม่พอที่จะแทง^000000";
+			close;
+		}
+	} else if ($BetMode == 3) {
+		if (.@Bet > countitem(.BetItem)) {
+			mes .NPCName$;
+			mes "^FF0000ท่านมี "+getitemname(.BetItem)+" ไม่พอที่จะแทง^000000";
+			close;
+		}
+	}
+	
+	mes .NPCName$;
+	mes "ท่านเลือก^FF0000แทงฝั่งเจ้ามือชนะ^000000";
+	if ($BetMode == 1) {
+		mes "จำนวน ^FF0000"+callfunc("F_InsertComma", .@Bet)+"^000000 Zeny";
+	} else if ($BetMode == 2) {
+		mes "จำนวน ^FF0000"+callfunc("F_InsertComma", .@Bet)+"^000000 Cash";
+	} else if ($BetMode == 3) {
+		mes "ด้วยไอเทม ^FF0000"+getitemname(.BetItem)+"^000000 จำนวน ^FF0000"+callfunc("F_InsertComma", .@Bet)+"^000000 ชิ้น";
+	}
+	mes "ยืนยันหรือไม่?";
+	next;
+	menu "~ ^FF0000ยกเลิก^000000",Cancel,"~ ^32CD32ยืนยัน^000000",-;
+
+	query_sql ("SELECT `last_ip` FROM `login` WHERE `account_id`="+getcharid(3)+"", .@lip$);
+	query_sql ("SELECT `char_id` FROM `bet_ip` WHERE `ip`='" + .@lip$ + "' AND `bet_round`="+$BetRound+"", .@mour);
+	if (.@mour) {
+		if (getcharid(0) != .@mour) {
+			mes .NPCName$;
+			mes "^FF00001 ไอพีแทงได้ 1 ตัวละครเท่านั้น^000000";
+			close;
+		}
+	}
+
+	if ($SystemStart == 1) {
+		mes .NPCName$;
+		mes "^FF0000รอบนี้กำลังแจกไพ่ กรุณารอรอบต่อไป^000000";
+		close;
+	}
+	if ($BetMode == 1) {
+		set ZENY, ZENY - .@Bet;
+	} else if ($BetMode == 2) {
+		set #CASHPOINTS, #CASHPOINTS - .@Bet;
+	} else if ($BetMode == 3) {
+		delitem .BetItem, .@Bet;
+	}
+	set $ALLBBET, $ALLBBET + .@Bet;
+	set .@BetAccID, getcharid(3);
+	set .@BetCharID, getcharid(0);
+	set TRBet, TRBet + .@Bet;
+	set BetRound, $BetRound;
+	query_sql("SELECT `last_ip` FROM `login` WHERE `account_id`="+getcharid(3)+"", .@lip$);
+	query_sql("SELECT COUNT(char_id) FROM `bet_ip` WHERE char_id = "+getcharid(0)+" AND bet_round = "+$BetRound+"",.@chkip);
+	if (!.@chkip) {
+		query_sql("INSERT INTO `bet_ip` (`char_id`, `bet_round`, `ip`) VALUES ("+.@BetCharID+", "+$BetRound+", '"+.@lip$+"') ");
+	}
+
+	if ($BetMode == 3) {
+		query_sql("INSERT INTO `bet_banker` (`acc_id`, `char_id`, `bet_round`, `char_name`, `bet_amount`, `item_id`) VALUES ("+.@BetAccID+", "+.@BetCharID+", "+$BetRound+", '"+strcharinfo(0)+"', "+.@Bet+", "+.BetItem+") ");
+	} else {
+		query_sql("INSERT INTO `bet_banker` (`acc_id`, `char_id`, `bet_round`, `char_name`, `bet_amount`) VALUES ("+.@BetAccID+", "+.@BetCharID+", "+$BetRound+", '"+strcharinfo(0)+"', "+.@Bet+") ");
+	}
+
+	dispbottom "====== Baccarat Bet ======";
+	dispbottom "รอบแทงที่ "+$BetRound+"";
+
+	if ($BetMode == 1) {
+		dispbottom "คุณแทงฝั่งเจ้ามือชนะ "+callfunc("F_InsertComma", .@Bet)+" Zeny";
+		dispbottom "ยอดเงินคงเหลือ "+callfunc("F_InsertComma", ZENY)+" Zeny";
+	} else if ($BetMode == 2) {
+		dispbottom "คุณแทงฝั่งเจ้ามือชนะ "+callfunc("F_InsertComma", .@Bet)+" Cash";
+		dispbottom "ยอดเงินคงเหลือ "+callfunc("F_InsertComma", #CASHPOINTS)+" Cash";
+	}
+	 else if ($BetMode == 3) {
+		dispbottom "คุณแทงฝั่งเจ้ามือชนะด้วยไอเทม "+getitemname(.BetItem)+" จำนวน "+callfunc("F_InsertComma", .@Bet)+" ชิ้น";
+	}
+	dispbottom "==========================";
+	close;
+
+BDBet:
+	mes .NPCName$;
+	if ($BetMode == 3) {
+		mes "ท่านต้องใช้ ^FF0000"+getitemname(.BetItem)+"^000000";
+		mes "ในการแทง";
+	}
+	mes "ท่านจะแทงเท่าไหร่ดีล่ะ?";
+	next;
+	input .@Bet;
+
+	if (.@Bet == 0) { end; }
+
+	if (.@Bet < .LowBet) {
+		mes .NPCName$;
+		if ($BetMode == 1) {
+			mes "ขั้นต่ำในการแทงคือ ^FF0000"+callfunc("F_InsertComma", .LowBet)+"^000000 Zeny";
+		} else if ($BetMode == 2) {
+			mes "ขั้นต่ำในการแทงคือ ^FF0000"+callfunc("F_InsertComma", .LowBet)+"^000000 Cash";
+		} else if ($BetMode == 3) {
+			mes "ขั้นต่ำในการแทงคือ ^FF0000"+callfunc("F_InsertComma", .LowBet)+"^000000 ชื้น";
+		}
+		close;
+	}
+
+	if (.@Bet > .HighBet) {
+		mes .NPCName$;
+		if ($BetMode == 1) {
+			mes "กำจัดวงเงินแทงต่อรอบแค่ ^FF0000"+callfunc("F_InsertComma", .HighBet)+"^000000 Zeny";
+		} else if ($BetMode == 2) {
+			mes "กำจัดวงเงินแทงต่อรอบแค่ ^FF0000"+callfunc("F_InsertComma", .HighBet)+"^000000 Cash";
+		} else if ($BetMode == 3) {
+			mes "กำจัดไอเทมเดิมพันต่อรอบแค่ ^FF0000"+callfunc("F_InsertComma", .HighBet)+"^000000 ชื้น";
+		}
+		close;
+	}
+	
+	if (.@Bet > .DoubleLimit) {
+		mes .NPCName$;
+		mes "^FF0000ท่านไม่สามารถแทงไพ่คู่ได้มากกว่า "+callfunc("F_InsertComma",.DoubleLimit)+"";
+		close;
+	}
+	
+	if ((DBBet+.@Bet) >= .DoubleLimit) {
+		mes .NPCName$;
+		mes "^FF0000จำนวนที่แทงถึงจำนวนจำกัดแทงต่อรอบแล้ว^000000";
+		close;
+	}
+	
+	if ((TRBet+.@Bet) >= .BRLimit) {
+		mes .NPCName$;
+		mes "^FF0000จำนวนที่แทงถึงจำนวนจำกัดแทงต่อรอบแล้ว^000000";
+		close;
+	}
+
+	if ($BetMode == 1) {
+		if (.@Bet > ZENY) {
+			mes .NPCName$;
+			mes "^FF0000ท่านมี Zeny ไม่พอที่จะแทง^000000";
+			close;
+		}
+	} else if ($BetMode == 2) {
+		if (.@Bet > #CASHPOINTS) {
+			mes .NPCName$;
+			mes "^FF0000ท่านมี Cash ไม่พอที่จะแทง^000000";
+			close;
+		}
+	} else if ($BetMode == 3) {
+		if (.@Bet > countitem(.BetItem)) {
+			mes .NPCName$;
+			mes "^FF0000ท่านมี "+getitemname(.BetItem)+" ไม่พอที่จะแทง^000000";
+			close;
+		}
+	}
+
+	mes .NPCName$;
+	mes "ท่านเลือก^FF0000แทงฝั่งเจ้ามือคู่^000000";
+	if ($BetMode == 1) {
+		mes "จำนวน ^FF0000"+callfunc("F_InsertComma", .@Bet)+"^000000 Zeny";
+	} else if ($BetMode == 2) {
+		mes "จำนวน ^FF0000"+callfunc("F_InsertComma", .@Bet)+"^000000 Cash";
+	} else if ($BetMode == 3) {
+		mes "ด้วยไอเทม ^FF0000"+getitemname(.BetItem)+"^000000 จำนวน ^FF0000"+callfunc("F_InsertComma", .@Bet)+"^000000 ชิ้น";
+	}
+	mes "ยืนยันหรือไม่?";
+	next;
+	menu "~ ^FF0000ยกเลิก^000000",Cancel,"~ ^32CD32ยืนยัน^000000",-;
+
+	query_sql ("SELECT `last_ip` FROM `login` WHERE `account_id`="+getcharid(3)+"", .@lip$);
+	query_sql ("SELECT `char_id` FROM `bet_ip` WHERE `ip`='" + .@lip$ + "' AND `bet_round`="+$BetRound+"", .@mour);
+	if (.@mour) {
+		if (getcharid(0) != .@mour) {
+			mes .NPCName$;
+			mes "^FF00001 ไอพีแทงได้ 1 ตัวละครเท่านั้น^000000";
+			close;
+		}
+	}
+
+	if ($SystemStart == 1) {
+		mes .NPCName$;
+		mes "^FF0000รอบนี้กำลังแจกไพ่ กรุณารอรอบต่อไป^000000";
+		close;
+	}
+	if ($BetMode == 1) {
+		set ZENY, ZENY - .@Bet;
+	} else if ($BetMode == 2) {
+		set #CASHPOINTS, #CASHPOINTS - .@Bet;
+	} else if ($BetMode == 3) {
+		delitem .BetItem, .@Bet;
+	}
+	set $ALLBDBET, $ALLBDBET + .@Bet;
+	set .@BetAccID, getcharid(3);
+	set .@BetCharID, getcharid(0);
+	set TRBet, TRBet + .@Bet;
+	set BetRound, $BetRound;
+	query_sql("SELECT `last_ip` FROM `login` WHERE `account_id`="+getcharid(3)+"", .@lip$);
+	query_sql("SELECT COUNT(char_id) FROM `bet_ip` WHERE char_id = "+getcharid(0)+" AND bet_round = "+$BetRound+"",.@chkip);
+	if (!.@chkip) {
+		query_sql("INSERT INTO `bet_ip` (`char_id`, `bet_round`, `ip`) VALUES ("+.@BetCharID+", "+$BetRound+", '"+.@lip$+"') ");
+	}
+
+	if ($BetMode == 3) {
+		query_sql("INSERT INTO `bet_bankerdouble` (`acc_id`, `char_id`, `bet_round`, `char_name`, `bet_amount`, `item_id`) VALUES ("+.@BetAccID+", "+.@BetCharID+", "+$BetRound+", '"+strcharinfo(0)+"', "+.@Bet+", "+.BetItem+") ");
+	} else {
+		query_sql("INSERT INTO `bet_bankerdouble` (`acc_id`, `char_id`, `bet_round`, `char_name`, `bet_amount`) VALUES ("+.@BetAccID+", "+.@BetCharID+", "+$BetRound+", '"+strcharinfo(0)+"', "+.@Bet+") ");
+	}
+
+	dispbottom "====== Baccarat Bet ======";
+	dispbottom "รอบแทงที่ "+$BetRound+"";
+
+	if ($BetMode == 1) {
+		dispbottom "คุณแทงฝั่งเจ้ามือคู่ "+callfunc("F_InsertComma", .@Bet)+" Zeny";
+		dispbottom "ยอดเงินคงเหลือ "+callfunc("F_InsertComma", ZENY)+" Zeny";
+	} else if ($BetMode == 2) {
+		dispbottom "คุณแทงฝั่งเจ้ามือคู่ "+callfunc("F_InsertComma", .@Bet)+" Cash";
+		dispbottom "ยอดเงินคงเหลือ "+callfunc("F_InsertComma", #CASHPOINTS)+" Cash";
+	}
+	 else if ($BetMode == 3) {
+		dispbottom "คุณแทงฝั่งเจ้ามือคู่ด้วยไอเทม "+getitemname(.BetItem)+" จำนวน "+callfunc("F_InsertComma", .@Bet)+" ชิ้น";
+	}
+	dispbottom "==========================";
+	close;
+
+BNBet:
+	mes .NPCName$;
+	if ($BetMode == 3) {
+		mes "ท่านต้องใช้ ^FF0000"+getitemname(.BetItem)+"^000000";
+		mes "ในการแทง";
+	}
+	mes "ท่านจะแทงเท่าไหร่ดีล่ะ?";
+	next;
+	input .@Bet;
+
+	if (.@Bet == 0) { end; }
+
+	if (.@Bet < .LowBet) {
+		mes .NPCName$;
+		if ($BetMode == 1) {
+			mes "ขั้นต่ำในการแทงคือ ^FF0000"+callfunc("F_InsertComma", .LowBet)+"^000000 Zeny";
+		} else if ($BetMode == 2) {
+			mes "ขั้นต่ำในการแทงคือ ^FF0000"+callfunc("F_InsertComma", .LowBet)+"^000000 Cash";
+		} else if ($BetMode == 3) {
+			mes "ขั้นต่ำในการแทงคือ ^FF0000"+callfunc("F_InsertComma", .LowBet)+"^000000 ชื้น";
+		}
+		close;
+	}
+
+	if (.@Bet > .HighBet) {
+		mes .NPCName$;
+		if ($BetMode == 1) {
+			mes "กำจัดวงเงินแทงต่อรอบแค่ ^FF0000"+callfunc("F_InsertComma", .HighBet)+"^000000 Zeny";
+		} else if ($BetMode == 2) {
+			mes "กำจัดวงเงินแทงต่อรอบแค่ ^FF0000"+callfunc("F_InsertComma", .HighBet)+"^000000 Cash";
+		} else if ($BetMode == 3) {
+			mes "กำจัดไอเทมเดิมพันต่อรอบแค่ ^FF0000"+callfunc("F_InsertComma", .HighBet)+"^000000 ชื้น";
+		}
+		close;
+	}
+	
+	if (.@Bet > .NaturalLimit) {
+		mes .NPCName$;
+		mes "^FF0000ท่านไม่สามารถแทงไพ่ป็อกได้มากกว่า "+callfunc("F_InsertComma",.DoubleLimit)+"";
+		close;
+	}
+	
+	if ((NRBet+.@Bet) >= .NaturalLimit) {
+		mes .NPCName$;
+		mes "^FF0000จำนวนที่แทงถึงจำนวนจำกัดแทงต่อรอบแล้ว^000000";
+		close;
+	}
+	
+	if ((TRBet+.@Bet) >= .BRLimit) {
+		mes .NPCName$;
+		mes "^FF0000จำนวนที่แทงถึงจำนวนจำกัดแทงต่อรอบแล้ว^000000";
+		close;
+	}
+
+	if ($BetMode == 1) {
+		if (.@Bet*2 > ZENY) {
+			mes .NPCName$;
+			mes "^FF0000ท่านมี Zeny ไม่พอที่จะแทง^000000";
+			close;
+		}
+	} else if ($BetMode == 2) {
+		if (.@Bet*2 > #CASHPOINTS) {
+			mes .NPCName$;
+			mes "^FF0000ท่านมี Cash ไม่พอที่จะแทง^000000";
+			close;
+		}
+	} else if ($BetMode == 3) {
+		if (.@Bet*2 > countitem(.BetItem)) {
+			mes .NPCName$;
+			mes "^FF0000ท่านมี "+getitemname(.BetItem)+" ไม่พอที่จะแทง^000000";
+			close;
+		}
+	}
+	
+	mes .NPCName$;
+	mes "ท่านเลือก^FF0000แทงฝั่งเจ้ามือป็อก^000000";
+	if ($BetMode == 1) {
+		mes "จำนวน ^FF0000"+callfunc("F_InsertComma", .@Bet*2)+"^000000 Zeny";
+	} else if ($BetMode == 2) {
+		mes "จำนวน ^FF0000"+callfunc("F_InsertComma", .@Bet*2)+"^000000 Cash";
+	} else if ($BetMode == 3) {
+		mes "ด้วยไอเทม ^FF0000"+getitemname(.BetItem)+"^000000 จำนวน ^FF0000"+callfunc("F_InsertComma", .@Bet*2)+"^000000 ชิ้น";
+	}
+	mes "ยืนยันหรือไม่?";
+	next;
+	menu "~ ^FF0000ยกเลิก^000000",Cancel,"~ ^32CD32ยืนยัน^000000",-;
+
+	query_sql ("SELECT `last_ip` FROM `login` WHERE `account_id`="+getcharid(3)+"", .@lip$);
+	query_sql ("SELECT `char_id` FROM `bet_ip` WHERE `ip`='" + .@lip$ + "' AND `bet_round`="+$BetRound+"", .@mour);
+	if (.@mour) {
+		if (getcharid(0) != .@mour) {
+			mes .NPCName$;
+			mes "^FF00001 ไอพีแทงได้ 1 ตัวละครเท่านั้น^000000";
+			close;
+		}
+	}
+
+	if ($SystemStart == 1) {
+		mes .NPCName$;
+		mes "^FF0000รอบนี้กำลังแจกไพ่ กรุณารอรอบต่อไป^000000";
+		close;
+	}
+	if ($BetMode == 1) {
+		set ZENY, ZENY - .@Bet*2;
+	} else if ($BetMode == 2) {
+		set #CASHPOINTS, #CASHPOINTS - .@Bet*2;
+	} else if ($BetMode == 3) {
+		delitem .BetItem, .@Bet*2;
+	}
+	set $ALLBNBET, $ALLBNBET + .@Bet;
+	set .@BetAccID, getcharid(3);
+	set .@BetCharID, getcharid(0);
+	set TRBet, TRBet + .@Bet;
+	set BetRound, $BetRound;
+	query_sql("SELECT `last_ip` FROM `login` WHERE `account_id`="+getcharid(3)+"", .@lip$);
+	query_sql("SELECT COUNT(char_id) FROM `bet_ip` WHERE char_id = "+getcharid(0)+" AND bet_round = "+$BetRound+"",.@chkip);
+	if (!.@chkip) {
+		query_sql("INSERT INTO `bet_ip` (`char_id`, `bet_round`, `ip`) VALUES ("+.@BetCharID+", "+$BetRound+", '"+.@lip$+"') ");
+	}
+
+	if ($BetMode == 3) {
+		query_sql("INSERT INTO `bet_bankernatural` (`acc_id`, `char_id`, `bet_round`, `char_name`, `bet_amount`, `item_id`) VALUES ("+.@BetAccID+", "+.@BetCharID+", "+$BetRound+", '"+strcharinfo(0)+"', "+.@Bet+", "+.BetItem+") ");
+	} else {
+		query_sql("INSERT INTO `bet_bankernatural` (`acc_id`, `char_id`, `bet_round`, `char_name`, `bet_amount`) VALUES ("+.@BetAccID+", "+.@BetCharID+", "+$BetRound+", '"+strcharinfo(0)+"', "+.@Bet+") ");
+	}
+
+	dispbottom "====== Baccarat Bet ======";
+	dispbottom "รอบแทงที่ "+$BetRound+"";
+
+	if ($BetMode == 1) {
+		dispbottom "คุณแทงฝั่งเจ้ามือป็อก "+callfunc("F_InsertComma", .@Bet*2)+" Zeny";
+		dispbottom "ยอดเงินคงเหลือ "+callfunc("F_InsertComma", ZENY)+" Zeny";
+	} else if ($BetMode == 2) {
+		dispbottom "คุณแทงฝั่งเจ้ามือป็อก "+callfunc("F_InsertComma", .@Bet*2)+" Cash";
+		dispbottom "ยอดเงินคงเหลือ "+callfunc("F_InsertComma", #CASHPOINTS)+" Cash";
+	}
+	 else if ($BetMode == 3) {
+		dispbottom "คุณแทงฝั่งเจ้ามือป็อกด้วยไอเทม "+getitemname(.BetItem)+" จำนวน "+callfunc("F_InsertComma", .@Bet*2)+" ชิ้น";
+	}
+	dispbottom "==========================";
+	close;
+
+DBet:
+	mes .NPCName$;
+	if ($BetMode == 3) {
+		mes "ท่านต้องใช้ ^FF0000"+getitemname(.BetItem)+"^000000";
+		mes "ในการแทง";
+	}
+	mes "ท่านจะแทงเท่าไหร่ดีล่ะ?";
+	next;
+	input .@Bet;
+
+	if (.@Bet == 0) { end; }
+
+	if (.@Bet < .LowBet) {
+		mes .NPCName$;
+		if ($BetMode == 1) {
+			mes "ขั้นต่ำในการแทงคือ ^FF0000"+callfunc("F_InsertComma", .LowBet)+"^000000 Zeny";
+		} else if ($BetMode == 2) {
+			mes "ขั้นต่ำในการแทงคือ ^FF0000"+callfunc("F_InsertComma", .LowBet)+"^000000 Cash";
+		} else if ($BetMode == 3) {
+			mes "ขั้นต่ำในการแทงคือ ^FF0000"+callfunc("F_InsertComma", .LowBet)+"^000000 ชื้น";
+		}
+		close;
+	}
+
+	if (.@Bet > .HighBet) {
+		mes .NPCName$;
+		if ($BetMode == 1) {
+			mes "กำจัดวงเงินแทงต่อรอบแค่ ^FF0000"+callfunc("F_InsertComma", .HighBet)+"^000000 Zeny";
+		} else if ($BetMode == 2) {
+			mes "กำจัดวงเงินแทงต่อรอบแค่ ^FF0000"+callfunc("F_InsertComma", .HighBet)+"^000000 Cash";
+		} else if ($BetMode == 3) {
+			mes "กำจัดไอเทมเดิมพันต่อรอบแค่ ^FF0000"+callfunc("F_InsertComma", .HighBet)+"^000000 ชื้น";
+		}
+		close;
+	}
+	
+	if ((TRBet+.@Bet) >= .BRLimit) {
+		mes .NPCName$;
+		mes "^FF0000จำนวนที่แทงถึงจำนวนจำกัดแทงต่อรอบแล้ว^000000";
+		close;
+	}
+
+	if ($BetMode == 1) {
+		if (.@Bet > ZENY) {
+			mes .NPCName$;
+			mes "^FF0000ท่านมี Zeny ไม่พอที่จะแทง^000000";
+			close;
+		}
+	} else if ($BetMode == 2) {
+		if (.@Bet > #CASHPOINTS) {
+			mes .NPCName$;
+			mes "^FF0000ท่านมี Cash ไม่พอที่จะแทง^000000";
+			close;
+		}
+	} else if ($BetMode == 3) {
+		if (.@Bet > countitem(.BetItem)) {
+			mes .NPCName$;
+			mes "^FF0000ท่านมี "+getitemname(.BetItem)+" ไม่พอที่จะแทง^000000";
+			close;
+		}
+	}
+
+	mes .NPCName$;
+	mes "ท่านเลือก^32CD32แทงเสมอ^000000";
+	if ($BetMode == 1) {
+		mes "จำนวน ^FF0000"+callfunc("F_InsertComma", .@Bet)+"^000000 Zeny";
+	} else if ($BetMode == 2) {
+		mes "จำนวน ^FF0000"+callfunc("F_InsertComma", .@Bet)+"^000000 Cash";
+	} else if ($BetMode == 3) {
+		mes "ด้วยไอเทม ^FF0000"+getitemname(.BetItem)+"^000000 จำนวน ^FF0000"+callfunc("F_InsertComma", .@Bet)+"^000000 ชิ้น";
+	}
+	mes "ยืนยันหรือไม่?";
+	next;
+	menu "~ ^FF0000ยกเลิก^000000",Cancel,"~ ^32CD32ยืนยัน^000000",-;
+
+	query_sql ("SELECT `last_ip` FROM `login` WHERE `account_id`="+getcharid(3)+"", .@lip$);
+	query_sql ("SELECT `char_id` FROM `bet_ip` WHERE `ip`='" + .@lip$ + "' AND `bet_round`="+$BetRound+"", .@mour);
+	if (.@mour) {
+		if (getcharid(0) != .@mour) {
+			mes .NPCName$;
+			mes "^FF00001 ไอพีแทงได้ 1 ตัวละครเท่านั้น^000000";
+			close;
+		}
+	}
+
+	if ($SystemStart == 1) {
+		mes .NPCName$;
+		mes "^FF0000รอบนี้กำลังแจกไพ่ กรุณารอรอบต่อไป^000000";
+		close;
+	}
+	if ($BetMode == 1) {
+		set ZENY, ZENY - .@Bet;
+	} else if ($BetMode == 2) {
+		set #CASHPOINTS, #CASHPOINTS - .@Bet;
+	} else if ($BetMode == 3) {
+		delitem .BetItem, .@Bet;
+	}
+	set $ALLDBET, $ALLDBET + .@Bet;
+	set .@BetAccID, getcharid(3);
+	set .@BetCharID, getcharid(0);
+	set TRBet, TRBet + .@Bet;
+	set BetRound, $BetRound;
+	query_sql("SELECT `last_ip` FROM `login` WHERE `account_id`="+getcharid(3)+"", .@lip$);
+	query_sql("SELECT COUNT(char_id) FROM `bet_ip` WHERE char_id = "+getcharid(0)+" AND bet_round = "+$BetRound+"",.@chkip);
+	if (!.@chkip) {
+		query_sql("INSERT INTO `bet_ip` (`char_id`, `bet_round`, `ip`) VALUES ("+.@BetCharID+", "+$BetRound+", '"+.@lip$+"') ");
+	}
+
+	if ($BetMode == 3) {
+		query_sql("INSERT INTO `bet_draw` (`acc_id`, `char_id`, `bet_round`, `char_name`, `bet_amount`, `item_id`) VALUES ("+.@BetAccID+", "+.@BetCharID+", "+$BetRound+", '"+strcharinfo(0)+"', "+.@Bet+", "+.BetItem+") ");
+	} else {
+		query_sql("INSERT INTO `bet_draw` (`acc_id`, `char_id`, `bet_round`, `char_name`, `bet_amount`) VALUES ("+.@BetAccID+", "+.@BetCharID+", "+$BetRound+", '"+strcharinfo(0)+"', "+.@Bet+") ");
+	}
+
+	dispbottom "====== Baccarat Bet ======";
+	dispbottom "รอบแทงที่ "+$BetRound+"";
+
+	if ($BetMode == 1) {
+		dispbottom "คุณแทงเสมอ "+callfunc("F_InsertComma", .@Bet)+" Zeny";
+		dispbottom "ยอดเงินคงเหลือ "+callfunc("F_InsertComma", ZENY)+" Zeny";
+	} else if ($BetMode == 2) {
+		dispbottom "คุณแทงเสมอ "+callfunc("F_InsertComma", .@Bet)+" Cash";
+		dispbottom "ยอดเงินคงเหลือ "+callfunc("F_InsertComma", #CASHPOINTS)+" Cash";
+	}
+	 else if ($BetMode == 3) {
+		dispbottom "คุณแทงเสมอด้วยไอเทม "+getitemname(.BetItem)+" จำนวน "+callfunc("F_InsertComma", .@Bet)+" ชิ้น";
+	}
+	dispbottom "==========================";
+	close;
+
+Cancel:
+	close;
+
+Oninit:
+	// ตั้งค่าชื่อ NPC
+	set .NPCName$, "[ Baccarat Dealer ]";
+	// ตั้งค่าข้อความป้ายบนหัว NPC
+	waitingroom "Baccarat Dealer",0;
+	// ตั้งค่าโหมด 1 = Zeny || 2 = Cash || 3 = Item
+	set $BetMode, 1;
+	// ตั้งค่าไอเทมที่ใช้แทงได้เมื่อ $BetMode = 3
+	set .BetItem, 501;
+	// ตั้งค่าแทงขั้นต่ำของ Zeny, Cash หรือ Item
+	set .LowBet, 50000;
+	// ตั้งค่าแทงสูงสุดของ Zeny, Cash หรือ Item
+	set .HighBet, 5000000;
+	// ตั้งค่าจำกัดการแทงรวมของ Zeny, Cash หรือ Item ที่แทงได้ต่อรอบ
+	set .BRLimit, 50000000;
+	// ตั้งค่าลิมิตแทงไพ่คู่
+	set .DoubleLimit, 100000;
+	// ตั้งค่าลิมิตแทงไพ่ป็อก
+	set .NaturalLimit, 10000;
+	end;
+}
+
+florian,147,166,4	script	Baccarat System	111,{
+	end;
+
+OnPCLoginEvent:
+	if ($BetMode == 1) {
+		set ZENY, (ZENY + 1);
+		set ZENY, (ZENY - 1);
+	} else if ($BetMode == 2) {
+		set #CASHPOINTS, (#CASHPOINTS + 1);
+		set #CASHPOINTS, (#CASHPOINTS - 1);
+	}
+	end;
+
+Main:
+	set $SystemStart, 0;
+	set .BankerCard3Get, 0;
+	set .BankerCard3, 0;
+	set .PlayerCard3Get, 0;
+	set .PlayerCard3, 0;
+	set .PlayerCard10, 7;
+	set .PlayerCard20, 8;
+	set .BankerCard10, 7;
+	set .BankerCard20, 8;
+	set $ALLPBET, 0;
+	set $ALLPDBET, 0;
+	set $ALLPNBET, 0;
+	set $ALLDBET, 0;
+	set $ALLBBET, 0;
+	set $ALLBDBET, 0;
+	set $ALLBNBET, 0;
+	query_sql("SELECT results FROM `bac_results` WHERE bet_round = "+$BetRound+"", .@resultcheck);
+	if (.@resultcheck < 1) {
+		set $BetRound, $BetRound;
+	} else {
+		set $BetRound, $BetRound + 1;
+		query_sql("INSERT INTO `bac_results` (bet_round, results, datetime) VALUES ("+$BetRound+",0,NOW()) ");
+	}
+	npctalk "[ Baccarat ]: เกมจะเริ่มภายใน 1 นาที";
+	soundeffectall "bet_start.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2;
+	sleep 2000;
+	switch(rand(1,4)) {
+		case 1: soundeffectall "blessing1.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2; break;
+		case 2: soundeffectall "blessing2.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2; break;
+		case 3: soundeffectall "blessing3.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2; break;
+		case 4: soundeffectall "blessing4.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2; break;
+	}
+	sleep 1000;
+	npctalk "[ Baccarat ]: กรุณาวางเดิมพันของท่าน";
+	sleep 45000;
+	npctalk "[ Baccarat ]: เหลือเวลาอีก 12 วินาทีก่อนเกม";
+	soundeffectall "warning2.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2;
+	sleep 2000;
+	npctalk "[ Baccarat ]: 10";
+	soundeffectall "beep.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2;
+	sleep 1000;
+	npctalk "[ Baccarat ]: 9";
+	soundeffectall "beep.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2;
+	sleep 1000;
+	npctalk "[ Baccarat ]: 8";
+	soundeffectall "beep.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2;
+	sleep 1000;
+	npctalk "[ Baccarat ]: 7";
+	soundeffectall "beep.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2;
+	sleep 1000;
+	npctalk "[ Baccarat ]: 6";
+	soundeffectall "beep.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2;
+	sleep 1000;
+	npctalk "[ Baccarat ]: 5";
+	soundeffectall "beep.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2;
+	sleep 1000;
+	npctalk "[ Baccarat ]: 4";
+	soundeffectall "beep.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2;
+	sleep 1000;
+	npctalk "[ Baccarat ]: 3";
+	soundeffectall "beep.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2;
+	sleep 1000;
+	npctalk "[ Baccarat ]: 2";
+	soundeffectall "beep.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2;
+	sleep 1000;
+	npctalk "[ Baccarat ]: 1";
+	soundeffectall "beep.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2;
+	sleep 1000;
+	soundeffectall "bet_end.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2;
+	set $SystemStart, 1;
+	
+	set .PlayerCard1, 0;
+	set .PlayerCard2, 0;
+	set .BankerCard1, 0;
+	set .BankerCard2, 0;
+	
+	set .PlayerCard1, rand(0,9);
+	set .PlayerCard2, rand(0,9);
+	set .BankerCard1, rand(0,9);
+	set .BankerCard2, rand(0,9);
+
+	set .PCard1Show$, .PlayerCard1;
+	set .PCard2Show$, .PlayerCard2;
+	set .BCard1Show$, .BankerCard1;
+	set .BCard2Show$, .BankerCard2;
+
+	if (.PlayerCard1 == 1) { set .PCard1Show$, "A"; }
+	if (.PlayerCard1 == 0) {
+		set .PlayerCard10, rand(0,3);
+		if (.PlayerCard10 == 0) { set .PCard1Show$, "10"; }
+		else if (.PlayerCard10 == 1) {set .PCard1Show$, "J"; }
+		else if (.PlayerCard10 == 2) {set .PCard1Show$, "Q"; }
+		else if (.PlayerCard10 == 3) {set .PCard1Show$, "K"; }
+	}
+
+	.@dok = rand(1,4);
+	if (.PlayerCard1 == 0) {
+		switch(.PlayerCard10) {
+			case 0:
+				if (.@dok == 1) { setnpcdisplay "Player Card 1",$Card_101; }
+				else if (.@dok == 2) { setnpcdisplay "Player Card 1",$Card_102; }
+				else if (.@dok == 3) { setnpcdisplay "Player Card 1",$Card_103; }
+				else if (.@dok == 4) { setnpcdisplay "Player Card 1",$Card_104; }
+				break;
+			case 1:
+				if (.@dok == 1) { setnpcdisplay "Player Card 1",$Card_J1; }
+				else if (.@dok == 2) { setnpcdisplay "Player Card 1",$Card_J2; }
+				else if (.@dok == 3) { setnpcdisplay "Player Card 1",$Card_J3; }
+				else if (.@dok == 4) { setnpcdisplay "Player Card 1",$Card_J4; }
+				break;
+			case 2:
+				if (.@dok == 1) { setnpcdisplay "Player Card 1",$Card_Q1; }
+				else if (.@dok == 2) { setnpcdisplay "Player Card 1",$Card_Q2; }
+				else if (.@dok == 3) { setnpcdisplay "Player Card 1",$Card_Q3; }
+				else if (.@dok == 4) { setnpcdisplay "Player Card 1",$Card_Q4; }
+				break;
+			case 3:
+				if (.@dok == 1) { setnpcdisplay "Player Card 1",$Card_K1; }
+				else if (.@dok == 2) { setnpcdisplay "Player Card 1",$Card_K2; }
+				else if (.@dok == 3) { setnpcdisplay "Player Card 1",$Card_K3; }
+				else if (.@dok == 4) { setnpcdisplay "Player Card 1",$Card_K4; }
+				break;
+		}
+	}
+	else if (.PlayerCard1 == 1) {
+		if (.@dok == 1) { setnpcdisplay "Player Card 1",$Card_A1; }
+		else if (.@dok == 2) { setnpcdisplay "Player Card 1",$Card_A2; }
+		else if (.@dok == 3) { setnpcdisplay "Player Card 1",$Card_A3; }
+		else if (.@dok == 4) { setnpcdisplay "Player Card 1",$Card_A4; }
+	}
+	else if (.PlayerCard1 == 2) {
+		if (.@dok == 1) { setnpcdisplay "Player Card 1",$Card_21; }
+		else if (.@dok == 2) { setnpcdisplay "Player Card 1",$Card_22; }
+		else if (.@dok == 3) { setnpcdisplay "Player Card 1",$Card_23; }
+		else if (.@dok == 4) { setnpcdisplay "Player Card 1",$Card_24; }
+	}
+	else if (.PlayerCard1 == 3) {
+		if (.@dok == 1) { setnpcdisplay "Player Card 1",$Card_31; }
+		else if (.@dok == 2) { setnpcdisplay "Player Card 1",$Card_32; }
+		else if (.@dok == 3) { setnpcdisplay "Player Card 1",$Card_33; }
+		else if (.@dok == 4) { setnpcdisplay "Player Card 1",$Card_34; }
+	}
+	else if (.PlayerCard1 == 4) {
+		if (.@dok == 1) { setnpcdisplay "Player Card 1",$Card_41; }
+		else if (.@dok == 2) { setnpcdisplay "Player Card 1",$Card_42; }
+		else if (.@dok == 3) { setnpcdisplay "Player Card 1",$Card_43; }
+		else if (.@dok == 4) { setnpcdisplay "Player Card 1",$Card_44; }
+	}
+	else if (.PlayerCard1 == 5) {
+		if (.@dok == 1) { setnpcdisplay "Player Card 1",$Card_51; }
+		else if (.@dok == 2) { setnpcdisplay "Player Card 1",$Card_52; }
+		else if (.@dok == 3) { setnpcdisplay "Player Card 1",$Card_53; }
+		else if (.@dok == 4) { setnpcdisplay "Player Card 1",$Card_54; }
+	}
+	else if (.PlayerCard1 == 6) {
+		if (.@dok == 1) { setnpcdisplay "Player Card 1",$Card_61; }
+		else if (.@dok == 2) { setnpcdisplay "Player Card 1",$Card_62; }
+		else if (.@dok == 3) { setnpcdisplay "Player Card 1",$Card_63; }
+		else if (.@dok == 4) { setnpcdisplay "Player Card 1",$Card_64; }
+	}
+	else if (.PlayerCard1 == 7) {
+		if (.@dok == 1) { setnpcdisplay "Player Card 1",$Card_71; }
+		else if (.@dok == 2) { setnpcdisplay "Player Card 1",$Card_72; }
+		else if (.@dok == 3) { setnpcdisplay "Player Card 1",$Card_73; }
+		else if (.@dok == 4) { setnpcdisplay "Player Card 1",$Card_74; }
+	}
+	else if (.PlayerCard1 == 8) {
+		if (.@dok == 1) { setnpcdisplay "Player Card 1",$Card_81; }
+		else if (.@dok == 2) { setnpcdisplay "Player Card 1",$Card_82; }
+		else if (.@dok == 3) { setnpcdisplay "Player Card 1",$Card_83; }
+		else if (.@dok == 4) { setnpcdisplay "Player Card 1",$Card_84; }
+	}
+	else if (.PlayerCard1 == 9) {
+		if (.@dok == 1) { setnpcdisplay "Player Card 1",$Card_91; }
+		else if (.@dok == 2) { setnpcdisplay "Player Card 1",$Card_92; }
+		else if (.@dok == 3) { setnpcdisplay "Player Card 1",$Card_93; }
+		else if (.@dok == 4) { setnpcdisplay "Player Card 1",$Card_94; }
+	}
+
+	sleep 3000;
+	if (.BankerCard1 == 1) { set .BCard1Show$, "A"; }
+	if (.BankerCard1 == 0) {
+		set .BankerCard10, rand(0,3);
+		if (.BankerCard10 == 0) { set .BCard1Show$, "10"; }
+		else if (.BankerCard10 == 1) { set .BCard1Show$, "J"; }
+		else if (.BankerCard10 == 2) { set .BCard1Show$, "Q"; }
+		else if (.BankerCard10 == 3) { set .BCard1Show$, "K"; }
+	}
+
+	.@dok = rand(1,4);
+	if (.BankerCard1 == 0) {
+		switch(.BankerCard10) {
+			case 0:
+				if (.@dok == 1) { setnpcdisplay "Banker Card 1",$Card_101; }
+				else if (.@dok == 2) { setnpcdisplay "Banker Card 1",$Card_102; }
+				else if (.@dok == 3) { setnpcdisplay "Banker Card 1",$Card_103; }
+				else if (.@dok == 4) { setnpcdisplay "Banker Card 1",$Card_104; }
+				break;
+			case 1:
+				if (.@dok == 1) { setnpcdisplay "Banker Card 1",$Card_J1; }
+				else if (.@dok == 2) { setnpcdisplay "Banker Card 1",$Card_J2; }
+				else if (.@dok == 3) { setnpcdisplay "Banker Card 1",$Card_J3; }
+				else if (.@dok == 4) { setnpcdisplay "Banker Card 1",$Card_J4; }
+				break;
+			case 2:
+				if (.@dok == 1) { setnpcdisplay "Banker Card 1",$Card_Q1; }
+				else if (.@dok == 2) { setnpcdisplay "Banker Card 1",$Card_Q2; }
+				else if (.@dok == 3) { setnpcdisplay "Banker Card 1",$Card_Q3; }
+				else if (.@dok == 4) { setnpcdisplay "Banker Card 1",$Card_Q4; }
+				break;
+			case 3:
+				if (.@dok == 1) { setnpcdisplay "Banker Card 1",$Card_K1; }
+				else if (.@dok == 2) { setnpcdisplay "Banker Card 1",$Card_K2; }
+				else if (.@dok == 3) { setnpcdisplay "Banker Card 1",$Card_K3; }
+				else if (.@dok == 4) { setnpcdisplay "Banker Card 1",$Card_K4; }
+				break;
+		}
+	}
+	else if (.BankerCard1 == 1) {
+		if (.@dok == 1) { setnpcdisplay "Banker Card 1",$Card_A1; }
+		else if (.@dok == 2) { setnpcdisplay "Banker Card 1",$Card_A2; }
+		else if (.@dok == 3) { setnpcdisplay "Banker Card 1",$Card_A3; }
+		else if (.@dok == 4) { setnpcdisplay "Banker Card 1",$Card_A4; }
+	}
+	else if (.BankerCard1 == 2) {
+		if (.@dok == 1) { setnpcdisplay "Banker Card 1",$Card_21; }
+		else if (.@dok == 2) { setnpcdisplay "Banker Card 1",$Card_22; }
+		else if (.@dok == 3) { setnpcdisplay "Banker Card 1",$Card_23; }
+		else if (.@dok == 4) { setnpcdisplay "Banker Card 1",$Card_24; }
+	}
+	else if (.BankerCard1 == 3) {
+		if (.@dok == 1) { setnpcdisplay "Banker Card 1",$Card_31; }
+		else if (.@dok == 2) { setnpcdisplay "Banker Card 1",$Card_32; }
+		else if (.@dok == 3) { setnpcdisplay "Banker Card 1",$Card_33; }
+		else if (.@dok == 4) { setnpcdisplay "Banker Card 1",$Card_34; }
+	}
+	else if (.BankerCard1 == 4) {
+		if (.@dok == 1) { setnpcdisplay "Banker Card 1",$Card_41; }
+		else if (.@dok == 2) { setnpcdisplay "Banker Card 1",$Card_42; }
+		else if (.@dok == 3) { setnpcdisplay "Banker Card 1",$Card_43; }
+		else if (.@dok == 4) { setnpcdisplay "Banker Card 1",$Card_44; }
+	}
+	else if (.BankerCard1 == 5) {
+		if (.@dok == 1) { setnpcdisplay "Banker Card 1",$Card_51; }
+		else if (.@dok == 2) { setnpcdisplay "Banker Card 1",$Card_52; }
+		else if (.@dok == 3) { setnpcdisplay "Banker Card 1",$Card_53; }
+		else if (.@dok == 4) { setnpcdisplay "Banker Card 1",$Card_54; }
+	}
+	else if (.BankerCard1 == 6) {
+		if (.@dok == 1) { setnpcdisplay "Banker Card 1",$Card_61; }
+		else if (.@dok == 2) { setnpcdisplay "Banker Card 1",$Card_62; }
+		else if (.@dok == 3) { setnpcdisplay "Banker Card 1",$Card_63; }
+		else if (.@dok == 4) { setnpcdisplay "Banker Card 1",$Card_64; }
+	}
+	else if (.BankerCard1 == 7) {
+		if (.@dok == 1) { setnpcdisplay "Banker Card 1",$Card_71; }
+		else if (.@dok == 2) { setnpcdisplay "Banker Card 1",$Card_72; }
+		else if (.@dok == 3) { setnpcdisplay "Banker Card 1",$Card_73; }
+		else if (.@dok == 4) { setnpcdisplay "Banker Card 1",$Card_74; }
+	}
+	else if (.BankerCard1 == 8) {
+		if (.@dok == 1) { setnpcdisplay "Banker Card 1",$Card_81; }
+		else if (.@dok == 2) { setnpcdisplay "Banker Card 1",$Card_82; }
+		else if (.@dok == 3) { setnpcdisplay "Banker Card 1",$Card_83; }
+		else if (.@dok == 4) { setnpcdisplay "Banker Card 1",$Card_84; }
+	}
+	else if (.BankerCard1 == 9) {
+		if (.@dok == 1) { setnpcdisplay "Banker Card 1",$Card_91; }
+		else if (.@dok == 2) { setnpcdisplay "Banker Card 1",$Card_92; }
+		else if (.@dok == 3) { setnpcdisplay "Banker Card 1",$Card_93; }
+		else if (.@dok == 4) { setnpcdisplay "Banker Card 1",$Card_94; }
+	}
+
+	sleep 3000;
+	if (.PlayerCard2 == 1) { set .PCard2Show$, "A"; }
+	if (.PlayerCard2 == 0) {
+		set .PlayerCard20, rand(0,3);
+		if (.PlayerCard20 == 0) { set .PCard2Show$, "10"; }
+		if (.PlayerCard20 == 1) { set .PCard2Show$, "J"; }
+		if (.PlayerCard20 == 2) { set .PCard2Show$, "Q"; }
+		if (.PlayerCard20 == 3) { set .PCard2Show$, "K"; }
+	}
+
+	.@dok = rand(1,4);
+	if (.PlayerCard2 == 0) {
+		switch(.PlayerCard20) {
+			case 0:
+				if (.@dok == 1) { setnpcdisplay "Player Card 2",$Card_101; }
+				else if (.@dok == 2) { setnpcdisplay "Player Card 2",$Card_102; }
+				else if (.@dok == 3) { setnpcdisplay "Player Card 2",$Card_103; }
+				else if (.@dok == 4) { setnpcdisplay "Player Card 2",$Card_104; }
+				break;
+			case 1:
+				if (.@dok == 1) { setnpcdisplay "Player Card 2",$Card_J1; }
+				else if (.@dok == 2) { setnpcdisplay "Player Card 2",$Card_J2; }
+				else if (.@dok == 3) { setnpcdisplay "Player Card 2",$Card_J3; }
+				else if (.@dok == 4) { setnpcdisplay "Player Card 2",$Card_J4; }
+				break;
+			case 2:
+				if (.@dok == 1) { setnpcdisplay "Player Card 2",$Card_Q1; }
+				else if (.@dok == 2) { setnpcdisplay "Player Card 2",$Card_Q2; }
+				else if (.@dok == 3) { setnpcdisplay "Player Card 2",$Card_Q3; }
+				else if (.@dok == 4) { setnpcdisplay "Player Card 2",$Card_Q4; }
+				break;
+			case 3:
+				if (.@dok == 1) { setnpcdisplay "Player Card 2",$Card_K1; }
+				else if (.@dok == 2) { setnpcdisplay "Player Card 2",$Card_K2; }
+				else if (.@dok == 3) { setnpcdisplay "Player Card 2",$Card_K3; }
+				else if (.@dok == 4) { setnpcdisplay "Player Card 2",$Card_K4; }
+				break;
+		}
+	}
+	else if (.PlayerCard2 == 1) {
+		if (.@dok == 1) { setnpcdisplay "Player Card 2",$Card_A1; }
+		else if (.@dok == 2) { setnpcdisplay "Player Card 2",$Card_A2; }
+		else if (.@dok == 3) { setnpcdisplay "Player Card 2",$Card_A3; }
+		else if (.@dok == 4) { setnpcdisplay "Player Card 2",$Card_A4; }
+	}
+	else if (.PlayerCard2 == 2) {
+		if (.@dok == 1) { setnpcdisplay "Player Card 2",$Card_21; }
+		else if (.@dok == 2) { setnpcdisplay "Player Card 2",$Card_22; }
+		else if (.@dok == 3) { setnpcdisplay "Player Card 2",$Card_23; }
+		else if (.@dok == 4) { setnpcdisplay "Player Card 2",$Card_24; }
+	}
+	else if (.PlayerCard2 == 3) {
+		if (.@dok == 1) { setnpcdisplay "Player Card 2",$Card_31; }
+		else if (.@dok == 2) { setnpcdisplay "Player Card 2",$Card_32; }
+		else if (.@dok == 3) { setnpcdisplay "Player Card 2",$Card_33; }
+		else if (.@dok == 4) { setnpcdisplay "Player Card 2",$Card_34; }
+	}
+	else if (.PlayerCard2 == 4) {
+		if (.@dok == 1) { setnpcdisplay "Player Card 2",$Card_41; }
+		else if (.@dok == 2) { setnpcdisplay "Player Card 2",$Card_42; }
+		else if (.@dok == 3) { setnpcdisplay "Player Card 2",$Card_43; }
+		else if (.@dok == 4) { setnpcdisplay "Player Card 2",$Card_44; }
+	}
+	else if (.PlayerCard2 == 5) {
+		if (.@dok == 1) { setnpcdisplay "Player Card 2",$Card_51; }
+		else if (.@dok == 2) { setnpcdisplay "Player Card 2",$Card_52; }
+		else if (.@dok == 3) { setnpcdisplay "Player Card 2",$Card_53; }
+		else if (.@dok == 4) { setnpcdisplay "Player Card 2",$Card_54; }
+	}
+	else if (.PlayerCard2 == 6) {
+		if (.@dok == 1) { setnpcdisplay "Player Card 2",$Card_61; }
+		else if (.@dok == 2) { setnpcdisplay "Player Card 2",$Card_62; }
+		else if (.@dok == 3) { setnpcdisplay "Player Card 2",$Card_63; }
+		else if (.@dok == 4) { setnpcdisplay "Player Card 2",$Card_64; }
+	}
+	else if (.PlayerCard2 == 7) {
+		if (.@dok == 1) { setnpcdisplay "Player Card 2",$Card_71; }
+		else if (.@dok == 2) { setnpcdisplay "Player Card 2",$Card_72; }
+		else if (.@dok == 3) { setnpcdisplay "Player Card 2",$Card_73; }
+		else if (.@dok == 4) { setnpcdisplay "Player Card 2",$Card_74; }
+	}
+	else if (.PlayerCard2 == 8) {
+		if (.@dok == 1) { setnpcdisplay "Player Card 2",$Card_81; }
+		else if (.@dok == 2) { setnpcdisplay "Player Card 2",$Card_82; }
+		else if (.@dok == 3) { setnpcdisplay "Player Card 2",$Card_83; }
+		else if (.@dok == 4) { setnpcdisplay "Player Card 2",$Card_84; }
+	}
+	else if (.PlayerCard2 == 9) {
+		if (.@dok == 1) { setnpcdisplay "Player Card 2",$Card_91; }
+		else if (.@dok == 2) { setnpcdisplay "Player Card 2",$Card_92; }
+		else if (.@dok == 3) { setnpcdisplay "Player Card 2",$Card_93; }
+		else if (.@dok == 4) { setnpcdisplay "Player Card 2",$Card_94; }
+	}
+
+	sleep 3000;
+	if (.BankerCard2 == 1) {set .BCard2Show$, "A";}
+	if (.BankerCard2 == 0) {
+		set .BankerCard20, rand(0,3);
+		if (.BankerCard20 == 0) { set .BCard2Show$, "10"; }
+		if (.BankerCard20 == 1) { set .BCard2Show$, "J"; }
+		if (.BankerCard20 == 2) { set .BCard2Show$, "Q"; }
+		if (.BankerCard20 == 3) { set .BCard2Show$, "K"; }
+	}
+
+	.@dok = rand(1,4);
+	if (.BankerCard2 == 0) {
+		switch(.BankerCard20) {
+			case 0:
+				if (.@dok == 1) { setnpcdisplay "Banker Card 2",$Card_101; }
+				else if (.@dok == 2) { setnpcdisplay "Banker Card 2",$Card_102; }
+				else if (.@dok == 3) { setnpcdisplay "Banker Card 2",$Card_103; }
+				else if (.@dok == 4) { setnpcdisplay "Banker Card 2",$Card_104; }
+				break;
+			case 1:
+				if (.@dok == 1) { setnpcdisplay "Banker Card 2",$Card_J1; }
+				else if (.@dok == 2) { setnpcdisplay "Banker Card 2",$Card_J2; }
+				else if (.@dok == 3) { setnpcdisplay "Banker Card 2",$Card_J3; }
+				else if (.@dok == 4) { setnpcdisplay "Banker Card 2",$Card_J4; }
+				break;
+			case 2:
+				if (.@dok == 1) { setnpcdisplay "Banker Card 2",$Card_Q1; }
+				else if (.@dok == 2) { setnpcdisplay "Banker Card 2",$Card_Q2; }
+				else if (.@dok == 3) { setnpcdisplay "Banker Card 2",$Card_Q3; }
+				else if (.@dok == 4) { setnpcdisplay "Banker Card 2",$Card_Q4; }
+				break;
+			case 3:
+				if (.@dok == 1) { setnpcdisplay "Banker Card 2",$Card_K1; }
+				else if (.@dok == 2) { setnpcdisplay "Banker Card 2",$Card_K2; }
+				else if (.@dok == 3) { setnpcdisplay "Banker Card 2",$Card_K3; }
+				else if (.@dok == 4) { setnpcdisplay "Banker Card 2",$Card_K4; }
+				break;
+		}
+	}
+	else if (.BankerCard2 == 1) {
+		if (.@dok == 1) { setnpcdisplay "Banker Card 2",$Card_A1; }
+		else if (.@dok == 2) { setnpcdisplay "Banker Card 2",$Card_A2; }
+		else if (.@dok == 3) { setnpcdisplay "Banker Card 2",$Card_A3; }
+		else if (.@dok == 4) { setnpcdisplay "Banker Card 2",$Card_A4; }
+	}
+	else if (.BankerCard2 == 2) {
+		if (.@dok == 1) { setnpcdisplay "Banker Card 2",$Card_21; }
+		else if (.@dok == 2) { setnpcdisplay "Banker Card 2",$Card_22; }
+		else if (.@dok == 3) { setnpcdisplay "Banker Card 2",$Card_23; }
+		else if (.@dok == 4) { setnpcdisplay "Banker Card 2",$Card_24; }
+	}
+	else if (.BankerCard2 == 3) {
+		if (.@dok == 1) { setnpcdisplay "Banker Card 2",$Card_31; }
+		else if (.@dok == 2) { setnpcdisplay "Banker Card 2",$Card_32; }
+		else if (.@dok == 3) { setnpcdisplay "Banker Card 2",$Card_33; }
+		else if (.@dok == 4) { setnpcdisplay "Banker Card 2",$Card_34; }
+	}
+	else if (.BankerCard2 == 4) {
+		if (.@dok == 1) { setnpcdisplay "Banker Card 2",$Card_41; }
+		else if (.@dok == 2) { setnpcdisplay "Banker Card 2",$Card_42; }
+		else if (.@dok == 3) { setnpcdisplay "Banker Card 2",$Card_43; }
+		else if (.@dok == 4) { setnpcdisplay "Banker Card 2",$Card_44; }
+	}
+	else if (.BankerCard2 == 5) {
+		if (.@dok == 1) { setnpcdisplay "Banker Card 2",$Card_51; }
+		else if (.@dok == 2) { setnpcdisplay "Banker Card 2",$Card_52; }
+		else if (.@dok == 3) { setnpcdisplay "Banker Card 2",$Card_53; }
+		else if (.@dok == 4) { setnpcdisplay "Banker Card 2",$Card_54; }
+	}
+	else if (.BankerCard2 == 6) {
+		if (.@dok == 1) { setnpcdisplay "Banker Card 2",$Card_61; }
+		else if (.@dok == 2) { setnpcdisplay "Banker Card 2",$Card_62; }
+		else if (.@dok == 3) { setnpcdisplay "Banker Card 2",$Card_63; }
+		else if (.@dok == 4) { setnpcdisplay "Banker Card 2",$Card_64; }
+	}
+	else if (.BankerCard2 == 7) {
+		if (.@dok == 1) { setnpcdisplay "Banker Card 2",$Card_71; }
+		else if (.@dok == 2) { setnpcdisplay "Banker Card 2",$Card_72; }
+		else if (.@dok == 3) { setnpcdisplay "Banker Card 2",$Card_73; }
+		else if (.@dok == 4) { setnpcdisplay "Banker Card 2",$Card_74; }
+	}
+	else if (.BankerCard2 == 8) {
+		if (.@dok == 1) { setnpcdisplay "Banker Card 2",$Card_81; }
+		else if (.@dok == 2) { setnpcdisplay "Banker Card 2",$Card_82; }
+		else if (.@dok == 3) { setnpcdisplay "Banker Card 2",$Card_83; }
+		else if (.@dok == 4) { setnpcdisplay "Banker Card 2",$Card_84; }
+	}
+	else if (.BankerCard2 == 9) {
+		if (.@dok == 1) { setnpcdisplay "Banker Card 2",$Card_91; }
+		else if (.@dok == 2) { setnpcdisplay "Banker Card 2",$Card_92; }
+		else if (.@dok == 3) { setnpcdisplay "Banker Card 2",$Card_93; }
+		else if (.@dok == 4) { setnpcdisplay "Banker Card 2",$Card_94; }
+	}
+
+	sleep 3000;
+	set .TotalPCards, .PlayerCard1 + .PlayerCard2;
+	if (.TotalPCards > 9) {
+		set .TotalPCards, .TotalPCards - 10 ;
+	}
+	npctalk "[ Baccarat ]: ผู้เล่น "+.PCard1Show$+" — "+.PCard2Show$+" ["+.TotalPCards+"] แต้ม";
+	switch(.TotalPCards) {
+		case 1: soundeffectall "player_1.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2; break;
+		case 2: soundeffectall "player_2.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2; break;
+		case 3: soundeffectall "player_3.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2; break;
+		case 4: soundeffectall "player_4.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2; break;
+		case 5: soundeffectall "player_5.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2; break;
+		case 6: soundeffectall "player_6.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2; break;
+		case 7: soundeffectall "player_7.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2; break;
+		case 8: soundeffectall "player_8.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2; break;
+		case 9: soundeffectall "player_9.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2; break;
+		default: soundeffectall "player_0.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2; break;
+	}
+	sleep 3000;
+	set .TotalBCards, .BankerCard1 + .BankerCard2;
+	if (.TotalBCards > 9) { set .TotalBCards, .TotalBCards - 10; }
+	npctalk "[ Baccarat ]: เจ้ามือ "+.BCard1Show$+" — "+.BCard2Show$+" ["+.TotalBCards+"] แต้ม";
+	switch(.TotalBCards) {
+		case 1: soundeffectall "banker_1.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2; break;
+		case 2: soundeffectall "banker_2.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2; break;
+		case 3: soundeffectall "banker_3.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2; break;
+		case 4: soundeffectall "banker_4.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2; break;
+		case 5: soundeffectall "banker_5.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2; break;
+		case 6: soundeffectall "banker_6.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2; break;
+		case 7: soundeffectall "banker_7.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2; break;
+		case 8: soundeffectall "banker_8.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2; break;
+		case 9: soundeffectall "banker_9.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2; break;
+		default: soundeffectall "banker_0.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2; break;
+	}
+	if (.TotalPCards > 5) {	goto PFinal; end; }
+	sleep 3000;
+	if (.TotalPCards <= 5 && .TotalBCards < 8) {
+		set .PlayerCard3, rand(0,9);
+		set .PlayerCard3Get, 1;
+		soundeffectall "player_get.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2;
+	}
+
+	set .PCard3Show$, .PlayerCard3;
+	if (.PlayerCard3 == 1) { set .PCard3Show$, "A"; }
+	if (.PlayerCard3 == 0) {
+		set .PlayerCard30, rand(0,3);
+		if (.PlayerCard30 == 0) { set .PCard3Show$, "10"; }
+		else if (.PlayerCard30 == 1) { set .PCard3Show$, "J"; }
+		else if (.PlayerCard30 == 2) { set .PCard3Show$, "Q"; }
+		else if (.PlayerCard30 == 3) { set .PCard3Show$, "K"; }
+	}
+
+	if (.PlayerCard3Get) {
+		.@dok = rand(1,4);
+		if (.PlayerCard3 == 0) {
+			switch(.PlayerCard30) {
+				case 0:
+					if (.@dok == 1) { setnpcdisplay "Player Card 3",$CardE_101; }
+					else if (.@dok == 2) { setnpcdisplay "Player Card 3",$CardE_102; }
+					else if (.@dok == 3) { setnpcdisplay "Player Card 3",$CardE_103; }
+					else if (.@dok == 4) { setnpcdisplay "Player Card 3",$CardE_104; }
+					break;
+				case 1:
+					if (.@dok == 1) { setnpcdisplay "Player Card 3",$CardE_J1; }
+					else if (.@dok == 2) { setnpcdisplay "Player Card 3",$CardE_J2; }
+					else if (.@dok == 3) { setnpcdisplay "Player Card 3",$CardE_J3; }
+					else if (.@dok == 4) { setnpcdisplay "Player Card 3",$CardE_J4; }
+					break;
+				case 2:
+					if (.@dok == 1) { setnpcdisplay "Player Card 3",$CardE_Q1; }
+					else if (.@dok == 2) { setnpcdisplay "Player Card 3",$CardE_Q2; }
+					else if (.@dok == 3) { setnpcdisplay "Player Card 3",$CardE_Q3; }
+					else if (.@dok == 4) { setnpcdisplay "Player Card 3",$CardE_Q4; }
+					break;
+				case 3:
+					if (.@dok == 1) { setnpcdisplay "Player Card 3",$CardE_K1; }
+					else if (.@dok == 2) { setnpcdisplay "Player Card 3",$CardE_K2; }
+					else if (.@dok == 3) { setnpcdisplay "Player Card 3",$CardE_K3; }
+					else if (.@dok == 4) { setnpcdisplay "Player Card 3",$CardE_K4; }
+					break;
+			}
+		}
+		else if (.PlayerCard3 == 1) {
+			if (.@dok == 1) { setnpcdisplay "Player Card 3",$CardE_A1; }
+			else if (.@dok == 2) { setnpcdisplay "Player Card 3",$CardE_A2; }
+			else if (.@dok == 3) { setnpcdisplay "Player Card 3",$CardE_A3; }
+			else if (.@dok == 4) { setnpcdisplay "Player Card 3",$CardE_A4; }
+		}
+		else if (.PlayerCard3 == 2) {
+			if (.@dok == 1) { setnpcdisplay "Player Card 3",$CardE_21; }
+			else if (.@dok == 2) { setnpcdisplay "Player Card 3",$CardE_22; }
+			else if (.@dok == 3) { setnpcdisplay "Player Card 3",$CardE_23; }
+			else if (.@dok == 4) { setnpcdisplay "Player Card 3",$CardE_24; }
+		}
+		else if (.PlayerCard3 == 3) {
+			if (.@dok == 1) { setnpcdisplay "Player Card 3",$CardE_31; }
+			else if (.@dok == 2) { setnpcdisplay "Player Card 3",$CardE_32; }
+			else if (.@dok == 3) { setnpcdisplay "Player Card 3",$CardE_33; }
+			else if (.@dok == 4) { setnpcdisplay "Player Card 3",$CardE_34; }
+		}
+		else if (.PlayerCard3 == 4) {
+			if (.@dok == 1) { setnpcdisplay "Player Card 3",$CardE_41; }
+			else if (.@dok == 2) { setnpcdisplay "Player Card 3",$CardE_42; }
+			else if (.@dok == 3) { setnpcdisplay "Player Card 3",$CardE_43; }
+			else if (.@dok == 4) { setnpcdisplay "Player Card 3",$CardE_44; }
+		}
+		else if (.PlayerCard3 == 5) {
+			if (.@dok == 1) { setnpcdisplay "Player Card 3",$CardE_51; }
+			else if (.@dok == 2) { setnpcdisplay "Player Card 3",$CardE_52; }
+			else if (.@dok == 3) { setnpcdisplay "Player Card 3",$CardE_53; }
+			else if (.@dok == 4) { setnpcdisplay "Player Card 3",$CardE_54; }
+		}
+		else if (.PlayerCard3 == 6) {
+			if (.@dok == 1) { setnpcdisplay "Player Card 3",$CardE_61; }
+			else if (.@dok == 2) { setnpcdisplay "Player Card 3",$CardE_62; }
+			else if (.@dok == 3) { setnpcdisplay "Player Card 3",$CardE_63; }
+			else if (.@dok == 4) { setnpcdisplay "Player Card 3",$CardE_64; }
+		}
+		else if (.PlayerCard3 == 7) {
+			if (.@dok == 1) { setnpcdisplay "Player Card 3",$CardE_71; }
+			else if (.@dok == 2) { setnpcdisplay "Player Card 3",$CardE_72; }
+			else if (.@dok == 3) { setnpcdisplay "Player Card 3",$CardE_73; }
+			else if (.@dok == 4) { setnpcdisplay "Player Card 3",$CardE_74; }
+		}
+		else if (.PlayerCard3 == 8) {
+			if (.@dok == 1) { setnpcdisplay "Player Card 3",$CardE_81; }
+			else if (.@dok == 2) { setnpcdisplay "Player Card 3",$CardE_82; }
+			else if (.@dok == 3) { setnpcdisplay "Player Card 3",$CardE_83; }
+			else if (.@dok == 4) { setnpcdisplay "Player Card 3",$CardE_84; }
+		}
+		else if (.PlayerCard3 == 9) {
+			if (.@dok == 1) { setnpcdisplay "Player Card 3",$CardE_91; }
+			else if (.@dok == 2) { setnpcdisplay "Player Card 3",$CardE_92; }
+			else if (.@dok == 3) { setnpcdisplay "Player Card 3",$CardE_93; }
+			else if (.@dok == 4) { setnpcdisplay "Player Card 3",$CardE_94; }
+		}
+	}
+
+PFinal:
+	if (.PlayerCard3Get == 1) {
+		sleep 5000;
+		set .TotalPCards, .PlayerCard1 + .PlayerCard2 + .PlayerCard3;
+		
+		if (.TotalPCards > 9 && .TotalPCards < 20) {
+			set .TotalPCards, .TotalPCards - 10;
+		} else if (.TotalPCards > 19 && .TotalPCards < 30) {
+			set .TotalPCards, .TotalPCards - 20;
+		}
+		npctalk "[ Baccarat ]: ผู้เล่น "+.PCard1Show$+" — "+.PCard2Show$+" — "+.PCard3Show$+" ["+.TotalPCards+"]  แต้ม";
+		
+		switch(.TotalPCards) {
+			case 1: soundeffectall "player_1.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2; break;
+			case 2: soundeffectall "player_2.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2; break;
+			case 3: soundeffectall "player_3.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2; break;
+			case 4: soundeffectall "player_4.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2; break;
+			case 5: soundeffectall "player_5.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2; break;
+			case 6: soundeffectall "player_6.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2; break;
+			case 7: soundeffectall "player_7.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2; break;
+			case 8: soundeffectall "player_8.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2; break;
+			case 9: soundeffectall "player_9.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2; break;
+			default: soundeffectall "player_0.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2; break;
+		}
+	}
+
+	sleep 5000;
+
+	if (.PlayerCard3Get == 0) {
+		if (.TotalBCards < 3 && .TotalPCards < 8) {
+			set .BankerCard3, rand(0,9);
+			set .BankerCard3Get, 1;
+			soundeffectall "banker_get.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2;
+		}
+		if (.TotalBCards == 3 && .TotalPCards < 8) {
+			set .BankerCard3, rand(0,9);
+			set .BankerCard3Get, 1;
+			soundeffectall "banker_get.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2;
+		}
+		if (.TotalBCards == 4 && .TotalPCards < 8) {
+			set .BankerCard3, rand(0,9);
+			set .BankerCard3Get, 1;
+			soundeffectall "banker_get.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2;
+		}
+		if (.TotalBCards == 5 && .TotalPCards < 8) {
+			set .BankerCard3, rand(0,9);
+			set .BankerCard3Get, 1;
+			soundeffectall "banker_get.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2;
+		}
+		if (.TotalBCards > 5) {
+			goto BFinal;
+			end;
+		}
+	}
+
+	if (.PlayerCard3Get == 1) {					
+		if (.TotalBCards < 3) {
+				set .BankerCard3, rand(0,9);
+				set .BankerCard3Get, 1;
+				soundeffectall "banker_get.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2;
+		}
+		if (.TotalBCards == 3) {
+			if (.PlayerCard3 == 8) {
+				goto BFinal;
+			}
+			set .BankerCard3, rand(0,9);
+			set .BankerCard3Get, 1;
+			soundeffectall "banker_get.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2;
+		}
+		if (.TotalBCards == 4) {
+			if (.PlayerCard3 == 0 || .PlayerCard3 == 1 || .PlayerCard3 == 8 || .PlayerCard3 == 9) {
+				goto BFinal;
+			}
+			set .BankerCard3, rand(0,9);
+			set .BankerCard3Get, 1;
+			soundeffectall "banker_get.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2;
+		}
+		if (.TotalBCards == 5) {
+			if (.PlayerCard3 == 0 || .PlayerCard3 == 1 || .PlayerCard3 == 2 || .PlayerCard3 == 3 || .PlayerCard3 == 8 || .PlayerCard3 == 9) {
+				goto BFinal;
+			}
+			
+			set .BankerCard3, rand(0,9);
+			set .BankerCard3Get, 1;
+			soundeffectall "banker_get.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2;
+		}
+		if (.TotalBCards == 6 && .TotalPCards > 6) {
+			if (.PlayerCard3 == 0 || .PlayerCard3 == 1 || .PlayerCard3 == 2 || .PlayerCard3 == 3 || .PlayerCard3 == 4 || .PlayerCard3 == 5 || .PlayerCard3 == 8 || .PlayerCard3 == 9) {
+				goto BFinal;
+			}
+			set .BankerCard3, rand(0,9);
+			set .BankerCard3Get, 1;
+			soundeffectall "banker_get.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2;
+		}
+	}
+
+	set .BCard3Show$, .BankerCard3;
+	if (.BankerCard3 == 1) { set .BCard3Show$, "A"; }
+	if (.BankerCard3 == 0) {
+		set .BankerCard30, rand(0,3);
+		if (.BankerCard30 == 0) {set .BCard3Show$, "10";}
+		else if (.BankerCard30 == 1) {set .BCard3Show$, "J";}
+		else if (.BankerCard30 == 2) {set .BCard3Show$, "Q";}
+		else if (.BankerCard30 == 3) {set .BCard3Show$, "K";}
+	}
+
+	if (.BankerCard3Get) {
+		.@dok = rand(1,4);
+		if (.BankerCard3 == 0) {
+			switch(.BankerCard30) {
+				case 0:
+					if (.@dok == 1) { setnpcdisplay "Banker Card 3",$CardE_101; }
+					else if (.@dok == 2) { setnpcdisplay "Banker Card 3",$CardE_102; }
+					else if (.@dok == 3) { setnpcdisplay "Banker Card 3",$CardE_103; }
+					else if (.@dok == 4) { setnpcdisplay "Banker Card 3",$CardE_104; }
+					break;
+				case 1:
+					if (.@dok == 1) { setnpcdisplay "Banker Card 3",$CardE_J1; }
+					else if (.@dok == 2) { setnpcdisplay "Banker Card 3",$CardE_J2; }
+					else if (.@dok == 3) { setnpcdisplay "Banker Card 3",$CardE_J3; }
+					else if (.@dok == 4) { setnpcdisplay "Banker Card 3",$CardE_J4; }
+					break;
+				case 2:
+					if (.@dok == 1) { setnpcdisplay "Banker Card 3",$CardE_Q1; }
+					else if (.@dok == 2) { setnpcdisplay "Banker Card 3",$CardE_Q2; }
+					else if (.@dok == 3) { setnpcdisplay "Banker Card 3",$CardE_Q3; }
+					else if (.@dok == 4) { setnpcdisplay "Banker Card 3",$CardE_Q4; }
+					break;
+				case 3:
+					if (.@dok == 1) { setnpcdisplay "Banker Card 3",$CardE_K1; }
+					else if (.@dok == 2) { setnpcdisplay "Banker Card 3",$CardE_K2; }
+					else if (.@dok == 3) { setnpcdisplay "Banker Card 3",$CardE_K3; }
+					else if (.@dok == 4) { setnpcdisplay "Banker Card 3",$CardE_K4; }
+					break;
+			}
+		}
+		else if (.BankerCard3 == 1) {
+			if (.@dok == 1) { setnpcdisplay "Banker Card 3",$CardE_A1; }
+			else if (.@dok == 2) { setnpcdisplay "Banker Card 3",$CardE_A2; }
+			else if (.@dok == 3) { setnpcdisplay "Banker Card 3",$CardE_A3; }
+			else if (.@dok == 4) { setnpcdisplay "Banker Card 3",$CardE_A4; }
+		}
+		else if (.BankerCard3 == 2) {
+			if (.@dok == 1) { setnpcdisplay "Banker Card 3",$CardE_21; }
+			else if (.@dok == 2) { setnpcdisplay "Banker Card 3",$CardE_22; }
+			else if (.@dok == 3) { setnpcdisplay "Banker Card 3",$CardE_23; }
+			else if (.@dok == 4) { setnpcdisplay "Banker Card 3",$CardE_24; }
+		}
+		else if (.BankerCard3 == 3) {
+			if (.@dok == 1) { setnpcdisplay "Banker Card 3",$CardE_31; }
+			else if (.@dok == 2) { setnpcdisplay "Banker Card 3",$CardE_32; }
+			else if (.@dok == 3) { setnpcdisplay "Banker Card 3",$CardE_33; }
+			else if (.@dok == 4) { setnpcdisplay "Banker Card 3",$CardE_34; }
+		}
+		else if (.BankerCard3 == 4) {
+			if (.@dok == 1) { setnpcdisplay "Banker Card 3",$CardE_41; }
+			else if (.@dok == 2) { setnpcdisplay "Banker Card 3",$CardE_42; }
+			else if (.@dok == 3) { setnpcdisplay "Banker Card 3",$CardE_43; }
+			else if (.@dok == 4) { setnpcdisplay "Banker Card 3",$CardE_44; }
+		}
+		else if (.BankerCard3 == 5) {
+			if (.@dok == 1) { setnpcdisplay "Banker Card 3",$CardE_51; }
+			else if (.@dok == 2) { setnpcdisplay "Banker Card 3",$CardE_52; }
+			else if (.@dok == 3) { setnpcdisplay "Banker Card 3",$CardE_53; }
+			else if (.@dok == 4) { setnpcdisplay "Banker Card 3",$CardE_54; }
+		}
+		else if (.BankerCard3 == 6) {
+			if (.@dok == 1) { setnpcdisplay "Banker Card 3",$CardE_61; }
+			else if (.@dok == 2) { setnpcdisplay "Banker Card 3",$CardE_62; }
+			else if (.@dok == 3) { setnpcdisplay "Banker Card 3",$CardE_63; }
+			else if (.@dok == 4) { setnpcdisplay "Banker Card 3",$CardE_64; }
+		}
+		else if (.BankerCard3 == 7) {
+			if (.@dok == 1) { setnpcdisplay "Banker Card 3",$CardE_71; }
+			else if (.@dok == 2) { setnpcdisplay "Banker Card 3",$CardE_72; }
+			else if (.@dok == 3) { setnpcdisplay "Banker Card 3",$CardE_73; }
+			else if (.@dok == 4) { setnpcdisplay "Banker Card 3",$CardE_74; }
+		}
+		else if (.BankerCard3 == 8) {
+			if (.@dok == 1) { setnpcdisplay "Banker Card 3",$CardE_81; }
+			else if (.@dok == 2) { setnpcdisplay "Banker Card 3",$CardE_82; }
+			else if (.@dok == 3) { setnpcdisplay "Banker Card 3",$CardE_83; }
+			else if (.@dok == 4) { setnpcdisplay "Banker Card 3",$CardE_84; }
+		}
+		else if (.BankerCard3 == 9) {
+			if (.@dok == 1) { setnpcdisplay "Banker Card 3",$CardE_91; }
+			else if (.@dok == 2) { setnpcdisplay "Banker Card 3",$CardE_92; }
+			else if (.@dok == 3) { setnpcdisplay "Banker Card 3",$CardE_93; }
+			else if (.@dok == 4) { setnpcdisplay "Banker Card 3",$CardE_94; }
+		}
+	}
+
+BFinal:
+	if (.BankerCard3Get == 1) {
+		sleep 5000;
+		set .TotalBCards, .BankerCard1 + .BankerCard2 + .BankerCard3;
+		
+		if (.TotalBCards >= 10 && .TotalBCards < 20) {
+			set .TotalBCards, .TotalBCards - 10;
+		} else if (.TotalBCards >= 20 && .TotalBCards < 30) {
+			set .TotalBCards, .TotalBCards - 20;
+		}
+		npctalk "[ Baccarat ]: เจ้ามือ "+.BCard1Show$+" — "+.BCard2Show$+" — "+.BCard3Show$+" ["+.TotalBCards+"]  แต้ม";
+
+		switch(.TotalBCards) {
+			case 1: soundeffectall "banker_1.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2; break;
+			case 2: soundeffectall "banker_2.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2; break;
+			case 3: soundeffectall "banker_3.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2; break;
+			case 4: soundeffectall "banker_4.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2; break;
+			case 5: soundeffectall "banker_5.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2; break;
+			case 6: soundeffectall "banker_6.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2; break;
+			case 7: soundeffectall "banker_7.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2; break;
+			case 8: soundeffectall "banker_8.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2; break;
+			case 9: soundeffectall "banker_9.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2; break;
+			default: soundeffectall "banker_0.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2; break;
+		}
+	}
+
+	sleep 5000;
+	if (.TotalPCards > .TotalBCards) {
+		npctalk "[ Baccarat ]: >>> ผู้เล่นชนะ <<<";
+		donpcevent "Player Card 3::OnWinner";
+		soundeffectall "player_win.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2;
+		query_sql("UPDATE `bac_results` SET results = 1, datetime = NOW() WHERE bet_round = "+$BetRound+"");
+		query_sql("SELECT COUNT(char_id) FROM `bet_player` WHERE `bet_round` = "+$BetRound+"",.@chk);
+		if (.@chk) {
+			query_sql("SELECT `id` FROM `bet_player` WHERE `bet_round` = "+$BetRound+"",.@BetID);
+				
+			for(set .@i,0; .@i < getarraysize(.@BetID); set .@i,.@i +1){
+				query_sql "SELECT `acc_id`,`char_id`,`char_name`,`bet_amount`,`item_id` FROM `bet_player` WHERE `bet_round` = "+$BetRound+" AND `id` ="+.@BetID[.@i],.@AccID,.@CharID,.@name$,.@BetAmount,.@ItemID;
+				set .@BetAmount, .@BetAmount*2;
+				
+				if (isloggedin(.@AccID,.@CharID) == 0) {
+					if ($BetMode == 1) {
+						query_sql "UPDATE `char` SET `zeny` = `zeny` + "+.@BetAmount+" WHERE `char_id` = "+.@CharID;
+					} else if ($BetMode == 2) {
+						query_sql("SELECT COUNT(*) FROM `acc_reg_num` WHERE `account_id` = '"+.@AccID+"' AND `key` = '#CASHPOINTS' LIMIT 1", .@result);
+						if (!.@result) {
+							query_sql("INSERT INTO `acc_reg_num` (`account_id`, `key`, `value`) VALUES ("+.@AccID+", '#CASHPOINTS', "+.@BetAmount+")");
+						} else {
+							query_sql "UPDATE `acc_reg_num` SET `value` = `value` + "+.@BetAmount+" WHERE `key` = '#CASHPOINTS' AND `account_id` = "+.@AccID;
+						}
+					} else if ($BetMode == 3) {
+						if (getiteminfo(.@ItemID,2) == 4 || getiteminfo(.@ItemID,2) == 5) {
+							for (set .@ibet1, 0; .@ibet1 < .@BetAmount; set .@ibet1, .@ibet1 + 1)
+								query_sql("INSERT INTO `inventory` (char_id, nameid, amount, identify) VALUES ("+.@CharID+", "+.@ItemID+", 1, 1)");
+						} else {
+							query_sql("SELECT COUNT(*) FROM `inventory` WHERE `char_id` = '"+.@CharID+"' AND `nameid` = "+.@ItemID+" LIMIT 1", .@result);
+							if (!.@result) {
+								query_sql("INSERT INTO `inventory` (char_id, nameid, amount, identify) VALUES ("+.@CharID+", "+.@ItemID+", "+.@BetAmount+", 1)");
+							} else {
+								query_sql "UPDATE `inventory` SET `amount` = `amount` + "+.@BetAmount+" WHERE `char_id` = "+.@CharID+" AND `nameid` = "+.@ItemID;
+							}
+						}
+					}
+					query_sql "UPDATE `bet_player` SET `get_bet` = 1 WHERE `char_id` = "+.@CharID+" AND `id` ="+.@BetID[.@i];
+				}
+				else {
+					attachrid(.@AccID);
+					specialeffect2 10;
+					dispbottom "====== Baccarat Bet ======";
+					dispbottom "รอบแทงที่ "+$BetRound+"";
+					callfunc("bacc_add_bet",.@BetAmount,.@ItemID);
+					dispbottom "=====================";
+					query_sql "UPDATE `bet_player` SET `get_bet` = 1 WHERE `char_id` = "+.@CharID+" AND `id` ="+.@BetID[.@i];
+					detachrid;
+					set .@BetAmount, 0;
+					set .@name$, "0";
+				}
+			}
+		}
+	} else if (.TotalBCards > .TotalPCards) {
+		npctalk "[ Baccarat ]: >>> เจ้ามือชนะ <<<";
+		donpcevent "Banker Card 3::OnWinner";
+		soundeffectall "banker_win.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2;
+		query_sql("UPDATE `bac_results` SET results = 3, datetime = NOW() WHERE bet_round = "+$BetRound+"");
+		query_sql("SELECT COUNT(char_id) FROM `bet_banker` WHERE `bet_round` = "+$BetRound+"",.@chk);
+		if (.@chk) {
+			query_sql("SELECT `id` FROM `bet_banker` WHERE `bet_round` = "+$BetRound+"",.@BetID);
+			
+			for(set .@i,0; .@i < getarraysize(.@BetID); set .@i,.@i +1){
+				query_sql "SELECT `acc_id`,`char_id`,`char_name`,`bet_amount`,`item_id` FROM `bet_banker` WHERE `bet_round` = "+$BetRound+" AND `id` ="+.@BetID[.@i],.@AccID,.@CharID,.@name$,.@BetAmount,.@ItemID;
+				set .@BetAmount1, .@BetAmount;
+				set .Commis, 100 - $Commission;
+				set .@BetAmount, (.@BetAmount * .Commis) / 100;
+				set .@BetAmount, .@BetAmount + .@BetAmount1;
+				
+				if (isloggedin(.@AccID,.@CharID) == 0) {
+					if ($BetMode == 1) {
+						query_sql "UPDATE `char` SET `zeny` = `zeny` + "+.@BetAmount+" WHERE `char_id` = "+.@CharID;
+					} else if ($BetMode == 2) {
+						query_sql("SELECT COUNT(*) FROM `acc_reg_num` WHERE `account_id` = '"+.@AccID+"' AND `key` = '#CASHPOINTS' LIMIT 1", .@result);
+						if (!.@result) {
+							query_sql("INSERT INTO `acc_reg_num` (`account_id`, `key`, `value`) VALUES ("+.@AccID+", '#CASHPOINTS', "+.@BetAmount+")");
+						} else {
+							query_sql "UPDATE `acc_reg_num` SET `value` = `value` + "+.@BetAmount+" WHERE `key` = '#CASHPOINTS' AND `account_id` = "+.@AccID;
+						}
+					} else if ($BetMode == 3) {
+						if (getiteminfo(.@ItemID,2) == 4 || getiteminfo(.@ItemID,2) == 5) {
+							for (set .@ibet2, 0; .@ibet2 < .@BetAmount; set .@ibet2, .@ibet2 + 1)
+								query_sql("INSERT INTO `inventory` (char_id, nameid, amount, identify) VALUES ("+.@CharID+", "+.@ItemID+", 1, 1)");
+						} else {
+							query_sql("SELECT COUNT(*) FROM `inventory` WHERE `char_id` = '"+.@CharID+"' AND `nameid` = "+.@ItemID+" LIMIT 1", .@result);
+							if (!.@result) {
+								query_sql("INSERT INTO `inventory` (char_id, nameid, amount, identify) VALUES ("+.@CharID+", "+.@ItemID+", "+.@BetAmount+", 1)");
+							} else {
+								query_sql "UPDATE `inventory` SET `amount` = `amount` + "+.@BetAmount+" WHERE `char_id` = "+.@CharID+" AND `nameid` = "+.@ItemID;
+							}
+						}
+					}
+					query_sql "UPDATE `bet_banker` SET `get_bet` = 1 WHERE `char_id` = "+.@CharID+" AND `id` ="+.@BetID[.@i];
+				}
+				else {
+					attachrid(.@AccID);
+					specialeffect2 10;
+					dispbottom "====== Baccarat Bet ======";
+					dispbottom "รอบแทงที่ "+$BetRound+"";
+					callfunc("bacc_add_bet",.@BetAmount,.@ItemID);
+					dispbottom "=====================";	
+					query_sql "UPDATE `bet_banker` SET `get_bet` = 1 WHERE `char_id` = "+.@CharID+" AND `id` ="+.@BetID[.@i];
+					detachrid;
+					set .@BetAmount, 0;
+					set .@name$, "0";
+				}	
+			}
+		}
+	} else if (.TotalBCards == .TotalPCards) {
+		npctalk "[ Baccarat ]: >>> เสมอ <<<";
+		query_sql("UPDATE `bac_results` SET results = 2, datetime = NOW() WHERE bet_round = "+$BetRound+"");
+		soundeffectall "draw.wav",0,.BacMap$,.BacMapX1,.BacMapY1,.BacMapX2,.BacMapY2;
+		
+		query_sql("SELECT COUNT(char_id) FROM `bet_banker` WHERE `bet_round` = "+$BetRound+"",.@chk);
+		if (.@chk) {
+			query_sql("SELECT `id` FROM `bet_banker` WHERE `bet_round` = "+$BetRound+"",.@BetID);
+			for(set .@GBB,0; .@GBB < getarraysize(.@BetID); set .@GBB,.@GBB +1){
+				query_sql "SELECT `acc_id`,`char_id`,`char_name`,`bet_amount`,`item_id` FROM `bet_banker` WHERE `bet_round` = "+$BetRound+" AND `id` ="+.@BetID[.@GBB],.@AccID,.@CharID,.@name$,.@BetAmount,.@ItemID;
+				
+				if (isloggedin(.@AccID,.@CharID) == 0) {
+					if ($BetMode == 1) {
+						query_sql "UPDATE `char` SET `zeny` = `zeny` + "+.@BetAmount+" WHERE `char_id` = "+.@CharID;
+					} else if ($BetMode == 2) {
+						query_sql("SELECT COUNT(*) FROM `acc_reg_num` WHERE `account_id` = '"+.@AccID+"' AND `key` = '#CASHPOINTS' LIMIT 1", .@result);
+							if (!.@result) {
+								query_sql("INSERT INTO `acc_reg_num` (`account_id`, `key`, `value`) VALUES ("+.@AccID+", '#CASHPOINTS', "+.@BetAmount+")");
+							} else {
+								query_sql "UPDATE `acc_reg_num` SET `value` = `value` + "+.@BetAmount+" WHERE `key` = '#CASHPOINTS' AND `account_id` = "+.@AccID;
+							}
+					} else if ($BetMode == 3) {
+						if (getiteminfo(.@ItemID,2) == 4 || getiteminfo(.@ItemID,2) == 5) {
+							for (set .@ibet1, 0; .@ibet1 < .@BetAmount; set .@ibet1, .@ibet1 + 1)
+								query_sql("INSERT INTO `inventory` (char_id, nameid, amount, identify) VALUES ("+.@CharID+", "+.@ItemID+", 1, 1)");
+						} else {
+							query_sql("SELECT COUNT(*) FROM `inventory` WHERE `char_id` = '"+.@CharID+"' AND `nameid` = "+.@ItemID+" LIMIT 1", .@result);
+							if (!.@result) {
+								query_sql("INSERT INTO `inventory` (char_id, nameid, amount, identify) VALUES ("+.@CharID+", "+.@ItemID+", "+.@BetAmount+", 1)");
+							} else {
+								query_sql "UPDATE `inventory` SET `amount` = `amount` + "+.@BetAmount+" WHERE `char_id` = "+.@CharID+" AND `nameid` = "+.@ItemID;
+							}
+						}
+					}
+					query_sql "UPDATE `bet_banker` SET `get_bet` = 1 WHERE `char_id` = "+.@CharID+" AND `id` ="+.@BetID[.@GBB];
+				}
+				else {
+					attachrid(.@AccID);
+					dispbottom "====== Baccarat Bet ======";
+					dispbottom "รอบแทงที่ "+$BetRound+"";
+					dispbottom "รับเดิมพันคืน";
+					callfunc("bacc_add_bet",.@BetAmount,.@ItemID);
+					dispbottom "=====================";
+					query_sql "UPDATE `bet_banker` SET `get_bet` = 1 WHERE `char_id` = "+.@CharID+" AND `id` ="+.@BetID[.@GBB];
+					detachrid;
+					set .@BetAmount, 0;
+					set .@name$, 0;
+				}
+			}
+		}
+		
+		query_sql("SELECT COUNT(char_id) FROM `bet_player` WHERE `bet_round` = "+$BetRound+"",.@chk);
+		if (.@chk) {
+			query_sql("SELECT `id` FROM `bet_player` WHERE `bet_round` = "+$BetRound+"",.@BetID);
+			for(set .@GBP,0; .@GBP < getarraysize(.@BetID); set .@GBP,.@GBP +1){
+				query_sql "SELECT `acc_id`,`char_id`,`char_name`,`bet_amount`,`item_id` FROM `bet_player` WHERE `bet_round` = "+$BetRound+" AND `id` ="+.@BetID[.@GBP],.@AccID,.@CharID,.@name$,.@BetAmount,.@ItemID;
+				
+				if (isloggedin(.@AccID,.@CharID) == 0) {
+					if ($BetMode == 1) {
+						query_sql "UPDATE `char` SET `zeny` = `zeny` + "+.@BetAmount+" WHERE `char_id` = "+.@CharID;
+					} else if ($BetMode == 2) {
+						query_sql("SELECT COUNT(*) FROM `acc_reg_num` WHERE `account_id` = '"+.@AccID+"' AND `key` = '#CASHPOINTS' LIMIT 1", .@result);
+							if (!.@result) {
+								query_sql("INSERT INTO `acc_reg_num` (`account_id`, `key`, `value`) VALUES ("+.@AccID+", '#CASHPOINTS', "+.@BetAmount+")");
+							} else {
+								query_sql "UPDATE `acc_reg_num` SET `value` = `value` + "+.@BetAmount+" WHERE `key` = '#CASHPOINTS' AND `account_id` = "+.@AccID;
+							}
+					} else if ($BetMode == 3) {
+						if (getiteminfo(.@ItemID,2) == 4 || getiteminfo(.@ItemID,2) == 5) {
+							for (set .@ibet1, 0; .@ibet1 < .@BetAmount; set .@ibet1, .@ibet1 + 1)
+								query_sql("INSERT INTO `inventory` (char_id, nameid, amount, identify) VALUES ("+.@CharID+", "+.@ItemID+", 1, 1)");
+						} else {
+							query_sql("SELECT COUNT(*) FROM `inventory` WHERE `char_id` = '"+.@CharID+"' AND `nameid` = "+.@ItemID+" LIMIT 1", .@result);
+							if (!.@result) {
+								query_sql("INSERT INTO `inventory` (char_id, nameid, amount, identify) VALUES ("+.@CharID+", "+.@ItemID+", "+.@BetAmount+", 1)");
+							} else {
+								query_sql "UPDATE `inventory` SET `amount` = `amount` + "+.@BetAmount+" WHERE `char_id` = "+.@CharID+" AND `nameid` = "+.@ItemID;
+							}
+						}
+					}
+					query_sql "UPDATE `bet_player` SET `get_bet` = 1 WHERE `char_id` = "+.@CharID+" AND `id` ="+.@BetID[.@GBP];
+				}
+				else {
+					attachrid(.@AccID);
+					dispbottom "====== Baccarat Bet ======";
+					dispbottom "รอบแทงที่ "+$BetRound+"";
+					dispbottom "รับเดิมพันคืน";
+					callfunc("bacc_add_bet",.@BetAmount,.@ItemID);
+					dispbottom "=====================";
+					query_sql "UPDATE `bet_player` SET `get_bet` = 1 WHERE `char_id` = "+.@CharID+" AND `id` ="+.@BetID[.@GBP];
+					detachrid;
+					set .@BetAmount, 0;
+					set .@name$, 0;
+				}
+			}
+		}
+		
+		query_sql("SELECT COUNT(char_id) FROM `bet_draw` WHERE `bet_round` = "+$BetRound+"",.@chk);
+		if (.@chk) {
+			query_sql("SELECT `id` FROM `bet_draw` WHERE `bet_round` = "+$BetRound+"",.@BetID);
+			for(set .@i,0; .@i < getarraysize(.@BetID); set .@i,.@i +1){
+				query_sql "SELECT `acc_id`,`char_id`,`char_name`,`bet_amount`,`item_id` FROM `bet_draw` WHERE `bet_round` = "+$BetRound+" AND `id` ="+.@BetID[.@i],.@AccID,.@CharID,.@name$,.@BetAmount,.@ItemID;
+				set .@BetAmount, .@BetAmount*8;		
+				
+				if (isloggedin(.@AccID,.@CharID) == 0) {
+					if ($BetMode == 1) {
+						query_sql "UPDATE `char` SET `zeny` = `zeny` + "+.@BetAmount+" WHERE `char_id` = "+.@CharID;
+					} else if ($BetMode == 2) {
+						query_sql("SELECT COUNT(*) FROM `acc_reg_num` WHERE `account_id` = '"+.@AccID+"' AND `key` = '#CASHPOINTS' LIMIT 1", .@result);
+							if (!.@result) {
+								query_sql("INSERT INTO `acc_reg_num` (`account_id`, `key`, `value`) VALUES ("+.@AccID+", '#CASHPOINTS', "+.@BetAmount+")");
+							} else {
+								query_sql "UPDATE `acc_reg_num` SET `value` = `value` + "+.@BetAmount+" WHERE `key` = '#CASHPOINTS' AND `account_id` = "+.@AccID;
+							}
+					} else if ($BetMode == 3) {
+						if (getiteminfo(.@ItemID,2) == 4 || getiteminfo(.@ItemID,2) == 5) {
+							for (set .@ibet1, 0; .@ibet1 < .@BetAmount; set .@ibet1, .@ibet1 + 1)
+								query_sql("INSERT INTO `inventory` (char_id, nameid, amount, identify) VALUES ("+.@CharID+", "+.@ItemID+", 1, 1)");
+						} else {
+							query_sql("SELECT COUNT(*) FROM `inventory` WHERE `char_id` = '"+.@CharID+"' AND `nameid` = "+.@ItemID+" LIMIT 1", .@result);
+							if (!.@result) {
+								query_sql("INSERT INTO `inventory` (char_id, nameid, amount, identify) VALUES ("+.@CharID+", "+.@ItemID+", "+.@BetAmount+", 1)");
+							} else {
+								query_sql "UPDATE `inventory` SET `amount` = `amount` + "+.@BetAmount+" WHERE `char_id` = "+.@CharID+" AND `nameid` = "+.@ItemID;
+							}
+						}
+					}
+					query_sql "UPDATE `bet_draw` SET `get_bet` = 1 WHERE `char_id` = "+.@CharID+" AND `id` ="+.@BetID[.@i];
+				}
+				else {
+					attachrid(.@AccID);
+					specialeffect2 10;
+					dispbottom "====== Baccarat Bet ======";
+					dispbottom "รอบแทงที่ "+$BetRound+"";
+					callfunc("bacc_add_bet",.@BetAmount,.@ItemID);
+					dispbottom "=====================";
+					query_sql "UPDATE `bet_draw` SET `get_bet` = 1 WHERE `char_id` = "+.@CharID+" AND `id` ="+.@BetID[.@i];
+					detachrid;
+					set .@BetAmount, 0;
+					set .@name$, "0";
+				}
+			}
+		}
+	}
+
+	if ((.PlayerCard1 == .PlayerCard2) && .PlayerCard1 > 0) {
+		npctalk "[ Baccarat ]: >>> ผู้เล่นไพ่คู่ <<<";
+		query_sql("SELECT COUNT(char_id) FROM `bet_playerdouble` WHERE `bet_round` = "+$BetRound+"",.@chk);
+		if (.@chk) {
+			query_sql("SELECT `id` FROM `bet_playerdouble` WHERE `bet_round` = "+$BetRound+"",.@BetID);
+			for(set .@i,0; .@i < getarraysize(.@BetID); set .@i,.@i +1){
+				query_sql "SELECT `acc_id`,`char_id`,`char_name`,`bet_amount`,`item_id` FROM `bet_playerdouble` WHERE `bet_round` = "+$BetRound+" AND `id` ="+.@BetID[.@i],.@AccID,.@CharID,.@name$,.@BetAmount,.@ItemID;
+				set .@BetAmount, .@BetAmount*11;		
+				
+				if (isloggedin(.@AccID,.@CharID) == 0) {
+					if ($BetMode == 1) {
+						query_sql "UPDATE `char` SET `zeny` = `zeny` + "+.@BetAmount+" WHERE `char_id` = "+.@CharID;
+					} else if ($BetMode == 2) {
+						query_sql("SELECT COUNT(*) FROM `acc_reg_num` WHERE `account_id` = '"+.@AccID+"' AND `key` = '#CASHPOINTS' LIMIT 1", .@result);
+						if (!.@result) {
+							query_sql("INSERT INTO `acc_reg_num` (`account_id`, `key`, `value`) VALUES ("+.@AccID+", '#CASHPOINTS', "+.@BetAmount+")");
+						} else {
+							query_sql "UPDATE `acc_reg_num` SET `value` = `value` + "+.@BetAmount+" WHERE `key` = '#CASHPOINTS' AND `account_id` = "+.@AccID;
+						}
+					} else if ($BetMode == 3) {
+						if (getiteminfo(.@ItemID,2) == 4 || getiteminfo(.@ItemID,2) == 5) {
+							for (set .@ibet1, 0; .@ibet1 < .@BetAmount; set .@ibet1, .@ibet1 + 1)
+								query_sql("INSERT INTO `inventory` (char_id, nameid, amount, identify) VALUES ("+.@CharID+", "+.@ItemID+", 1, 1)");
+						} else {
+							query_sql("SELECT COUNT(*) FROM `inventory` WHERE `char_id` = '"+.@CharID+"' AND `nameid` = "+.@ItemID+" LIMIT 1", .@result);
+							if (!.@result) {
+								query_sql("INSERT INTO `inventory` (char_id, nameid, amount, identify) VALUES ("+.@CharID+", "+.@ItemID+", "+.@BetAmount+", 1)");
+							} else {
+								query_sql "UPDATE `inventory` SET `amount` = `amount` + "+.@BetAmount+" WHERE `char_id` = "+.@CharID+" AND `nameid` = "+.@ItemID;
+							}
+						}
+					}
+					query_sql "UPDATE `bet_playerdouble` SET `get_bet` = 1 WHERE `char_id` = "+.@CharID+" AND `id` ="+.@BetID[.@i];
+				}
+				else {
+					attachrid(.@AccID);
+					specialeffect2 10;
+					dispbottom "====== Baccarat Bet ======";
+					dispbottom "รอบแทงที่ "+$BetRound+"";
+					callfunc("bacc_add_bet",.@BetAmount,.@ItemID);
+					dispbottom "=====================";
+					query_sql "UPDATE `bet_playerdouble` SET `get_bet` = 1 WHERE `char_id` = "+.@CharID+" AND `id` ="+.@BetID[.@i];
+					detachrid;
+					set .@BetAmount, 0;
+					set .@name$, "0";
+				}
+			}
+		}
+	}
+
+	if ((.PlayerCard1 == .PlayerCard2) && (.PlayerCard10 == .PlayerCard20)) {
+			npctalk "[ Baccarat ]: >>> ผู้เล่นไพ่คู่ <<<";
+			query_sql("SELECT COUNT(char_id) FROM `bet_playerdouble` WHERE `bet_round` = "+$BetRound+"",.@chk);
+			if (.@chk) {
+				query_sql("SELECT `id` FROM `bet_playerdouble` WHERE `bet_round` = "+$BetRound+"",.@BetID);
+				for(set .@i,0; .@i < getarraysize(.@BetID); set .@i,.@i +1){
+					query_sql "SELECT `acc_id`,`char_id`,`char_name`,`bet_amount`,`item_id` FROM `bet_playerdouble` WHERE `bet_round` = "+$BetRound+" AND `id` ="+.@BetID[.@i],.@AccID,.@CharID,.@name$,.@BetAmount,.@ItemID;
+					set .@BetAmount, .@BetAmount*11;		
+					
+					if (isloggedin(.@AccID,.@CharID) == 0) {
+						if ($BetMode == 1) {
+							query_sql "UPDATE `char` SET `zeny` = `zeny` + "+.@BetAmount+" WHERE `char_id` = "+.@CharID;
+						} else if ($BetMode == 2) {
+							query_sql("SELECT COUNT(*) FROM `acc_reg_num` WHERE `account_id` = '"+.@AccID+"' AND `key` = '#CASHPOINTS' LIMIT 1", .@result);
+							if (!.@result) {
+								query_sql("INSERT INTO `acc_reg_num` (`account_id`, `key`, `value`) VALUES ("+.@AccID+", '#CASHPOINTS', "+.@BetAmount+")");
+							} else {
+								query_sql "UPDATE `acc_reg_num` SET `value` = `value` + "+.@BetAmount+" WHERE `key` = '#CASHPOINTS' AND `account_id` = "+.@AccID;
+							}
+						} else if ($BetMode == 3) {
+							if (getiteminfo(.@ItemID,2) == 4 || getiteminfo(.@ItemID,2) == 5) {
+								for (set .@ibet1, 0; .@ibet1 < .@BetAmount; set .@ibet1, .@ibet1 + 1)
+									query_sql("INSERT INTO `inventory` (char_id, nameid, amount, identify) VALUES ("+.@CharID+", "+.@ItemID+", 1, 1)");
+							} else {
+								query_sql("SELECT COUNT(*) FROM `inventory` WHERE `char_id` = '"+.@CharID+"' AND `nameid` = "+.@ItemID+" LIMIT 1", .@result);
+								if (!.@result) {
+									query_sql("INSERT INTO `inventory` (char_id, nameid, amount, identify) VALUES ("+.@CharID+", "+.@ItemID+", "+.@BetAmount+", 1)");
+								} else {
+									query_sql "UPDATE `inventory` SET `amount` = `amount` + "+.@BetAmount+" WHERE `char_id` = "+.@CharID+" AND `nameid` = "+.@ItemID;
+								}
+							}
+						}
+						query_sql "UPDATE `bet_playerdouble` SET `get_bet` = 1 WHERE `char_id` = "+.@CharID+" AND `id` ="+.@BetID[.@i];
+					}
+					else {
+						attachrid(.@AccID);
+						specialeffect2 10;
+						dispbottom "====== Baccarat Bet ======";
+						dispbottom "รอบแทงที่ "+$BetRound+"";
+						callfunc("bacc_add_bet",.@BetAmount,.@ItemID);
+						dispbottom "=====================";
+						query_sql "UPDATE `bet_playerdouble` SET `get_bet` = 1 WHERE `char_id` = "+.@CharID+" AND `id` ="+.@BetID[.@i];
+						detachrid;
+						set .@BetAmount, 0;
+						set .@name$, "0";
+					}
+				}
+			}
+	}
+
+	if ((.BankerCard1 == .BankerCard2) && (.BankerCard10 == .BankerCard20)) {
+		npctalk "[ Baccarat ]: >>> เจ้ามือไพ่คู่ <<<";
+		query_sql("SELECT COUNT(char_id) FROM `bet_bankerdouble` WHERE `bet_round` = "+$BetRound+"",.@chk);
+		if (.@chk) {
+			query_sql("SELECT `id` FROM `bet_bankerdouble` WHERE `bet_round` = "+$BetRound+"",.@BetID);
+			for(set .@i,0; .@i < getarraysize(.@BetID); set .@i,.@i +1) {
+				query_sql "SELECT `acc_id`,`char_id`,`char_name`,`bet_amount`,`item_id` FROM `bet_bankerdouble` WHERE `bet_round` = "+$BetRound+" AND `id` ="+.@BetID[.@i],.@AccID,.@CharID,.@name$,.@BetAmount,.@ItemID;
+				set .@BetAmount, .@BetAmount*11;		
+				
+				if (isloggedin(.@AccID,.@CharID) == 0) {
+					if ($BetMode == 1) {
+							query_sql "UPDATE `char` SET `zeny` = `zeny` + "+.@BetAmount+" WHERE `char_id` = "+.@CharID;
+						} else if ($BetMode == 2) {
+							query_sql("SELECT COUNT(*) FROM `acc_reg_num` WHERE `account_id` = '"+.@AccID+"' AND `key` = '#CASHPOINTS' LIMIT 1", .@result);
+							if (!.@result) {
+								query_sql("INSERT INTO `acc_reg_num` (`account_id`, `key`, `value`) VALUES ("+.@AccID+", '#CASHPOINTS', "+.@BetAmount+")");
+							} else {
+								query_sql "UPDATE `acc_reg_num` SET `value` = `value` + "+.@BetAmount+" WHERE `key` = '#CASHPOINTS' AND `account_id` = "+.@AccID;
+							}
+						} else if ($BetMode == 3) {
+							if (getiteminfo(.@ItemID,2) == 4 || getiteminfo(.@ItemID,2) == 5) {
+								for (set .@ibet1, 0; .@ibet1 < .@BetAmount; set .@ibet1, .@ibet1 + 1)
+									query_sql("INSERT INTO `inventory` (char_id, nameid, amount, identify) VALUES ("+.@CharID+", "+.@ItemID+", 1, 1)");
+							} else {
+								query_sql("SELECT COUNT(*) FROM `inventory` WHERE `char_id` = '"+.@CharID+"' AND `nameid` = "+.@ItemID+" LIMIT 1", .@result);
+								if (!.@result) {
+									query_sql("INSERT INTO `inventory` (char_id, nameid, amount, identify) VALUES ("+.@CharID+", "+.@ItemID+", "+.@BetAmount+", 1)");
+								} else {
+									query_sql "UPDATE `inventory` SET `amount` = `amount` + "+.@BetAmount+" WHERE `char_id` = "+.@CharID+" AND `nameid` = "+.@ItemID;
+								}
+							}
+						}
+					query_sql "UPDATE `bet_bankerdouble` SET `get_bet` = 1 WHERE `char_id` = "+.@CharID+" AND `id` ="+.@BetID[.@i];
+				}
+				else {
+					attachrid(.@AccID);
+					specialeffect2 10;
+					dispbottom "====== Baccarat Bet ======";
+					dispbottom "รอบแทงที่ "+$BetRound+"";
+					callfunc("bacc_add_bet",.@BetAmount,.@ItemID);
+					dispbottom "=====================";
+					query_sql "UPDATE `bet_bankerdouble` SET `get_bet` = 1 WHERE `char_id` = "+.@CharID+" AND `id` ="+.@BetID[.@i];
+					detachrid;
+					set .@BetAmount, 0;
+					set .@name$, "0";
+				}
+			}
+		}
+	}
+
+	if ((.BankerCard1 == .BankerCard2) && (.BankerCard10 > 0)) {
+		npctalk "[ Baccarat ]: >>> เจ้ามือไพ่คู่ <<<";
+		query_sql("SELECT COUNT(char_id) FROM `bet_bankerdouble` WHERE `bet_round` = "+$BetRound+"",.@chk);
+		if (.@chk) {
+			query_sql("SELECT `id` FROM `bet_bankerdouble` WHERE `bet_round` = "+$BetRound+"",.@BetID);
+			for(set .@i,0; .@i < getarraysize(.@BetID); set .@i,.@i +1){
+				query_sql "SELECT `acc_id`,`char_id`,`char_name`,`bet_amount`,`item_id` FROM `bet_bankerdouble` WHERE `bet_round` = "+$BetRound+" AND `id` ="+.@BetID[.@i],.@AccID,.@CharID,.@name$,.@BetAmount,.@ItemID;
+				set .@BetAmount, .@BetAmount*11;		
+				
+				if (isloggedin(.@AccID,.@CharID) == 0) {
+					if ($BetMode == 1) {
+							query_sql "UPDATE `char` SET `zeny` = `zeny` + "+.@BetAmount+" WHERE `char_id` = "+.@CharID;
+						} else if ($BetMode == 2) {
+							query_sql("SELECT COUNT(*) FROM `acc_reg_num` WHERE `account_id` = '"+.@AccID+"' AND `key` = '#CASHPOINTS' LIMIT 1", .@result);
+							if (!.@result) {
+								query_sql("INSERT INTO `acc_reg_num` (`account_id`, `key`, `value`) VALUES ("+.@AccID+", '#CASHPOINTS', "+.@BetAmount+")");
+							} else {
+								query_sql "UPDATE `acc_reg_num` SET `value` = `value` + "+.@BetAmount+" WHERE `key` = '#CASHPOINTS' AND `account_id` = "+.@AccID;
+							}
+						} else if ($BetMode == 3) {
+							if (getiteminfo(.@ItemID,2) == 4 || getiteminfo(.@ItemID,2) == 5) {
+								for (set .@ibet1, 0; .@ibet1 < .@BetAmount; set .@ibet1, .@ibet1 + 1)
+									query_sql("INSERT INTO `inventory` (char_id, nameid, amount, identify) VALUES ("+.@CharID+", "+.@ItemID+", 1, 1)");
+							} else {
+								query_sql("SELECT COUNT(*) FROM `inventory` WHERE `char_id` = '"+.@CharID+"' AND `nameid` = "+.@ItemID+" LIMIT 1", .@result);
+								if (!.@result) {
+									query_sql("INSERT INTO `inventory` (char_id, nameid, amount, identify) VALUES ("+.@CharID+", "+.@ItemID+", "+.@BetAmount+", 1)");
+								} else {
+									query_sql "UPDATE `inventory` SET `amount` = `amount` + "+.@BetAmount+" WHERE `char_id` = "+.@CharID+" AND `nameid` = "+.@ItemID;
+								}
+							}
+						}
+					query_sql "UPDATE `bet_bankerdouble` SET `get_bet` = 1 WHERE `char_id` = "+.@CharID+" AND `id` ="+.@BetID[.@i];
+				}
+				else {
+					attachrid(.@AccID);
+					specialeffect2 10;
+					dispbottom "====== Baccarat Bet ======";
+					dispbottom "รอบแทงที่ "+$BetRound+"";
+					callfunc("bacc_add_bet",.@BetAmount,.@ItemID);
+					dispbottom "=====================";
+					query_sql "UPDATE `bet_bankerdouble` SET `get_bet` = 1 WHERE `char_id` = "+.@CharID+" AND `id` ="+.@BetID[.@i];
+					detachrid;
+					set .@BetAmount, 0;
+					set .@name$, "0";
+				}
+			}
+		}
+	}
+
+	if ((.TotalPCards > 7) && (.PlayerCard3 == 0)) {
+		npctalk "[ Baccarat ]: >>>  ผู้เล่นป็อก <<<";
+		query_sql("SELECT COUNT(char_id) FROM `bet_playernatural` WHERE `bet_round` = "+$BetRound+"",.@chk);
+		if (.@chk) {
+			query_sql("SELECT `id` FROM `bet_playernatural` WHERE `bet_round` = "+$BetRound+"",.@BetID);
+			for(set .@i,0; .@i < getarraysize(.@BetID); set .@i,.@i +1){
+				query_sql "SELECT `acc_id`,`char_id`,`char_name`,`bet_amount`,`item_id` FROM `bet_playernatural` WHERE `bet_round` = "+$BetRound+" AND `id` ="+.@BetID[.@i],.@AccID,.@CharID,.@name$,.@BetAmount,.@ItemID;
+				set .@BetAmount1, .@BetAmount*2;
+				set .@BetAmount, (.@BetAmount*7)+.@BetAmount1;		
+				
+				if (isloggedin(.@AccID,.@CharID) == 0) {
+					if ($BetMode == 1) {
+						query_sql "UPDATE `char` SET `zeny` = `zeny` + "+.@BetAmount+" WHERE `char_id` = "+.@CharID;
+					} else if ($BetMode == 2) {
+						query_sql("SELECT COUNT(*) FROM `acc_reg_num` WHERE `account_id` = '"+.@AccID+"' AND `key` = '#CASHPOINTS' LIMIT 1", .@result);
+							if (.@result) {
+								query_sql("INSERT INTO `acc_reg_num` (`account_id`, `key`, `value`) VALUES ("+.@AccID+", '#CASHPOINTS', "+.@BetAmount+")");
+							} else {
+								query_sql "UPDATE `acc_reg_num` SET `value` = `value` + "+.@BetAmount+" WHERE `key` = '#CASHPOINTS' AND `account_id` = "+.@AccID;
+							}
+					} else if ($BetMode == 3) {
+							if (getiteminfo(.@ItemID,2) == 4 || getiteminfo(.@ItemID,2) == 5) {
+								for (set .@ibet1, 0; .@ibet1 < .@BetAmount; set .@ibet1, .@ibet1 + 1)
+									query_sql("INSERT INTO `inventory` (char_id, nameid, amount, identify) VALUES ("+.@CharID+", "+.@ItemID+", 1, 1)");
+							} else {
+								query_sql("SELECT COUNT(*) FROM `inventory` WHERE `char_id` = '"+.@CharID+"' AND `nameid` = "+.@ItemID+" LIMIT 1", .@result);
+								if (.@result) {
+									query_sql("INSERT INTO `inventory` (char_id, nameid, amount, identify) VALUES ("+.@CharID+", "+.@ItemID+", "+.@BetAmount+", 1)");
+								} else {
+									query_sql "UPDATE `inventory` SET `amount` = `amount` + "+.@BetAmount+" WHERE `char_id` = "+.@CharID+" AND `nameid` = "+.@ItemID;
+								}
+							}
+						}
+					query_sql "UPDATE `bet_playernatural` SET `get_bet` = 1 WHERE `char_id` = "+.@CharID+" AND `id` ="+.@BetID[.@i];
+				}
+				else {
+					attachrid(.@AccID);
+					specialeffect2 10;
+					dispbottom "====== Baccarat Bet ======";
+					dispbottom "รอบแทงที่ "+$BetRound+"";
+					callfunc("bacc_add_bet",.@BetAmount,.@ItemID);
+					dispbottom "=====================";
+					query_sql "UPDATE `bet_playernatural` SET `get_bet` = 1 WHERE `char_id` = "+.@CharID+" AND `id` ="+.@BetID[.@i];
+					detachrid;
+					set .@BetAmount, 0;
+					set .@name$, "0";
+				}
+			}
+		}
+	}
+
+	if ((.TotalBCards > 7) && (.BankerCard3Get == 0)) {
+		npctalk "[ Baccarat ]: >>> เจ้ามือป็อก <<<";
+		query_sql("SELECT COUNT(char_id) FROM `bet_playernatural` WHERE `bet_round` = "+$BetRound+"",.@chk);
+		if (.@chk) {
+			query_sql("SELECT `id` FROM `bet_bankernatural` WHERE `bet_round` = "+$BetRound+"",.@BetID);
+			for(set .@i,0; .@i < getarraysize(.@BetID); set .@i,.@i +1){
+				query_sql "SELECT `acc_id`,`char_id`,`char_name`,`bet_amount`,`item_id` FROM `bet_bankernatural` WHERE `bet_round` = "+$BetRound+" AND `id` ="+.@BetID[.@i],.@AccID,.@CharID,.@name$,.@BetAmount,.@ItemID;
+				set .@BetAmount1, .@BetAmount*2;
+				set .@BetAmount, (.@BetAmount*7)+.@BetAmount1;		
+				
+				if (isloggedin(.@AccID,.@CharID) == 0) {
+					if ($BetMode == 1) {
+						query_sql "UPDATE `char` SET `zeny` = `zeny` + "+.@BetAmount+" WHERE `char_id` = "+.@CharID;
+					} else if ($BetMode == 2) {
+						query_sql("SELECT COUNT(*) FROM `acc_reg_num` WHERE `account_id` = '"+.@AccID+"' AND `key` = '#CASHPOINTS' LIMIT 1", .@result);
+							if (.@result) {
+								query_sql("INSERT INTO `acc_reg_num` (`account_id`, `key`, `value`) VALUES ("+.@AccID+", '#CASHPOINTS', "+.@BetAmount+")");
+							} else {
+								query_sql "UPDATE `acc_reg_num` SET `value` = `value` + "+.@BetAmount+" WHERE `key` = '#CASHPOINTS' AND `account_id` = "+.@AccID;
+							}
+					} else if ($BetMode == 3) {
+						if (getiteminfo(.@ItemID,2) == 4 || getiteminfo(.@ItemID,2) == 5) {
+							for (set .@ibet1, 0; .@ibet1 < .@BetAmount; set .@ibet1, .@ibet1 + 1)
+								query_sql("INSERT INTO `inventory` (char_id, nameid, amount, identify) VALUES ("+.@CharID+", "+.@ItemID+", 1, 1)");
+						} else {
+							query_sql("SELECT COUNT(*) FROM `inventory` WHERE `char_id` = '"+.@CharID+"' AND `nameid` = "+.@ItemID+" LIMIT 1", .@result);
+							if (.@result) {
+								query_sql("INSERT INTO `inventory` (char_id, nameid, amount, identify) VALUES ("+.@CharID+", "+.@ItemID+", "+.@BetAmount+", 1)");
+							} else {
+								query_sql "UPDATE `inventory` SET `amount` = `amount` + "+.@BetAmount+" WHERE `char_id` = "+.@CharID+" AND `nameid` = "+.@ItemID;
+							}
+						}
+					}
+					query_sql "UPDATE `bet_bankernatural` SET `get_bet` = 1 WHERE `char_id` = "+.@CharID+" AND `id` ="+.@BetID[.@i];
+				}
+				else {
+					attachrid(.@AccID);
+					specialeffect2 10;
+					dispbottom "====== Baccarat Bet ======";
+					dispbottom "รอบแทงที่ "+$BetRound+"";
+					callfunc("bacc_add_bet",.@BetAmount,.@ItemID);
+					dispbottom "=====================";
+					query_sql "UPDATE `bet_bankernatural` SET `get_bet` = 1 WHERE `char_id` = "+.@CharID+" AND `id` ="+.@BetID[.@i];
+					detachrid;
+					set .@BetAmount, 0;
+					set .@name$, "0";
+				}
+			}
+		}
+	}
+
+	sleep 3000;
+	setnpcdisplay "Player Card 1",$BlueCard1;
+	setnpcdisplay "Player Card 2",$BlueCard1;
+	setnpcdisplay "Player Card 3",$BlueCard2;
+	setnpcdisplay "Banker Card 1",$RedCard1;
+	setnpcdisplay "Banker Card 2",$RedCard1;
+	setnpcdisplay "Banker Card 3",$RedCard2;
+	goto Main;
+
+Oninit:
+	set .NPCName$, "Baccarat: ";
+	// Setting ค่าคอมมิชชั่น
+	set $Commission, 10;
+	// เมืองที่จะเล่นเสียงบาคาร่า
+	set .BacMap$, "florian";
+	// พิกัด X1 ที่จะเล่นเสียงบาคาร่า (บนซ้าย)
+	set .BacMapX1, 127;
+	// พิกัด Y1 ที่จะเล่นเสียงบาคาร่า (บนซ้าย)
+	set .BacMapY1, 172;
+	// พิกัด X2 ที่จะเล่นเสียงบาคาร่า (ล่างขวา)
+	set .BacMapX2, 168;
+	// พิกัด Y2 ที่จะเล่นเสียงบาคาร่า (ล่างขวา)
+	set .BacMapY2, 147;
+	goto Main;
+	end;
+}
+
+function	script	bacc_add_bet	{
+	set .BetAmt, getarg(0);
+	set .ItemId, getarg(1);
+	if ($BetMode == 1) {
+		set ZENY, ZENY + .BetAmt;
+		dispbottom "ผู้เล่นได้รับ "+callfunc("F_InsertComma", .BetAmt)+" Zeny";
+		dispbottom "ยอดเงินคงเหลือ "+callfunc("F_InsertComma", ZENY)+" Zeny";
+	} else if ($BetMode == 2) {
+		set #CASHPOINTS, #CASHPOINTS + .BetAmt;
+		dispbottom "ผู้เล่นได้รับ "+callfunc("F_InsertComma", .BetAmt)+" Cash";
+		dispbottom "ยอดเงินคงเหลือ "+callfunc("F_InsertComma", #CASHPOINTS)+" Zeny";
+	} else if ($BetMode == 3) {
+		if (getiteminfo(.ItemId,2) == 4 || getiteminfo(.ItemId,2) == 5) {
+			for (set .@ibet1, 0; .@ibet1 < .BetAmt; set .@ibet1, .@ibet1 + 1)
+				getitem .ItemId, 1;
+		} else {
+			getitem .ItemId, .BetAmt;
+		}
+		dispbottom "ผู้เล่นได้รับ "+getitemname($ItemID)+" จำนวน "+callfunc("F_InsertComma", .BetAmt)+" ชิ้น";
+	}
+	return;
+}
+
+-	script	Banker_Count	-1,{
+	end;
+Oninit:
+	while(1){
+		delwaitingroom;
+		waitingroom "ยอดแทงเจ้ามือชนะ",0;
+		sleep 3000;
+		delwaitingroom;
+		waitingroom callfunc("F_InsertComma", $ALLBBET),0;
+		sleep 5000;
+	}
+	end;
+}
+-	script	Banker_Double_Count	-1,{
+	end;
+Oninit:
+	while(1){
+		delwaitingroom;
+		waitingroom "ยอดแทงเจ้ามือคู่",0;
+		sleep 3000;
+		delwaitingroom;
+		waitingroom callfunc("F_InsertComma", $ALLBDBET),0;
+		sleep 5000;
+	}
+	end;
+}
+-	script	Banker_Natural_Count	-1,{
+	end;
+	Oninit:
+	while(1){
+		delwaitingroom;
+		waitingroom "ยอดแทงเจ้ามือป็อก",0;
+		sleep 3000;
+		delwaitingroom;
+		waitingroom callfunc("F_InsertComma", $ALLBNBET),0;
+		sleep 5000;
+	}
+	end;
+}
+-	script	Player_Count	-1,{
+	end;
+Oninit:
+	while(1){
+		delwaitingroom;
+		waitingroom "ยอดแทงผู้เล่นชนะ",0;
+		sleep 3000;
+		delwaitingroom;
+		waitingroom callfunc("F_InsertComma", $ALLPBET),0;
+		sleep 5000;
+	}
+	end;
+}
+-	script	Player_Double_Count	-1,{
+	end;
+Oninit:
+	while(1){
+		delwaitingroom;
+		waitingroom "ยอดแทงผู้เล่นคู่",0;
+		sleep 3000;
+		delwaitingroom;
+		waitingroom callfunc("F_InsertComma", $ALLPDBET),0;
+		sleep 5000;
+	}
+	end;
+}
+-	script	Player_Natural_Count	-1,{
+	end;
+Oninit:
+	while(1){
+		delwaitingroom;
+		waitingroom "ยอดแทงผู้เล่นป็อก",0;
+		sleep 3000;
+		delwaitingroom;
+		waitingroom callfunc("F_InsertComma", $ALLPNBET),0;
+		sleep 5000;
+	}
+	end;
+}
+-	script	Draw_Count	-1,{
+	end;
+Oninit:
+	while(1){
+		delwaitingroom;
+		waitingroom "ยอดแทงเสมอ",0;
+		sleep 3000;
+		delwaitingroom;
+		waitingroom callfunc("F_InsertComma", $ALLDBET),0;
+		sleep 5000;
+	}
+	end;
+}
+-	script	Baccarat_Results	-1,{
+	mes "[ ผล Baccarat 20 ตาล่าสุด]";
+	query_sql("SELECT bet_round, results FROM `bac_results` ORDER BY id DESC LIMIT 20",.@round,.@result);
+	for(set .@i,0; .@i < getarraysize(.@round); set .@i,.@i +1){
+		switch(.@result[.@i]) {
+			case 1: mes "["+.@round[.@i]+"] ^0000FFP^000000"; break;
+			case 2: mes "["+.@round[.@i]+"] ^32CD32T^000000"; break;
+			case 3: mes "["+.@round[.@i]+"] ^FF0000B^000000"; break;
+		}
+	}
+	close;
+
+Oninit:
+	waitingroom "ผลแพ้ชนะ 20 ตาล่าสุด",0;
+	end;
+}
+
+-	script	Baccarat_Rules	-,{
+
+	mes "[ กฎการจ่ายเงิน Baccarat ]";
+	mes "- แทงผู้เล่นชนะ 1:1 แทง 100 ได้ 200 รวมทุน";
+	mes "- แทงเจ้ามือชนะ n:1 (n = ค่า Commission ที่ทางเซิร์ฟตั้งไว้) สมมุติ Commission 10% แทง 100 ได้ 190 รวมทุน";
+	mes "- แทงเสมอ 8:1 แทง 100 ได้ 800 ไม่รวมทุน";
+	mes "- แทงผู้เล่นคู่หรือเจ้ามือคู่ 11:1 แทง 100 ได้ 1,700 ไม่รวมทุน";
+	mes "- แทงผู้เล่นป็อกหรือเจ้ามือป็อก 7:2 แทง 100 ได้ 800 รวมทุน แต่ถ้าเสียเสีย 2 เท่า แทง 100 เสีย 200";
+	close;
+
+Oninit:
+	waitingroom "กฎการจ่ายเงิน Baccarat",0;
+	end;
+}
+
+// ตั้งค่ารหัสมอนไพ่
+-	script	ValDefine	-1,{
+	end;
+OnInit:
+	// ไม่สีน้ำเงินแนวตั้ง
+	set $BlueCard1, 31452;
+	// ไม่สีน้ำเงินแนวนอน
+	set $BlueCard2, 31506;
+	// ไพ่สีแดงแนวตั้ง
+	set $RedCard1, 31453;
+	// ไม่สีแดงแนวนอน
+	set $RedCard2, 31507;
+
+	set  $Card_A1, 31400;
+	set  $Card_A2, 31401;
+	set  $Card_A3, 31402;
+	set  $Card_A4, 31403;
+	set  $Card_21, 31404;
+	set  $Card_22, 31405;
+	set  $Card_23, 31406;
+	set  $Card_24, 31407;
+	set  $Card_31, 31408;
+	set  $Card_32, 31409;
+	set  $Card_33, 31410;
+	set  $Card_34, 31411;
+	set  $Card_41, 31412;
+	set  $Card_42, 31413;
+	set  $Card_43, 31414;
+	set  $Card_44, 31415;
+	set  $Card_51, 31416;
+	set  $Card_52, 31417;
+	set  $Card_53, 31418;
+	set  $Card_54, 31419;
+	set  $Card_61, 31420;
+	set  $Card_62, 31421;
+	set  $Card_63, 31422;
+	set  $Card_64, 31423;
+	set  $Card_71, 31424;
+	set  $Card_72, 31425;
+	set  $Card_73, 31426;
+	set  $Card_74, 31427;
+	set  $Card_81, 31428;
+	set  $Card_82, 31429;
+	set  $Card_83, 31430;
+	set  $Card_84, 31431;
+	set  $Card_91, 31432;
+	set  $Card_92, 31433;
+	set  $Card_93, 31434;
+	set  $Card_94, 31435;
+	set  $Card_101, 31436;
+	set  $Card_102, 31437;
+	set  $Card_103, 31438;
+	set  $Card_104, 31439;
+	set  $Card_J1, 31440;
+	set  $Card_J2, 31441;
+	set  $Card_J3, 31442;
+	set  $Card_J4, 31443;
+	set  $Card_Q1, 31444;
+	set  $Card_Q2, 31445;
+	set  $Card_Q3, 31446;
+	set  $Card_Q4, 31447;
+	set  $Card_K1, 31448;
+	set  $Card_K2, 31449;
+	set  $Card_K3, 31450;
+	set  $Card_K4, 31451;
+	
+	set  $CardE_A1, 31454;
+	set  $CardE_A2, 31455;
+	set  $CardE_A3, 31456;
+	set  $CardE_A4, 31457;
+	set  $CardE_21, 31458;
+	set  $CardE_22, 31459;
+	set  $CardE_23, 31460;
+	set  $CardE_24, 31461;
+	set  $CardE_31, 31462;
+	set  $CardE_32, 31463;
+	set  $CardE_33, 31464;
+	set  $CardE_34, 31465;
+	set  $CardE_41, 31466;
+	set  $CardE_42, 31467;
+	set  $CardE_43, 31468;
+	set  $CardE_44, 31469;
+	set  $CardE_51, 31470;
+	set  $CardE_52, 31471;
+	set  $CardE_53, 31472;
+	set  $CardE_54, 31473;
+	set  $CardE_61, 31474;
+	set  $CardE_62, 31475;
+	set  $CardE_63, 31476;
+	set  $CardE_64, 31477;
+	set  $CardE_71, 31478;
+	set  $CardE_72, 31479;
+	set  $CardE_73, 31480;
+	set  $CardE_74, 31481;
+	set  $CardE_81, 31482;
+	set  $CardE_82, 31483;
+	set  $CardE_83, 31484;
+	set  $CardE_84, 31485;
+	set  $CardE_91, 31486;
+	set  $CardE_92, 31487;
+	set  $CardE_93, 31488;
+	set  $CardE_94, 31489;
+	set  $CardE_101, 31490;
+	set  $CardE_102, 31491;
+	set  $CardE_103, 31492;
+	set  $CardE_104, 31493;
+	set  $CardE_J1, 31494;
+	set  $CardE_J2, 31495;
+	set  $CardE_J3, 31496;
+	set  $CardE_J4, 31497;
+	set  $CardE_Q1, 31498;
+	set  $CardE_Q2, 31499;
+	set  $CardE_Q3, 31500;
+	set  $CardE_Q4, 31501;
+	set  $CardE_K1, 31502;
+	set  $CardE_K2, 31503;
+	set  $CardE_K3, 31504;
+	set  $CardE_K4, 31505;
+	end;
+}
+
+// โซนจัดวาง NPC
+
+florian,143,162,4	script	Player Card 1	31452,{ end; } // ไพ่สีน้ำเงิน
+florian,145,162,4	script	Player Card 2	31452,{ end; } // ไพ่สีน้ำเงิน
+florian,144,164,4	script	Player Card 3	31506,{ // ไพ่สีน้ำเงินนอน
+	end;
+OnWinner:
+	specialeffect 183;
+	specialeffect 68;
+	end;
+}
+florian,149,162,4	script	Banker Card 1	31453,{ end; } // ไพ่สีแดง
+florian,151,162,4	script	Banker Card 2	31453,{ end; } // ไพ่สีแดง
+florian,150,164,4	script	Banker Card 3	31507,{ // ไพ่สีแดงนอน
+	end;
+OnWinner:
+	specialeffect 183;
+	specialeffect 68;
+	end;
+}
+
+florian,154,170,4	duplicate(Banker_Count)	เจ้ามือชนะ#1	858
+florian,154,169,4	duplicate(Banker_Double_Count)	เจ้ามือคู่#1	858
+florian,154,168,4	duplicate(Banker_Natural_Count)	เจ้ามือป็อก#1	858
+florian,140,170,4	duplicate(Player_Count)	ผู้เล่นชนะ#1	858
+florian,140,169,4	duplicate(Player_Double_Count)	ผู้เล่นคู่#1	858
+florian,140,168,4	duplicate(Player_Natural_Count)	ผู้เล่นป็อก#1	858
+florian,147,170,4	duplicate(Draw_Count)	เสมอ#1	858
+florian,138,164,4	duplicate(Baccarat_Rules)	กฎบาคาร่า#1	858
+florian,138,162,4	duplicate(Baccarat_Results)	ผลแพ้ชนะ#1	858
+
+
+florian	mapflag	noskill
+florian	mapflag	noteleport

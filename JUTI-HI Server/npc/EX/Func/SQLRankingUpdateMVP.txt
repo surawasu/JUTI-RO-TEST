@@ -1,0 +1,287 @@
+/*
+  # AUTO Ranking v1
+  # ALTER TABLE  `char` ADD  `point_pvp` INT NOT NULL DEFAULT  '0',
+  # ADD  `point_mvp` INT NOT NULL DEFAULT  '0',
+  # ADD  `point_emp` INT NOT NULL DEFAULT  '0'
+*/
+
+-	script	Ranking	-1,{
+	end;
+
+
+
+OnAtcommand:
+	set .@npc$,"[Ranking]";
+		mes .@npc$;
+		mes "ระบบจัดการคะแนน";
+		next;
+		switch (select("- Reset คะแนน PVP","- Reset คะแนน MVP","- Reset คะแนน EMP","- Reset คะแนน REP")) {
+		case 1:
+			query_sql "UPDATE `char` SET `point_pvp`='0'";
+			mes .@npc$;
+			mes "Reset คะแนน PVP";
+			mes "เรียบร้อยแล้ว";
+			close;
+		break;
+		case 2:
+			query_sql "UPDATE `char` SET `point_mvp`='0'";
+			mes .@npc$;
+			mes "Reset คะแนน MVP";
+			mes "เรียบร้อยแล้ว";
+			close;
+		break;
+		case 3:
+			query_sql "UPDATE `char` SET `point_emp`='0'";
+			mes .@npc$;
+			mes "Reset คะแนน EMP";
+			mes "เรียบร้อยแล้ว";
+			close;
+		break;
+		case 4:
+			query_sql "UPDATE `hwdig` SET `point_total`='0'";
+			mes .@npc$;
+			mes "Reset คะแนน REP";
+			mes "เรียบร้อยแล้ว";
+			close;
+		break;
+		}
+//OnShow_PVP:
+//		query_sql "SELECT `name`,`point_pvp` FROM `char` ORDER BY `point_pvp` DESC LIMIT 10",.@name$,.@point;
+//		mes "====== PVP RANKING ======";
+//		for (set .@i,0; .@i < 10; set .@i,.@i+1) {
+//			if (.@point[.@i] == 0) set .@name$[.@i],"None";
+//			mes "["+(.@i+1)+"]  "+.@name$[.@i]+" : คะแนน " +.@point[.@i]+"";
+//		}
+//		mes "-----------------------";
+//		query_sql "SELECT `point_pvp` FROM `char` WHERE `char_id`='"+getcharid(0)+"'",.@cpoint;
+//		mes "คุณมีคะแนน : "+.@cpoint;
+//		mes "=========================";
+//end;
+
+OnShow_PVP:
+		query_sql "SELECT `name`,`kills` FROM `pvpladder` ORDER BY `kills` DESC LIMIT 10",.@name$,.@point;
+		mes "====== PVP RANKING ======";
+		for (set .@i,0; .@i < 10; set .@i,.@i+1) {
+			if (.@point[.@i] == 0) set .@name$[.@i],"None";
+			mes "["+(.@i+1)+"]  "+.@name$[.@i]+" : คะแนน " +.@point[.@i]+"";
+		}
+		mes "-----------------------";
+		query_sql "SELECT `kills` FROM `pvpladder` WHERE `char_id`='"+getcharid(0)+"'",.@cpoint;
+		mes "คุณมีคะแนน : "+.@cpoint;
+		mes "=========================";
+end;
+
+OnShow_MVP:
+		query_sql "SELECT `name`,`point_mvp` FROM `char` ORDER BY `point_mvp` DESC LIMIT 10",.@name$,.@point;
+		mes "====== MVP RANKING ======";
+		for (set .@i,0; .@i < 5; set .@i,.@i+1) {
+			if (.@point[.@i] == 0) set .@name$[.@i],"None";
+			mes "["+(.@i+1)+"]  "+.@name$[.@i]+" : คะแนน " +.@point[.@i]+"";
+		}
+		mes "=======================";
+		query_sql "SELECT `point_mvp` FROM `char` WHERE `char_id`='"+getcharid(0)+"'",.@cpoint;
+		mes "คุณมีคะแนน : "+.@cpoint;
+		mes "=======================";
+		//dispbottom "====== MVP RANKING ======";
+		//for (set .@i,0; .@i < 5; set .@i,.@i+1) {
+		//	if (.@point[.@i] == 0) set .@name$[.@i],"None";
+		//	dispbottom "["+(.@i+1)+"]  "+.@name$[.@i]+" : คะแนน " +.@point[.@i]+"";
+		//}
+		//dispbottom "=======================";
+		//query_sql "SELECT `point_mvp` FROM `char` WHERE `char_id`='"+getcharid(0)+"'",.@cpoint;
+		//dispbottom "คุณมีคะแนน : "+.@cpoint;
+		//dispbottom "=======================";
+end;
+OnShow_EMP:
+		query_sql "SELECT `name`,`point_emp` FROM `char` ORDER BY `point_emp` DESC LIMIT 10",.@name$,.@point;
+		mes "====== EMP RANKING ======";
+		for (set .@i,0; .@i < 10; set .@i,.@i+1) {
+			if (.@point[.@i] == 0) set .@name$[.@i],"None";
+			mes "["+(.@i+1)+"]  "+.@name$[.@i]+" : คะแนน " +.@point[.@i]+"";
+		}
+		mes "-----------------------";
+		query_sql "SELECT `point_emp` FROM `char` WHERE `char_id`='"+getcharid(0)+"'",.@cpoint;
+		mes "คุณมีคะแนน : "+.@cpoint;
+		mes "=========================";
+end;
+OnShow_REP:
+		query_sql "SELECT `userid`,`point_total` FROM `login` ORDER BY `point_total` DESC LIMIT 10",.@name$,.@point;
+		mes "====== REP RANKING ======";
+		for (set .@i,0; .@i < 10; set .@i,.@i+1) {
+			if (.@point[.@i] == 0) set .@name$[.@i],"None";
+			mes "["+(.@i+1)+"]  "+.@name$[.@i]+" : คะแนน " +.@point[.@i]+"";
+		}
+		mes "-----------------------";
+		query_sql "SELECT `point_rep` FROM `login` WHERE `account_id`='"+getcharid(3)+"'",.@cpoint;
+		mes "คุณมีคะแนน : "+.@cpoint;
+		mes "=========================";
+end;
+OnInit:
+bindatcmd "mvpreset",strnpcinfo(3)+"::OnAtcommand",0,99;
+end;
+}
+
+-	script	จัดอันดับต่าง::rankingbbs	GUILD_FLAG,{
+	doevent "Ranking::OnShow_PVP";
+
+	//mes "[^00BFFFกิจกรรมจัดอันดับ MVP Ranking^000000]";
+	//mes "เริ่มวันที่ 11 ส.ค.65 เวลา 18.00 น.";
+	//mes "สิ้นสุดวันที่ 14 ส.ค.65 เวลา 20.01 น.";
+	//mes "โดยจะแจกรางวัลดังนี้";
+	//
+	//next;
+	//mes "[^00BFFFกิจกรรมจัดอันดับ MVP Ranking^000000]";
+	//mes "อันดับ 1  เงินสด 500 บาท";
+	//mes "<ITEM>"+getitemname(2800056)+"<INFO>2800056</INFO></ITEM>จำนวน 1 ชิ้น";
+	//mes "=======================";
+	//mes "อันดับ 2  เงินสด 300 บาท ";
+	//mes "<ITEM>"+getitemname(22829)+"<INFO>22829</INFO></ITEM>จำนวน 2 ชิ้น";
+	//mes "=======================";
+	//mes "อันดับ 3  เงินสด 200 บาท";
+	//mes "<ITEM>"+getitemname(22829)+"<INFO>22829</INFO></ITEM>จำนวน 1 ชิ้น";
+	//mes "=======================";
+	//switch (select("^0000FF- จัดอันดับ MVP Ranking^000000:^0000FF- ออก^000000:")) {
+	//
+	//case 1:
+	//	next;
+	//	mes "[^00BFFFกิจกรรมจัดอันดับ MVP Ranking^000000]";
+	//	mes "แสดงข้อมูลเรียบร้อยแล้ว";
+	//	close2;
+	//	doevent "Ranking::OnShow_MVP";
+	//break;
+	//
+	//case 2:
+	//	end;
+	//}
+	
+end;	
+
+	
+
+	
+}
+	
+
+
+-	script	MVP_SCORE	-1,{
+
+OnNPCKillEvent:
+//if(strcharinfo(3) == "bossnia_02"){
+			if(killedrid == 1039 || 
+killedrid == 1038 || 
+killedrid == 1046 || 
+killedrid == 1059 || 
+killedrid == 1087 || 
+killedrid == 1112 || 
+killedrid == 1115 || 
+killedrid == 1147 || 
+killedrid == 1150 || 
+killedrid == 1157 || 
+killedrid == 1159 || 
+killedrid == 1190 || 
+killedrid == 1251 || 
+killedrid == 1252 || 
+killedrid == 1272 || 
+killedrid == 1312 || 
+killedrid == 1373 || 
+killedrid == 1389 || 
+killedrid == 1418 || 
+killedrid == 1492 || 
+killedrid == 1511 || 
+killedrid == 1623 || 
+killedrid == 1630 || 
+killedrid == 1658 || 
+killedrid == 1685 || 
+killedrid == 1688 || 
+killedrid == 1719 || 
+killedrid == 1768 || 
+killedrid == 1779 || 
+killedrid == 1785 || 
+killedrid == 1832 || 
+killedrid == 1874 || 
+killedrid == 1885 || 
+killedrid == 2068 || 
+killedrid == 2156 || 
+killedrid == 1751 || 
+killedrid == 2165 || 
+killedrid == 1734 || 
+killedrid == 1583 || 
+killedrid == 1871 || 
+killedrid == 1708 || 
+killedrid == 3074){
+			query_sql "UPDATE `char` SET `point_mvp`=(`point_mvp` + 1) WHERE `char_id`='"+getcharid(0)+"' LIMIT 1";
+						dispbottom "========================================";
+						query_sql "SELECT `point_mvp` FROM `char` WHERE `char_id`='"+getcharid(0)+"'",.@cpoint;
+						//#MVPPOINT += 1;
+						dispbottom "คุณได้รับแต้ม MVP Score เพิ่มขึ้น 1 แต้ม แต้มทั้งหมดของคุณคือ "+ (.@cpoint) +" แต้ม";
+						//dispbottom "คุณได้รับแต้ม MVP Point เพิ่มขึ้น 1 แต้ม Point ทั้งหมดของคุณคือ "+ (#MVPPOINT) +" แต้ม";
+						dispbottom "========================================";
+			}
+//}
+	end;
+}
+///*
+//-	script	STREAMMVP_SCORE	-1,{
+//
+//
+//OnNPCKillEvent:
+//if(killedrid == 3505 || killedrid == 1871 || killedrid == 1873 || killedrid == 1719 || killedrid == 1492 || killedrid == 1147 || killedrid == 1688 || killedrid == 1583 || killedrid == 2068 || killedrid == 3074 || killedrid == 2156 || killedrid == 2087 || killedrid == 2165 || killedrid == 1623 || killedrid == 1389 || killedrid == 1046 || killedrid == 1272 || killedrid == 1150 || killedrid == 1115 || killedrid == 2253 || killedrid == 1059 || killedrid == 2251 || killedrid == 1039 || killedrid == 1785 || killedrid == 2249 || killedrid == 2255 || killedrid == 1418 || killedrid == 1157 || killedrid == 2202 || killedrid == 1685 || killedrid == 1734 || killedrid == 1658 || killedrid == 1630 || killedrid == 1038 || killedrid == 1511 || killedrid == 2362 || killedrid == 1885 || killedrid == 1751 || killedrid == 1086 || killedrid == 1768 || killedrid == 3741 || killedrid == 20381 || killedrid == 2441 || killedrid == 2442 || killedrid == 1832 || killedrid == 1112 || killedrid == 1312 || killedrid == 1251 || killedrid == 1087 || killedrid == 1190 || killedrid == 1252 || killedrid == 1159 || killedrid == 1917 || killedrid == 20618 || killedrid == 20601 || killedrid == 20422 || killedrid == 20421 || killedrid == 20419 || killedrid == 20610 || killedrid == 20611 || killedrid == 20928 || killedrid == 20943 || killedrid == 20934 || killedrid == 20648 || killedrid == 21301 || killedrid == 21537 || killedrid == 20118 || killedrid == 20273 || killedrid == 20277 || killedrid == 20701 || killedrid == 3732 || killedrid == 3733 || killedrid == 20702 || killedrid == 21571 || killedrid == 21563 || killedrid == 21555 || killedrid == 21579){
+//	if(strcharinfo(3) == "lasa_dun01" || strcharinfo(3) == "abbey02" || strcharinfo(3) == "abbey03" || strcharinfo(3) == "abyss_03" || strcharinfo(3) == "ama_dun03" || strcharinfo(3) == "anthell02" || strcharinfo(3) == "ayo_dun02" || strcharinfo(3) == "beach_dun" || strcharinfo(3) == "bra_dun02" || strcharinfo(3) == "c_tower3_" || strcharinfo(3) == "dew_dun01" || strcharinfo(3) == "dic_dun02" || strcharinfo(3) == "dic_dun03" || strcharinfo(3) == "ein_dun02" || strcharinfo(3) == "gef_dun01" || strcharinfo(3) == "gef_dun02" || strcharinfo(3) == "gl_chyard" || strcharinfo(3) == "gl_chyard_" || strcharinfo(3) == "gld_dun01" || strcharinfo(3) == "gld_dun01_2" || strcharinfo(3) == "gld2_pay" || strcharinfo(3) == "gld_dun02" || strcharinfo(3) == "gld_dun02_2" || strcharinfo(3) == "gld2_ald" || strcharinfo(3) == "gld_dun03" || strcharinfo(3) == "gld_dun03_2" || strcharinfo(3) == "gld2_prt" || strcharinfo(3) == "gld_dun04" || strcharinfo(3) == "gld_dun04_2" || strcharinfo(3) == "gld2_gef" || strcharinfo(3) == "gon_dun03" || strcharinfo(3) == "in_sphinx5" || strcharinfo(3) == "iz_dun05" || strcharinfo(3) == "jupe_core" || strcharinfo(3) == "kh_dun02" || strcharinfo(3) == "lhz_dun02" || strcharinfo(3) == "lou_dun03" || strcharinfo(3) == "moc_pryd04" || strcharinfo(3) == "moc_pryd06" || strcharinfo(3) == "moc_prydn2" || strcharinfo(3) == "mosk_dun03" || strcharinfo(3) == "odin_tem03" || strcharinfo(3) == "pay_dun04" || strcharinfo(3) == "prt_maze03" || strcharinfo(3) == "prt_sewb4" || strcharinfo(3) == "ra_san05" || strcharinfo(3) == "rockmi1" || strcharinfo(3) == "sp_rudus2" || strcharinfo(3) == "teg_dun01" || strcharinfo(3) == "teg_dun02" || strcharinfo(3) == "thor_v03" || strcharinfo(3) == "treasure02" || strcharinfo(3) == "tur_dun04" || strcharinfo(3) == "xmas_dun02" || strcharinfo(3) == "gef_fild03" || strcharinfo(3) == "gef_fild10" || strcharinfo(3) == "xmas_fild01" || strcharinfo(3) == "mjolnir_04" || strcharinfo(3) == "moc_fild17" || strcharinfo(3) == "moc_fild22" || strcharinfo(3) == "pay_fild10" || strcharinfo(3) == "ra_fild03" || strcharinfo(3) == "ra_fild04" || strcharinfo(3) == "ve_fild01" || strcharinfo(3) == "ve_fild02" || strcharinfo(3) == "abyss_04" || strcharinfo(3) == "ein_dun03" || strcharinfo(3) == "gl_cas01_" || strcharinfo(3) == "mag_dun03" || strcharinfo(3) == "odin_past" || strcharinfo(3) == "amicitia2" || strcharinfo(3) == "nif_dun02" || strcharinfo(3) == "sp_rudus4" || strcharinfo(3) == "ba_lost" || strcharinfo(3) == "oz_dun02" || strcharinfo(3) == "jor_back3" || strcharinfo(3) == "clock_01" || strcharinfo(3) == "com_d02_i" || strcharinfo(3) == "com_d02_i2" || strcharinfo(3) == "corridor1" || strcharinfo(3) == "corridor2" || strcharinfo(3) == "corridor3" || strcharinfo(3) == "corridor4" || strcharinfo(3) == "bl_ice" || strcharinfo(3) == "bl_lava" || strcharinfo(3) == "bl_grass" || strcharinfo(3) == "bl_death"){
+//		 	if( getcharid(0)==2067){
+//			end;
+//			$darkstrom += 1;
+//			announce "[ Streamer VS Streamer ] : DarkStrom "+($darkstrom)+" คะแนน  |  Switch-Gamer "+($switch)+" คะแนน ",bc_all,0xFFFF00;
+//			}
+//		 	if( getcharid(0)==92){
+//			end;
+//			$switch += 1;
+//			announce "[ Streamer VS Streamer ] : DarkStrom "+($darkstrom)+" คะแนน  |  Switch-Gamer "+($switch)+" คะแนน ",bc_all,0xFFFF00;
+//			}
+//	}
+//}
+//end;
+//
+//OnClock2100:
+//end;
+//announce "[ Streamer VS Streamer ] : เริ่มต้นกิจกรรม  Streamer VS Streamer",bc_all,0xFFFF00;
+//announce "[ Streamer VS Streamer ] : DarkStrom "+($darkstrom)+" คะแนน  |  Switch-Gamer "+($switch)+" คะแนน ",bc_all,0xFFFF00;
+//end;
+//
+//OnClock2200:
+//end;
+//announce "[ Streamer VS Streamer ] : สิ้นสุดกิจกรรม  Streamer VS Streamer",bc_all,0xFFFF00;
+//announce "[ Streamer VS Streamer ] : DarkStrom "+($darkstrom)+" คะแนน  |  Switch-Gamer "+($switch)+" คะแนน ",bc_all,0xFFFF00;
+//end;
+//
+//	
+//Oninit:
+//$darkstrom = 0;
+//$switch = 0;
+//end;
+//}
+//*/
+
+
+
+
+
+function	script	AddPointChar	{
+		query_sql "UPDATE `char` SET `point_mvp`=(`point_mvp` + 1) WHERE `char_id`='"+getcharid(0)+"' LIMIT 1";
+		dispbottom "=========================";
+		query_sql "SELECT `point_mvp` FROM `char` WHERE `char_id`='"+getcharid(0)+"'",.@cpoint;
+		dispbottom "คุณได้รับแต้ม MVP Score เพิ่มขึ้น 1 แต้ม แต้มทั้งหมดของคุณคือ "+ (.@cpoint) +" แต้ม";
+		dispbottom "=========================";
+	return 0;
+}
+
+//rag_fes,180,150,4	duplicate(rankingbbs)	MVP Ranking#SaveTower	857
+//mooc,133,86,4	duplicate(rankingbbs)	MVP Ranking#OnShow_MVP	857
+like_game,142,101,4	script	PVP Ranking#OnShow_PVP	857,{
+doevent "Ranking::OnShow_PVP";
+}
+
+
+like_game,142,103,4	script	MVP Ranking#OnShow_MVP	857,{
+doevent "Ranking::OnShow_MVP";
+}
+

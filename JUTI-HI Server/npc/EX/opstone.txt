@@ -1,0 +1,165 @@
+morocc,136,101,6	script	 ฝั่งหิน Effect 	4_M_OLIVER,{
+//sec_pri,18,40,6	script	 ฝั่งหิน Effect 	4_M_OLIVER,{
+disable_items;
+
+if (checkweight(1201,1) == 0) {
+		mes "[ ฝั่งหิน Effect ]";
+		mes "คุณมีไอเทมมากเกินไป เอาไปเก็บก่อน!";
+		close;
+	}
+if (MaxWeight - Weight < 10000) {
+		mes "[ ฝั่งหิน Effect ]";
+		mes "คุณมีน้ำหนักมากเกินไป!";
+		close;
+	}
+	
+	
+OnTalk:
+	mes "[ ฝั่งหิน Effect ]";
+	mes "สวัสดี, ^0000FF"+ strcharinfo(0) +"^000000.";
+	mes "ข้าสามารถฝังหิน Effect ใน Costume Middle ได้";
+	mes "^FF0000โอกาสสำเร็จ 100%^000000";
+	mes "";
+	next;
+	switch(select("^FF0000ฝัง หิน Effect^000000:^00FF00ถอด หิน Effect^000000:• ไม่สนใจ")) 
+	{
+	
+		setarray .@equip_bitmask[0],
+		EQP_ACC_L,				// EQI_ACC_L
+		EQP_ACC_R,				// EQI_ACC_R
+		EQP_SHOES,				// EQI_SHOES
+		EQP_GARMENT,			// EQI_GARMENT
+		EQP_HEAD_LOW,			// EQI_HEAD_LOW
+		EQP_HEAD_MID,			// EQI_HEAD_MID
+		EQP_HEAD_TOP,			// EQI_HEAD_TOP
+		EQP_ARMOR,				// EQI_ARMOR
+		EQP_HAND_L,				// EQI_HAND_L
+		EQP_HAND_R,				// EQI_HAND_R
+		EQP_COSTUME_HEAD_TOP,	// EQI_COSTUME_HEAD_TOP
+		EQP_COSTUME_HEAD_MID,	// EQI_COSTUME_HEAD_MID
+		EQP_COSTUME_HEAD_LOW,	// EQI_COSTUME_HEAD_LOW
+		EQP_COSTUME_GARMENT,	// EQI_COSTUME_GARMENT
+		EQP_AMMO,				// EQI_AMMO
+		EQP_SHADOW_ARMOR,		// EQI_SHADOW_ARMOR
+		EQP_SHADOW_WEAPON,		// EQI_SHADOW_WEAPON
+		EQP_SHADOW_SHIELD,		// EQI_SHADOW_SHIELD
+		EQP_SHADOW_SHOES,		// EQI_SHADOW_SHOES
+		EQP_SHADOW_ACC_R,		// EQI_SHADOW_ACC_R
+		EQP_SHADOW_ACC_L;		// EQI_SHADOW_ACC_L
+	
+	getinventorylist;	// required for now for getitembound4 to keep the enchant grade
+	for ( .@i = 0; .@i < @inventorylist_count; ++.@i ) {
+		if ((@inventorylist_equip[.@i] & .@equip_bitmask[EQI_COSTUME_HEAD_MID]))
+			break;
+	}
+	
+	setarray .@indices[1],EQI_COSTUME_HEAD_MID;
+	
+	.@part = .@indices[1];
+	.@item = getequipid(.@part);
+	.@card0 = getequipcardid(.@part,0);
+	.@card1 = getequipcardid(.@part,1);
+	.@card2 = getequipcardid(.@part,2);
+	.@card3 = getequipcardid(.@part,3);
+	
+	setarray .@opt_id[0], @inventorylist_option_id1[.@i], @inventorylist_option_id2[.@i], @inventorylist_option_id3[.@i], @inventorylist_option_id4[.@i], @inventorylist_option_id5[.@i];
+	setarray .@opt_value[0], @inventorylist_option_value1[.@i], @inventorylist_option_value2[.@i], @inventorylist_option_value3[.@i], @inventorylist_option_value4[.@i], @inventorylist_option_value5[.@i];
+	setarray .@opt_param[0], @inventorylist_option_parameter1[.@i], @inventorylist_option_parameter2[.@i], @inventorylist_option_parameter3[.@i], @inventorylist_option_parameter4[.@i], @inventorylist_option_parameter5[.@i];
+
+	
+	
+	case 1:
+	next;
+	mes "[ ฝั่งหิน Effect ]";
+	mes "เลือกหินที่ต้องการ";
+	switch(select("Ocean World Stone")){
+	case 1:
+	.@stone = 3130057;
+	break;
+	//case 2:
+	//break;
+	}
+	next;
+	if(!getequipisequiped(.@part)) {
+		mes "[ ฝั่งหิน Effect ]";
+		mes "ท่านไม่ได้สวมใส่อุปกรณ์";
+		close;
+	}
+	if (countitem(.@stone) == 0) {
+		mes "[ ฝั่งหิน Effect ]";
+		mes "เจ้ายังไม่มีไอเท็ม :";
+		mes "<ITEM>"+getitemname(.@stone)+"<INFO>"+.@stone+"</INFO></ITEM>";
+		mes "กลับมาใหม่เมื่อเจ้ามีมาแล้ว.";
+		close;
+	}	
+	
+	getitem3( .@item,1,1,0,0,.@card0,.@card1,.@card2,.@stone, .@opt_id, .@opt_value, .@opt_param );
+
+	delequip .@part;
+	delitem .@stone,1;
+	specialeffect2 154;
+	specialeffect 18;
+	
+	mes "[ ฝั่งหิน Effect ]";
+	mes "สำเร็จแล้ว เป็นไงบ้างฝีมือข้า มันยอดเยี่ยมใช่ไหม";
+	end;
+	
+	case 2:
+	next;
+	mes "[ ฝั่งหิน Effect ]";
+	mes "<ITEM>"+getitemname(984)+"<INFO>984</INFO></ITEM> จำนวน "+10+" ea";
+	mes "<ITEM>"+getitemname(985)+"<INFO>985</INFO></ITEM> จำนวน "+10+" ea";
+	mes "และ "+callfunc("F_InsertComma",250000)+" Zeny";
+	next;
+	mes "[ ฝั่งหิน Effect ]";
+	mes "เลือกหินที่ต้องการ";
+	switch(select("Ocean World Stone")){
+	case 1:
+	.@stone = 3130057;
+	break;
+	//case 2:
+	//break;
+	}
+	next;
+	if(.@card3 != .@stone){
+	mes "[ ฝั่งหิน Effect ]";
+	mes "ท่านไม่มีitem ที่ Enchant <ITEM>"+getitemname(.@stone)+"<INFO>"+.@stone+"</INFO></ITEM>";
+	end;
+	}	
+	if (countitem(984) < 10 || countitem(984) < 10 || zeny < 250000 ) {
+		next;
+		mes "^FF0000[ ฝั่งหิน Effect ]^000000";
+		mes "โปรดตรวจสอบไอเท็มให้เรียบร้อย";
+		mes "<ITEM>"+getitemname(984)+"<INFO>984</INFO></ITEM> จำนวน "+10+" ea";
+		mes "<ITEM>"+getitemname(985)+"<INFO>985</INFO></ITEM> จำนวน "+10+" ea";
+		mes "และ "+callfunc("F_InsertComma",250000)+" Zeny";
+		close;
+	}
+	mes "[ ฝั่งหิน Effect ]";
+	mes "สำเร็จแล้ว เป็นไงบ้างฝีมือข้า มันยอดเยี่ยมใช่ไหม";
+	delequip .@part;
+	delitem 984,10;
+	delitem 985,10;
+	set Zeny,Zeny-250000;
+	specialeffect2 154;
+	specialeffect 18;
+	getitem3( .@item,1,1,0,0,.@card0,.@card1,.@card2,0, .@opt_id, .@opt_value, .@opt_param );
+	getitem .@stone,1;
+	end;
+
+
+	case 3:
+	end;
+	
+	
+	
+	
+	
+	
+	
+OnInit: 
+waitingroom " ฝัง-ถอด Effect",0;
+end;
+	
+}
+}

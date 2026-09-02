@@ -1,0 +1,523 @@
+-	script	collection_script	-1,{
+
+function calbonus;
+function ADD;
+function DISPLAY;
+getstoragelist (getcharid(0),INV_ALL,10);
+
+	
+Onstat2:
+	CallSub ClearDesc;
+	set .@i,0;
+	for( .@i = 0 ; .@i < @inventorylist_count ; .@i++ ){
+		if(@inventorylist_id[.@i] > 0){
+			calbonus( @inventorylist_id[.@i] );
+		}
+		
+	}
+end;
+
+Oninit:	
+	bindatcmd("collection",strnpcinfo(0)+"::OnCommand");
+	end;
+
+ClearDesc:
+	for(set .@i,0 ; .@i < @inventorylist_count+6 ; .@i++){
+		setd "@COL_DESC_"+.@i+"$","";
+		setd "@COL_VAL_"+.@i,0;
+		//dispbottom "clearssssssssssss";
+	}
+	return;
+end;
+
+
+OnBuyItem:
+mes "[^9400D3Col^4B0082lec^0000FFtion ^00FF00St^DEC20Bor^FF7F00ag^FF0000e^000000]";
+mes "ไม่สามารถซื้อไอเท็มได้";
+end;
+
+Onstat:
+	if (@inventorylist_count < 1){
+		mes "[^9400D3Col^4B0082lec^0000FFtion ^00FF00St^DEC20Bor^FF7F00ag^FF0000e^000000]";
+		mes "ท่านยังไม่ได้รับโบนัสใดๆจาก Collection.";
+	end;
+	}
+	//mes "[ สถานะที่ได้ทั้งหมดที่ท่านได้รับ ]";
+	dispbottom "==============[ สถานะที่ได้ทั้งหมดที่ท่านได้รับ ]==============";
+	//dispbottom "==============[ MISC BONUS ]==============";
+	DISPLAY("Str");		//bStr
+	DISPLAY("Agi");		//bAgi
+	DISPLAY("Vit");		//bVit
+	DISPLAY("Int");		//bInt
+	DISPLAY("Dex");		//bDex
+	DISPLAY("Luk");		//bLuk
+	DISPLAY("HP");	//bMaxHP
+	DISPLAY("SP");	//bMaxSP
+	DISPLAY("HP%");	//bMaxHPRate
+	DISPLAY("SP%");	//bMaxSPRate
+	DISPLAY("Def");		//bDef
+	DISPLAY("Def%");	//bDefRate	
+	DISPLAY("Mdef");	//bMdef
+	DISPLAY("Mdef%");	//bMdefRate
+	DISPLAY("Aspd");	//bAspd
+	DISPLAY("Aspd%");	//bAspdRate
+	DISPLAY("Flee");	//bFlee
+	DISPLAY("Flee%");	//bFleeRate
+	DISPLAY("Hit");		//bHit
+	DISPLAY("Hit%");	//bHitRate	
+	DISPLAY("Perfect Dodge");	//bFlee2
+	DISPLAY("Perfect Hit%");	//bPerfectHitAddRate
+	DISPLAY("Cri");		//bCritical
+	DISPLAY("Cri%");	//bCriticalRate
+	DISPLAY("ความเสียหายคริติคอล%");	//bCritAtkRate
+	DISPLAY("เพิ่มน้ำหนักสูงสุด");	//bAddMaxWeight
+	DISPLAY("อัตราการฟื้นฟู HP%");	//bHPrecovRate
+	DISPLAY("อัตราการฟื้นฟู SP%");	//bSPrecovRate
+	DISPLAY("ลดการใช้ SP%");	//bUseSPrate
+	DISPLAY("Heal Power%");	//bHealPower2	
+	DISPLAY("ลดระยะเวลาร่าย%");	//bCastrate
+	DISPLAY("ลดดีเลย์หลังใช้สกิล%");	//bAddSize,bMagicAddSize
+	DISPLAY("EXP%");	//bonus2 bExpAddRace
+	DISPLAY("Drop%");	//bonus2 bDropAddRace
+	//DISPLAY("Pow");		//bPow
+	//DISPLAY("Sta");		//bSta
+	//DISPLAY("Wis");		//bWis
+	//DISPLAY("Spl");		//bSpl
+	//DISPLAY("Con");		//bCon
+	//DISPLAY("Crt");		//bCrt
+	//DISPLAY("PAtk");	//bPAtk
+	//DISPLAY("PAtk%");	//bPAtkRate
+	//DISPLAY("SMatk");	//bSMatk
+	//DISPLAY("SMatk%");	//bSMatkRate
+	//DISPLAY("Res");		//bRes
+	//DISPLAY("Res%");	//bResRate
+	//DISPLAY("MRes");	//bMRes
+	//DISPLAY("MRes%");	//bMResRate
+	//DISPLAY("HPlus");	//bHPlus
+	//DISPLAY("HPlus%");	//bHPlusRate
+	//DISPLAY("CRate");	//bCRate
+	//DISPLAY("CRate%");	//bCRateRate
+	Sleep2 2000;
+	doevent "collection_script::OnstatA1";
+end;
+
+OnstatA1:
+	dispbottom "==============[ ATTACK BONUS ]==============";
+	DISPLAY("Atk");		//bBaseAtk
+	DISPLAY("ATK%");	//bonus2 bAddClass,Class_All
+	DISPLAY("MAtk");	//bMatk
+	DISPLAY("MATK%");	//bMatkRate	
+	DISPLAY("พลังโจมตีระยะใกล้%");	//bShortAtkRate
+	DISPLAY("พลังโจมตีระยะไกล%");	//bLongAtkRate
+	//DISPLAY("Weapon Atk Rate");	//bWeaponAtkRate
+	//DISPLAY("Weapon Matk Rate");	//bWeaponMatkRate
+	DISPLAY("เพิ่มความเสียหายต่อ Normal Monster%");	//bAddClass,bMagicAddClass, Normal
+	DISPLAY("เพิ่มความเสียหายต่อ Boss Monster%");	//bAddClass,bMagicAddClass, BOSS
+	DISPLAY("เพิ่มความเสียหายต่อมอนเตอร์ขนาดเล็ก%");	//bAddSize
+	DISPLAY("เพิ่มความเสียหายต่อมอนเตอร์ขนาดกลาง%");	//bAddSize
+	DISPLAY("เพิ่มความเสียหายต่อมอนเตอร์ขนาดใหญ่%");	//bAddSize
+	DISPLAY("เพิ่มความเสียหายทางกายกับ  Dark Monster%");	//bAddEle,Ele_Dark
+	DISPLAY("เพิ่มความเสียหายทางกายกับ  Earth Monster%");	//bAddEle,Ele_Earth
+	DISPLAY("เพิ่มความเสียหายทางกายกับ  Fire Monster%");	//bAddEle,Ele_Fire
+	DISPLAY("เพิ่มความเสียหายทางกายกับ  Ghost Monster%");	//bAddEle,Ele_Ghost
+	DISPLAY("เพิ่มความเสียหายทางกายกับ  Holy Monster%");	//bAddEle,Ele_Holy
+	DISPLAY("เพิ่มความเสียหายทางกายกับ  Neutral Monster%");	//bAddEle,Ele_Neutral
+	DISPLAY("เพิ่มความเสียหายทางกายกับ  Poison Monster%");	//bAddEle,Ele_Poison
+	DISPLAY("เพิ่มความเสียหายทางกายกับ  Undead Monster%");	//bAddEle,Ele_Undead
+	DISPLAY("เพิ่มความเสียหายทางกายกับ  Water Monster%");	//bAddEle,Ele_Water
+	DISPLAY("เพิ่มความเสียหายทางกายกับ  Wind Monster%");	//bAddEle,Ele_Wind
+	DISPLAY("เพิ่มความเสียหายทางเวทย์มนต์กับ Dark Monster%");	//bMagicAddEle,Ele_Dark
+	DISPLAY("เพิ่มความเสียหายทางเวทย์มนต์กับ Earth Monster%");	//bMagicAddEle,Ele_Earth
+	DISPLAY("เพิ่มความเสียหายทางเวทย์มนต์กับ Fire Monster%");	//bMagicAddEle,Ele_Fire
+	DISPLAY("เพิ่มความเสียหายทางเวทย์มนต์กับ Ghost Monster%");	//bMagicAddEle,Ele_Ghost
+	DISPLAY("เพิ่มความเสียหายทางเวทย์มนต์กับ Holy Monster%");	//bMagicAddEle,Ele_Holy
+	DISPLAY("เพิ่มความเสียหายทางเวทย์มนต์กับ Neutral Monster%");	//bMagicAddEle,Ele_Neutral
+	DISPLAY("เพิ่มความเสียหายทางเวทย์มนต์กับ Poison Monster%");	//bMagicAddEle,Ele_Poison
+	DISPLAY("เพิ่มความเสียหายทางเวทย์มนต์กับ Undead Monster%");	//bMagicAddEle,Ele_Undead
+	DISPLAY("เพิ่มความเสียหายทางเวทย์มนต์กับ Water Monster%");	//bMagicAddEle,Ele_Water
+	DISPLAY("เพิ่มความเสียหายทางเวทย์มนต์กับ Wind% Monster");	//bMagicAddEle,Ele_Wind
+	Sleep2 2000;
+	doevent "collection_script::OnstatA2";
+end;
+
+OnstatA2:
+	DISPLAY("เพิ่มความเสียหายทางกายภาพต่อประเภท Angel%");	//bAddRace,RC_Angel
+	DISPLAY("เพิ่มความเสียหายทางกายภาพต่อประเภท Brute%");	//bAddRace,RC_Brute
+	DISPLAY("เพิ่มความเสียหายทางกายภาพต่อประเภท Demi Human%");	//bAddRace,RC_DemiHuman
+	DISPLAY("เพิ่มความเสียหายทางกายภาพต่อประเภท Demon%");	//bAddRace,RC_Demon
+	DISPLAY("เพิ่มความเสียหายทางกายภาพต่อประเภท Dragon%");	//bAddRace,RC_Dragon
+	DISPLAY("เพิ่มความเสียหายทางกายภาพต่อประเภท Fish%");	//bAddRace,RC_Fish
+	DISPLAY("เพิ่มความเสียหายทางกายภาพต่อประเภท Formless%");	//bAddRace,RC_Formless
+	DISPLAY("เพิ่มความเสียหายทางกายภาพต่อประเภท Insect%");	//bAddRace,RC_Insect
+	DISPLAY("เพิ่มความเสียหายทางกายภาพต่อประเภท Plant%");	//bAddRace,RC_Plant
+	DISPLAY("เพิ่มความเสียหายทางกายภาพต่อประเภท Player Human%");	//bAddRace,RC_Player_Human
+	DISPLAY("เพิ่มความเสียหายทางกายภาพต่อประเภท Player Doram%");	//bAddRace,RC_Player_Doram
+	DISPLAY("เพิ่มความเสียหายทางกายภาพต่อประเภท Undead%");	//bAddRace,RC_Undead
+	DISPLAY("เพิ่มความเสียหายทางกายภาพต่อประเภท All%");	//bAddRace,RC_All
+	DISPLAY("เพิ่มความเสียหายทางเวทย์มนต์ต่อประเภท Angel%");	//bMagicAddRace,RC_Angel
+	DISPLAY("เพิ่มความเสียหายทางเวทย์มนต์ต่อประเภท Brute%");	//bMagicAddRace,RC_Brute
+	DISPLAY("เพิ่มความเสียหายทางเวทย์มนต์ต่อประเภท Demi Human%");	//bMagicAddRace,RC_DemiHuman
+	DISPLAY("เพิ่มความเสียหายทางเวทย์มนต์ต่อประเภท Demon%");	//bMagicAddRace,RC_Demon
+	DISPLAY("เพิ่มความเสียหายทางเวทย์มนต์ต่อประเภท Dragon%");	//bMagicAddRace,RC_Dragon
+	DISPLAY("เพิ่มความเสียหายทางเวทย์มนต์ต่อประเภท Fish%");	//bMagicAddRace,RC_Fish
+	DISPLAY("เพิ่มความเสียหายทางเวทย์มนต์ต่อประเภท Formless%");	//bMagicAddRace,RC_Formless
+	DISPLAY("เพิ่มความเสียหายทางเวทย์มนต์ต่อประเภท Insect%");	//bMagicAddRace,RC_Insect
+	DISPLAY("เพิ่มความเสียหายทางเวทย์มนต์ต่อประเภท Plant%");	//bMagicAddRace,RC_Plant
+	DISPLAY("เพิ่มความเสียหายทางเวทย์มนต์ต่อประเภท Player Human%");	//bMagicAddRace,RC_Player_Human
+	DISPLAY("เพิ่มความเสียหายทางเวทย์มนต์ต่อประเภท Player Doram%");	//bMagicAddRace,RC_Player_Doram
+	DISPLAY("เพิ่มความเสียหายทางเวทย์มนต์ต่อประเภท Undead%");	//bMagicAddRace,RC_Undead
+	Sleep2 2000;
+	doevent "collection_script::OnstatD";
+end;
+
+OnstatD:	
+	dispbottom "==============[ DEFEND BONUS ]==============";
+	DISPLAY("ลดความเสียหายจากคริติคอล%");	//bCritDefRate
+	DISPLAY("ลดโอกาสการติดคริติคอลจากศัตรู%");	//bCriticalDef
+	DISPLAY("ป้องกันการโจมตีระยะใกล้%");	//bNearAtkDef
+	DISPLAY("ป้องกันการโจมตีระยะไกล%");	//bLongAtkDef
+	DISPLAY("ป้องกันการโจมตีทางเวทย์มนต์%");	//bMagicAtkDef
+	DISPLAY("ลดความเสียหายที่ได้รับจากมอนเตอร์ขนาดเล็ก%");	//bSubSize
+	DISPLAY("ลดความเสียหายที่ได้รับจากมอนเตอร์ขนาดกลาง%");	//bSubSize
+	DISPLAY("ลดความเสียหายที่ได้รับจากมอนเตอร์ขนาดใหญ่%");	//bSubSize
+	DISPLAY("ลดความเสียหายที่ได้รับจากประเภท Angel%");	//bSubRace,RC_Angel
+	DISPLAY("ลดความเสียหายที่ได้รับจากประเภท Brute%");	//bSubRace,RC_Brute
+	DISPLAY("ลดความเสียหายที่ได้รับจากประเภท Demi Human%");	//bSubRace,RC_DemiHuman
+	DISPLAY("ลดความเสียหายที่ได้รับจากประเภท Demon%");	//bSubRace,RC_Demon
+	DISPLAY("ลดความเสียหายที่ได้รับจากประเภท Dragon%");	//bSubRace,RC_Dragon
+	DISPLAY("ลดความเสียหายที่ได้รับจากประเภท Fish%");	//bSubRace,RC_Fish
+	DISPLAY("ลดความเสียหายที่ได้รับจากประเภท Formless%");	//bSubRace,RC_Formless
+	DISPLAY("ลดความเสียหายที่ได้รับจากประเภท Insect%");	//bSubRace,RC_Insect
+	DISPLAY("ลดความเสียหายที่ได้รับจากประเภท Plant%");	//bSubRace,RC_Plant
+	DISPLAY("ลดความเสียหายที่ได้รับจากประเภท Player Human%");	//bSubRace,RC_Player_Human
+	DISPLAY("ลดความเสียหายที่ได้รับจากประเภท Player Doram%");	//bSubRace,RC_Player_Doram
+	DISPLAY("ลดความเสียหายที่ได้รับจากประเภท Undead%");	//bSubRace,RC_Undead	
+	DISPLAY("ลดความเสียหายที่ได้รับ Normal Monster%");	//bSubClass,Normal
+	DISPLAY("ลดความเสียหายที่ได้รับ Boss Monster%");	//bSubClass,BOSS
+	DISPLAY("ลดความเสียหายที่ได้รับจากธาตุ Dark");	//bSubEle,Ele_Dark
+	DISPLAY("ลดความเสียหายที่ได้รับจากธาตุ Earth");	//bSubEle,Ele_Earth
+	DISPLAY("ลดความเสียหายที่ได้รับจากธาตุ Fire");	//bSubEle,Ele_Fire
+	DISPLAY("ลดความเสียหายที่ได้รับจากธาตุ Ghost");	//bSubEle,Ele_Ghost
+	DISPLAY("ลดความเสียหายที่ได้รับจากธาตุ Holy");	//bSubEle,Ele_Holy
+	DISPLAY("ลดความเสียหายที่ได้รับจากธาตุ Neutral");	//bSubEle,Ele_Neutral
+	DISPLAY("ลดความเสียหายที่ได้รับจากธาตุ Poison");	//bSubEle,Ele_Poison
+	DISPLAY("ลดความเสียหายที่ได้รับจากธาตุ Undead");	//bSubEle,Ele_Undead
+	DISPLAY("ลดความเสียหายที่ได้รับจากธาตุ Water");	//bSubEle,Ele_Water
+	DISPLAY("ลดความเสียหายที่ได้รับจากธาตุ Wind");	//bSubEle,Ele_Wind
+end;
+
+OnOpen:
+	callfunc "opencollection";
+end;
+
+function DISPLAY {
+	for(set .@i,0 ; .@i < @inventorylist_count+5 ; .@i++){
+		//dispbottom ""+getd("@COL_DESC_"+.@i+"$");
+		if(getd("@COL_DESC_"+.@i+"$") == getarg(0)){
+			dispbottom getarg(0)+" + "+getd("@COL_VAL_"+.@i);
+			//mes getarg(0)+" + "+getd("@COL_VAL_"+.@i);
+			return;
+		}
+	}
+	dispbottom getarg(0)+" + 0";
+	//mes getarg(0)+" + 0";
+	return;
+}
+
+function ADD {
+	//dispbottom "x"+getarg(0);
+	for(set .@i,0 ; .@i < @inventorylist_count+5 ; .@i++){
+		if(getd("@COL_DESC_"+.@i+"$") == getarg(0)){
+			setd "@COL_VAL_"+.@i, getd("@COL_VAL_"+.@i)+getarg(1);
+			return;
+		}else if(getd("@COL_DESC_"+.@i+"$") == ""){
+			setd "@COL_DESC_"+.@i+"$",getarg(0);
+			setd "@COL_VAL_"+.@i,getarg(1);
+			return;
+		}
+	}
+	return;
+}
+function calbonus {
+	switch(getarg(0)){
+	//break;
+	//bMaxSP bMaxHP
+		case 19836:
+			bonus bMaxHP,50;
+			ADD("HP",50);	//add info 
+			break;
+		case 20325:
+			bonus bMaxHP,50;
+			ADD("HP",50);	//add info 
+			break;
+		//case 20430:
+		//	bonus bMaxHP,50;
+		//	ADD("HP",50);	//add info 
+		//	break;
+		//case 20448:
+		//	bonus bMaxHP,50;
+		//	ADD("HP",50);	//add info 
+		//	break;
+		//case 20519:
+		//	bonus bMaxHP,50;
+		//	ADD("HP",50);	//add info 
+		//	break;
+		//case 31816:
+		//	bonus bMaxHP,50;
+		//	ADD("HP",50);	//add info 
+		//	break;
+		//case 18740:
+		//	bonus bMaxHP,50;
+		//	ADD("HP",50);	//add info 
+		//	break;
+		//case 31867:
+		//	bonus bMaxHP,50;
+		//	ADD("HP",50);	//add info 
+		//	break;
+		//case 31868:
+		//	bonus bMaxHP,50;
+		//	ADD("HP",50);	//add info 
+		//	break;
+		//case 31869:
+		//	bonus bMaxHP,50;
+		//	ADD("HP",50);	//add info 
+		//	break;
+		//case 31870:
+		//case 31871:
+		//case 31772:
+		//case 31773:
+		//case 31774:
+		//case 31776:
+		//case 31777:
+		//case 31778:
+		//case 31779:
+		//case 19158:
+		//case 20248:
+		//case 20249:
+		//case 20250:
+		//case 31533:
+		//case 31548:
+		//case 31621:
+		//case 31623:
+		//case 31693:
+		//case 20597:
+		//case 20607:
+		//	bonus bMaxHP,50;
+		//	ADD("HP",50);	//add info 
+		//	break;
+	//	case 31885:
+	//		bonus bMaxHP,50;
+	//		bonus bMaxSP,10;
+	//		ADD("HP",50);	//add info 
+	//		ADD("SP",10);	//add info 
+	//		break;
+	//	case 19776:
+	//		bonus bMaxHP,100;
+	//		bonus bMaxSP,10;
+	//		ADD("HP",50);	//add info 
+	//		ADD("SP",10);	//add info 
+	//		break;
+	//	case 3000124:
+	//	case 31849:
+	//		bonus bMaxHP,150;
+	//		bonus bMaxSP,30;
+	//		ADD("HP",50);	//add info 
+	//		ADD("SP",30);	//add info 
+	//		break;
+	//	case 20594:
+	//	case 20605:
+	//	case 20727:
+	//		bonus bMaxSP,10;
+	//		ADD("SP",10);	//add info 
+	//		break;
+	//	case 31100:
+	//	case 31101:
+	//	case 31102:
+	//	case 31103:
+	//	case 31104:
+	//	case 31551:
+	//		bonus bMaxSP,5;
+	//		ADD("SP",5);	//add info 
+	//		break;
+	//	// bBaseAtk + bMatk
+	//	case 31754:
+	//	case 31755:
+	//	case 31756:
+	//	case 31757:
+	//		bonus bBaseAtk,1;
+	//		ADD("Atk",1);	//add info 
+	//		break;
+	//	case 31758:
+	//	case 31759:
+	//	case 31760:
+	//	case 31761:
+	//		bonus bMatk,1;
+	//		ADD("MAtk",1);	//add info 
+	//		break;
+	//		
+	//	case 20514:
+	//	case 20516:
+	//	case 20526:
+	//	case 20528:
+	//	case 20541:
+	//	case 20543:
+	//	case 20570:
+	//	case 20546:
+	//	case 20582:
+	//	case 20588:
+	//	case 20599:
+	//	case 20602:
+	//	case 20603:
+	//	case 20604:
+	//	case 20988:
+	//	case 31299:
+	//	case 31300:
+	//	case 31317:
+	//	case 31452:
+	//	case 31614:
+	//	case 31615:
+	//	case 31872:
+	//	case 31873:
+	//	case 31770:
+	//	case 31771:
+	//	case 31775:
+	//		bonus bBaseAtk,3;
+	//		bonus bMatk,3;
+	//		ADD("Atk",3);	//add info 
+	//		ADD("MAtk",3);	//add info 
+	//		break;
+	//		
+	//	// ATK/MATK%
+	//	case 31721:
+	//	case 19291:
+	//		bonus2 bAddClass,Class_All,1;
+	//		bonus bMatkRate,1;
+	//		ADD("ATK%",1);	//add info 
+	//		ADD("MATK%",1);	//add info 
+	//		break;
+	//		
+	//	case 3300001:
+	//	case 3300005:
+	//	case 3000013:
+	//	case 3000014:
+	//	case 3000002:
+	//	case 3000003:
+	//	case 3000004:
+	//	case 3000007:
+	//	case 3200000:
+	//	case 3200004:
+	//	case 3200144:
+	//	case 31566:
+	//	case 31616:
+	//		bonus2 bAddClass,Class_All,1;
+	//		bonus bMatkRate,1;
+	//		bonus bMaxHP,150;
+	//		ADD("ATK%",1);	//add info 
+	//		ADD("MATK%",1);	//add info 
+	//		ADD("HP",150);	//add info 
+	//		break;
+	//		
+	//	// EXP DROP
+	//	case 3300003:
+	//	case 3300004:
+	//	case 3100000:
+	//	case 3100001:
+	//	case 3100006:
+	//	case 3100007:
+	//	case 3200001:
+	//	case 3200002:
+	//	case 3100035:
+	//	case 31589:
+	//		bonus2 bExpAddRace,RC_All,3;
+	//		bonus2 bDropAddRace,RC_All,2;
+	//		ADD("EXP%",3);	//add info 
+	//		ADD("Drop%",2);	//add info 
+	//		break;
+	//	case 3000143:
+	//		bonus2 bExpAddRace,RC_All,2;
+	//		ADD("EXP%",2);	//add info 
+	//		break;
+	//	case 3130005:
+	//	case 3130009:
+	//	case 3130010:
+	//	case 3130011:
+	//		bonus2 bExpAddRace,RC_All,3;
+	//		ADD("EXP%",3);	//add info 
+	//		break;
+	//	// bAddClass,Class_Boss
+	//	case 19781:
+	//	case 19834:
+	//	case 31940:
+	//	case 31951:
+	//	case 3000012:
+	//	case 3000008:
+	//	case 3000009:
+	//	case 3200005:
+	//	case 3200006:
+	//	case 3300093:
+	//	case 20590:
+	//	case 3000204:
+	//		bonus2 bAddClass,Class_Boss,1;
+	//		bonus2 bMagicAddClass,Class_Boss,1;
+	//		ADD("เพิ่มความเสียหายต่อ Boss Monster%",1);	//add info 
+	//		break;
+	//	// bAddSize bMagicAddSize
+	//	case 3300000:
+	//	case 3300002:
+	//	case 3300006:
+	//	case 3300007:
+	//	case 3000010:
+	//	case 3000011:
+	//	case 3000000:
+	//	case 3000001:
+	//	case 3100002:
+	//	case 3100003:
+	//	case 31538:
+	//	case 3200105:
+	//	case 2984721:
+	//	case 2984722:
+	//	case 2984723:
+	//	case 2984726:
+	//	case 2984730:
+	//		bonus2 bAddSize,Size_Medium,1;
+	//		bonus2 bMagicAddSize,Size_Medium,1;
+	//		ADD("เพิ่มความเสียหายต่อมอนเตอร์ขนาดกลาง%",1);	//add info 
+	//		break;
+	//	// bSubSize
+	//	case 3100004:
+	//	case 3100005:
+	//	case 3200003:
+	//	case 3100069:
+	//	case 31120:
+	//	case 3000005:
+	//	case 3000006:
+	//		bonus2 bSubSize,Size_Medium,1;
+	//		ADD("ลดความเสียหายที่ได้รับจากมอนเตอร์ขนาดกลาง%",1);	//add info 
+	//		break;
+	//	case 2984720:
+	//	case 2984724:
+	//	case 2984725:
+	//	case 2984731:
+	//		bonus bLongAtkDef,1;
+	//		ADD("ป้องกันการโจมตีระยะไกล%",1);
+	//		break;
+	//	case 2984727:
+	//	case 2984728:
+	//	case 2984729:
+	//		bonus2 bSubRace,RC_Player_Human,1;
+	//		bonus2 bSubRace,RC_DemiHuman,1;
+	//		ADD("ลดความเสียหายที่ได้รับจากประเภท Player Human%",1);
+	//		ADD("ลดความเสียหายที่ได้รับจากประเภท Demi Human%",1);
+	//		break;
+		default:
+			break;
+	}
+	return;
+}
+
+
+end;
+
+}
+
+-	shop	collection_shop	-1,19836:1000,20325:1000,20430:1000,20448:1000,20514:1000,20516:1000,20519:1000,20526:1000,20528:1000,20541:1000,20543:1000,20570:1000,20546:1000,20582:1000,20588:1000,20597:1000,20594:1000,20599:1000,20602:1000,20603:1000,20604:1000,20605:1000,20607:1000,20727:1000,20988:1000,31721:1000,31816:1000,31885:1000,18740:1000,19158:1000,19291:1000,19776:1000,19781:1000,19834:1000,20248:1000,20249:1000,20250:1000,31100:1000,31101:1000,31102:1000,31103:1000,31104:1000,31299:1000,31300:1000,31317:1000,31452:1000,31533:1000,31548:1000,31551:1000,31614:1000,31615:1000,31621:1000,31623:1000,31693:1000,31940:1000,31951:1000,3300000:1000,3300001:1000,3300002:1000,3300003:1000,3300004:1000,3300005:1000,3300006:1000,3300007:1000,3000008:1000,3000009:1000,3000010:1000,3000011:1000,3000012:1000,3000013:1000,3000014:1000,3000000:1000,3000001:1000,3000002:1000,3000003:1000,3000004:1000,3000005:1000,3000006:1000,3000007:1000,3100000:1000,3100001:1000,3100002:1000,3100003:1000,3100004:1000,3100005:1000,3100006:1000,3100007:1000,3200000:1000,3200001:1000,3200002:1000,3200003:1000,3200004:1000,3200005:1000,3200006:1000,3300093:1000,20590:1000,3000204:1000,3000124:1000,31589:1000,31849:1000,3100035:1000,3100069:1000,31120:1000,31538:1000,3200105:1000,3200144:1000,31566:1000,31616:1000,31867:1000,31868:1000,31869:1000,31870:1000,31871:1000,31872:1000,31873:1000,31770:1000,31771:1000,31772:1000,31773:1000,31774:1000,31775:1000,31776:1000,31777:1000,31778:1000,31779:1000,31754:1000,31755:1000,31756:1000,31757:1000,31758:1000,31759:1000,31760:1000,31761:1000,2984720:1000,2984721:1000,2984722:1000,2984723:1000,2984724:1000,2984725:1000,2984726:1000,2984727:1000,2984728:1000,2984729:1000,2984730:1000,2984731:1000

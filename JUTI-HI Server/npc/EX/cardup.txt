@@ -1,0 +1,131 @@
+sec_pri,21,31,3	script	รับคอลเลคชั่น	564,{
+/*
+if (#collection>0){
+mes "[รับคอลเลคชั่น]";
+mes "รับได้ครั้งเดียวเพื่อน";
+end;
+}
+*/
+
+getitem 53000,1;
+getitem 53001,1;
+getitem 53002,1;
+getitem 53003,1;
+getitem 53004,1;
+getitem 53005,1;
+getitem 53006,1;
+getitem 53007,1;
+getitem 53008,1;
+getitem 53009,1;
+getitem 53010,1;
+getitem 53011,1;
+getitem 53012,1;
+getitem 53013,1;
+getitem 53014,1;
+getitem 53015,1;
+getitem 53016,1;
+getitem 53017,1;
+getitem 53018,1;
+getitem 53019,1;
+getitem 53020,1;
+getitem 53021,1;
+getitem 53022,1;
+getitem 53023,1;
+getitem 53024,1;
+getitem 53025,1;
+getitem 53026,1;
+getitem 53027,1;
+getitem 53028,1;
+getitem 53029,1;
+getitem 53030,1;
+getitem 53031,1;
+getitem 53032,1;
+getitem 53033,1;
+getitem 53034,1;
+getitem 53035,1;
+getitem 53036,1;
+getitem 53037,1;
+getitem 53038,1;
+getitem 53039,1;
+getitem 53040,1;
+getitem 53041,1;
+getitem 53042,1;
+getitem 53043,1;
+getitem 53044,1;
+getitem 53045,1;
+getitem 53046,1;
+getitem 53047,1;
+getitem 53048,1;
+getitem 53049,1;
+getitem 53050,1;
+getitem 54000,1;
+getitem 54001,1;
+getitem 54002,1;
+getitem 54003,1;
+getitem 54004,1;
+getitem 54005,1;
+getitem 54006,1;
+getitem 54007,1;
+getitem 54008,1;
+getitem 54009,1;
+getitem 54010,1;
+getitem 54011,1;
+
+//getitem 3300008,1;
+//getitem 3300046,1;
+//getitem 3300086,1;
+//getitem 3300101,1;
+//getitem 3300009,1;
+//getitem 3300026,1;
+//getitem 3300025,1;
+//getitem 3300048,1;
+//getitem 3300092,1;
+//getitem 3300100,1;
+//getitem 3300000,1;
+//getitem 3300001,1;
+//getitem 3300002,1;
+//getitem 3300003,1;
+//getitem 3300004,1;
+//getitem 3300005,1;
+//getitem 3300006,1;
+//getitem 3300007,1;
+//getitem 3300129,1;
+//getitem 3300130,1;
+
+getitem 58301,1;
+getitem 58302,1;
+getitem 58303,1;
+getitem 58304,1;
+getitem 58305,1;
+getitem 58306,1;
+getitem 58307,1;
+getitem 58308,1;
+getitem 58309,1;
+getitem 58310,1;
+getitem 58311,1;
+getitem 58312,1;
+getitem 58313,1;
+getitem 58314,1;
+getitem 58315,1;
+getitem 58316,1;
+getitem 58317,1;
+getitem 58318,1;
+getitem 58319,1;
+getitem 58320,1;
+
+
+set #collection,1;
+set #CASHPOINTS,50000;
+set #BONUSPOINTS,2500;
+set #REFILLPOINTS3000,3000;
+set zeny,2000000000;
+atcommand "@allstats";
+jutilv += 184;
+warp "SavePoint",0,0;
+end;
+
+OnInit: 
+waitingroom "    กดเบา ๆ",0; 
+end;
+
+}

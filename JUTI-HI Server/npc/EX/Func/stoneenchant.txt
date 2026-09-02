@@ -1,0 +1,401 @@
+morocc,144,63,4	script	Enchant Costume Stone#HML	4_CAT_ADV1,{
+  	disable_items;
+  	mes "[Aver De Dosh]";
+  	mes "ยินดีต้อนรับสู่ Fashion Stone!!";
+  	next;
+  	mes "[Aver De Dosh]";
+  	mes "หากเจ้าต้องการสไตล์เท่ๆ สำหรับหมวกคอสตูมของเจ้า โปรดมาหาข้าที่ 'Aver De Dosh'!";
+  	mes "อย่าลืมนำ^ff0000หมวกคอสตูมและหินคอสตูมมาเองด้วยนะ^000000~";
+  	next;
+  	if (select( "เสริมความสามารถ", "จบการสนทนา." ) == 2) {
+  		mes "[Aver De Dosh]";
+  		mes "โปรดตรวจสอบบริการอัปเกรดอื่นๆ ของเรา~";
+  		close;
+  	}
+  	if (checkweight(1119,3) == 0) {
+  		mes "[Aver De Dosh]";
+  		mes "ดูเหมือนว่าเจ้ามีของมากเกินไป";
+  		mes "กลับมาอีกครั้งหลังจากจัดการกระเป๋าเรียบร้อย";
+  		close;
+  	}
+  	.@eq_top = getequipid(EQI_COSTUME_HEAD_TOP);
+  	.@eq_mid = getequipid(EQI_COSTUME_HEAD_MID);
+  	.@eq_low = getequipid(EQI_COSTUME_HEAD_LOW);
+  
+  	if (.@eq_top == -1 && .@eq_mid == -1 && .@eq_low == -1) {
+  		mes "[Aver De Dosh]";
+  		mes "เจ้าต้องสวมใส่ไอเทมที่เจ้าต้องการเพิ่มความสามารถ";
+  		close;
+  	}
+  	if (.@eq_top > -1) {
+  		.@part = EQI_COSTUME_HEAD_TOP;
+  		.@equip_id = .@eq_top;
+  	}
+  	else if (.@eq_mid > -1) {
+  		.@part = EQI_COSTUME_HEAD_MID;
+  		.@equip_id = .@eq_mid;
+  	}
+  	else if (.@eq_low > -1) {
+  		.@part = EQI_COSTUME_HEAD_LOW;
+  		.@equip_id = .@eq_low;
+  	}
+    
+	setarray .@equip_bitmask[0],
+		EQP_ACC_L,				// EQI_ACC_L
+		EQP_ACC_R,				// EQI_ACC_R
+		EQP_SHOES,				// EQI_SHOES
+		EQP_GARMENT,			// EQI_GARMENT
+		EQP_HEAD_LOW,			// EQI_HEAD_LOW
+		EQP_HEAD_MID,			// EQI_HEAD_MID
+		EQP_HEAD_TOP,			// EQI_HEAD_TOP
+		EQP_ARMOR,				// EQI_ARMOR
+		EQP_HAND_L,				// EQI_HAND_L
+		EQP_HAND_R,				// EQI_HAND_R
+		EQP_COSTUME_HEAD_TOP,	// EQI_COSTUME_HEAD_TOP
+		EQP_COSTUME_HEAD_MID,	// EQI_COSTUME_HEAD_MID
+		EQP_COSTUME_HEAD_LOW,	// EQI_COSTUME_HEAD_LOW
+		EQP_COSTUME_GARMENT,	// EQI_COSTUME_GARMENT
+		EQP_AMMO,				// EQI_AMMO
+		EQP_SHADOW_ARMOR,		// EQI_SHADOW_ARMOR
+		EQP_SHADOW_WEAPON,		// EQI_SHADOW_WEAPON
+		EQP_SHADOW_SHIELD,		// EQI_SHADOW_SHIELD
+		EQP_SHADOW_SHOES,		// EQI_SHADOW_SHOES
+		EQP_SHADOW_ACC_R,		// EQI_SHADOW_ACC_R
+		EQP_SHADOW_ACC_L;		// EQI_SHADOW_ACC_L
+	
+	getinventorylist;	// required for now for getitembound4 to keep the enchant grade
+	for ( .@i = 0; .@i < @inventorylist_count; ++.@i ) {
+		if ((@inventorylist_equip[.@i] & .@equip_bitmask[.@part]))
+			break;
+	}
+	setarray .@opt_id[0], @inventorylist_option_id1[.@i], @inventorylist_option_id2[.@i], @inventorylist_option_id3[.@i], @inventorylist_option_id4[.@i], @inventorylist_option_id5[.@i];
+	setarray .@opt_value[0], @inventorylist_option_value1[.@i], @inventorylist_option_value2[.@i], @inventorylist_option_value3[.@i], @inventorylist_option_value4[.@i], @inventorylist_option_value5[.@i];
+	setarray .@opt_param[0], @inventorylist_option_parameter1[.@i], @inventorylist_option_parameter2[.@i], @inventorylist_option_parameter3[.@i], @inventorylist_option_parameter4[.@i], @inventorylist_option_parameter5[.@i];
+	
+  	.@location = getiteminfo(.@equip_id, 5);
+  	.@equip_refine = getequiprefinerycnt(.@part);
+  	setarray .@card[0], getequipcardid(.@part, 0), getequipcardid(.@part, 1), getequipcardid(.@part, 2), getequipcardid(.@part, 3);
+  
+  	mes "[Aver De Dosh]";
+  	mes "Wow~ มันคือ ^0000FF" + getitemname(.@equip_id) + "^000000!!! ดูเหมาะกับเจ้ามาก!!";
+  	mes "เจ้าต้องการใช้หินชนิดใดในการเสริมพลัง?";
+  	next;
+  	if (.@part == EQI_COSTUME_HEAD_TOP)
+  		.@slot = select( "ส่วนหัว", "ส่วนตา", "ส่วนปาก", "ยกเลิก" ) - 1;	// the slot enchanted changes according to the location
+  	else if (.@part == EQI_COSTUME_HEAD_MID)
+  		.@slot = select( "", "ส่วนตา", "ส่วนปาก", "ยกเลิก" ) - 1;
+  	else if (.@part == EQI_COSTUME_HEAD_LOW)
+  		.@slot = 2;
+  
+  	switch(.@slot) {
+  	case 0:
+  		if (!(.@location & 1024)) {
+  			mes "[Aver De Dosh]";
+  			mes "ไม่สามารถเสริมประสิทธิภาพเครื่องแต่งกายได้ที่ตำแหน่งนี้";	// custom
+  			close;
+  		}
+  		setarray .@stone_id[0],
+  			2982000, 2982000,	//STR + 1
+  			2982001, 2982001,	//INT + 1
+  			2982002, 2982002,	//AGI + 1
+  			2982003, 2982003,	//DEX + 1
+  			2982004, 2982004,	//VIT + 1
+  			2982005, 2982005,	//LUK + 1
+  			2982006, 2982006,	//DEF + 5
+  			2982007, 2982007,	//MDEF + 1
+  			2982008, 2982008,	//HIT + 5
+  			2982009, 2982009,	//FLEE+ 5
+  			2982010, 2982010,	//HP Recovery + 5%
+  			2982011, 2982011;	//SP Recovery + 5%
+
+			
+  		break;
+  	case 1:
+  		if (!(.@location & 2048)) {
+  			mes "[Aver De Dosh]";
+  			mes "ไม่สามารถเสริมประสิทธิภาพเครื่องแต่งกายได้ที่ตำแหน่งนี้.";	// custom
+  			close;
+  		}
+  		setarray .@stone_id[0],
+  			2982012, 2982012,	// ATK + 1 %
+  			2982013, 2982013,	// MATK + 1 %
+  			2982014, 2982014,	// Long Ranged DMG + 1%
+  			2982015, 2982015,	// Reduce SP of skills + 5%
+  			2982016, 2982016,	// ASPD + 1%
+  			2982017, 2982017,	// CRI DMG  + 1%
+  			2982018, 2982018,	// MaxHP + 3%
+  			2982019, 2982019,	// MaxSP + 3%
+  			2982020, 2982020,	// Stun Resistance + 5 %
+  			2982021, 2982021,	// Sleep Resistance + 5 %
+  			2982022, 2982022,	// Silence Resistance + 5 %
+  			2982023, 2982023,	// Stone Resistance + 5 %
+  			2982024, 2982024;	// Frozen Resistance + 5 %
+  			
+  		break;
+  	case 2:
+  		if (!(.@location & 4096)) {
+  			mes "[Aver De Dosh]";
+  			mes "ไม่สามารถเสริมประสิทธิภาพเครื่องแต่งกายได้ที่ตำแหน่งนี้.";	// custom
+  			close;
+  		}
+  		setarray .@stone_id[0],
+  			2982025, 2982025,	// ATK BOSS + 5 % (Py+Mg)
+  			2982026, 2982026,	// BOSS Resistance + 5%
+  			2982027, 2982027,	// Formless Resistance + 5 %
+  			2982028, 2982028,	// Undead Resistance + 5 %
+  			2982029, 2982029,	// Brute Resistance + 5 %
+  			2982030, 2982030,	// Plant Resistance + 5 %
+  			2982031, 2982031,	// Insect Resistance + 5 %
+  			2982032, 2982032,	// Fish Resistance + 5 %
+  			2982033, 2982033,	// Demon Resistance + 5 %
+  			2982034, 2982034,	// Angel Resistance + 5 %
+  			2982035, 2982035,	// Dragon Resistance + 5 %
+  			2982036, 2982036,	// Human Resistance + 5 %
+  			2982063, 2982063,	// MaxHP +250
+  			2982064, 2982064,	// MaxSP +50
+  			2982065, 2982065,	//	ลดระยะเวลาร่ายเวทย์ 5%
+  			2982066, 2982066;	//	ลด Delay การใช้สกิลลง -5%
+  		break;
+  	default:
+  		mes "[Aver De Dosh]";
+  		mes "โปรดตรวจสอบบริการอัปเกรดอื่นๆ ของเรา~";
+  		close;
+  	}
+  	.@size = getarraysize(.@stone_id);
+  	for ( .@i = 0; .@i < .@size; .@i += 2 )
+  		.@menu$ += sprintf( "%d. %s [%d] left:", (.@i/2)+1, getitemname(.@stone_id[.@i]), countitem(.@stone_id[.@i]) );
+  	.@s = (select(.@menu$) - 1) * 2;
+  	.@stone = .@stone_id[.@s];
+  	.@enchant = .@stone_id[.@s+1];
+  
+  	if (getequipid(.@part) < 0 || countitem(.@stone) < 1) {
+  		mes "[Aver De Dosh]";
+  		mes "อืม? คิดว่าเจ้าขาดส่วนผสม";
+  		mes "เจ้าต้องมีทั้งไอเท็มเครื่องแต่งกายและหินความสามารถสำหรับงานอเสริมพลังนี้";
+  		close;
+  	}
+  	mes "^FF0000   !!! คำเตือน !!!^000000";
+  	mes "^FF0000การเสริมพลังนี้อาจล้มเหลวได้.^000000";
+  	mes "^FF0000หากไอเทมมีการเสริมพลังอยู่แล้ว,^000000";
+  	mes "^FF0000เราจะทำการล้างการเสริมพลังนั้น.^000000";
+  	mes "^FF0000เจ้าแน่ใจนะว่าต้องการเสริมพลัง?^000000";
+  	next;
+  	if (select( "แน่นอน.", "ไม่เอาน่ากลัว." ) == 2) {
+  		mes "[Aver De Dosh]";
+  		mes "โปรดตรวจสอบบริการอัปเกรดอื่นๆ ของเรา~";
+  		close;
+  	}
+  	delitem .@stone, 1;
+  
+  	// anti-hack
+  	if (callfunc("F_IsEquipIDHack", .@part, .@equip_id) || callfunc("F_IsEquipCardHack", .@part, .@card[0], .@card[1], .@card[2], .@card[3]) || callfunc("F_IsEquipRefineHack", .@part, .@equip_refine))
+  		close;
+  
+  	delequip .@part;
+  	if (rand(1,100) < 50) {
+  		mes "[Aver De Dosh]";
+  		mes "Wow... Elegance!!";
+  		mes "มันสมบูรณ์แบบ... Wow!";
+  		.@card[.@slot] = .@enchant;
+  	}
+  	else {
+  		mes "[Aver De Dosh]";
+  		mes "ประวัติศาสตร์เป็นที่รู้จักสำหรับความล้มเหลว...";
+  		mes "ประวัติศาสตร์แฟชั่นยังเป็นเช่นนั้น...";
+  		mes "ขอโทษ...ที่ทำให้ผิดหวัง..~ LOL.";
+  		.@card[.@slot] = .@card[.@slot];
+  	}
+  	//getitem2 .@equip_id,1,1,.@equip_refine,0,.@card[0],.@card[1],.@card[2],.@card[3];
+	getitem3( .@equip_id,1,1,.@equip_refine,0,.@card[0],.@card[1],.@card[2],.@card[3], .@opt_id, .@opt_value, .@opt_param );
+  	close;
+	
+	
+OnInit:
+waitingroom "ออฟหินคอส หัว/หู/ปาก",0;
+end;
+  }
+  
+// Costume enchant (garment)
+morocc,143,59,4	script	Enchant Costume Stone#Gament	4_CAT_ADV2,{
+	disable_items;
+	mes "[Lace La Zard]";
+	mes "ยินดีต้อนรับสู่ Fashion Stone!!";
+	mes "ข้าคือ Lace La Zard ผู้ที่จะทำให้ความฝัน 'Power Shoulder' ของเจ้าเป็นจริง.";
+	next;
+	mes "[Lace La Zard]";
+	mes "นำ ^ff0000Costume Garment^000000 และ ^ff0000Garment Stone^000000 ของเจ้ามา ข้าจะเสริมพลังที่สมบูรณ์แบบให้เจ้า!";
+	mes "ข้าพบสูตรนี้ในขณะที่กำลังปรับปรุงร่างกายอันต่ำต้อยของตัวเอง!";
+	next;
+	if (select( "เสริมพลัง.", "จบการสนทนา." ) == 2) {
+		mes "[Lace La Zard]";
+		mes "ใช่? เจ้าต้องการที่จะดูมากขึ้น?";
+		close;
+	}
+	if (checkweight(1119,3) == 0) {
+		mes "[Lace La Zard]";
+		mes "ก็... ไหล่ของเจ้าดูไม่น่าจะอัพเกรดอะไรได้อีก...!";
+		mes "อย่าใจร้ายกับไหล่ของเจ้า!";
+		next;
+		mes "ดูเหมือนว่าเจ้ามีของมากเกินไป";
+		mes "กลับมาอีกครั้งหลังจากจัดการกระเป๋าเรียบร้อย";
+		close;
+	}
+	
+	.@part = EQI_COSTUME_GARMENT;
+	.@equip_id = getequipid(.@part);
+	setarray .@equip_bitmask[0],
+		EQP_ACC_L,				// EQI_ACC_L
+		EQP_ACC_R,				// EQI_ACC_R
+		EQP_SHOES,				// EQI_SHOES
+		EQP_GARMENT,			// EQI_GARMENT
+		EQP_HEAD_LOW,			// EQI_HEAD_LOW
+		EQP_HEAD_MID,			// EQI_HEAD_MID
+		EQP_HEAD_TOP,			// EQI_HEAD_TOP
+		EQP_ARMOR,				// EQI_ARMOR
+		EQP_HAND_L,				// EQI_HAND_L
+		EQP_HAND_R,				// EQI_HAND_R
+		EQP_COSTUME_HEAD_TOP,	// EQI_COSTUME_HEAD_TOP
+		EQP_COSTUME_HEAD_MID,	// EQI_COSTUME_HEAD_MID
+		EQP_COSTUME_HEAD_LOW,	// EQI_COSTUME_HEAD_LOW
+		EQP_COSTUME_GARMENT,	// EQI_COSTUME_GARMENT
+		EQP_AMMO,				// EQI_AMMO
+		EQP_SHADOW_ARMOR,		// EQI_SHADOW_ARMOR
+		EQP_SHADOW_WEAPON,		// EQI_SHADOW_WEAPON
+		EQP_SHADOW_SHIELD,		// EQI_SHADOW_SHIELD
+		EQP_SHADOW_SHOES,		// EQI_SHADOW_SHOES
+		EQP_SHADOW_ACC_R,		// EQI_SHADOW_ACC_R
+		EQP_SHADOW_ACC_L;		// EQI_SHADOW_ACC_L
+	
+	getinventorylist;	// required for now for getitembound4 to keep the enchant grade
+	for ( .@i = 0; .@i < @inventorylist_count; ++.@i ) {
+		if ((@inventorylist_equip[.@i] & .@equip_bitmask[.@part]))
+			break;
+	}
+	setarray .@opt_id[0], @inventorylist_option_id1[.@i], @inventorylist_option_id2[.@i], @inventorylist_option_id3[.@i], @inventorylist_option_id4[.@i], @inventorylist_option_id5[.@i];
+	setarray .@opt_value[0], @inventorylist_option_value1[.@i], @inventorylist_option_value2[.@i], @inventorylist_option_value3[.@i], @inventorylist_option_value4[.@i], @inventorylist_option_value5[.@i];
+	setarray .@opt_param[0], @inventorylist_option_parameter1[.@i], @inventorylist_option_parameter2[.@i], @inventorylist_option_parameter3[.@i], @inventorylist_option_parameter4[.@i], @inventorylist_option_parameter5[.@i];
+
+
+	if (.@equip_id == -1) {
+		mes "[Lace La Zard]";
+		mes "สวมใส่เสื้อผ้าไว้บนไหล่ของเจ้าก่อน";
+		mes "ข้าต้องดูเพื่อตรวจสอบความเป็นไปได้ในการเสริมพลัง ..";
+		close;
+	}
+
+	.@equip_refine = getequiprefinerycnt(.@part);
+	setarray .@card[0], getequipcardid(.@part, 0), getequipcardid(.@part, 1), getequipcardid(.@part, 2), getequipcardid(.@part, 3);
+
+	mes "[Lace La Zard]";
+	mes "Wow ^0000FF" + getitemname(.@equip_id) + "^000000!!! เจ้ามีความรู้สึกบางอย่างใช่ไหม?";
+	mes "เยี่ยม!! ข้าพร้อมจะสเริมพลังเต็มทีแล้ว!!";
+	next;
+	setarray .@data$[0],
+		2982037, 2982037, "Brandish Spear Stone",		// Brandish Spear Damage + 5 %
+		2982038, 2982038, "Pierce Stone",				// Pierce Damage + 5 %
+		2982039, 2982039, "Bowling Bash Stone",			// Bowling Bash Damage + 5 %
+		2982040, 2982040, "Holy Cross Stone",			// Holy Cross Damage + 5 %
+		2982041, 2982041, "Grand Cross Stone",			// Grand Cross Damage + 5 %
+		2982042, 2982042, "Shield Boomerang Stone",		// Shield Boomerang Damage + 5 %
+		2982043, 2982043, "Meteor Storm Stone",			// Meteor Storm Damage + 5 %
+		2982044, 2982044, "Lord of Vermillion Stone",	// Lord of Vermillion Damage + 5 %
+		2982045, 2982045, "Storm Gust Stone",			// Storm Gust Damage + 5 %
+		2982046, 2982046, "Heaven Drive Stone",			// Heaven Drive Damage + 5 %
+		2982047, 2982047, "Earth Spike Stone",			// Earth Spike Damage + 5 %
+		2982048, 2982048, "Land Mine Stone",			// Land Mine Damage + 5 %
+		2982049, 2982049, "Sharp Shooting Stone",		// Sharp Shooting Damage + 5 %
+		2982050, 2982050, "Falcon Assault Stone",		// Falcon Assault Damage + 5 %
+		2982051, 2982051, "Arrow Vulcan Stone",			// Arrow Vulcan Damage + 5 %
+		2982052, 2982052, "Magnus Exorcismus Stone",	// Magnus Exorcismus Damage + 5 %
+		2982053, 2982053, "Asura Strike Stone",			// Asura Strike Damage + 5 %
+		2982054, 2982054, "Mammonite Stone",			// Mammonite Damage + 5 %
+		2982055, 2982055, "Cart Termination Stone",		// Cart Termination Damage + 5 %
+		2982056, 2982056, "Cart Revolution Stone",		// Cart Revolution Damage + 5 %
+		2982057, 2982057, "Acid Demonstration Stone",	// Acid Demonstration Damage + 5 %
+		2982058, 2982058, "Sonic Blow Stone",			// Sonic Blow Damage + 5 %
+		2982059, 2982059, "Soul Breaker Stone",			// Soul Breaker Damage + 5 %
+		2982060, 2982060, "Meteor Assault Stone",		// Meteor Assault Damage + 5 %
+		2982061, 2982061, "Raid Stone",					// Raid Damage + 5 %
+		2982062, 2982062, "Double Strafing Stone",		// Double Strafing Damage + 5 %
+		2982067, 2982067, "Spiral Pierce Stone",        // Spiral Pierce Damage + 5 %
+		2982068, 2982068, "Bash Stone",                 // Bash Damage + 5 %
+		2982069, 2982069, "Jupitel Thunder Stone",      // Jupitel Thunder Damage + 5 %
+		2982070, 2982070, "Soul Strike Stone",          // Soul Strike Damage + 5 %
+		2982071, 2982071, "Cold Bolt Stone",            // Cold Bolt Damage + 5 %
+		2982072, 2982072, "Fire Bolt Stone",            // Fire Bolt Damage + 5 %
+		2982073, 2982073, "Lightning Bolt Stone",       // Lightning Bolt Damage + 5 %
+		2982074, 2982074, "Blast Mine Stone",           // Blast Mine Damage + 5 %
+		2982075, 2982075, "Claymore Trap Stone",        // Claymore Trap Damage + 5 %
+		2982076, 2982076, "Blitz Beat Stone",           // Blitz Beat Damage + 10 %
+		2982077, 2982077, "Holy Light Stone",           // Holy Light Damage + 5 %
+		2982078, 2982078, "Demonstration Stone",        // Demonstration Damage + 5 %
+		2982079, 2982079, "Grimtooth Stone";            // Grimtooth Damage + 5 %
+
+	.@size = getarraysize(.@data$);
+	for ( .@i = 0; .@i < .@size; .@i += 3 ) {
+		.@id = atoi(.@data$[.@i]);
+		.@menu$ += sprintf( "%d. %s (%d) left:", (.@j+1), getitemname(.@id), countitem(.@id) );
+		.@j++;
+	}
+	.@menu$ += "จบการสนทนา.";
+	.@s = (select(.@menu$) - 1) * 3;
+	if (.@s == .@size) {
+		mes "[Lace La Zard]";
+		mes "ใช่? เจ้าต้องการที่จะดูมากขึ้น?";
+		close;
+	}
+	.@id = atoi(.@data$[.@s]);
+	.@enchant = atoi(.@data$[.@s+1]);
+	.@enchant2 = atoi(.@data$[.@s+1]);
+	if (getequipid(.@part) < 0 || countitem(.@id) < 1) {
+		mes "[Lace La Zard]";
+		mes "เจ้าต้องมีทั้งไอเท็มเครื่องแต่งกายและหินความสามารถสำหรับงานเสริมพลังดนี้";
+		close;
+	}
+	mes "^FF0000   !!! คำเตือน !!!^000000";
+	mes "^ff0000การเสริมพลังนี้มีโอกาสล้มเหลว.^000000";
+	mes "^ff0000หากไอเทมมีความสามารถพิเศษอยู่แล้ว เราจะรีเซ็ตความสามารถของไอเทมและให้ " + .@data$[.@s+2] + ".^000000";
+	mes "^ff0000เจ้าพร้อมจะเสริมความสามารถหรือไม่?^000000";
+	next;
+	if (select( "Yes.", "No." ) == 2) {
+		mes "[Lace La Zard]";
+		mes "ใช่? เจ้าต้องการที่จะดูมากขึ้น?";
+		close;
+	}
+
+	// anti-hack
+	if (callfunc("F_IsEquipIDHack", .@part, .@equip_id) || callfunc("F_IsEquipCardHack", .@part, .@card[0], .@card[1], .@card[2], .@card[3]) || callfunc("F_IsEquipRefineHack", .@part, .@equip_refine))
+		close;
+
+	delitem .@id, 1;
+	delequip .@part;
+	if (rand(100) < 70) {
+		mes "[Lace La Zard]";
+		mes "เยี่ยม!!";
+		mes "นี่ข้าทำเองจริงๆหรอ!!!!";
+		if (.@id <= atoi(.@data$[10]) || .@id == 1000922 || .@id == 1001053 || .@id == 1001054 ) { 
+		.@card[0] = .@enchant;
+		}
+		if (.@id > atoi(.@data$[10]) && .@id != 1000922 && .@id != 1001053 && .@id != 1001054 ) { 
+		.@card[2] = .@enchant;
+		}
+	}
+	else {
+		mes "[Lace La Zard]";
+		mes "โอ้ไม่นะ!";
+		mes "พังงงงง!!!!! ข้าไม่สามารถแสดงความล้มเหลวนี้ให้โลกเห็นได้!!!";
+		if (.@id <= atoi(.@data$[10]) || .@id == 1000922 || .@id == 1001053 || .@id == 1001054 ) { 
+		.@card[0] = 0;
+		}
+		if (.@id > atoi(.@data$[10]) && .@id != 1000922 && .@id != 1001053 && .@id != 1001054 ) { 
+		.@card[2] = 0;
+		}
+	}
+	//getitem2 .@equip_id,1,1,.@equip_refine,0,.@card[0],.@card[1],.@card[2],.@card[3];
+	getitem3( .@equip_id,1,1,.@equip_refine,0,.@card[0],.@card[1],.@card[2],.@card[3], .@opt_id, .@opt_value, .@opt_param );
+	close;
+
+OnInit:
+waitingroom "  ออฟหินคอส ปีก",0;
+end;
+}

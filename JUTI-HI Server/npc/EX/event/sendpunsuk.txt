@@ -1,0 +1,224 @@
+/*
+morocc,168,70,3	script	ส่งรางวัลปันสุข	4_M_MELODY,{
+disable_items;
+mes "[ส่งรางวัลปันสุข]";
+mes "รางวัลทั้งหมดดรอปไปแล้วตอนนี้";
+mes "<ITEM>"+getitemname(3130012)+"<INFO>3130012</INFO></ITEM> \nดรอปไปแล้ว ^FF0000"+$topup1000+"/5^000000";
+mes "<ITEM>"+getitemname(3130013)+"<INFO>3130013</INFO></ITEM> \nดรอปไปแล้ว ^FF0000"+$topup500+"/5^000000";
+next;
+mes "[ส่งรางวัลปันสุข]";
+mes "รางวัลทั้งหมดดรอปไปแล้วตอนนี้";
+mes "<ITEM>"+getitemname(3130014)+"<INFO>3130014</INFO></ITEM> \nดรอปไปแล้ว ^FF0000"+$VC1000+"/10^000000";
+mes "<ITEM>"+getitemname(3130015)+"<INFO>3130015</INFO></ITEM> \nดรอปไปแล้ว ^FF0000"+$VC500+"/20^000000";
+next;
+if(countitem(3130012) < 1 && countitem(3130013) < 1 && countitem(3130014) < 1 && countitem(3130015) < 1 ){
+mes "[ส่งรางวัลปันสุข]";
+mes "ท่านไม่มีตั๋วปันสุขที่ส่งได้";
+close;
+}
+if(countitem(3130012) > 0){
+	mes "[ส่งรางวัลปันสุข]";
+	mes "ท่านต้องการส่งรางวัลปันสุข";
+	mes "<ITEM>"+getitemname(3130012)+"<INFO>3130012</INFO></ITEM>";
+	mes "เมื่อท่านทำการส่งจะสามารถ";
+	mes "รับรางวัลได้ตอน OBT";
+	mes "ท่าต้องการส่งใช่หรือไม่";
+	switch(select("ใช่ส่งเลย:ยังก่อน")){
+		case 1:
+		next;
+		delitem 3130012,1;
+		query_sql("INSERT INTO `punsuk` (account_id,amount) VALUES (" + getcharid(3) + ",1)");
+		mes "[ส่งรางวัลปันสุข]";
+		mes "ท่านได้ทำการส่ง";
+		mes "<ITEM>"+getitemname(3130012)+"<INFO>3130012</INFO></ITEM> เรียบร้อยแล้ว";
+		end;
+		case 2:
+		end;
+	}
+}
+if(countitem(3130013) > 0){
+	mes "[ส่งรางวัลปันสุข]";
+	mes "ท่านต้องการส่งรางวัลปันสุข";
+	mes "<ITEM>"+getitemname(3130013)+"<INFO>3130013</INFO></ITEM>";
+	mes "เมื่อท่านทำการส่งจะสามารถ";
+	mes "รับรางวัลได้ตอน OBT";
+	mes "ท่าต้องการส่งใช่หรือไม่";
+	switch(select("ใช่ส่งเลย:ยังก่อน")){
+		case 1:
+		next;
+		delitem 3130013,1;
+		query_sql("INSERT INTO `punsuk` (account_id,amount) VALUES (" + getcharid(3) + ",2)");
+		mes "[ส่งรางวัลปันสุข]";
+		mes "ท่านได้ทำการส่ง";
+		mes "<ITEM>"+getitemname(3130013)+"<INFO>3130013</INFO></ITEM> เรียบร้อยแล้ว";
+		end;
+		case 2:
+		end;
+	}
+}
+if(countitem(3130014) > 0){
+	mes "[ส่งรางวัลปันสุข]";
+	mes "ท่านต้องการส่งรางวัลปันสุข";
+	mes "<ITEM>"+getitemname(3130014)+"<INFO>3130014</INFO></ITEM>";
+	mes "เมื่อท่านทำการส่งจะสามารถ";
+	mes "รับรางวัลได้ตอน OBT";
+	mes "ท่าต้องการส่งใช่หรือไม่";
+	switch(select("ใช่ส่งเลย:ยังก่อน")){
+		case 1:
+		next;
+		delitem 3130014,1;
+		query_sql("INSERT INTO `punsuk` (account_id,amount) VALUES (" + getcharid(3) + ",3)");
+		mes "[ส่งรางวัลปันสุข]";
+		mes "ท่านได้ทำการส่ง";
+		mes "<ITEM>"+getitemname(3130014)+"<INFO>3130014</INFO></ITEM> เรียบร้อยแล้ว";
+		end;
+		case 2:
+		end;
+	}
+}
+if(countitem(3130015) > 0){
+	mes "[ส่งรางวัลปันสุข]";
+	mes "ท่านต้องการส่งรางวัลปันสุข";
+	mes "<ITEM>"+getitemname(3130015)+"<INFO>3130015</INFO></ITEM>";
+	mes "เมื่อท่านทำการส่งจะสามารถ";
+	mes "รับรางวัลได้ตอน OBT";
+	mes "ท่าต้องการส่งใช่หรือไม่";
+	switch(select("ใช่ส่งเลย:ยังก่อน")){
+		case 1:
+		next;
+		delitem 3130015,1;
+		query_sql("INSERT INTO `punsuk` (account_id,amount) VALUES (" + getcharid(3) + ",4)");
+		mes "[ส่งรางวัลปันสุข]";
+		mes "ท่านได้ทำการส่ง";
+		mes "<ITEM>"+getitemname(3130015)+"<INFO>3130015</INFO></ITEM> เรียบร้อยแล้ว";
+		end;
+		case 2:
+		end;
+	}
+}
+OnInit:
+waitingroom "ส่งรางวัลกิจกรรมปันสุข",0;
+end;
+}
+*/
+
+morocc,168,70,3	script	รับรางวัลกิจกรรมปันสุข(CBT)	4_M_MELODY,{
+disable_items;
+if(getcharid(3) == 2000154 || getcharid(3) == 2000292 || getcharid(3) == 2000338 || getcharid(3) == 2000604 || getcharid(3) == 2000741 || getcharid(3) == 2000000 ){
+if(#readygetGG > 0){
+	mes "[รับรางวัลกิจกรรมปันสุข(CBT)]";
+	mes "^FF0000เจ้ารับของรางวัลไปแล้ว^000000";
+	close;
+
+}
+	if(getcharid(3) == 2000154){
+		mes "[รับรางวัลกิจกรรมปันสุข(CBT)]";
+		mes "รางวัลกิจกรรมปันสุขที่ท่านส่งมีรายการดังนี้";
+		mes "<ITEM>"+getitemname(3130015)+"<INFO>3130015</INFO></ITEM> จำนวน 1 ea";
+		mes "ท่านต้องการรับเลยหรือไม่";
+		switch(select("^FF0000• ยังก่อน^000000:^0000FF• รับเลย^000000")){
+			case 1:
+			end;
+			case 2:
+			set #CASHPOINTS,#CASHPOINTS +500;
+			dispbottom "[ System ] : คุณได้รับ " + callfunc("F_InsertComma",500) + " Cash Point รวมเป็น "+callfunc("F_InsertComma",#CASHPOINTS)+" Point",0xAEFF00;
+			#readygetGG = 1;
+			end;
+		}
+	}
+	if(getcharid(3) == 2000292){
+		mes "[รับรางวัลกิจกรรมปันสุข(CBT)]";
+		mes "รางวัลกิจกรรมปันสุขที่ท่านส่งมีรายการดังนี้";
+		mes "<ITEM>"+getitemname(3130012)+"<INFO>3130012</INFO></ITEM> จำนวน 1 ea";
+		mes "<ITEM>"+getitemname(3130013)+"<INFO>3130013</INFO></ITEM> จำนวน 2 ea";
+		mes "<ITEM>"+getitemname(3130014)+"<INFO>3130014</INFO></ITEM> จำนวน 5 ea";
+		mes "<ITEM>"+getitemname(3130015)+"<INFO>3130015</INFO></ITEM> จำนวน 1 ea";
+		mes "ท่านต้องการรับเลยหรือไม่";
+		switch(select("^FF0000• ยังก่อน^000000:^0000FF• รับเลย^000000")){
+			case 1:
+			end;
+			case 2:
+			set #CASHPOINTS,#CASHPOINTS +5500;
+			dispbottom "[ System ] : คุณได้รับ " + callfunc("F_InsertComma",5500) + " Cash Point รวมเป็น "+callfunc("F_InsertComma",#CASHPOINTS)+" Point",0xAEFF00;
+			query_sql("INSERT INTO `donate` (account_id,amount,status) VALUES (" + getcharid(3) + ",2000,1)");
+			#readygetGG = 1;
+			end;
+		}
+	}
+	if(getcharid(3) == 2000000){
+		mes "[รับรางวัลกิจกรรมปันสุข(CBT)]";
+		mes "รางวัลกิจกรรมปันสุขที่ท่านส่งมีรายการดังนี้";
+		mes "<ITEM>"+getitemname(3130012)+"<INFO>3130012</INFO></ITEM> จำนวน 1 ea";
+		mes "<ITEM>"+getitemname(3130013)+"<INFO>3130013</INFO></ITEM> จำนวน 2 ea";
+		mes "<ITEM>"+getitemname(3130014)+"<INFO>3130014</INFO></ITEM> จำนวน 5 ea";
+		mes "<ITEM>"+getitemname(3130015)+"<INFO>3130015</INFO></ITEM> จำนวน 1 ea";
+		mes "ท่านต้องการรับเลยหรือไม่";
+		switch(select("^FF0000• ยังก่อน^000000:^0000FF• รับเลย^000000")){
+			case 1:
+			end;
+			case 2:
+			set #CASHPOINTS,#CASHPOINTS +5500;
+			dispbottom "[ System ] : คุณได้รับ " + callfunc("F_InsertComma",5500) + " Cash Point รวมเป็น "+callfunc("F_InsertComma",#CASHPOINTS)+" Point",0xAEFF00;
+			query_sql("INSERT INTO `donate` (account_id,amount,status) VALUES (" + getcharid(3) + ",2000,1)");
+			#readygetGG = 1;
+			end;
+		}
+	}
+	if(getcharid(3) == 2000338){
+		mes "[รับรางวัลกิจกรรมปันสุข(CBT)]";
+		mes "รางวัลกิจกรรมปันสุขที่ท่านส่งมีรายการดังนี้";
+		mes "<ITEM>"+getitemname(3130012)+"<INFO>3130012</INFO></ITEM> จำนวน 1 ea";
+		mes "<ITEM>"+getitemname(3130014)+"<INFO>3130014</INFO></ITEM> จำนวน 1 ea";
+		mes "<ITEM>"+getitemname(3130015)+"<INFO>3130015</INFO></ITEM> จำนวน 7 ea";
+		mes "ท่านต้องการรับเลยหรือไม่";
+		switch(select("^FF0000• ยังก่อน^000000:^0000FF• รับเลย^000000")){
+			case 1:
+			end;
+			case 2:
+			set #CASHPOINTS,#CASHPOINTS +4500;
+			dispbottom "[ System ] : คุณได้รับ " + callfunc("F_InsertComma",4500) + " Cash Point รวมเป็น "+callfunc("F_InsertComma",#CASHPOINTS)+" Point",0xAEFF00;
+			query_sql("INSERT INTO `donate` (account_id,amount,status) VALUES (" + getcharid(3) + ",1000,1)");
+			#readygetGG = 1;
+			end;
+		}
+	}
+	if(getcharid(3) == 2000604){
+		mes "[รับรางวัลกิจกรรมปันสุข(CBT)]";
+		mes "รางวัลกิจกรรมปันสุขที่ท่านส่งมีรายการดังนี้";
+		mes "<ITEM>"+getitemname(3130015)+"<INFO>3130015</INFO></ITEM> จำนวน 1 ea";
+		mes "ท่านต้องการรับเลยหรือไม่";
+		switch(select("^FF0000• ยังก่อน^000000:^0000FF• รับเลย^000000")){
+			case 1:
+			end;
+			case 2:
+			set #CASHPOINTS,#CASHPOINTS +500;
+			dispbottom "[ System ] : คุณได้รับ " + callfunc("F_InsertComma",500) + " Cash Point รวมเป็น "+callfunc("F_InsertComma",#CASHPOINTS)+" Point",0xAEFF00;
+			#readygetGG = 1;
+			end;
+		}
+	}
+	if(getcharid(3) == 2000741){
+		mes "[รับรางวัลกิจกรรมปันสุข(CBT)]";
+		mes "รางวัลกิจกรรมปันสุขที่ท่านส่งมีรายการดังนี้";
+		mes "<ITEM>"+getitemname(3130015)+"<INFO>3130015</INFO></ITEM> จำนวน 1 ea";
+		mes "ท่านต้องการรับเลยหรือไม่";
+		switch(select("^FF0000• ยังก่อน^000000:^0000FF• รับเลย^000000")){
+			case 1:
+			end;
+			case 2:
+			set #CASHPOINTS,#CASHPOINTS +500;
+			dispbottom "[ System ] : คุณได้รับ " + callfunc("F_InsertComma",500) + " Cash Point รวมเป็น "+callfunc("F_InsertComma",#CASHPOINTS)+" Point",0xAEFF00;
+			#readygetGG = 1;
+			end;
+		}
+	}
+}else{
+		mes "[รับรางวัลกิจกรรมปันสุข(CBT)]";
+		mes "ท่านไม่มีรายชื่อในรายการรับรางวัล";
+		end;
+}
+
+OnInit:
+waitingroom "รับรางวัลกิจกรรมปันสุข(CBT)",0;
+end;
+}

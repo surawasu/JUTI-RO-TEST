@@ -1,0 +1,159 @@
+morocc,113,70,5	script	Lost Soul#malla	796,{	
+disable_items;
+	if (checkweight(1201,1) == 0) {
+		mes "["+.npc$+"]";
+		mes "^FF0000คุณมีไอเทมมากเกินไป^000000";
+		end;
+	}
+	if (MaxWeight - Weight < 10000) {
+		mes "["+.npc$+"]";
+		mes "^FF0000กรุณาตรวจสอบน้ำหนักด้วย^000000";
+		end;
+	}
+	
+menu 
+"^FF0000•^000000 แลก Meteorite Fragment",exchangeme,
+"^FF0000•^000000 สร้างดาบฟ้า/ดาบแดง",makesword,
+"^FF0000•^000000 สร้างดาบ Violet Fear",makesword2,
+"^FF0000•^000000 ยกเลิก",ex;
+
+ex:
+end;
+
+exchangeme:
+	mes "["+.npc$+"]";
+	mes "ท่านต้องการแลกเปลี่ยน";
+	mes "<ITEM>"+getitemname(1000373)+"<INFO>"+1000373+"</INFO></ITEM>  1 ea";
+	mes "ต้องใช้ <ITEM>"+getitemname(1000372)+"<INFO>"+1000372+"</INFO></ITEM>  10 ea";
+	mes "ท่านต้องการแลกเลยหรือไม่?";
+	switch(select("แลกเลย:ยังก่อน")){
+	case 1:
+		next;
+		mes "["+.npc$+"]";
+		mes "โปรดระบุจำนวนที่ต้องการแลก";
+		input .@amt;
+		next;
+		if(.@amt < 1)	end;
+		mes "["+.npc$+"]";
+		mes "ท่านต้องการแลก <ITEM>"+getitemname(1000373)+"<INFO>"+1000373+"</INFO></ITEM>  จำนวน "+.@amt+" ea";
+		mes "ต้องใช้ <ITEM>"+getitemname(1000372)+"<INFO>"+1000372+"</INFO></ITEM>  จำนวน "+.@amt * 10+" ea";
+		next;
+		if(countitem(1000372) < (.@amt * 10)){
+		next;
+		mes "["+.npc$+"]";
+		mes "ท่านมี <ITEM>"+getitemname(1000372)+"<INFO>"+1000372+"</INFO></ITEM> ไม่เพียงพอ.";
+		end;
+		}
+		delitem 1000372,.@amt*10;
+		getitem 1000373,.@amt;
+		mes "["+.npc$+"]";
+		mes "เรียบร้อยเช็คในกระเป๋าได้เลย";
+	end;
+	
+	case 2:
+	end;
+	
+	}
+	
+makesword:
+	mes "["+.npc$+"]";
+	mes "หากท่านต้องการสร้าง";
+	mes "<ITEM>"+getitemname(13413)+"<INFO>"+13413+"</INFO></ITEM>  หรือ";
+	mes "<ITEM>"+getitemname(13412)+"<INFO>"+13412+"</INFO></ITEM> ";
+	mes "ท่านต้องใช้ <ITEM>"+getitemname(1000373)+"<INFO>"+1000373+"</INFO></ITEM>  10 ea";
+	mes "และ <ITEM>"+getitemname(1000396)+"<INFO>"+1000396+"</INFO></ITEM>  2 ea";
+	mes "ท่านต้องการสร้างลยหรือไม่?";
+	switch(select("เอาเลยลุยได้:ยังก่อน")){
+	case 1:
+		next;
+		if(countitem(1000373) < 10 || countitem(1000396) < 2){
+		next;
+		mes "["+.npc$+"]";
+		mes "ท่านต้องใช้ <ITEM>"+getitemname(1000373)+"<INFO>"+1000373+"</INFO></ITEM>  10 ea";
+		mes "และ <ITEM>"+getitemname(1000396)+"<INFO>"+1000396+"</INFO></ITEM>  2 ea";
+		end;
+		}
+		delitem 1000373,10;
+		delitem 1000396,2;
+		set .rand,rand(1,100);
+		progressbar "000000",3;
+		if(.rand > 33 && .rand < 54){
+			specialeffect2 EF_LORD;
+			set .rand2,rand(1,100);
+			if(.rand2 > 64 && .rand2 < 85){
+			getitem 13413,1;
+			}else{
+			getitem 13412,1;
+			}
+			mes "["+.npc$+"]";
+			mes "เรียบร้อยเช็คในกระเป๋าได้เลย";
+			close;
+		}else{
+			specialeffect EF_SUI_EXPLOSION;
+			mes "["+.npc$+"]";
+			mes "เสียใจด้ายรอบหน้าเอาใหม่";
+		end;
+		}
+	case 2:
+	end;
+	}
+end;
+
+makesword2:
+	mes "["+.npc$+"]";
+	mes "หากท่านต้องการสร้าง";
+	mes "<ITEM>"+getitemname(1185)+"<INFO>"+1185+"</INFO></ITEM>";
+	mes "ท่านต้องใช้ <ITEM>"+getitemname(13413)+"<INFO>"+13413+"</INFO></ITEM> 1 ea";
+	mes "และ <ITEM>"+getitemname(13412)+"<INFO>"+13412+"</INFO></ITEM> 1 ea";
+	mes "และ <ITEM>"+getitemname(1000396)+"<INFO>"+1000396+"</INFO></ITEM> 10 ea";
+	mes "ท่านต้องการสร้างเลยหรือไม่?";
+	switch(select("แลกเลย:ยังก่อน")){
+	case 1:
+		if( countitem(1000396) <  10 || countitem(13413) <  1 || countitem(13412) <  1){
+		next;
+		mes "["+.npc$+"]";
+		mes "<ITEM>"+getitemname(1185)+"<INFO>"+1185+"</INFO></ITEM>";
+		mes "ท่านต้องใช้ <ITEM>"+getitemname(13413)+"<INFO>"+13413+"</INFO></ITEM> 1 ea";
+		mes "และ <ITEM>"+getitemname(13412)+"<INFO>"+13412+"</INFO></ITEM> 1 ea";
+		mes "และ <ITEM>"+getitemname(1000396)+"<INFO>"+1000396+"</INFO></ITEM> 10 ea";
+		end;
+		}
+		if(countitem(13412) >  1 || countitem(13413) > 1){
+			next;
+			mes "ดูเหมือนท่านจะมี <ITEM>"+getitemname(13413)+"<INFO>"+13413+"</INFO></ITEM>";
+			mes "หรือ <ITEM>"+getitemname(13412)+"<INFO>"+13412+"</INFO></ITEM> มากกว่า1ชิ้นให้นำ\nชิ้นที่ไม่ต้องการใช้เป็นส่วนผสมเก็บคลังก่อน";
+			end;
+		}
+		if(getequipid(EQI_HAND_R) == 13413 || getequipid(EQI_HAND_L) == 13413 ){
+			next;
+			mes "["+.npc$+"]";
+			mes "ดูเหมือนท่านจะใส่ <ITEM>"+getitemname(13413)+"<INFO>"+13413+"</INFO></ITEM> อยู่";
+			mes "หากเเป็นชิ้นที่ท่านไม่ต้องการใช้\nเป็นส่วนผสมให้นำไปเก็บคลังก่อน";
+			end;
+		}
+		if(getequipid(EQI_HAND_R) == 13412 || getequipid(EQI_HAND_L) == 13412 ){
+			next;
+			mes "["+.npc$+"]";
+			mes "ดูเหมือนท่านจะใส่ <ITEM>"+getitemname(13412)+"<INFO>"+13412+"</INFO></ITEM> อยู่";
+			mes "หากเเป็นชิ้นที่ท่านไม่ต้องการใช้\nเป็นส่วนผสมให้นำไปเก็บคลังก่อน";
+			end;
+		}
+		
+		delitem 13412,1;
+		delitem 13413,1;
+		delitem 1000396,10;
+		getitem 1185,1;
+		mes "["+.npc$+"]";
+		mes "เรียบร้อยเช็คในกระเป๋าได้เลย";
+		end;
+	
+	case 2:
+	end;
+	}
+end;
+
+OnInit:
+	 .npc$ = "^0000FF "+strnpcinfo(1)+" ^000000";
+	 waitingroom "สร้างดาบฟ้า/แดง/ม่วง",0;
+end;
+}

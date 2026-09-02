@@ -1,0 +1,93 @@
+-	script	punsukkill20	-1,{
+OnNPCKillEvent:
+if($punsukevent > 0){
+	if(instance_id(IM_PARTY) > 0){
+	end;
+	}
+	.@randpunsuk20bug	=	rand(1,1000);
+		if(.@randpunsuk20bug < 11){
+			getitem 161105,1;
+		}
+}
+end;
+}
+
+-	script	punsukkill50	-1,{
+OnNPCKillEvent:
+if($punsukevent > 0){
+	if(instance_id(IM_PARTY) > 0){
+	end;
+	}
+	if(strcharinfo(3) == "bossnia_01" ||
+	strcharinfo(3) == "bossnia_02" ||
+	strcharinfo(3) == "bossnia_03" ||
+	strcharinfo(3) == "bossnia_04" ||
+	strcharinfo(3) == "bossnia_m01" ||
+	strcharinfo(3) == "bossnia_m02" ||
+	strcharinfo(3) == "bossnia_m03" ||
+	strcharinfo(3) == "bossnia_m04" ||
+	strcharinfo(3) == "bossnia_m05" ||
+	strcharinfo(3) == "bossnia_m06" ||
+	strcharinfo(3) == "bossnia_m07" ||
+	strcharinfo(3) == "bossnia_m08" ||
+	strcharinfo(3) == "bossnia_m09" ||
+	strcharinfo(3) == "bossnia_m10" ||
+	strcharinfo(3) == "bossnia_m11" ||
+	strcharinfo(3) == "bossnia_m12" ||
+	strcharinfo(3) == "bossnia_m13" ||
+	strcharinfo(3) == "bossnia_m14" ||
+	strcharinfo(3) == "bossnia_m15" ||
+	strcharinfo(3) == "bossnia_m16" ||
+	strcharinfo(3) == "bossnia_m17" ||
+	strcharinfo(3) == "bossnia_m18" ||
+	strcharinfo(3) == "bossnia_m19" ||
+	strcharinfo(3) == "bossnia_m20" ||
+	strcharinfo(3) == "bossnia_m21" ||
+	strcharinfo(3) == "bossnia_m22" ||
+	strcharinfo(3) == "bossnia_m23" ||
+	strcharinfo(3) == "bossnia_m24" ||
+	strcharinfo(3) == "bossnia_m25" ||
+	strcharinfo(3) == "bossnia_m26" ||
+	strcharinfo(3) == "bossnia_m27" ||
+	strcharinfo(3) == "bossnia_m28" ||
+	strcharinfo(3) == "bossnia_m29" ||
+	strcharinfo(3) == "bossnia_m33" ){
+		.@randpunsuk50bug	=	rand(1,1000);
+		if(.@randpunsuk50bug < 11){
+			getitem rand(161105,161106),1;
+		}
+	}
+}
+end;
+}
+-	script	punsukkill100	-1,{
+OnNPCKillEvent:
+if($punsukevent > 0){
+	if(instance_id(IM_PARTY) > 0){
+	end;
+	}
+	if(strcharinfo(3) == "hell_abyss"){
+	.@randpunsuk100bug	=	rand(1,1000);
+		if(.@randpunsuk100bug < 11){
+			getitem rand(161105,161107),1;
+		}
+	}
+}
+end;
+}
+
+-	script	control_punsuk	-1,{
+OnStart:
+mes "à»Ô´»Ñ¹ÊØ¢áÅéÇ";
+$punsukevent = 1;
+end;
+OnEnd:
+mes "»Ô´»Ñ¹ÊØ¢áÅéÇ";
+$punsukevent = 0;
+end;
+
+OnInit:
+		bindatcmd "punsukon",strnpcinfo(3) + "::OnStart",99;
+		bindatcmd "punsukoff",strnpcinfo(3) + "::OnEnd",99;
+		end;
+}

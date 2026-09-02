@@ -1,0 +1,246 @@
+sec_pri,22,31,4	script	Hotweek(Cash)	562,{
+set .cashspin,2000;	// ตั้งราคาหมุน
+set .cashgethw,200; //เข้าตู้เท่าไหร่
+set .cashitemreward,1;	//ใส่เลขไอเท็มการันตีหากไม่ต้องการให้มีการันตีใส่ 0
+set .cashrewardmax,50;	//ใส่จำนวนการันตีที่ต้องการ หากข้างบนเป็น 0 จะไม่มีผล
+	mes "^000099[Hotweek]^000000";
+	mes "^0000FFยอดเงินรางวัลสะสมรวม ^FF0000[ "+callfunc("F_InsertComma",($cashhw))+" ]^000000 Cash Point^000000";
+	mes "คุณ ^FF0000[ "+ strcharinfo(0) +" ]^000000";
+	query_sql ("SELECT `HWCC` FROM `char` WHERE `char_id` = '"+ getcharid(0) +"'", .@ref);
+	mes "ตอนนี้ท่านหมุนไปแล้ว ^FF0000[ "+ .@ref +" ]^000000 รอบ";
+	mes "มีค่าบริการ ^0000FF"+callfunc("F_InsertComma",(.cashspin))+"^000000 Cash Point อยากเสี่ยงดวงไหม ?";
+	next;
+	if($hotweekclose == 1 && getgmlevel() == 99) {
+	menu	"เปิดสุ่ม",L_open,"^009933•^000000 ตัวอย่างของรางวัล",L_view,
+			"^009933•^000000 แลกไอเท็มต่างๆ",L_ITEM,
+			"^009933•^000000 ดูอันดับ",L_show,
+			"^009933•^000000 reset ยอดเงินสะสม",L_gacha,
+			"^009933•^000000 reset จำนวนครั้งผู้เล่นทั้งหมด",RE_gacha,
+			"^009933•^000000 ไว้ก่อน",L_no;
+	}
+	if($hotweekclose == 0 && getgmlevel() == 99) {
+	menu 	"^009933•^000000 ปิดสุ่ม !!",L_close,
+			"^009933•^000000 จัดไป !!",L_ok,
+			"^009933•^000000 ตัวอย่างของรางวัล",L_view,
+			"^009933•^000000 แลกไอเท็มต่างๆ",L_ITEM,
+			"^009933•^000000 ดูอันดับ",L_show,
+			"^009933•^000000 reset ยอดเงินสะสม",L_gacha,
+			"^009933•^000000 reset จำนวนครั้งผู้เล่นทั้งหมด",RE_gacha,
+			"^009933•^000000 ไว้ก่อน",L_no;
+	}	
+	if($hotweekclose == 1) {
+	//menu "",L_ok,"^009933•^000000 ตัวอย่างของรางวัล",L_view,"^009933•^000000 ^0000FFรับรางวัลอันดับ^000000",reward_gacha,"^009933•^000000 ดูอันดับ",L_show,"^009933•^000000 ไว้ก่อน",L_no;
+	menu 	"",L_ok,
+			"^009933•^000000 ตัวอย่างของรางวัล",L_view,
+			"^009933•^000000 แลกไอเท็มต่างๆ",L_ITEM,
+			"^009933•^000000 ดูอันดับ",L_show,
+			"^009933•^000000 ไว้ก่อน",L_no;
+	}
+	if($hotweekclose == 0) {
+	menu 	"^009933•^000000 จัดไป !!",L_ok,
+			"^009933•^000000 ตัวอย่างของรางวัล",L_view,
+			"^009933•^000000 แลกไอเท็มต่างๆ",L_ITEM,
+			"^009933•^000000 ดูอันดับ",L_show,
+			"^009933•^000000 ไว้ก่อน",L_no;
+	}
+	end;
+L_open:
+	$hotweekclose = 0;
+end;
+L_close:
+	$hotweekclose = 1;
+end;
+reward_gacha:
+doevent "F_rewardhotweek::OnRewardgacha";
+end;
+L_gacha:
+$cashhw = 0;
+end;
+
+L_ITEM:
+close2;
+callshop "HWITEM",1;
+end;
+//menu 	"HotWeek Aura",HWAR,
+//		"แลกเหรียญ HotWeek",CHW,
+//		"HotWeek V.1",HWV1,
+//		"HotWeek V.2",HWV2,
+//		"HotWeek V.3",HWV3,
+//		"HotWeek V.4",HWV4,
+//		"HotWeek V.5",HWV5;
+
+
+HWAR:
+close2;
+callshop "hwshopaura",1;
+end;
+HWV1:
+close2;
+callshop "hwshop",1;
+end;
+HWV2:
+close2;
+callshop "hwshop2",1;
+end;
+HWV3:
+close2;
+callshop "hwshop3",1;
+end;
+HWV4:
+close2;
+callshop "hwshop4",1;
+end;
+HWV5:
+close2;
+callshop "hwshop5",1;
+end;
+CHW:
+close2;
+callshop "CHW",1;
+end;
+
+RE_gacha:
+query_sql "UPDATE `char` SET `HWCC`='0'";
+			mes "Reset";
+			mes "เรียบร้อยแล้ว";
+end;
+L_view:
+		close2;
+		callshop "Gachazenyshop",1;
+		npcshopattach "Gachazenyshop";
+		end;
+L_Start:
+mes "^000099[Hotweek]^000000";
+mes "คุณ ^FF0000[ "+ strcharinfo(0) +" ]^000000";
+query_sql ("SELECT `HWCC` FROM `char` WHERE `char_id` = '"+ getcharid(0) +"'", .@ref);
+mes "ตอนนี้ท่านหมุนไปแล้ว ^FF0000[ "+ .@ref +" ]^000000 รอบ";
+mes "^0000FFยอดเงินรางวัลสะสมรวม ^FF0000[ "+callfunc("F_InsertComma",($cashhw))+" ]^000000 Cash Point^000000";
+mes "มีค่าบริการ ^0000FF"+callfunc("F_InsertComma",(.cashspin))+"^000000 Cash Point อยากเสี่ยงดวงไหม ?";
+next;
+if($hotweekclose == 1) {
+menu "",L_ok,"^009933•^000000 ไว้ก่อน",L_no;
+}
+if($hotweekclose == 0) {
+menu "^009933•^000000 จัดไป !!",L_ok,"^009933•^000000 ไว้ก่อน",L_no;
+}
+end;
+
+L_ok:	
+setarray .hwcc1[0],161145; // เกลือ 5000500
+setarray .hwcc2[0],150001,150002,150003,150004,150005,150006,150007,150008,150009,150010,150011,150012,150013,150014,150015,150021,150022,150023,150024,150025,150026,150027,150028,150029,150030,150031,150032,150033,150034,150035,50040,50041,50042,50043,50044,50045,50046,50047,50048,50049,50060,50061,50062,50063,50064,50065,50066,50067,50068,50069; // 5%
+setarray .hwcc3[0],161115,161116,161117,161118,161119,161120,161121,161081,161082; //  1%
+setarray .hwcc4[0],161115,161116,161117,161118,161119,161120,161121,161081,161082; //  jackpot จำกัดจำนวนครั้ง
+set .hwcc1rand,rand( getarraysize(.hwcc1) ); // 
+set .hwcc2rand,rand( getarraysize(.hwcc2) ); // 
+set .hwcc3rand,rand( getarraysize(.hwcc3) ); // 
+set .hwcc4rand,rand( getarraysize(.hwcc4) ); // 	
+		if(#CASHPOINTS<.cashspin)goto L_not;
+		//if(zeny<.cashspin)goto L_not;
+			query_sql "UPDATE `char` SET `HWCC`=(`HWCC` + 1) WHERE `char_id`='"+getcharid(0)+"' LIMIT 1";
+			query_sql "UPDATE `char` SET `HWTIMECC`=(CURRENT_TIMESTAMP) WHERE `char_id`='"+getcharid(0)+"' LIMIT 1";
+			.@chance = rand(0,2000);
+			set #CASHPOINTS, #CASHPOINTS -= .cashspin;
+			//zeny -= .cashspin;
+			$cashhw += .cashgethw;
+			if(.cashitemreward>0){
+				set #HWCASH5_1, #HWCASH5_1 + 1;
+			
+				if(#HWCASH5_1 == .cashrewardmax){
+				//getitem .cashitemreward,1; //
+				getitem rand(161115,161121),1;
+				set #HWCASH5_1, 0;
+				}
+			}
+			
+			.@randjackpot = rand(0,300);
+			if(.@randjackpot < 2){
+			announce "[System] ผู้เล่น ["+ strcharinfo(0) +"] โชคดีได้รับยอดเงินรางวัลสะสมจากตู้สุ่ม HotWeek(Cash)^FF0000[ "+callfunc("F_InsertComma",($cashhw))+" ] Cash Point !.!.!.",bc_all;
+			//zeny += $cashhw;
+			set #CASHPOINTS, #CASHPOINTS += $cashhw;
+			set $cashhw, 0;
+			}
+
+			// Super Rare Item 0.1%	แจ๊คพ็อตแตก
+			if (.@chance <= 1 ) {
+				specialeffect2 10;
+				announce "[ ระบบ ]  :  ผู้เล่น ["+strcharinfo(0)+"] ได้ทำการสุ่มตู้  Hotweek(Cash) ได้รับ "+getitemname(.hwcc4[.hwcc4rand])+" ",bc_all;
+				//dispbottom "[ ระบบ ]  :  ผู้เล่น ["+strcharinfo(0)+"] ได้ทำการสุ่มตู้  Hotweek(Cash) ได้รับ "+getitemname(.hwcc4[.hwcc4rand])+" ";
+				getitem .hwcc4[.hwcc4rand],1;
+				goto L_Start;
+				end;
+			}
+			// Super Rare Item 1%	คอสตูม 
+			else if (.@chance < 10) {
+				announce "[ ระบบ ]  :  ผู้เล่น ["+strcharinfo(0)+"] ได้ทำการสุ่มตู้  Hotweek(Cash) ได้รับ "+getitemname(.hwcc3[.hwcc3rand])+" ",bc_all;
+				//dispbottom "[ ระบบ ]  :  ผู้เล่น ["+strcharinfo(0)+"] ได้ทำการสุ่มตู้  Hotweek(Cash) ได้รับ "+getitemname(.hwcc3[.hwcc3rand])+" ";
+				getitem .hwcc3[.hwcc3rand],1;
+				specialeffect2 10;
+				goto L_Start;
+				end;
+			}						
+			// Super Rare Item 5%	สวมใส่
+			else if (.@chance < 20) {
+				announce "[ ระบบ ]  :  ผู้เล่น ["+strcharinfo(0)+"] ได้ทำการสุ่มตู้  Hotweek(Cash) ได้รับ "+getitemname(.hwcc2[.hwcc2rand])+" ",bc_all;
+				//dispbottom "[ ระบบ ]  :  ผู้เล่น ["+strcharinfo(0)+"] ได้ทำการสุ่มตู้  Hotweek ได้รับ "+getitemname(.hwcc2[.hwcc2rand])+" ";
+				getitem .hwcc2[.hwcc2rand],1;
+				specialeffect2 10;
+				goto L_Start;
+				end;
+			}
+			// Common Items
+			else {
+				getitem .hwcc1[.hwcc1rand],1;
+				specialeffect2 10;
+				goto L_Start;
+				end; 
+			}
+
+	
+	
+L_no:
+	mes "^000099[Hotweek]^000000";
+	mes "พร้อมแล้วก็มาใหม่นะ^000000";
+	close;
+	
+L_not:
+	mes "^000099[Hotweek]^000000";
+	mes "ท่านมี Zeny ไม่เพียงพอ^000000";
+	close;
+	
+	end
+	;
+L_show:
+		query_sql "SELECT `name`,`HWCC` FROM `char` ORDER BY `HWCC` DESC , `HWTIMECC` ASC LIMIT 10 ",.@name$,.@point;
+		mes"===================== อัันดับ Hotweek =====================";
+		for (set .@i,0; .@i < 10; set .@i,.@i+1) {
+			if (.@point[.@i] == 0) set .@name$[.@i],"None";
+			mes "["+(.@i+1)+"]  "+.@name$[.@i]+" : จำนวนการกด " +.@point[.@i]+"";
+		}
+		mes "-----------------------------------------------------";
+		dispbottom"======================= อัันดับ Hotweek =======================";
+		for (set .@i,0; .@i < 10; set .@i,.@i+1) {
+			if (.@point[.@i] == 0) set .@name$[.@i],"None";
+		dispbottom "["+(.@i+1)+"]  "+.@name$[.@i]+" : จำนวนการกด " +.@point[.@i]+"";
+		}
+		dispbottom "========================================================";
+		
+		
+		query_sql "SELECT `HWCC` FROM `char` WHERE `char_id`='"+getcharid(0)+"'",.@cpoint;
+		mes "จำนวนการกดของคุณ : "+.@cpoint;
+		mes "==============================================";		
+		dispbottom "จำนวนการกด ของคุณ: "+.@cpoint;
+		dispbottom "========================================================";
+		close;
+		
+		
+OnBuyItem:
+	end;		
+
+OnInit:
+do {
+delwaitingroom;
+waitingroom "[ ยอดเงินรวม "+callfunc("F_InsertComma",($cashhw))+" ] Cash ",0;
+sleep 1500; // Evites super infinity loop
+} while(1); // End Loop
+end;
+}

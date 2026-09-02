@@ -1,0 +1,174 @@
+-	script	MVP_SCORE	-1,{
+
+//OnTue2255:
+//query_sql "UPDATE `char` SET `point_mvp`='0'";
+//announce "[ CBT Event ] : กิจกรรม  ค้นหา MVP Slayer ได้เริ่มต้นแล้ว อ่านรายละเอียดได้ใน Discord",bc_all,0xFFFF00;
+//$eventmvp = 1;
+//end;
+//
+//OnThu2200:
+//announce "[ CBT Event ] : สกิจกรรม  ค้นหา MVP Slayer ได้สิ้นสุดลงแล้วแล้ว อ่านรายละเอียดได้ใน Discord",bc_all,0xFFFF00;
+//$eventmvp = 0;
+//end;
+OnReset:
+			query_sql "UPDATE `char` SET `point_mvp`='0'";
+			mes "Reset คะแนน MVP";
+			mes "เรียบร้อยแล้ว";
+end;
+
+OnResetZeny:
+			query_sql "UPDATE `login` SET `zeny`='0'";
+			mes "Reset คะแนน MVP";
+			mes "เรียบร้อยแล้ว";
+end;
+OnNPCKillEvent:
+for(set .@f,1; .@f<getarraysize(.MVPMAP$); set .@f,.@f+1)
+if(strcharinfo(3) == .MVPMAP$[.@f]){
+			if (getmonsterinfo( killedrid, MOB_MVPEXP )){
+			query_sql "UPDATE `char` SET `point_mvp`=(`point_mvp` + 1) WHERE `char_id`='"+getcharid(0)+"' LIMIT 1";
+						dispbottom "========================================";
+						query_sql "SELECT `point_mvp` FROM `char` WHERE `char_id`='"+getcharid(0)+"'",.@cpoint;
+						#MVPPOINT += 1;
+						dispbottom "คุณได้รับแต้ม MVP Score เพิ่มขึ้น 1 แต้ม แต้มทั้งหมดของคุณคือ "+ (.@cpoint) +" แต้ม";
+						dispbottom "คุณได้รับแต้ม MVP Point เพิ่มขึ้น 1 แต้ม Point ทั้งหมดของคุณคือ "+ (#MVPPOINT) +" แต้ม";
+						dispbottom "========================================";
+			}
+}
+	end;
+OnInit:
+	bindatcmd "mvpreset",strnpcinfo(3)+"::OnReset",0,99;
+	bindatcmd "zenyreset",strnpcinfo(3)+"::OnResetZeny",0,99;
+	setarray .choosemobid$[0],3505,1871,1873,1719,1492,1147,1688,1583,2068,3074,2156,2087,2165,1623,1389,1046,1272,1150,1115,2253,1059,2251,1039,1785,2249,2255,1418,1157,2202,1685,1734,1658,1630,1038,1511,2362,1885,1751,1086,1768,3741,20381,2441,2442,1832,1112,1312,1251,1087,1190,1252,1159,1917,20618,20601,20422,20421,20419,20610,20611,20928,20943,20934,20648,21301,21537,20118,20273,20277,20701,3732,3733,20702,21571,21563,21555,21579;
+	setarray .MVPMAP$[0],"lasa_dun01","abbey02","abbey03","abyss_03","ama_dun03","anthell02","ayo_dun02","beach_dun","bra_dun02","c_tower3_","dew_dun01","dic_dun02","dic_dun03","ein_dun02","gef_dun01","gef_dun02","gl_chyard","gl_chyard_","gld_dun01","gld_dun01_2","gld2_pay","gld_dun02","gld_dun02_2","gld2_ald","gld_dun03","gld_dun03_2","gld2_prt","gld_dun04","gld_dun04_2","gld2_gef","gon_dun03","in_sphinx5","iz_dun05","jupe_core","kh_dun02","lhz_dun02","lou_dun03","moc_pryd04","moc_pryd06","moc_prydn2","mosk_dun03","odin_tem03","pay_dun04","prt_maze03","prt_sewb4","ra_san05","rockmi1","sp_rudus2","teg_dun01","teg_dun02","thor_v03","treasure02","tur_dun04","xmas_dun02","gef_fild03","gef_fild10","xmas_fild01","mjolnir_04","moc_fild17","moc_fild22","pay_fild10","ra_fild03","ra_fild04","ve_fild01","ve_fild02","abyss_04","ein_dun03","gl_cas01_","mag_dun03","odin_past","amicitia2","nif_dun02","sp_rudus4","ba_lost","oz_dun02","jor_back3","clock_01","com_d02_i","com_d02_i2","corridor1","corridor2","corridor3","corridor4","bl_ice","bl_lava","bl_grass","bl_death";
+end;
+}
+
+-	script	disable_warp_novice	-1,{
+OnClock1800:
+if($openwarpnovice < 1){
+enablenpc ("newwarp6001a");
+announce "[ System ] : วาปเปิดแล้วไปผจญภัยกันได้เลยยยยยย",bc_all,0xFFFF00;
+$openwarpnovice = 1;
+}
+end;
+OnInit:
+if($openwarpnovice < 1){
+disablenpc ("newwarp6001a");
+}else{
+enablenpc ("newwarp6001a");
+}
+end;
+}
+
+
+-	script	จัดอันดับต่าง::rankingbbs	GUILD_FLAG,{
+	doevent "Ranking::OnShow_MVP";
+end;	
+	
+}
+
+
+-	script	Ranking	-1,{
+	end;
+
+
+
+OnAtcommand:
+	set .@npc$,"[Ranking]";
+		mes .@npc$;
+		mes "ระบบจัดการคะแนน";
+		next;
+		switch (select("- Reset คะแนน PVP","- Reset คะแนน MVP","- Reset คะแนน EMP","- Reset คะแนน REP")) {
+		case 1:
+			query_sql "UPDATE `char` SET `point_pvp`='0'";
+			mes .@npc$;
+			mes "Reset คะแนน PVP";
+			mes "เรียบร้อยแล้ว";
+			close;
+		break;
+		case 2:
+			query_sql "UPDATE `char` SET `point_mvp`='0'";
+			mes .@npc$;
+			mes "Reset คะแนน MVP";
+			mes "เรียบร้อยแล้ว";
+			close;
+		break;
+		case 3:
+			query_sql "UPDATE `char` SET `point_emp`='0'";
+			mes .@npc$;
+			mes "Reset คะแนน EMP";
+			mes "เรียบร้อยแล้ว";
+			close;
+		break;
+		case 4:
+			query_sql "UPDATE `hwdig` SET `point_total`='0'";
+			mes .@npc$;
+			mes "Reset คะแนน REP";
+			mes "เรียบร้อยแล้ว";
+			close;
+		break;
+		}
+OnShow_PVP:
+		query_sql "SELECT `name`,`point_pvp` FROM `char` ORDER BY `point_pvp` DESC LIMIT 10",.@name$,.@point;
+		mes "====== PVP RANKING ======";
+		for (set .@i,0; .@i < 10; set .@i,.@i+1) {
+			if (.@point[.@i] == 0) set .@name$[.@i],"None";
+			mes "["+(.@i+1)+"]  "+.@name$[.@i]+" : คะแนน " +.@point[.@i]+"";
+		}
+		mes "-----------------------";
+		query_sql "SELECT `point_pvp` FROM `char` WHERE `char_id`='"+getcharid(0)+"'",.@cpoint;
+		mes "คุณมีคะแนน : "+.@cpoint;
+		mes "=========================";
+end;
+OnShow_MVP:
+		query_sql "SELECT `name`,`point_mvp` FROM `char` ORDER BY `point_mvp` DESC LIMIT 10",.@name$,.@point;
+		mes "====== MVP RANKING ======";
+		for (set .@i,0; .@i < 5; set .@i,.@i+1) {
+			if (.@point[.@i] == 0) set .@name$[.@i],"None";
+			mes "["+(.@i+1)+"]  "+.@name$[.@i]+" : คะแนน " +.@point[.@i]+"";
+		}
+		mes "=======================";
+		query_sql "SELECT `point_mvp` FROM `char` WHERE `char_id`='"+getcharid(0)+"'",.@cpoint;
+		mes "คุณมีคะแนน : "+.@cpoint;
+		mes "=======================";
+		//dispbottom "====== MVP RANKING ======";
+		//for (set .@i,0; .@i < 5; set .@i,.@i+1) {
+		//	if (.@point[.@i] == 0) set .@name$[.@i],"None";
+		//	dispbottom "["+(.@i+1)+"]  "+.@name$[.@i]+" : คะแนน " +.@point[.@i]+"";
+		//}
+		//dispbottom "=======================";
+		//query_sql "SELECT `point_mvp` FROM `char` WHERE `char_id`='"+getcharid(0)+"'",.@cpoint;
+		//dispbottom "คุณมีคะแนน : "+.@cpoint;
+		//dispbottom "=======================";
+end;
+OnShow_EMP:
+		query_sql "SELECT `name`,`point_emp` FROM `char` ORDER BY `point_emp` DESC LIMIT 10",.@name$,.@point;
+		mes "====== EMP RANKING ======";
+		for (set .@i,0; .@i < 10; set .@i,.@i+1) {
+			if (.@point[.@i] == 0) set .@name$[.@i],"None";
+			mes "["+(.@i+1)+"]  "+.@name$[.@i]+" : คะแนน " +.@point[.@i]+"";
+		}
+		mes "-----------------------";
+		query_sql "SELECT `point_emp` FROM `char` WHERE `char_id`='"+getcharid(0)+"'",.@cpoint;
+		mes "คุณมีคะแนน : "+.@cpoint;
+		mes "=========================";
+end;
+OnShow_REP:
+		query_sql "SELECT `userid`,`point_total` FROM `login` ORDER BY `point_total` DESC LIMIT 10",.@name$,.@point;
+		mes "====== REP RANKING ======";
+		for (set .@i,0; .@i < 10; set .@i,.@i+1) {
+			if (.@point[.@i] == 0) set .@name$[.@i],"None";
+			mes "["+(.@i+1)+"]  "+.@name$[.@i]+" : คะแนน " +.@point[.@i]+"";
+		}
+		mes "-----------------------";
+		query_sql "SELECT `point_rep` FROM `login` WHERE `account_id`='"+getcharid(3)+"'",.@cpoint;
+		mes "คุณมีคะแนน : "+.@cpoint;
+		mes "=========================";
+end;
+OnInit:
+bindatcmd "mvpreset",strnpcinfo(3)+"::OnAtcommand",0,99;
+end;
+}
+
+
+morocc,144,91,4	duplicate(rankingbbs)	MVP Ranking#OnShow_MVP	GUILD_FLAG

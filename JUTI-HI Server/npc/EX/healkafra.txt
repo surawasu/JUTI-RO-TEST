@@ -1,0 +1,168 @@
+
+like_game,129,116,4	script	Kafra::eternalmid	114,{
+	getmapxy .@mapname$,.@mapx,.@mapy,BL_PC;
+	cutin "kafra_04",2;
+	callfunc "F_KafSet";
+	mes "[Kafra Employee]";
+	mes "ยินดีต้อนรับคุณ ^FF0000"+strcharinfo(0)+"^000000";
+	mes "Char ID ของคุณคือ ^FF0000"+getcharid(0)+"^000000";
+	if(getcharid(1) > 0){
+	mes "Party ID ของคุณคือ ^FF0000"+getcharid(1)+"^000000";
+	}else{
+	mes "^FF0000ท่านยังไม่ได้เข้าร่วมปาร์ตี้^000000";
+	}
+	if(getcharid(2) > 0){
+	mes "Guild ID ของคุณคือ ^FF0000"+getcharid(2)+"^000000";
+	}else{
+	mes "^FF0000ท่านยังไม่ได้สังกัด Guild^000000";
+	}
+	mes "พร้อมให้บริการเสมอ.";
+	mes "ฉันสามารถช่วยอะไรคุณได้บ้าง?";
+	callfunc "F_Kafra",5,7,0,60,930;
+	savepoint "like_game",.@mapx,.@mapy,1,1;
+	callfunc "F_KafEnd",0,1,"ในเมืองหลวง";
+}
+
+like_game,125,158,4	script	Kafra::eternal7	114,{
+	getmapxy .@mapname$,.@mapx,.@mapy,BL_PC;
+	cutin "kafra_04",2;
+	callfunc "F_KafSet";
+	mes "[Kafra Employee]";
+	mes "ยินดีต้อนรับคุณ ^FF0000"+strcharinfo(0)+"^000000";
+	mes "Char ID ของคุณคือ ^FF0000"+getcharid(0)+"^000000";
+	if(getcharid(1) > 0){
+	mes "Party ID ของคุณคือ ^FF0000"+getcharid(1)+"^000000";
+	}else{
+	mes "^FF0000ท่านยังไม่ได้เข้าร่วมปาร์ตี้^000000";
+	}
+	if(getcharid(2) > 0){
+	mes "Guild ID ของคุณคือ ^FF0000"+getcharid(2)+"^000000";
+	}else{
+	mes "^FF0000ท่านยังไม่ได้สังกัด Guild^000000";
+	}
+	mes "พร้อมให้บริการเสมอ.";
+	mes "ฉันสามารถช่วยอะไรคุณได้บ้าง?";
+	callfunc "F_Kafra",5,7,0,60,930;
+	savepoint "like_game",.@mapx,.@mapy,1,1;
+	callfunc "F_KafEnd",0,1,"ในเมืองหลวง";
+}
+/*
+eternal,250,246,4	script	Kafra::eternal9	114,{
+	getmapxy .@mapname$,.@mapx,.@mapy,BL_PC;
+	cutin "kafra_04",2;
+	callfunc "F_KafSet";
+	mes "[Kafra Employee]";
+	mes "ยินดีต้อนรับคุณ ^FF0000"+strcharinfo(0)+"^000000";
+	mes "Char ID ของคุณคือ ^FF0000"+getcharid(0)+"^000000";
+	if(getcharid(1) > 0){
+	mes "Party ID ของคุณคือ ^FF0000"+getcharid(1)+"^000000";
+	}else{
+	mes "^FF0000ท่านยังไม่ได้เข้าร่วมปาร์ตี้^000000";
+	}
+	if(getcharid(2) > 0){
+	mes "Guild ID ของคุณคือ ^FF0000"+getcharid(2)+"^000000";
+	}else{
+	mes "^FF0000ท่านยังไม่ได้สังกัด Guild^000000";
+	}
+	mes "พร้อมให้บริการเสมอ.";
+	mes "ฉันสามารถช่วยอะไรคุณได้บ้าง?";
+	callfunc "F_Kafra",5,7,0,60,930;
+	savepoint "like_game",.@mapx,.@mapy,1,1;
+	callfunc "F_KafEnd",0,1,"ในเมืองหลวง";
+}
+*/
+like_game,96,136,4	script	Kafra::eternal4	114,{
+	getmapxy .@mapname$,.@mapx,.@mapy,BL_PC;
+	cutin "kafra_04",2;
+	callfunc "F_KafSet";
+	mes "[Kafra Employee]";
+	mes "ยินดีต้อนรับคุณ ^FF0000"+strcharinfo(0)+"^000000";
+	mes "Char ID ของคุณคือ ^FF0000"+getcharid(0)+"^000000";
+	if(getcharid(1) > 0){
+	mes "Party ID ของคุณคือ ^FF0000"+getcharid(1)+"^000000";
+	}else{
+	mes "^FF0000ท่านยังไม่ได้เข้าร่วมปาร์ตี้^000000";
+	}
+	if(getcharid(2) > 0){
+	mes "Guild ID ของคุณคือ ^FF0000"+getcharid(2)+"^000000";
+	}else{
+	mes "^FF0000ท่านยังไม่ได้สังกัด Guild^000000";
+	}
+	mes "พร้อมให้บริการเสมอ.";
+	mes "ฉันสามารถช่วยอะไรคุณได้บ้าง?";
+	callfunc "F_Kafra",5,7,0,60,930;
+	savepoint "like_game",.@mapx,.@mapy,1,1;
+	callfunc "F_KafEnd",0,1,"ในเมืองหลวง";
+}
+
+eternal,157,94,4	script	Kafra::eternal6	114,{
+	getmapxy .@mapname$,.@mapx,.@mapy,BL_PC;
+	cutin "kafra_04",2;
+	callfunc "F_KafSet";
+	mes "[Kafra Employee]";
+	mes "ยินดีต้อนรับคุณ ^FF0000"+strcharinfo(0)+"^000000";
+	mes "Char ID ของคุณคือ ^FF0000"+getcharid(0)+"^000000";
+	if(getcharid(1) > 0){
+	mes "Party ID ของคุณคือ ^FF0000"+getcharid(1)+"^000000";
+	}else{
+	mes "^FF0000ท่านยังไม่ได้เข้าร่วมปาร์ตี้^000000";
+	}
+	if(getcharid(2) > 0){
+	mes "Guild ID ของคุณคือ ^FF0000"+getcharid(2)+"^000000";
+	}else{
+	mes "^FF0000ท่านยังไม่ได้สังกัด Guild^000000";
+	}
+	mes "พร้อมให้บริการเสมอ.";
+	mes "ฉันสามารถช่วยอะไรคุณได้บ้าง?";
+	callfunc "F_Kafra",5,7,0,60,930;
+	savepoint "like_game",.@mapx,.@mapy,1,1;
+	callfunc "F_KafEnd",0,1,"ในเมืองหลวง";
+}
+
+eternal,100,156,4	script	Kafra::eternal8	114,{
+	getmapxy .@mapname$,.@mapx,.@mapy,BL_PC;
+	cutin "kafra_04",2;
+	callfunc "F_KafSet";
+	mes "[Kafra Employee]";
+	mes "ยินดีต้อนรับคุณ ^FF0000"+strcharinfo(0)+"^000000";
+	mes "Char ID ของคุณคือ ^FF0000"+getcharid(0)+"^000000";
+	if(getcharid(1) > 0){
+	mes "Party ID ของคุณคือ ^FF0000"+getcharid(1)+"^000000";
+	}else{
+	mes "^FF0000ท่านยังไม่ได้เข้าร่วมปาร์ตี้^000000";
+	}
+	if(getcharid(2) > 0){
+	mes "Guild ID ของคุณคือ ^FF0000"+getcharid(2)+"^000000";
+	}else{
+	mes "^FF0000ท่านยังไม่ได้สังกัด Guild^000000";
+	}
+	mes "พร้อมให้บริการเสมอ.";
+	mes "ฉันสามารถช่วยอะไรคุณได้บ้าง?";
+	callfunc "F_Kafra",5,7,0,60,930;
+	savepoint "like_game",.@mapx,.@mapy,1,1;
+	callfunc "F_KafEnd",0,1,"ในเมืองหลวง";
+}
+
+like_game,162,136,4	script	Kafra::eternal63	114,{
+	getmapxy .@mapname$,.@mapx,.@mapy,BL_PC;
+	cutin "kafra_04",2;
+	callfunc "F_KafSet";
+	mes "[Kafra Employee]";
+	mes "ยินดีต้อนรับคุณ ^FF0000"+strcharinfo(0)+"^000000";
+	mes "Char ID ของคุณคือ ^FF0000"+getcharid(0)+"^000000";
+	if(getcharid(1) > 0){
+	mes "Party ID ของคุณคือ ^FF0000"+getcharid(1)+"^000000";
+	}else{
+	mes "^FF0000ท่านยังไม่ได้เข้าร่วมปาร์ตี้^000000";
+	}
+	if(getcharid(2) > 0){
+	mes "Guild ID ของคุณคือ ^FF0000"+getcharid(2)+"^000000";
+	}else{
+	mes "^FF0000ท่านยังไม่ได้สังกัด Guild^000000";
+	}
+	mes "พร้อมให้บริการเสมอ.";
+	mes "ฉันสามารถช่วยอะไรคุณได้บ้าง?";
+	callfunc "F_Kafra",5,7,0,60,930;
+	savepoint "like_game",.@mapx,.@mapy,1,1;
+	callfunc "F_KafEnd",0,1,"ในเมืองหลวง";
+}

@@ -1,0 +1,17 @@
+like_game,94,117,4	script	Hollgrehenn#559	826,{
+	if( getbattleflag( "feature.refineui" ) ){
+		mes "[Hollgrehenn]";
+		mes "ข้อคือ blacksmith ผู้เล่นสามารถทำการปรับแต่ง \nอาวุธ และ ของสวมใส่ได้.";
+		mes "เจ้ามีของที่ต้องการปรับแต่งหรือไม่?";
+		close2;
+		refineui();
+		end;
+	}else{
+		callfunc "refinemain","Hollgrehenn",0;
+		end;
+	}
+OnInit:
+
+	 waitingroom "      ตีบวก",0;
+end;
+}

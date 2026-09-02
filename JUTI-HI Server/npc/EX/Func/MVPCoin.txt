@@ -1,0 +1,186 @@
+morocc,144,75,4	script	MVP Coin#Hi	4_M_SAKRAYROYAL,{  //@ocp
+
+	mes "^000099[MVP Coin]^000000";
+	mes "หมวกบอสที่สามารถแลกได้";
+	mes "<ITEM>"+getitemname(2246)+"<INFO>2246</INFO></ITEM>";
+	mes "<ITEM>"+getitemname(5159)+"<INFO>5159</INFO></ITEM>";
+	mes "<ITEM>"+getitemname(2256)+"<INFO>2256</INFO></ITEM>";
+	mes "<ITEM>"+getitemname(5160)+"<INFO>5160</INFO></ITEM>";
+	mes "<ITEM>"+getitemname(2258)+"<INFO>2258</INFO></ITEM>";
+	mes "<ITEM>"+getitemname(5161)+"<INFO>5161</INFO></ITEM>";
+	mes "<ITEM>"+getitemname(5019)+"<INFO>5019</INFO></ITEM>";
+	mes "<ITEM>"+getitemname(5163)+"<INFO>5163</INFO></ITEM>";
+	mes "<ITEM>"+getitemname(2234)+"<INFO>2234</INFO></ITEM>";
+	mes "<ITEM>"+getitemname(5164)+"<INFO>5164</INFO></ITEM>";
+	mes "<ITEM>"+getitemname(2235)+"<INFO>2235</INFO></ITEM>";
+	mes "<ITEM>"+getitemname(5165)+"<INFO>5165</INFO></ITEM>";
+	mes "<ITEM>"+getitemname(5053)+"<INFO>5053</INFO></ITEM>";
+	mes "<ITEM>"+getitemname(5166)+"<INFO>5166</INFO></ITEM>";
+	mes "<ITEM>"+getitemname(5123)+"<INFO>5123</INFO></ITEM>";
+	mes "<ITEM>"+getitemname(5002)+"<INFO>5002</INFO></ITEM>";
+	mes "<ITEM>"+getitemname(5007)+"<INFO>5007</INFO></ITEM>";
+	mes "<ITEM>"+getitemname(2249)+"<INFO>2249</INFO></ITEM>";
+	mes "<ITEM>"+getitemname(2268)+"<INFO>2268</INFO></ITEM>";
+	next;
+	menu 
+	"^009933•^000000 แลก Enchant Stone Box",L_ESB,
+	"^009933•^000000 แลก MVP Coin",L_recyhat,
+	"^009933•^000000 ไว้ก่อน",L_no;
+	
+L_recyhat:
+	callfunc "HatRecyMvpC";
+	end;
+
+	
+L_ESB:
+close2;
+callshop "Crafting_Stone_Box",1;
+end;
+
+    
+		
+L_no:
+	mes "^000099[MVP Coin]^000000";
+	mes "พร้อมแล้วก็มาใหม่นะ^000000";
+	close;
+OnInit:
+waitingroom " แลก MVP Coin",0;
+end;	
+	
+}
+
+
+function	script	HatRecyMvpC	{
+	if (checkweight(1301,1) == 0) {
+		mes "- Please stop here!! -";
+		mes "- You have carried too much items, -";
+		mes "- Therefore unable receive any item again, -";
+		mes "- Please reduce your weight, -";
+		mes "- And come back again later! -";
+		close;
+	}
+	disable_items;
+	mes "[ย่อยหมวกบอส]";
+	next;
+	if (select( "เริ่มเลย ย่อยหมวกบอส", "ลองพูดคุยกับเขาดู" ) == 2) {
+		mes "[ย่อยหมวกบอส]";
+		mes "อืมมวันนี้อากาศดีเจ้าเป็นยังไงบ้าง!";
+		close;
+	}
+	mes "[" + strcharinfo(0) + "]";
+	mes "ดูเหมือนมันจะไม่ใช่นะมีอื่นๆอีกไหม ?.";
+	next;
+	mes "[ย่อยหมวกบอส]";
+	mes "ข้าสามารถเปลี่ยนหมวกบอส เป็น <ITEM>"+getitemname(2833127)+"<INFO>"+2833127+"</INFO></ITEM>.ได้";
+	next;
+	mes "- กำลังค้นหารายการหมวกบอส -";
+	next;
+	// ====================================================================
+	// =================== Pokemon Egg Exchange To Bsb ===================
+	// ====================================================================
+	.@box_list[0] = 2833127;		// Normal Pokemon
+	setarray .@item_list_0[0],
+		2246,
+		5159,
+		2256,
+		5160,
+		2258,
+		5161,
+		5019,
+		5163,
+		2234,
+		5164,
+		2235,
+		5165,
+		5053,
+		5166,
+		5002,
+		5007,
+		2249,
+		2268,
+		5123;
+
+	.@box_list[1] = 2833127;		// Boss Pokemon
+	setarray .@item_list_1[0],
+		9229;
+
+	while(1) {
+		for ( .@i = 0; .@i < 2; ++.@i ) {
+			if (getiteminfo(.@box_list[.@i], ITEMINFO_TYPE) == -1)	// temporary check
+				continue;
+			.@size = getarraysize( getd(".@item_list_" + .@i) );
+			for ( .@h = 0; .@h < .@size; ++.@h ) {
+				.@id = getd( ".@item_list_" + .@i + "[" + .@h + "]" );
+				if (getiteminfo(.@id, ITEMINFO_TYPE) == -1)	// temporary check
+					continue;
+				if (countitem(.@id) < 1)
+					continue;
+				mes "[ย่อยหมวกบอส]";
+				if(.@id==.@item_list_18){
+				mes "เจอแล้ว นี่มัน <ITEM>"+getitemname(.@id)+"<INFO>"+.@id+"</INFO></ITEM>. เจ้าต้องแลกหมวกบอส เป็น <ITEM>"+getitemname(2833127)+"<INFO>"+2833127+"</INFO></ITEM> 100 ea. เลยหรือไม่?";
+				}else{
+				mes "เจอแล้ว นี่มัน <ITEM>"+getitemname(.@id)+"<INFO>"+.@id+"</INFO></ITEM>. เจ้าต้องแลกหมวกบอส เป็น<ITEM>"+getitemname(2833127)+"<INFO>"+2833127+"</INFO></ITEM> 1 ea. เลยหรือไม่?";
+				}
+				next;
+				switch( select( "แลกเลย", "ลองดูอย่างอื่นก่อน", "หยุดก่อนแล้วกัน" ) ) {
+				case 1:
+					mes "[ย่อยหมวกบอส]";
+					if (countitem(.@id) < 1)
+						mes "อืมมม ดูเหมือนว่าไม่มีหมวกบอส ที่แลกเปลี่ยนได้แล้ว...";
+					else {
+						if(.@id==.@item_list_18){
+						input $@amount;
+							if($@amount == 0){
+								end;
+							}else{
+								if(countitem(.@id) < $@amount){
+								next;
+								mes "เจ้ากรอกจำนวนเยอะเกินกว่าที่มีอยู่";
+								end;
+								}
+							}
+						
+						delitem .@id, $@amount;
+						getitem .@box_list[.@i], $@amount;
+						mes "การแลกเปลี่ยนเสร็จสิ้น.";
+						}else{
+						mes "โปรดระบุจำนวนที่ต้องการแลก";
+						input $@amount;
+							if($@amount == 0){
+								end;
+							}else{
+								if(countitem(.@id) < $@amount){
+								next;
+								mes "เจ้ากรอกจำนวนเยอะเกินกว่าที่มีอยู่";
+								end;
+								}
+							}
+						
+						delitem .@id, $@amount;
+						getitem .@box_list[.@i], $@amount;
+						mes "การแลกเปลี่ยนเสร็จสิ้น.";
+						}
+					}
+					mes "โปรดเช็คดูอีกที...";
+					next;
+					break;
+				case 2:
+					break;
+				case 3:
+					mes "[ย่อยหมวกบอส]";
+					mes "อืมมมมไว้เจอกันใหม่.";
+					close;
+				}
+			}
+		}
+		mes "[ย่อยหมวกบอส]";
+		mes "เดาไว้ว่านั้นคือทั้งหมดที่มีแล้ว.";
+		next;
+		if (select( "ดูรายละเอียดเพิ่มเติม", "ออกก่อน" ) == 2) {
+			mes "[ย่อยหมวกบอส]";
+			mes "ลาก่อน~";
+			close;
+		}
+	}
+
+}

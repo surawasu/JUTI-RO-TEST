@@ -1,0 +1,20 @@
+like_game,137,122,5	script	ลด VIT	698,{
+mes "[ลด VIT]";
+mes "โปรดละบุ VIT ที่ต้องการลด";
+input	.@vit;
+next;
+mes "[ลด VIT]";
+mes "ท่านต้องการลด VIT ^FF0000"+.@vit+"^000000 หน่วยใช่หรือไม่";
+if(select("ใช่แล้ว.","ไม่ใช่.") == 2) {
+end;
+}
+next;
+mes "[ลด VIT]";
+atcommand "@vit -"+.@vit+"";
+mes "ลด VIT สำเร็จ!";
+close;
+
+OnInit:
+waitingroom "•••[ลด VIT]•••",0;
+end;
+}

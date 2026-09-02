@@ -1,0 +1,136 @@
+sec_pri,27,38,3	script	Event7V7 Control	733,{
+
+		if (strcharinfo(0) != getguildmaster($GIDGUILD1) && strcharinfo(0) != getguildmaster($GIDGUILD2)) {
+			mes "ต้องเป็นหัวกิลเท่านั้นถึงจะทำรายการได้.";
+			end;
+		}
+	query_sql("SELECT `name` from `guild` WHERE `guild_id` = "+$GIDGUILD1+"",.@name1$);
+	query_sql("SELECT `name` from `guild` WHERE `guild_id` = "+$GIDGUILD2+"",.@name2$);
+	if($G1OK >0){
+	mes "กิล ^00FF00"+.@name1$+"^000000 ^0000FFลงทะเบียนแล้ว^000000 ";
+	}else{
+	mes "กิล ^00FF00"+.@name1$+"^000000 ^FF0000ยังไม่ได้ลงทะเบียนแล้ว^000000 ";
+	}
+	if($G2OK >0){
+	mes "กิล ^00FF00"+.@name2$+"^000000 ^0000FFลงทะเบียนแล้ว^000000 ";
+	}else{
+	mes "กิล ^00FF00"+.@name2$+"^000000 ^FF0000ยังไม่ได้ลงทะเบียนแล้ว^000000 ";
+	}
+	switch(select("ลงทะเบียน7 VS 7", "ยกเลิกการลงทะเบียน" , "เริ่มเกม 7VS7"," ^FF0000ล้างระบบการลงทะเบียน^000000")){
+	
+		case 1:
+		next;
+		if (strcharinfo(0) != getguildmaster($GIDGUILD1) && strcharinfo(0) != getguildmaster($GIDGUILD2)) {
+			mes "ต้องเป็นหัวกิลเท่านั้นถึงจะทำรายการได้.";
+			end;
+		}
+			mes "เลือกกิลที่ลงทะเบียน";
+			switch(select("ลงทะเบียนสำหรับกิล ("+.@name1$+")","ลงทะเบียนสำหรับกิล ("+.@name2$+")")){
+				case 1:
+					if (strcharinfo(0) != getguildmaster($GIDGUILD1)) {
+						mes "ต้องให้หัวกิลมาลงทะเบียน.";
+						end;
+					}
+					if (getguildmember($GIDGUILD1)>7){
+					mes "[ 5VS5 ]";
+					mes "จำนวนคนในกิลด์มีมากกว่า 7 คน !!";
+					end;
+					}
+					$G1OK = 1;
+					mes "ลงเบียนเรียบร้อย";
+					end;
+				case 2:
+					if (strcharinfo(0) != getguildmaster($GIDGUILD2)) {
+						mes "ต้องให้หัวกิลมาลงทะเบียน.";
+						end;
+					}
+					if (getguildmember($GIDGUILD2)>7){
+					mes "[ 5VS5 ]";
+					mes "จำนวนคนในกิลด์มีมากกว่า 7 คน !!";
+					end;
+					}
+					$G2OK = 1;
+					mes "ลงเบียนเรียบร้อย";
+					end;	
+				}		
+		end;
+		case 3:
+		next;
+		if ($GIDGUILD1>0 && $GIDGUILD2>0 && $G1OK >0 && $G2OK > 0) {
+		donpcevent "1VS1#1VS1::OnStart";
+		//warp "2012rwc_04",129,86,4548;
+		}else{
+		mes "ยังไม่ได้ลงทะเบียนผู้เล่น";
+		}
+		end;
+		
+		case 2:
+		next;
+		if (strcharinfo(0) != getguildmaster($GIDGUILD1) && strcharinfo(0) != getguildmaster($GIDGUILD2)) {
+			mes "ต้องเป็นหัวกิลเท่านั้นถึงจะทำรายการได้.";
+			end;
+		}
+			mes "เลือกกิลที่ต้องการยกเลิกลงทะเบียน";
+			switch(select("ยกเลิกลงทะเบียนสำหรับกิล ("+.@name1$+")","ยกเลิกลงทะเบียนสำหรับกิล ("+.@name2$+")")){
+				case 1:
+					if (strcharinfo(0) != getguildmaster($GIDGUILD1)) {
+						mes "ต้องให้หัวกิลมายกเลิก.";
+						end;
+					}
+					$G1OK = 0;
+					mes "ยกเลิกการลงทะเบียนเรียบร้อย";
+					end;
+				case 2:
+					if (strcharinfo(0) != getguildmaster($GIDGUILD2)) {
+						mes "ต้องให้หัวกิลมายกเลิก.";
+						end;
+					}
+					$G2OK = 0;
+					mes "ยกเลิกการลงทะเบียนเรียบร้อย";
+					end;	
+				}	
+		end;
+		
+		case 4:
+		next;
+		if (strcharinfo(0) != getguildmaster($GIDGUILD1) && strcharinfo(0) != getguildmaster($GIDGUILD2)) {
+			mes "ต้องเป็นหัวกิลเท่านั้นถึงจะทำรายการได้.";
+			end;
+		}
+		if($G1OK >0 || $G2OK > 0){
+			mes "ต้องให้หัวกิลทั้ง2ยกเลิกการลงทะเบียนก่อน";
+			end;
+		}
+		stopnpctimer "1VS1#1VS1";
+		$1VS1Start = 0;
+		$party_id1 = 0;
+		$party_id2 = 0;
+		$team1 = 0;
+		$team2 = 0;
+		$team1win = 0;
+		$team2win = 0;
+		areawarp "guild_vs1",0,999,999,0,"like_game",127,107;
+		setcell "guild_vs1",48,74,51,74,cell_walkable,0;	//TOP
+		setcell "guild_vs1",48,25,51,25,cell_walkable,0;	//Botton
+		setcell "guild_vs1",25,51,25,48,cell_walkable,0;	//Left
+		setcell "guild_vs1",74,51,74,48,cell_walkable,0;	//Right
+		enablenpc ("#BARRICADE1VS1L1");
+		enablenpc ("#BARRICADE1VS1L2");
+		enablenpc ("#BARRICADE1VS1L3");
+		enablenpc ("#BARRICADE1VS1L4");
+		enablenpc ("#BARRICADE1VS1R1");
+		enablenpc ("#BARRICADE1VS1R2");
+		enablenpc ("#BARRICADE1VS1R3");
+		enablenpc ("#BARRICADE1VS1R4");
+		message strcharinfo(0),"ล้างระบบแล้วทั้งหมดแล้ว.";
+		end;
+	
+	}
+	
+	
+OnInit:
+$GIDGUILD1 = 167;
+$GIDGUILD2 = 168;
+waitingroom "ห้องซ้อม 7 VS 7",0;
+end;
+}

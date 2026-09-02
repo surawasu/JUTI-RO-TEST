@@ -1,0 +1,99 @@
+morocc,168,78,3	script	รับของตามLevel	784,{
+disable_items;
+mes "[รับของตามLevel]";
+mes "สามารถรับของรางวัลได้";
+mes "เมื่อถึง HI-Class และ Level ที่กำหนด";
+mes "และได้เพียง 1 ตัวละครเท่านั้น";
+mes "เจ้าต้องการรับของรางวัลใด";
+
+menu	"• Hi-Class Level 70",L_70,
+		"• Hi-Class Level 80",L_80,
+		"• Hi-Class Level 90",L_90,
+		"• Hi-Class Level 99",L_99,
+		"• ผ่านมาเฉยๆ",L_NO;
+		
+L_70:
+next;
+if(BaseLevel < 70){
+next;
+mes "[รับของตามLevel]";
+mes "เจ้ายังไม่สามารถรับรางวัลนี้ได้";
+end;
+
+}
+if(#eventlv70 > 0){
+mes "[รับของตามLevel]";
+mes "เจ้าได้รับรางวัลไปแล้ว";
+end;
+}
+getitem 2984554,1;
+getitem 2984555,1;
+getitem 25793,1;
+#eventlv70 = 1;
+end;
+
+L_80:
+next;
+if(BaseLevel < 80){
+mes "[รับของตามLevel]";
+mes "เจ้ายังไม่สามารถรับรางวัลนี้ได้";
+end;
+
+}
+if(#eventlv80 > 0){
+mes "[รับของตามLevel]";
+mes "เจ้าได้รับรางวัลไปแล้ว";
+end;
+}
+getitem 2984554,1;
+getitem 2984555,1;
+getitem 25793,1;
+#eventlv80 = 1;
+end;
+
+L_90:
+next;
+if(BaseLevel < 90){
+mes "[รับของตามLevel]";
+mes "เจ้ายังไม่สามารถรับรางวัลนี้ได้";
+end;
+
+}
+if(#eventlv90 > 0){
+mes "[รับของตามLevel]";
+mes "เจ้าได้รับรางวัลไปแล้ว";
+end;
+}
+getitem 2984554,1;
+getitem 2984555,1;
+getitem 7776,1;
+#eventlv90 = 1;
+end;
+
+L_99:
+next;
+if(BaseLevel < 99){
+mes "[รับของตามLevel]";
+mes "เจ้ายังไม่สามารถรับรางวัลนี้ได้";
+end;
+
+}
+if(#eventlv99 > 0){
+mes "[รับของตามLevel]";
+mes "เจ้าได้รับรางวัลไปแล้ว";
+end;
+}
+getitem 2984554,2;
+getitem 2984555,2;
+getitem 7776,1;
+getitem 2832299,1;
+#eventlv99 = 1;
+end;
+
+L_NO:
+end;
+
+OnInit:
+waitingroom "รับของตามLevel",0;
+end;
+}

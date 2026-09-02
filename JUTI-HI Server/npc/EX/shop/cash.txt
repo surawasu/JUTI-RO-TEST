@@ -1,0 +1,97 @@
+-	cashshop	midlow	-1,5388:1000,5208:1000,5286:1000,5138:2000,5800:1000,5325:1000,5463:1000,5377:1000,5155:1000
+-	cashshop	weaponcash	-1,607:10,608:10
+-	cashshop	petshophi	-1,9150:5000,9216:5000,9215:5000,9212:5000,9207:5000,9203:5000,9190:5000
+-	cashshop	useablecash	-1,51000:1,51001:100,12208:50,14592:50,12210:50,12202:10,12203:10,12204:10,12205:10,12206:10,12207:10
+-	cashshop	refinecash	-1,7619:100,7620:100,7776:100
+-	cashshop	coscashjuti1	-1,607:10,608:10
+-	cashshop	coscashjuti2	-1,607:10,608:10
+/*
+morocc,136,79,5	script	Cash Shop#6593	976,{
+disable_items;
+
+
+
+	if (checkweight(1201,1) == 0) {
+		mes "[^0000FFCostume Shop^000000]";
+		mes "^FF0000มีไอเท็มมากเกินไป^000000";
+		end;
+	}
+	if (MaxWeight - Weight < 10000) {
+		mes "[^0000FFCostume Shop^000000]";
+		mes "^FF0000น้ำหนักของท่านไม่เพียงพอ^000000";
+		end;
+	}
+    mes "[Cash Shop]";
+    mes "Anubis-Ro ยินดีต้อนรับ";
+	next;
+	
+	menu 
+//	"^FF0000•^000000 อาวุธ",weaponcash,
+	"^FF0000•^000000 ของกดใช้",useablecash,
+	"^FF0000•^000000 ของสวมใส่",shophat,
+//	"^FF0000•^000000 สัตว์เลี้ยง",petshophi,
+	"^FF0000•^000000 ของตีบวก",refinecash,
+//	"^FF0000•^000000 คอสตูม1",coscashjuti1,
+//	"^FF0000•^000000 คอสตูม2",coscashjuti2,
+	"^FF0000•^000000 ยกเลิก",ex;
+	end;
+	
+	shophat:
+	close2;
+	callshop "midlow",1;
+	end;
+
+	weaponcash:
+	close2;
+	callshop "weaponcash",1;
+	end;
+
+	petshophi:
+	close2;
+	callshop "petshophi",1;
+	end;
+	
+	useablecash:
+	close2;
+	callshop "useablecash",1;
+	end;	
+	
+	refinecash:
+	close2;
+	callshop "refinecash",1;
+	end;	
+	
+	coscashjuti1:
+	close2;
+	callshop "coscashjuti1",1;
+	end;	
+	
+	coscashjuti2:
+	close2;
+	callshop "coscashjuti2",1;
+	end;	
+	coscashjuti3:
+	close2;
+	callshop "coscashjuti3",1;
+	end;	
+	coscashjuti4:
+	close2;
+	callshop "coscashjuti4",1;
+	end;	
+	coscashjuti5:
+	close2;
+	callshop "coscashjuti5",1;
+	end;
+
+	
+	ex:
+	end;	
+	
+
+OnInit:
+waitingroom "    Cash Shop",0; 
+end;
+
+
+}
+*/

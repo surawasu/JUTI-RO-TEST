@@ -1,0 +1,56 @@
+abbey02	mapflag	mvp	//	Fallen Bishop Hibram
+abbey03	mapflag	mvp	//	Beelzebub
+abyss_03	mapflag	mvp	//	Detardeurus
+ama_dun03	mapflag	mvp	//	Samurai Specter
+anthell02	mapflag	mvp	//	Maya
+ayo_dun02	mapflag	mvp	//	Lady Tanee
+beach_dun	mapflag	mvp	//	Tao Gunka
+ein_dun02	mapflag	mvp	//	RSX-0806
+gef_dun01	mapflag	mvp	//	Dracula
+gef_dun02	mapflag	mvp	//	Doppelganger
+gl_chyard	mapflag	mvp	//	Dark Lord
+gld_dun01	mapflag	mvp	//	Eddga
+gld_dun02	mapflag	mvp	//	Doppelganger
+gld_dun03	mapflag	mvp	//	Maya
+gld_dun04	mapflag	mvp	//	Dark Lord
+gon_dun03	mapflag	mvp	//	Evil Snake Lord
+in_sphinx5	mapflag	mvp	//	Pharaoh
+jupe_core	mapflag	mvp	//	Vesper
+kh_dun02	mapflag	mvp	//	Kiel D-01
+lhz_dun02	mapflag	mvp	//	Egnigem Cenia
+lou_dun03	mapflag	mvp	//	White Lady
+moc_pryd04	mapflag	mvp	//	Osiris
+moc_pryd06	mapflag	mvp	//	Amon Ra
+mosk_dun03	mapflag	mvp	//	Gopinich
+odin_tem03	mapflag	mvp	//	Valkyrie Randgris
+pay_dun04	mapflag	mvp	//	Moonlight Flower
+prt_maze03	mapflag	mvp	//	Baphomet
+prt_sewb4	mapflag	mvp	//	Golden Thief Bug
+ra_san05	mapflag	mvp	//	Gloom Under Night
+thor_v03	mapflag	mvp	//	Ifrit
+treasure02	mapflag	mvp	//	Drake
+tur_dun04	mapflag	mvp	//	Turtle General
+xmas_dun02	mapflag	mvp	//	Stormy Knight
+gef_fild02	mapflag	mvp	//	Orc Hero
+gef_fild10	mapflag	mvp	//	Orc Lord
+gef_fild14	mapflag	mvp	//	Orc Hero
+xmas_fild01	mapflag	mvp	//	Garm
+mjolnir_04	mapflag	mvp	//	Mistress
+moc_fild17	mapflag	mvp	//	Phreeoni
+moc_fild22	mapflag	mvp	//	Wounded Morocc
+pay_fild11	mapflag	mvp	//	Eddga
+ra_fild02	mapflag	mvp	//	Atroce
+ra_fild03	mapflag	mvp	//	Atroce
+ra_fild04	mapflag	mvp	//	Atroce
+ve_fild01	mapflag	mvp	//	Atroce
+ve_fild02	mapflag	mvp	//	Atroce
+nyd_dun01	mapflag	mvp	//	Nidhoggr's Shadow
+gl_cas02	mapflag	mvp	//	Unsealed Baphomet
+
+in_sphinx4	mapflag	mvp	//	Evil Fanatics
+beach_dun3	mapflag	mvp	//	Unidentified Creature NO.1
+gon_dun02	mapflag	mvp	//	Himerumezu
+hu_fild04	mapflag	mvp	//	Bone Detardeurus
+nif_fild02	mapflag	mvp	//	Beelzebub Darkness
+moc_fild12	mapflag	mvp	//	Fahrros
+ra_fild05	mapflag	mvp	//	SnacKing

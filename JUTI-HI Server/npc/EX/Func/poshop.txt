@@ -1,0 +1,67 @@
+//======================== Etc. Shop ===============================
+-	shop	PotionS	90,12580:10,25793:10000000,60023:10000000,60000:10000000,60009:5000,60010:5000,689:-1,547:-1,7135:-1,7136:-1,606:-1,678:-1,12029:-1,643:-1,611:-1,1065:-1,610:-1,602:-1,601:2,662:-1,645:-1,656:-1,657:-1,501:-1,502:-1,503:-1,504:-1,505:-1,506:-1,523:-1,606:-1,525:-1,717:500,716:500,715:500,7139:10000,1750:-1,1766:-1,1767:-1,1755:-1,1754:-1,1761:-1,1752:-1,1760:-1,1759:-1,1772:-1,1757:-1,1770:-1,1769:-1,1765:-1,1763:-1,1762:-1,1764:-1,1751:-1,1768:-1,1753:-1,1756:-1,1758:-1,13200:-1,13201:-1,13202:-1,13216:-1,13217:-1,13218:-1,13219:-1,13232:-1,13231:-1,1771:-1,1025:250,18000:-1,18001:-1,18002:-1,18003:-1,18004:-1,13294:-1,13252:-1,13251:-1,13253:-1,13250:-1,13254:-1,7521:-1,7522:-1,7524:-1,7523:-1,12020:10000,12114:10000,12115:10000,12116:10000,12117:10000,12118:10000,12119:10000,12120:10000,12121:10000
+//11999993:10000, AP Potion
+//#################################################################################################################################
+-	script	Tools Dealer#1::pshop	982,{
+	callshop "PotionS",3;
+//OnInit: 
+//waitingroom "   Potion Shop",0; 
+end; 
+}
+
+//mooc,171,87,4	duplicate(pshop)	Tools Dealer#8	4_F_KAFRA7
+//alberta,119,53,1	duplicate(pshop)	Tools Dealer#88	982
+//aldebaran,145,116,3	duplicate(pshop)	Tools Dealer#9	982
+//amatsu,108,151,3	duplicate(pshop)	Tools Dealer#10	982
+//ayothaya,212,173,5	duplicate(pshop)	Tools Dealer#11	982
+//comodo,183,153,3	duplicate(pshop)	Tools Dealer#12	982
+//einbech,181,127,3	duplicate(pshop)	Tools Dealer#13	982
+//einbroch,228,205,5	duplicate(pshop)	Tools Dealer#14	982
+//geffen,121,66,5	duplicate(pshop)	Tools Dealer#15	982
+//gonryun,155,121,3	duplicate(pshop)	Tools Dealer#16	982
+//hugel,91,150,3	duplicate(pshop)	Tools Dealer#17	982
+//
+//jawaii,204,292,3	duplicate(pshop)	Tools Dealer#19	982
+//lighthalzen,151,100,5	duplicate(pshop)	Tools Dealer#20	982
+//louyang,216,104,3	duplicate(pshop)	Tools Dealer#21	982
+//xmas,150,136,3	duplicate(pshop)	Tools Dealer#22	982
+//morocc,147,102,5	duplicate(pshop)	Tools Dealer#23	982
+//
+//payon,181,103,3	duplicate(pshop)	Tools Dealer#25	982
+//prontera,160,208,3	duplicate(pshop)	Tools Dealer#26	982
+//rachel,131,144,5	duplicate(pshop)	Tools Dealer#27	982
+//umbala,128,132,3	duplicate(pshop)	Tools Dealer#28	982
+//veins,208,128,3	duplicate(pshop)	Tools Dealer#29	982
+//yuno,155,187,3	duplicate(pshop)	Tools Dealer#30	982
+//sec_in02,135,167,5	duplicate(pshop)	Tools Dealer#31	982
+//moscovia,221,196,5	duplicate(pshop)	Tools Dealer#32	982
+////oasis,216,66,3	duplicate(pshop)	Tools Dealer#34	982
+////oasis,156,262,3	duplicate(pshop)	Tools Dealer#35	982
+//mora,111,103,3	duplicate(pshop)	Tools Dealer#36	982
+//malangdo,131,265,3	duplicate(pshop)	Tools Dealer#37	982
+//dewata,195,183,3	duplicate(pshop)	Tools Dealer#38	982
+//thor_camp,206,222,3	duplicate(pshop)	Tools Dealer#39	982
+//splendide,196,147,3	duplicate(pshop)	Tools Dealer#40	982
+//niflheim,199,185,3	duplicate(pshop)	Tools Dealer#41	982
+//nameless_n,71,196,3	duplicate(pshop)	Tools Dealer#42	982
+//mid_camp,214,238,3	duplicate(pshop)	Tools Dealer#43	982
+//manuk,275,199,3	duplicate(pshop)	Tools Dealer#44	982
+//prt_monk,228,97,3	duplicate(pshop)	Tools Dealer#45	982
+//brasilis,191,184,3	duplicate(pshop)	Tools Dealer#46	982
+//dicastes01,194,227,3	duplicate(pshop)	Tools Dealer#47	982
+//dicastes02,111,163,3	duplicate(pshop)	Tools Dealer#48	982
+////chess01,45,47,3	duplicate(pshop)	Tools Dealer#62	982
+//alb_ship,121,103,3	duplicate(pshop)	Tools Dealer#71	982
+//ra_temple,187,189,3	duplicate(pshop)	Tools Dealer#96	982
+//rag_fes,168,155,3	duplicate(pshop)	Tools Dealer#rag_fes	982
+//
+
+
+
+eternal,95,61,5	duplicate(pshop)	Tools Dealer#funtown5	982		//tool
+like_game,122,158,5	duplicate(pshop)	Tools Dealer#funtown7	982		//tool
+like_game,123,116,5	duplicate(pshop)	Tools Dealer#funtown9	982		//tool
+like_game,90,136,5	duplicate(pshop)	Tools Dealer#funtown4	982		//tool
+eternal,151,94,5	duplicate(pshop)	Tools Dealer#funtown6	982		//tool
+eternal,94,156,5	duplicate(pshop)	Tools Dealer#funtown8	982		//tool
+like_game,156,136,5	duplicate(pshop)	Tools Dealer#funtown63	982		//tool

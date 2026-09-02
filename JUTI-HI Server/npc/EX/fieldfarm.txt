@@ -1,0 +1,107 @@
+like_game,134,90,1	script	Hell Abyss#funtown	10007,{
+	.@num = rand(0,99);
+	mes "[ ระบบตรวจบอท ]";
+	mes "กรอกเลขต่อไปนี้ ["+.@num+"]";
+	input .@check;
+	if(.@check != .@num){
+	mes "กรุณากรอกรหัสให้ถูกต้อง";
+	end;
+	}
+	clear;
+menu	
+" • วาร์ปเลย ["+getmapusers("hell_abyss")+"] คน",MVP1,
+" • ออก",EX;
+
+MVP1:
+
+
+warp "hell_abyss",0,0;
+end;
+
+EX:
+end;
+
+OnInit:
+do {
+delwaitingroom;
+waitingroom "ผู้เล่นทั้งหมด ["+getmapusers("hell_abyss")+"] คน",0;
+sleep 100; // Evites super infinity loop
+} while(1); // End Loop
+end;
+}
+
+like_game,134,93,1	script	Hell Biolab#funtown	10007,{
+	.@num = rand(0,99);
+	mes "[ ระบบตรวจบอท ]";
+	mes "กรอกเลขต่อไปนี้ ["+.@num+"]";
+	input .@check;
+	if(.@check != .@num){
+	mes "กรุณากรอกรหัสให้ถูกต้อง";
+	end;
+	}
+	clear;
+menu	
+" • วาร์ปเลย ["+getmapusers("hero_ent2")+"] คน",MVP1,
+" • ออก",EX;
+
+MVP1:
+warp "hero_ent2",0,0;
+end;
+
+EX:
+end;
+
+OnInit:
+do {
+delwaitingroom;
+waitingroom "ผู้เล่นทั้งหมด ["+getmapusers("hero_ent2")+"] คน",0;
+sleep 100; // Evites super infinity loop
+} while(1); // End Loop
+end;
+}
+
+funtown,223,121,1	script	บอสโลก#funtown	10007,{
+
+menu	
+" • วาร์ปเลย ["+getmapusers("1@lab")+"] คน",MVP1,
+" • ออก",EX;
+
+MVP1:
+warp "1@lab",rand(56,119),rand(54,117);
+end;
+
+EX:
+end;
+
+OnInit:
+do {
+delwaitingroom;
+waitingroom "ผู้เล่นทั้งหมด ["+getmapusers("1@lab")+"] คน",0;
+sleep 100; // Evites super infinity loop
+} while(1); // End Loop
+end;
+}
+
+sec_pri,19,28,1	script	Dragon Nest#funtown	10007,{
+
+menu	
+" • วาร์ปเลย ["+getmapusers("hell_abyss2")+"] คน",MVP1,
+" • ออก",EX;
+
+MVP1:
+warp "hell_abyss2",0,0;
+end;
+
+EX:
+end;
+
+OnInit:
+do {
+delwaitingroom;
+waitingroom "ผู้เล่นทั้งหมด ["+getmapusers("hell_abyss2")+"] คน",0;
+sleep 100; // Evites super infinity loop
+} while(1); // End Loop
+end;
+}
+
+

@@ -1,0 +1,109 @@
+/*
+	Script : Bonus Time (3.0)
+	Release : 2012/04/08
+	Edition : 2013/09/06
+	Editon By.  : SudTha [ NGL ] Over
+	
+	By : ReadyGo  & แอดมินอีเอ้กเอ้ก
+	From : www.eathena-th.com
+	
+	Description : ตั้งเวลาให้ Exp x2 อัตโนมัติ
+	Comment:
+		v1.1	- แก้ Bug ได้ Exp ไม่ตรงตามที่ประกาศ x2
+		v.2.0 - แก้ไขและเพิ่มเติมลูกเล่นเข้าไปใหม่ โดย SudTha [ NGL ] Over
+		v.2.1 - แก้ไขข้อความใหม่หมด
+		v.3.0 - แก้ไขตัวคูณโดยการเซ็ตแทน และแก้ไขคำอธิบายและเป็น Ver.สุดท้ายที่ทำการแก้ไขและแจกจ่าย
+				
+	# สูตรการทำ x อื่นๆ
+		x0.25	: *1/4	(ได้ Exp น้อยลง 75%)
+		x0.5	: *1/2	(ได้ Exp น้อยลง 50%)
+		x0.75	: *3/4	(ได้ Exp น้อยลง 25%)
+		x1		: *1	(ได้ Exp ปกติ)
+		x1.25	: *5/4	(ได้ Exp มากขึ้น 25%)
+		x1.5	: *3/2	(ได้ Exp มากขึ้น 50%)
+		x1.75	: *7/4	(ได้ Exp มากขึ้น 75%)
+		x2		: *2	(ได้ Exp มากขึ้น 100%)
+*/
+
+-	script	Bonus Time	-1,{
+
+OnInIt:
+	set $hottimeevent,0;
+	set .base_exp, getbattleflag("base_exp_rate");
+	set .job_exp, getbattleflag("job_exp_rate");
+//  set .item_rate_common, getbattleflag("item_rate_common");
+//  set .item_rate_heal, getbattleflag("item_rate_heal");
+//  set .item_rate_use, getbattleflag("item_rate_use");
+//  set .item_rate_equip, getbattleflag("item_rate_equip");
+//  set .item_rate_card, getbattleflag("item_rate_card");
+	end;
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// กำหนดเวลาเริ่ม x1.5
+OnClock0200:
+OnClock0600:
+OnClock1000:
+OnClock1400:
+OnClock1800:
+OnClock2100:
+
+
+	setbattleflag("base_exp_rate", .base_exp*3/2 );
+	setbattleflag("job_exp_rate", .job_exp*3/2 );
+  
+	//setbattleflag("item_rate_common", .item_rate_common*5/4 );
+	//setbattleflag("item_rate_heal", .item_rate_heal*5/4 );
+	//setbattleflag("item_rate_use", .item_rate_use*5/4 );
+	//setbattleflag("item_rate_equip", .item_rate_equip*5/4 );
+	//setbattleflag("item_rate_card", .item_rate_card*5/4 );
+	set $hottimeevent,1;
+	announce "[ Hot Time ] Exp +50% !! ตั้งแต่ตอนนี้",bc_all,0xFF8000;
+	//atcommand "@reloadbattleconf";
+	atcommand "@reloadmobdb";
+	
+	end;
+	
+//OnClock1830:
+//OnClock1900:
+//OnClock1930:
+//OnClock2000:
+//OnClock2030:
+//OnClock2100:
+//OnClock2130:
+//OnClock2200:
+//OnClock2230:
+//OnClock2300:
+//OnClock2330:
+//
+//if($hottimeevent > 0){
+//announce "[ Hot Time ]  ตอนนี้อยู่ในช่วงเวลา Exp +50% & Drop +25% !!", bc_all,0x0080FF;
+//}else{
+//}
+//end;
+
+
+// กำหนดเวลาหมดคูณ
+OnClock0400:
+OnClock0800:
+OnClock1200:
+OnClock1600:
+OnClock2000:
+OnClock0000:
+	
+	setbattleflag("base_exp_rate", .base_exp );
+	setbattleflag("job_exp_rate", .job_exp );
+	
+	//setbattleflag("item_rate_common", .item_rate_common );
+	//setbattleflag("item_rate_heal", .item_rate_heal );
+	//setbattleflag("item_rate_use", .item_rate_use );
+	//setbattleflag("item_rate_equip", .item_rate_equip );
+	//setbattleflag("item_rate_card", .item_rate_card );
+	set $hottimeevent,0;
+	announce "[ Hot Time ] กลับสู่สภาวะปกติแล้ว  !!", bc_all,0xFF8000;
+	//atcommand "@reloadbattleconf";
+	atcommand "@reloadmobdb";
+	end;
+}
+
+

@@ -1,0 +1,67 @@
+-	cashshop	petegghhi	-1,2981026:100
+-	cashshop	costumeegghi	-1,2832101:100,2832100:50,2981001:50,2981009:50,2981018:50
+-	cashshop	serieegghi	-1,2984000:100
+/*
+morocc,125,59,6	script	Egg Shop#hi	4_VENDING_MACHINE,{
+disable_items;
+
+
+
+	if (checkweight(1201,1) == 0) {
+		mes "[^0000FFCostume Shop^000000]";
+		mes "^FF0000มีไอเท็มมากเกินไป^000000";
+		end;
+	}
+	if (MaxWeight - Weight < 10000) {
+		mes "[^0000FFCostume Shop^000000]";
+		mes "^FF0000น้ำหนักของท่านไม่เพียงพอ^000000";
+		end;
+	}
+    mes "[Egg Shop]";
+    mes "ยินดีต้อนรับ";
+	next;
+	
+	menu 
+	"^FF0000•^000000 Pet Egg",petegghhi,
+	"^FF0000•^000000 Costume Egg",costumeegghi,
+	"^FF0000•^000000 Costume Serie Egg",serieegghi,
+	"^FF0000•^000000 ยกเลิก",ex;
+	end;
+	
+	petegghhi:
+	close2;
+	callshop "petegghhi",1;
+	end;
+
+	costumeegghi:
+	close2;
+	callshop "costumeegghi",1;
+	end;
+
+	serieegghi:
+	close2;
+	callshop "serieegghi",1;
+	end;
+	
+	ex:
+	end;	
+	
+
+OnInit:
+	setarray .messages$," "," E ","g ","g ","S ","h ","o ","p";
+	while(1)
+	{
+		set .Display$,"";
+		for( set .i,0; .i < getarraysize( .messages$ ); set .i,.i + 1 )
+		{
+			set .Display$,.Display$ + .messages$[.i];
+			delwaitingroom;
+			waitingroom .Display$,0;
+			sleep 100;
+		}
+	sleep 1000;
+	}
+
+
+}
+*/

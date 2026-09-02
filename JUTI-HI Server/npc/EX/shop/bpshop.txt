@@ -1,0 +1,8 @@
+morocc,181,79,6	script	แลกตั๋ว Battle Pass	4_F_PINKWOMAN,{
+disable_items;
+callshop "pass_ex",1;
+end;
+OnInit:
+waitingroom "แลกตั๋ว Battle Pass",0;
+end;
+}

@@ -1,0 +1,55 @@
+-	marketshop	hw_limit_shop	FAKE_NPC,60011:5000000:3000,161081:150000000:20,161082:150000000:20,3130022:80000000:5,161104:179000000:10,161103:250000000:10,60026:200000000:10,161134:1000000000:4,161135:1000000000:4,161136:1000000000:4,161137:1000000000:4,161138:1000000000:4,161139:1000000000:4,161140:1000000000:4,161141:1000000000:4,161142:1000000000:4,161143:1000000000:4,161144:1000000000:4
+
+sec_pri,30,30,4	script	ตลาดมืด	563,{
+.@gmlv	= getgmlevel();
+set .@gmlv$,(.@gmlv==99?"^FF0000รีเซ็ตจำนวนขาย^000000":"");
+set .@hw_start$,($hw_start==1?"^0000FFตู้เปิดอยู่-กดเพื่อปิด^000000":"^FF0000ตู้ปิดอยู่-กดเพื่อเปิด^000000");
+set .@gmlv2$,(.@gmlv==99?""+.@hw_start$+"":"");
+mes .npc$;
+mes "ท่านต้องการทำสั่งได้";
+switch(select("เปิดร้านค้า",.@gmlv$,.@gmlv2$,"ไม่มีอะไร")){
+case 1:
+next;
+if($hw_start == 1 || getgmlevel() >= 99){
+callshop "hw_limit_shop",1;
+}else{
+mes .npc$;
+mes "ระบบยังไม่เปิด";
+end;
+}
+end;
+case 2:
+	npcshopupdate "hw_limit_shop",60011,5000000,3000;
+	npcshopupdate "hw_limit_shop",161081,150000000,20;
+	npcshopupdate "hw_limit_shop",161082,150000000,20;
+	npcshopupdate "hw_limit_shop",3130022,80000000,5;
+	npcshopupdate "hw_limit_shop",161104,179000000,10;
+	npcshopupdate "hw_limit_shop",161103,250000000,10;
+	npcshopupdate "hw_limit_shop",60026,200000000,10;
+	npcshopupdate "hw_limit_shop",161134,1000000000,4;
+	npcshopupdate "hw_limit_shop",161135,1000000000,4;
+	npcshopupdate "hw_limit_shop",161136,1000000000,4;
+	npcshopupdate "hw_limit_shop",161137,1000000000,4;
+	npcshopupdate "hw_limit_shop",161138,1000000000,4;
+	npcshopupdate "hw_limit_shop",161139,1000000000,4;
+	npcshopupdate "hw_limit_shop",161140,1000000000,4;
+	npcshopupdate "hw_limit_shop",161141,1000000000,4;
+	npcshopupdate "hw_limit_shop",161142,1000000000,4;
+	npcshopupdate "hw_limit_shop",161143,1000000000,4;
+	npcshopupdate "hw_limit_shop",161144,1000000000,4;
+end;
+case 3:
+if($hw_start == 1){
+$hw_start = 0;
+}else{
+$hw_start = 1;
+}
+end;
+case 4:
+end;
+}
+OnInit:
+.npc$ = "^0000FF••ตู้ขายของ HW••^000000";
+waitingroom "••ตลาดมืด••",0;
+end;
+}

@@ -1,0 +1,913 @@
+morocc,119,59,4	script	Charm System	4_M_OLDFRIAR,{
+disable_items;
+	mes "^000099[Wandering Mind]^000000";
+	mes "ยินดีต้อนรับ ท่าน ^FF0000[ "+ strcharinfo(0) +" ]^000000";
+	mes "นี่คือระบบ Charm Upgrade System";
+	mes "โปรดเลือกหัวข้อที่ท่านต้องการอัพเกรด";
+	next;
+	menu 
+	"^009933•^000000 Charm HP",L_HP,
+	"^009933•^000000 Charm SP",L_SP,
+	"^009933•^000000 Charm Atk",L_ATK,
+	"^009933•^000000 Charm MAtk",L_MATK,
+	"^009933•^000000 Charm Boss",L_BOSS,
+	"^009933•^000000 ^FF0000ยังก่อนดีกว่า^000000",L_no;
+
+L_no:
+end;
+
+//	เริ่ม HP
+L_HP:
+		mes "[Wandering Mind]";
+		mes "บริการอัพเกรด Charm HP";
+		mes "เลือก ระดับที่ต้องการแลก";
+		//switch(select("อัพเกรด Level 2:อัพเกรด Level 3:อัพเกรด Level 4:อัพเกรด Level 5:อัพเกรด Level 6:อัพเกรด Level 7:อัพเกรด Level 8:อัพเกรด Level 9:อัพเกรด Level 10:ยังก่อน")){
+		switch(select("อัพเกรด Level 2:อัพเกรด Level 3:อัพเกรด Level 4:อัพเกรด Level 5::::::ยังก่อน")){
+			case 1:
+				.@itemreq = 2987002;
+				.@itemsuccess = 2987007;
+				.@itemfail = 2987002;
+				.@minrate = 6;
+				.@maxrate = 95;
+			break;
+			case 2:
+				.@itemreq = 2987007;
+				.@itemsuccess = 2987012;
+				.@itemfail = 2987002;
+				.@minrate = 11;
+				.@maxrate = 90;
+			break;
+			case 3:
+				.@itemreq = 2987012;
+				.@itemsuccess = 2987017;
+				.@itemfail = 2987007;
+				.@minrate = 16;
+				.@maxrate = 85;
+			break;
+			case 4:
+				.@itemreq = 2987017;
+				.@itemsuccess = 2987022;
+				.@itemfail = 2987012;
+				.@minrate = 21;
+				.@maxrate = 80;
+			break;
+			case 5:
+				.@itemreq = 2987022;
+				.@itemsuccess = 2987027;
+				.@itemfail = 2987017;
+				.@minrate = 26;
+				.@maxrate = 75;
+			break;
+			case 6:
+				.@itemreq = 2987027;
+				.@itemsuccess = 2987032;
+				.@itemfail = 2987022;
+				.@minrate = 31;
+				.@maxrate = 70;
+			break;
+			case 7:
+				.@itemreq = 2987032;
+				.@itemsuccess = 2987037;
+				.@itemfail = 2987027;
+				.@minrate = 36;
+				.@maxrate = 65;
+			break;
+			case 8:
+				.@itemreq = 2987037;
+				.@itemsuccess = 2987042;
+				.@itemfail = 2987032;
+				.@minrate = 41;
+				.@maxrate = 60;
+			break;
+			case 9:
+				.@itemreq = 2987042;
+				.@itemsuccess = 2987047;
+				.@itemfail = 2987037;
+				.@minrate = 46;
+				.@maxrate = 55;
+			break;
+			case 10:
+			end;
+		}
+		.@amount = 1;
+		next;
+		mes "[Wandering Mind]";
+		mes "ท่านต้องการอัพเกรด \n<ITEM>"+getitemname(.@itemreq)+"<INFO>"+.@itemreq+"</INFO></ITEM>";
+		mes "เป็น ";
+		mes "<ITEM>"+getitemname(.@itemsuccess)+"<INFO>"+.@itemsuccess+"</INFO></ITEM>";
+		mes "^FF0000มีโอกาสสำเร็จ "+(.@maxrate-.@minrate+1)+"%^000000";
+		next;
+		mes "[Wandering Mind]";
+		mes "^FF0000-อัพเกรดธรรมดหากล้มเหลวระดับจะลดลง 1\n(หากเป็น Level 1 จะไม่ลด)^000000";
+		mes "จำเป็นต้องมี <ITEM>"+getitemname(2987000)+"<INFO>2987000</INFO></ITEM> 1 ea";
+		next;
+		mes "[Wandering Mind]";
+		mes "^FF0000-อัพเกรดแบบใช้ Protection Charm Ticket\nหากล้มเหลวระดับจะไม่ลด^000000";
+		mes "จำเป็นต้องมี <ITEM>"+getitemname(2987000)+"<INFO>2987000</INFO></ITEM> 1 ea";
+		mes "และ  <ITEM>"+getitemname(2987001)+"<INFO>2987001</INFO></ITEM> 1 ea";
+		next;
+		switch(select("^4d4dffอัพเกรดแบบธรรมดา ^000000","^4d4dffอัพเกรดแบบใช้ Protection Charm Ticket^000000")) {
+			case 1:
+				mes "[Wandering Mind]";
+				mes "^FF0000ท่านเลือกอัพเกรดแบบธรรมดา^000000";
+				mes "^FF0000มีโอกาสสำเร็จ "+(.@maxrate-.@minrate+1)+"%^000000";
+				mes "^FF0000หากล้มเหลวระดับจะลดลง 1\n(หากเป็น Level 1 จะไม่ลด)^000000";
+				mes "^FF0000อัพเกรดเลยไหม?.^000000";
+				next;
+				if(select("ลุยเลย.","หยุดก่อนดีกว่า.") == 2) {
+					mes "[Wandering Mind]";
+					mes "อืมมม ยังไม่อัพเกรดงั้นเหรอไม่เป็นไร..";
+					close;
+				} else if (countitem(.@itemreq) < .@amount || countitem(2987000) < .@amount ) {
+					mes "[Wandering Mind]";
+					mes "เจ้าไม่มี  <ITEM>"+getitemname(.@itemreq)+"<INFO>"+.@itemreq+"</INFO></ITEM>.";
+					mes "เจ้าไม่มี  <ITEM>"+getitemname(2987000)+"<INFO>2987000</INFO></ITEM>.";
+					close;
+				} else {
+					if (checkweight(1201,1) == 0 || ((MaxWeight - Weight) * 100 / MaxWeight) < 10) {
+						mes "[Wandering Mind]";
+						mes "^4d4dffโปรดตรวจสอบกระเป๋าสัมภาระของเจ้าให้ว่างพอที่จะแลกเปลี่ยน.^000000";
+						close;
+					}
+					delitem(.@itemreq, .@amount);
+					delitem 2987000,1;
+					.@randop = rand(1,100);
+					if(.@randop >= .@minrate && .@randop <= .@maxrate){
+					getitem .@itemsuccess,1;
+					mes "[Wandering Mind]";
+					mes "อืมการแลกเปลี่ยน Soul สำเร็จ";
+					dispbottom "อืมการอัพเกรดสำเร็จ",0xFFFFFF;
+					specialeffect2 83;
+					close;
+					}else{
+					mes "[Wandering Mind]";
+					mes "ดูเหมือนเจ้าจะโชคไม่ค่อยดี!";
+					getitem .@itemfail,1;
+					dispbottom "ดูเหมือนเจ้าจะโชคไม่ค่อยดี!",0xFFFFFF;
+					specialeffect2 EF_SUI_EXPLOSION;
+					close;
+					}
+				}
+			case 2:
+				mes "[Wandering Mind]";
+				mes "^FF0000ท่านเลือกอัพเกรดแบบใช้ Protection Charm Ticket^000000";
+				mes "^FF0000มีโอกาสสำเร็จ "+(.@maxrate-.@minrate+1)+"%^000000";
+				mes "^FF0000อัพเกรดแบบใช้ Protection Charm Ticket\nหากล้มเหลวระดับจะไม่ลดอัพเกรดเลยไหม?^000000";
+				next;
+				if(select("ลุยเลย.","หยุดก่อนดีกว่า.") == 2) {
+					mes "[Wandering Mind]";
+					mes "อืมมม ยังไม่อัพเกรดงั้นเหรอไม่เป็นไร..";
+					close;
+				} else if (countitem(.@itemreq) < .@amount || countitem(2987001) < .@amount || countitem(2987000) < .@amount) {
+					mes "[Wandering Mind]";
+					mes "เจ้าไม่มี  <ITEM>"+getitemname(.@itemreq)+"<INFO>"+.@itemreq+"</INFO></ITEM>.";
+					mes "เจ้าไม่มี  <ITEM>"+getitemname(2987000)+"<INFO>2987000/INFO></ITEM>.";
+					mes "เจ้าไม่มี  <ITEM>"+getitemname(2987001)+"<INFO>2987001</INFO></ITEM>.";
+					close;
+				} else {
+					if (checkweight(1201,1) == 0 || ((MaxWeight - Weight) * 100 / MaxWeight) < 10) {
+						mes "[Wandering Mind]";
+						mes "^4d4dffโปรดตรวจสอบกระเป๋าสัมภาระของเจ้าให้ว่างพอที่จะแลกเปลี่ยน.^000000";
+						close;
+					}
+					delitem(.@itemreq, .@amount);
+					delitem 2987000,1;
+					delitem 2987001,1;
+					.@randop = rand(1,100);
+					if(.@randop >= .@minrate && .@randop <= .@maxrate){
+					getitem .@itemsuccess,1;
+					mes "[Wandering Mind]";
+					mes "อืมการแลกเปลี่ยน Soul สำเร็จ";
+					dispbottom "อืมการอัพเกรดสำเร็จ",0xFFFFFF;
+					specialeffect2 83;
+					close;
+					}else{
+					mes "[Wandering Mind]";
+					mes "ดูเหมือนเจ้าจะโชคไม่ค่อยดี!";
+					getitem .@itemreq,1;
+					dispbottom "ดูเหมือนเจ้าจะโชคไม่ค่อยดี!",0xFFFFFF;
+					specialeffect2 EF_SUI_EXPLOSION;
+					close;
+					}
+				}
+			}	
+end;
+//	 จบ HP
+
+//	เริ่ม SP
+L_SP:
+		mes "[Wandering Mind]";
+		mes "บริการอัพเกรด Charm SP";
+		mes "เลือก ระดับที่ต้องการแลก";
+		//switch(select("อัพเกรด Level 2:อัพเกรด Level 3:อัพเกรด Level 4:อัพเกรด Level 5:อัพเกรด Level 6:อัพเกรด Level 7:อัพเกรด Level 8:อัพเกรด Level 9:อัพเกรด Level 10:ยังก่อน")){
+		switch(select("อัพเกรด Level 2:อัพเกรด Level 3:อัพเกรด Level 4:อัพเกรด Level 5::::::ยังก่อน")){
+			case 1:
+				.@itemreq = 2987003;
+				.@itemsuccess = 2987008;
+				.@itemfail = 2987003;
+				.@minrate = 6;
+				.@maxrate = 95;
+			break;
+			case 2:
+				.@itemreq = 2987008;
+				.@itemsuccess = 2987013;
+				.@itemfail = 2987003;
+				.@minrate = 11;
+				.@maxrate = 90;
+			break;
+			case 3:
+				.@itemreq = 2987013;
+				.@itemsuccess = 2987018;
+				.@itemfail = 2987008;
+				.@minrate = 16;
+				.@maxrate = 85;
+			break;
+			case 4:
+				.@itemreq = 2987018;
+				.@itemsuccess = 2987023;
+				.@itemfail = 2987013;
+				.@minrate = 21;
+				.@maxrate = 80;
+			break;
+			case 5:
+				.@itemreq = 2987023;
+				.@itemsuccess = 2987028;
+				.@itemfail = 2987018;
+				.@minrate = 26;
+				.@maxrate = 75;
+			break;
+			case 6:
+				.@itemreq = 2987028;
+				.@itemsuccess = 2987033;
+				.@itemfail = 2987023;
+				.@minrate = 31;
+				.@maxrate = 70;
+			break;
+			case 7:
+				.@itemreq = 2987033;
+				.@itemsuccess = 2987038;
+				.@itemfail = 2987028;
+				.@minrate = 36;
+				.@maxrate = 65;
+			break;
+			case 8:
+				.@itemreq = 2987038;
+				.@itemsuccess = 2987043;
+				.@itemfail = 2987033;
+				.@minrate = 41;
+				.@maxrate = 60;
+			break;
+			case 9:
+				.@itemreq = 2987043;
+				.@itemsuccess = 2987048;
+				.@itemfail = 2987038;
+				.@minrate = 46;
+				.@maxrate = 55;
+			break;
+			case 10:
+			end;
+		}
+		.@amount = 1;
+		next;
+		mes "[Wandering Mind]";
+		mes "ท่านต้องการอัพเกรด \n<ITEM>"+getitemname(.@itemreq)+"<INFO>"+.@itemreq+"</INFO></ITEM>";
+		mes "เป็น ";
+		mes "<ITEM>"+getitemname(.@itemsuccess)+"<INFO>"+.@itemsuccess+"</INFO></ITEM>";
+		mes "^FF0000มีโอกาสสำเร็จ "+(.@maxrate-.@minrate+1)+"%^000000";
+		next;
+		mes "[Wandering Mind]";
+		mes "^FF0000-อัพเกรดธรรมดหากล้มเหลวระดับจะลดลง 1\n(หากเป็น Level 1 จะไม่ลด)^000000";
+		mes "จำเป็นต้องมี <ITEM>"+getitemname(2987000)+"<INFO>2987000</INFO></ITEM> 1 ea";
+		next;
+		mes "[Wandering Mind]";
+		mes "^FF0000-อัพเกรดแบบใช้ Protection Charm Ticket\nหากล้มเหลวระดับจะไม่ลด^000000";
+		mes "จำเป็นต้องมี <ITEM>"+getitemname(2987000)+"<INFO>2987000</INFO></ITEM> 1 ea";
+		mes "และ  <ITEM>"+getitemname(2987001)+"<INFO>2987001</INFO></ITEM> 1 ea";
+		next;
+		switch(select("^4d4dffอัพเกรดแบบธรรมดา ^000000","^4d4dffอัพเกรดแบบใช้ Protection Charm Ticket^000000")) {
+			case 1:
+				mes "[Wandering Mind]";
+				mes "^FF0000ท่านเลือกอัพเกรดแบบธรรมดา^000000";
+				mes "^FF0000มีโอกาสสำเร็จ "+(.@maxrate-.@minrate+1)+"%^000000";
+				mes "^FF0000หากล้มเหลวระดับจะลดลง 1\n(หากเป็น Level 1 จะไม่ลด)^000000";
+				mes "^FF0000อัพเกรดเลยไหม?.^000000";
+				next;
+				if(select("ลุยเลย.","หยุดก่อนดีกว่า.") == 2) {
+					mes "[Wandering Mind]";
+					mes "อืมมม ยังไม่อัพเกรดงั้นเหรอไม่เป็นไร..";
+					close;
+				} else if (countitem(.@itemreq) < .@amount || countitem(2987000) < .@amount ) {
+					mes "[Wandering Mind]";
+					mes "เจ้าไม่มี  <ITEM>"+getitemname(.@itemreq)+"<INFO>"+.@itemreq+"</INFO></ITEM>.";
+					mes "เจ้าไม่มี  <ITEM>"+getitemname(2987000)+"<INFO>2987000</INFO></ITEM>.";
+					close;
+				} else {
+					if (checkweight(1201,1) == 0 || ((MaxWeight - Weight) * 100 / MaxWeight) < 10) {
+						mes "[Wandering Mind]";
+						mes "^4d4dffโปรดตรวจสอบกระเป๋าสัมภาระของเจ้าให้ว่างพอที่จะแลกเปลี่ยน.^000000";
+						close;
+					}
+					delitem(.@itemreq, .@amount);
+					delitem 2987000,1;
+					.@randop = rand(1,100);
+					if(.@randop >= .@minrate && .@randop <= .@maxrate){
+					getitem .@itemsuccess,1;
+					mes "[Wandering Mind]";
+					mes "อืมการแลกเปลี่ยน Soul สำเร็จ";
+					dispbottom "อืมการอัพเกรดสำเร็จ",0xFFFFFF;
+					specialeffect2 83;
+					close;
+					}else{
+					mes "[Wandering Mind]";
+					mes "ดูเหมือนเจ้าจะโชคไม่ค่อยดี!";
+					getitem .@itemfail,1;
+					dispbottom "ดูเหมือนเจ้าจะโชคไม่ค่อยดี!",0xFFFFFF;
+					specialeffect2 EF_SUI_EXPLOSION;
+					close;
+					}
+				}
+			case 2:
+				mes "[Wandering Mind]";
+				mes "^FF0000ท่านเลือกอัพเกรดแบบใช้ Protection Charm Ticket^000000";
+				mes "^FF0000มีโอกาสสำเร็จ "+(.@maxrate-.@minrate+1)+"%^000000";
+				mes "^FF0000อัพเกรดแบบใช้ Protection Charm Ticket\nหากล้มเหลวระดับจะไม่ลดอัพเกรดเลยไหม?^000000";
+				next;
+				if(select("ลุยเลย.","หยุดก่อนดีกว่า.") == 2) {
+					mes "[Wandering Mind]";
+					mes "อืมมม ยังไม่อัพเกรดงั้นเหรอไม่เป็นไร..";
+					close;
+				} else if (countitem(.@itemreq) < .@amount || countitem(2987001) < .@amount || countitem(2987000) < .@amount) {
+					mes "[Wandering Mind]";
+					mes "เจ้าไม่มี  <ITEM>"+getitemname(.@itemreq)+"<INFO>"+.@itemreq+"</INFO></ITEM>.";
+					mes "เจ้าไม่มี  <ITEM>"+getitemname(2987000)+"<INFO>2987000/INFO></ITEM>.";
+					mes "เจ้าไม่มี  <ITEM>"+getitemname(2987001)+"<INFO>2987001</INFO></ITEM>.";
+					close;
+				} else {
+					if (checkweight(1201,1) == 0 || ((MaxWeight - Weight) * 100 / MaxWeight) < 10) {
+						mes "[Wandering Mind]";
+						mes "^4d4dffโปรดตรวจสอบกระเป๋าสัมภาระของเจ้าให้ว่างพอที่จะแลกเปลี่ยน.^000000";
+						close;
+					}
+					delitem(.@itemreq, .@amount);
+					delitem 2987000,1;
+					delitem 2987001,1;
+					.@randop = rand(1,100);
+					if(.@randop >= .@minrate && .@randop <= .@maxrate){
+					getitem .@itemsuccess,1;
+					mes "[Wandering Mind]";
+					mes "อืมการแลกเปลี่ยน Soul สำเร็จ";
+					dispbottom "อืมการอัพเกรดสำเร็จ",0xFFFFFF;
+					specialeffect2 83;
+					close;
+					}else{
+					mes "[Wandering Mind]";
+					mes "ดูเหมือนเจ้าจะโชคไม่ค่อยดี!";
+					getitem .@itemreq,1;
+					dispbottom "ดูเหมือนเจ้าจะโชคไม่ค่อยดี!",0xFFFFFF;
+					specialeffect2 EF_SUI_EXPLOSION;
+					close;
+					}
+				}
+			}	
+end;
+//	 จบ SP
+
+//	เริ่ม ATK
+L_ATK:
+		mes "[Wandering Mind]";
+		mes "บริการอัพเกรด Charm Atk";
+		mes "เลือก ระดับที่ต้องการแลก";
+		//switch(select("อัพเกรด Level 2:อัพเกรด Level 3:อัพเกรด Level 4:อัพเกรด Level 5:อัพเกรด Level 6:อัพเกรด Level 7:อัพเกรด Level 8:อัพเกรด Level 9:อัพเกรด Level 10:ยังก่อน")){
+		switch(select("อัพเกรด Level 2:อัพเกรด Level 3:อัพเกรด Level 4:อัพเกรด Level 5::::::ยังก่อน")){
+			case 1:
+				.@itemreq = 2987004;
+				.@itemsuccess = 2987009;
+				.@itemfail = 2987004;
+				.@minrate = 6;
+				.@maxrate = 95;
+			break;
+			case 2:
+				.@itemreq = 2987009;
+				.@itemsuccess = 2987014;
+				.@itemfail = 2987004;
+				.@minrate = 11;
+				.@maxrate = 90;
+			break;
+			case 3:
+				.@itemreq = 2987014;
+				.@itemsuccess = 2987019;
+				.@itemfail = 2987009;
+				.@minrate = 16;
+				.@maxrate = 85;
+			break;
+			case 4:
+				.@itemreq = 2987019;
+				.@itemsuccess = 2987024;
+				.@itemfail = 2987014;
+				.@minrate = 21;
+				.@maxrate = 80;
+			break;
+			case 5:
+				.@itemreq = 2987024;
+				.@itemsuccess = 2987029;
+				.@itemfail = 2987019;
+				.@minrate = 26;
+				.@maxrate = 75;
+			break;
+			case 6:
+				.@itemreq = 2987029;
+				.@itemsuccess = 2987034;
+				.@itemfail = 2987024;
+				.@minrate = 31;
+				.@maxrate = 70;
+			break;
+			case 7:
+				.@itemreq = 2987034;
+				.@itemsuccess = 2987039;
+				.@itemfail = 2987029;
+				.@minrate = 36;
+				.@maxrate = 65;
+			break;
+			case 8:
+				.@itemreq = 2987039;
+				.@itemsuccess = 2987044;
+				.@itemfail = 2987034;
+				.@minrate = 41;
+				.@maxrate = 60;
+			break;
+			case 9:
+				.@itemreq = 2987044;
+				.@itemsuccess = 2987049;
+				.@itemfail = 2987039;
+				.@minrate = 46;
+				.@maxrate = 55;
+			break;
+			case 10:
+			end;
+		}
+		.@amount = 1;
+		next;
+		mes "[Wandering Mind]";
+		mes "ท่านต้องการอัพเกรด \n<ITEM>"+getitemname(.@itemreq)+"<INFO>"+.@itemreq+"</INFO></ITEM>";
+		mes "เป็น ";
+		mes "<ITEM>"+getitemname(.@itemsuccess)+"<INFO>"+.@itemsuccess+"</INFO></ITEM>";
+		mes "^FF0000มีโอกาสสำเร็จ "+(.@maxrate-.@minrate+1)+"%^000000";
+		next;
+		mes "[Wandering Mind]";
+		mes "^FF0000-อัพเกรดธรรมดหากล้มเหลวระดับจะลดลง 1\n(หากเป็น Level 1 จะไม่ลด)^000000";
+		mes "จำเป็นต้องมี <ITEM>"+getitemname(2987000)+"<INFO>2987000</INFO></ITEM> 1 ea";
+		next;
+		mes "[Wandering Mind]";
+		mes "^FF0000-อัพเกรดแบบใช้ Protection Charm Ticket\nหากล้มเหลวระดับจะไม่ลด^000000";
+		mes "จำเป็นต้องมี <ITEM>"+getitemname(2987000)+"<INFO>2987000</INFO></ITEM> 1 ea";
+		mes "และ  <ITEM>"+getitemname(2987001)+"<INFO>2987001</INFO></ITEM> 1 ea";
+		next;
+		switch(select("^4d4dffอัพเกรดแบบธรรมดา ^000000","^4d4dffอัพเกรดแบบใช้ Protection Charm Ticket^000000")) {
+			case 1:
+				mes "[Wandering Mind]";
+				mes "^FF0000ท่านเลือกอัพเกรดแบบธรรมดา^000000";
+				mes "^FF0000มีโอกาสสำเร็จ "+(.@maxrate-.@minrate+1)+"%^000000";
+				mes "^FF0000หากล้มเหลวระดับจะลดลง 1\n(หากเป็น Level 1 จะไม่ลด)^000000";
+				mes "^FF0000อัพเกรดเลยไหม?.^000000";
+				next;
+				if(select("ลุยเลย.","หยุดก่อนดีกว่า.") == 2) {
+					mes "[Wandering Mind]";
+					mes "อืมมม ยังไม่อัพเกรดงั้นเหรอไม่เป็นไร..";
+					close;
+				} else if (countitem(.@itemreq) < .@amount || countitem(2987000) < .@amount ) {
+					mes "[Wandering Mind]";
+					mes "เจ้าไม่มี  <ITEM>"+getitemname(.@itemreq)+"<INFO>"+.@itemreq+"</INFO></ITEM>.";
+					mes "เจ้าไม่มี  <ITEM>"+getitemname(2987000)+"<INFO>2987000</INFO></ITEM>.";
+					close;
+				} else {
+					if (checkweight(1201,1) == 0 || ((MaxWeight - Weight) * 100 / MaxWeight) < 10) {
+						mes "[Wandering Mind]";
+						mes "^4d4dffโปรดตรวจสอบกระเป๋าสัมภาระของเจ้าให้ว่างพอที่จะแลกเปลี่ยน.^000000";
+						close;
+					}
+					delitem(.@itemreq, .@amount);
+					delitem 2987000,1;
+					.@randop = rand(1,100);
+					if(.@randop >= .@minrate && .@randop <= .@maxrate){
+					getitem .@itemsuccess,1;
+					mes "[Wandering Mind]";
+					mes "อืมการแลกเปลี่ยน Soul สำเร็จ";
+					dispbottom "อืมการอัพเกรดสำเร็จ",0xFFFFFF;
+					specialeffect2 83;
+					close;
+					}else{
+					mes "[Wandering Mind]";
+					mes "ดูเหมือนเจ้าจะโชคไม่ค่อยดี!";
+					getitem .@itemfail,1;
+					dispbottom "ดูเหมือนเจ้าจะโชคไม่ค่อยดี!",0xFFFFFF;
+					specialeffect2 EF_SUI_EXPLOSION;
+					close;
+					}
+				}
+			case 2:
+				mes "[Wandering Mind]";
+				mes "^FF0000ท่านเลือกอัพเกรดแบบใช้ Protection Charm Ticket^000000";
+				mes "^FF0000มีโอกาสสำเร็จ "+(.@maxrate-.@minrate+1)+"%^000000";
+				mes "^FF0000อัพเกรดแบบใช้ Protection Charm Ticket\nหากล้มเหลวระดับจะไม่ลดอัพเกรดเลยไหม?^000000";
+				next;
+				if(select("ลุยเลย.","หยุดก่อนดีกว่า.") == 2) {
+					mes "[Wandering Mind]";
+					mes "อืมมม ยังไม่อัพเกรดงั้นเหรอไม่เป็นไร..";
+					close;
+				} else if (countitem(.@itemreq) < .@amount || countitem(2987001) < .@amount || countitem(2987000) < .@amount) {
+					mes "[Wandering Mind]";
+					mes "เจ้าไม่มี  <ITEM>"+getitemname(.@itemreq)+"<INFO>"+.@itemreq+"</INFO></ITEM>.";
+					mes "เจ้าไม่มี  <ITEM>"+getitemname(2987000)+"<INFO>2987000/INFO></ITEM>.";
+					mes "เจ้าไม่มี  <ITEM>"+getitemname(2987001)+"<INFO>2987001</INFO></ITEM>.";
+					close;
+				} else {
+					if (checkweight(1201,1) == 0 || ((MaxWeight - Weight) * 100 / MaxWeight) < 10) {
+						mes "[Wandering Mind]";
+						mes "^4d4dffโปรดตรวจสอบกระเป๋าสัมภาระของเจ้าให้ว่างพอที่จะแลกเปลี่ยน.^000000";
+						close;
+					}
+					delitem(.@itemreq, .@amount);
+					delitem 2987000,1;
+					delitem 2987001,1;
+					.@randop = rand(1,100);
+					if(.@randop >= .@minrate && .@randop <= .@maxrate){
+					getitem .@itemsuccess,1;
+					mes "[Wandering Mind]";
+					mes "อืมการแลกเปลี่ยน Soul สำเร็จ";
+					dispbottom "อืมการอัพเกรดสำเร็จ",0xFFFFFF;
+					specialeffect2 83;
+					close;
+					}else{
+					mes "[Wandering Mind]";
+					mes "ดูเหมือนเจ้าจะโชคไม่ค่อยดี!";
+					getitem .@itemreq,1;
+					dispbottom "ดูเหมือนเจ้าจะโชคไม่ค่อยดี!",0xFFFFFF;
+					specialeffect2 EF_SUI_EXPLOSION;
+					close;
+					}
+				}
+			}	
+end;
+//	 จบ ATK
+
+//	เริ่ม MATK
+L_MATK:
+		mes "[Wandering Mind]";
+		mes "บริการอัพเกรด Charm MAtk";
+		mes "เลือก ระดับที่ต้องการแลก";
+		//switch(select("อัพเกรด Level 2:อัพเกรด Level 3:อัพเกรด Level 4:อัพเกรด Level 5:อัพเกรด Level 6:อัพเกรด Level 7:อัพเกรด Level 8:อัพเกรด Level 9:อัพเกรด Level 10:ยังก่อน")){
+		switch(select("อัพเกรด Level 2:อัพเกรด Level 3:อัพเกรด Level 4:อัพเกรด Level 5::::::ยังก่อน")){
+			case 1:
+				.@itemreq = 2987005;
+				.@itemsuccess = 2987010;
+				.@itemfail = 2987005;
+				.@minrate = 6;
+				.@maxrate = 95;
+			break;
+			case 2:
+				.@itemreq = 2987010;
+				.@itemsuccess = 2987015;
+				.@itemfail = 2987010;
+				.@minrate = 11;
+				.@maxrate = 90;
+			break;
+			case 3:
+				.@itemreq = 2987015;
+				.@itemsuccess = 2987020;
+				.@itemfail = 2987010;
+				.@minrate = 16;
+				.@maxrate = 85;
+			break;
+			case 4:
+				.@itemreq = 2987020;
+				.@itemsuccess = 2987025;
+				.@itemfail = 2987015;
+				.@minrate = 21;
+				.@maxrate = 80;
+			break;
+			case 5:
+				.@itemreq = 2987025;
+				.@itemsuccess = 2987030;
+				.@itemfail = 2987020;
+				.@minrate = 26;
+				.@maxrate = 75;
+			break;
+			case 6:
+				.@itemreq = 2987030;
+				.@itemsuccess = 2987035;
+				.@itemfail = 2987025;
+				.@minrate = 31;
+				.@maxrate = 70;
+			break;
+			case 7:
+				.@itemreq = 2987035;
+				.@itemsuccess = 2987040;
+				.@itemfail = 2987030;
+				.@minrate = 36;
+				.@maxrate = 65;
+			break;
+			case 8:
+				.@itemreq = 2987040;
+				.@itemsuccess = 2987045;
+				.@itemfail = 2987035;
+				.@minrate = 41;
+				.@maxrate = 60;
+			break;
+			case 9:
+				.@itemreq = 2987045;
+				.@itemsuccess = 2987050;
+				.@itemfail = 2987040;
+				.@minrate = 46;
+				.@maxrate = 55;
+			break;
+			case 10:
+			end;
+		}
+		.@amount = 1;
+		next;
+		mes "[Wandering Mind]";
+		mes "ท่านต้องการอัพเกรด \n<ITEM>"+getitemname(.@itemreq)+"<INFO>"+.@itemreq+"</INFO></ITEM>";
+		mes "เป็น ";
+		mes "<ITEM>"+getitemname(.@itemsuccess)+"<INFO>"+.@itemsuccess+"</INFO></ITEM>";
+		mes "^FF0000มีโอกาสสำเร็จ "+(.@maxrate-.@minrate+1)+"%^000000";
+		next;
+		mes "[Wandering Mind]";
+		mes "^FF0000-อัพเกรดธรรมดหากล้มเหลวระดับจะลดลง 1\n(หากเป็น Level 1 จะไม่ลด)^000000";
+		mes "จำเป็นต้องมี <ITEM>"+getitemname(2987000)+"<INFO>2987000</INFO></ITEM> 1 ea";
+		next;
+		mes "[Wandering Mind]";
+		mes "^FF0000-อัพเกรดแบบใช้ Protection Charm Ticket\nหากล้มเหลวระดับจะไม่ลด^000000";
+		mes "จำเป็นต้องมี <ITEM>"+getitemname(2987000)+"<INFO>2987000</INFO></ITEM> 1 ea";
+		mes "และ  <ITEM>"+getitemname(2987001)+"<INFO>2987001</INFO></ITEM> 1 ea";
+		next;
+		switch(select("^4d4dffอัพเกรดแบบธรรมดา ^000000","^4d4dffอัพเกรดแบบใช้ Protection Charm Ticket^000000")) {
+			case 1:
+				mes "[Wandering Mind]";
+				mes "^FF0000ท่านเลือกอัพเกรดแบบธรรมดา^000000";
+				mes "^FF0000มีโอกาสสำเร็จ "+(.@maxrate-.@minrate+1)+"%^000000";
+				mes "^FF0000หากล้มเหลวระดับจะลดลง 1\n(หากเป็น Level 1 จะไม่ลด)^000000";
+				mes "^FF0000อัพเกรดเลยไหม?.^000000";
+				next;
+				if(select("ลุยเลย.","หยุดก่อนดีกว่า.") == 2) {
+					mes "[Wandering Mind]";
+					mes "อืมมม ยังไม่อัพเกรดงั้นเหรอไม่เป็นไร..";
+					close;
+				} else if (countitem(.@itemreq) < .@amount || countitem(2987000) < .@amount ) {
+					mes "[Wandering Mind]";
+					mes "เจ้าไม่มี  <ITEM>"+getitemname(.@itemreq)+"<INFO>"+.@itemreq+"</INFO></ITEM>.";
+					mes "เจ้าไม่มี  <ITEM>"+getitemname(2987000)+"<INFO>2987000</INFO></ITEM>.";
+					close;
+				} else {
+					if (checkweight(1201,1) == 0 || ((MaxWeight - Weight) * 100 / MaxWeight) < 10) {
+						mes "[Wandering Mind]";
+						mes "^4d4dffโปรดตรวจสอบกระเป๋าสัมภาระของเจ้าให้ว่างพอที่จะแลกเปลี่ยน.^000000";
+						close;
+					}
+					delitem(.@itemreq, .@amount);
+					delitem 2987000,1;
+					.@randop = rand(1,100);
+					if(.@randop >= .@minrate && .@randop <= .@maxrate){
+					getitem .@itemsuccess,1;
+					mes "[Wandering Mind]";
+					mes "อืมการแลกเปลี่ยน Soul สำเร็จ";
+					dispbottom "อืมการอัพเกรดสำเร็จ",0xFFFFFF;
+					specialeffect2 83;
+					close;
+					}else{
+					mes "[Wandering Mind]";
+					mes "ดูเหมือนเจ้าจะโชคไม่ค่อยดี!";
+					getitem .@itemfail,1;
+					dispbottom "ดูเหมือนเจ้าจะโชคไม่ค่อยดี!",0xFFFFFF;
+					specialeffect2 EF_SUI_EXPLOSION;
+					close;
+					}
+				}
+			case 2:
+				mes "[Wandering Mind]";
+				mes "^FF0000ท่านเลือกอัพเกรดแบบใช้ Protection Charm Ticket^000000";
+				mes "^FF0000มีโอกาสสำเร็จ "+(.@maxrate-.@minrate+1)+"%^000000";
+				mes "^FF0000อัพเกรดแบบใช้ Protection Charm Ticket\nหากล้มเหลวระดับจะไม่ลดอัพเกรดเลยไหม?^000000";
+				next;
+				if(select("ลุยเลย.","หยุดก่อนดีกว่า.") == 2) {
+					mes "[Wandering Mind]";
+					mes "อืมมม ยังไม่อัพเกรดงั้นเหรอไม่เป็นไร..";
+					close;
+				} else if (countitem(.@itemreq) < .@amount || countitem(2987001) < .@amount || countitem(2987000) < .@amount) {
+					mes "[Wandering Mind]";
+					mes "เจ้าไม่มี  <ITEM>"+getitemname(.@itemreq)+"<INFO>"+.@itemreq+"</INFO></ITEM>.";
+					mes "เจ้าไม่มี  <ITEM>"+getitemname(2987000)+"<INFO>2987000/INFO></ITEM>.";
+					mes "เจ้าไม่มี  <ITEM>"+getitemname(2987001)+"<INFO>2987001</INFO></ITEM>.";
+					close;
+				} else {
+					if (checkweight(1201,1) == 0 || ((MaxWeight - Weight) * 100 / MaxWeight) < 10) {
+						mes "[Wandering Mind]";
+						mes "^4d4dffโปรดตรวจสอบกระเป๋าสัมภาระของเจ้าให้ว่างพอที่จะแลกเปลี่ยน.^000000";
+						close;
+					}
+					delitem(.@itemreq, .@amount);
+					delitem 2987000,1;
+					delitem 2987001,1;
+					.@randop = rand(1,100);
+					if(.@randop >= .@minrate && .@randop <= .@maxrate){
+					getitem .@itemsuccess,1;
+					mes "[Wandering Mind]";
+					mes "อืมการแลกเปลี่ยน Soul สำเร็จ";
+					dispbottom "อืมการอัพเกรดสำเร็จ",0xFFFFFF;
+					specialeffect2 83;
+					close;
+					}else{
+					mes "[Wandering Mind]";
+					mes "ดูเหมือนเจ้าจะโชคไม่ค่อยดี!";
+					getitem .@itemreq,1;
+					dispbottom "ดูเหมือนเจ้าจะโชคไม่ค่อยดี!",0xFFFFFF;
+					specialeffect2 EF_SUI_EXPLOSION;
+					close;
+					}
+				}
+			}	
+end;
+//	 จบ MATK
+
+//	เริ่ม BOSS
+L_BOSS:
+		mes "[Wandering Mind]";
+		mes "บริการอัพเกรด Charm Boss";
+		mes "เลือก ระดับที่ต้องการแลก";
+		//switch(select("อัพเกรด Level 2:อัพเกรด Level 3:อัพเกรด Level 4:อัพเกรด Level 5:อัพเกรด Level 6:อัพเกรด Level 7:อัพเกรด Level 8:อัพเกรด Level 9:อัพเกรด Level 10:ยังก่อน")){
+		switch(select("อัพเกรด Level 2:อัพเกรด Level 3:อัพเกรด Level 4:อัพเกรด Level 5::::::ยังก่อน")){
+			case 1:
+				.@itemreq = 2987006;
+				.@itemsuccess = 2987011;
+				.@itemfail = 2987006;
+				.@minrate = 6;
+				.@maxrate = 95;
+			break;
+			case 2:
+				.@itemreq = 2987011;
+				.@itemsuccess = 2987016;
+				.@itemfail = 2987011;
+				.@minrate = 11;
+				.@maxrate = 90;
+			break;
+			case 3:
+				.@itemreq = 2987016;
+				.@itemsuccess = 2987021;
+				.@itemfail = 2987011;
+				.@minrate = 16;
+				.@maxrate = 85;
+			break;
+			case 4:
+				.@itemreq = 2987021;
+				.@itemsuccess = 2987026;
+				.@itemfail = 2987016;
+				.@minrate = 21;
+				.@maxrate = 80;
+			break;
+			case 5:
+				.@itemreq = 2987026;
+				.@itemsuccess = 2987031;
+				.@itemfail = 2987021;
+				.@minrate = 26;
+				.@maxrate = 75;
+			break;
+			case 6:
+				.@itemreq = 2987031;
+				.@itemsuccess = 2987036;
+				.@itemfail = 2987026;
+				.@minrate = 31;
+				.@maxrate = 70;
+			break;
+			case 7:
+				.@itemreq = 2987036;
+				.@itemsuccess = 2987041;
+				.@itemfail = 2987031;
+				.@minrate = 36;
+				.@maxrate = 65;
+			break;
+			case 8:
+				.@itemreq = 2987041;
+				.@itemsuccess = 2987046;
+				.@itemfail = 2987036;
+				.@minrate = 41;
+				.@maxrate = 60;
+			break;
+			case 9:
+				.@itemreq = 2987046;
+				.@itemsuccess = 2987051;
+				.@itemfail = 2987041;
+				.@minrate = 46;
+				.@maxrate = 55;
+			break;
+			case 10:
+			end;
+		}
+		.@amount = 1;
+		next;
+		mes "[Wandering Mind]";
+		mes "ท่านต้องการอัพเกรด \n<ITEM>"+getitemname(.@itemreq)+"<INFO>"+.@itemreq+"</INFO></ITEM>";
+		mes "เป็น ";
+		mes "<ITEM>"+getitemname(.@itemsuccess)+"<INFO>"+.@itemsuccess+"</INFO></ITEM>";
+		mes "^FF0000มีโอกาสสำเร็จ "+(.@maxrate-.@minrate+1)+"%^000000";
+		next;
+		mes "[Wandering Mind]";
+		mes "^FF0000-อัพเกรดธรรมดหากล้มเหลวระดับจะลดลง 1\n(หากเป็น Level 1 จะไม่ลด)^000000";
+		mes "จำเป็นต้องมี <ITEM>"+getitemname(2987000)+"<INFO>2987000</INFO></ITEM> 1 ea";
+		next;
+		mes "[Wandering Mind]";
+		mes "^FF0000-อัพเกรดแบบใช้ Protection Charm Ticket\nหากล้มเหลวระดับจะไม่ลด^000000";
+		mes "จำเป็นต้องมี <ITEM>"+getitemname(2987000)+"<INFO>2987000</INFO></ITEM> 1 ea";
+		mes "และ  <ITEM>"+getitemname(2987001)+"<INFO>2987001</INFO></ITEM> 1 ea";
+		next;
+		switch(select("^4d4dffอัพเกรดแบบธรรมดา ^000000","^4d4dffอัพเกรดแบบใช้ Protection Charm Ticket^000000")) {
+			case 1:
+				mes "[Wandering Mind]";
+				mes "^FF0000ท่านเลือกอัพเกรดแบบธรรมดา^000000";
+				mes "^FF0000มีโอกาสสำเร็จ "+(.@maxrate-.@minrate+1)+"%^000000";
+				mes "^FF0000หากล้มเหลวระดับจะลดลง 1\n(หากเป็น Level 1 จะไม่ลด)^000000";
+				mes "^FF0000อัพเกรดเลยไหม?.^000000";
+				next;
+				if(select("ลุยเลย.","หยุดก่อนดีกว่า.") == 2) {
+					mes "[Wandering Mind]";
+					mes "อืมมม ยังไม่อัพเกรดงั้นเหรอไม่เป็นไร..";
+					close;
+				} else if (countitem(.@itemreq) < .@amount || countitem(2987000) < .@amount ) {
+					mes "[Wandering Mind]";
+					mes "เจ้าไม่มี  <ITEM>"+getitemname(.@itemreq)+"<INFO>"+.@itemreq+"</INFO></ITEM>.";
+					mes "เจ้าไม่มี  <ITEM>"+getitemname(2987000)+"<INFO>2987000</INFO></ITEM>.";
+					close;
+				} else {
+					if (checkweight(1201,1) == 0 || ((MaxWeight - Weight) * 100 / MaxWeight) < 10) {
+						mes "[Wandering Mind]";
+						mes "^4d4dffโปรดตรวจสอบกระเป๋าสัมภาระของเจ้าให้ว่างพอที่จะแลกเปลี่ยน.^000000";
+						close;
+					}
+					delitem(.@itemreq, .@amount);
+					delitem 2987000,1;
+					.@randop = rand(1,100);
+					if(.@randop >= .@minrate && .@randop <= .@maxrate){
+					getitem .@itemsuccess,1;
+					mes "[Wandering Mind]";
+					mes "อืมการแลกเปลี่ยน Soul สำเร็จ";
+					dispbottom "อืมการอัพเกรดสำเร็จ",0xFFFFFF;
+					specialeffect2 83;
+					close;
+					}else{
+					mes "[Wandering Mind]";
+					mes "ดูเหมือนเจ้าจะโชคไม่ค่อยดี!";
+					getitem .@itemfail,1;
+					dispbottom "ดูเหมือนเจ้าจะโชคไม่ค่อยดี!",0xFFFFFF;
+					specialeffect2 EF_SUI_EXPLOSION;
+					close;
+					}
+				}
+			case 2:
+				mes "[Wandering Mind]";
+				mes "^FF0000ท่านเลือกอัพเกรดแบบใช้ Protection Charm Ticket^000000";
+				mes "^FF0000มีโอกาสสำเร็จ "+(.@maxrate-.@minrate+1)+"%^000000";
+				mes "^FF0000อัพเกรดแบบใช้ Protection Charm Ticket\nหากล้มเหลวระดับจะไม่ลดอัพเกรดเลยไหม?^000000";
+				next;
+				if(select("ลุยเลย.","หยุดก่อนดีกว่า.") == 2) {
+					mes "[Wandering Mind]";
+					mes "อืมมม ยังไม่อัพเกรดงั้นเหรอไม่เป็นไร..";
+					close;
+				} else if (countitem(.@itemreq) < .@amount || countitem(2987001) < .@amount || countitem(2987000) < .@amount) {
+					mes "[Wandering Mind]";
+					mes "เจ้าไม่มี  <ITEM>"+getitemname(.@itemreq)+"<INFO>"+.@itemreq+"</INFO></ITEM>.";
+					mes "เจ้าไม่มี  <ITEM>"+getitemname(2987000)+"<INFO>2987000/INFO></ITEM>.";
+					mes "เจ้าไม่มี  <ITEM>"+getitemname(2987001)+"<INFO>2987001</INFO></ITEM>.";
+					close;
+				} else {
+					if (checkweight(1201,1) == 0 || ((MaxWeight - Weight) * 100 / MaxWeight) < 10) {
+						mes "[Wandering Mind]";
+						mes "^4d4dffโปรดตรวจสอบกระเป๋าสัมภาระของเจ้าให้ว่างพอที่จะแลกเปลี่ยน.^000000";
+						close;
+					}
+					delitem(.@itemreq, .@amount);
+					delitem 2987000,1;
+					delitem 2987001,1;
+					.@randop = rand(1,100);
+					if(.@randop >= .@minrate && .@randop <= .@maxrate){
+					getitem .@itemsuccess,1;
+					mes "[Wandering Mind]";
+					mes "อืมการแลกเปลี่ยน Soul สำเร็จ";
+					dispbottom "อืมการอัพเกรดสำเร็จ",0xFFFFFF;
+					specialeffect2 83;
+					close;
+					}else{
+					mes "[Wandering Mind]";
+					mes "ดูเหมือนเจ้าจะโชคไม่ค่อยดี!";
+					getitem .@itemreq,1;
+					dispbottom "ดูเหมือนเจ้าจะโชคไม่ค่อยดี!",0xFFFFFF;
+					specialeffect2 EF_SUI_EXPLOSION;
+					close;
+					}
+				}
+			}	
+end;
+//	 จบ BOSS
+
+OnInit:
+waitingroom " Charm System",0;
+end;
+}
+		

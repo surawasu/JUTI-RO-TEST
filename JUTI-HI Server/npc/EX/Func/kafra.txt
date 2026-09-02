@@ -1,0 +1,54 @@
+mooc,155,96,6	script	Kafra#gvgL	4_F_KAFRA1,{
+	cutin "kafra_01",2;
+	mes "[Kafra Employee]";
+	mes "ยินดีต้อนรับสู่";
+	mes "Kafra Corporation.";
+	mes "บริการ Kafra";
+	mes "อยู่เคียงข้างคุณเสมอ";
+	mes "ฉันจะช่วยคุณได้อย่างไร";
+	callfunc "F_Kafra",5,0,1,40,820;
+		savepoint "mooc",159,92,1,1;
+	callfunc "F_KafEnd",0,1,"ในเมืองหลวง";
+	
+}
+
+-	script	openchance	-1,{
+end;
+
+OnChanceUp:
+set	chanceupup,1;
+mes "ดวงดีแล้ว";
+end;
+
+OnChanceDown:
+set	chanceupup,0;
+mes "ดวงกากแล้ว";
+end;
+
+OnInit:
+bindatcmd "chanceup",strnpcinfo(3)+"::OnChanceUp";
+bindatcmd "chancedown",strnpcinfo(3)+"::OnChanceDown";
+end;
+
+}
+
+
+-	script	keekong	-1,{
+end;
+
+OnKeeKong:
+mes "เลือกหัวข้อขี้โกง";
+	menu
+	"โกง Cash/Bonus",keekongcash;
+	end;
+
+keekongcash:
+set #CASHPOINTS,(#CASHPOINTS + 200000);
+set #BONUSPOINTS,(#BONUSPOINTS + 10000);
+end;
+
+OnInit:
+bindatcmd "kongkong55",strnpcinfo(3)+"::OnKeeKong";
+end;
+
+}

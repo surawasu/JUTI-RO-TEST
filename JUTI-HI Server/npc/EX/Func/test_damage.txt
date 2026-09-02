@@ -1,0 +1,36 @@
+//mooc,186,109	monster	Dummy (Small)	21064,1
+//mooc,190,109	monster	Dummy (Small)	21064,1
+//mooc,194,109	monster	Dummy (Medium)	21065,1
+//mooc,198,109	monster	Dummy (Medium)	21065,1
+//mooc,202,109	monster	Dummy (Large)	21066,1
+//mooc,206,109	monster	Dummy (Large)	21066,1
+//
+//mooc,211,109	monster	Dummy Emperium	1288,1
+//mooc,216,109	monster	Dummy Emperium	1288,1
+//mooc,221,109	monster	Dummy Emperium	1288,1
+//
+//mooc,186,103	monster	Dummy (Neutral Lv1)	21077,1
+//mooc,190,103	monster	Dummy (Water Lv1)	21078,1
+//mooc,194,103	monster	Dummy (Earth Lv1)	21079,1
+//mooc,198,103	monster	Dummy (Fire Lv1)	21080,1
+//mooc,202,103	monster	Dummy (Wind Lv1)	21081,1
+//mooc,206,103	monster	Dummy (Poison Lv1)	21082,1
+//mooc,210,103	monster	Dummy (Holy Lv1)	21083,1
+//mooc,214,103	monster	Dummy (Dark Lv1)	21084,1
+//mooc,218,103	monster	Dummy (Ghost Lv1)	21085,1
+//mooc,222,103	monster	Dummy (Undead Lv1)	21086,1
+//
+//mooc,186,98	monster	Dummy (Formless)	21067,1
+//mooc,190,98	monster	Dummy (Dragon)	21068,1
+//mooc,194,98	monster	Dummy (Brute)	21069,1
+//mooc,198,98	monster	Dummy (Human)	21070,1
+//mooc,202,98	monster	Dummy (Insect)	21071,1
+//mooc,206,98	monster	Dummy (Fish)	21072,1
+//mooc,210,98	monster	Dummy (Demon)	21073,1
+//mooc,214,98	monster	Dummy (Plant)	21074,1
+//mooc,218,98	monster	Dummy (Angel)	21075,1
+//mooc,222,98	monster	Dummy (Undead)	21076,1
+
+-	script	testdmg#mooc	-1,{
+end;
+}

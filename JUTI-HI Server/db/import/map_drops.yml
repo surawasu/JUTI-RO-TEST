@@ -1,0 +1,200 @@
+# This file is a part of rAthena.
+#   Copyright(C) 2022 rAthena Development Team
+#   https://rathena.org - https://github.com/rathena
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
+###########################################################################
+# Map Drop Database
+###########################################################################
+#
+# Map Drop Settings
+#
+###########################################################################
+# - Map                             Name of the map.
+#   GlobalDrops                     Drops for all monsters on this map. (Default: empty)
+#                                   These drops are unaffected by server drop rate and cannot be stolen.
+#     - Index                       Unique index of the drop.
+#       Item                        Item name.
+#       Rate                        Drop rate of item.
+#       RandomOptionGroup           Random Option Group applied to item on drop. (Default: None)
+#   SpecificDrops                   Drops for specific monsters on this map. (Default: empty)
+#     - Monster                     Monster name.
+#       Drops                       Drops for this specific monster. (Default: empty)
+#                                   These drops are unaffected by server drop rate and cannot be stolen.
+#         - Index                   Unique index of the drop.
+#           Item                    Item name.
+#           Rate                    Drop rate of item.
+#           RandomOptionGroup       Random Option Group applied to item on drop. (Default: None)
+###########################################################################
+
+Header:
+  Type: MAP_DROP_DB
+  Version: 1
+
+Body:
+  - Map: hero_ent2
+    GlobalDrops:       
+     - Index: 0     
+       Item: Chaos_Coin_FF
+       Rate: 1000
+  - Map: moc_fild13_
+    SpecificDrops:
+      - Monster: ARCHER_SKELETON_CH
+        Drops:
+          - Index: 0
+            Item: STONE_EN_1
+            Rate: 3
+          - Index: 1
+            Item: Research_Note_JT
+            Rate: 1000
+      - Monster: SKEL_WORKER_CH
+        Drops:
+          - Index: 0
+            Item: STONE_EN_2
+            Rate: 3
+          - Index: 1
+            Item: Research_Note_JT
+            Rate: 1000
+      - Monster: HYDRA_CH
+        Drops:
+          - Index: 0
+            Item: STONE_EN_3
+            Rate: 3
+          - Index: 1
+            Item: Research_Note_JT
+            Rate: 1000
+      - Monster: KNIGHT_OF_ABYSS_CH
+        Drops:
+          - Index: 0
+            Item: STONE_EN_4
+            Rate: 3
+          - Index: 1
+            Item: Research_Note_JT
+            Rate: 1000
+      - Monster: THE_PAPER_CH
+        Drops:
+          - Index: 0
+            Item: STONE_EN_5
+            Rate: 3
+          - Index: 1
+            Item: Research_Note_JT
+            Rate: 1000
+      - Monster: ZAKUDAM_CH
+        Drops:
+          - Index: 0
+            Item: STONE_EN_6
+            Rate: 3
+          - Index: 1
+            Item: Research_Note_JT
+            Rate: 1000
+      - Monster: THARA_FROG_CH
+        Drops:
+          - Index: 0
+            Item: STONE_EN_7
+            Rate: 3
+          - Index: 1
+            Item: Research_Note_JT
+            Rate: 1000
+      - Monster: MATYR_CH
+        Drops:
+          - Index: 0
+            Item: STONE_EN_8
+            Rate: 3
+          - Index: 1
+            Item: Research_Note_JT
+            Rate: 1000
+      - Monster: SOHEE_CH
+        Drops:
+          - Index: 0
+            Item: STONE_EN_9
+            Rate: 3
+          - Index: 1
+            Item: Research_Note_JT
+            Rate: 1000
+      - Monster: MENBLATT
+        Drops:
+          - Index: 0
+            Item: DEX+5V1
+            Rate: 3
+          - Index: 4
+            Item: DEX+5V2
+            Rate: 3
+          - Index: 5
+            Item: DEX+5V3
+            Rate: 3
+      - Monster: PETAL
+        Drops:
+          - Index: 0
+            Item: LUK+5V1
+            Rate: 3
+          - Index: 1
+            Item: LUK+5V2
+            Rate: 3
+          - Index: 2
+            Item: LUK+5V3
+            Rate: 3
+          - Index: 3
+            Item: MAXHP2V1
+            Rate: 3
+          - Index: 4
+            Item: MAXHP2V2
+            Rate: 3
+          - Index: 5
+            Item: MAXHP2V3
+            Rate: 3
+      - Monster: WAKWAK
+        Drops:
+          - Index: 0
+            Item: STR+5V1
+            Rate: 3
+          - Index: 1
+            Item: STR+5V2
+            Rate: 3
+          - Index: 2
+            Item: STR+5V3
+            Rate: 3
+      - Monster: CENERE
+        Drops:
+          - Index: 0
+            Item: AGI+5V1
+            Rate: 3
+          - Index: 1
+            Item: AGI+5V2
+            Rate: 3
+          - Index: 2
+            Item: AGI+5V3
+            Rate: 3
+      - Monster: ANTIQUE_BOOK
+        Drops:
+          - Index: 0
+            Item: INT+5V1
+            Rate: 3
+          - Index: 1
+            Item: INT+5V2
+            Rate: 3
+          - Index: 2
+            Item: INT+5V3
+            Rate: 3
+      - Monster: JEJELING
+        Drops:
+          - Index: 0
+            Item: VIT+5V1
+            Rate: 3
+          - Index: 1
+            Item: VIT+5V3
+            Rate: 3
+          - Index: 2
+            Item: VIT+5V2
+            Rate: 3

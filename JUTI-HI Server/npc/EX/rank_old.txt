@@ -1,0 +1,669 @@
+-	script	viprank	-1,{
+end;
+
+//OnPCLoadMapEvent:
+OnPCLoginEvent:
+	query_sql "SELECT `account_id` FROM `club_member` WHERE `account_id`='"+getcharid(3)+"'",.@vip;
+	if(.@vip > 0){
+	query_sql "SELECT `money` FROM `club_member` WHERE `account_id`='"+getcharid(3)+"'",.@money;
+	}else{
+	sc_end SC_MEMBERLV0;
+	sc_end SC_MEMBERLV1;
+	sc_end SC_MEMBERLV2;
+	sc_end SC_MEMBERLV3;
+	sc_end SC_MEMBERLV4;
+	sc_end SC_MEMBERLV5;
+	sc_end SC_MEMBERLV6;
+	sc_end SC_MEMBERLV7;
+	sc_end SC_MEMBERLV8;
+	sc_end SC_MEMBERLV9;
+	sc_end SC_MEMBERLV10;
+	sleep2 500;
+	sc_start SC_MEMBERLV0,-1,1;
+	end;
+	}
+	if(.@money < 1000){
+	sc_end SC_MEMBERLV0;
+	sc_end SC_MEMBERLV1;
+	sc_end SC_MEMBERLV2;
+	sc_end SC_MEMBERLV3;
+	sc_end SC_MEMBERLV4;
+	sc_end SC_MEMBERLV5;
+	sc_end SC_MEMBERLV6;
+	sc_end SC_MEMBERLV7;
+	sc_end SC_MEMBERLV8;
+	sc_end SC_MEMBERLV9;
+	sc_end SC_MEMBERLV10;
+	sleep2 500;
+	sc_start SC_MEMBERLV0,-1,1;
+	end;
+	}
+	if(.@money > 999 && .@money < 2000){
+	sc_end SC_MEMBERLV0;
+	sc_end SC_MEMBERLV1;
+	sc_end SC_MEMBERLV2;
+	sc_end SC_MEMBERLV3;
+	sc_end SC_MEMBERLV4;
+	sc_end SC_MEMBERLV5;
+	sc_end SC_MEMBERLV6;
+	sc_end SC_MEMBERLV7;
+	sc_end SC_MEMBERLV8;
+	sc_end SC_MEMBERLV9;
+	sc_end SC_MEMBERLV10;
+	sleep2 500;
+	sc_start SC_MEMBERLV1,-1,1;
+	end;
+	}	
+	if(.@money > 1999 && .@money < 3000){
+	sc_end SC_MEMBERLV0;
+	sc_end SC_MEMBERLV1;
+	sc_end SC_MEMBERLV2;
+	sc_end SC_MEMBERLV3;
+	sc_end SC_MEMBERLV4;
+	sc_end SC_MEMBERLV5;
+	sc_end SC_MEMBERLV6;
+	sc_end SC_MEMBERLV7;
+	sc_end SC_MEMBERLV8;
+	sc_end SC_MEMBERLV9;
+	sc_end SC_MEMBERLV10;
+	sleep2 500;
+	sc_start SC_MEMBERLV2,-1,1;
+	end;
+	}	
+	if(.@money > 2999 && .@money < 4000){
+	sc_end SC_MEMBERLV0;
+	sc_end SC_MEMBERLV1;
+	sc_end SC_MEMBERLV2;
+	sc_end SC_MEMBERLV3;
+	sc_end SC_MEMBERLV4;
+	sc_end SC_MEMBERLV5;
+	sc_end SC_MEMBERLV6;
+	sc_end SC_MEMBERLV7;
+	sc_end SC_MEMBERLV8;
+	sc_end SC_MEMBERLV9;
+	sc_end SC_MEMBERLV10;
+	sleep2 500;
+	sc_start SC_MEMBERLV3,-1,1;
+	end;
+	}	
+	if(.@money > 3999 && .@money < 5000){
+	sc_end SC_MEMBERLV0;
+	sc_end SC_MEMBERLV1;
+	sc_end SC_MEMBERLV2;
+	sc_end SC_MEMBERLV3;
+	sc_end SC_MEMBERLV4;
+	sc_end SC_MEMBERLV5;
+	sc_end SC_MEMBERLV6;
+	sc_end SC_MEMBERLV7;
+	sc_end SC_MEMBERLV8;
+	sc_end SC_MEMBERLV9;
+	sc_end SC_MEMBERLV10;
+	sleep2 500;
+	sc_start SC_MEMBERLV4,-1,1;
+	end;
+	}	
+	if(.@money > 4999 && .@money < 6000){
+	sc_end SC_MEMBERLV0;
+	sc_end SC_MEMBERLV1;
+	sc_end SC_MEMBERLV2;
+	sc_end SC_MEMBERLV3;
+	sc_end SC_MEMBERLV4;
+	sc_end SC_MEMBERLV5;
+	sc_end SC_MEMBERLV6;
+	sc_end SC_MEMBERLV7;
+	sc_end SC_MEMBERLV8;
+	sc_end SC_MEMBERLV9;
+	sc_end SC_MEMBERLV10;
+	sleep2 500;
+	sc_start SC_MEMBERLV5,-1,1;
+	end;
+	}	
+	if(.@money > 5999 && .@money < 7000){
+	sc_end SC_MEMBERLV0;
+	sc_end SC_MEMBERLV1;
+	sc_end SC_MEMBERLV2;
+	sc_end SC_MEMBERLV3;
+	sc_end SC_MEMBERLV4;
+	sc_end SC_MEMBERLV5;
+	sc_end SC_MEMBERLV6;
+	sc_end SC_MEMBERLV7;
+	sc_end SC_MEMBERLV8;
+	sc_end SC_MEMBERLV9;
+	sc_end SC_MEMBERLV10;
+	sleep2 500;
+	sc_start SC_MEMBERLV6,-1,1;
+	end;
+	}	
+	if(.@money > 6999 && .@money < 8000){
+	sc_end SC_MEMBERLV0;
+	sc_end SC_MEMBERLV1;
+	sc_end SC_MEMBERLV2;
+	sc_end SC_MEMBERLV3;
+	sc_end SC_MEMBERLV4;
+	sc_end SC_MEMBERLV5;
+	sc_end SC_MEMBERLV6;
+	sc_end SC_MEMBERLV7;
+	sc_end SC_MEMBERLV8;
+	sc_end SC_MEMBERLV9;
+	sc_end SC_MEMBERLV10;
+	sleep2 500;
+	sc_start SC_MEMBERLV7,-1,1;
+	end;
+	}	
+	if(.@money > 7999 && .@money < 9000){
+	sc_end SC_MEMBERLV0;
+	sc_end SC_MEMBERLV1;
+	sc_end SC_MEMBERLV2;
+	sc_end SC_MEMBERLV3;
+	sc_end SC_MEMBERLV4;
+	sc_end SC_MEMBERLV5;
+	sc_end SC_MEMBERLV6;
+	sc_end SC_MEMBERLV7;
+	sc_end SC_MEMBERLV8;
+	sc_end SC_MEMBERLV9;
+	sc_end SC_MEMBERLV10;
+	sleep2 500;
+	sc_start SC_MEMBERLV8,-1,1;
+	end;
+	}	
+	if(.@money > 8999 && .@money < 10000){
+	sc_end SC_MEMBERLV0;
+	sc_end SC_MEMBERLV1;
+	sc_end SC_MEMBERLV2;
+	sc_end SC_MEMBERLV3;
+	sc_end SC_MEMBERLV4;
+	sc_end SC_MEMBERLV5;
+	sc_end SC_MEMBERLV6;
+	sc_end SC_MEMBERLV7;
+	sc_end SC_MEMBERLV8;
+	sc_end SC_MEMBERLV9;
+	sc_end SC_MEMBERLV10;
+	sleep2 500;
+	sc_start SC_MEMBERLV9,-1,1;
+	end;
+	}		
+	if(.@money > 9999){
+	sc_end SC_MEMBERLV0;
+	sc_end SC_MEMBERLV1;
+	sc_end SC_MEMBERLV2;
+	sc_end SC_MEMBERLV3;
+	sc_end SC_MEMBERLV4;
+	sc_end SC_MEMBERLV5;
+	sc_end SC_MEMBERLV6;
+	sc_end SC_MEMBERLV7;
+	sc_end SC_MEMBERLV8;
+	sc_end SC_MEMBERLV9;
+	sc_end SC_MEMBERLV10;
+	sleep2 500;
+	sc_start SC_MEMBERLV10,-1,1;
+	end;
+	}
+
+	
+end;	
+}	
+
+
+
+eternal,138,61,4	script	ระบบ Member	952,{
+disable_items;
+	if (checkweight(1201,1) == 0) {
+		mes "[ระบบ Member]";
+		mes "^FF0000คุณมีไอเทมมากเกินไป^000000";
+		end;
+	}
+	if (MaxWeight - Weight < 1000) {
+		mes "[ระบบ Member]";
+		mes "^FF0000กรุณาตรวจสอบน้ำหนักด้วย^000000";
+		end;
+	}
+
+
+query_sql "SELECT `account_id` FROM `club_member` WHERE `account_id`='"+getcharid(3)+"'",.@vip;
+if(.@vip > 0){
+query_sql "SELECT `money` FROM `club_member` WHERE `account_id`='"+getcharid(3)+"'",.@money;
+
+if(.@money <= 0){
+mes "[ระบบ Member]";
+mes "เจ้าไม่มีแต้ม Member เลย";
+end;
+}
+
+
+mes "[ระบบ Member]";
+mes "=======================";
+mes "มีแต้ม Member ทั้งหมด ("+callfunc("F_InsertComma",.@money)+") แต้ม";
+mes "=======================";
+menu	"- ถอน Member ( "+callfunc("F_InsertComma",.@money)+" แต้ม )",withdraw,
+		"- แค่ผ่านมาคุยด้วยเฉยๆ",exit;
+
+}else{
+mes "[ระบบ Member]";
+mes "เจ้าไม่มีแต้ม Member เลย";
+end;
+}
+end;
+
+withdraw:
+next;
+mes "[ระบบ Member]";
+mes "กรอกจำนวนที่ต้องการถอน";
+input .@amount;
+
+next;
+
+if (.@amount > .@money ){
+mes "[ระบบ Member]";
+mes "มีแต้ม Member ไม่เพียงพอกรุณาตรวจสอบอีกครั้ง";
+end;
+}
+if (.@amount == 0 ){
+mes "[ระบบ Member]";
+mes "กรุณาตรวจสอบอีกครั้ง";
+end;
+}
+
+getitem 60012,.@amount;
+query_sql( "UPDATE `club_member` SET `money` = `money`-'"+ .@amount +"' WHERE `account_id` = '"+getcharid(3)+"';" );
+	query_sql "SELECT `account_id` FROM `club_member` WHERE `account_id`='"+getcharid(3)+"'",.@vip;
+	if(.@vip > 0){
+	query_sql "SELECT `money` FROM `club_member` WHERE `account_id`='"+getcharid(3)+"'",.@money;
+	dispbottom  "[ระบบ] : จำนวน Member Points ปัจจุบัน "+ callfunc("F_InsertComma",.@money) +" Member Points";
+	}else{
+	dispbottom  "[ระบบ] : จำนวน Member Points ปัจจุบัน "+ callfunc("F_InsertComma",.@money) +" Member Points";
+	sc_end SC_MEMBERLV0;
+	sc_end SC_MEMBERLV1;
+	sc_end SC_MEMBERLV2;
+	sc_end SC_MEMBERLV3;
+	sc_end SC_MEMBERLV4;
+	sc_end SC_MEMBERLV5;
+	sc_end SC_MEMBERLV6;
+	sc_end SC_MEMBERLV7;
+	sc_end SC_MEMBERLV8;
+	sc_end SC_MEMBERLV9;
+	sc_end SC_MEMBERLV10;
+	sleep2 500;
+	sc_start SC_MEMBERLV0,-1,1;
+	end;
+	}
+	if(.@money < 1000){
+	sc_end SC_MEMBERLV0;
+	sc_end SC_MEMBERLV1;
+	sc_end SC_MEMBERLV2;
+	sc_end SC_MEMBERLV3;
+	sc_end SC_MEMBERLV4;
+	sc_end SC_MEMBERLV5;
+	sc_end SC_MEMBERLV6;
+	sc_end SC_MEMBERLV7;
+	sc_end SC_MEMBERLV8;
+	sc_end SC_MEMBERLV9;
+	sc_end SC_MEMBERLV10;
+	sleep2 500;
+	sc_start SC_MEMBERLV0,-1,1;
+	end;
+	}	
+	if(.@money > 999 && .@money < 2000){
+	sc_end SC_MEMBERLV0;
+	sc_end SC_MEMBERLV1;
+	sc_end SC_MEMBERLV2;
+	sc_end SC_MEMBERLV3;
+	sc_end SC_MEMBERLV4;
+	sc_end SC_MEMBERLV5;
+	sc_end SC_MEMBERLV6;
+	sc_end SC_MEMBERLV7;
+	sc_end SC_MEMBERLV8;
+	sc_end SC_MEMBERLV9;
+	sc_end SC_MEMBERLV10;
+	sleep2 500;
+	sc_start SC_MEMBERLV1,-1,1;
+	end;
+	}	
+	if(.@money > 1999 && .@money < 3000){
+	sc_end SC_MEMBERLV0;
+	sc_end SC_MEMBERLV1;
+	sc_end SC_MEMBERLV2;
+	sc_end SC_MEMBERLV3;
+	sc_end SC_MEMBERLV4;
+	sc_end SC_MEMBERLV5;
+	sc_end SC_MEMBERLV6;
+	sc_end SC_MEMBERLV7;
+	sc_end SC_MEMBERLV8;
+	sc_end SC_MEMBERLV9;
+	sc_end SC_MEMBERLV10;
+	sleep2 500;
+	sc_start SC_MEMBERLV2,-1,1;
+	end;
+	}	
+	if(.@money > 2999 && .@money < 4000){
+	sc_end SC_MEMBERLV0;
+	sc_end SC_MEMBERLV1;
+	sc_end SC_MEMBERLV2;
+	sc_end SC_MEMBERLV3;
+	sc_end SC_MEMBERLV4;
+	sc_end SC_MEMBERLV5;
+	sc_end SC_MEMBERLV6;
+	sc_end SC_MEMBERLV7;
+	sc_end SC_MEMBERLV8;
+	sc_end SC_MEMBERLV9;
+	sc_end SC_MEMBERLV10;
+	sleep2 500;
+	sc_start SC_MEMBERLV3,-1,1;
+	end;
+	}	
+	if(.@money > 3999 && .@money < 5000){
+	sc_end SC_MEMBERLV0;
+	sc_end SC_MEMBERLV1;
+	sc_end SC_MEMBERLV2;
+	sc_end SC_MEMBERLV3;
+	sc_end SC_MEMBERLV4;
+	sc_end SC_MEMBERLV5;
+	sc_end SC_MEMBERLV6;
+	sc_end SC_MEMBERLV7;
+	sc_end SC_MEMBERLV8;
+	sc_end SC_MEMBERLV9;
+	sc_end SC_MEMBERLV10;
+	sleep2 500;
+	sc_start SC_MEMBERLV4,-1,1;
+	end;
+	}	
+	if(.@money > 4999 && .@money < 6000){
+	sc_end SC_MEMBERLV0;
+	sc_end SC_MEMBERLV1;
+	sc_end SC_MEMBERLV2;
+	sc_end SC_MEMBERLV3;
+	sc_end SC_MEMBERLV4;
+	sc_end SC_MEMBERLV5;
+	sc_end SC_MEMBERLV6;
+	sc_end SC_MEMBERLV7;
+	sc_end SC_MEMBERLV8;
+	sc_end SC_MEMBERLV9;
+	sc_end SC_MEMBERLV10;
+	sleep2 500;
+	sc_start SC_MEMBERLV5,-1,1;
+	end;
+	}	
+	if(.@money > 5999 && .@money < 7000){
+	sc_end SC_MEMBERLV0;
+	sc_end SC_MEMBERLV1;
+	sc_end SC_MEMBERLV2;
+	sc_end SC_MEMBERLV3;
+	sc_end SC_MEMBERLV4;
+	sc_end SC_MEMBERLV5;
+	sc_end SC_MEMBERLV6;
+	sc_end SC_MEMBERLV7;
+	sc_end SC_MEMBERLV8;
+	sc_end SC_MEMBERLV9;
+	sc_end SC_MEMBERLV10;
+	sleep2 500;
+	sc_start SC_MEMBERLV6,-1,1;
+	end;
+	}	
+	if(.@money > 6999 && .@money < 8000){
+	sc_end SC_MEMBERLV0;
+	sc_end SC_MEMBERLV1;
+	sc_end SC_MEMBERLV2;
+	sc_end SC_MEMBERLV3;
+	sc_end SC_MEMBERLV4;
+	sc_end SC_MEMBERLV5;
+	sc_end SC_MEMBERLV6;
+	sc_end SC_MEMBERLV7;
+	sc_end SC_MEMBERLV8;
+	sc_end SC_MEMBERLV9;
+	sc_end SC_MEMBERLV10;
+	sleep2 500;
+	sc_start SC_MEMBERLV7,-1,1;
+	end;
+	}	
+	if(.@money > 7999 && .@money < 9000){
+	sc_end SC_MEMBERLV0;
+	sc_end SC_MEMBERLV1;
+	sc_end SC_MEMBERLV2;
+	sc_end SC_MEMBERLV3;
+	sc_end SC_MEMBERLV4;
+	sc_end SC_MEMBERLV5;
+	sc_end SC_MEMBERLV6;
+	sc_end SC_MEMBERLV7;
+	sc_end SC_MEMBERLV8;
+	sc_end SC_MEMBERLV9;
+	sc_end SC_MEMBERLV10;
+	sleep2 500;
+	sc_start SC_MEMBERLV8,-1,1;
+	end;
+	}	
+	if(.@money > 8999 && .@money < 10000){
+	sc_end SC_MEMBERLV0;
+	sc_end SC_MEMBERLV1;
+	sc_end SC_MEMBERLV2;
+	sc_end SC_MEMBERLV3;
+	sc_end SC_MEMBERLV4;
+	sc_end SC_MEMBERLV5;
+	sc_end SC_MEMBERLV6;
+	sc_end SC_MEMBERLV7;
+	sc_end SC_MEMBERLV8;
+	sc_end SC_MEMBERLV9;
+	sc_end SC_MEMBERLV10;
+	sleep2 500;
+	sc_start SC_MEMBERLV9,-1,1;
+	end;
+	}		
+	if(.@money > 9999){
+	sc_end SC_MEMBERLV0;
+	sc_end SC_MEMBERLV1;
+	sc_end SC_MEMBERLV2;
+	sc_end SC_MEMBERLV3;
+	sc_end SC_MEMBERLV4;
+	sc_end SC_MEMBERLV5;
+	sc_end SC_MEMBERLV6;
+	sc_end SC_MEMBERLV7;
+	sc_end SC_MEMBERLV8;
+	sc_end SC_MEMBERLV9;
+	sc_end SC_MEMBERLV10;
+	sleep2 500;
+	sc_start SC_MEMBERLV10,-1,1;
+	end;
+	}
+end;
+
+
+
+exit:
+end;
+
+OnInit:
+waitingroom " ระบบ Member",0;
+end;
+}
+
+
+function	script	memberpoint	{
+      .@p = 1;
+      .@i = 60012;	  
+	  if ( query_sql( "SELECT `money` FROM `club_member` WHERE `account_id` = '"+getcharid(3)+"';", .@player_money ) ) {
+	  query_sql( "UPDATE `club_member` SET `money` = `money`+"+(countitem(.@i)*(.@p)+(.@p))+" WHERE `account_id` = '"+getcharid(3)+"';" );
+	  } else {
+	  query_sql( "SELECT `userid` FROM `login` WHERE `account_id` = '"+getcharid(3)+"';", .player_userid$ ) ;
+	  query_sql( "INSERT INTO `club_member` ( `account_id`, `userid`, `money` ) VALUES ( "+getcharid(3)+", '"+ .player_userid$ +"', "+(countitem(.@i)*(.@p)+(.@p))+");" );
+	  }
+      query_sql "SELECT `money` FROM `club_member` WHERE `account_id`='"+getcharid(3)+"'",.@money;
+      dispbottom "[ระบบ] : ได้รับ Member Points "+ callfunc("F_InsertComma",countitem(.@i)*(.@p)+(.@p)) +" Member Points";
+      dispbottom "[ระบบ] : จำนวน Member Points ปัจจุบัน "+ callfunc("F_InsertComma",.@money) +" Member Points";
+	  delitem .@i,countitem(.@i);
+	  if(.@money < 1000){
+	  sc_end SC_MEMBERLV0;
+	  sc_end SC_MEMBERLV1;
+	  sc_end SC_MEMBERLV2;
+	  sc_end SC_MEMBERLV3;
+	  sc_end SC_MEMBERLV4;
+	  sc_end SC_MEMBERLV5;
+	  sc_end SC_MEMBERLV6;
+	  sc_end SC_MEMBERLV7;
+	  sc_end SC_MEMBERLV8;
+	  sc_end SC_MEMBERLV9;
+	  sc_end SC_MEMBERLV10;
+	  sleep2 500;
+	  sc_start SC_MEMBERLV0,-1,1;
+	  end;
+	  }	
+	  if(.@money > 999 && .@money < 2000){
+	  sc_end SC_MEMBERLV0;
+	  sc_end SC_MEMBERLV1;
+	  sc_end SC_MEMBERLV2;
+	  sc_end SC_MEMBERLV3;
+	  sc_end SC_MEMBERLV4;
+	  sc_end SC_MEMBERLV5;
+	  sc_end SC_MEMBERLV6;
+	  sc_end SC_MEMBERLV7;
+	  sc_end SC_MEMBERLV8;
+	  sc_end SC_MEMBERLV9;
+	  sc_end SC_MEMBERLV10;
+	  sleep2 500;
+	  sc_start SC_MEMBERLV1,-1,1;
+	  end;
+	  }	
+	  if(.@money > 1999 && .@money < 3000){
+	  sc_end SC_MEMBERLV0;
+	  sc_end SC_MEMBERLV1;
+	  sc_end SC_MEMBERLV2;
+	  sc_end SC_MEMBERLV3;
+	  sc_end SC_MEMBERLV4;
+	  sc_end SC_MEMBERLV5;
+	  sc_end SC_MEMBERLV6;
+	  sc_end SC_MEMBERLV7;
+	  sc_end SC_MEMBERLV8;
+	  sc_end SC_MEMBERLV9;
+	  sc_end SC_MEMBERLV10;
+	  sleep2 500;
+	  sc_start SC_MEMBERLV2,-1,1;
+	  end;
+	  }	
+	  if(.@money > 2999 && .@money < 4000){
+	  sc_end SC_MEMBERLV0;
+	  sc_end SC_MEMBERLV1;
+	  sc_end SC_MEMBERLV2;
+	  sc_end SC_MEMBERLV3;
+	  sc_end SC_MEMBERLV4;
+	  sc_end SC_MEMBERLV5;
+	  sc_end SC_MEMBERLV6;
+	  sc_end SC_MEMBERLV7;
+	  sc_end SC_MEMBERLV8;
+	  sc_end SC_MEMBERLV9;
+	  sc_end SC_MEMBERLV10;
+	  sleep2 500;
+	  sc_start SC_MEMBERLV3,-1,1;
+	  end;
+	  }	
+	  if(.@money > 3999 && .@money < 5000){
+	  sc_end SC_MEMBERLV0;
+	  sc_end SC_MEMBERLV1;
+	  sc_end SC_MEMBERLV2;
+	  sc_end SC_MEMBERLV3;
+	  sc_end SC_MEMBERLV4;
+	  sc_end SC_MEMBERLV5;
+	  sc_end SC_MEMBERLV6;
+	  sc_end SC_MEMBERLV7;
+	  sc_end SC_MEMBERLV8;
+	  sc_end SC_MEMBERLV9;
+	  sc_end SC_MEMBERLV10;
+	  sleep2 500;
+	  sc_start SC_MEMBERLV4,-1,1;
+	  end;
+	  }	
+	  if(.@money > 4999 && .@money < 6000){
+	  sc_end SC_MEMBERLV0;
+	  sc_end SC_MEMBERLV1;
+	  sc_end SC_MEMBERLV2;
+	  sc_end SC_MEMBERLV3;
+	  sc_end SC_MEMBERLV4;
+	  sc_end SC_MEMBERLV5;
+	  sc_end SC_MEMBERLV6;
+	  sc_end SC_MEMBERLV7;
+	  sc_end SC_MEMBERLV8;
+	  sc_end SC_MEMBERLV9;
+	  sc_end SC_MEMBERLV10;
+	  sleep2 500;
+	  sc_start SC_MEMBERLV5,-1,1;
+	  end;
+	  }	
+	  if(.@money > 5999 && .@money < 7000){
+	  sc_end SC_MEMBERLV0;
+	  sc_end SC_MEMBERLV1;
+	  sc_end SC_MEMBERLV2;
+	  sc_end SC_MEMBERLV3;
+	  sc_end SC_MEMBERLV4;
+	  sc_end SC_MEMBERLV5;
+	  sc_end SC_MEMBERLV6;
+	  sc_end SC_MEMBERLV7;
+	  sc_end SC_MEMBERLV8;
+	  sc_end SC_MEMBERLV9;
+	  sc_end SC_MEMBERLV10;
+	  sleep2 500;
+	  sc_start SC_MEMBERLV6,-1,1;
+	  end;
+	  }	
+	  if(.@money > 6999 && .@money < 8000){
+	  sc_end SC_MEMBERLV0;
+	  sc_end SC_MEMBERLV1;
+	  sc_end SC_MEMBERLV2;
+	  sc_end SC_MEMBERLV3;
+	  sc_end SC_MEMBERLV4;
+	  sc_end SC_MEMBERLV5;
+	  sc_end SC_MEMBERLV6;
+	  sc_end SC_MEMBERLV7;
+	  sc_end SC_MEMBERLV8;
+	  sc_end SC_MEMBERLV9;
+	  sc_end SC_MEMBERLV10;
+	  sleep2 500;
+	  sc_start SC_MEMBERLV7,-1,1;
+	  end;
+	  }	
+	  if(.@money > 7999 && .@money < 9000){
+	  sc_end SC_MEMBERLV0;
+	  sc_end SC_MEMBERLV1;
+	  sc_end SC_MEMBERLV2;
+	  sc_end SC_MEMBERLV3;
+	  sc_end SC_MEMBERLV4;
+	  sc_end SC_MEMBERLV5;
+	  sc_end SC_MEMBERLV6;
+	  sc_end SC_MEMBERLV7;
+	  sc_end SC_MEMBERLV8;
+	  sc_end SC_MEMBERLV9;
+	  sc_end SC_MEMBERLV10;
+	  sleep2 500;
+	  sc_start SC_MEMBERLV8,-1,1;
+	  end;
+	  }	
+	  if(.@money > 8999 && .@money < 10000){
+	  sc_end SC_MEMBERLV0;
+	  sc_end SC_MEMBERLV1;
+	  sc_end SC_MEMBERLV2;
+	  sc_end SC_MEMBERLV3;
+	  sc_end SC_MEMBERLV4;
+	  sc_end SC_MEMBERLV5;
+	  sc_end SC_MEMBERLV6;
+	  sc_end SC_MEMBERLV7;
+	  sc_end SC_MEMBERLV8;
+	  sc_end SC_MEMBERLV9;
+	  sc_end SC_MEMBERLV10;
+	  sleep2 500;
+	  sc_start SC_MEMBERLV9,-1,1;
+	  end;
+	  }		
+	  if(.@money > 9999){
+	  sc_end SC_MEMBERLV0;
+	  sc_end SC_MEMBERLV1;
+	  sc_end SC_MEMBERLV2;
+	  sc_end SC_MEMBERLV3;
+	  sc_end SC_MEMBERLV4;
+	  sc_end SC_MEMBERLV5;
+	  sc_end SC_MEMBERLV6;
+	  sc_end SC_MEMBERLV7;
+	  sc_end SC_MEMBERLV8;
+	  sc_end SC_MEMBERLV9;
+	  sc_end SC_MEMBERLV10;
+	  sleep2 500;
+	  sc_start SC_MEMBERLV10,-1,1;
+	  end;
+	  }
+end;
+
+}

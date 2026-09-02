@@ -1,0 +1,11 @@
+like_game,87,114,6	script	‡§« ·≈°À‘πµ’∫«°	4_BLUE_FLOWER,{
+
+
+callshop "Refine_Ore_Make",1;
+end;
+
+
+OnInit:
+waitingroom "  ‡§« ·≈°À‘πµ’∫«°",0;
+end;
+}

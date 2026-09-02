@@ -1,0 +1,557 @@
+-	script	wb#start	-1,{
+
+end;
+
+
+OnClock0200:
+if(gettime(DT_DAYOFWEEK) == SATURDAY){
+set $wbname$,"Ancient Dragon";
+set $wbalive,1;
+announce "ประตูมิติถูกเปิดขึ้นในแผนที่ Magma Dungeon ชั้นที่2(พิกัด199,86) และถูก "+$wbname$+" บุกโจมตีขอความรวมมือผู้กล้าทั้งหลายช่วยด้วย",0,0xFF1493;
+hideoffnpc "Gate#mag_dun02";
+hideoffnpc "Gate#wb1";
+specialeffect EF_MAGIC_FLOOR,AREA,"Gate#mag_dun02";
+sleep 5000;
+removespecialeffect EF_MAGIC_FLOOR,AREA,"Gate#mag_dun02";
+sleep 2000;
+monster "mag_dun02",199,86,"Ancient Dragon",30097,1,"wb#start::OnBossDead";
+}
+if(gettime(DT_DAYOFWEEK) == SUNDAY){
+set $wbname$,"Ancient Golem";
+set $wbalive,1;
+announce "ประตูมิติถูกเปิดขึ้นในแผนที่ Coal Mines Dungeon ชั้นที่3(พิกัด42,44) และถูก "+$wbname$+" บุกโจมตีขอความรวมมือผู้กล้าทั้งหลายช่วยด้วย",0,0xFF1493;
+hideoffnpc "Gate#mjo_dun03";
+hideoffnpc "Gate#wb2";
+specialeffect EF_MAGIC_FLOOR,AREA,"Gate#mjo_dun03";
+sleep 5000;
+removespecialeffect EF_MAGIC_FLOOR,AREA,"Gate#mjo_dun03";
+sleep 2000;
+monster "mjo_dun03",42,44,"Ancient Golem",30098,1,"wb#start::OnBossDead";
+}
+if(gettime(DT_DAYOFWEEK) == TUESDAY){
+set $wbname$,"Fire Golem";
+set $wbalive,1;
+announce "ประตูมิติถูกเปิดขึ้นในแผนที่ Magma Dungeon ชั้นที่1(พิกัด46,60) และถูก "+$wbname$+" บุกโจมตีขอความรวมมือผู้กล้าทั้งหลายช่วยด้วย",0,0xFF1493;
+hideoffnpc "Gate#mag_dun01";
+hideoffnpc "Gate#wb6";
+specialeffect EF_MAGIC_FLOOR,AREA,"Gate#mag_dun01";
+sleep 5000;
+removespecialeffect EF_MAGIC_FLOOR,AREA,"Gate#mag_dun01";
+sleep 2000;
+monster "mag_dun01",46,60,"Fire Golem",30102,1,"wb#start::OnBossDead";
+}
+if(gettime(DT_DAYOFWEEK) == THURSDAY){
+set $wbname$,"Fire Golem";
+set $wbalive,1;
+announce "ประตูมิติถูกเปิดขึ้นในแผนที่ Magma Dungeon ชั้นที่1(พิกัด46,60) และถูก "+$wbname$+" บุกโจมตีขอความรวมมือผู้กล้าทั้งหลายช่วยด้วย",0,0xFF1493;
+hideoffnpc "Gate#mag_dun01";
+hideoffnpc "Gate#wb6";
+specialeffect EF_MAGIC_FLOOR,AREA,"Gate#mag_dun01";
+sleep 5000;
+removespecialeffect EF_MAGIC_FLOOR,AREA,"Gate#mag_dun01";
+sleep 2000;
+monster "mag_dun01",46,60,"Fire Golem",30102,1,"wb#start::OnBossDead";
+}
+if(gettime(DT_DAYOFWEEK) == FRIDAY){
+set $wbname$,"Phoenix";
+set $wbalive,1;
+announce "ประตูมิติถูกเปิดขึ้นในแผนที่ Moscovia Dungeon ชั้นที่2(พิกัด142,162) และถูก "+$wbname$+" บุกโจมตีขอความรวมมือผู้กล้าทั้งหลายช่วยด้วย",0,0xFF1493;
+hideoffnpc "Gate#mosk_dun02";
+hideoffnpc "Gate#wb5";
+specialeffect EF_MAGIC_FLOOR,AREA,"Gate#mosk_dun02";
+sleep 5000;
+removespecialeffect EF_MAGIC_FLOOR,AREA,"Gate#mosk_dun02";
+sleep 2000;
+monster "mosk_dun02",142,162,"Phoenix",30101,1,"wb#start::OnBossDead";
+}
+
+initnpctimer;
+end;
+
+
+
+OnClock1200:
+if(gettime(DT_DAYOFWEEK) == SATURDAY){
+set $wbname$,"Ancient Golem";
+set $wbalive,1;
+announce "ประตูมิติถูกเปิดขึ้นในแผนที่ Coal Mines Dungeon ชั้นที่3(พิกัด42,44) และถูก "+$wbname$+" บุกโจมตีขอความรวมมือผู้กล้าทั้งหลายช่วยด้วย",0,0xFF1493;
+hideoffnpc "Gate#mjo_dun03";
+hideoffnpc "Gate#wb2";
+specialeffect EF_MAGIC_FLOOR,AREA,"Gate#mjo_dun03";
+sleep 5000;
+removespecialeffect EF_MAGIC_FLOOR,AREA,"Gate#mjo_dun03";
+sleep 2000;
+monster "mjo_dun03",42,44,"Ancient Golem",30098,1,"wb#start::OnBossDead";
+}
+if(gettime(DT_DAYOFWEEK) == SUNDAY){
+set $wbname$,"Ancient Wooden Golem";
+set $wbalive,1;
+announce "ประตูมิติถูกเปิดขึ้นในแผนที่ Umbala Dungeon ชั้นที่1(พิกัด161,162) และถูก "+$wbname$+" บุกโจมตีขอความรวมมือผู้กล้าทั้งหลายช่วยด้วย",0,0xFF1493;
+hideoffnpc "Gate#um_dun01";
+hideoffnpc "Gate#wb4";
+specialeffect EF_MAGIC_FLOOR,AREA,"Gate#um_dun01";
+sleep 5000;
+removespecialeffect EF_MAGIC_FLOOR,AREA,"Gate#um_dun01";
+sleep 2000;
+monster "um_dun01",161,162,"Ancient Wooden Golem",30100,1,"wb#start::OnBossDead";
+}
+if(gettime(DT_DAYOFWEEK) == MONDAY){
+set $wbname$,"Phoenix";
+set $wbalive,1;
+announce "ประตูมิติถูกเปิดขึ้นในแผนที่ Moscovia Dungeon ชั้นที่2(พิกัด142,162) และถูก "+$wbname$+" บุกโจมตีขอความรวมมือผู้กล้าทั้งหลายช่วยด้วย",0,0xFF1493;
+hideoffnpc "Gate#mosk_dun02";
+hideoffnpc "Gate#wb5";
+specialeffect EF_MAGIC_FLOOR,AREA,"Gate#mosk_dun02";
+sleep 5000;
+removespecialeffect EF_MAGIC_FLOOR,AREA,"Gate#mosk_dun02";
+sleep 2000;
+monster "mosk_dun02",142,162,"Phoenix",30101,1,"wb#start::OnBossDead";
+}
+if(gettime(DT_DAYOFWEEK) == WEDNESDAY){
+set $wbname$,"Ancient Dragon";
+set $wbalive,1;
+announce "ประตูมิติถูกเปิดขึ้นในแผนที่ Magma Dungeon ชั้นที่2(พิกัด199,86) และถูก "+$wbname$+" บุกโจมตีขอความรวมมือผู้กล้าทั้งหลายช่วยด้วย",0,0xFF1493;
+hideoffnpc "Gate#mag_dun02";
+hideoffnpc "Gate#wb1";
+specialeffect EF_MAGIC_FLOOR,AREA,"Gate#mag_dun02";
+sleep 5000;
+removespecialeffect EF_MAGIC_FLOOR,AREA,"Gate#mag_dun02";
+sleep 2000;
+monster "mag_dun02",199,86,"Ancient Dragon",30097,1,"wb#start::OnBossDead";
+}
+if(gettime(DT_DAYOFWEEK) == THURSDAY){
+set $wbname$,"Ancient Golem";
+set $wbalive,1;
+announce "ประตูมิติถูกเปิดขึ้นในแผนที่ Coal Mines Dungeon ชั้นที่3(พิกัด42,44) และถูก "+$wbname$+" บุกโจมตีขอความรวมมือผู้กล้าทั้งหลายช่วยด้วย",0,0xFF1493;
+hideoffnpc "Gate#mjo_dun03";
+hideoffnpc "Gate#wb2";
+specialeffect EF_MAGIC_FLOOR,AREA,"Gate#mjo_dun03";
+sleep 5000;
+removespecialeffect EF_MAGIC_FLOOR,AREA,"Gate#mjo_dun03";
+sleep 2000;
+monster "mjo_dun03",42,44,"Ancient Golem",30098,1,"wb#start::OnBossDead";
+}
+if(gettime(DT_DAYOFWEEK) == FRIDAY){
+set $wbname$,"Ancient Dragon";
+set $wbalive,1;
+announce "ประตูมิติถูกเปิดขึ้นในแผนที่ Magma Dungeon ชั้นที่2(พิกัด199,86) และถูก "+$wbname$+" บุกโจมตีขอความรวมมือผู้กล้าทั้งหลายช่วยด้วย",0,0xFF1493;
+hideoffnpc "Gate#mag_dun02";
+hideoffnpc "Gate#wb1";
+specialeffect EF_MAGIC_FLOOR,AREA,"Gate#mag_dun02";
+sleep 5000;
+removespecialeffect EF_MAGIC_FLOOR,AREA,"Gate#mag_dun02";
+sleep 2000;
+monster "mag_dun02",199,86,"Ancient Dragon",30097,1,"wb#start::OnBossDead";
+}
+
+initnpctimer;
+end;
+
+OnClock1500:
+if(gettime(DT_DAYOFWEEK) == SATURDAY){
+set $wbname$,"Iron Punch";
+set $wbalive,1;
+announce "ประตูมิติถูกเปิดขึ้นในแผนที่ Lighthalzen Dungeon ชั้นที่1(พิกัด147,69) และถูก "+$wbname$+" บุกโจมตีขอความรวมมือผู้กล้าทั้งหลายช่วยด้วย",0,0xFF1493;
+hideoffnpc "Gate#lhz_dun01";
+hideoffnpc "Gate#wb3";
+specialeffect EF_MAGIC_FLOOR,AREA,"Gate#lhz_dun01";
+sleep 5000;
+removespecialeffect EF_MAGIC_FLOOR,AREA,"Gate#lhz_dun01";
+sleep 2000;
+monster "lhz_dun01",147,69,"Iron Punch",30099,1,"wb#start::OnBossDead";
+}
+if(gettime(DT_DAYOFWEEK) == SUNDAY){
+set $wbname$,"Ancient Dragon";
+set $wbalive,1;
+announce "ประตูมิติถูกเปิดขึ้นในแผนที่ Magma Dungeon ชั้นที่2(พิกัด199,86) และถูก "+$wbname$+" บุกโจมตีขอความรวมมือผู้กล้าทั้งหลายช่วยด้วย",0,0xFF1493;
+hideoffnpc "Gate#mag_dun02";
+hideoffnpc "Gate#wb1";
+specialeffect EF_MAGIC_FLOOR,AREA,"Gate#mag_dun02";
+sleep 5000;
+removespecialeffect EF_MAGIC_FLOOR,AREA,"Gate#mag_dun02";
+sleep 2000;
+monster "mag_dun02",199,86,"Ancient Dragon",30097,1,"wb#start::OnBossDead";
+}
+if(gettime(DT_DAYOFWEEK) == TUESDAY){
+set $wbname$,"Fire Golem";
+set $wbalive,1;
+announce "ประตูมิติถูกเปิดขึ้นในแผนที่ Magma Dungeon ชั้นที่1(พิกัด46,60) และถูก "+$wbname$+" บุกโจมตีขอความรวมมือผู้กล้าทั้งหลายช่วยด้วย",0,0xFF1493;
+hideoffnpc "Gate#mag_dun01";
+hideoffnpc "Gate#wb6";
+specialeffect EF_MAGIC_FLOOR,AREA,"Gate#mag_dun01";
+sleep 5000;
+removespecialeffect EF_MAGIC_FLOOR,AREA,"Gate#mag_dun01";
+sleep 2000;
+monster "mag_dun01",46,60,"Fire Golem",30102,1,"wb#start::OnBossDead";
+}
+if(gettime(DT_DAYOFWEEK) == WEDNESDAY){
+set $wbname$,"Ancient Wooden Golem";
+set $wbalive,1;
+announce "ประตูมิติถูกเปิดขึ้นในแผนที่ Umbala Dungeon ชั้นที่1(พิกัด161,162) และถูก "+$wbname$+" บุกโจมตีขอความรวมมือผู้กล้าทั้งหลายช่วยด้วย",0,0xFF1493;
+hideoffnpc "Gate#um_dun01";
+hideoffnpc "Gate#wb4";
+specialeffect EF_MAGIC_FLOOR,AREA,"Gate#um_dun01";
+sleep 5000;
+removespecialeffect EF_MAGIC_FLOOR,AREA,"Gate#um_dun01";
+sleep 2000;
+monster "um_dun01",161,162,"Ancient Wooden Golem",30100,1,"wb#start::OnBossDead";
+}
+if(gettime(DT_DAYOFWEEK) == THURSDAY){
+set $wbname$,"Iron Punch";
+set $wbalive,1;
+announce "ประตูมิติถูกเปิดขึ้นในแผนที่ Lighthalzen Dungeon ชั้นที่1(พิกัด147,69) และถูก "+$wbname$+" บุกโจมตีขอความรวมมือผู้กล้าทั้งหลายช่วยด้วย",0,0xFF1493;
+hideoffnpc "Gate#lhz_dun01";
+hideoffnpc "Gate#wb3";
+specialeffect EF_MAGIC_FLOOR,AREA,"Gate#lhz_dun01";
+sleep 5000;
+removespecialeffect EF_MAGIC_FLOOR,AREA,"Gate#lhz_dun01";
+sleep 2000;
+monster "lhz_dun01",147,69,"Iron Punch",30099,1,"wb#start::OnBossDead";
+}
+if(gettime(DT_DAYOFWEEK) == FRIDAY){
+set $wbname$,"Ancient Wooden Golem";
+set $wbalive,1;
+announce "ประตูมิติถูกเปิดขึ้นในแผนที่ Umbala Dungeon ชั้นที่1(พิกัด161,162) และถูก "+$wbname$+" บุกโจมตีขอความรวมมือผู้กล้าทั้งหลายช่วยด้วย",0,0xFF1493;
+hideoffnpc "Gate#um_dun01";
+hideoffnpc "Gate#wb4";
+specialeffect EF_MAGIC_FLOOR,AREA,"Gate#um_dun01";
+sleep 5000;
+removespecialeffect EF_MAGIC_FLOOR,AREA,"Gate#um_dun01";
+sleep 2000;
+monster "um_dun01",161,162,"Ancient Wooden Golem",30100,1,"wb#start::OnBossDead";
+}
+
+initnpctimer;
+end;
+
+
+OnClock1800:
+if(gettime(DT_DAYOFWEEK) == SATURDAY){
+set $wbname$,"Chronos";
+set $wbalive,1;
+announce "ประตูมิติถูกเปิดขึ้นในแผนที่ Beach(Comodo) Dungeon ชั้นที่3(พิกัด105,76) และถูก "+$wbname$+" บุกโจมตีขอความรวมมือผู้กล้าทั้งหลายช่วยด้วย",0,0xFF1493;
+hideoffnpc "Gate#beach_dun3";
+hideoffnpc "Gate#wb7";
+specialeffect EF_MAGIC_FLOOR,AREA,"Gate#beach_dun3";
+sleep 5000;
+removespecialeffect EF_MAGIC_FLOOR,AREA,"Gate#beach_dun3";
+sleep 2000;
+monster "beach_dun3",105,76,"Chronos",30103,1,"wb#start::OnBossDead";
+}
+if(gettime(DT_DAYOFWEEK) == SUNDAY){
+set $wbname$,"Iron Punch";
+set $wbalive,1;
+announce "ประตูมิติถูกเปิดขึ้นในแผนที่ Lighthalzen Dungeon ชั้นที่1(พิกัด147,69) และถูก "+$wbname$+" บุกโจมตีขอความรวมมือผู้กล้าทั้งหลายช่วยด้วย",0,0xFF1493;
+hideoffnpc "Gate#lhz_dun01";
+hideoffnpc "Gate#wb3";
+specialeffect EF_MAGIC_FLOOR,AREA,"Gate#lhz_dun01";
+sleep 5000;
+removespecialeffect EF_MAGIC_FLOOR,AREA,"Gate#lhz_dun01";
+sleep 2000;
+monster "lhz_dun01",147,69,"Iron Punch",30099,1,"wb#start::OnBossDead";
+}
+if(gettime(DT_DAYOFWEEK) == MONDAY){
+set $wbname$,"Phoenix";
+set $wbalive,1;
+announce "ประตูมิติถูกเปิดขึ้นในแผนที่ Moscovia Dungeon ชั้นที่2(พิกัด142,162) และถูก "+$wbname$+" บุกโจมตีขอความรวมมือผู้กล้าทั้งหลายช่วยด้วย",0,0xFF1493;
+hideoffnpc "Gate#mosk_dun02";
+hideoffnpc "Gate#wb5";
+specialeffect EF_MAGIC_FLOOR,AREA,"Gate#mosk_dun02";
+sleep 5000;
+removespecialeffect EF_MAGIC_FLOOR,AREA,"Gate#mosk_dun02";
+sleep 2000;
+monster "mosk_dun02",142,162,"Phoenix",30101,1,"wb#start::OnBossDead";
+}
+if(gettime(DT_DAYOFWEEK) == TUESDAY){
+set $wbname$,"Ancient Wooden Golem";
+set $wbalive,1;
+announce "ประตูมิติถูกเปิดขึ้นในแผนที่ Umbala Dungeon ชั้นที่1(พิกัด161,162) และถูก "+$wbname$+" บุกโจมตีขอความรวมมือผู้กล้าทั้งหลายช่วยด้วย",0,0xFF1493;
+hideoffnpc "Gate#um_dun01";
+hideoffnpc "Gate#wb4";
+specialeffect EF_MAGIC_FLOOR,AREA,"Gate#um_dun01";
+sleep 5000;
+removespecialeffect EF_MAGIC_FLOOR,AREA,"Gate#um_dun01";
+sleep 2000;
+monster "um_dun01",161,162,"Ancient Wooden Golem",30100,1,"wb#start::OnBossDead";
+}
+if(gettime(DT_DAYOFWEEK) == WEDNESDAY){
+set $wbname$,"Chronos";
+set $wbalive,1;
+announce "ประตูมิติถูกเปิดขึ้นในแผนที่ Beach(Comodo) Dungeon ชั้นที่3(พิกัด105,76) และถูก "+$wbname$+" บุกโจมตีขอความรวมมือผู้กล้าทั้งหลายช่วยด้วย",0,0xFF1493;
+hideoffnpc "Gate#beach_dun3";
+hideoffnpc "Gate#wb7";
+specialeffect EF_MAGIC_FLOOR,AREA,"Gate#beach_dun3";
+sleep 5000;
+removespecialeffect EF_MAGIC_FLOOR,AREA,"Gate#beach_dun3";
+sleep 2000;
+monster "beach_dun3",105,76,"Chronos",30103,1,"wb#start::OnBossDead";
+}
+if(gettime(DT_DAYOFWEEK) == THURSDAY){
+set $wbname$,"Phoenix";
+set $wbalive,1;
+announce "ประตูมิติถูกเปิดขึ้นในแผนที่ Moscovia Dungeon ชั้นที่2(พิกัด142,162) และถูก "+$wbname$+" บุกโจมตีขอความรวมมือผู้กล้าทั้งหลายช่วยด้วย",0,0xFF1493;
+hideoffnpc "Gate#mosk_dun02";
+hideoffnpc "Gate#wb5";
+specialeffect EF_MAGIC_FLOOR,AREA,"Gate#mosk_dun02";
+sleep 5000;
+removespecialeffect EF_MAGIC_FLOOR,AREA,"Gate#mosk_dun02";
+sleep 2000;
+monster "mosk_dun02",142,162,"Phoenix",30101,1,"wb#start::OnBossDead";
+}
+if(gettime(DT_DAYOFWEEK) == FRIDAY){
+set $wbname$,"Chronos";
+set $wbalive,1;
+announce "ประตูมิติถูกเปิดขึ้นในแผนที่ Beach(Comodo) Dungeon ชั้นที่3(พิกัด105,76) และถูก "+$wbname$+" บุกโจมตีขอความรวมมือผู้กล้าทั้งหลายช่วยด้วย",0,0xFF1493;
+hideoffnpc "Gate#beach_dun3";
+hideoffnpc "Gate#wb7";
+specialeffect EF_MAGIC_FLOOR,AREA,"Gate#beach_dun3";
+sleep 5000;
+removespecialeffect EF_MAGIC_FLOOR,AREA,"Gate#beach_dun3";
+sleep 2000;
+monster "beach_dun3",105,76,"Chronos",30103,1,"wb#start::OnBossDead";
+}
+
+initnpctimer;
+end;
+
+
+OnClock2300:
+if(gettime(DT_DAYOFWEEK) == SATURDAY){
+set $wbname$,"Ancient Wooden Golem";
+set $wbalive,1;
+announce "ประตูมิติถูกเปิดขึ้นในแผนที่ Umbala Dungeon ชั้นที่1(พิกัด161,162) และถูก "+$wbname$+" บุกโจมตีขอความรวมมือผู้กล้าทั้งหลายช่วยด้วย",0,0xFF1493;
+hideoffnpc "Gate#um_dun01";
+hideoffnpc "Gate#wb4";
+specialeffect EF_MAGIC_FLOOR,AREA,"Gate#um_dun01";
+sleep 5000;
+removespecialeffect EF_MAGIC_FLOOR,AREA,"Gate#um_dun01";
+sleep 2000;
+monster "um_dun01",161,162,"Ancient Wooden Golem",30100,1,"wb#start::OnBossDead";
+}
+if(gettime(DT_DAYOFWEEK) == MONDAY){
+set $wbname$,"Ancient Dragon";
+set $wbalive,1;
+announce "ประตูมิติถูกเปิดขึ้นในแผนที่ Magma Dungeon ชั้นที่2(พิกัด199,86) และถูก "+$wbname$+" บุกโจมตีขอความรวมมือผู้กล้าทั้งหลายช่วยด้วย",0,0xFF1493;
+hideoffnpc "Gate#mag_dun02";
+hideoffnpc "Gate#wb1";
+specialeffect EF_MAGIC_FLOOR,AREA,"Gate#mag_dun02";
+sleep 5000;
+removespecialeffect EF_MAGIC_FLOOR,AREA,"Gate#mag_dun02";
+sleep 2000;
+monster "mag_dun02",199,86,"Ancient Dragon",30097,1,"wb#start::OnBossDead";
+}
+if(gettime(DT_DAYOFWEEK) == TUESDAY){
+set $wbname$,"Ancient Golem";
+set $wbalive,1;
+announce "ประตูมิติถูกเปิดขึ้นในแผนที่ Coal Mines Dungeon ชั้นที่3(พิกัด42,44) และถูก "+$wbname$+" บุกโจมตีขอความรวมมือผู้กล้าทั้งหลายช่วยด้วย",0,0xFF1493;
+hideoffnpc "Gate#mjo_dun03";
+hideoffnpc "Gate#wb2";
+specialeffect EF_MAGIC_FLOOR,AREA,"Gate#mjo_dun03";
+sleep 5000;
+removespecialeffect EF_MAGIC_FLOOR,AREA,"Gate#mjo_dun03";
+sleep 2000;
+monster "mjo_dun03",42,44,"Ancient Golem",30098,1,"wb#start::OnBossDead";
+}
+if(gettime(DT_DAYOFWEEK) == WEDNESDAY){
+set $wbname$,"Iron Punch";
+set $wbalive,1;
+announce "ประตูมิติถูกเปิดขึ้นในแผนที่ Lighthalzen Dungeon ชั้นที่1(พิกัด147,69) และถูก "+$wbname$+" บุกโจมตีขอความรวมมือผู้กล้าทั้งหลายช่วยด้วย",0,0xFF1493;
+hideoffnpc "Gate#lhz_dun01";
+hideoffnpc "Gate#wb3";
+specialeffect EF_MAGIC_FLOOR,AREA,"Gate#lhz_dun01";
+sleep 5000;
+removespecialeffect EF_MAGIC_FLOOR,AREA,"Gate#lhz_dun01";
+sleep 2000;
+monster "lhz_dun01",147,69,"Iron Punch",30099,1,"wb#start::OnBossDead";
+}
+if(gettime(DT_DAYOFWEEK) == FRIDAY){
+set $wbname$,"Fire Golem";
+set $wbalive,1;
+announce "ประตูมิติถูกเปิดขึ้นในแผนที่  Magma Dungeon ชั้นที่1(พิกัด46,60) และถูก "+$wbname$+" บุกโจมตีขอความรวมมือผู้กล้าทั้งหลายช่วยด้วย",0,0xFF1493;
+hideoffnpc "Gate#mag_dun01";
+hideoffnpc "Gate#wb6";
+specialeffect EF_MAGIC_FLOOR,AREA,"Gate#mag_dun01";
+sleep 5000;
+removespecialeffect EF_MAGIC_FLOOR,AREA,"Gate#mag_dun01";
+sleep 2000;
+monster "mag_dun01",46,60,"Fire Golem",30102,1,"wb#start::OnBossDead";
+}
+
+initnpctimer;
+end;
+
+OnBossDead:
+//killmonster "morocc","wb#start::OnBossDead";
+set $wbalive,0;
+announce "เหล่าผู้กล้าได้จัดการ "+$wbname$+" ลงแล้วขอขอบคุณผู้กล้าทั้งหลาย",0,0xFF1493;
+hideonnpc "Gate#mag_dun02";
+hideonnpc "Gate#mjo_dun03";
+hideonnpc "Gate#lhz_dun01";
+hideonnpc "Gate#um_dun01";
+hideonnpc "Gate#mosk_dun02";
+hideonnpc "Gate#mag_dun01";
+hideonnpc "Gate#beach_dun3";
+stopnpctimer;
+end;
+
+
+OnTimer3600000:
+if($wbalive == 1){
+killmonster "mag_dun02","wb#start::OnBossDead";
+killmonster "mjo_dun03","wb#start::OnBossDead";
+killmonster "lhz_dun01","wb#start::OnBossDead";
+killmonster "um_dun01","wb#start::OnBossDead";
+killmonster "mosk_dun02","wb#start::OnBossDead";
+killmonster "mag_dun01","wb#start::OnBossDead";
+killmonster "beach_dun3","wb#start::OnBossDead";
+announce "เหล่าผู้กล้าไม่สามารถจัดการ "+$wbname$+" ได้ในเวลาในกำหนด "+$wbname$+" ได้กลับสู่ประตูมิติแล้ว",0,0xFF1493;
+set $wbalive,0;
+hideonnpc "Gate#mag_dun02";
+hideonnpc "Gate#mjo_dun03";
+hideonnpc "Gate#lhz_dun01";
+hideonnpc "Gate#um_dun01";
+hideonnpc "Gate#mosk_dun02";
+hideonnpc "Gate#mag_dun01";
+hideonnpc "Gate#beach_dun3";
+hideonnpc "Gate#wb1";
+hideonnpc "Gate#wb2";
+hideonnpc "Gate#wb3";
+hideonnpc "Gate#wb4";
+hideonnpc "Gate#wb5";
+hideonnpc "Gate#wb6";
+hideonnpc "Gate#wb7";
+}
+stopnpctimer;
+end;
+
+OnInit:
+set $wbalive,0;
+set $wbname$,0;
+hideonnpc "Gate#mag_dun02";
+hideonnpc "Gate#mjo_dun03";
+hideonnpc "Gate#lhz_dun01";
+hideonnpc "Gate#um_dun01";
+hideonnpc "Gate#mosk_dun02";
+hideonnpc "Gate#mag_dun01";
+hideonnpc "Gate#beach_dun3";
+hideonnpc "Gate#wb1";
+hideonnpc "Gate#wb2";
+hideonnpc "Gate#wb3";
+hideonnpc "Gate#wb4";
+hideonnpc "Gate#wb5";
+hideonnpc "Gate#wb6";
+hideonnpc "Gate#wb7";
+end;
+}
+
+-	script	gate#wb	-1,{
+end;
+}
+
+mag_dun02,199,86,0	duplicate(gate#wb)	Gate#mag_dun02	31397
+mjo_dun03,42,44,0	duplicate(gate#wb)	Gate#mjo_dun03	31397
+lhz_dun01,147,69,0	duplicate(gate#wb)	Gate#lhz_dun01	31397
+um_dun01,161,162,0	duplicate(gate#wb)	Gate#um_dun01	31397
+mosk_dun02,142,162,0	duplicate(gate#wb)	Gate#mosk_dun02	31397
+mag_dun01,46,60,0	duplicate(gate#wb)	Gate#mag_dun01	31397
+beach_dun3,105,76,0	duplicate(gate#wb)	Gate#beach_dun3	31397
+//morocc,158,89,0	duplicate(gate#wb)	Gate#morocc	31397
+
+
+morocc,159,113,1	script	Gate#wb1	31397,{
+disable_items;
+mes "[The Gate]";
+mes "ท่านต้องการวาปไปยังพื้นที่ \nWorld Boss หรือไม่";
+switch(select("ไปเลย","ยังก่อน")){
+case 1:
+warp "mag_dun02",199,86;
+end;
+
+case 2:
+end;
+}
+}
+
+morocc,159,113,1	script	Gate#wb2	31397,{
+disable_items;
+mes "[The Gate]";
+mes "ท่านต้องการวาปไปยังพื้นที่ \nWorld Boss หรือไม่";
+switch(select("ไปเลย","ยังก่อน")){
+case 1:
+warp "mjo_dun03",42,44;
+end;
+
+case 2:
+end;
+}
+}
+
+morocc,159,113,1	script	Gate#wb3	31397,{
+disable_items;
+mes "[The Gate]";
+mes "ท่านต้องการวาปไปยังพื้นที่ \nWorld Boss หรือไม่";
+switch(select("ไปเลย","ยังก่อน")){
+case 1:
+warp "lhz_dun01",147,69;
+end;
+
+case 2:
+end;
+}
+}
+
+morocc,159,113,1	script	Gate#wb4	31397,{
+disable_items;
+mes "[The Gate]";
+mes "ท่านต้องการวาปไปยังพื้นที่ \nWorld Boss หรือไม่";
+switch(select("ไปเลย","ยังก่อน")){
+case 1:
+warp "um_dun01",161,162;
+end;
+
+case 2:
+end;
+}
+}
+
+morocc,159,113,1	script	Gate#wb5	31397,{
+disable_items;
+mes "[The Gate]";
+mes "ท่านต้องการวาปไปยังพื้นที่ \nWorld Boss หรือไม่";
+switch(select("ไปเลย","ยังก่อน")){
+case 1:
+warp "mosk_dun02",142,162;
+end;
+
+case 2:
+end;
+}
+}
+
+morocc,159,113,1	script	Gate#wb6	31397,{
+disable_items;
+mes "[The Gate]";
+mes "ท่านต้องการวาปไปยังพื้นที่ \nWorld Boss หรือไม่";
+switch(select("ไปเลย","ยังก่อน")){
+case 1:
+warp "mag_dun01",46,60;
+end;
+
+case 2:
+end;
+}
+}
+
+morocc,159,113,1	script	Gate#wb7	31397,{
+disable_items;
+mes "[The Gate]";
+mes "ท่านต้องการวาปไปยังพื้นที่ \nWorld Boss หรือไม่";
+switch(select("ไปเลย","ยังก่อน")){
+case 1:
+warp "beach_dun3",105,76;
+end;
+
+case 2:
+end;
+}
+}

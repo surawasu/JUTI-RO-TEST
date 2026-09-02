@@ -1,0 +1,10 @@
+morocc,104,49,6	script	ยาบัพดึงฟรี	JP_ARUNA,{
+
+callfunc "VIPSHOP";
+end;
+
+OnInit:
+waitingroom "ยาปั้มดึงฟรี",0;
+end;
+
+} 

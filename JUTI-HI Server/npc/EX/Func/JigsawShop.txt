@@ -1,0 +1,84 @@
+morocc,131,59,4	script	·≈° Jigsaw#JigsawCostume	4_F_YUNYANG,{  //@ocp
+
+
+	mes "^000099[Jigsaw Costume]^000000";
+	next;
+	menu 
+	"^009933ï^000000 ·≈° Jigsaw Costume Ticket",L_Tick,
+//	"^009933ï^000000 ·≈° Jigsaw Pet",L_Pet,
+	"^009933ï^000000 ·≈° Jigsaw Costume Egg",L_Cegg,
+//	"^009933ï^000000 ·≈° Jigsaw Costume Serie Egg",L_CSegg,
+	"^009933ï^000000 ‰«È°ËÕπ",L_no;
+
+
+
+L_Pet:
+	menu 
+	"^009933ï^000000 ·≈° Jigsaw Cat Pet",L_Pet1,
+	"^009933ï^000000 ‰«È°ËÕπ",L_no;
+
+L_Pet1:
+close2;
+callshop "Crafting_Cat_Pet",1;
+end;
+
+L_Cegg:
+	menu 
+	"^009933ï^000000 ·≈° Jigsaw Angel Wing",L_wing,
+//	"^009933ï^000000 ·≈° Jigsaw Flame Majestic Goat",L_Goat,
+	"^009933ï^000000 ·≈° Jigsaw Solar",L_solar,
+//	"^009933ï^000000 ·≈° Jigsaw Birds Blessing",L_Bird,
+//	"^009933ï^000000 ·≈° Jigsaw Cupid Scarf",L_Cupid,
+	"^009933ï^000000 ‰«È°ËÕπ",L_no;
+
+L_Tick:
+close2;
+callshop "Crafting_Costume_Ticket",1;
+end;
+
+L_wing:
+close2;
+callshop "Crafting_Angel_Move_Wing",1;
+end;
+
+L_solar:
+close2;
+callshop "Crafting_Solaflash",1;
+end;
+
+L_Goat:
+close2;
+callshop "Crafting_FlameGoat",1;
+end;
+	
+L_Bird:
+close2;
+callshop "Crafting_BirdsBlessing",1;
+end;
+	
+L_Cupid:
+close2;
+callshop "Crafting_CupidScarf",1;
+end;
+
+L_CSegg:
+	menu 
+	"^009933ï^000000 ·≈° [V1]Costume Serie Egg",L_CSegg1,
+	"^009933ï^000000 ‰«È°ËÕπ",L_no;
+
+L_CSegg1:
+close2;
+callshop "Crafting_Costume_Serie_V1",1;
+end;
+	
+L_no:
+	mes "^000099[Jigsaw Costume]^000000";
+	mes "æ√ÈÕ¡·≈È«°Á¡“„À¡Ëπ–^000000";
+	close;
+	
+	
+	end;
+OnInit:
+waitingroom " ·≈°‡»…®‘Í°´Õ«Ï",0;
+end;
+}

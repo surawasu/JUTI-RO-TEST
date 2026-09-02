@@ -1,0 +1,21 @@
+arug_cas03,139,156,4	script	#BARRICADEHORN	BARRICADE,{
+end;
+}
+
+arug_cas03,140,156,4	duplicate(#BARRICADEHORN)	#BARRICADEHORN1	1905
+arug_cas03,141,156,4	duplicate(#BARRICADEHORN)	#BARRICADEHORN2	1905
+arug_cas03,142,156,4	duplicate(#BARRICADEHORN)	#BARRICADEHORN3	1905
+arug_cas03,143,156,4	duplicate(#BARRICADEHORN)	#BARRICADEHORN4	1905
+arug_cas03,144,156,4	duplicate(#BARRICADEHORN)	#BARRICADEHORN5	1905
+
+-	script	Nowalkhorn	-1,{ 
+
+end;
+
+OnInit: 
+	setcell "arug_cas03",108,157,175,155,cell_walkable,0;	//TOP
+    end;
+} 
+
+
+/////////////////////////////////////////////////////

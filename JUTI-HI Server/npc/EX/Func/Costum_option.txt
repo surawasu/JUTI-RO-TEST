@@ -1,0 +1,298 @@
+//===== rAthena Script =======================================
+//= Random Option NPC dealer
+//===== By: ==================================================
+//= Keitenai
+//===== Current Version: =====================================
+//= 1.0
+//===== Compatible With: =====================================
+//= rAthena Project
+//===== Description: =========================================
+//= Deals with a player to apply random item option
+//= for the price of zeny/cashpoint
+//============================================================
+
+morocc,144,79,4	script	Keitenai	700,{
+	mes "[ Keitenai ]";
+	mes "ท่านต้องการทำอะไร?";
+	switch(select("^0000FF~• สุ่มออฟชั่นคอสตูม^000000:")){
+	case 1:
+	goto NPC;
+	case 2:
+	goto removeop;
+	}
+end;
+
+OnInit:
+//==============================
+//	CURRENCY SETTING
+//	1 = Zeny
+//	0 = Cashpoints
+//==============================
+set .Currency,1;		// Currency to buy random option
+set .Price,500000;	// Prize of random option
+// Item 1
+set .it1,2981000;
+set .am1,1;
+// Item 2
+set .it2,984;
+set .am2,20;
+// Item 3
+set .it3,985;
+set .am3,20;
+
+
+//==============================
+//	RANDOM OPTION SETTING
+//==============================
+	set .OverWrite,1;	// Allows overwriting the already existing option enchantment ( 0 to disable )
+	set .FailRate,50;	// Sets fail chance
+	//set .MaxOpt,192;	// Maximum item option a player can enchant ( reference: https://github.com/rathena/rathena/blob/master/db/const.txt#L1645-L1836 )
+	//set .MinOpt,1;		// Minimum item option a player can enchant
+	//set .MinValue,1;	// Minimum option effect value
+	//set .MaxValue,10;	// Maximum option effect value
+	set .MaxIndex,0;	// Maximum option slots ( default is 0 to 4 )
+	set .Wait,1;		// Progress bar delay in seconds
+waitingroom "สุ่มออฟชั่น Costume",0;
+	// Random option that will not be applied
+
+end;
+removeop:
+next;
+disable_items;
+	mes "[ Keitenai ]";
+	mes "เราละท่านจำเป็นต้องจ่ายค่าบริการนิดหน่อย";
+	if(.Currency){
+		mes "ค่าบริการ ^0000FF"+callfunc("F_InsertComma",.Price)+" Zeny^000000,";
+	} else {
+		mes "ค่าบริการ ^0000FF"+callfunc("F_InsertComma",.Price)+" Cashpoints^000000,";
+	}
+	mes "ท่านต้องการใช้บริการเลยหรือไม่?";
+	next;
+	if(select("เอาไว้ทีหลัง...:^0000FFเอาละล้างออฟได้เลย!^000000")==1) goto OnCancel;
+	close2;
+
+	setarray .@eq[1], EQI_COSTUME_HEAD_TOP,EQI_COSTUME_HEAD_MID,EQI_COSTUME_HEAD_LOW,EQI_COSTUME_GARMENT;
+	for(set .@i,1; .@i<getarraysize(.@eq); set .@i,.@i+1){
+		if(getequipisequiped(.@eq[.@i])){
+			set .@menu$,.@menu$+F_getpositionname(.@eq[.@i])+" ~ [ " + getequipname(.@eq[.@i]) + " ]";
+			set .@equipped,1;
+		} set .@menu$,.@menu$+":";
+	} 	set .@part,.@eq[select(.@menu$)];
+		.@eq = getequipid(.@part);
+		.@r = getequiprefinerycnt(.@part);
+		.@card0 = getequipcardid(.@part,0);
+		.@card1 = getequipcardid(.@part,1);
+		.@card2 = getequipcardid(.@part,2);
+		.@card3 = getequipcardid(.@part,3);
+	if(.Currency){
+		if(Zeny < .Price)
+			goto PriceFail;
+		else
+			set Zeny,Zeny-.Price;
+	} else {
+		if(#CASHPOINTS < .Price)
+			goto PriceFail;
+		else
+			set #CASHPOINTS,#CASHPOINTS-.Price;
+	}
+	delequip .@part;
+	progressbar "ffff00",.Wait;
+	getitem2 .@eq,1,1,.@r,0,.@card0,.@card1,.@card2,.@card3;
+	specialeffect2 83;
+	end;
+NPC:
+next;
+disable_items;
+	mes "[ Keitenai ]";
+	mes "ยินดีต้อนรับเข้าสู่บริการ^0000FF ออฟคอส^000000";
+	if(.Currency){
+		mes "ค่าบริการ ^0000FF"+callfunc("F_InsertComma",.Price)+" Zeny^000000,";
+		if(.am1>0){
+		mes "- <ITEM>"+getitemname(.it1)+"<INFO>"+.it1+"</INFO></ITEM> "+.am1+" ชิ้น";
+		}
+		if(.am2>0){
+		mes "- <ITEM>"+getitemname(.it2)+"<INFO>"+.it2+"</INFO></ITEM> "+.am2+" ชิ้น";
+		}
+		if(.am3>0){
+		mes "- <ITEM>"+getitemname(.it3)+"<INFO>"+.it3+"</INFO></ITEM> "+.am3+" ชิ้น";
+		}
+	} else {
+		mes "ค่าบริการ ^0000FF"+callfunc("F_InsertComma",.Price)+" Cashpoints^000000,";
+		if(.am1>0){
+		mes "- <ITEM>"+getitemname(.it1)+"<INFO>"+.it1+"</INFO></ITEM> "+.am1+" ชิ้น";
+		}
+		if(.am2>0){
+		mes "- <ITEM>"+getitemname(.it2)+"<INFO>"+.it2+"</INFO></ITEM> "+.am2+" ชิ้น";
+		}
+		if(.am3>0){
+		mes "- <ITEM>"+getitemname(.it3)+"<INFO>"+.it3+"</INFO></ITEM> "+.am3+" ชิ้น";
+		}
+	}
+	mes "\nแต่ทางเราจะ ^FF0000สุ่มออฟชั่นให้แก่ท่าน 1 แถว โอกาสล้มเหลว "+(.FailRate)+"^000000";
+	next;
+	if(select("^0000FFเอาเลยลุยได้ ออฟคอสโลด!^000000:อืมมมมมยังก่อนดีกว่า...")==2) goto OnCancel;
+	close2;
+
+	setarray .@eq[1], EQI_COSTUME_HEAD_TOP,EQI_COSTUME_HEAD_MID,EQI_COSTUME_HEAD_LOW,EQI_COSTUME_GARMENT;
+	for(set .@i,1; .@i<getarraysize(.@eq); set .@i,.@i+1){
+		if(getequipisequiped(.@eq[.@i])){
+			set .@menu$,.@menu$+F_getpositionname(.@eq[.@i])+" ~ [ " + getequipname(.@eq[.@i]) + " ]";
+			set .@equipped,1;
+		} set .@menu$,.@menu$+":";
+	} set .@part,.@eq[select(.@menu$)];
+
+	//set .@val,rand(.MinValue,.MaxValue);
+
+//IgnoreCheck:
+		setarray .@ignore[0],
+		256,	// ADDDROPPERCENT_KILLRACE_ALL
+		255,	// VAR_WEIGHT
+		11,		// VAR_HPACCELERATION
+		12,		// VAR_SPACCELERATION
+		242;	// ADDEXPPERCENT_KILLRACE_ALL
+
+	//set .@opt,rand(.MinOpt,.@ignore);
+	set .@opt,rand( getarraysize(.@ignore) );
+	set .@randper,rand(1,100);
+	if(.@ignore[.@opt] == 255){
+		if(.@randper <=5){
+			set .MinValue,500;
+			set .MaxValue,500;
+		}else if(.@randper <=10){
+			set .MinValue,450;
+			set .MaxValue,450;
+		}else if(.@randper <=15){
+			set .MinValue,350;
+			set .MaxValue,350;
+		}else if(.@randper <=20){
+			set .MinValue,300;
+			set .MaxValue,300;
+		}else if(.@randper <=30){
+			set .MinValue,250;
+			set .MaxValue,250;
+		}else if(.@randper <=50){
+			set .MinValue,200;
+			set .MaxValue,200;
+		}else{
+			set .MinValue,150;
+			set .MaxValue,150;
+		}
+	}else if( .@ignore[.@opt] == 256 ||.@ignore[.@opt] == 242 ){
+		if(.@randper <=10){
+			set .MinValue,4;
+			set .MaxValue,8;
+		}else{
+			set .MinValue,3;
+			set .MaxValue,5;
+		}	
+	}else{
+		if(.@randper <=10){
+			set .MinValue,7;
+			set .MaxValue,10;
+		}else{
+			set .MinValue,3;
+			set .MaxValue,7;
+		}
+	}
+	
+	set .@val,rand(.MinValue,.MaxValue);
+	//for(set .@f,1; .@f<getarraysize(.ignore); set .@f,.@f+1)
+	//	if(.@opt!=.ignore[.@f])
+	//		goto IgnoreCheck;
+
+
+	set .@indx,rand(.MaxIndex);
+	if(!.OverWrite){
+		if(getequiprandomoption(.@part,4,ROA_ID,getcharid(0))) set .@x4,4;
+		if(getequiprandomoption(.@part,3,ROA_ID,getcharid(0))) set .@x3,3;
+		if(getequiprandomoption(.@part,2,ROA_ID,getcharid(0))) set .@x2,2;
+		if(getequiprandomoption(.@part,1,ROA_ID,getcharid(0))) set .@x1,1;
+		if(getequiprandomoption(.@part,0,ROA_ID,getcharid(0))) set .@x0,0;
+
+		if(.@indx == 0 && .@x0)
+			if(.@indx==.MaxIndex) goto OnMax;
+			else set .@indx,1;
+		if(.@indx == 1 && .@x1)
+			if(.@indx==.MaxIndex) goto OnMax;
+			else set .@indx,2;
+		if(.@indx == 2 && .@x2)
+			if(.@indx==.MaxIndex) goto OnMax;
+			else set .@indx,3;
+		if(.@indx == 3 && .@x3)
+			if(.@indx==.MaxIndex) goto OnMax;
+			else set .@indx,4;
+		if(.@indx == 4 && .@x4)
+			if(.@indx==.MaxIndex) goto OnMax;
+	}
+	if(.@indx == 4 && (!getequiprandomoption(.@part,3,ROA_ID,getcharid(0)))) set .@indx,3;
+	if(.@indx == 3 && (!getequiprandomoption(.@part,2,ROA_ID,getcharid(0)))) set .@indx,2;
+	if(.@indx == 2 && (!getequiprandomoption(.@part,1,ROA_ID,getcharid(0)))) set .@indx,1;
+	if(.@indx == 1 && (!getequiprandomoption(.@part,0,ROA_ID,getcharid(0)))) set .@indx,0;
+	if(.Currency){
+		if(Zeny < .Price || countitem(.it1) < .am1 ||countitem(.it2) < .am2 || countitem(.it3) < .am3 )
+			goto PriceFail;
+		else
+			set Zeny,Zeny-.Price;
+			if(.am1>0){
+			delitem .it1,.am1;
+			}
+			if(.am2>0){
+			delitem .it2,.am2;
+			}
+			if(.am3>0){
+			delitem .it3,.am3;
+			}
+	} else {
+		if(#CASHPOINTS < .Price || countitem(.it1) < .am1 ||countitem(.it2) < .am2 || countitem(.it3) < .am3  )
+			goto PriceFail;
+		else
+			set #CASHPOINTS,#CASHPOINTS-.Price;
+			if(.am1>0){
+			delitem .it1,.am1;
+			}
+			if(.am2>0){
+			delitem .it2,.am2;
+			}
+			if(.am3>0){
+			delitem .it3,.am3;
+			}
+	}
+	progressbar "ffff00",.Wait;
+
+
+
+	// Failed...
+	if(.FailRate > 100) set .FailRate,100;
+	if(rand(1,100) <= .FailRate) goto OnFailure;
+
+	// Success!!
+	specialeffect2 83;
+	setrandomoption(.@part,.@indx,.@ignore[.@opt],.@val,.@indx,getcharid(0));
+end;
+
+OnMax:
+	mes "[ Keitenai ]";
+	mes "ดูเหมือนว่าท่านจะทำการออฟครบแล้ว";
+	mes "ถ้าหากต้องการออฟใหม่";
+	mes "โปรดไปล้างออฟก่อน";
+close;
+
+OnFailure:
+specialeffect2 EF_PHARMACY_FAIL;
+	mes "[ Keitenai ]"," ";
+	mes "โอ้วไม่นะ..."," ";
+	mes "^FF0000เกิดความผิดพลาดในการดำเนินการ...";
+	mes "ไม่สามารถทำงานต่อได้.^000000";
+	//delequip .@part;
+close;
+
+PriceFail:
+	mes "[ Keitenai ]";
+	mes "เจ้ามีของที่จำเป็นไม่พอ";
+close;
+
+OnCancel:
+	mes "[ Keitenai ]";
+	mes "หากพร้อมกลับมาได้เสมอ";
+close;
+}

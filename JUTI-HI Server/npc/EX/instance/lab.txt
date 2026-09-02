@@ -1,0 +1,94 @@
+like_game,134,87,5	script	Temporary Dimension-mov#pa0829_01	PORTAL,{
+if (!vip_status(VIP_STATUS_ACTIVE)) {
+		mes "[Temporary Dimension-mover]";
+		mes "ท่านต้องเปิดใช้งาน VIP ก่อนถึงจะงานบริการได้.";
+		end;
+}
+	.@party_id = getcharid(1);
+	if (.@party_id == 0) {
+		mes "[Temporary Dimension-mover]";
+		mes "โปรดสร้าง Party ก่อน จะทำการลง.";
+		close;
+	}
+	switch( #BOSSQUEST ) {
+	case 0:
+		mes "[Temporary Dimension-mover]";
+		mes "เท่าต้องการเข้าไปเลยหรือไม่?";
+		if(select("ใช่ไปเลย","ยังก่อน")== 2){
+			end;
+		}
+		set .@i_inst, instance_create("Central Laboratory");
+	
+		switch( instance_enter("Central Laboratory") ) {
+		case IE_NOMEMBER:
+		case IE_NOINSTANCE:
+			mes "[Temporary Dimension-mover]";
+			mes "เหมือนจะมีบางอย่างผิดพลาด.";
+			close;
+		case IE_OTHER:
+			mes "[Temporary Dimension-mov]";
+			mes "Unknown Error.";
+			close;
+		case IE_OK:
+			//mapannounce "verus01", "" + strcharinfo(0) + " of the party, " + getpartyname(.@party_id) + ", is entering Central Laboratory.",bc_map,"0x00FF99";
+			set #BOSSQUEST,1;// Trace of Laboratory Access
+			end;
+		}
+		end;
+	case 1:
+		mes "[Temporary Dimension-mover]";
+		mes "วันนี้ท่านได้ทำการลงไปแล้วโปรดรอวันต่อไป.";
+		close;
+	}
+
+
+OnInit:
+waitingroom "Dungeon Costume Weapon",0;
+end;
+}
+
+// Warp Exit
+1@lab,90,88,5	script	Exit Gate#Exit	PORTAL,{
+mes "[ Exit Gate ]";
+mes "เท่าต้องการออกเลยหรือไม่?";
+if(select("ใช่ไปเลย","ยังก่อน")== 2){
+	end;
+}
+warp "like_game",127,108;
+end;
+}
+
+1@lab,90,88,5	script	Summon Gate#Summon	PORTAL,{
+mes "[ Summon Gate ]";
+mes "เจ้าต้องการเริ่มกระบวนการเรียกเลยหรือไม่?";
+if(select("ใช่ลุยเลย","ยังก่อน")== 2){
+	end;
+}
+
+.@mob_id = callfunc("F_Rand",20610,20611);
+
+monster 'map1$,90,88, "Unidentified creature",.@mob_id,1, instance_npcname("Summon Gate#Summon") + "::OnMyMobDead";
+hideonnpc instance_npcname("Summon Gate#Summon");
+end;
+
+OnMyMobDead:
+hideonnpc instance_npcname("Exit Gate#Exit");
+end;
+
+OnInstanceInit:
+	'map1$ = instance_mapname("1@lab");	
+	
+	hideonnpc instance_npcname("Exit Gate#Exit");
+end;
+}
+
+
+-	script	resetdunday	-1,{
+end;
+OnClock0000:
+//query_sql "UPDATE `acc_reg_num` SET `value`=(0) WHERE `key`='#BOSSQUEST'";
+query_sql "DELETE FROM `acc_reg_num` WHERE `key` = '#BOSSQUEST'";
+end;
+
+}
+

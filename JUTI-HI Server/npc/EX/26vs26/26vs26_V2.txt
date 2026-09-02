@@ -1,0 +1,282 @@
+-	script	testloadmap1v1	-1,{
+end;
+OnPCLoadMapEvent:
+if(strcharinfo(3) == "guild_vs2-2"){
+sc_end SC_ALL;
+sc_start SC_CP_WEAPON,1800000,5;
+sc_start SC_CP_SHIELD,1800000,5;
+sc_start SC_CP_ARMOR,1800000,5;
+sc_start SC_CP_HELM,1800000,5;
+specialeffect2 EF_INCAGILITY;
+sc_start SC_INCREASEAGI,900000,10;
+specialeffect2 EF_BLESSING;
+sc_start SC_BLESSING,900000,10;
+sc_start SC_STRFood,900000,10;
+sc_start SC_AGIFood,900000,10;
+sc_start SC_VITFood,900000,10;
+sc_start SC_INTFood,900000,10;
+sc_start SC_DEXFood,900000,10;
+sc_start SC_LUKFood,900000,10;
+}
+end;
+}
+
+guild_vs2-2,1,1,4	script	#nowalk1VS1	858,{
+end;
+}
+
+guild_vs2-2,24,53,4	duplicate(#nowalk1VS1)	#BARRICADE1VS1L1	1905
+guild_vs2-2,24,52,4	duplicate(#nowalk1VS1)	#BARRICADE1VS1L2	1905
+guild_vs2-2,24,51,4	duplicate(#nowalk1VS1)	#BARRICADE1VS1L3	1905
+guild_vs2-2,24,50,4	duplicate(#nowalk1VS1)	#BARRICADE1VS1L4	1905
+guild_vs2-2,24,49,4	duplicate(#nowalk1VS1)	#BARRICADE1VS1L5	1905
+guild_vs2-2,24,48,4	duplicate(#nowalk1VS1)	#BARRICADE1VS1L6	1905
+guild_vs2-2,24,47,4	duplicate(#nowalk1VS1)	#BARRICADE1VS1L7	1905
+guild_vs2-2,24,46,4	duplicate(#nowalk1VS1)	#BARRICADE1VS1L8	1905
+guild_vs2-2,25,53,4	duplicate(#nowalk1VS1)	#BARRICADE1VS1L11	1905
+guild_vs2-2,25,52,4	duplicate(#nowalk1VS1)	#BARRICADE1VS1L12	1905
+guild_vs2-2,25,51,4	duplicate(#nowalk1VS1)	#BARRICADE1VS1L13	1905
+guild_vs2-2,25,50,4	duplicate(#nowalk1VS1)	#BARRICADE1VS1L14	1905
+guild_vs2-2,25,49,4	duplicate(#nowalk1VS1)	#BARRICADE1VS1L15	1905
+guild_vs2-2,25,48,4	duplicate(#nowalk1VS1)	#BARRICADE1VS1L16	1905
+guild_vs2-2,25,47,4	duplicate(#nowalk1VS1)	#BARRICADE1VS1L17	1905
+guild_vs2-2,25,46,4	duplicate(#nowalk1VS1)	#BARRICADE1VS1L18	1905
+
+guild_vs2-2,74,53,4	duplicate(#nowalk1VS1)	#BARRICADE1VS1R1	1905
+guild_vs2-2,74,52,4	duplicate(#nowalk1VS1)	#BARRICADE1VS1R2	1905
+guild_vs2-2,74,51,4	duplicate(#nowalk1VS1)	#BARRICADE1VS1R3	1905
+guild_vs2-2,74,50,4	duplicate(#nowalk1VS1)	#BARRICADE1VS1R4	1905
+guild_vs2-2,74,49,4	duplicate(#nowalk1VS1)	#BARRICADE1VS1R5	1905
+guild_vs2-2,74,48,4	duplicate(#nowalk1VS1)	#BARRICADE1VS1R6	1905
+guild_vs2-2,74,47,4	duplicate(#nowalk1VS1)	#BARRICADE1VS1R7	1905
+guild_vs2-2,74,46,4	duplicate(#nowalk1VS1)	#BARRICADE1VS1R8	1905
+guild_vs2-2,75,53,4	duplicate(#nowalk1VS1)	#BARRICADE1VS1R11	1905
+guild_vs2-2,75,52,4	duplicate(#nowalk1VS1)	#BARRICADE1VS1R12	1905
+guild_vs2-2,75,51,4	duplicate(#nowalk1VS1)	#BARRICADE1VS1R13	1905
+guild_vs2-2,75,50,4	duplicate(#nowalk1VS1)	#BARRICADE1VS1R14	1905
+guild_vs2-2,75,49,4	duplicate(#nowalk1VS1)	#BARRICADE1VS1R15	1905
+guild_vs2-2,75,48,4	duplicate(#nowalk1VS1)	#BARRICADE1VS1R16	1905
+guild_vs2-2,75,47,4	duplicate(#nowalk1VS1)	#BARRICADE1VS1R17	1905
+guild_vs2-2,75,46,4	duplicate(#nowalk1VS1)	#BARRICADE1VS1R18	1905
+
+
+guild_vs2-2,40,12,4	script	26VS26#26VS26	796,{
+
+if (getgmlevel()>1){ 
+menu
+"^0000FF-^000000 เรียกทีมที่ 1",team1call,
+"^0000FF-^000000 เรียกทีมที่ 2",team2call,
+"^0000FF-^000000 เปิดที่กั้น",BARRICADEOFF,
+"^0000FF-^000000 ล้างระบบ",reset,
+"^0000FF-^000000 ยกเลิก",cancle;
+end;
+}
+
+cancle:
+end;
+
+BARRICADEOFF:
+initnpctimer;
+end;
+
+
+OnTimer1000:
+mapannounce "guild_vs2-2","26 VS 26 : จะเริ่มในอีก ... ",bc_map,0xFFCE00;
+end;
+
+OnTimer2000:
+mapannounce "guild_vs2-2","26 VS 26 : 5 ",bc_map,0xFFCE00;
+end;
+
+OnTimer3000:
+mapannounce "guild_vs2-2","26 VS 26 : 4 ",bc_map,0xFFCE00;
+end;
+
+OnTimer4000:
+mapannounce "guild_vs2-2","26 VS 26 : 3 ",bc_map,0xFFCE00;
+end;
+
+OnTimer5000:
+mapannounce "guild_vs2-2","26 VS 26 : 2 ",bc_map,0xFFCE00;
+end;
+
+OnTimer6000:
+mapannounce "guild_vs2-2","26 VS 26 : 1 ",bc_map,0xFFCE00;
+end;
+
+OnTimer7000:
+setcell "guild_vs2-2",6,53,25,46,cell_walkable,1;	//Left
+setcell "guild_vs2-2",74,53,93,46,cell_walkable,1;	//Right
+disablenpc ("#BARRICADE1VS1L1");
+disablenpc ("#BARRICADE1VS1L2");
+disablenpc ("#BARRICADE1VS1L3");
+disablenpc ("#BARRICADE1VS1L4");
+disablenpc ("#BARRICADE1VS1L5");
+disablenpc ("#BARRICADE1VS1L6");
+disablenpc ("#BARRICADE1VS1L7");
+disablenpc ("#BARRICADE1VS1L8");
+disablenpc ("#BARRICADE1VS1R1");
+disablenpc ("#BARRICADE1VS1R2");
+disablenpc ("#BARRICADE1VS1R3");
+disablenpc ("#BARRICADE1VS1R4");
+disablenpc ("#BARRICADE1VS1R5");
+disablenpc ("#BARRICADE1VS1R6");
+disablenpc ("#BARRICADE1VS1R7");
+disablenpc ("#BARRICADE1VS1R8");
+disablenpc ("#BARRICADE1VS1L11");
+disablenpc ("#BARRICADE1VS1L12");
+disablenpc ("#BARRICADE1VS1L13");
+disablenpc ("#BARRICADE1VS1L14");
+disablenpc ("#BARRICADE1VS1L15");
+disablenpc ("#BARRICADE1VS1L16");
+disablenpc ("#BARRICADE1VS1L17");
+disablenpc ("#BARRICADE1VS1L18");
+disablenpc ("#BARRICADE1VS1R11");
+disablenpc ("#BARRICADE1VS1R12");
+disablenpc ("#BARRICADE1VS1R13");
+disablenpc ("#BARRICADE1VS1R14");
+disablenpc ("#BARRICADE1VS1R15");
+disablenpc ("#BARRICADE1VS1R16");
+disablenpc ("#BARRICADE1VS1R17");
+disablenpc ("#BARRICADE1VS1R18");
+stopnpctimer;
+end;
+
+
+reset:
+stopnpctimer;
+$GIDGUILD1 = 0;
+$GIDGUILD2 = 0;
+enablenpc ("#BARRICADE1VS1L1");
+enablenpc ("#BARRICADE1VS1L2");
+enablenpc ("#BARRICADE1VS1L3");
+enablenpc ("#BARRICADE1VS1L4");
+enablenpc ("#BARRICADE1VS1L5");
+enablenpc ("#BARRICADE1VS1L6");
+enablenpc ("#BARRICADE1VS1L7");
+enablenpc ("#BARRICADE1VS1L8");
+enablenpc ("#BARRICADE1VS1R1");
+enablenpc ("#BARRICADE1VS1R2");
+enablenpc ("#BARRICADE1VS1R3");
+enablenpc ("#BARRICADE1VS1R4");
+enablenpc ("#BARRICADE1VS1R5");
+enablenpc ("#BARRICADE1VS1R6");
+enablenpc ("#BARRICADE1VS1R7");
+enablenpc ("#BARRICADE1VS1R8");
+enablenpc ("#BARRICADE1VS1L11");
+enablenpc ("#BARRICADE1VS1L12");
+enablenpc ("#BARRICADE1VS1L13");
+enablenpc ("#BARRICADE1VS1L14");
+enablenpc ("#BARRICADE1VS1L15");
+enablenpc ("#BARRICADE1VS1L16");
+enablenpc ("#BARRICADE1VS1L17");
+enablenpc ("#BARRICADE1VS1L18");
+enablenpc ("#BARRICADE1VS1R11");
+enablenpc ("#BARRICADE1VS1R12");
+enablenpc ("#BARRICADE1VS1R13");
+enablenpc ("#BARRICADE1VS1R14");
+enablenpc ("#BARRICADE1VS1R15");
+enablenpc ("#BARRICADE1VS1R16");
+enablenpc ("#BARRICADE1VS1R17");
+enablenpc ("#BARRICADE1VS1R18");
+areawarp "guild_vs2-2",0,999,999,0,"funtown",209,173;
+setcell "guild_vs2-2",24,53,25,46,cell_walkable,0;	//Left
+setcell "guild_vs2-2",74,53,75,46,cell_walkable,0;	//Right
+end;
+
+
+team1call:
+input .@guildid1;
+$GIDGUILD1 = .@guildid1;
+donpcevent "call1#1VS1::OnCall";
+end;
+
+team2call:
+input .@guildid2;
+$GIDGUILD2 = .@guildid2;
+donpcevent "call2#1VS1::OnCall";
+end;
+
+
+Oninit:
+$GIDGUILD1 = 0;
+$GIDGUILD2 = 0;
+setcell "guild_vs2-2",24,53,25,46,cell_walkable,0;	//Left
+setcell "guild_vs2-2",74,53,75,46,cell_walkable,0;	//Right
+enablenpc ("#BARRICADE1VS1L1");
+enablenpc ("#BARRICADE1VS1L2");
+enablenpc ("#BARRICADE1VS1L3");
+enablenpc ("#BARRICADE1VS1L4");
+enablenpc ("#BARRICADE1VS1L5");
+enablenpc ("#BARRICADE1VS1L6");
+enablenpc ("#BARRICADE1VS1L7");
+enablenpc ("#BARRICADE1VS1L8");
+enablenpc ("#BARRICADE1VS1R1");
+enablenpc ("#BARRICADE1VS1R2");
+enablenpc ("#BARRICADE1VS1R3");
+enablenpc ("#BARRICADE1VS1R4");
+enablenpc ("#BARRICADE1VS1R5");
+enablenpc ("#BARRICADE1VS1R6");
+enablenpc ("#BARRICADE1VS1R7");
+enablenpc ("#BARRICADE1VS1R8");
+enablenpc ("#BARRICADE1VS1L11");
+enablenpc ("#BARRICADE1VS1L12");
+enablenpc ("#BARRICADE1VS1L13");
+enablenpc ("#BARRICADE1VS1L14");
+enablenpc ("#BARRICADE1VS1L15");
+enablenpc ("#BARRICADE1VS1L16");
+enablenpc ("#BARRICADE1VS1L17");
+enablenpc ("#BARRICADE1VS1L18");
+enablenpc ("#BARRICADE1VS1R11");
+enablenpc ("#BARRICADE1VS1R12");
+enablenpc ("#BARRICADE1VS1R13");
+enablenpc ("#BARRICADE1VS1R14");
+enablenpc ("#BARRICADE1VS1R15");
+enablenpc ("#BARRICADE1VS1R16");
+enablenpc ("#BARRICADE1VS1R17");
+enablenpc ("#BARRICADE1VS1R18");
+end;
+
+}
+
+
+guild_vs2-2,10,49,4	script	call1#1VS1	858,{
+end;
+
+OnCall:
+atcommand "@guildrecall "+$GIDGUILD1;
+disablenpc strnpcinfo(0);
+end;
+}
+
+guild_vs2-2,89,49,4	script	call2#1VS1	858,{
+end;
+
+OnCall:
+atcommand "@guildrecall "+$GIDGUILD2;
+disablenpc strnpcinfo(0);
+end;
+}
+
+-	script	26VS26test	-1,{ 
+
+OnPCDieEvent:
+if (strcharinfo(3) != "guild_vs2-2") end;
+
+if (getcharid(2) == $GIDGUILD1) {
+mapannounce "guild_vs2-2","26 VS 26 : ขณะนี้ [ "+getguildname($GIDGUILD1)+" ] เหลือผู้เล่นทั้งหมด [ "+((getMapGuildUsers("guild_vs2-2",getcharid(2)))-1)+" ] คน !!",bc_map,0xFFCE00;
+}
+if (getcharid(2) == $GIDGUILD2) {
+mapannounce "guild_vs2-2","26 VS 26 : ขณะนี้ [ "+getguildname($GIDGUILD2)+" ] เหลือผู้เล่นทั้งหมด [ "+((getMapGuildUsers("guild_vs2-2",getcharid(2)))-1)+" ] คน !!",bc_map,0xFFCE00;
+}
+
+end;
+} 
+
+
+guild_vs2-2	mapflag	noteleport
+guild_vs2-2	mapflag	monster_noteleport
+guild_vs2-2	mapflag	nomemo
+guild_vs2-2	mapflag	nosave
+guild_vs2-2	mapflag	nobranch
+guild_vs2-2	mapflag	gvg

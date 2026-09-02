@@ -1,0 +1,114 @@
+###########################################################################
+# Whispering Rain
+###########################################################################
+#
+###########################################################################
+
+Header:
+  Type: CUSTOM_BUFF_DB
+  Version: 1
+
+Body:
+  # เพิ่มได้ตาม status.hpp
+  - Status: SC_CUSTOM_BUFF_1
+    Script: |
+      bonus2 bAddClass,Class_Boss,50;
+      bonus2 bMagicAddClass,Class_Boss,50;
+      bonus2 bDropAddRace,RC_ALL,100;
+      bonus bDelayRate,-30;
+  - Status: SC_CUSTOM_BUFF_2
+    Script: |
+      bonus2 bAddClass,Class_Boss,30;
+      bonus2 bMagicAddClass,Class_Boss,30;
+      bonus2 bDropAddRace,RC_ALL,50;
+      bonus bDelayRate,-20;
+  - Status: SC_CUSTOM_BUFF_3
+    Script: |
+      bonus2 bAddClass,Class_Boss,10;
+      bonus2 bMagicAddClass,Class_Boss,10;
+      bonus2 bDropAddRace,RC_ALL,20;
+      bonus bDelayRate,-10;
+#  - Status: SC_CUSTOM_BUFF_4
+#    Script: |
+#      bonus2 bAddClass,Class_Boss,12;
+#      bonus2 bMagicAddClass,Class_Boss,12;
+#  - Status: SC_CUSTOM_BUFF_5
+#    Script: |
+#      bonus2 bAddClass,Class_Boss,15;
+#      bonus2 bMagicAddClass,Class_Boss,15;
+#  - Status: SC_CUSTOM_BUFF_6
+#    Script: |
+#      bonus2 bAddClass,Class_Boss,18;
+#      bonus2 bMagicAddClass,Class_Boss,18;
+#      bonus2 bDropAddRace,RC_ALL,2;
+#  - Status: SC_CUSTOM_BUFF_7
+#    Script: |
+#      bonus2 bAddClass,Class_Boss,21;
+#      bonus2 bMagicAddClass,Class_Boss,21;
+#      bonus2 bDropAddRace,RC_ALL,4;
+#  - Status: SC_CUSTOM_BUFF_8
+#    Script: |
+#      bonus2 bAddClass,Class_Boss,24;
+#      bonus2 bMagicAddClass,Class_Boss,24;
+#      bonus2 bDropAddRace,RC_ALL,6;
+#  - Status: SC_CUSTOM_BUFF_9
+#    Script: |
+#      bonus2 bAddClass,Class_Boss,27;
+#      bonus2 bMagicAddClass,Class_Boss,27;
+#      bonus2 bDropAddRace,RC_ALL,8;
+#  - Status: SC_CUSTOM_BUFF_10
+#    Script: |
+#      bonus2 bAddClass,Class_Boss,30;
+#      bonus2 bMagicAddClass,Class_Boss,30;
+#      bonus2 bDropAddRace,RC_ALL,10;
+#############MEMBER MVP###############
+#  - Status: SC_CUSTOM_BUFF_11
+#    Script: |
+#      bonus2 bDropAddRace,RC_ALL,1;
+#      bonus bAddMaxWeight,5000;
+#      bonus bAllStats,1;
+#  - Status: SC_CUSTOM_BUFF_12
+#    Script: |
+#      bonus2 bDropAddRace,RC_ALL,2;
+#      bonus bAddMaxWeight,10000;
+#      bonus bAllStats,4;
+#  - Status: SC_CUSTOM_BUFF_13
+#    Script: |
+#      bonus2 bDropAddRace,RC_ALL,3;
+#      bonus bAddMaxWeight,15000;
+#      bonus bAllStats,6;
+#  - Status: SC_CUSTOM_BUFF_14
+#    Script: |
+#      bonus2 bDropAddRace,RC_ALL,4;
+#      bonus bAddMaxWeight,20000;
+#      bonus bAllStats,8;
+#  - Status: SC_CUSTOM_BUFF_15
+#    Script: |
+#      bonus2 bDropAddRace,RC_ALL,7;
+#      bonus bAddMaxWeight,25000;
+#      bonus bAllStats,10;
+#  - Status: SC_CUSTOM_BUFF_16
+#    Script: |
+#      bonus2 bDropAddRace,RC_ALL,10;
+#      bonus bAddMaxWeight,30000;
+#      bonus bAllStats,12;
+#  - Status: SC_CUSTOM_BUFF_17
+#    Script: |
+#      bonus2 bDropAddRace,RC_ALL,14;
+#      bonus bAddMaxWeight,35000;
+#      bonus bAllStats,14;
+#  - Status: SC_CUSTOM_BUFF_18
+#    Script: |
+#      bonus2 bDropAddRace,RC_ALL,18;
+#      bonus bAddMaxWeight,40000;
+#      bonus bAllStats,16;
+#  - Status: SC_CUSTOM_BUFF_19
+#    Script: |
+#      bonus2 bDropAddRace,RC_ALL,23;
+#      bonus bAddMaxWeight,45000;
+#      bonus bAllStats,18;
+#  - Status: SC_CUSTOM_BUFF_20
+#    Script: |
+#      bonus2 bDropAddRace,RC_ALL,30;
+#      bonus bAddMaxWeight,50000;
+#      bonus bAllStats,20;

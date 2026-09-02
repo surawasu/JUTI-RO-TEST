@@ -1,0 +1,268 @@
+function	script	CostumeBonus1	{
+
+	// change Item ID here
+	setarray	@Cosbohi1[0],2944001; //  68%
+	setarray	@Cosbohi2[0],2833100,2833101,2833102,2833103,2833104,2833105,2833106,2833107; // 30%
+	setarray	@Cosbohi3[0],3000000,3000001,3000002,3000003,3000004,3000005,3000006,3000007; // 2% 	
+
+	set @Cosbohi1rand,rand( getarraysize(@Cosbohi1) ); // Randomize Items; just change max amount if you add items
+	set @Cosbohi2rand,rand( getarraysize(@Cosbohi2) ); // Randomize Items; just change max amount if you add items
+	set @Cosbohi3rand,rand( getarraysize(@Cosbohi3) ); //Randomize Rare Items; just change max amount if you add items
+
+
+	.chance = rand(0,150);
+
+		// 2%
+		if (.chance < 2) {
+			getitem @Cosbohi3[@Cosbohi3rand],1;
+			announce "ผู้เล่น ["+strcharinfo(0)+"] เปิด Costume SolaFlash Egg ได้รับ "+getitemname(@Cosbohi3[@Cosbohi3rand])+" ",bc_all,0xFFFF00;
+			end;
+		}
+		// 30%
+		if (.chance < 32) {
+			getitem @Cosbohi2[@Cosbohi2rand],1;
+			//announce "ผู้เล่น ["+strcharinfo(0)+"] เปิด Cosbohi Box ได้รับ "+getitemname(@Cosbohi2[@Cosbohi2rand])+" ",bc_all,0xFFFF00;
+			end;
+		}		
+		// 68%	
+		else {
+			getitem @Cosbohi1[@Cosbohi1rand],1;
+			end;
+		}
+			
+}
+
+
+
+function	script	CostumeBonus2	{
+
+	// change Item ID here
+	setarray	@Cos1bohi1[0],2944001; //  68%
+	setarray	@Cos1bohi2[0],2833108,2833109,2833110,2833111,2833112,2833113,2833114,2833115; // 30%
+	setarray	@Cos1bohi3[0],3300000,3300001,3300002,3300003,3300004,3300005,3300006,3300007; // 2% 	
+
+	set @Cos1bohi1rand,rand( getarraysize(@Cos1bohi1) ); // Randomize Items; just change max amount if you add items
+	set @Cos1bohi2rand,rand( getarraysize(@Cos1bohi2) ); // Randomize Items; just change max amount if you add items
+	set @Cos1bohi3rand,rand( getarraysize(@Cos1bohi3) ); //Randomize Rare Items; just change max amount if you add items
+
+
+	.chance = rand(0,150);
+
+		// 2%
+		if (.chance < 2) {
+			getitem @Cos1bohi3[@Cos1bohi3rand],1;
+			announce "ผู้เล่น ["+strcharinfo(0)+"] เปิด Costume Angel Wing Egg ได้รับ "+getitemname(@Cos1bohi3[@Cos1bohi3rand])+" ",bc_all,0xFFFF00;
+			end;
+		}
+		// 30%
+		if (.chance < 32) {
+			getitem @Cos1bohi2[@Cos1bohi2rand],1;
+			//announce "ผู้เล่น ["+strcharinfo(0)+"] เปิด Cosbohi Box ได้รับ "+getitemname(@Cosbohi2[@Cosbohi2rand])+" ",bc_all,0xFFFF00;
+			end;
+		}		
+		// 68%	
+		else {
+			getitem @Cos1bohi1[@Cos1bohi1rand],1;
+			end;
+		}
+			
+}
+
+
+function	script	CostumeBonus3	{
+
+	// change Item ID here
+	setarray	@Cos2bohi1[0],2944001; //  68%
+	setarray	@Cos2bohi2[0],2981002,2981003,2981004,2981005,2981006,2981007,2981008; // 30%
+	setarray	@Cos2bohi3[0],3000008,3000009,3000010,3000011,3000012,3000013,3000014; // 2% 	
+
+	set @Cos2bohi1rand,rand( getarraysize(@Cos2bohi1) ); // Randomize Items; just change max amount if you add items
+	set @Cos2bohi2rand,rand( getarraysize(@Cos2bohi2) ); // Randomize Items; just change max amount if you add items
+	set @Cos2bohi3rand,rand( getarraysize(@Cos2bohi3) ); //Randomize Rare Items; just change max amount if you add items
+
+
+	.chance = rand(0,150);
+
+		// 2%
+		if (.chance < 2) {
+			getitem @Cos2bohi3[@Cos2bohi3rand],1;
+			announce "ผู้เล่น ["+strcharinfo(0)+"] เปิด Costume Flame Goat Egg ได้รับ "+getitemname(@Cos2bohi3[@Cos2bohi3rand])+" ",bc_all,0xFFFF00;
+			end;
+		}
+		// 30%
+		if (.chance < 32) {
+			getitem @Cos2bohi2[@Cos2bohi2rand],1;
+			//announce "ผู้เล่น ["+strcharinfo(0)+"] เปิด Cosbohi Box ได้รับ "+getitemname(@Cosbohi2[@Cosbohi2rand])+" ",bc_all,0xFFFF00;
+			end;
+		}		
+		// 68%	
+		else {
+			getitem @Cos2bohi1[@Cos2bohi1rand],1;
+			end;
+		}
+			
+}
+
+function	script	CostumeBonus4	{
+
+	// change Item ID here
+	setarray	@Cos3bohi1[0],2944001; //  68%
+	setarray	@Cos3bohi2[0],2981010,2981011,2981012,2981013,2981014,2981015,2981016,2981017; // 30%
+	setarray	@Cos3bohi3[0],3100000,3100001,3100002,3100003,3100004,3100005,3100006,3100007; // 2% 	
+
+	set @Cos3bohi1rand,rand( getarraysize(@Cos3bohi1) ); // Randomize Items; just change max amount if you add items
+	set @Cos3bohi2rand,rand( getarraysize(@Cos3bohi2) ); // Randomize Items; just change max amount if you add items
+	set @Cos3bohi3rand,rand( getarraysize(@Cos3bohi3) ); //Randomize Rare Items; just change max amount if you add items
+
+
+	.chance = rand(0,150);
+
+		// 2%
+		if (.chance < 2) {
+			getitem @Cos3bohi3[@Cos3bohi3rand],1;
+			announce "ผู้เล่น ["+strcharinfo(0)+"] เปิด Costume Birds Blessing Egg ได้รับ "+getitemname(@Cos3bohi3[@Cos3bohi3rand])+" ",bc_all,0xFFFF00;
+			end;
+		}
+		// 30%
+		if (.chance < 32) {
+			getitem @Cos3bohi2[@Cos3bohi2rand],1;
+			//announce "ผู้เล่น ["+strcharinfo(0)+"] เปิด Cosbohi Box ได้รับ "+getitemname(@Cosbohi2[@Cosbohi2rand])+" ",bc_all,0xFFFF00;
+			end;
+		}		
+		// 68%	
+		else {
+			getitem @Cos3bohi1[@Cos3bohi1rand],1;
+			end;
+		}
+			
+}
+
+function	script	CostumeBonus5	{
+
+	// change Item ID here
+	setarray	@Cos4bohi1[0],2944001; //  68%
+	setarray	@Cos4bohi2[0],2981019,2981020,2981021,2981022,2981023,2981024,2981025; // 30%
+	setarray	@Cos4bohi3[0],3200000,3200001,3200002,3200003,3200004,3200005,3200006; // 2% 	
+
+	set @Cos4bohi1rand,rand( getarraysize(@Cos4bohi1) ); // Randomize Items; just change max amount if you add items
+	set @Cos4bohi2rand,rand( getarraysize(@Cos4bohi2) ); // Randomize Items; just change max amount if you add items
+	set @Cos4bohi3rand,rand( getarraysize(@Cos4bohi3) ); //Randomize Rare Items; just change max amount if you add items
+
+
+	.chance = rand(0,150);
+
+		// 2%
+		if (.chance < 2) {
+			getitem @Cos4bohi3[@Cos4bohi3rand],1;
+			announce "ผู้เล่น ["+strcharinfo(0)+"] เปิด Costume Cupid Scarf Egg ได้รับ "+getitemname(@Cos4bohi3[@Cos4bohi3rand])+" ",bc_all,0xFFFF00;
+			end;
+		}
+		// 30%
+		if (.chance < 32) {
+			getitem @Cos4bohi2[@Cos4bohi2rand],1;
+			//announce "ผู้เล่น ["+strcharinfo(0)+"] เปิด Cosbohi Box ได้รับ "+getitemname(@Cosbohi2[@Cosbohi2rand])+" ",bc_all,0xFFFF00;
+			end;
+		}		
+		// 68%	
+		else {
+			getitem @Cos4bohi1[@Cos4bohi1rand],1;
+			end;
+		}
+			
+}
+
+function	script	PetBonus1	{
+
+	// change Item ID here
+	setarray	@petbohi1[0],2944001; //  68%
+	setarray	@petbohi2[0],2981027,2981028,2981029,2981030,2981031,2981032,2981033,2981034; // 30%
+	setarray	@petbohi3[0],9151,9152,9153,9154,9155,9156,9157,9158; // 2% 	
+
+	set @petbohi1rand,rand( getarraysize(@petbohi1) ); // Randomize Items; just change max amount if you add items
+	set @petbohi2rand,rand( getarraysize(@petbohi2) ); // Randomize Items; just change max amount if you add items
+	set @petbohi3rand,rand( getarraysize(@petbohi3) ); //Randomize Rare Items; just change max amount if you add items
+
+
+	.chance = rand(0,150);
+
+		// 2%
+		if (.chance < 2) {
+			getitem @petbohi3[@petbohi3rand],1;
+			announce "ผู้เล่น ["+strcharinfo(0)+"] เปิด Cat Pet Egg ได้รับ "+getitemname(@petbohi3[@petbohi3rand])+" ",bc_all,0xFFFF00;
+			end;
+		}
+		// 30%
+		if (.chance < 32) {
+			getitem @petbohi2[@petbohi2rand],1;
+			//announce "ผู้เล่น ["+strcharinfo(0)+"] เปิด Cosbohi Box ได้รับ "+getitemname(@Cosbohi2[@Cosbohi2rand])+" ",bc_all,0xFFFF00;
+			end;
+		}		
+		// 68%	
+		else {
+			getitem @petbohi1[@petbohi1rand],1;
+			end;
+		}
+			
+}
+
+function	script	CostumeSerie1	{
+
+	// change Item ID here
+	setarray	@CosSerie1[0],2944001; //  68%
+	setarray	@CosSerie2[0],2984001,2984002,2984003,2984004,2984005,2984006,2984007,2984008,2984009,2984010,2984011,2984012,2984013,2984014; // 30%
+	setarray	@CosSerie3[0],3300093,20590,3000204,3000124,31589,31849,3100035,3100069,31120,31538,3200105,3200144,31566,31616; // 2% 	
+
+	set @CosSerie1rand,rand( getarraysize(@CosSerie1) ); // Randomize Items; just change max amount if you add items
+	set @CosSerie2rand,rand( getarraysize(@CosSerie2) ); // Randomize Items; just change max amount if you add items
+	set @CosSerie3rand,rand( getarraysize(@CosSerie3) ); //Randomize Rare Items; just change max amount if you add items
+
+
+	.chance = rand(0,150);
+
+		// 2%
+		if (.chance < 2) {
+			getitem @CosSerie3[@CosSerie3rand],1;
+			announce "ผู้เล่น ["+strcharinfo(0)+"] เปิด [V1]Costume Serie Egg ได้รับ "+getitemname(@CosSerie3[@CosSerie3rand])+" ",bc_all,0xFFFF00;
+			end;
+		}
+		// 30%
+		if (.chance < 32) {
+			getitem @CosSerie2[@CosSerie2rand],1;
+			//announce "ผู้เล่น ["+strcharinfo(0)+"] เปิด Cosbohi Box ได้รับ "+getitemname(@Cosbohi2[@Cosbohi2rand])+" ",bc_all,0xFFFF00;
+			end;
+		}		
+		// 68%	
+		else {
+			getitem @CosSerie1[@CosSerie1rand],1;
+			end;
+		}
+			
+}
+
+function	script	PetBonus2	{
+
+	// change Item ID here
+	setarray	@petbohi11[0],9142,9144,9145,9141,9143,9150,9216,9215,9212,9207,9203,9190,9159,9160,9161,9162,9163,9164,9165,9166,9167,9168,9169,9170,9171,9172,9173,9174,9175,9176,9177,9178,9179,9180,9181,9182,9183,9184,9185,9186; //  68%
+//	setarray	@petbohi12[0],2981027,2981028,2981029,2981030,2981031,2981032,2981033,2981034; // 30%
+	setarray	@petbohi13[0],9186; // 1% 	
+
+	set @petbohi11rand,rand( getarraysize(@petbohi11) ); // Randomize Items; just change max amount if you add items
+//	set @petbohi12rand,rand( getarraysize(@petbohi12) ); // Randomize Items; just change max amount if you add items
+	set @petbohi13rand,rand( getarraysize(@petbohi13) ); //Randomize Rare Items; just change max amount if you add items
+
+
+	.chance = rand(0,100);
+
+		// 1%
+		if (.chance < 1) {
+			getitem @petbohi13[@petbohi13rand],1;
+			announce "ผู้เล่น ["+strcharinfo(0)+"] เปิด Pokedex ได้รับ "+getitemname(@petbohi3[@petbohi13rand])+" ",bc_all,0xFFFF00;
+			end;
+		}
+		else {
+			getitem @petbohi11[@petbohi11rand],1;
+			announce "ผู้เล่น ["+strcharinfo(0)+"] เปิด Pokedex ได้รับ "+getitemname(@petbohi11[@petbohi11rand])+" ",bc_all,0xFFFF00;
+			end;
+		}
+			
+}

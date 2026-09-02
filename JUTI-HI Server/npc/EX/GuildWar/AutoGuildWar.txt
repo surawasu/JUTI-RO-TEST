@@ -1,0 +1,115 @@
+-	script	AutoGuildWar	-1,{
+end;
+		OnClock2100: //เวลาเปิด
+		announce "[ระบบ] : ขณะนี้ มหาสงครามศักดิ์สิทธิ์ The War of Emperium ได้เริ่มขึ้นแล้ว",16;
+		agitstart;
+		end;
+		OnClock2135: //เวลาเปิด
+		announce "[ระบบ] : ขณะนี้ วาร์ปปราสาทชั้น 1 ได้ปรากฏขึ้นแล้ว !!",16;
+		end;
+		OnClock2140: //เวลาเปิด
+		announce "[ระบบ] : ขณะนี้ วาร์ปปราสาทชั้น 2 ได้ปรากฏขึ้นแล้ว !!",16;
+		end;
+		OnClock2150: //บอกเวลาก่อนจะปิด
+		announce "[ระบบ] : ขณะนี้ มหาสงครามศักดิ์สิทธิ์ The War of Emperium เหลือเวลาอีก 10 นาที จะจบลงแล้ว",16;
+		end;
+		OnClock2151: //บอกเวลาก่อนจะปิด
+		announce "[ระบบ] : ขณะนี้ มหาสงครามศักดิ์สิทธิ์ The War of Emperium เหลือเวลาอีก 9 นาที จะจบลงแล้ว",16;
+		end;
+		OnClock2152: //บอกเวลาก่อนจะปิด
+		announce "[ระบบ] : ขณะนี้ มหาสงครามศักดิ์สิทธิ์ The War of Emperium เหลือเวลาอีก 8 นาที จะจบลงแล้ว",16;
+		end;
+		OnClock2153: //บอกเวลาก่อนจะปิด
+		announce "[ระบบ] : ขณะนี้ มหาสงครามศักดิ์สิทธิ์ The War of Emperium เหลือเวลาอีก 7 นาที จะจบลงแล้ว",16;
+		end;
+		OnClock2154: //บอกเวลาก่อนจะปิด
+		announce "[ระบบ] : ขณะนี้ มหาสงครามศักดิ์สิทธิ์ The War of Emperium เหลือเวลาอีก 6 นาที จะจบลงแล้ว",16;
+		end;
+		OnClock2155: //บอกเวลาก่อนจะปิด
+		announce "[ระบบ] : ขณะนี้ มหาสงครามศักดิ์สิทธิ์ The War of Emperium เหลือเวลาอีก 5 นาที จะจบลงแล้ว",16;
+		end;
+		OnClock2156: //บอกเวลาก่อนจะปิด
+		announce "[ระบบ] : ขณะนี้ มหาสงครามศักดิ์สิทธิ์ The War of Emperium เหลือเวลาอีก 4 นาที จะจบลงแล้ว",16;
+		end;
+		OnClock2157: //บอกเวลาก่อนจะปิด
+		announce "[ระบบ] : ขณะนี้ มหาสงครามศักดิ์สิทธิ์ The War of Emperium เหลือเวลาอีก 3 นาที จะจบลงแล้ว",16;
+		end;
+		OnClock2158: //บอกเวลาก่อนจะปิด
+		announce "[ระบบ] : ขณะนี้ มหาสงครามศักดิ์สิทธิ์ The War of Emperium เหลือเวลาอีก 2 นาที จะจบลงแล้ว",16;
+		end;
+		OnClock2159: //บอกเวลาก่อนจะปิด
+		announce "[ระบบ] : ขณะนี้ มหาสงครามศักดิ์สิทธิ์ The War of Emperium เหลือเวลาอีก 1 นาที จะจบลงแล้ว",16;
+		end;
+		OnClock2200: //เวลาปิด
+		announce "[ระบบ] : ขณะนี้ มหาสงครามศักดิ์สิทธิ์ The War of Emperium ได้จบลงแล้ว",16;
+		agitend;
+		query_sql "SELECT `name`,`point_killgvg` FROM `char` ORDER BY `point_killgvg` DESC LIMIT 10",.@name$,.@point;
+		query_sql "SELECT `name`,`point_emp` FROM `char` ORDER BY `point_emp` DESC LIMIT 5",.@ename$,.@epoint;
+		query_sql "SELECT `guildname`,`kill` FROM `guildwar` ORDER BY `kill` DESC LIMIT 5",.@gname$,.@gpoint;
+		sleep 3000;
+		announce "=====================================",16;
+		//announce "[ระบบ] : กิลด์ที่ได้ครอบครองปราสาทหลังที่ 1 คือ กิลด์ [ "+GetGuildName(GetCastleData("gefg_cas02",1))+" ]",16;
+		//announce "[ระบบ] : กิลด์ที่ได้ครอบครองปราสาทหลังที่ 2 คือ กิลด์ [ "+GetGuildName(GetCastleData("gefg_cas01",1))+" ]",16;
+		//announce "[ระบบ] : กิลด์ที่ได้ครอบครองปราสาทหลังที่ 3 คือ กิลด์ [ "+GetGuildName(GetCastleData("payg_cas03",1))+" ]",16;
+		announce "=====================================",16;
+		sleep 3000;
+		announce "=====================================",16;
+		announce "[ระบบ] : กิลด์สังหารมากที่สุด 10 อันดับ",16;
+		announce "=====================================",16;
+		sleep 1000;
+		for (set .@i,0; .@i < 10; set .@i,.@i+1) {
+		if (.@gpoint[.@i] == 0) set .@gname$[.@i],"None";
+		announce ""+(.@i+1)+" กิลด์ [ "+.@gname$[.@i]+" ] สังหารผู้เล่นรวมทั้งหมด " +.@gpoint[.@i]+" ศพ !!",16;
+		}
+		sleep 3000;
+		announce "=====================================",16;
+		announce "[ระบบ] : ผู้เล่นที่ทำลายหินกิลด์มากที่สุด 5 อันดับ",16;
+		announce "=====================================",16;
+		sleep 1000;
+		for (set .@i,0; .@i < 5; set .@i,.@i+1) {
+		if (.@epoint[.@i] == 0) set .@ename$[.@i],"None";
+		announce ""+(.@i+1)+" ผู้เล่น [ "+.@ename$[.@i]+" ] ทำลายหินกิลด์ทั้งหมด " +.@epoint[.@i]+" ครั้ง !!",16;
+		}
+		sleep 3000;
+		announce "=====================================",16;
+		announce "[ระบบ] : ผู้เล่นที่สังหารมากที่สุด 10 อันดับ",16;
+		announce "=====================================",16;
+		sleep 1000;
+		for (set .@i,0; .@i < 10; set .@i,.@i+1) {
+		if (.@point[.@i] == 0) set .@name$[.@i],"None";
+		announce ""+(.@i+1)+" ผู้เล่น [ "+.@name$[.@i]+" ] สังหารผู้เล่นทั้งหมด " +.@point[.@i]+" ศพ !!",16;
+		}
+		announce "=====================================",16;
+		end;
+
+}
+
+
+-	script	RankingPVPEX	-1,{
+	end;
+
+OnPCKillEvent:
+	if (strcharinfo(3) == "prtg_cas01" || strcharinfo(3) == "prtg_cas02" || strcharinfo(3) == "prtg_cas03" || strcharinfo(3) == "prtg_cas04" || strcharinfo(3) == "prtg_cas05"
+		|| strcharinfo(3) == "gefg_cas01" || strcharinfo(3) == "gefg_cas02" || strcharinfo(3) == "gefg_cas03" || strcharinfo(3) == "gefg_cas04" || strcharinfo(3) == "gefg_cas05"
+		|| strcharinfo(3) == "payg_cas01" || strcharinfo(3) == "payg_cas02" || strcharinfo(3) == "payg_cas03" || strcharinfo(3) == "payg_cas04" || strcharinfo(3) == "payg_cas05"
+		|| strcharinfo(3) == "aldeg_cas01" || strcharinfo(3) == "aldeg_cas02" || strcharinfo(3) == "aldeg_cas03" || strcharinfo(3) == "aldeg_cas04" || strcharinfo(3) == "aldeg_cas05"
+		|| strcharinfo(3) == "arug_cas03") {
+		query_sql "UPDATE `char` SET `point_killgvg`=(`point_killgvg` + 1) WHERE `char_id`='"+getcharid(0)+"' LIMIT 1";
+		}
+	if (getcharid(2)>0){
+		query_sql "SELECT `kill` FROM `guildwar` WHERE `guildid`= '"+getcharid(2)+"' ",.@ref;
+		if ( .@ref > 0 ) {
+		query_sql "UPDATE `guildwar` SET `kill` = (`kill` + 1) WHERE `guildid`='"+getcharid(2)+"' LIMIT 1";
+		} else {
+		query_sql( "INSERT INTO `guildwar` ( `guildid`, `kill`, `guildname` ) VALUES ( '"+ getcharid(2) +"', '1','"+ GetGuildName(getcharid(2)) +"');" );
+		}	
+		end;
+	}
+end;
+	
+OnInit:	
+query_sql( "DELETE FROM `guildwar`");
+query_sql "UPDATE `char` SET `point_killgvg`='0'";
+query_sql "UPDATE `char` SET `point_emp`='0'";
+end;
+}

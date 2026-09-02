@@ -1,0 +1,315 @@
+morocc,113,64,5	script	Wandering Mind#JCv2	4_CENERE,{
+	disable_items;
+	mes "[Wandering Mind]";
+	mes "คิคิคิ... ข้าสามารถ... สัมผัสได้ถึง...\nความแค้น...จำนวนนับไม่ถ้วน...เหล่านั้น...";
+	next;
+	mes "[Wandering Mind]";
+	mes "ที่นี้... ที่ไหน?... คือที่ไหน?... อ๊าก... ข้า... คือ... ใคร?... ข้าจำไม่ได้...";
+	next;
+	mes "[Wandering Mind]";
+	mes "ข้าต้องการ... ความแค้น... ความแค้น... ความแข็งแกร่ง... พลัง... มันจะช่วย... ทั้งข้า... และพวกเจ้า... ทั้งหมด... ก๊ากกก...";
+	next;
+	switch( select( "Enchant ประดับอาชีพ:ย่อย Soul อาชีพ") ) {
+	case 1:
+		mes "[Wandering Mind]";
+		mes "กร๊ากกก...ฮิฮิ...มอบ...ความแค้น...\nความแค้น...พลังอันแรงกล้า...\nแล้วข้าจะเสก...พลังพิเศษ...\nให้กับประดับของเจ้า...";
+		mes "^FF0000*หากเจ้านำ <ITEM>"+getitemname(8023016)+"<INFO>8023016</INFO></ITEM> มาให้ข้า \nข้าสามารถปลุกพลังพิเศษ\nให้แก่ปรับดับของเจ้าได้*^000000";
+		next;
+		.@equip_id = getequipid(EQI_ACC_R);
+		switch(.@equip_id) {
+			case 8002723:// Medal_Mage_Hi
+			case 8002724:// Medal_Archer_Hi
+			case 8002725:// Medal_Merchant_Hi
+			case 8002720:// Medal_Swordman_Hi
+			case 8002721:// Medal_Thief_Hi
+			case 8002722:// Medal_Acolyte_Hi
+				break;
+			default:
+				mes "[Wandering Mind]";
+				mes "^FF0000*อุปกรณ์ที่เจ้าใส่อยู่ไม่สามารถปลุกพลังพิเศษได้*^000000";
+				close;
+		}
+		mes "[Wandering Mind]";
+	
+		.@requirement = 100;	// 10 <ITEM>"+getitemname(8023016)+"<INFO>8023016</INFO></ITEM>s by default
+		setarray .@card[0], getequipcardid(EQI_ACC_R,0), getequipcardid(EQI_ACC_R,1), getequipcardid(EQI_ACC_R,2), getequipcardid(EQI_ACC_R,3);
+		.@refine = getequiprefinerycnt(EQI_ACC_R);
+	
+		if (.@card[3] == 0) {
+			.@slot = 3;
+			mes "เอาหละ...เริ่ม...เบาๆก่อน?...ทดสอบ...ดวง...คริ..ฮิฮิ...";
+			mes "^FF0000*การปลุกพลังขึ้นที่ 1.*^000000";
+		}
+		else {
+			// enchant leveling
+			switch( .@card[3] ) {
+			case 2632101:	//HiBoss_Hunter_Lv1
+				mes "^FF0000*การปลุกพลังขึ้นที่ 2.*^000000";
+				.@requirement = 200;
+				.@enchant_level = 1;
+				.@enchant_rate = 90;
+				break;
+			case 2632102:	//HiBoss_Hunter_Lv2
+				mes "^FF0000*การปลุกพลังขึ้นที่ 3.*^000000";
+				.@requirement = 300;
+				.@enchant_level = 2;
+				.@enchant_rate = 80;
+				break;
+			case 2632103:	//HiBoss_Hunter_Lv3
+				mes "^FF0000*การปลุกพลังขึ้นที่ 4.*^000000";
+				.@requirement = 400;
+				.@enchant_level = 3;
+				.@enchant_rate = 70;
+				break;
+			case 2632104:	//HiBoss_Hunter_Lv4
+				mes "^FF0000*การปลุกพลังขึ้นที่ 5.*^000000";
+				.@requirement = 500;
+				.@enchant_level = 4;
+				.@enchant_rate = 60;
+				break;
+			case 2632105:	//HiBoss_Hunter_Lv5
+				mes "^FF0000*การปลุกพลังขึ้นที่ 6.*^000000";
+				.@requirement = 600;
+				.@enchant_level = 5;
+				.@enchant_rate = 50;	// unknown rates
+				break;
+			case 2632106:	//HiBoss_Hunter_Lv6
+				// custom text
+				mes "^FF0000*การปลุกพลังขึ้นที่ 7.*^000000";
+				.@requirement = 700;
+				.@enchant_level = 6;
+				.@enchant_rate = 40;	// unknown rates
+				break;
+			case 2632107:	//HiBoss_Hunter_Lv7
+				// custom text
+				mes "^FF0000*การปลุกพลังขึ้นที่ 8.*^000000";
+				.@requirement = 800;
+				.@enchant_level = 7;
+				.@enchant_rate = 30;	// unknown rates
+				break;
+			case 2632108:	//HiBoss_Hunter_Lv8
+				// custom text
+				mes "^FF0000*การปลุกพลังขึ้นที่ 9.*^000000";
+				.@requirement = 900;
+				.@enchant_level = 8;
+				.@enchant_rate = 20;	// unknown rates
+				break;
+			case 2632109:	//HiBoss_Hunter_Lv9
+				// custom text
+				mes "^FF0000*การปลุกพลังขึ้นที่ 10.*^000000";
+				.@requirement = 1000;
+				.@enchant_level = 9;
+				.@enchant_rate = 20;	// unknown rates
+				break;
+			case 2632110:	//HiBoss_Hunter_Lv10
+				// custom text
+			default:
+				mes "Krr hehe... It's impossible... to reinforce... this power... The only way left is... to reset...";
+				mes "^FF0000*Mettle, Magic Spirit, Vigor, Bull's Eye, Adamantine, Benevolence";
+				mes "You can reinforce the enchantment level only when the equipment is enchanted.*^000000";
+				close;
+			}
+			.@slot = 999;
+		}
+		next;
+		mes "[Wandering Mind]";
+		mes "อย่างไรก็ตาม...ก่อนที่จะเกิดขึ้น... ข้าต้องตรวจสอบ... ว่าเจ้ามี... <ITEM>"+getitemname(8023016)+"<INFO>8023016</INFO></ITEM> เพียงพอหรือไม่... ";
+		next;
+		mes "[Wandering Mind]";
+		mes "^FF0000*ในการ Enchant ครั้งนี้, ต้องการ  \n<ITEM>"+getitemname(8023016)+"<INFO>8023016</INFO></ITEM> จำนวน  " + .@requirement + " ea.*^000000";
+		next;
+		if (select( "เอาหละเริ่มเลย.", "ยังก่อน." ) == 2) {
+			mes "[Wandering Mind]";
+			mes "หึหึหึ หากเจ้า พร้อมค่อยกลับมา...";
+			close;
+		}
+		if (countitem(8023016) < .@requirement) {// <ITEM>"+getitemname(8023016)+"<INFO>8023016</INFO></ITEM>
+			mes "[Wandering Mind]";
+			mes "^FF0000*ในการ Enchant ครั้งนี้, ต้องการ  \n<ITEM>"+getitemname(8023016)+"<INFO>8023016</INFO></ITEM> จำนวน  " + .@requirement + " ea.*^000000";
+			mes "กลับไปเช็ค <ITEM>"+getitemname(8023016)+"<INFO>8023016</INFO></ITEM> ของเจ้าดูก่อนว่ามีตามที่ต้องการไหม.*^000000";
+			close;
+		}
+		mes "[Wandering Mind]";
+		mes "กร๊าก..อิอิ...มันคือ...พลังแห่งความแค้น...ข้าว่า...พลังนี้...ยิ่งใหญ่...พอที่จะ...";
+		mes "^FF0000*หากผิดพลาด ระดับการปลุกพลังจะลดลง*^000000";
+		next;
+		if (select( "เริ่มกระบวนการ.", "ฟังดูเสี่ยงยังก่อนดีกว่า." ) == 2) {
+			mes "[Wandering Mind]";
+			mes "........";
+			close;
+		}
+		progressbar "000000",1;
+		delitem 8023016, .@requirement;// <ITEM>"+getitemname(8023016)+"<INFO>8023016</INFO></ITEM>
+
+		// anti-hack
+		if (callfunc("F_IsEquipIDHack", EQI_ACC_R, .@equip_id) || callfunc("F_IsEquipCardHack", EQI_ACC_R, .@card[0], .@card[1], .@card[2], .@card[3]) || callfunc("F_IsEquipRefineHack", EQI_ACC_R, .@refine))
+			close;
+
+		switch(.@slot) {
+		case 3:
+			setarray .@enchant[0],
+				2632101;	// HiBoss_Hunter_Lv1
+			.@card[3] = .@enchant[ rand( getarraysize(.@enchant) ) ];	// unknown rates
+			break;
+		case 2:
+		case 1:
+		case 999:
+			// enchant leveling
+			if (.@enchant_rate > rand(100))
+				.@level_dt = 1;
+			else
+				.@level_dt = -1;
+			.@enchant_level += .@level_dt;
+			.@card[3] += .@level_dt;
+			if (.@card[3] < 2632101 || .@card[3] > 2632110) {
+				mes "[Wandering Mind]";
+				mes "ดูเหมือนการปลุกพลังจะสูงสุดแล้วนะตอนนี้.";
+				close;
+			}
+			if (.@enchant_level < 1 || .@enchant_level > 10) {
+				// item not deleted
+				specialeffect2 EF_SUI_EXPLOSION;
+				mes "[Wandering Mind]";
+				mes "ค..อ๊าก...!! พลังแห่งความเคียดแค้น...\nถูกขับเคลื่อน...ให้บ้าคลั่ง...อย่างไรก็ตาม...โชคดีที่มันไม่ระเบิดเพราะพลัง...กำลัง....อ่อนแอ.";
+				close;
+			}
+			break;
+		default:
+			mes "[Wandering Mind]";
+			mes "ดูเหมือนมีบางอย่างผิดพลาด.";
+			close;
+		}
+		delequip EQI_ACC_R;
+		getitem2 .@equip_id,1,1,.@refine,0,.@card[0],.@card[1],.@card[2],.@card[3];
+		if (.@level_dt == -1) {// can only happens during enchant leveling
+			specialeffect2 EF_SUI_EXPLOSION;
+			mes "[Wandering Mind]";
+			mes "ค..อ๊าก...!! พลังความเคียดแค้น...\nถูกขับเคลื่อน...ให้บ้าคลั่ง...พลัง...ที่เคย...มั่นคง...ก็ลดลง...\nลดลงหนึ่งระดับ...";
+			mes "^FF0000*เนื่องจากความล้มเหลวในการปลุกพลัง ระดับการปลุกพลังจึงถูกลดลงหนึ่งระดับ*^000000";
+			close;
+		}
+		specialeffect2 EF_FIREHIT;
+		mes "[Wandering Mind]";
+		mes "มัน...คือความสำเร็จ ฉันรู้สึกได้ว่า\nพลังของความแค้นนั้นแข็งแกร่งขึ้น";
+		mes "^FF0000*ยินดีด้วย เจ้าประสบความสำเร็จในปลุกพลัง*^000000";
+		close;
+	
+	
+	case 2:
+		next;
+		mes "[Wandering Mind]";
+		mes "เลือก Soul ที่ต้องการแลก";
+		switch(select("Swordman Soul:Merchant Soul:Thief Soul:Magician Soul:Archer Soul:Acolyte Soul:ข้าไม่มี")){
+			case 1:
+				.@itemreq = 8006814;
+			break;
+			case 2:
+				.@itemreq = 8006815;
+			break;
+			case 3:
+				.@itemreq = 8006816;
+			break;
+			case 4:
+				.@itemreq = 8006817;
+			break;
+			case 5:
+				.@itemreq = 8006818;
+			break;
+			case 6:
+				.@itemreq = 8006819;
+			break;
+			case 7:
+			end;
+		}
+		.@amount = 10;
+		mes "นี่คือการแลกเปลี่ยน Soul อาชีพ";
+		mes "เจ้าจะสามารถแลกเปลี่ยน<ITEM>"+getitemname(8006820)+"<INFO>8006820</INFO></ITEM> สำเร็จหรือไม่มาดูกัน.";
+		next;
+		mes "[Wandering Mind]";
+		mes "^4d4dffเจ้าเลือก <ITEM>"+getitemname(.@itemreq)+"<INFO>"+.@itemreq+"</INFO></ITEM> ในการแลกเปลี่ยนนี้.^000000";
+		next;
+		switch(select("^4d4dffแลกเปลี่ยน Soul 1 ครั้ง("+getitemname(.@itemreq)+" จำนวน "+callfunc("F_InsertComma",.@amount)+") ^000000","^4d4dffแลกเปลี่ยน Soul 10 ครั้ง ("+getitemname(.@itemreq)+" จำนวน "+callfunc("F_InsertComma",.@amount * 10)+") ^000000")) {
+			case 1:
+				mes "[Wandering Mind]";
+				mes "^FF0000<ITEM>"+getitemname(.@itemreq)+"<INFO>"+.@itemreq+"</INFO></ITEM>   "+callfunc("F_InsertComma",.@amount)+"  ชิ้น สามารถสุ่มแลกเป็น Item 1 ครั้ง .^000000";
+				mes "^FF0000เมื่อแลกเปลี่ยนแล้วไม่สามารถแลกคืนได้.^000000";
+				next;
+				if(select("ลุยเลย.","หยุดก่อนดีกว่า.") == 2) {
+					mes "[Wandering Mind]";
+					mes "อืมมม ยังไม่แลกเปลี่ยนงั้นเหรอไม่เป็นไร..";
+					close;
+				} else if (countitem(.@itemreq) < .@amount) {
+					mes "[Wandering Mind]";
+					mes "เจ้าไม่มี  <ITEM>"+getitemname(.@itemreq)+"<INFO>"+.@itemreq+"</INFO></ITEM>.";
+					close;
+				} else {
+					if (checkweight(1201,1) == 0 || ((MaxWeight - Weight) * 100 / MaxWeight) < 10) {
+						mes "[Wandering Mind]";
+						mes "^4d4dffโปรดตรวจสอบกระเป๋าสัมภาระของเจ้าให้ว่างพอที่จะแลกเปลี่ยน.^000000";
+						close;
+					}
+					delitem(.@itemreq, .@amount);
+					.@randop = rand(1,100);
+					if(.@randop > 33 && .@randop < 44){
+					getitem 8006820,1;
+					mes "[Wandering Mind]";
+					mes "อืมการแลกเปลี่ยน Soul สำเร็จ";
+					dispbottom "อืมการแลกเปลี่ยน Soul สำเร็จ",0xFFFFFF;
+					specialeffect2 83;
+					close;
+					}else{
+					mes "[Wandering Mind]";
+					mes "ดูเหมือนเข้าจะโชคไม่ค่อยดี!";
+					dispbottom "ดูเหมือนเข้าจะโชคไม่ค่อยดี!",0xFFFFFF;
+					specialeffect2 EF_SUI_EXPLOSION;
+					close;
+					}
+				}
+			case 2:
+				mes "[Wandering Mind]";
+				mes "^FF0000<ITEM>"+getitemname(.@itemreq)+"<INFO>"+.@itemreq+"</INFO></ITEM>   "+callfunc("F_InsertComma",.@amount*10)+"  ชิ้น สามารถสุ่มแลกเป็น Item 10 ครั้ง .^000000";
+				mes "^FF0000เมื่อแลกเปลี่ยนแล้วไม่สามารถแลกคืนได้.^000000";
+				next;
+				if(select("ลุยเลย.","หยุดก่อนดีกว่า.") == 2) {
+					mes "[Wandering Mind]";
+					mes "อืมมม ยังไม่แลกเปลี่ยนงั้นเหรอไม่เป็นไร..";
+					close;
+				} else if (countitem(.@itemreq) < .@amount*10) {
+					mes "[Wandering Mind]";
+					mes "เจ้าไม่มี<ITEM>"+getitemname(.@itemreq)+"<INFO>"+.@itemreq+"</INFO></ITEM>.";
+					close;
+				} else {
+					for (.@i = 1; .@i <= 10; ++.@i) {
+						progressbar "4d4dff",2;
+						if (checkweight(1201,1) == 0 || ((MaxWeight - Weight) * 100 / MaxWeight) < 11) {
+							mes "[Wandering Mind]";
+							mes "^4d4dffโปรดตรวจสอบกระเป๋าสัมภาระของเจ้าให้ว่างพอที่จะแลกเปลี่ยน.^000000";
+							close;
+						}
+						if (countitem(.@itemreq) < .@amount) { // Custom check, just in case
+							close;
+						}
+						delitem(.@itemreq, .@amount);
+						.@randop = rand(1,100);
+						if(.@randop > 33 && .@randop < 63){
+						getitem 8006820,1;
+						dispbottom "แลกเปลี่ยน ครั้งที่ " + .@i + " เรียบร้อย.",0xFFFFFF;
+						dispbottom "อืมการแลกเปลี่ยน Soul สำเร็จ",0xFFFFFF;
+						specialeffect2 83;
+						}else{
+						dispbottom "แลกเปลี่ยน ครั้งที่ " + .@i + " เรียบร้อย.",0xFFFFFF;
+						dispbottom "ดูเหมือนเข้าจะโชคไม่ค่อยดี!",0xFFFFFF;
+						specialeffect2 EF_SUI_EXPLOSION;
+						}
+					}
+					mes "[Wandering Mind]";
+					mes "แลกเปลี่ยน Soul ครบ 10 ครั้งแล้ว!";
+					mes "เจ้ามีโชคมากน้อยแค่ไหนนะ?";
+					close;
+				}
+		}
+	}
+OnInit:
+waitingroom " ออฟประดับอาชีพ",0;
+end;
+}

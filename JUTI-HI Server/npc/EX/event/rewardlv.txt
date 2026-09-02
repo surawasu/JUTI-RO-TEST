@@ -1,0 +1,43 @@
+morocc,168,74,3	script	รับรางวัลเก็บ LV(CBT)	667,{
+disable_items;
+//query_sql "SELECT `account_id` FROM `event_lv` WHERE `status` = 1",.@reward_account_id;
+//query_sql("SELECT `account_id` FROM `event_lv` WHERE `account_id` = "+getcharid(3)+" AND `status` == 1",.@reward_account_id);
+
+query_sql( "SELECT `status` FROM `event_lv` WHERE `account_id`='"+getcharid(3)+"'",.@reward_account_id );
+			if(.@reward_account_id == 1){
+			mes	"[รับรางวัลเก็บ LV(CBT)]";
+			mes "เจ้าต้องการรับรางวัล เก็บLevel CBT เลยหรือไม่";
+				switch(select("^FF0000• ยังก่อน^000000:^0000FF• รับเลย^000000")){
+				case 2:
+				if ((MaxWeight-Weight) < 200 || checkweight(1201,9) == 0) {
+					mes	"[รับรางวัลเก็บ LV(CBT)]";
+					mes "เจ้าน้ำหนักเกินหรือช่องเก็บของไม่เพียงพอ.";
+					mes "โปรดจัดการให้เรียบร้อย.";
+					close;
+				}
+				getitem 3130005,1;
+				getitem 3130007,1;
+				getitem 3130009,1;
+				getitem 3130010,1;
+				getitem 3130011,1;
+				getitem 3130003,100;
+				getitem 3130004,100;
+				getitem 3130000,3;
+				getitem 3130001,3;		
+				query_sql "UPDATE `event_lv` SET `status` = 3 WHERE `account_id` = "+getcharid(3)+"";
+				end;
+				case 1:
+				end;
+				}
+			}else if(.@reward_account_id == 3){
+			mes	"[รับรางวัลเก็บ LV(CBT)]";
+			mes "เจ้าได้รับรางวัลไปแล้ว";
+			end;
+			}else{
+			mes	"[รับรางวัลเก็บ LV(CBT)]";
+			mes "เจ้าไม่มีสิทธ์รับรางวัลเนื่องจาก\nไม่ได้ลงทะเบียนรับรางวัล";
+			end;
+			}
+OnInit:
+waitingroom "รับรางวัลเก็บ Level CBT",0;
+}

@@ -1,0 +1,165 @@
+sec_pri,39,61,3	script	ÃÑº¤ÍÅàÅ¤ªÑè¹	564,{
+
+if (checkweight(1201,124) == 0) {
+	end;
+}
+
+getitem 53000,1;
+getitem 53001,1;
+getitem 53002,1;
+getitem 53003,1;
+getitem 53004,1;
+getitem 53005,1;
+getitem 53006,1;
+getitem 53007,1;
+getitem 53008,1;
+getitem 53009,1;
+getitem 53010,1;
+getitem 53011,1;
+getitem 53012,1;
+getitem 53013,1;
+getitem 53014,1;
+getitem 53015,1;
+getitem 53016,1;
+getitem 53017,1;
+getitem 53018,1;
+getitem 53019,1;
+getitem 53020,1;
+getitem 53021,1;
+getitem 53022,1;
+getitem 53023,1;
+getitem 53024,1;
+getitem 53025,1;
+getitem 53026,1;
+getitem 53027,1;
+getitem 53028,1;
+getitem 53029,1;
+getitem 53030,1;
+getitem 53031,1;
+getitem 53032,1;
+getitem 53033,1;
+getitem 53034,1;
+getitem 53035,1;
+getitem 53036,1;
+getitem 53037,1;
+getitem 53038,1;
+getitem 53039,1;
+getitem 53040,1;
+getitem 53041,1;
+getitem 53042,1;
+getitem 53043,1;
+getitem 53044,1;
+getitem 53045,1;
+getitem 53046,1;
+getitem 53047,1;
+getitem 53048,1;
+getitem 53049,1;
+getitem 53050,1;
+getitem 54000,1;
+getitem 54001,1;
+getitem 54002,1;
+getitem 54003,1;
+getitem 54004,1;
+getitem 54005,1;
+getitem 54006,1;
+getitem 54007,1;
+getitem 54008,1;
+getitem 54009,1;
+getitem 54010,1;
+getitem 54011,1;
+getitem 3300008,1;
+getitem 3300046,1;
+getitem 3300086,1;
+getitem 3300101,1;
+getitem 3300009,1;
+getitem 3300026,1;
+getitem 3300025,1;
+getitem 3300048,1;
+getitem 3300092,1;
+getitem 3300100,1;
+getitem 3300000,1;
+getitem 3300001,1;
+getitem 3300002,1;
+getitem 3300003,1;
+getitem 3300004,1;
+getitem 3300005,1;
+getitem 3300006,1;
+getitem 3300007,1;
+getitem 3300129,1;
+getitem 3300130,1;
+
+getitem 58001,1;
+getitem 58002,1;
+getitem 58003,1;
+getitem 58004,1;
+getitem 58005,1;
+getitem 58006,1;
+getitem 58007,1;
+getitem 58008,1;
+getitem 58009,1;
+getitem 58010,1;
+getitem 58011,1;
+getitem 58012,1;
+getitem 58013,1;
+getitem 58014,1;
+getitem 58015,1;
+getitem 58016,1;
+getitem 58017,1;
+getitem 58018,1;
+getitem 58019,1;
+getitem 58020,1;
+getitem 58101,1;
+getitem 58102,1;
+getitem 58103,1;
+getitem 58104,1;
+getitem 58105,1;
+getitem 58106,1;
+getitem 58107,1;
+getitem 58108,1;
+getitem 58109,1;
+getitem 58110,1;
+getitem 58111,1;
+getitem 58112,1;
+getitem 58113,1;
+getitem 58114,1;
+getitem 58115,1;
+getitem 58116,1;
+getitem 58117,1;
+getitem 58118,1;
+getitem 58119,1;
+getitem 58120,1;
+getitem 58201,1;
+getitem 58202,1;
+getitem 58203,1;
+getitem 58204,1;
+getitem 58205,1;
+getitem 58206,1;
+getitem 58207,1;
+getitem 58208,1;
+getitem 58209,1;
+getitem 58210,1;
+getitem 58211,1;
+getitem 58212,1;
+getitem 58213,1;
+getitem 58214,1;
+getitem 58215,1;
+getitem 58216,1;
+getitem 58217,1;
+getitem 58218,1;
+getitem 58219,1;
+getitem 58220,1;
+
+getitem 64002,1;
+getitem 64003,1;
+
+
+
+
+warp "SavePoint",0,0;
+end;
+
+OnInit: 
+waitingroom "    ¡´àºÒ æ",0; 
+end;
+
+}

@@ -1,0 +1,202 @@
+-	shop	Gachazenyshop	FAKE_NPC,12214:1000,12684:1000,12215:1000,12216:1000,12250:1000,12251:1000,12252:1000,12253:1000,12254:1000,12255:1000,14536:1000,11501:1000,11502:1000,12218:1000,14522:1000,14523:1000,12211:1000
+
+sec_pri,24,56,6	script	Hotweek Zeny	562,{
+//$zenyjackpot = 0;                                                  //test case
+//zeny = 1000000;                                                    //test case
+//set #GARANTEEGACHA2, #GARANTEEGACHA2 - #GARANTEEGACHA2;            //test case
+
+set .zenyspin,40000;	// ตั้งราคาหมุน
+set .maxgacha,10;
+
+	mes "^000099[Hotweek Zeny]^000000";
+	//mes "^0000FFรางวัล Jackpot เหลืออีก ^FF0000[ "+callfunc("F_InsertComma",(.maxgacha - $gachareset1))+" ]^000000 รางวัล^000000 ";
+	mes "คุณ ^FF0000[ "+ strcharinfo(0) +" ]^000000";
+	query_sql ("SELECT `point_gacha` FROM `char` WHERE `char_id` = '"+ getcharid(0) +"'", .@ref);
+	mes "ตอนนี้ท่านหมุนไปแล้ว ^FF0000[ "+ .@ref +" ]^000000 รอบ";
+	mes "มีค่าบริการ ^0000FF"+callfunc("F_InsertComma",(.zenyspin))+"^000000 Zeny อยากเสี่ยงดวงไหม ?";
+	next;
+	if($hotweekclose == 1 && getgmlevel() == 99) {
+	menu "เปิดสุ่ม",L_open,"^009933•^000000 ตัวอย่างของรางวัล",L_view,"^009933•^000000 แลกการันตี",L_garuntee,"^009933•^000000 reset จำนวนสุ่มได้",L_gacha,"^009933•^000000 reset จำนวนครั้งผู้เล่นทั้งหมด",RE_gacha,"^009933•^000000 ^0000FFรับรางวัลอันดับ^000000",reward_gacha,"^009933•^000000 ไว้ก่อน",L_no;
+	}
+	if($hotweekclose == 0 && getgmlevel() == 99) {
+	menu "^009933•^000000 ปิดสุ่ม !!",L_close,"^009933•^000000 จัดไป !!",L_ok,"^009933•^000000 ตัวอย่างของรางวัล",L_view,"^009933•^000000 แลกการันตี",L_garuntee,"^009933•^000000 reset จำนวนสุ่มได้",L_gacha,"^009933•^000000 reset จำนวนครั้งผู้เล่นทั้งหมด",RE_gacha,"^009933•^000000 ไว้ก่อน",L_no;
+	}	
+	if($hotweekclose == 1) {
+	menu "",L_ok,"^009933•^000000 ตัวอย่างของรางวัล",L_view,"^009933•^000000 ^0000FFรับรางวัลอันดับ^000000",reward_gacha,"^009933•^000000 แลกการันตี",L_garuntee,"^009933•^000000 ไว้ก่อน",L_no;
+	}
+	if($hotweekclose == 0) {
+	menu "^009933•^000000 จัดไป !!",L_ok,"^009933•^000000 ตัวอย่างของรางวัล",L_view,"^009933•^000000 แลกการันตี",L_garuntee,"^009933•^000000 ไว้ก่อน",L_no;
+	}
+	end;
+L_open:
+	$hotweekclose = 0;
+end;
+L_close:
+	$hotweekclose = 1;
+end;
+
+reward_gacha:
+doevent "F_rewardhotweek::OnRewardgacha";
+end;
+
+L_gacha:
+$gachareset1 = 0;
+end;
+
+RE_gacha:
+query_sql "UPDATE `char` SET `point_gacha`='0'";
+			mes "Reset";
+			mes "เรียบร้อยแล้ว";
+end;
+L_view:
+		close2;
+		callshop "Gachazenyshop",1;
+		npcshopattach "Gachazenyshop";
+		end;
+		
+L_garuntee:
+		callshop "xxxxx",1;
+		end;		
+		
+L_Start:
+mes "^000099[Hotweek Zeny]^000000";
+mes "คุณ ^FF0000[ "+ strcharinfo(0) +" ]^000000";
+query_sql ("SELECT `point_gacha` FROM `char` WHERE `char_id` = '"+ getcharid(0) +"'", .@ref);
+mes "ตอนนี้ท่านหมุนไปแล้ว ^FF0000[ "+ .@ref +" ]^000000 รอบ";
+mes "มีค่าบริการ ^0000FF"+callfunc("F_InsertComma",(.zenyspin))+"^000000 Zeny อยากเสี่ยงดวงไหม ?";
+next;
+if($hotweekclose == 1) {
+menu "",L_ok,"^009933•^000000 ไว้ก่อน",L_no;
+}
+if($hotweekclose == 0) {
+menu "^009933•^000000 จัดไป !!",L_ok,"^009933•^000000 ไว้ก่อน",L_no;
+}
+end;
+
+L_ok:	
+setarray .hwz1[0],12684,12215,12216,12250,12251,12252,12253,12254,12255,14536,11501,11502,12218,14522,14523,12211; // เกลือ
+setarray .hwz2[0],12214,2944102,2944104,2944106,2944108,2944110; // 10%
+setarray .hwz3[0],2944111,2944103,2944105,2944107,2944109; //  1%
+//setarray .hwz4[0],; //  jackpot จำกัดจำนวนครั้ง
+set .hwz1rand,rand( getarraysize(.hwz1) ); // 
+set .hwz2rand,rand( getarraysize(.hwz2) ); // 
+set .hwz3rand,rand( getarraysize(.hwz3) ); // 
+//set .hwz4rand,rand( getarraysize(.hwz4) ); // 	
+
+		//if(#CASHPOINTS<.zenyspin)goto L_not;
+		if(zeny<.zenyspin)goto L_not;
+			query_sql "UPDATE `char` SET `point_gacha`=(`point_gacha` + 1) WHERE `char_id`='"+getcharid(0)+"' LIMIT 1";
+			//query_sql "UPDATE `char` SET `gacha_time_stamp`=(CURRENT_TIMESTAMP) WHERE `char_id`='"+getcharid(0)+"' LIMIT 1";
+			.chance = rand(0,1000);
+			.chance2 = rand(0,1000);
+			//set #CASHPOINTS, #CASHPOINTS - .zenyspin;
+			zeny -= .zenyspin;
+			$zenyjackpot += rand(1,40000);	
+			if (.chance2 < 10 ) {
+				zeny += ($zenyjackpot*20/100);				
+				announce "[ ระบบ ]  :  ผู้เล่น ["+strcharinfo(0)+"] หมุนตู้  Hotweek ได้รับแจ๊กพ็อต "+callfunc("F_InsertComma",($zenyjackpot*20/100))+"",bc_all,0xFFFF00;
+				$zenyjackpot = ($zenyjackpot*80/100);	
+			}			
+			
+			set #GARANTEEGACHA2, #GARANTEEGACHA2 + 1;			
+			if(#GARANTEEGACHA2 == 200){
+			getitem 2944112,1;
+			//announce "[ ระบบ ]  :  ผู้เล่น ["+strcharinfo(0)+"] หมุนตู้  Hotweek ครบ 200 ครั้งได้รับ "+getitemname(2944112)+"1 ชิ้น",bc_all,0xFFFF00;
+			}
+			if(#GARANTEEGACHA2 == 250){
+			getitem 2984500,10;
+			//announce "[ ระบบ ]  :  ผู้เล่น ["+strcharinfo(0)+"] หมุนตู้  Hotweek ครบ 250 ครั้งได้รับ "+getitemname(2984500)+" 10 ชิ้น",bc_all,0xFFFF00;
+			}
+			if(#GARANTEEGACHA2 == 300){
+			getitem 2984497,10;
+			//announce "[ ระบบ ]  :  ผู้เล่น ["+strcharinfo(0)+"] หมุนตู้  Hotweek ครบ 300 ครั้งได้รับ "+getitemname(2984497)+" 10 ชิ้น",bc_all,0xFFFF00;
+			}
+			if(#GARANTEEGACHA2 == 350){
+			getitem 2984496,10;
+			//announce "[ ระบบ ]  :  ผู้เล่น ["+strcharinfo(0)+"] หมุนตู้  Hotweek ครบ 350 ครั้งได้รับ "+getitemname(2984496)+" 10 ชิ้น",bc_all,0xFFFF00;
+			}
+			
+			if(#GARANTEEGACHA2 == 500){
+			getitem 2944101,1;
+			//announce "[ ระบบ ]  :  ผู้เล่น ["+strcharinfo(0)+"] หมุนตู้  Hotweek ครบ 500 ครั้งได้รับ "+getitemname(.hwz4[.hwz4rand])+" 1 ชิ้น",bc_all,0xFFFF00;
+			#GARANTEEGACHA2 = 0;
+			}
+			
+			
+			// Super Rare Item 0.1%	แจ๊คพ็อตแตก
+			if (.chance < 1 ) {
+				specialeffect2 10;	
+				//announce "[ ระบบ ]  :  ผู้เล่น ["+strcharinfo(0)+"] หมุนตู้  Hotweek ได้รับ "+getitemname(.hwz3[.hwz3rand])+" ",bc_all,0xFFFF00;
+				//dispbottom "[ ระบบ ]  :  ผู้เล่น ["+strcharinfo(0)+"] หมุนตู้  Hotweek ได้รับ "+getitemname(.hwz3[.hwz3rand])+" ";
+				getitem .hwz3[.hwz3rand],1;
+				goto L_Start;
+				end;
+			}			
+			// 5%
+			else if (.chance < 51) {
+				//announce "[ ระบบ ]  :  ผู้เล่น ["+strcharinfo(0)+"] หมุนตู้  Hotweek ได้รับ "+getitemname(.hwz2[.hwz2rand])+" ",bc_all,0xFFFF00;
+				//dispbottom "[ ระบบ ]  :  ผู้เล่น ["+strcharinfo(0)+"] หมุนตู้  Hotweek ได้รับ "+getitemname(.hwz2[.hwz2rand])+" ";
+				getitem .hwz2[.hwz2rand],1;
+				specialeffect2 10;
+				goto L_Start;
+				end;
+			}
+			// Common Items
+			else {
+				getitem .hwz1[.hwz1rand],1;
+				specialeffect2 10;
+				goto L_Start;
+				end; 
+			}
+
+	
+	
+L_no:
+	mes "^000099[Hotweek Zeny]^000000";
+	mes "พร้อมแล้วก็มาใหม่นะ^000000";
+	close;
+	
+L_not:
+	mes "^000099[Hotweek Zeny]^000000";
+	mes "ท่านมี Cash Point ไม่เพียงพอ^000000";
+	close;
+	
+	end
+	;
+L_show:
+		query_sql "SELECT `name`,`point_gacha` FROM `char` ORDER BY `point_gacha` DESC , `gacha_time_stamp` ASC LIMIT 10 ",.@name$,.@point;
+		mes"===================== HOTWEEK RANKING =====================";
+		for (set .@i,0; .@i < 10; set .@i,.@i+1) {
+			if (.@point[.@i] == 0) set .@name$[.@i],"None";
+			mes "["+(.@i+1)+"]  "+.@name$[.@i]+" : คะแนน " +.@point[.@i]+"";
+		}
+		mes "-----------------------------------------------------";
+		dispbottom"======================= HOTWEEK RANKING =======================";
+		for (set .@i,0; .@i < 10; set .@i,.@i+1) {
+			if (.@point[.@i] == 0) set .@name$[.@i],"None";
+		dispbottom "["+(.@i+1)+"]  "+.@name$[.@i]+" : คะแนน " +.@point[.@i]+"";
+		}
+		dispbottom "========================================================";
+		
+		
+		query_sql "SELECT `point_gacha` FROM `char` WHERE `char_id`='"+getcharid(0)+"'",.@cpoint;
+		mes "คุณมีคะแนน : "+.@cpoint;
+		mes "==============================================";		
+		dispbottom "คุณมีคะแนน : "+.@cpoint;
+		dispbottom "========================================================";
+		close;
+		
+		
+OnBuyItem:
+	end;		
+
+OnInit:
+do {
+delwaitingroom;
+waitingroom "[ "+callfunc("F_InsertComma",($zenyjackpot))+" Zeny]",0;
+sleep 100; // Evites super infinity loop
+} while(1); // End Loop
+end;
+}
+
+

@@ -1,0 +1,69 @@
+/*eternal,93,38,4	script	‡§« ·≈°§Õ Õ“«ÿ∏	4_BLUE_FLOWER,{
+
+
+
+	menu
+	"ï ‡§«  - ·≈°§Õ Õ“«ÿ∏ V.1",MENU1, 
+	"ï ‡§«  - ·≈°§Õ Õ“«ÿ∏ V.2",MENU2, 
+	"ï ‡§«  - Õ—æ‡°√¥§Õ Õ“«ÿ∏",MENU3, 
+	"ï ¬°‡≈‘°",no01; 
+
+
+MENU1:
+callshop "weapon_costume_1",1;
+end;
+
+MENU2:
+callshop "weapon_costume_2",1;
+end;
+
+MENU3:
+callshop "weapon_costume_UP",1;
+end;
+
+
+no01:
+end;
+
+OnInit:
+waitingroom "‡§« ·≈°§Õ Õ“«ÿ∏",0;
+end;
+}
+*/
+like_game,87,108,6	script	‡§« ·≈°§Õ Õ“«ÿ∏#66	4_BLUE_FLOWER,{
+
+
+
+	menu
+	"ï ‡§«  - Õ—æ‡°√¥§Õ Õ“«ÿ∏ R1",MENU1, 
+	"ï ‡§«  - Õ—æ‡°√¥§Õ Õ“«ÿ∏ R2",MENU2, 
+	"ï ‡§«  - Õ—æ‡°√¥§Õ Õ“«ÿ∏",MENU3, 
+	"ï ‡§«  - ·≈° Weapon Ticket",MENU4,
+	"ï ¬°‡≈‘°",no01; 
+
+
+MENU1:
+callshop "weapon_costume_1_UP",1;
+end;
+
+MENU2:
+callshop "weapon_costume_2_UP",1;
+end;
+
+MENU3:
+callshop "weapon_costume_UP_N",1;
+end;
+
+MENU4:
+callshop "Weapon_Ticket_Shop",1;
+end;
+
+no01:
+end;
+
+OnInit:
+waitingroom "‡§« ·≈°§Õ Õ“«ÿ∏",0;
+end;
+}
+
+

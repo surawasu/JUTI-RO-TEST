@@ -1,0 +1,127 @@
+hell_abyss2,98,105,6	script	Hell Boss#dragon	10081,{
+end;
+
+
+ex:
+end;
+
+
+OnInit:
+do {
+delwaitingroom;
+if ($hell_abyss2_boss_spawn > 0){
+waitingroom "บอสกำลังปรากฏตัว",0;
+sleep 1000;
+}
+if ($hell_abyss2_delay < 1 && $hell_abyss2_boss_spawn == 0){
+waitingroom "ฆ่าอีก ["+$hell_abyss2+"/1000]",0;
+sleep 200;
+}
+if ($hell_abyss2_delay >0){ 
+set .@dun1_h,($hell_abyss2_delay / 3600); 
+set .@dun1_m,($hell_abyss2_delay - (.@dun1_h * 3600)) / 60;
+set .@dun1_s,$hell_abyss2_delay - ((.@dun1_h * 3600) + (.@dun1_m * 60));
+set $hell_abyss2_delay,$hell_abyss2_delay-1;
+if(.@dun1_s> 59){
+	if(.@dun1_m> 59){
+	waitingroom "จะเกิดใน["+(.@dun1_h<10?"0" + .@dun1_h + "":" + .@dun1_h + ")+":00:00]",0;
+	}
+	if(.@dun1_m> 9 && .@dun1_s < 60){
+	waitingroom "จะเกิดใน["+(.@dun1_h<10?"0" + .@dun1_h + "":" + .@dun1_h + ")+":" +.@dun1_m + ":00]",0;
+	}
+	if(.@dun1_m< 10){
+	waitingroom "จะเกิดใน["+(.@dun1_h<10?"0" + .@dun1_h + "":" + .@dun1_h + ")+":0" +.@dun1_m + ":00]",0;
+	}
+}
+if(.@dun1_s> 9 && .@dun1_s < 60){
+	if(.@dun1_m> 59){
+	waitingroom "จะเกิดใน["+(.@dun1_h<10?"0" + .@dun1_h + "":" + .@dun1_h + ")+":00:" +.@dun1_s + "]",0;
+	}
+	if(.@dun1_m> 9 && .@dun1_s < 60){
+	waitingroom "จะเกิดใน["+(.@dun1_h<10?"0" + .@dun1_h + "":" + .@dun1_h + ")+":" +.@dun1_m + ":" +.@dun1_s + "]",0;
+	}
+	if(.@dun1_m< 10){
+	waitingroom "จะเกิดใน["+(.@dun1_h<10?"0" + .@dun1_h + "":" + .@dun1_h + ")+":0" +.@dun1_m + ":" +.@dun1_s + "]",0;
+	}
+}
+if(.@dun1_s< 10){
+	if(.@dun1_m> 59){
+	waitingroom "จะเกิดใน["+(.@dun1_h<10?"0" + .@dun1_h + "":" + .@dun1_h + ")+":00:0" +.@dun1_s + "]",0;
+	}
+	if(.@dun1_m> 9 && .@dun1_s < 60){
+	waitingroom "จะเกิดใน["+(.@dun1_h<10?"0" + .@dun1_h + "":" + .@dun1_h + ")+":" +.@dun1_m + ":0" +.@dun1_s + "]",0;
+	}
+	if(.@dun1_m< 10){
+	waitingroom "จะเกิดใน["+(.@dun1_h<10?"0" + .@dun1_h + "":" + .@dun1_h + ")+":0" +.@dun1_m + ":0" +.@dun1_s + "]",0;
+	}
+}
+}
+sleep 1000;
+} while(1); // End Loop
+end;
+}
+
+hell_abyss2,0,0	monster	--en--	20612,6,1000,1000,"#hell_abyss2::OnHellMobDead"
+hell_abyss2,0,0	monster	--en--	20612,6,1000,1000,"#hell_abyss2::OnHellMobDead"
+hell_abyss2,0,0	monster	--en--	20613,6,1000,1000,"#hell_abyss2::OnHellMobDead"
+hell_abyss2,0,0	monster	--en--	20614,6,1000,1000,"#hell_abyss2::OnHellMobDead"
+hell_abyss2,0,0	monster	--en--	20615,6,1000,1000,"#hell_abyss2::OnHellMobDead"
+hell_abyss2,0,0	monster	--en--	20616,6,1000,1000,"#hell_abyss2::OnHellMobDead"
+hell_abyss2,0,0	monster	--en--	20617,6,1000,1000,"#hell_abyss2::OnHellMobDead"
+
+
+hell_abyss2,0,0,0	script	#hell_abyss2	-1,{
+
+OnInit:
+$hell_abyss2 = 0;
+$hell_abyss2_delay = 0;
+$hell_abyss2_boss_spawn = 0;
+end;
+
+OnHellMobDead: 
+if($hell_abyss2_delay == 0 && $hell_abyss2_boss_spawn != 1){ 
+$hell_abyss2 += 1;
+if($hell_abyss2 == 1){
+	mapannounce "hell_abyss2","[ Dragon Nest ] : ต้องสังหารมอนเตอร์ในแผนที่นี้อีก "+callfunc("F_InsertComma",(1000-($hell_abyss2)))+" ตัว บอสจึงจะปรากฏตัว !!",bc_map,0xFFFF00,FW_NORMAL,16;
+}
+if($hell_abyss2 == 500){
+	mapannounce "hell_abyss2","[ Dragon Nest ] : ต้องสังหารมอนเตอร์ในแผนที่นี้อีก "+callfunc("F_InsertComma",(1000-($hell_abyss2)))+" ตัว บอสจึงจะปรากฏตัว !!",bc_map,0xFFFF00,FW_NORMAL,16;
+}
+if($hell_abyss2 == 900){
+	mapannounce "hell_abyss2","[ Dragon Nest ] : ต้องสังหารมอนเตอร์ในแผนที่นี้อีก "+callfunc("F_InsertComma",(1000-($hell_abyss2)))+" ตัว บอสจึงจะปรากฏตัว !!",bc_map,0xFFFF00,FW_NORMAL,16;
+}
+if($hell_abyss2 >= 1000){
+	$hell_abyss2_boss_spawn += 1;
+	sleep 1000;
+	monster "hell_abyss2",0,0,"Hell Boss",30097,1,strnpcinfo(0)+"::OnEnd";
+	announce "[ Dragon Nest ] : บอสได้ปรากฏตัวขึ้นแล้ว ณ  Dragon Nest",bc_all,0xFFFF00;
+	end;
+}
+}
+end;
+
+
+
+OnEnd:
+$hell_abyss2_delay = 7200;
+$hell_abyss2 = 0;
+$hell_abyss2_boss_spawn = 0;
+announce "[ Dragon Nest ] : เหลือเวลาอีก "+ ($hell_abyss2_delay/60) +" นาที บอสจะฟื้นคืนชีพอีกครั้ง !!",bc_all,0xFFFF00;
+end;
+
+
+OnTimer60000:
+	$hell_abyss2_delay -= 60;
+
+	if ($hell_abyss2_delay > 0) { 
+		initnpctimer;
+	}
+	else {
+		stopnpctimer;		
+		//$hell_abyss2_delay = 0;
+		mapannounce "hell_abyss2","[ Dragon Nest ] : Hell Boss พร้อมแล้ว",bc_map,0xFFFF00,FW_NORMAL,16;
+	}
+	end;
+
+}
+

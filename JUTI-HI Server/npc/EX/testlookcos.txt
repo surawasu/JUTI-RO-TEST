@@ -1,0 +1,51 @@
+
+/*
+-	script	changcoslogin	-1,{
+end;
+
+//OnPCLoadMapEvent:
+OnPCLoginEvent:
+	//if ( query_sql( "SELECT `char_id` FROM `changelook` WHERE `char_id` = '"+getcharid(0)+"';", .@player_money )){
+	//query_sql "SELECT `top` FROM `changelook` WHERE `char_id`='"+getcharid(0)+"'",.@top;
+	//query_sql "SELECT `mid` FROM `changelook` WHERE `char_id`='"+getcharid(0)+"'",.@mid;
+	//query_sql "SELECT `low` FROM `changelook` WHERE `char_id`='"+getcharid(0)+"'",.@low;
+	//}
+	//atcommand "@changelook 1 "+(.@top)+"";
+	////atcommand "@changelook 2 "+(.@mid)+"";
+	////atcommand "@changelook 3 "+(.@low)+"";
+	
+	
+end;
+
+}
+
+izlude,137,111,6	script	testคอส	669,{
+
+disable_items;
+	if (checkweight(1201,1) == 0) {
+		mes "[ระบบ Member]";
+		mes "^FF0000คุณมีไอเทมมากเกินไป^000000";
+		end;
+	}
+	if (MaxWeight - Weight < 1000) {
+		mes "[ระบบ Member]";
+		mes "^FF0000กรุณาตรวจสอบน้ำหนักด้วย^000000";
+		end;
+	}
+
+//if ( query_sql "SELECT `char_id` FROM `changelook` WHERE `char_id`='"+getcharid(0)+"'",.@changelook;) {
+//query_sql( "UPDATE `changelook` SET `top` = ='"+100+"' WHERE `char_id`='"+getcharid(0)+"';" );
+//} else {
+//query_sql( "SELECT `char_id` FROM `changelook` WHERE `char_id`='"+getcharid(0)+"';", .player_userid$ ) ;
+//query_sql( "INSERT INTO `changelook` ( `top` ) VALUES ( 100 )";
+//}
+	  if ( query_sql( "SELECT `char_id` FROM `changelook` WHERE `char_id` = '"+getcharid(0)+"';", .@player_money ) ) {
+	  query_sql( "UPDATE `changelook` SET `top` = 1001 WHERE `char_id` = '"+getcharid(0)+"';" );
+	  } else {
+	  query_sql( "INSERT INTO `changelook` ( `char_id`,`top` ) VALUES ( "+getcharid(0)+" , 1001 )");
+	  }
+end;
+
+}
+
+*/

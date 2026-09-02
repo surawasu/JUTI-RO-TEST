@@ -1,0 +1,373 @@
+like_game,87,105,6	script	รวม Quest	558,{
+
+mes "[Quest Shop]";
+mes "เลือกรายการด้านล่าง";
+menu	"• สร้าง Collection-Hat",Hat,
+		"• สร้าง Collection-Essence",Essence,
+		"• สร้าง แรร์คอสตูม",Collection2Cos,
+		"• สร้าง คอสตูมหมวกบอส",Bosscostume,
+		"• สร้าง การ์ดอัพเกรด",UpgradeC,
+		"• สร้าง โล่อัพเกรด",UpgradeS,
+		"• ยกเลิก",ex;	
+
+Hat:
+close2;
+callshop "Collection_Hat",1;
+end;
+
+Essence:
+close2;
+callshop "Collection_Essence",1;
+end;
+
+Collection2Cos:
+close2;
+callshop "Collection_To_Costume",1;
+end;
+
+Bosscostume:
+close2;
+callshop "Boss_Hat_Costume",1;
+end;
+
+UpgradeS:
+	disable_items;
+	if (checkweight(1201,1) == 0) {
+		mes "[^0000FFระบบอัพเกรดโล่^000000]";
+		mes "^FF0000มีไอเท็มมากเกินไป^000000";
+		end;
+	}
+	if (MaxWeight - Weight < 30000) {
+		mes "[^0000FFระบบอัพเกรดโล่^000000]";
+		mes "^FF0000น้ำหนักของท่านไม่เพียงพอ^000000";
+		end;
+	}
+	
+close2;
+callshop "Shieldupgrade",1;    
+npcshopattach "Shieldupgrade";
+end;	
+
+
+	
+	
+UpgradeC:
+	clear;
+	
+	disable_items;
+	if (checkweight(1201,1) == 0) {
+		mes "[^0000FFระบบอัพเกรดการ์ด^000000]";
+		mes "^FF0000มีไอเท็มมากเกินไป^000000";
+		end;
+	}
+	if (MaxWeight - Weight < 30000) {
+		mes "[^0000FFระบบอัพเกรดการ์ด^000000]";
+		mes "^FF0000น้ำหนักของท่านไม่เพียงพอ^000000";
+		end;
+	}
+
+mes "[^0000FFระบบอัพเกรดการ์ด^000000]";
+mes "เลือกการ์ดที่ต้องการอัพเกรดได้เลย";
+mes "^FF0000คำเตือน หากทำไม่สำเร็จ ไอเท็มทั้งหมดจะหายไป^000000";
+mes "^FF0000โปรดคิดให้ดีก่อนทำการอัพเกรด!^000000";
+//close2;
+
+
+menu 
+"^FF0000•^000000 อัพเกรดการ์ดฺ Boss ",C_UP01,
+"^FF0000•^000000 อัพเกรดการ์ด ทั่วไป",C_UP02,
+"^FF0000•^000000 ยกเลิก",C_UP03;
+
+
+C_UP01:
+close2;
+callshop "CardJutiBoss",1;    
+npcshopattach "CardJutiBoss";
+end;
+
+C_UP02:
+close2;
+callshop "CardJutiNonBoss",1;    
+npcshopattach "CardJutiNonBoss";
+end;
+
+
+
+C_UP03:
+end;
+
+OnBuyItem:
+
+	switch( @bought_nameid ) {
+	//boss
+	case 77012:	//Up_Orc_Hero_Card
+		.@requirement1 = 4143;
+		break;
+	case 77002:	//Up_Angeling_Card
+		.@requirement1 = 4054;
+		break;
+	case 77005:	//Up_Golden_Bug_Card
+		.@requirement1 = 4128;
+		break;
+	case 77050:	//Up_Gopinich_Card
+		.@requirement1 = 27162;
+		break;
+	//normal
+	case 77051:	//Up_Menblatt_Card
+		.@requirement1 = 4593;
+		break;
+	case 77052:	//Up_Petal_Card
+		.@requirement1 = 4594;
+		break;
+	case 77053:	//Up_Cenere_Card
+		.@requirement1 = 4595;
+		break;
+	case 77054:	//Up_AntiqueBook_Card
+		.@requirement1 = 4596;
+		break;
+	case 77055:	//Up_Wakwak_Card
+		.@requirement1 = 4588;
+		break;
+	case 77056:	//Up_Jejeling_Card
+		.@requirement1 = 4589;
+		break;
+	case 77057:	//Up_Gemini_Card
+		.@requirement1 = 4354;
+		break;
+	}
+if((@bought_nameid)> 50710 && (@bought_nameid) < 50718){ goto UPGARDES;}
+	
+if((@bought_nameid)> 77000 && (@bought_nameid) < 77058){ goto UPGARDEC;}
+end;
+
+
+
+UPGARDEC:
+	disable_items;
+	.@rate = 15;
+	.@amount1 = 30;
+	.@amount2 = 100;
+	.@cash = 100000;
+	.@requirement2 = 60005;
+	
+	if(#CASHPOINTS < .@cash || countitem(.@requirement1) < .@amount1 || countitem(.@requirement2) < .@amount2 ){
+	mes "[^0000FFระบบอัพเกรดการ์ด^000000]";
+	mes "มีวัตถุดิบไม่เพียงพอต้องการวัตถุดิบดังนี้";
+	mes "<ITEM>"+getitemname(.@requirement1)+"<INFO>"+(.@requirement1)+"</INFO></ITEM>จำนวน "+(.@amount1)+" ชิ้น";
+	mes "<ITEM>"+getitemname(.@requirement2)+"<INFO>"+(.@requirement2)+"</INFO></ITEM>จำนวน "+(.@amount2)+" ชิ้น";
+	mes "และใช้ "+ callfunc("F_InsertComma",.@cash) +" Cash";
+	end;
+	}
+	
+	mes "[^0000FFระบบอัพเกรดการ์ด^000000]";
+	mes "ต้องการวัตถุดิบดังนี้";
+	mes "<ITEM>"+getitemname(.@requirement1)+"<INFO>"+(.@requirement1)+"</INFO></ITEM>จำนวน "+(.@amount1)+" ชิ้น";
+	mes "<ITEM>"+getitemname(.@requirement2)+"<INFO>"+(.@requirement2)+"</INFO></ITEM>จำนวน "+(.@amount2)+" ชิ้น";
+	mes "และใช้ "+ callfunc("F_InsertComma",.@cash) +" Cash";
+	mes "มีโอกาสทำสำเร็จ 30 %";
+	next;
+	switch(select("^ff3333•^000000 เอาเลย","^ff3333•^000000 ยกเลิก")) 
+	{	
+			case 1:
+			next;
+			delitem .@requirement1,.@amount1;
+			delitem .@requirement2,.@amount2;
+			#CASHPOINTS -= .@cash;
+			
+			if (rand(100) < .@rate) {
+			mes "[^0000FFระบบอัพเกรดการ์ด^000000]";
+			mes "สำเร็จ !!";
+			specialeffect2 83;
+			getitem @bought_nameid,1; 
+			announce "[ •ระบบอัพเกรดการ์ด• ]  :  ดีใจด้วย ท่าน ["+strcharinfo(0)+"] ได้ทำการอัพเกรดการ์ด [ "+getitemname(@bought_nameid)+" ] สำเร็จ !! ",bc_all,0x00FF00;
+			end;
+			}
+			
+			mes "[^0000FFระบบอัพเกรดการ์ด^000000]";
+			mes "ขอโทษด้วยมันล้มเหลว";
+			announce "[ •ระบบอัพเกรดการ์ด• ]  : เสียใจด้วย ท่าน ["+strcharinfo(0)+"] ได้ทำการอัพเกรดการ์ด [ "+getitemname(@bought_nameid)+" ] ล้มเหลว !! ",bc_all,0xCC3300;
+			specialeffect2 183;
+			end;
+			
+			case 2:
+			end;
+
+	end;
+	}
+
+UPGARDES:
+	disable_items;
+	if(!getequipisequiped(EQI_HAND_L)) {
+		mes "[^0000FFระบบอัพเกรดโล่^000000]";
+		mes "ท่านไม่ได้สวมใส่อุปกรณ์";
+		close;
+	}
+	if(countitem(getequipid(EQI_HAND_L))>1) {
+		mes "[^0000FFระบบอัพเกรดโล่^000000]";
+		mes "มี <ITEM>"+getitemname(getequipid(EQI_HAND_L))+"<INFO>"+(getequipid(EQI_HAND_L))+"</INFO></ITEM>มากกว่า 1 ชิ้น";
+		close;
+	}
+	.@rate = 10;
+	.@requirement1 = 1000322;
+	.@requirement2 = 60008;
+	.@requirement3 = 60005;
+	.@amount1 = 1000;
+	.@amount2 = 10000;
+	.@amount3 = 50;
+	.@cash = 300000;
+	
+	if(#CASHPOINTS < .@cash || countitem(.@requirement1) < .@amount1 || countitem(.@requirement2) < .@amount2 || countitem(.@requirement3) < .@amount3 ){
+	mes "[^0000FFระบบอัพเกรดโล่^000000]";
+	mes "มีวัตถุดิบไม่เพียงพอต้องการวัตถุดิบดังนี้";
+	mes "<ITEM>"+getitemname(.@requirement1)+"<INFO>"+(.@requirement1)+"</INFO></ITEM>จำนวน "+(.@amount1)+" ชิ้น";
+	mes "<ITEM>"+getitemname(.@requirement2)+"<INFO>"+(.@requirement2)+"</INFO></ITEM>จำนวน "+(.@amount2)+" ชิ้น";
+	mes "<ITEM>"+getitemname(.@requirement3)+"<INFO>"+(.@requirement2)+"</INFO></ITEM>จำนวน "+(.@amount3)+" ชิ้น";
+	mes "และใช้ "+ callfunc("F_InsertComma",.@cash) +" Cash";
+	end;
+	}	
+	mes "[^0000FFระบบอัพเกรดโล่^000000]";
+	mes "ต้องการวัตถุดิบดังนี้";
+	mes "<ITEM>"+getitemname(.@requirement1)+"<INFO>"+(.@requirement1)+"</INFO></ITEM>จำนวน "+(.@amount1)+" ชิ้น";
+	mes "<ITEM>"+getitemname(.@requirement2)+"<INFO>"+(.@requirement2)+"</INFO></ITEM>จำนวน "+(.@amount2)+" ชิ้น";
+	mes "<ITEM>"+getitemname(.@requirement3)+"<INFO>"+(.@requirement2)+"</INFO></ITEM>จำนวน "+(.@amount3)+" ชิ้น";
+	mes "และใช้ "+ callfunc("F_InsertComma",.@cash) +" Cash";
+	mes "มีโอกาสทำสำเร็จ 20 %";
+	next;
+	mes "[^0000FFระบบอัพเกรดโล่^000000]";
+	mes "เลือกไอเท็มที่ใช้เป็นวัตถุดิบ";	
+	setarray .@indices[1], EQI_HAND_L;
+	for( set .@i,1; .@i <= 1; set .@i,.@i+1 ) {
+		if( getequipisequiped(.@indices[.@i]) )
+			set .@menu$, .@menu$ + F_getpositionname(.@indices[.@i]) + " - [" + getequipname(.@indices[.@i]) + "]";
+		set .@menu$, .@menu$ + ":";
+	}
+
+	
+	set .@part, .@indices[ select(.@menu$) ];
+	if(!getequipisequiped(.@part)) {
+		clear;
+		mes "[^0000FFระบบอัพเกรดโล่^000000]";
+		mes "ท่านไม่ได้สวมใส่อุปกรณ์";
+		close;
+	} 
+		switch(.@part) {
+		case EQI_HAND_L:
+			goto S_UP01;
+			break;
+		}
+		end;
+
+	S_UP01:
+	setarray .@equip_bitmask[0],
+	EQP_ACC_L,				// EQI_ACC_L
+	EQP_ACC_R,				// EQI_ACC_R
+	EQP_SHOES,				// EQI_SHOES
+	EQP_GARMENT,			// EQI_GARMENT
+	EQP_HEAD_LOW,			// EQI_HEAD_LOW
+	EQP_HEAD_MID,			// EQI_HEAD_MID
+	EQP_HEAD_TOP,			// EQI_HEAD_TOP
+	EQP_ARMOR,				// EQI_ARMOR
+	EQP_HAND_L,				// EQI_HAND_L
+	EQP_HAND_R,				// EQI_HAND_R
+	EQP_COSTUME_HEAD_TOP,	// EQI_COSTUME_HEAD_TOP
+	EQP_COSTUME_HEAD_MID,	// EQI_COSTUME_HEAD_MID
+	EQP_COSTUME_HEAD_LOW,	// EQI_COSTUME_HEAD_LOW
+	EQP_COSTUME_GARMENT,	// EQI_COSTUME_GARMENT
+	EQP_AMMO,				// EQI_AMMO
+	EQP_SHADOW_ARMOR,		// EQI_SHADOW_ARMOR
+	EQP_SHADOW_WEAPON,		// EQI_SHADOW_WEAPON
+	EQP_SHADOW_SHIELD,		// EQI_SHADOW_SHIELD
+	EQP_SHADOW_SHOES,		// EQI_SHADOW_SHOES
+	EQP_SHADOW_ACC_R,		// EQI_SHADOW_ACC_R
+	EQP_SHADOW_ACC_L;		// EQI_SHADOW_ACC_L
+	
+	getinventorylist;	// required for now for getitembound4 to keep the enchant grade
+	for ( .@i = 0; .@i < @inventorylist_count; ++.@i ) {
+		if ((@inventorylist_equip[.@i] & .@equip_bitmask[.@part]))
+			break;
+	}	
+	.@item = getequipid(.@part);
+	.@refine = getequiprefinerycnt(.@part);
+	.@card0 = getequipcardid(.@part,0);
+	.@card1 = getequipcardid(.@part,1);
+	.@card2 = getequipcardid(.@part,2);
+	.@card3 = getequipcardid(.@part,3);
+	
+	setarray .@opt_id[0], @inventorylist_option_id1[.@i], @inventorylist_option_id2[.@i], @inventorylist_option_id3[.@i], @inventorylist_option_id4[.@i], @inventorylist_option_id5[.@i];
+	setarray .@opt_value[0], @inventorylist_option_value1[.@i], @inventorylist_option_value2[.@i], @inventorylist_option_value3[.@i], @inventorylist_option_value4[.@i], @inventorylist_option_value5[.@i];
+	setarray .@opt_param[0], @inventorylist_option_parameter1[.@i], @inventorylist_option_parameter2[.@i], @inventorylist_option_parameter3[.@i], @inventorylist_option_parameter4[.@i], @inventorylist_option_parameter5[.@i];
+		
+	if(.@refine < 20) {	
+		clear;
+		mes "[^0000FFระบบอัพเกรดโล่^000000]";
+		mes "ระดับการตีบวกต้อง +20 เท่านั้น";
+		close;
+	} 
+
+	
+	if( getequipid(.@part) == 2115 || getequipid(.@part) == 50701 || getequipid(.@part) == 50702 || getequipid(.@part) == 50703 || getequipid(.@part) == 50704 || getequipid(.@part) == 50705 || getequipid(.@part) == 50706 ) {
+		clear;
+		mes "[^0000FFระบบอัพเกรดโล่^000000]";
+		mes "หากทำไม่สำเร็จจะเสียแค่วัตถุดิบ";
+		mes "<ITEM>"+getitemname(.@requirement1)+"<INFO>"+(.@requirement1)+"</INFO></ITEM>จำนวน "+(.@amount1)+" ชิ้น";
+		mes "<ITEM>"+getitemname(.@requirement2)+"<INFO>"+(.@requirement2)+"</INFO></ITEM>จำนวน "+(.@amount2)+" ชิ้น";
+		mes "<ITEM>"+getitemname(.@requirement3)+"<INFO>"+(.@requirement2)+"</INFO></ITEM>จำนวน "+(.@amount3)+" ชิ้น";
+		mes "และใช้ "+ callfunc("F_InsertComma",.@cash) +" Cash";
+		mes "มีโอกาสทำสำเร็จ 20 %";
+		menu	"• เริ่มเลย",OK,		
+				"• ยกเลิก",EX;	
+	} 
+	next;
+	mes "[^0000FFระบบอัพเกรดโล่^000000]";
+	mes "โล่ของท่านไม่สามารถอัพเกรดได้ !!";
+	next;
+	mes "[^0000FFระบบอัพเกรดโล่^000000]";
+	mes "รายการไอเท็มที่สามารถแลกเปลี่ยนได้มีดังนี้";
+	mes "<ITEM>"+getitemname(2115)+"<INFO>"+(2115)+"</INFO></ITEM>";
+	mes "<ITEM>"+getitemname(50701)+"<INFO>"+(50701)+"</INFO></ITEM>";
+	mes "<ITEM>"+getitemname(50702)+"<INFO>"+(50702)+"</INFO></ITEM>";
+	mes "<ITEM>"+getitemname(50703)+"<INFO>"+(50703)+"</INFO></ITEM>";
+	mes "<ITEM>"+getitemname(50704)+"<INFO>"+(50704)+"</INFO></ITEM>";
+	mes "<ITEM>"+getitemname(50705)+"<INFO>"+(50705)+"</INFO></ITEM>";
+	mes "<ITEM>"+getitemname(50706)+"<INFO>"+(50706)+"</INFO></ITEM>";
+	end;
+
+
+OK:
+	clear;	
+	if (rand(100) < .@rate) {	
+	mes "[^0000FFระบบอัพเกรดโล่^000000]";
+	mes "สำเร็จ..";
+	delequip .@part;
+	delitem .@requirement1,.@amount1;
+	delitem .@requirement2,.@amount2;
+	delitem .@requirement3,.@amount3;
+	#CASHPOINTS -= .@cash;
+	getitem2 @bought_nameid,1,1,0,0,.@card0,.@card1,.@card2,.@card3;
+	specialeffect2 83;
+	announce "[ •ระบบอัพเกรดโล่• ]  :  ดีใจด้วย ท่าน ["+strcharinfo(0)+"] ได้ทำการอัพเกรด [ "+getitemname(@bought_nameid)+" ] สำเร็จ !! ",bc_all,0x00FF00;
+	end;	
+	}
+	mes "[^0000FFระบบอัพเกรดโล่^000000]";
+	mes "มันล้มเหลว..";
+	delitem .@requirement1,.@amount1;
+	delitem .@requirement2,.@amount2;
+	delitem .@requirement3,.@amount3;
+	#CASHPOINTS -= .@cash;
+	specialeffect2 183;
+	announce "[ •ระบบอัพเกรดโล่• ]  :  เสียใจด้วย ท่าน ["+strcharinfo(0)+"] ได้ทำการอัพเกรด [ "+getitemname(@bought_nameid)+" ] ล้มเหลว !! ",bc_all,0xCC3300;
+	end;
+
+ex:
+end;
+
+OnInit: 
+waitingroom "  # รวมเควส # ",0; 
+end;
+
+
+}
+
+-	shop	CardJutiBoss	90,77012:1000,77002:1000,77005:1000,77050:1000
+-	shop	CardJutiNonBoss	90,77051:1000,77052:1000,77053:1000,77054:1000,77055:1000,77056:1000,77057:1000
+-	shop	Shieldupgrade	90,50711:1000,50712:1000,50713:1000,50714:1000,50715:1000,50716:1000,50717:1000

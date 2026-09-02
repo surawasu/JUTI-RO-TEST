@@ -1,0 +1,481 @@
+guild_vs1,49,93,4	script	#nowalk1VS1	858,{
+end;
+}
+
+// บน
+guild_vs1,48,74,4	duplicate(#nowalk1VS1)	#1VS1boardt1	858
+guild_vs1,49,74,4	duplicate(#nowalk1VS1)	#1VS1boardt2	858
+guild_vs1,50,74,4	duplicate(#nowalk1VS1)	#1VS1boardt3	858
+guild_vs1,51,74,4	duplicate(#nowalk1VS1)	#1VS1boardt4	858
+
+
+// ล่าง
+guild_vs1,48,25,4	duplicate(#nowalk1VS1)	#1VS1boardb1	858
+guild_vs1,49,25,4	duplicate(#nowalk1VS1)	#1VS1boardb2	858
+guild_vs1,50,25,4	duplicate(#nowalk1VS1)	#1VS1boardb3	858
+guild_vs1,51,25,4	duplicate(#nowalk1VS1)	#1VS1boardb4	858
+
+
+
+guild_vs1,25,51,4	duplicate(#nowalk1VS1)	#BARRICADE1VS1L1	1905
+guild_vs1,25,50,4	duplicate(#nowalk1VS1)	#BARRICADE1VS1L2	1905
+guild_vs1,25,49,4	duplicate(#nowalk1VS1)	#BARRICADE1VS1L3	1905
+guild_vs1,25,48,4	duplicate(#nowalk1VS1)	#BARRICADE1VS1L4	1905
+
+
+guild_vs1,74,51,4	duplicate(#nowalk1VS1)	#BARRICADE1VS1R1	1905
+guild_vs1,74,50,4	duplicate(#nowalk1VS1)	#BARRICADE1VS1R2	1905
+guild_vs1,74,49,4	duplicate(#nowalk1VS1)	#BARRICADE1VS1R3	1905
+guild_vs1,74,48,4	duplicate(#nowalk1VS1)	#BARRICADE1VS1R4	1905
+
+
+-	script	1VS1test	-1,{ 
+
+OnPCDieEvent:
+if (strcharinfo(3) != "guild_vs1") end;
+if (getcharid(2) == $GIDGUILD1) {
+donpcevent "1VS1#1VS1::OnTeam1dead";
+}
+if (getcharid(2) == $GIDGUILD2) {
+donpcevent "1VS1#1VS1::OnTeam2dead";
+}
+end;
+
+OnInit: 
+	setcell "guild_vs1",48,74,51,74,cell_walkable,0;	//TOP
+	setcell "guild_vs1",48,25,51,25,cell_walkable,0;	//Botton
+	
+	setcell "guild_vs1",25,51,25,48,cell_walkable,0;	//Left
+	setcell "guild_vs1",74,51,74,48,cell_walkable,0;	//Right
+    end;
+} 
+
+
+
+//morocc,127,165,4	script	1VS1#1VS1	796,{
+sec_pri,26,45,4	script	1VS1#1VS1	796,{
+
+if (getguildmember(getcharid(2))>12){
+mes "[ 1VS1 ]";
+mes "จำนวนคนในกิลด์มีมากกว่า 12 คน !!";
+end;
+}
+
+if ($1VS1Start>0 && getgmlevel()>1){ 
+menu
+"^0000FF-^000000 ล้างระบบ",reset,
+"^0000FF-^000000 ยกเลิก",cancle;
+end;
+}
+
+
+if ($1VS1Start>0){ 
+mes "[ 1VS1 ]";
+mes "[ 7 VS 7 ] ได้เริ่มขึ้นแล้ว กรุณารอรอบถัดไป !!";
+end;
+}
+
+if (is_guild_leader() == true) {
+mes "[ 1VS1 ]";
+mes "ยินดีต้อนรับ : ^FF0000 "+strcharinfo(0)+" ^000000"; 
+if ($GIDGUILD1>0) {
+mes "ทีมที่ 1 : "+getguildname($GIDGUILD1)+"";
+}
+if ($GIDGUILD1==0) {
+mes "ทีมที่ 1 : ว่าง !!";
+}
+if ($GIDGUILD2>0) {
+mes "ทีมที่ 2 : "+getguildname($GIDGUILD2)+"";
+}
+if ($GIDGUILD2==0) {
+mes "ทีมที่ 2 : ว่าง !!";
+}
+
+
+menu
+"^0000FF-^000000 สมัครทีมที่ 1",team1,
+"^0000FF-^000000 สมัครทีมที่ 2",team2,
+"^0000FF-^000000 ล้างระบบ",reset,
+"^0000FF-^000000 ยกเลิก",cancle;
+
+
+team1:
+if(getcharid(2)==$GIDGUILD2){
+next;
+mes "[ 1VS1 ]";
+mes "ท่านได้สมัครทีม  ไปแล้ว";
+end;
+}
+if ($GIDGUILD1>0) {
+next;
+mes "[ 1VS1 ]";
+mes "ทีมที่ 1 : เต็มแล้ว";
+end;
+}
+$GIDGUILD1 = getcharid(2);
+//set $team1,getguildmember($GIDGUILD1);
+donpcevent "1VS1#1VS1::OnPrestart";
+end;
+
+team2:
+if(getcharid(2)==$GIDGUILD1){
+next;
+mes "[ 1VS1 ]";
+mes "ท่านได้สมัครทีม 1 ไปแล้ว";
+end;
+}
+if ($GIDGUILD2>0) {
+next;
+mes "[ 1VS1 ]";
+mes "ทีมที่ 2 : เต็มแล้ว";
+end;
+}
+$GIDGUILD2 = getcharid(2);
+//set $team2,getguildmember($GIDGUILD2);
+donpcevent "1VS1#1VS1::OnPrestart";
+end;
+
+cancle:
+donpcevent "1VS1#1VS1::OnStart";
+end;
+
+}
+mes "[ 1VS1 ]";
+mes "ท่านไม่ใช่่ Guild Master !!";
+end;
+
+
+
+OnTeam1dead:
+$team1 -= 1;
+
+mapannounce "guild_vs1","[ 7 VS 7 ] : "+getguildname($GIDGUILD1)+" เหลือผู้เล่น "+($team1)+" คน !!",bc_map,0xFFCE00;
+//mapannounce "guild_vs1","[ 7 VS 7 ] : "+getguildname($GIDGUILD2)+" ได้สังหารผู้เล่น "+getguildname($GIDGUILD1)+" แล้ว !!",bc_map,0xFFCE00;
+//mapannounce "morocc","[ 7 VS 7 ] : "+getguildname($GIDGUILD2)+" ได้สังหารผู้เล่น "+getguildname($GIDGUILD1)+" แล้ว !!",bc_map,0xFFCE00;
+//sleep 1000;
+//mapannounce "guild_vs1","[ 7 VS 7 ] : Score ตอนนี้คือ "+getguildname($GIDGUILD1)+" ได้ "+$team1win+" แต้ม ต่อ "+getguildname($GIDGUILD2)+" ได้ "+$team2win+" แต้ม !!",bc_map,0xFFCE00;
+//mapannounce "morocc","[ 7 VS 7 ] : Score ตอนนี้คือ "+getguildname($GIDGUILD1)+" ได้ "+$team1win+" แต้ม ต่อ "+getguildname($GIDGUILD2)+" ได้ "+$team2win+" แต้ม !!",bc_map,0xFFCE00;
+if($team1 == 0){
+//set $team2win, $team2win + 1;
+//mapannounce "guild_vs1","[ 7 VS 7 ] : Score ตอนนี้คือ "+getguildname($GIDGUILD1)+" ได้ "+$team1win+" แต้ม ต่อ "+getguildname($GIDGUILD2)+" ได้ "+$team2win+" แต้ม !!",bc_map,0xFFCE00;
+//mapannounce "morocc","[ 7 VS 7 ] : Score ตอนนี้คือ "+getguildname($GIDGUILD1)+" ได้ "+$team1win+" แต้ม ต่อ "+getguildname($GIDGUILD2)+" ได้ "+$team2win+" แต้ม !!",bc_map,0xFFCE00;
+donpcevent "1VS1#1VS1::OnEnd";
+}
+end;
+
+OnTeam2dead:
+$team2 -= 1;
+
+mapannounce "guild_vs1","[ 7 VS 7 ] : "+getguildname($GIDGUILD2)+" เหลือผู้เล่น "+($team2)+" คน !!",bc_map,0xFFCE00;
+//mapannounce "guild_vs1","[ 7 VS 7 ] : "+getguildname($GIDGUILD1)+" ได้สังหารผู้เล่น "+getguildname($GIDGUILD2)+" แล้ว !!",bc_map,0xFFCE00;
+//mapannounce "morocc","[ 7 VS 7 ] : "+getguildname($GIDGUILD1)+" ได้สังหารผู้เล่น "+getguildname($GIDGUILD2)+" แล้ว !!",bc_map,0xFFCE00;
+//sleep 1000;
+//mapannounce "guild_vs1","[ 7 VS 7 ] : Score ตอนนี้คือ "+getguildname($GIDGUILD1)+" ได้ "+$team1win+" แต้ม ต่อ "+getguildname($GIDGUILD2)+" ได้ "+$team2win+" แต้ม !!",bc_map,0xFFCE00;
+//mapannounce "morocc","[ 7 VS 7 ] : Score ตอนนี้คือ "+getguildname($GIDGUILD1)+" ได้ "+$team1win+" แต้ม ต่อ "+getguildname($GIDGUILD2)+" ได้ "+$team2win+" แต้ม !!",bc_map,0xFFCE00;
+if($team2 == 0){
+//set $team1win, $team1win + 1;
+//mapannounce "guild_vs1","[ 7 VS 7 ] : Score ตอนนี้คือ "+getguildname($GIDGUILD1)+" ได้ "+$team1win+" แต้ม ต่อ "+getguildname($GIDGUILD2)+" ได้ "+$team2win+" แต้ม !!",bc_map,0xFFCE00;
+//mapannounce "morocc","[ 7 VS 7 ] : Score ตอนนี้คือ "+getguildname($GIDGUILD1)+" ได้ "+$team1win+" แต้ม ต่อ "+getguildname($GIDGUILD2)+" ได้ "+$team2win+" แต้ม !!",bc_map,0xFFCE00;
+donpcevent "1VS1#1VS1::OnEnd";
+}
+end;
+
+
+
+OnPrestart:
+if ($team2>5 || $team2>5 ){
+mes "[ 1VS1 ]";
+npctalk "1VS1 : เกมส์ถูกยกเลิกเนื่องจากสมาชิกทีมใดทีมนึงมีมากกว่า 5 คน !!";
+end;
+}
+if ($GIDGUILD1>0 && $GIDGUILD2>0) {
+donpcevent "1VS1#1VS1::OnStart";
+end;
+}
+end;
+
+OnStart:
+$1VS1Start += 1;
+mapannounce "morocc","[ 7 VS 7 ] : เกมกำลังจะเริ่มขึ้นแล้ว..เตรียมตัวให้ดีๆ",bc_map,0xFFCE00;
+sleep 5000;
+mapannounce "morocc","[ 7 VS 7 ] : จะเริ่มในอีก ... ",bc_map,0xFFCE00;
+sleep 1000;
+mapannounce "morocc","[ 7 VS 7 ] : 10 ",bc_map,0xFFCE00;
+sleep 1000;
+mapannounce "morocc","[ 7 VS 7 ] : 9 ",bc_map,0xFFCE00;
+sleep 1000;
+mapannounce "morocc","[ 7 VS 7 ] : 8 ",bc_map,0xFFCE00;
+sleep 1000;
+mapannounce "morocc","[ 7 VS 7 ] : 7 ",bc_map,0xFFCE00;
+sleep 1000;
+mapannounce "morocc","[ 7 VS 7 ] : 6 ",bc_map,0xFFCE00;
+sleep 1000;
+mapannounce "morocc","[ 7 VS 7 ] : 5 ",bc_map,0xFFCE00;
+sleep 1000;
+mapannounce "morocc","[ 7 VS 7 ] : 4 ",bc_map,0xFFCE00;
+sleep 1000;
+mapannounce "morocc","[ 7 VS 7 ] : 3 ",bc_map,0xFFCE00;
+sleep 1000;
+mapannounce "morocc","[ 7 VS 7 ] : 2 ",bc_map,0xFFCE00;
+sleep 1000;
+mapannounce "morocc","[ 7 VS 7 ] : 1 ",bc_map,0xFFCE00;
+sleep 1000;
+donpcevent "call1#1VS1::OnCall";
+donpcevent "call2#1VS1::OnCall";
+sleep 1000;
+killmonsterall "guild_vs1";
+sleep 10000;
+mapannounce "guild_vs1","[ 7 VS 7 ] : จะเริ่มในอีก ... ",bc_map,0xFFCE00;
+sleep 1000;
+mapannounce "guild_vs1","[ 7 VS 7 ] : 10 ",bc_map,0xFFCE00;
+sleep 1000;
+mapannounce "guild_vs1","[ 7 VS 7 ] : 9 ",bc_map,0xFFCE00;
+sleep 1000;
+mapannounce "guild_vs1","[ 7 VS 7 ] : 8 ",bc_map,0xFFCE00;
+sleep 1000;
+mapannounce "guild_vs1","[ 7 VS 7 ] : 7 ",bc_map,0xFFCE00;
+sleep 1000;
+mapannounce "guild_vs1","[ 7 VS 7 ] : 6 ",bc_map,0xFFCE00;
+sleep 1000;
+mapannounce "guild_vs1","[ 7 VS 7 ] : 5 ",bc_map,0xFFCE00;
+sleep 1000;
+mapannounce "guild_vs1","[ 7 VS 7 ] : 4 ",bc_map,0xFFCE00;
+sleep 1000;
+mapannounce "guild_vs1","[ 7 VS 7 ] : 3 ",bc_map,0xFFCE00;
+sleep 1000;
+mapannounce "guild_vs1","[ 7 VS 7 ] : 2 ",bc_map,0xFFCE00;
+sleep 1000;
+mapannounce "guild_vs1","[ 7 VS 7 ] : 1 ",bc_map,0xFFCE00;
+sleep 1000;
+setcell "guild_vs1",25,51,25,48,cell_walkable,1;	//Left
+setcell "guild_vs1",74,51,74,48,cell_walkable,1;	//Right
+disablenpc ("#BARRICADE1VS1L1");
+disablenpc ("#BARRICADE1VS1L2");
+disablenpc ("#BARRICADE1VS1L3");
+disablenpc ("#BARRICADE1VS1L4");
+
+disablenpc ("#BARRICADE1VS1R1");
+disablenpc ("#BARRICADE1VS1R2");
+disablenpc ("#BARRICADE1VS1R3");
+disablenpc ("#BARRICADE1VS1R4");
+
+set $team1,getMapGuildUsers("guild_vs1",$GIDGUILD1);
+set $team2,getMapGuildUsers("guild_vs1",$GIDGUILD2);
+initnpctimer;
+mapannounce "guild_vs1","[ 7 VS 7 ] : มีเวลาในการต่อสู้ 10 นาที ",bc_map,0xFFCE00;
+end;
+
+/*
+OnTimer5000:
+if(getMapGuildUsers("guild_vs1",$GIDGUILD1)==0 && $1VS1Start != 0){
+donpcevent "1VS1#1VS1::OnEnd";
+stopnpctimer;
+end;
+}
+if(getMapGuildUsers("guild_vs1",$GIDGUILD2)==0 && $1VS1Start != 0){
+donpcevent "1VS1#1VS1::OnEnd";
+stopnpctimer;
+end;
+}
+*/
+OnTimer300000:
+mapannounce "guild_vs1","[ 7 VS 7 ] : เหลือเวลาในการต่อสู้อีก 5 นาที ",bc_map,0xFFCE00;
+end;
+
+OnTimer420000:
+mapannounce "guild_vs1","[ 7 VS 7 ] : เหลือเวลาในการต่อสู้อีก 3 นาที ",bc_map,0xFFCE00;
+end;
+
+OnTimer480000:
+mapannounce "guild_vs1","[ 7 VS 7 ] : เหลือเวลาในการต่อสู้อีก 2 นาที ",bc_map,0xFFCE00;
+end;
+
+OnTimer540000:
+mapannounce "guild_vs1","[ 7 VS 7 ] : เหลือเวลาในการต่อสู้อีก 1 นาที ",bc_map,0xFFCE00;
+end;
+
+OnTimer600000:
+donpcevent "1VS1#1VS1::OnEnd";
+stopnpctimer;
+end;
+
+OnEnd:
+$1VS1Start = 0;
+//$GIDGUILD1 = 0;
+//$GIDGUILD2 = 0;
+stopnpctimer;
+sleep 1000;
+mapannounce "guild_vs1","[ 7 VS 7 ] : เกมส์จะจบลงภายใน ... ",bc_map,0xFFCE00;
+sleep 1000;
+mapannounce "guild_vs1","[ 7 VS 7 ] : 5 ",bc_map,0xFFCE00;
+sleep 1000;
+mapannounce "guild_vs1","[ 7 VS 7 ] : 4 ",bc_map,0xFFCE00;
+sleep 1000;
+mapannounce "guild_vs1","[ 7 VS 7 ] : 3 ",bc_map,0xFFCE00;
+sleep 1000;
+mapannounce "guild_vs1","[ 7 VS 7 ] : 2 ",bc_map,0xFFCE00;
+sleep 1000;
+mapannounce "guild_vs1","[ 7 VS 7 ] : 1 ",bc_map,0xFFCE00;
+sleep 1000;
+areawarp "guild_vs1",0,999,999,0,"like_game",127,107;
+	setcell "guild_vs1",25,51,25,48,cell_walkable,0;	//Left
+	setcell "guild_vs1",74,51,74,48,cell_walkable,0;	//Right
+enablenpc ("#BARRICADE1VS1L1");
+enablenpc ("#BARRICADE1VS1L2");
+enablenpc ("#BARRICADE1VS1L3");
+enablenpc ("#BARRICADE1VS1L4");
+enablenpc ("#BARRICADE1VS1R1");
+enablenpc ("#BARRICADE1VS1R2");
+enablenpc ("#BARRICADE1VS1R3");
+enablenpc ("#BARRICADE1VS1R4");
+announce "[ 7 VS 7 ] :  7 VS 7 ได้จบลงแล้ว...",bc_all,0xFFFF00;
+if(($team1 > $team2) && $team2 != 0)
+	announce "[ 7 VS 7 ] : "+getguildname($GIDGUILD1)+" เหลือผู้เล่นเยอะกว่าเป็นผู้ชนะในรอบนี้",bc_all,0xFFFF00;
+if(($team2 > $team1) && $team1 != 0)
+	announce "[ 7 VS 7 ] : "+getguildname($GIDGUILD2)+" เหลือผู้เล่นเยอะกว่าเป็นผู้ชนะในรอบนี้",bc_all,0xFFFF00;
+if($team1 == 0)
+	announce "[ 7 VS 7 ] : "+getguildname($GIDGUILD2)+" ได้สังหารผู้เล่นอีกฝ่ายทั้งหมดเป็นผู้ชนะในรอบนี้",bc_all,0xFFFF00;
+if($team2 == 0)
+	announce "[ 7 VS 7 ] : "+getguildname($GIDGUILD1)+" ได้สังหารผู้เล่นอีกฝ่ายทั้งหมดเป็นผู้ชนะในรอบนี้",bc_all,0xFFFF00;
+end;
+
+reset:
+if(getgmlevel()==99){
+donpcevent "1VS1#1VS1::OnEnd";
+//donpcevent "1VS1#1VS1::OnStart";
+stopnpctimer;
+end;
+}
+mes "[ 1VS1 ]";
+mes "เมนูสำหรับ GM เท่านั้น";
+end;
+
+
+
+OnInit: 
+stopnpctimer;
+$1VS1Start = 0;
+$GIDGUILD1 = 0;
+$GIDGUILD2 = 0;
+$party_id1 = 0;
+$party_id2 = 0;
+$team1 = 0;
+$team2 = 0;
+$team1win = 0;
+$team2win = 0;
+enablenpc ("#BARRICADE1VS1L1");
+enablenpc ("#BARRICADE1VS1L2");
+enablenpc ("#BARRICADE1VS1L3");
+enablenpc ("#BARRICADE1VS1L4");
+enablenpc ("#BARRICADE1VS1R1");
+enablenpc ("#BARRICADE1VS1R2");
+enablenpc ("#BARRICADE1VS1R3");
+enablenpc ("#BARRICADE1VS1R4");
+
+do {
+delwaitingroom;
+if($1VS1Start>1){
+waitingroom "[1VS1 : ไม่ว่าง !!]",0;
+}
+
+if($1VS1Start==0){
+delwaitingroom;
+waitingroom "[1VS1 : ว่าง !!]",0;
+
+sleep 2000;
+delwaitingroom;
+
+if ($GIDGUILD1>0) {
+waitingroom "[Team 1 : "+getguildname($GIDGUILD1)+"]",0;
+}
+
+if ($GIDGUILD1==0) {
+waitingroom "[Team 1 : ว่าง !!]",0;
+}
+
+
+sleep 2000;
+delwaitingroom;
+if ($GIDGUILD2>0) {
+waitingroom "[Team 2 : "+getguildname($GIDGUILD2)+"]",0;
+}
+
+if ($GIDGUILD2==0) {
+waitingroom "[Team 2 : ว่าง !!]",0;
+}
+
+}
+
+sleep 2000;
+} while(1); // End Loop
+end;
+
+}
+-	script	testloadmap1v1	-1,{
+end;
+OnPCLoadMapEvent:
+if(strcharinfo(3) == "guild_vs1"){
+sc_end SC_ALL;
+sc_end SC_CP_WEAPON;
+sc_end SC_CP_SHIELD;
+sc_end SC_CP_ARMOR;
+sc_end SC_CP_HELM;
+sc_start SC_STRFood,1800000,10;
+sc_start SC_AGIFood,1800000,10;
+sc_start SC_VITFood,1800000,10;
+sc_start SC_INTFood,1800000,10;
+sc_start SC_DEXFood,1800000,10;
+sc_start SC_LUKFood,1800000,10;
+specialeffect2 EF_INCAGILITY;
+sc_start SC_INCREASEAGI,900000,10;
+specialeffect2 EF_BLESSING;
+sc_start SC_BLESSING,900000,10;
+sc_start SC_CP_WEAPON,75000,5;
+sc_start SC_CP_SHIELD,75000,5;
+sc_start SC_CP_ARMOR,75000,5;
+sc_start SC_CP_HELM,75000,5;
+atcommand "@repairall";
+sc_end SC_Poison;
+sc_end SC_Freeze;
+sc_end SC_Sleep;
+sc_end SC_Stan;
+sc_end SC_Stun;
+sc_end SC_ORCISH;
+sc_end SC_Stone;
+sc_end SC_Silence;
+sc_end SC_Blind;
+sc_end SC_Bleeding;
+sc_end SC_Confusion;
+sc_end SC_Curse;
+sc_end SC_Hallucination;
+sc_end SC_DPOISON;
+percentheal 100,100;
+}
+end;
+}
+
+guild_vs1	mapflag	loadevent
+
+guild_vs1,7,50,4	script	call1#1VS1	858,{
+end;
+OnCall:
+atcommand "@guildrecall "+$GIDGUILD1;
+disablenpc strnpcinfo(0);
+end;
+}
+
+guild_vs1,92,50,4	script	call2#1VS1	858,{
+end;
+OnCall:
+atcommand "@guildrecall "+$GIDGUILD2;
+disablenpc strnpcinfo(0);
+end;
+}
+
+guild_vs1	mapflag	noteleport
+guild_vs1	mapflag	monster_noteleport
+guild_vs1	mapflag	nomemo
+guild_vs1	mapflag	nosave
+guild_vs1	mapflag	nobranch
+guild_vs1	mapflag	gvg
+guild_vs1	mapflag	norodex

@@ -1,0 +1,205 @@
+///*
+//-	shop	Gachabonusshop	FAKE_NPC,64010:1000,60017:1000,60018:1000,60052:1000,60053:1000,60024:1000,58301:1000,58302:1000,58303:1000,58304:1000,58305:1000,58306:1000,58307:1000,58308:1000,58309:1000,58310:1000,58311:1000,58312:1000,58313:1000,58314:1000,58315:1000,58316:1000,58317:1000,58318:1000,58319:1000,58320:1000,12412:1000,60046:1000,60047:1000,60048:1000
+//
+//funtown,191,170,6	script	Gacha Bonus	562,{
+////$zenyjackpot = 0;                                                  //test case
+////zeny = 1000000;                                                    //test case
+////set #GARANTEEGACHA1, #GARANTEEGACHA1 - #GARANTEEGACHA1;            //test case
+//
+//set .spinamount,50;	// ตั้งราคาหมุน
+//set .maxgacha,10;
+//
+//	mes "^000099[Gacha Bonus]^000000";
+//	//mes "^0000FFรางวัล Jackpot เหลืออีก ^FF0000[ "+callfunc("F_InsertComma",(.maxgacha - $gachareset1))+" ]^000000 รางวัล^000000 ";
+//	mes "คุณ ^FF0000[ "+ strcharinfo(0) +" ]^000000";
+//	//query_sql ("SELECT `point_gacha` FROM `char` WHERE `char_id` = '"+ getcharid(0) +"'", .@ref);
+//	mes "ต้องการหมุนอีก ^FF0000[ "+ (100-#GARANTEEGACHA1) +" ]^000000 รอบ เพื่อรับรางวัลการันตี";
+//	mes "มีค่าบริการ ^0000FF"+callfunc("F_InsertComma",(.spinamount))+"^000000 Bonus Point อยากเสี่ยงดวงไหม ?";
+//	next;
+//	if($hotweekclose == 1 && getgmlevel() == 99) {
+//	menu "เปิดสุ่ม",L_open,"^009933•^000000 ตัวอย่างของรางวัล",L_view,"^009933•^000000 แลกการันตี",L_garuntee,"^009933•^000000 reset จำนวนสุ่มได้",L_gacha,"^009933•^000000 reset จำนวนครั้งผู้เล่นทั้งหมด",RE_gacha,"^009933•^000000 ^0000FFรับรางวัลอันดับ^000000",reward_gacha,"^009933•^000000 ไว้ก่อน",L_no;
+//	}
+//	if($hotweekclose == 0 && getgmlevel() == 99) {
+//	menu "^009933•^000000 ปิดสุ่ม !!",L_close,"^009933•^000000 จัดไป !!",L_ok,"^009933•^000000 ตัวอย่างของรางวัล",L_view,"^009933•^000000 แลกการันตี",L_garuntee,"^009933•^000000 reset จำนวนสุ่มได้",L_gacha,"^009933•^000000 reset จำนวนครั้งผู้เล่นทั้งหมด",RE_gacha,"^009933•^000000 ไว้ก่อน",L_no;
+//	}	
+//	if($hotweekclose == 1) {
+//	menu "",L_ok,"^009933•^000000 ตัวอย่างของรางวัล",L_view,"^009933•^000000 ไว้ก่อน",L_no;
+//	}
+//	if($hotweekclose == 0) {
+//	menu "^009933•^000000 จัดไป !!",L_ok,"^009933•^000000 ตัวอย่างของรางวัล",L_view,"^009933•^000000 ไว้ก่อน",L_no;
+//	}
+//	end;
+//L_open:
+//	$hotweekclose = 0;
+//end;
+//L_close:
+//	$hotweekclose = 1;
+//end;
+//
+//reward_gacha:
+//doevent "F_rewardhotweek::OnRewardgacha";
+//end;
+//
+//L_gacha:
+//$gachareset1 = 0;
+//end;
+//
+//RE_gacha:
+//query_sql "UPDATE `char` SET `point_gacha`='0'";
+//			mes "Reset";
+//			mes "เรียบร้อยแล้ว";
+//end;
+//L_view:
+//		close2;
+//		callshop "Gachabonusshop",1;
+//		npcshopattach "Gachabonusshop";
+//		end;
+//		
+//L_garuntee:
+//		callshop "xxxxx",1;
+//		end;		
+//		
+//L_Start:
+//mes "^000099[Gacha Bonus]^000000";
+//mes "คุณ ^FF0000[ "+ strcharinfo(0) +" ]^000000";
+////query_sql ("SELECT `point_gacha` FROM `char` WHERE `char_id` = '"+ getcharid(0) +"'", .@ref);
+//mes "ต้องการหมุนอีก ^FF0000[ "+ (100-#GARANTEEGACHA1) +" ]^000000 รอบ เพื่อรับรางวัลการันตี";
+//mes "มีค่าบริการ ^0000FF"+callfunc("F_InsertComma",(.spinamount))+"^000000 Bonus Point อยากเสี่ยงดวงไหม ?";
+//next;
+//if($hotweekclose == 1) {
+//menu "",L_ok,"^009933•^000000 ไว้ก่อน",L_no;
+//}
+//if($hotweekclose == 0) {
+//menu "^009933•^000000 จัดไป !!",L_ok,"^009933•^000000 ไว้ก่อน",L_no;
+//}
+//end;
+//
+//L_ok:	
+//setarray .hwz0[0],60027,12412,60046,60047,60048; //  common rate
+//setarray .hwz1[0],60024,58301,58302,58303,58304,58305,58306,58307,58308,58309,58310,58311,58312,58313,58314,58315,58316,58317,58318,58319,58320; //  common rate
+//setarray .hwz2[0],60018,60052,60053; // 1%
+//setarray .hwz3[0],60017; // rare
+//setarray .hwz4[0],64010; // superrare
+//set .hwz0rand,rand( getarraysize(.hwz0) ); // 
+//set .hwz1rand,rand( getarraysize(.hwz1) ); // 
+//set .hwz2rand,rand( getarraysize(.hwz2) ); // 
+//set .hwz3rand,rand( getarraysize(.hwz3) ); // 
+//set .hwz4rand,rand( getarraysize(.hwz4) ); // 	
+//
+//		if(#BONUSPOINTS<.spinamount)goto L_not;
+//		//if(zeny<.spinamount)goto L_not;
+//			//query_sql "UPDATE `char` SET `point_gacha`=(`point_gacha` + 1) WHERE `char_id`='"+getcharid(0)+"' LIMIT 1";
+//			//query_sql "UPDATE `char` SET `gacha_time_stamp`=(CURRENT_TIMESTAMP) WHERE `char_id`='"+getcharid(0)+"' LIMIT 1";
+//			.chance = rand(0,1000);
+//			.chance2 = rand(0,1000);
+//			set #BONUSPOINTS, #BONUSPOINTS - .spinamount;
+//			dispbottom "========================================================";
+//			dispbottom "ระบบ : ใช้ 50 Bonus Point";			
+//			dispbottom "ระบบ : Bonus Point คงเหลือ "+callfunc("F_InsertComma",(#BONUSPOINTS))+" Point";			
+//			dispbottom "========================================================";
+//			//zeny -= .spinamount;
+//			//$zenyjackpot += rand(1,40000);	
+//			/*
+//			if (.chance2 < 10 ) {
+//				zeny += ($zenyjackpot*20/100);				
+//				announce "[ ระบบ ]  :  ผู้เล่น ["+strcharinfo(0)+"] หมุนตู้  Gacha Bonus ได้รับแจ๊กพ็อต "+callfunc("F_InsertComma",($zenyjackpot*20/100))+"",bc_all,0xFFFF00;
+//				$zenyjackpot = ($zenyjackpot*80/100);	
+//			}			
+//			*/
+//			set #GARANTEEGACHA1, #GARANTEEGACHA1 + 1;			
+//			if(#GARANTEEGACHA1 == 100){
+//			getitem 64010,1;
+//			set #GARANTEEGACHA1,0;			
+//			announce "[ ระบบ ]  :  ผู้เล่น ["+strcharinfo(0)+"] หมุนตู้  Gacha Bonus ครบ 100 ครั้งได้รับ "+getitemname(64010)+" 1 ชิ้น",bc_all,0xFFFF00;
+//			}			
+//			
+//			// Super Rare Item 0.01%	แจ๊คพ็อตแตก
+//			if (.chance < 1 ) {
+//				specialeffect2 10;	
+//				announce "[ ระบบ ]  :  ผู้เล่น ["+strcharinfo(0)+"] หมุนตู้  Gacha Bonus ได้รับ "+getitemname(.hwz4[.hwz4rand])+" ",bc_all,0xFFFF00;
+//				//dispbottom "[ ระบบ ]  :  ผู้เล่น ["+strcharinfo(0)+"] หมุนตู้  Gacha Bonus ได้รับ "+getitemname(.hwz4[.hwz4rand])+" ";
+//				getitem .hwz4[.hwz4rand],1;
+//				goto L_Start;
+//				end;
+//			}			
+//			// 1%
+//			else if (.chance < 11) {
+//				announce "[ ระบบ ]  :  ผู้เล่น ["+strcharinfo(0)+"] หมุนตู้  Gacha Bonus ได้รับ "+getitemname(.hwz3[.hwz3rand])+" ",bc_all,0xFFFF00;
+//				//dispbottom "[ ระบบ ]  :  ผู้เล่น ["+strcharinfo(0)+"] หมุนตู้  Gacha Bonus ได้รับ "+getitemname(.hwz3[.hwz3rand])+" ";
+//				getitem .hwz3[.hwz3rand],1;
+//				specialeffect2 10;
+//				goto L_Start;
+//				end;
+//			}//3 %
+//			else if (.chance < 31) {
+//				announce "[ ระบบ ]  :  ผู้เล่น ["+strcharinfo(0)+"] หมุนตู้  Gacha Bonus ได้รับ "+getitemname(.hwz2[.hwz2rand])+" ",bc_all,0xFFFF00;
+//				//dispbottom "[ ระบบ ]  :  ผู้เล่น ["+strcharinfo(0)+"] หมุนตู้  Gacha Bonus ได้รับ "+getitemname(.hwz2[.hwz2rand])+" ";
+//				getitem .hwz2[.hwz2rand],1;
+//				specialeffect2 10;
+//				goto L_Start;
+//				end;
+//			}//30 %
+//			else if (.chance < 331) {
+//				announce "[ ระบบ ]  :  ผู้เล่น ["+strcharinfo(0)+"] หมุนตู้  Gacha Bonus ได้รับ "+getitemname(.hwz1[.hwz1rand])+" ",bc_all,0xFFFF00;
+//				//dispbottom "[ ระบบ ]  :  ผู้เล่น ["+strcharinfo(0)+"] หมุนตู้  Gacha Bonus ได้รับ "+getitemname(.hwz1[.hwz1rand])+" ";
+//				getitem .hwz1[.hwz1rand],1;
+//				specialeffect2 10;
+//				goto L_Start;
+//				end;
+//			}
+//			// Common Items
+//			else {
+//				getitem .hwz0[.hwz0rand],1;
+//				specialeffect2 10;
+//				goto L_Start;
+//				end; 
+//			}
+//
+//	
+//	
+//L_no:
+//	mes "^000099[Gacha Bonus]^000000";
+//	mes "พร้อมแล้วก็มาใหม่นะ^000000";
+//	close;
+//	
+//L_not:
+//	mes "^000099[Gacha Bonus]^000000";
+//	mes "ท่านมี Bonus Point ไม่เพียงพอ^000000";
+//	close;
+//	
+//	end
+//	;
+//L_show:
+//		query_sql "SELECT `name`,`point_gacha` FROM `char` ORDER BY `point_gacha` DESC , `gacha_time_stamp` ASC LIMIT 10 ",.@name$,.@point;
+//		mes"===================== HOTWEEK RANKING =====================";
+//		for (set .@i,0; .@i < 10; set .@i,.@i+1) {
+//			if (.@point[.@i] == 0) set .@name$[.@i],"None";
+//			mes "["+(.@i+1)+"]  "+.@name$[.@i]+" : คะแนน " +.@point[.@i]+"";
+//		}
+//		mes "-----------------------------------------------------";
+//		dispbottom"======================= HOTWEEK RANKING =======================";
+//		for (set .@i,0; .@i < 10; set .@i,.@i+1) {
+//			if (.@point[.@i] == 0) set .@name$[.@i],"None";
+//		dispbottom "["+(.@i+1)+"]  "+.@name$[.@i]+" : คะแนน " +.@point[.@i]+"";
+//		}
+//		dispbottom "========================================================";
+//		
+//		
+//		query_sql "SELECT `point_gacha` FROM `char` WHERE `char_id`='"+getcharid(0)+"'",.@cpoint;
+//		mes "คุณมีคะแนน : "+.@cpoint;
+//		mes "==============================================";		
+//		dispbottom "คุณมีคะแนน : "+.@cpoint;
+//		dispbottom "========================================================";
+//		close;
+//		
+//		
+//OnBuyItem:
+//	end;		
+//
+//OnInit:
+//waitingroom "  กาชาปองโบนัส",0;
+//end;
+//}
+//
+//
+//*/
