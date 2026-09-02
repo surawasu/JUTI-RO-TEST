@@ -2,7 +2,7 @@
 
 Updated: 2026-09-02
 Project root: D:\JUTI-HI_Server-Client
-Project state: Planning complete; implementation not started
+Project state: Phase 0 implementation in progress; backup and Git baseline complete
 
 ## 1. Goal
 
@@ -21,7 +21,7 @@ The target is not to run the Windows executable inside a browser. The target is 
 - Server is configured as Pre-Renewal.
 - Source default PACKETVER is 20220405, while an older build artifact records 20220530.
 - MySQL or MariaDB service is not currently installed.
-- Current project root is not a Git repository.
+- Project root is a Git repository on branch `main`; baseline commit `1c6fe012b32d6771091f8d86c7253bfa72e7b4b0` is verified.
 
 ## 3. Architecture decisions
 

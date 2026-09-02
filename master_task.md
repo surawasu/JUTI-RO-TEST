@@ -3,17 +3,17 @@
 Updated: 2026-09-02
 Workspace: D:\JUTI-HI_Server-Client
 Current milestone: M0 Native Baseline
-Implementation status: Phase 0 — 1/8 tasks complete
+Implementation status: Phase 0 — 2/8 tasks complete
 Planning and analysis status: 100%
-Next task: JTW-002 (IN_PROGRESS)
+Next task: JTW-003 (IN_PROGRESS)
 
 ## Agent roster
 
 | Agent | Role | State | Current task |
 |---|---|---|---|
 | lnwjud | Main Agent / Orchestrator | ACTIVE | Durable goal: juti-webapp-project |
-| JTW1 | Primary implementation worker | READY | JTW-002 source-control scope review |
-| JTW2 | ChatGPT writing and QA worker | READY | JTW-002 tracked-file and secret-safety QA |
+| JTW1 | Primary implementation worker | IN_PROGRESS | JTW-003 MariaDB compatibility and install review |
+| JTW2 | ChatGPT writing and QA worker | READY | JTW-003 database safety and least-privilege QA |
 
 ## Status legend
 
@@ -40,7 +40,7 @@ master_task.md is the authoritative status source. Every DONE task must include 
 - MySQL/MariaDB service is not installed.
 - Git, Node/npm, .NET, CMake and Python 3.12 are available.
 - MSBuild is not available from PATH.
-- Project is not currently a Git repository.
+- Project is a Git repository on branch `main`; verified baseline commit is `1c6fe012b32d6771091f8d86c7253bfa72e7b4b0`.
 
 ## Phase summary
 
@@ -100,25 +100,35 @@ Evidence:
 
 ### JTW-002 — Initialize source control
 
-State: IN_PROGRESS
+State: DONE
 Owner: JTW1 (primary), JTW2 (QA)
 Depends on: JTW-001
 
 Tasks:
 
-- [ ] Initialize Git at the agreed development root.
-- [ ] Add ignore rules for GRF, PDB, executables, DB data, logs, secrets and generated assets.
-- [ ] Commit server source/config, documentation and future web source.
-- [ ] Record baseline commit.
+- [x] Initialize Git at the agreed development root.
+- [x] Add ignore rules for GRF, PDB, executables, DB data, logs, secrets and generated assets.
+- [x] Commit server source/config, documentation and future web source.
+- [x] Record baseline commit.
 
 Acceptance:
 
 - Git status is clean.
 - No large binary, credential or database file is tracked.
 
+Evidence:
+
+- Baseline commit: `1c6fe012b32d6771091f8d86c7253bfa72e7b4b0` (`chore: establish JUTI-HI source baseline`).
+- Initial tree: 2,633 tracked files; no tracked file exceeds 10 MiB.
+- Forbidden tracked files: 0 (Client, GRF, EXE, DLL, PDB, connection configs, histories and generated map cache excluded).
+- Required custom content: `src/custom` 8 files; `db/import` 66 files; approved vendor libraries 6 files.
+- Safe `conf/import` allowlist: exactly 6 files; credential-key scan returned 0 hits.
+- Post-commit checks: clean status; `git fsck --full` exit 0; JTW2 QA GO.
+
 ### JTW-003 — Install development database
 
-State: READY
+State: IN_PROGRESS
+Owner: JTW1 (primary), JTW2 (QA)
 Depends on: JTW-001
 
 Tasks:
@@ -404,10 +414,10 @@ M5 acceptance:
 
 ## Active task
 
-Task: JTW-002
+Task: JTW-003
 State: IN_PROGRESS
 Owner: JTW1 (primary), JTW2 (QA)
-Next action: define safe tracked scope, add root ignore policy, initialize Git, create baseline commit, and verify no binary, database, or secret file is tracked.
-Prerequisite evidence: JTW-001 backup verified at `C:\JUTI-HI_Backups\20260902-1129Z_JTW-001`.
+Next action: inspect SQL compatibility and Windows package availability, select a supported MariaDB version, then install and verify a local-only development service.
+Prerequisite evidence: JTW-001 backup verified; JTW-002 baseline commit `1c6fe012b32d6771091f8d86c7253bfa72e7b4b0` verified.
 Continuation: hourly lnwjud continuation is enabled until the durable goal is terminal.
 Blocker: none.
