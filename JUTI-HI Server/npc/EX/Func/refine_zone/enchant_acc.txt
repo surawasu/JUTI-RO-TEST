@@ -1,4 +1,4 @@
-morocc,113,64,5	script	Wandering Mind#JCv2	4_CENERE,{
+morocc03,113,64,5	script	Wandering Mind#JCv2	4_CENERE,{
 	disable_items;
 	mes "[Wandering Mind]";
 	mes "คิคิคิ... ข้าสามารถ... สัมผัสได้ถึง...\nความแค้น...จำนวนนับไม่ถ้วน...เหล่านั้น...";

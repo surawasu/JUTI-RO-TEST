@@ -4,8 +4,8 @@
 //#################################################################################################################################
 -	script	Tools Dealer#1::pshop	982,{
 	callshop "PotionS",3;
-//OnInit: 
-//waitingroom "†††Potion Shop",0; 
+OnInit: 
+waitingroom "†††∫√‘°“√¢“¬¢Õß",0; 
 end; 
 }
 
@@ -65,3 +65,4 @@ like_game,90,136,5	duplicate(pshop)	Tools Dealer#funtown4	982		//tool
 eternal,151,94,5	duplicate(pshop)	Tools Dealer#funtown6	982		//tool
 eternal,94,156,5	duplicate(pshop)	Tools Dealer#funtown8	982		//tool
 like_game,156,136,5	duplicate(pshop)	Tools Dealer#funtown63	982		//tool
+morocc03,142,192,5	duplicate(pshop)	Tools Dealer#funtown63	982		//tool

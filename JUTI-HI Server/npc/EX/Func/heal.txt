@@ -19,9 +19,9 @@
 	.@Buffs = 1;	// Also buff players? (1: yes / 0: no)
 	.@Delay = 3;	// Heal delay, in seconds
 //mes "[Healer]";
-//mes "¢Õ„ÀÈæ√–‡®È“Õ«¬æ√";
-//mes "∑Ë“πµÈÕß°“√∑” ‘Ëß„¥?";
-//switch(select("^0000FF√—∫ Buff^000000:"+(bragion?"^FF0000ª‘¥°“√√—∫ Bragi/Service ®“° NPC^000000":"^339900‡ª‘¥°“√√—∫ Bragi/Service ®“° NPC^000000")+"")){
+//mes "ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ¬æÔøΩ";
+//mes "ÔøΩÔøΩ“πÔøΩÔøΩÕßÔøΩÔøΩ√∑ÔøΩÔøΩÔøΩÔøΩÔøΩ?";
+//switch(select("^0000FFÔøΩ—∫ Buff^000000:"+(bragion?"^FF0000ÔøΩ‘¥ÔøΩÔøΩÔøΩÔøΩ—∫ Bragi/Service ÔøΩ“° NPC^000000":"^339900ÔøΩ‘¥ÔøΩÔøΩÔøΩÔøΩ—∫ Bragi/Service ÔøΩ“° NPC^000000")+"")){
 //case 1:
 	if (@HD > gettimetick(2))
 		end;
@@ -78,23 +78,12 @@
 	}
 	*/
 	
-	sc_start SC_CP_WEAPON,1800000,5;
-	sc_start SC_CP_SHIELD,1800000,5;
-	sc_start SC_CP_ARMOR,1800000,5;
-	sc_start SC_CP_HELM,1800000,5;
     if ( getpetinfo(PETINFO_EGGID)>0){
 		atcommand "@petfriendly 1000";
 	}
 	
 	atcommand "@repairall";
 	identifyall;
-	sc_start SC_STRFood,900000,10;
-	sc_start SC_AGIFood,900000,10;
-	sc_start SC_VITFood,900000,10;
-	sc_start SC_INTFood,900000,10;
-	sc_start SC_DEXFood,900000,10;
-	sc_start SC_LUKFood,900000,10;
-	sc_start4 SC_POEMBRAGI,1800000,10,50,100,0;	
 	
 	
 	//sc_start SC_POEMBRAGI,60000,10;
@@ -133,70 +122,46 @@
 	//sc_start SC_ITEMBOOST,1800000,1000;
 	//} 
 	
-	if(#APACHE_PREMIUM_TIME > gettimetick(2)){
-	specialeffect2 EF_HEAL2;
-	skilleffect 75,0; sc_start SC_GLORIA,900000,5;
-	skilleffect 74,0; sc_start SC_MAGNIFICAT,900000,5;
-	//skilleffect 33,0; sc_start SC_ANGELUS,900000,5;
-	//if(bragion == 1){
-	//sc_start SC_POEMBRAGI,60000,10;
-	//sc_start SC_SERVICE4U,60000,10;
-	//}
-	sc_start SC_STRFood,900000,10;
-	sc_start SC_AGIFood,900000,10;
-	sc_start SC_VITFood,900000,10;
-	sc_start SC_INTFood,900000,10;
-	sc_start SC_DEXFood,900000,10;
-	sc_start SC_LUKFood,900000,10;
-	//sc_start SC_DROCERA_HERB_STEAMED,1800000,20;
-	//sc_start SC_PUTTI_TAILS_NOODLES,1800000,20;
-	//sc_start SC_SIROMA_ICE_TEA,1800000,20;
-	//sc_start SC_MINOR_BBQ,1800000,20;
-	//sc_start SC_SAVAGE_STEAK,1800000,20;
-	//sc_start SC_COCKTAIL_WARG_BLOOD,1800000,20;
-	//sc_start SC_CP_WEAPON,1800000,5;
-	//sc_start SC_CP_SHIELD,1800000,5;
-	//sc_start SC_CP_ARMOR,1800000,5;
-	//sc_start SC_CP_HELM,1800000,5;
-	//sc_start SC_HitFood,1800000,10;
-	//sc_start SC_FleeFood,1800000,10;
-	//sc_start SC_BATKFood,1800000,10;
-	//sc_start SC_MATKFood,1800000,10;
-	specialeffect2 EF_HEAL2;
-	specialeffect2 EF_INCAGILITY;
-	sc_start SC_INCREASEAGI,900000,10;
-	specialeffect2 EF_BLESSING;
-	sc_start SC_BLESSING,900000,10;
-	atcommand "@repairall";
-	sc_end SC_Poison;
-	sc_end SC_Freeze;
-	sc_end SC_Sleep;
-	sc_end SC_Stan;
-	sc_end SC_Stun;
-	sc_end SC_ORCISH;
-	sc_end SC_Stone;
-	sc_end SC_Silence;
-	sc_end SC_Blind;
-	sc_end SC_Bleeding;
-	sc_end SC_Confusion;
-	sc_end SC_Curse;
-	sc_end SC_Hallucination;
-	sc_end SC_DPOISON;
-	percentheal 100,100;
-	
-	if (.@Delay)
-		@HD = gettimetick(2) + .@Delay;
+	if (#APACHE_PREMIUM_TIME > gettimetick(2)) {
+		// Premium buffs: 60 minutes
+		skilleffect 75,0; sc_start SC_GLORIA,3600000,5;
+		skilleffect 74,0; sc_start SC_MAGNIFICAT,3600000,5;
+		skilleffect 33,0; sc_start SC_ANGELUS,3600000,5;
+		specialeffect2 EF_INCAGILITY;
+		sc_start SC_INCREASEAGI,3600000,10;
+		specialeffect2 EF_BLESSING;
+		sc_start SC_BLESSING,3600000,10;
+		sc_start4 SC_POEMBRAGI,3600000,10,50,100,0;
+		sc_start SC_SERVICE4U,3600000,10;
+
+		// Premium Chemical Protection: 60 minutes
+		sc_start SC_CP_WEAPON,3600000,5;
+		sc_start SC_CP_SHIELD,3600000,5;
+		sc_start SC_CP_ARMOR,3600000,5;
+		sc_start SC_CP_HELM,3600000,5;
+
+		// Premium stat foods: 60 minutes
+		sc_start SC_STRFood,3600000,10;
+		sc_start SC_AGIFood,3600000,10;
+		sc_start SC_VITFood,3600000,10;
+		sc_start SC_INTFood,3600000,10;
+		sc_start SC_DEXFood,3600000,10;
+		sc_start SC_LUKFood,3600000,10;
 	} else {
-	//if(bragion == 1){
-	//sc_start SC_POEMBRAGI,60000,5;
-	//sc_start SC_SERVICE4U,60000,5;
-	//}
+		// Normal player buffs: 15 minutes
+		skilleffect 75,0; sc_start SC_GLORIA,900000,5;
+		skilleffect 74,0; sc_start SC_MAGNIFICAT,900000,5;
+		skilleffect 33,0; sc_start SC_ANGELUS,900000,5;
+		specialeffect2 EF_INCAGILITY;
+		sc_start SC_INCREASEAGI,900000,5;
+		specialeffect2 EF_BLESSING;
+		sc_start SC_BLESSING,900000,5;
+		sc_start4 SC_POEMBRAGI,900000,10,50,100,0;
+		sc_start SC_SERVICE4U,900000,5;
+	}
+
 	percentheal 100,100;
 	specialeffect2 EF_HEAL2;
-	specialeffect2 EF_INCAGILITY;
-	sc_start SC_INCREASEAGI,900000,5;
-	specialeffect2 EF_BLESSING;
-	sc_start SC_BLESSING,900000,5;
 	atcommand "@repairall";
 	sc_end SC_Poison;
 	sc_end SC_Freeze;
@@ -214,12 +179,11 @@
 	sc_end SC_DPOISON;
 	if (.@Delay)
 		@HD = gettimetick(2) + .@Delay;
-	}
 end;
 
-//OnInit:
-//	waitingroom "     Healer",0;
-//end; 
+	OnInit:
+	waitingroom "∫√‘°“√∫—ø",0;
+	end;
 
 }
 
@@ -231,6 +195,7 @@ like_game,93,136,6	duplicate(Healer)	Healer#funtown4	569
 eternal,154,94,6	duplicate(Healer)	Healer#funtown6	569
 eternal,97,156,6	duplicate(Healer)	Healer#funtown8	569
 like_game,159,136,6	duplicate(Healer)	Healer#funtown63	569
+morocc03,146,192,6	duplicate(Healer)	Healer#morocc03	4_TOWER_10
 
 // Duplicates
 //============================================================

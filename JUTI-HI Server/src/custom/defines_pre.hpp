@@ -10,5 +10,7 @@
  **/
 
 
+// JUTI-HI client packet version (kept explicit for reproducible Windows builds)
+#define PACKETVER 20220530
 
 #endif /* CONFIG_CUSTOM_DEFINES_PRE_HPP */

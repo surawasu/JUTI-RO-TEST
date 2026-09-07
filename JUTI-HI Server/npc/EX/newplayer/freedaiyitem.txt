@@ -1,0 +1,89 @@
+//============================================================
+// JUTI - Daily Free Item
+// รับฟรีวันละ 1 ครั้ง / 1 Account
+// Reset อัตโนมัติเมื่อวันที่เปลี่ยน เวลา 00:00 ของ Server
+// IMPORTANT: หลังแก้ไขไฟล์นี้ให้ Save As เป็น TIS-620 / Windows-874
+//============================================================
+
+morocc03,165,195,6	script	ของฟรีรายวัน	4_F_KAFRA6,{
+
+	.@today = gettime(DT_YEAR) * 10000 + gettime(DT_MONTH) * 100 + gettime(DT_DAYOFMONTH);
+
+	mes "[ของฟรีรายวัน]";
+	mes "สวัสดีค่ะ ^0055FF"+strcharinfo(0)+"^000000";
+	mes "รับไอเทมฟรีได้วันละ ^FF00001 ครั้ง^000000 ต่อ 1 ไอดี";
+	mes "เปลี่ยนตัวละครก็ไม่สามารถรับซ้ำได้";
+	mes "ระบบจะรีเซ็ตสิทธิ์ทุกวันเวลา ^0055FF00:00 น.^000000";
+	mes "--------------------------------";
+
+	if (.@today < .StartDate || .@today > .EndDate) {
+		mes "^FF0000ขณะนี้อยู่นอกช่วงกิจกรรม^000000";
+		mes "ช่วงกิจกรรม: "+.StartDate+" - "+.EndDate;
+		close;
+	}
+
+	mes "^00AA00ไอเทมที่จะได้รับวันนี้^000000";
+	for (.@i = 0; .@i < getarraysize(.ItemID); .@i++) {
+		mes "- "+getitemname(.ItemID[.@i])+" x "+.ItemAmount[.@i]+" EA";
+	}
+	mes "--------------------------------";
+
+	if (#JUTI_DAILY_ITEM_DATE == .@today) {
+		mes "^FF0000ไอดีนี้รับของฟรีประจำวันไปแล้วค่ะ^000000";
+		mes "สามารถรับใหม่ได้หลังเวลา 00:00 น.";
+		close;
+	}
+
+	if (select("รับไอเทมฟรี:ยังไม่รับตอนนี้") == 2) close;
+
+	for (.@i = 0; .@i < getarraysize(.ItemID); .@i++) {
+		if (!checkweight(.ItemID[.@i], .ItemAmount[.@i])) {
+			mes "[ของฟรีรายวัน]";
+			mes "^FF0000น้ำหนักหรือช่องเก็บของไม่เพียงพอ^000000";
+			mes "กรุณาจัดพื้นที่ใน Inventory แล้วลองใหม่อีกครั้ง";
+			close;
+		}
+	}
+
+	// บันทึกสิทธิ์ระดับ Account ก่อนแจก เพื่อป้องกันการกดรับซ้ำ
+	#JUTI_DAILY_ITEM_DATE = .@today;
+
+	for (.@i = 0; .@i < getarraysize(.ItemID); .@i++) {
+		getitem .ItemID[.@i], .ItemAmount[.@i];
+	}
+
+	// บันทึก Log หลังแจกไอเทมสำเร็จ
+	.@items$ = "";
+	for (.@i = 0; .@i < getarraysize(.ItemID); .@i++) {
+		if (.@i > 0) .@items$ += ",";
+		.@items$ += .ItemID[.@i]+"x"+.ItemAmount[.@i];
+	}
+	query_logsql("INSERT INTO `daily_free_item_log` (`account_id`,`char_id`,`char_name`,`claim_date`,`items`,`claim_time`) VALUES ("+getcharid(3)+","+getcharid(0)+",'"+escape_sql(strcharinfo(0))+"',"+.@today+",'"+escape_sql(.@items$)+"',NOW())");
+
+	mes "[ของฟรีรายวัน]";
+	mes "^00AA00รับไอเทมเรียบร้อยแล้วค่ะ^000000";
+	mes "กลับมารับไอเทมได้อีกครั้งหลังเวลา 00:00 น.";
+	close;
+
+OnInit:
+	// สร้างตาราง Log ในฐานข้อมูล ragnarok_log หากยังไม่มี
+	query_logsql("CREATE TABLE IF NOT EXISTS `daily_free_item_log` (`id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,`account_id` INT UNSIGNED NOT NULL,`char_id` INT UNSIGNED NOT NULL,`char_name` VARCHAR(30) NOT NULL,`claim_date` INT UNSIGNED NOT NULL,`items` VARCHAR(255) NOT NULL,`claim_time` DATETIME NOT NULL,PRIMARY KEY (`id`),KEY `idx_account_date` (`account_id`,`claim_date`),KEY `idx_claim_time` (`claim_time`)) ENGINE=InnoDB DEFAULT CHARSET=latin1");
+
+	// รูปแบบวันที่ YYYYMMDD
+	.StartDate = 20260904; // วันที่เริ่มกิจกรรม
+	.EndDate   = 20991231; // วันที่สิ้นสุดกิจกรรม
+
+	// ===== รายการไอเทมที่แจก แก้ไขตรงนี้ =====
+	setarray .ItemID[0],
+		12210, // Bubble Gum
+		601,   // Fly Wing
+		7227;  // TCG Card
+
+	setarray .ItemAmount[0],
+		5,     // Bubble Gum 5 EA
+		50,    // Fly Wing 50 EA
+		1;     // TCG Card 1 EA
+
+	waitingroom "รับของฟรีรายวัน",0;
+	end;
+}

@@ -13,7 +13,7 @@
 //= 1.1 Switched to 'getbattleflag', credits to Saithis. [Euphy]
 //============================================================
 
-like_game,145,152,6	script	แต่งตัว#custom_stylist	503,{
+morocc03,135,190,6	script	แต่งตัวละคร#custom_stylist	503,{
 //if(BaseLevel < 100){
 //mes "ต้องLevelมากกว่า 100 ถึงจะใช้บริการได้";
 //end;
@@ -67,6 +67,6 @@ else if(Class == Job_Summoner){
 	}
 end;
 OnInit:
-waitingroom "เปลี่ยนสีชุด,ทรงผม",0;
+waitingroom "     แต่งตัวละคร",0;
 end;
 }

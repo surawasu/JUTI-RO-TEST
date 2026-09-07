@@ -1,66 +1,93 @@
-like_game,134,96,6	script	จุติออโต้	10081,{
+morocc03,154,195,6	script	ระบบจุติ	10081,{
 
-    mes "[จุติออโต้]";
-    mes "เลือกบริการจากด้านล่างได้เลย";
-    switch(select("- จุติ Level:- เปิด ระบบจุติออโต้ ["+(jutiauto<1?"ปิด":"^FF0000เปิดอยู่^000000")+"]::- Exit")){
-    case 1:
+	mes "[Rebirth]";
+	mes "สวัสดีครับ คุณ ^0055FF"+strcharinfo(0)+"^000000";
+	mes "=======================";
+	mes "คุณได้ทำการจุติไปแล้ว ^FF0000["+jutilv+"]^000000 รอบ";
+	mes "ระบบจุติออโต้ ["+(jutiauto == 1 ? "^00AA00On^000000" : "^FF0000Off^000000")+"]";
+	mes "=======================";
+	next;
+
+	mes "[Rebirth]";
+	mes "จุติฟรี 20 รอบ";
+	mes "หลังจากนั้นมีเงื่อนไขดังนี้";
+	mes "TCG Card จำนวน ^0055FF10^000000 EA";
+	mes "Zeny: ^0055FF10M^000000";
+	next;
+
+	switch(select("- จุติ Level:- เปิด/ปิด ระบบจุติออโต้ ["+(jutiauto<1?"Off":"^00AA00On^000000")+"]::- Exit")){
+	case 1:
 		if(BaseLevel < 99){
 			next;
-			mes "[จุติออโต้]";
-			mes "ต้องมี BaseLevel 99";
+			mes "[ระบบจุติ]";
+			mes "ต้องการ BaseLevel 99";
 			end;
 		}
-		next;
+
+		if(jutilv >= .FreeRebirth){
+			if(countitem(.ReqItem) < .ReqAmount || Zeny < .ReqZeny){
+				next;
+				mes "[ระบบจุติ]";
+				mes "ไอเทมหรือ Zeny ไม่เพียงพอ";
+				mes "ต้องการ Item ID "+.ReqItem+" จำนวน "+.ReqAmount+" EA";
+				mes "ต้องการ Zeny "+.ReqZeny;
+				end;
+			}
+			delitem .ReqItem,.ReqAmount;
+			Zeny -= .ReqZeny;
+		}
+
 		BaseLevel = 1;
 		jutilv += 1;
+		announce "[ System ] : คุณ "+strcharinfo(0)+" ได้ทำการจุติแล้ว (รอบที่ "+jutilv+")",bc_all,0xFFFF00;
 		end;
-    case 2:
-		if(jutiauto !=0 ){
+
+	case 2:
+		if(jutiauto != 0){
 			jutiauto = 0;
+			mes "[ระบบจุติ]";
+			mes "ปิดระบบจุติออโต้แล้ว";
 			end;
 		}
-		if(jutiauto == 0){
-			next;
-			if(BaseLevel == 99){
-			BaseLevel = 1;
-			jutilv += 1;
-			}	
-			jutiauto = 1;
-			mes "[จุติออโต้]";
-			mes "เปิดระบบจุติออโต้แล้ว";
-			end;
-		}
-        end;
-    case 3:
-		next;
-		callfunc "F_GetPlatinumSkills";
-        atcommand "@allskill";
-        atcommand "@allstats";
-		mes "[จุติออโต้]";
-		mes "ท่านรับสกิลทั้งหมดเรียบร้อย";
-        end;
-    case 4:
-        end;
-    }
-   end;
-   
+		jutiauto = 1;
+		mes "[ระบบจุติ]";
+		mes "เปิดระบบจุติออโต้แล้ว";
+		end;
+
+	case 3:
+		end;
+	}
+
 OnInit:
-waitingroom "    จุติออโต้",0;
-end;   
-   
+	.FreeRebirth = 20;      // จำนวนรอบจุติฟรี
+	.ReqItem = 7227;        // TCG Card
+	.ReqAmount = 10;        // จำนวนไอเทม
+	.ReqZeny = 10000000;    // จำนวน Zeny
+	waitingroom "ระบบจุติ",0;
+	end;
 }
 
 -	script	jutiauto	-1,{
-
 OnPCBaseLvUpEvent:
-if(jutiauto == 1) {
-	
-	if (BaseLevel == 99){
+	if(jutiauto == 1 && BaseLevel == 99) {
+		if(jutilv >= getvariableofnpc(.FreeRebirth,"ระบบจุติ")) {
+			.@item = getvariableofnpc(.ReqItem,"ระบบจุติ");
+			.@amt  = getvariableofnpc(.ReqAmount,"ระบบจุติ");
+			.@zeny = getvariableofnpc(.ReqZeny,"ระบบจุติ");
+
+			if(countitem(.@item) < .@amt || Zeny < .@zeny){
+				dispbottom "[ระบบจุติออโต้] ไอเทมหรือ Zeny ไม่เพียงพอ กรุณาไปที่ NPC ระบบจุติ";
+				end;
+			}
+
+			delitem .@item,.@amt;
+			Zeny -= .@zeny;
+		}
+
 		BaseLevel = 1;
 		jutilv += 1;
-		dispbottom "[ ระบบจุติออโต้] : ท่านได้จุติรอบที่ "+jutilv+" สำเร็จแล้ว ";
+		announce "[ System ] : คุณ "+strcharinfo(0)+" ได้ทำการจุติแล้ว (รอบที่ "+jutilv+")",bc_all,0x00FF00;
+		dispbottom "[ระบบจุติออโต้] จุติสำเร็จ รอบที่ "+jutilv;
 	}
-
-}
-end;
+	end;
 }

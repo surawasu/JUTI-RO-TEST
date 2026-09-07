@@ -16,7 +16,7 @@
 //= 2.0 Added 4th class [Lemongrass]
 //============================================================
 
-morocc,152,110,5	script	Job Master	652,{
+morocc03,159,194,6	script	Job Master	123,{
 function Get_Job_Equip;
 // Checks if the Player has the required level.
 // closes if not, returns if yes
@@ -24,15 +24,15 @@ function	Require_Level	{
 	if (BaseLevel < getarg(0) || JobLevel < getarg(1)) {
 		.@blvl = getarg(0) - BaseLevel;
 		.@jlvl = getarg(1) - JobLevel;
-		mes "Level ที่ต้องการ:";
+		mes "Level requirement:";
 		mes ((getarg(0)>1)? 
 			"^bb0000"+getarg(0)+"^000000 (^bb0000Base^000000) / ":"")+"^00bb00"+
 			getarg(1)+"^000000 (^00bb00Job^000000)";
-		mes "คุณต้องเก็บอีก " +
-			((.@blvl > 0) ? "^bb0000"+.@blvl+"^000000 Bas Levels " + 
+		mes "You need " +
+			((.@blvl > 0) ? "^bb0000"+.@blvl+"^000000 more base levels " + 
 				((.@jlvl > 0) ? "and " : "") : "") +
-			((.@jlvl > 0) ? "^00bb00"+.@jlvl+"^000000 Job levels " : "") +
-			"เพื่อไปขึ้นถัดไป.";
+			((.@jlvl > 0) ? "^00bb00"+.@jlvl+"^000000 more job levels " : "") +
+			"to continue.";
 		close;
 	}
 	return;
@@ -120,7 +120,7 @@ function	Check_Riding	{
 }
 function	Check_SkillPoints	{
 	if (.SkillPointCheck && SkillPoint) {
-		mes "โปรดใช้ Skill Point ให้หมดก่อน.";
+		mes "Please use all your skill points before proceeding.";
 		close;
 	}
 	return;
@@ -284,7 +284,7 @@ function	Job_Menu	{
 		if (.@opt_cnt > 1) {
 			// Multiple job classes given. Select one and save it to .@class
 			// After that confirm .@class
-			mes "โปรดเลือกอาชีพที่ต้องการ.";
+			mes "Select a job.";
 			.@menu$ = "";
 			for (.@i = 0; .@i < .@opt_cnt; .@i++) {
 				if( getelementofarray(getarg(0), .@i) == Job_Novice_High)
@@ -326,7 +326,7 @@ function	Job_Change	{
 	.@to_cls = getarg(0);
 	next;
 	mes .NPCName$;
-	mes "ขณะนี้อาชีพของคุณคือ " + callfunc("F_InsertArticle", jobname(.@to_cls)) + "!";
+	mes "You are now " + callfunc("F_InsertArticle", jobname(.@to_cls)) + "!";
 	if (.@to_cls == Job_Novice_High && .LastJob)
 		lastJob = Class; // Saves the lastJob for rebirth
 	jobchange .@to_cls;
@@ -356,13 +356,13 @@ function	Confirm_Change	{
 		mes "Unknown Class Error.";
 		close;
 	}
-	mes "คุณต้องการที่จะเปลี่ยนเป็น ^0055FF"+jobname(.@class)+"^000000 ?";
-	.@job_option$ = " ~ เปลี่ยนเป็น ^0055FF"+jobname(.@class)+"^000000 ";
+	mes "Do you want to change into ^0055FF"+jobname(.@class)+"^000000 class?";
+	.@job_option$ = " ~ Change into ^0055FF"+jobname(.@class)+"^000000 class";
 	if( .@class == Job_Novice_High)
-		.@job_option$ = " ~ ^0055FFเปลี่ยน Hi-Class^000000";
+		.@job_option$ = " ~ ^0055FFRebirth^000000";
 	
 	if (select(.@job_option$+": ~ ^777777" + 
-			((.@back) ?"กลับไป" : "Cancel") + "^000000") == 1) {
+			((.@back) ?"Go back" : "Cancel") + "^000000") == 1) {
 		Job_Change(.@class);
 	}
 	if (!.@back)
@@ -480,21 +480,21 @@ function	Get_Job_Equip	{
 OnInit:
 	// Initialisation, do not edit these
 	.NPCName$ = "[Job Master]";
-	waitingroom "   เปลี่ยนอาชีพ",0;
+	
 	// Settings
-	.FourthClass = false;				// Enable fourth classes?
-	.ThirdClass = false;					// Enable third classes?
+	.FourthClass = true;				// Enable fourth classes?
+	.ThirdClass = true;					// Enable third classes?
 	.RebirthClass = true;				// Enable rebirth classes?
-	.SecondExpanded = false;				// Enable new expanded second classes: Ex. Super Novice, Kagerou/Oboro, Rebellion?
+	.SecondExpanded = true;				// Enable new expanded second classes: Ex. Super Novice, Kagerou/Oboro, Rebellion?
 	.BabyNovice = true;					// Enable Baby novice classes? Disable it if you like player must have parent to get job baby.
 	.BabyClass = true;					// Enable Baby classes?
-	.BabyThird = false;					// Enable Baby third classes?
+	.BabyThird = true;					// Enable Baby third classes?
 	.BabyExpanded = true;				// Enable Baby Expanded classes: Ex. Baby Ninja, Baby Taekwon, etc.
-	.BabySummoner = false;				// Enable Baby Summoner?
+	.BabySummoner = true;				// Enable Baby Summoner?
 	.LastJob = true;					// Enforce linear class changes?
 	.SkillPointCheck = true;			// Force player to use up all skill points?
 	.Platinum = true;					// Get platinum skills automatically?
-	.GetJobEquip = true;				// Get job equipment (mostly weapons) on job change?
+	.GetJobEquip = false;				// Get job equipment (mostly weapons) on job change?
 
 	// Level Requirements
 	setarray .Req_First[0],1,10; 		// Minimum base level, job level to turn into 1st class
@@ -515,6 +515,8 @@ OnInit:
 		.BabyExpanded = false;
 		.BabySummoner = false;
 	}
+	waitingroom "เปลี่ยนอาชีพได้เลย",0;
 	end;
+	
 }
 

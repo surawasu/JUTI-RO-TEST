@@ -1,5 +1,5 @@
-morocc.gat,159,97,3	script	Warp†Express::Warper	677,{
-	.@num = rand(0,99);
+morocc03,169,192,3	script	Warp†Express::Warper	677,{
+	.@num = rand(0,9999);
 	mes "[ √–∫∫µ√«®∫Õ∑ ]";
 	mes "°√Õ°‡≈¢µËÕ‰ªπ’È ["+.@num+"]";
 	input .@check;
@@ -1291,9 +1291,9 @@ W_save:
 	set youlastwarp_y,.@y;
 	//dispbottom "∑”°“√∫—π∑÷° ®ÿ¥«“ª..";
 	end;
-OnInit:
-//waitingroom ">«“ª ∫Õ  À“‡ß‘π<",0;
-end;
+	OnInit:
+	waitingroom "∫√‘°“√«“√Ïª",0;
+	end;
 }
 
 
@@ -1339,3 +1339,4 @@ like_game,99,136,4	duplicate(Warper)	Warp†Express#funtown4	478		//warp
 eternal,160,94,4	duplicate(Warper)	Warp†Express#funtown6	478		//warp
 eternal,103,156,4	duplicate(Warper)	Warp†Express#funtown8	478		//warp
 like_game,165,136,4	duplicate(Warper)	Warp†Express#funtown63	478		//warp
+//morocc03,161,103,6	duplicate(Warper)	Warp†Express#funtown63	478		//warp

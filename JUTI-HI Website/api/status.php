@@ -1,0 +1,1 @@
+<?php require_once __DIR__ . '/../lib/functions.php'; header('Content-Type: application/json; charset=utf-8'); header('Cache-Control: no-store'); echo json_encode(server_status(), JSON_UNESCAPED_UNICODE);

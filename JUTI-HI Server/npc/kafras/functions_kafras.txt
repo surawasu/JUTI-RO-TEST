@@ -116,7 +116,7 @@ function	script	F_Kafra	{
 	}
 	next;
 	if (.@welcome == 2)// Guild Kafra Menu override (free Teleport, free Storage, Free Cart)
-		setarray .@K_Menu0$[0], "เปิดคลังเก็บของ", "เปิดคลังเก็บของกิล", "เช่ารถเข็น","ใช้บริการ Teleport", "ยกเลิก";
+		setarray .@K_Menu0$[0], "เปิดคลังเก็บของ", "เปิดคลังกิลด์", "เช่ารถเข็น", "บริการ Teleport", "ยกเลิก";
 	else {
 		switch(.@menu_num) {
 			// Save and Storage only
@@ -135,11 +135,11 @@ function	script	F_Kafra	{
 			// Save, Storage, Other Check information. (Turbo track)
 			case 8: setarray .@K_Menu0$[0],"Save","เปิดคลังเก็บของ","ตรวจสอบข้อมูลอื่นๆ","ยกเลิก"; break;
 			// No Save (Rune Knight)
-			case 9: setarray .@K_Menu0$[0],"เปิดคลังเก็บของ","เช่ารถเข็น","ใช้บริการ Teleport","ตรวจสอบข้อมูลอื่นๆ","ยกเลิก"; break;
+			case 9: setarray .@K_Menu0$[0],"เปิดคลังเก็บของ","เช่ารถเข็น","บริการ Teleport","ตรวจสอบข้อมูลอื่นๆ","ยกเลิก"; break;
 			// Storage, Save, and Pushcart (Dewata, reorder of case 7)
 			case 10: setarray .@K_Menu0$[0],"เปิดคลังเก็บของ","Save","เช่ารถเข็น","ยกเลิก"; break;
 			// Default message (obsolete)
-			default: setarray .@K_Menu0$[0],"Save","เปิดคลังเก็บของ","ใช้บริการ Teleport","เช่ารถเข็น","ยกเลิก"; break;
+			default: setarray .@K_Menu0$[0],"Save","เปิดคลังเก็บของ","บริการ Teleport","เช่ารถเข็น","ยกเลิก"; break;
 		}
 	}
 	.@menu$ = implode(.@K_Menu0$,":");
@@ -154,7 +154,7 @@ function	script	F_Kafra	{
 				callfunc "F_KafStor",0,getarg(3),.@welcome;
 			next;
 		}
-		else if (.@K_Menu0$[.@j] =="ใช้บริการ Teleport") {
+		else if (.@K_Menu0$[.@j] =="บริการ Teleport") {
 			if (.@menu_num != 4)// Display Einbroch "No Teleport Service" notice.
 				callfunc "F_KafTele",.@welcome;
 			else {
@@ -185,7 +185,7 @@ function	script	F_Kafra	{
 			callfunc "F_KafEnd",.@welcome,0;
 			end;
 		}
-		else if (.@K_Menu0$[.@j] == "เปิดคลังเก็บของกิล") {
+		else if (.@K_Menu0$[.@j] == "เปิดคลังกิลด์") {
 			callfunc "F_KafStor",1,0;
 			next;
 		}
@@ -286,8 +286,8 @@ function	script	F_KafStor	{
 //===================================================
 function	script	F_KafTele	{
 	mes "[Kafra Employee]";
-	mes "โปรดเลือก";
-	mes "ปลายทางที่ท่านต้องการไป.";
+	mes "??????";
+	mes "?????????????????.";
 	next;
 	.@j = select( implode(@wrpC$,":") ) - 1;
 	if (@wrpC$[.@j] == "ยกเลิก")
@@ -299,10 +299,10 @@ function	script	F_KafTele	{
 	else {
 		if (Zeny < @wrpP[.@j]) {
 			mes "[Kafra Employee]";
-			mes "ขอโทษด้วย. ดูเหมือนท่าน";
-			mes "จะมี ^0000FFZeny^000000 ไม่พอสำหรับใช้บริการ Teleport";
-			mes "ค่าบริการสำหรับบริการ teleport";
-			mes "ไปยัง ^0000FF" + @wrpD$[.@j] + "^000000 คือ ^FF0000" + @wrpP[.@j] + "^000000 zeny.";
+			mes "???????. ??????????";
+			mes "???? ^0000FFZeny^000000 ?????????บริการ Teleport";
+			mes "????????????????? teleport";
+			mes "??? ^0000FF" + @wrpD$[.@j] + "^000000 ??? ^FF0000" + @wrpP[.@j] + "^000000 zeny.";
 			close3;
 		}
 		Zeny -= @wrpP[.@j];
@@ -338,27 +338,27 @@ function	script	F_KafCart	{
 	// Ensure that the class wanting to rent a pushcart is a merchant
 	if (BaseClass != Job_Merchant) {
 		mes "[Kafra Employee]";
-		mes "ฉันขอโทษ แต่";
-		mes "บริการให้เช่ารถเข็น";
+		mes "?????? ??";
+		mes "????????เช่ารถเข็น";
 		if (checkre(0) == true)
 			mes "is only available to Merchant classes.";
 		else {
-			mes "ใช้ได้กับ Merchants,";
+			mes "????? Merchants,";
 			mes "Blacksmiths, Master Smiths,";
-			mes "Alchemists and Biochemists\nเท่านั้น ";
+			mes "Alchemists and Biochemists\n????? ";
 		}
 		return 1;
 	}
 	// Make sure the invoking character does not have a cart already
 	else if (checkcart() == true) {
 		mes "[Kafra Employee]";
-		mes "ดูเหมือนว่าท่านจะมี รถเข็นอยู่แล้ว";
+		mes "???????????????? ???????????";
 		return 1;
 	}
 	// Check if the player has the Pushcart skill
 	else if (getskilllv("MC_PUSHCART") == 0) {
 		mes "[Kafra Employee]";
-		mes "ท่านสามารถใช้บริการได้ต่อเมื่อมีการเรียนรู้สกิล \"Push Cart\" .";
+		mes "????เช่ารถเข็น??????????????????????????? \"Push Cart\" .";
 		return 1;
 	}
 	// Consume "Free Ticket for the Cart Service" if available.
@@ -368,18 +368,18 @@ function	script	F_KafCart	{
 	else {
 		.@rental_fee = getarg(1);
 		mes "[Kafra Employee]";
-		mes "ในการเช่ารถเข็น";
-		mes "มีค่าบริการ " + .@rental_fee + " zeny. ";
-		mes "ท่านต้องการใช้บริการเช่ารถเข็นหรือไม่?";
+		mes "???เช่ารถเข็น";
+		mes "???????? " + .@rental_fee + " zeny. ";
+		mes "???????????????เช่ารถเข็น????????";
 		next;
 		if (select("เช่ารถเข็น.:Cancel") == 2)
 			return 0;
 		if (Zeny < .@rental_fee) {
 			mes "[Kafra Employee]";
-			mes "ฉันต้องขอโทษด้วย";
-			mes "ดูเหมือนท่านจะมีเงิน";
-			mes "ไม่พอในการเช่ารถเข็น";
-			mes "ค่าบริการคือ " + .@rental_fee + " zeny.";
+			mes "????????????";
+			mes "????????????????";
+			mes "???????เช่ารถเข็น";
+			mes "????????? " + .@rental_fee + " zeny.";
 			return 1;
 		}
 		Zeny -= .@rental_fee;
@@ -445,14 +445,14 @@ function	script	F_KafEnd	{
 	.@type = getarg(0);
 	mes "[Kafra Employee]";
 	if (getarg(1) == true) {// Save
-		mes "จุดเกิดใหม่ของคุณ";
-		mes "ถูกบันทึกไว้ที่นี่";
-		mes "" + getarg(2) + ".";
-		mes "ขอขอบคุณที่ใช้บริการ";
+		mes "บันทึกจุดเกิดเรียบร้อยแล้ว";
+		mes "ตำแหน่งปัจจุบันของคุณถูกบันทึกไว้ที่";
+		mes "^0000FF" + getarg(2) + "^000000.";
+		mes "ขอบคุณที่ใช้บริการ";
 		mes "Kafra Services.";
 	} else if (.@type == 0 || .@type == 5) {// Generic End
-		mes "เราอยู่ที่ Kafra Corporation,";
-		mes "มีความพยายามที่จะให้บริการที่ดีที่สุดแก่คุณเสมอ เราหวังว่าเราจะตอบสนองความต้องการด้านการผจญภัยและมาตรฐานความเป็นเลิศของคุณ";
+		mes "????????? Kafra Corporation,";
+		mes "???????????????????????????????????? ????????????????????????????????????????????????????????";
 	} else if (.@type == 1) {// Niflheim End
 		percentheal 0,-25;
 		mes "^666666Kaffffra n-never";
@@ -460,7 +460,7 @@ function	script	F_KafEnd	{
 		mes "On y-yooour siiiiide~^000000";
 	} else if (.@type == 2) {// RockRidge Save
 		mes "Saved.";
-		mes "ขอบคุณที่ไว้ใจใช้บริการของเรา";
+		mes "?????????????????????";
 	}
 	close3;
 }

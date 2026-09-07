@@ -13,7 +13,7 @@
 //= 1.2 Optimized and fixed getequipname menu. [Kisuka]
 //= 1.2a Added 'disable_items' command. [Euphy]
 //============================================================
-like_game,94,123,4	script	นักถอดการ์ด 	402,{
+morocc03,119,205,6	script	ถอดการ์ด 	402,{
 	set .zenycost,5000000;    // ค่าธรรมเนียม ในการถอดการ์ด
 	set .percardcost,1000000;  // ค่าธรรมเนียม ในการถอดการ์ดต่อหนึ่งใบ
 	.rate = 100;

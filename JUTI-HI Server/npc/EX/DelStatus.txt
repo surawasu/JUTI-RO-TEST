@@ -1,0 +1,86 @@
+//===== JUTI Del Status NPC ==================================
+//= ลดค่า STR / AGI / VIT / INT / DEX / LUK แบบระบุจำนวน
+//= สำคัญ: เมื่อลดแล้วจะไม่ได้ Status Point คืน
+//============================================================
+
+morocc03,184,201,4	script	ลบสเตตัส	721,{
+	mes "[ ลบสเตตัส ]";
+	mes "NPC นี้ใช้สำหรับลดค่า Status";
+	mes "STR / AGI / VIT / INT / DEX / LUK";
+	mes "^FF0000คำเตือน: เมื่อลดแล้ว จะไม่ได้แต้ม Status คืน^000000";
+	next;
+
+	switch(select("ลบ STR:ลบ AGI:ลบ VIT:ลบ INT:ลบ DEX:ลบ LUK:ยกเลิก")) {
+	case 1:
+		.@stat = bStr;
+		.@name$ = "STR";
+		break;
+	case 2:
+		.@stat = bAgi;
+		.@name$ = "AGI";
+		break;
+	case 3:
+		.@stat = bVit;
+		.@name$ = "VIT";
+		break;
+	case 4:
+		.@stat = bInt;
+		.@name$ = "INT";
+		break;
+	case 5:
+		.@stat = bDex;
+		.@name$ = "DEX";
+		break;
+	case 6:
+		.@stat = bLuk;
+		.@name$ = "LUK";
+		break;
+	default:
+		close;
+	}
+
+	.@current = readparam(.@stat);
+
+	mes "[ ลบสเตตัส ]";
+	mes "ค่า "+.@name$+" ปัจจุบัน: ^0055FF"+.@current+"^000000";
+	mes "กรอกจำนวนที่ต้องการลด";
+	mes "สามารถลดได้สูงสุด ^FF0000"+(.@current-1)+"^000000 แต้ม";
+	input .@amount;
+
+	if (.@amount <= 0) {
+		mes "กรุณากรอกจำนวนตั้งแต่ 1 ขึ้นไป";
+		close;
+	}
+
+	if (.@current <= 1) {
+		mes "ค่า "+.@name$+" ไม่สามารถลดต่ำกว่า 1 ได้";
+		close;
+	}
+
+	if (.@amount >= .@current) {
+		mes "ไม่สามารถลดได้";
+		mes "ค่า "+.@name$+" ต้องเหลืออย่างน้อย 1";
+		close;
+	}
+
+	mes "[ ยืนยันการลบสเตตัส ]";
+	mes "ต้องการลด "+.@name$+" จำนวน ^FF0000"+.@amount+"^000000 แต้ม";
+	mes "จาก ^0055FF"+.@current+"^000000 เหลือ ^00AA00"+(.@current-.@amount)+"^000000";
+	mes "^FF0000คุณจะไม่ได้รับ Status Point คืน^000000";
+	next;
+
+	if (select("ยืนยัน:ยกเลิก") == 2)
+		close;
+
+	statusup2 .@stat,-.@amount;
+
+	mes "[ ลบสเตตัส ]";
+	mes "ลดค่า "+.@name$+" สำเร็จ";
+	mes "ค่าปัจจุบัน: ^00AA00"+readparam(.@stat)+"^000000";
+	mes "ไม่ได้รับ Status Point คืน";
+	close;
+
+OnInit:
+	waitingroom "ลบสเตตัส",0;
+	end;
+}

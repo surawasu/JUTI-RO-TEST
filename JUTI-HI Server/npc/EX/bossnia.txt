@@ -102,17 +102,17 @@ end;
 end;
 }
 
-like_game,134,102,1	script	ล่าบอส#funtown	565,{
+morocc03,173,192,1	script	ห้องล่าบอส#funtown	10007,{
 query_sql "SELECT `money` FROM `club_member` WHERE `account_id`='"+getcharid(3)+"'",.@money_new;
 query_sql "SELECT `money` FROM `club_member2` WHERE `account_id`='"+getcharid(3)+"'",.@money_old;
 .@money = (.@money_old + .@money_new);
 mes	"[ ห้องล่าบอส ]";
 mes "เลือกห้องบอสที่ต้องการ";
 menu	
-" ~ ล่าบอส (สำหรับมาโคร) ["+getmapusers("bossnia_01")*2+"] คน",MVP1,
-" ~ ล่าบอส (สำหรับมาโคร) ["+getmapusers("bossnia_02")*2+"] คน",MVP2,
-" ~ ล่าบอส (^FF0000ห้ามวิง^000000) ^FF0000Drop Rate+50%^000000 ["+getmapusers("bossnia_03")*2+"] คน",MVP3,
-" ~ ล่าบอส (^FF0000เมพ PVP^000000) ^FF0000Drop Rate+50%^000000 ["+getmapusers("bossnia_04")*2+"] คน",MVP4,
+" ~ Boss Room 1 [Status ไม่เกิน 800] ["+getmapusers("bossnia_01")+"] คน",MVP1,
+" ~ Boss Room 2 [Status ไม่เกิน 800] ["+getmapusers("bossnia_02")+"] คน",MVP2,
+" ~ DROP x2 (^FF0000 PK^000000) ["+getmapusers("bossnia_03")+"] คน",MVP3,
+" ~ Macro [ ห้องรวมใช้ Macro ได้ ] ["+getmapusers("bossnia_04")+"] คน",MVP4,
 //" ~ ล่าบอส Member LV.1 ["+getmapusers("bossnia_m01")*2+"] คน",MVPM1,
 //" ~ ล่าบอส Member LV.2 ["+getmapusers("bossnia_m02")*2+"] คน",MVPM2,
 //" ~ ล่าบอส Member LV.3 ["+getmapusers("bossnia_m03")*2+"] คน",MVPM3,
@@ -312,7 +312,7 @@ delwaitingroom;
 .@count3 = getmapusers("bossnia_03");
 .@count4 = getmapusers("bossnia_04");
 .@count = (.@count1+.@count2+.@count3+.@count4)*2;
-waitingroom " ล่าบอส  [ "+.@count+" ] คน",0;
+waitingroom " ห้องล่าบอส",0;
 sleep 80; // Evites super infinity loop
 } while(1); // End Loop
 end;

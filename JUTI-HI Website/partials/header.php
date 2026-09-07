@@ -1,0 +1,5 @@
+<?php require_once __DIR__ . '/../lib/functions.php'; $cfg = app(); $user = current_user(); ?>
+<!doctype html><html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><?= e($cfg['app_name']) ?></title><link rel="stylesheet" href="assets/style.css"></head><body>
+<header class="topbar"><a class="brand" href="index.php"><span class="brand-mark">J</span><span><strong>JUTI</strong><small>RAGNAROK ONLINE</small></span></a><nav><a href="index.php">หน้าแรก</a><a href="server-info.php">ข้อมูลเซิร์ฟเวอร์</a><a href="ranking.php">Ranking</a><a href="index.php#download">ดาวน์โหลด</a></nav><div class="account-actions"><?php if ($user): ?><a class="btn ghost" href="dashboard.php"><?= e($user['userid']) ?></a><a class="btn small" href="logout.php">ออกจากระบบ</a><?php else: ?><a class="btn ghost" href="login.php">เข้าสู่ระบบ</a><a class="btn small" href="register.php">สมัครสมาชิก</a><?php endif; ?></div></header>
+<?php if ($f = pull_flash()): ?><div class="flash <?= e($f[0]) ?>"><?= e($f[1]) ?></div><?php endif; ?>
+<main>

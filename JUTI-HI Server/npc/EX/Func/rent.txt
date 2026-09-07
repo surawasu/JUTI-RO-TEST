@@ -10,7 +10,7 @@
 //= One-click automatic mount rentals.
 //============================================================
 
-like_game,118,122,6	script	เช่าทุกอย่าง	875,{
+morocc03,139,192,6	script	เช่าทุกอย่าง	875,{
 	if (ismounting()) {
 		message strcharinfo(0),"You must first remove your mount.";
 		end;

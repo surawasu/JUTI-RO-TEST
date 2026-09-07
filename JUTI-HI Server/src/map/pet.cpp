@@ -24,6 +24,7 @@
 #include "chrif.hpp"
 #include "clif.hpp"
 #include "intif.hpp"
+#include "itemdb.hpp"
 #include "log.hpp"
 #include "mob.hpp"
 #include "npc.hpp"
@@ -33,6 +34,8 @@ using namespace rathena;
 
 std::unordered_map<std::string, std::shared_ptr<s_pet_autobonus_wrapper>> pet_autobonuses;
 const t_tick MIN_PETTHINKTIME = 100;
+
+static bool pet_loot_filter_allowed(struct pet_data *pd, struct flooritem_data *fitem);
 
 const std::string PetDatabase::getDefaultLocation(){
 	return std::string(db_path) + "/pet_db.yml";
@@ -1828,6 +1831,13 @@ static int pet_ai_sub_hard(struct pet_data *pd, map_session_data *sd, t_tick tic
 		} else {
 			struct flooritem_data *fitem = (struct flooritem_data *)target;
 
+			// Re-check at pickup time in case the owner changed Pet Loot Control
+			// while the pet was already walking toward this item.
+			if (!pet_loot_filter_allowed(pd, fitem)) {
+				pet_unlocktarget(pd);
+				return 0;
+			}
+
 			if(pd->loot->count < pd->loot->max) {
 				memcpy(&pd->loot->item[pd->loot->count++],&fitem->item,sizeof(pd->loot->item[0]));
 				pd->loot->weight += itemdb_weight(fitem->item.nameid)*fitem->item.amount;
@@ -1873,6 +1883,65 @@ static TIMER_FUNC(pet_ai_hard){
 	return 0;
 }
 
+static bool pet_loot_filter_allowed(struct pet_data *pd, struct flooritem_data *fitem)
+{
+	map_session_data *sd = pd ? pd->master : nullptr;
+	if (sd == nullptr || fitem == nullptr)
+		return false;
+
+	// Backward compatibility: until the player configures Pet Loot Control,
+	// preserve the original rAthena pet-loot behavior.
+	if (pc_readaccountreg(sd, add_str("#PETLOOT_CONFIGURED")) <= 0)
+		return true;
+
+	if (pc_readaccountreg(sd, add_str("#PETLOOT_ENABLE")) <= 0)
+		return false;
+
+	const t_itemid item_id = fitem->item.nameid;
+	static const char *priority_vars[] = {
+		"#PETLOOT_PRIORITY_1", "#PETLOOT_PRIORITY_2", "#PETLOOT_PRIORITY_3",
+		"#PETLOOT_PRIORITY_4", "#PETLOOT_PRIORITY_5", "#PETLOOT_PRIORITY_6",
+		"#PETLOOT_PRIORITY_7", "#PETLOOT_PRIORITY_8", "#PETLOOT_PRIORITY_9",
+		"#PETLOOT_PRIORITY_10"
+	};
+
+	// Priority list has the highest precedence. If an Item ID is listed here,
+	// the pet is allowed to collect it even when its normal category is disabled.
+	for (const char *var : priority_vars) {
+		if (pc_readaccountreg(sd, add_str(var)) == item_id)
+			return true;
+	}
+
+	// If collect-all is enabled, every item is allowed after the priority check.
+	if (pc_readaccountreg(sd, add_str("#PETLOOT_ALL")) > 0)
+		return true;
+
+	switch (itemdb_type(item_id)) {
+		case IT_HEALING:
+			return pc_readaccountreg(sd, add_str("#PETLOOT_HEALING")) > 0;
+		case IT_USABLE:
+		case IT_DELAYCONSUME:
+		case IT_CASH:
+			return pc_readaccountreg(sd, add_str("#PETLOOT_USABLE")) > 0;
+		case IT_ETC:
+		case IT_PETEGG:
+		case IT_PETARMOR:
+		case IT_CHARM:
+			return pc_readaccountreg(sd, add_str("#PETLOOT_ETC")) > 0;
+		case IT_ARMOR:
+		case IT_SHADOWGEAR:
+			return pc_readaccountreg(sd, add_str("#PETLOOT_ARMOR")) > 0;
+		case IT_WEAPON:
+			return pc_readaccountreg(sd, add_str("#PETLOOT_WEAPON")) > 0;
+		case IT_CARD:
+			return pc_readaccountreg(sd, add_str("#PETLOOT_CARD")) > 0;
+		case IT_AMMO:
+			return pc_readaccountreg(sd, add_str("#PETLOOT_AMMO")) > 0;
+		default:
+			return false;
+	}
+}
+
 /**
  * Make a pet search and grab loot if it can.
  * @param bl : item data
@@ -1894,6 +1963,9 @@ static int pet_ai_sub_hard_lootsearch(struct block_list *bl,va_list ap)
 	sd_charid = fitem->first_get_charid;
 
 	if(sd_charid && sd_charid != pd->master->status.char_id)
+		return 0;
+
+	if (!pet_loot_filter_allowed(pd, fitem))
 		return 0;
 
 	if(unit_can_reach_bl(&pd->bl,bl, pd->db->range2, 1, NULL, NULL) &&

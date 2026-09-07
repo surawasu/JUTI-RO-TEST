@@ -1,0 +1,17 @@
+-	pointshop	cashrefine	-1,#CASHPOINTS,6635:100,985:10,984:10,7619:50,7620:50,6223:50,6224:50
+
+morocc03,202,196,4	script	ร้านค้าอุปกรณ์ตีบวก	4_BLUE_FLOWER,{
+
+
+callshop "cashrefine",1;
+end;
+
+
+ex:
+end;
+
+
+OnInit:
+waitingroom "ร้านค้าอุปกรณ์ตีบวก",0;
+end;
+}

@@ -1,0 +1,34 @@
+morocc,169,84,3	script	ลงทะเบียนรับรางวัลเก็บ LV	667,{
+if(#successlevel > 0){
+mes "[ลงทะเบียนรับรางวัลเก็บ LV]";
+mes "ไอดีของท่านได้ทำการลงทะเบียนเรียบร้อยแล้ว";
+mes "โปรดรอรับรางวัลช่วง OBT";
+close;
+}
+mes "[ลงทะเบียนรับรางวัลเก็บ LV]";
+mes "เงื่อนไขการลงทะเบียน";
+mes "1.Level 99 Job 70 HiClass";
+mes "2.ตัวละครจาก NPC   แจกตัวละครจะไม่สามารถเข้าร่วมได้";
+mes "ท่านต้องการลงทะเบียนหรือไม่?";
+switch(select("ลงทะเบียนเลย:ยังก่อน")){
+	case 1:
+		next;
+		if(baselevel < 99 || joblevel < 70 || makechar99 > 0){
+		mes "[ลงทะเบียนรับรางวัลเก็บ LV]";
+		mes "ตัวละครของท่านไม่ตรงตามเงื่อนไขที่กำหนด";
+		end;
+		}
+		query_sql("INSERT INTO `event_lv` (account_id,status) VALUES (" + getcharid(3) + ",1) ON DUPLICATE KEY UPDATE account_id = account_id;");
+		set #successlevel,1;
+		mes "[ลงทะเบียนรับรางวัลเก็บ LV]";
+		mes "ไอดีของท่านได้ทำการลงทะเบียนเรียบร้อยแล้ว";
+		mes "โปรดรอรับรางวัลช่วง OBT";
+		end;
+	case 2:
+	end;
+}
+OnInit:
+waitingroom "ลงทะเบียนรับรางวัลเก็บ LV",0;
+end;
+}
+	

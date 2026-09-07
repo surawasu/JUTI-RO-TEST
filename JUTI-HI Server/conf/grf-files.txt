@@ -10,3 +10,6 @@
 // Use the base folder, not the data\ path.
 //-----------------------------------------
 //data_dir: C:\Program Files\Gravity\RO\
+grf: D:/JUTI-HI_Server-Client/JUTI-HI Client/JUTI.grf
+grf: D:/JUTI-HI_Server-Client/JUTI-HI Client/main.grf
+grf: D:/JUTI-HI_Server-Client/JUTI-HI Client/addon.grf
