@@ -91,3 +91,17 @@ secrets/
 *.grf
 *.rgz
 *.thor
+
+# Local PHP runtime / archives.
+/php83/
+/php83.zip
+
+# Generated map-cache helper artifacts.
+/JUTI-HI Server/db/import/*_mapcache.txt
+/JUTI-HI Server/db/*_mapcache.txt
+/JUTI-HI Server/db/*_only.dat
+
+# Local backups and machine-specific DB bootstrap files.
+/JUTI-HI Server/npc/EX/shop/*.backup_*.txt
+/JUTI-HI Server/setup_admin.sql
+/JUTI-HI Server/setup_local_db.sql
